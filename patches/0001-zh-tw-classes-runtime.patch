@@ -1,0 +1,390 @@
+diff --git a/classes.html b/classes.html
+index 3f6cd87..c841a73 100644
+--- a/classes.html
++++ b/classes.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Classes - 5etools</title>
++	<title>職業 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -66,8 +66,8 @@
+ <div class="ve-flex-col" data-cancer-id="cancer-header">
+ 	<header class="ve-mobile-sm__hidden page__header">
+ 		<div class="container ve-flex-v-baseline">
+-			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Classes</h1>
+-			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
++			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">職業</h1>
++			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">從左側按名稱搜尋，點選名稱後於右側顯示。</p>
+ 		</div>
+ 	</header>
+ 
+@@ -92,8 +92,8 @@
+ 					<button class="ve-btn ve-btn-default ve-px-2" id="reset"><span class="glyphicon glyphicon-refresh"></span></button>
+ 				</div>
+ 				<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+-					<button class="ve-col-8 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-					<button class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
++					<button class="ve-col-8 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++					<button class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">來源</button>
+ 				</div>
+ 
+ 				<div class="list list--stats classes cls__list" id="list"></div>
+@@ -101,9 +101,9 @@
+ 
+ 			<div class="ve-flex-vh-center ve-my-3">
+ 				<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+-					<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+-					<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+-					<button type="button" class="ve-btn ve-btn-xs ve-btn-info" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
++					<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">管理內容</button>
++					<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-prerelease" title="管理預發佈內容"><span class="glyphicon glyphicon-wrench"></span></button>
++					<button type="button" class="ve-btn ve-btn-xs ve-btn-info" name="manage-brew" title="管理自製內容"><span class="glyphicon glyphicon-glass"></span></button>
+ 				</div>
+ 			</div>
+ 		</div>
+@@ -115,11 +115,11 @@
+ 	<div class="row ve-flex ve-mobile-md__flex-col">
+ 		<div class="ve-col-3 ve-mobile-md__col-12 ve-px-4">
+ 			<div class="ve-flex-vh-center ve-text-center wrp-btn-readmode ve-mb-3">
+-				<button class="ve-btn ve-btn-default ve-btn-xs no-print ve-mr-1" id="btn-comparemode" title="A pop-up table which can be used to compare subclass features.">Subclass Comparison</button>
+-				<button class="ve-btn ve-btn-default ve-btn-xs no-print ve-mr-1" id="btn-readmode" title="A pop-up reading mode with a layout and content order matching that of the books.">Book View</button>
++				<button class="ve-btn ve-btn-default ve-btn-xs no-print ve-mr-1" id="btn-comparemode" title="以彈出式表格比較各子職業特性。">子職業比較</button>
++				<button class="ve-btn ve-btn-default ve-btn-xs no-print ve-mr-1" id="btn-readmode" title="以符合原書版面與內容順序的閱讀模式顯示。">書籍檢視</button>
+ 				<div class=" ve-flex-v-center ve-btn-group">
+ 					<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-link-export"><span class="glyphicon glyphicon-magnet"></span></button>
+-					<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-sidebar-settings" title="Other Options"><span class="glyphicon glyphicon-option-vertical"></span></button>
++					<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-sidebar-settings" title="其他選項"><span class="glyphicon glyphicon-option-vertical"></span></button>
+ 				</div>
+ 			</div>
+ 
+@@ -133,7 +133,7 @@
+ 			<div id="subclasstabs" class="ve-w-100 ve-flex ve-mb-2 cls-tabs__wrp"></div>
+ 			<table id="pagecontent" class="ve-w-100 ve-stats shadow-big cls__stats">
+ 				<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-				<tr><td colspan="6" class="initial-message initial-message--med">Loading...</td></tr>
++				<tr><td colspan="6" class="initial-message initial-message--med">載入中……</td></tr>
+ 				<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 			</table>
+ 		</div>
+diff --git a/js/classes.js b/js/classes.js
+index 622ebca..c030b07 100644
+--- a/js/classes.js
++++ b/js/classes.js
+@@ -2,6 +2,7 @@ import {VetoolsConfig} from "./utils-config/utils-config-config.js";
+ import {RenderClassesSidebar} from "./render-class.js";
+ 
+ import {OmnisearchUtilsUi} from "./omnisearch/omnisearch-utils-ui.js";
++import {I18nZhTwClass} from "./zh-tw/class-i18n.js";
+ 
+ class UtilClassesPage {
+ 	static getColorStyleClasses (entry, {isForceStandardSource, prefix, isSubclass} = {}) {
+@@ -287,9 +288,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 	}
+ 
+ 	static getBtnTitleSubclass (sc) {
+-		const titlePartReprint = sc.isReprinted ? " (this subclass has been reprinted in a more recent source)" : "";
++		const titlePartReprint = sc.isReprinted ? "（此子職業已有較新來源的再版版本）" : "";
+ 		const sourcePart = Renderer.utils.getSourceAndPageText(sc);
+-		return `${sc.name}; Source: ${sourcePart}${titlePartReprint}`;
++		return `${sc.name}${sc.ENG_name ? `（${sc.ENG_name}）` : ""}；來源：${sourcePart}${titlePartReprint}`;
+ 	}
+ 
+ 	static getBaseShortName (sc) {
+@@ -373,7 +374,11 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 		]);
+ 		await ExcludeUtil.pInitialise();
+ 		OmnisearchUtilsUi.addScrollTopFloat();
+-		const data = await DataUtil.class.loadJSON();
++		const [data] = await Promise.all([
++			DataUtil.class.loadJSON(),
++			I18nZhTwClass.pLoad(),
++		]);
++		I18nZhTwClass.applyToData(data);
+ 
+ 		const iptSearch = veE(document.getElementById("lst__search"));
+ 		const btnReset = veE(document.getElementById("reset"));
+@@ -410,7 +415,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 
+ 		this._list.init();
+ 
+-		veEs(`.initial-message`).vee.txt(`Select a class from the list to view it here`);
++		veEs(`.initial-message`).vee.txt(`從列表選擇一個職業以在此檢視`);
+ 
+ 		// Silently prepare our initial state
+ 		await this._pSetClassFromHash(Hist.initialLoad);
+@@ -442,6 +447,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 	}
+ 
+ 	async _pAddPrereleaseBrewData ({prereleaseBrewData}) {
++		I18nZhTwClass.applyToData(prereleaseBrewData);
+ 		const {isAddedAnyClass, isAddedAnySubclass} = this._addData(prereleaseBrewData);
+ 
+ 		if (isAddedAnySubclass && !Hist.initialLoad) await this._pDoRender();
+@@ -530,10 +536,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 		data.subclass.forEach(sc => {
+ 			if (sc.className === VeCt.STR_GENERIC || sc.classSource === VeCt.STR_GENERIC) return;
+ 
+-			const cls = this._dataList.find(c => c.name.toLowerCase() === sc.className.toLowerCase() && c.source.toLowerCase() === (sc.classSource || Parser.SRC_PHB).toLowerCase());
++			const cls = this._dataList.find(c => I18nZhTwClass.getCanonicalName(c).toLowerCase() === sc.className.toLowerCase() && c.source.toLowerCase() === (sc.classSource || Parser.SRC_PHB).toLowerCase());
+ 			if (!cls) {
+ 				JqueryUtil.doToast({
+-					content: `Could not add subclass; could not find class with name: ${sc.className} and source ${sc.classSource || Parser.SRC_PHB}`,
++					content: `無法加入子職業；找不到職業：${sc.className}，來源：${sc.classSource || Parser.SRC_PHB}`,
+ 					type: "danger",
+ 				});
+ 				return;
+@@ -617,7 +623,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 			if (target._ !== ixToLoad) {
+ 				Hist.lastLoadedId = ixToLoad;
+ 				const cls = this._dataList[ixToLoad];
+-				document.title = `${cls ? cls.name : "Classes"} - 5etools`;
++				document.title = `${cls ? cls.name : "職業"} - 5etools`;
+ 				this._updateSelected();
+ 				target._ = ixToLoad;
+ 			} else {
+@@ -626,7 +632,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 		} else {
+ 			// This should never occur (failed loads should pick the first list item), but attempt to handle it semi-gracefully
+ 			this._pgContent.vee.empty().vee.appends(ClassesPage._render_getTrNoContent());
+-			JqueryUtil.doToast({content: "Could not find the class to load!", type: "error"});
++			JqueryUtil.doToast({content: "找不到要載入的職業！", type: "error"});
+ 		}
+ 	}
+ 
+@@ -899,12 +905,12 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 	_doBindBtnSettingsSidebar () {
+ 		const menu = ContextUtil.getMenu([
+ 			new ContextUtil.Action(
+-				"Download as Markdown",
++				"下載為 Markdown",
+ 				() => this._doDownloadMarkdown(),
+ 			),
+ 			null,
+ 			new ContextUtil.Action(
+-				"Toggle &quot;Spell Points&quot; Mode (5e)",
++				"切換「法術點」模式（5e）",
+ 				() => {
+ 					this._stateGlobal.isUseSpellPoints = !this._stateGlobal.isUseSpellPoints;
+ 				},
+@@ -918,9 +924,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 	getListItem (cls, clsI, isExcluded) {
+ 		const hash = UrlUtil.autoEncodeHash(cls);
+ 		const source = Parser.sourceJsonToAbv(cls.source);
++		const displayName = `${cls.name}${cls.ENG_name ? ` (${cls.ENG_name})` : ""}`;
+ 
+ 		const lnk = veT`<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+-			<span class="ve-bold ve-col-8 ve-pl-0 ve-pr-1">${cls.name}</span>
++			<span class="ve-bold ve-col-8 ve-pl-0 ve-pr-1">${displayName}</span>
+ 			<span class="ve-col-4 ve-pl-0 ve-pr-1 ve-text-center ${Parser.sourceJsonToSourceClassname(cls.source)} ve-pr-0" title="${Parser.sourceJsonToFull(cls.source)}">${source}</span>
+ 		</a>`;
+ 
+@@ -929,7 +936,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 		return new ListItem(
+ 			clsI,
+ 			ele,
+-			cls.name,
++			`${cls.name} ${cls.ENG_name || ""}`.trim(),
+ 			{
+ 				source,
+ 				...ListItem.getCommonValues(cls),
+@@ -1240,9 +1247,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 				${elesTblGroupHeaders}
+ 			</tr>
+ 			<tr>
+-				<th class="ve-cls-tbl__col-level">Level</th>
+-				<th class="ve-cls-tbl__col-prof-bonus">Proficiency Bonus</th>
+-				<th class="ve-text-left">Features</th>
++				<th class="ve-cls-tbl__col-level">${I18nZhTwClass.t("Level")}</th>
++				<th class="ve-cls-tbl__col-prof-bonus">${I18nZhTwClass.t("Proficiency Bonus")}</th>
++				<th class="ve-text-left">${I18nZhTwClass.t("Features")}</th>
+ 				${elesTblHeaders}
+ 			</tr>
+ 			${metasTblRows.map(meta => meta.eleRow)}
+@@ -1294,7 +1301,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 				.vee.html(Renderer.get().render(`{@variantrule Spell Points}`));
+ 			elesTblHeaders.push(tblHeaderSpellPoints);
+ 
+-			tblHeaderSpellPointsMaxSpellLevel = veT`<th class="ve-cls-tbl__col-generic-center ve-cls-tbl__cell-spell-points"><div class="cls__squash_header">Spell Level</div></th>`;
++			tblHeaderSpellPointsMaxSpellLevel = veT`<th class="ve-cls-tbl__col-generic-center ve-cls-tbl__cell-spell-points"><div class="cls__squash_header">法術環階</div></th>`;
+ 			elesTblHeaders.push(tblHeaderSpellPointsMaxSpellLevel);
+ 
+ 			elesDefault = [thEleGroupHeader, ...tblHeadersGroup];
+@@ -1540,10 +1547,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 		const cls = this.activeClass;
+ 
+ 		// region features/fluff
+-		const btnToggleFeatures = ComponentUiUtil.getBtnBool(this, "isHideFeatures", {text: "Features", activeClass: "cls__btn-cf--active", isInverted: true})
+-			.vee.tooltip("Toggle Class Features");
++		const btnToggleFeatures = ComponentUiUtil.getBtnBool(this, "isHideFeatures", {text: I18nZhTwClass.t("Features"), activeClass: "cls__btn-cf--active", isInverted: true})
++			.vee.tooltip("切換職業特性");
+ 
+-		const btnToggleFeatureVariants = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Toggle Class Feature Options/Variants">Variants</button>`
++		const btnToggleFeatureVariants = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="切換職業特性選項／變體">變體</button>`
+ 			.vee.onn("click", () => {
+ 				const f = this.filterBox.getValues();
+ 				this._pageFilter.optionsFilter.setValue("isClassFeatureVariant", !f[this._pageFilter.optionsFilter.header].isClassFeatureVariant);
+@@ -1556,8 +1563,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 		this.filterBox.on(FILTER_BOX_EVNT_VALCHANGE, () => hkUpdateBtnFeatureVariants());
+ 		hkUpdateBtnFeatureVariants();
+ 
+-		const btnToggleFluff = ComponentUiUtil.getBtnBool(this, "isShowFluff", {text: "Info"})
+-			.vee.tooltip("Toggle Class Info");
++		const btnToggleFluff = ComponentUiUtil.getBtnBool(this, "isShowFluff", {text: "說明"})
++			.vee.tooltip("切換職業說明");
+ 
+ 		veT`<div class="ve-flex-v-center ve-m-1 ve-btn-group ve-mr-3 ve-no-shrink">${btnToggleFeatures}${btnToggleFeatureVariants}${btnToggleFluff}</div>`.vee.appendTo(wrp);
+ 		// endregion
+@@ -1832,7 +1839,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 		const dispName = veT`<div title="${ClassesPage.getBtnTitleSubclass(sc)}"></div>`;
+ 		const dispSource = veT`<div class="ve-ml-1" title="${Parser.sourceJsonToFull(sc.source)}">(${Parser.sourceJsonToAbv(sc.source)})</div>`;
+ 		const hkSourcesVisible = () => {
+-			dispName.vee.txt(this._state.isShowScSources ? ClassesPage.getBaseShortName(sc) : sc.shortName);
++			const displayName = this._state.isShowScSources ? ClassesPage.getBaseShortName(sc) : sc.shortName;
++			dispName.vee.txt(`${displayName}${sc.ENG_shortName ? ` (${sc.ENG_shortName})` : ""}`);
+ 			dispSource.vee.toggle(!!this._state.isShowScSources);
+ 		};
+ 		this._addHookBase("isShowScSources", hkSourcesVisible);
+@@ -1870,7 +1878,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 		return new ListItem(
+ 			ix,
+ 			btn,
+-			sc.name,
++			`${sc.name} ${sc.ENG_name || ""}`.trim(),
+ 			{
+ 				source: sc.source,
+ 				...ListItem.getCommonValues(sc),
+@@ -2202,7 +2210,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 				if (this._state.isViewActiveScComp) await this._subclassComparisonView.pOpen();
+ 				else {
+ 					this._subclassComparisonView.teardown();
+-					document.title = `${cls ? cls.name : "Classes"} - 5etools`;
++					document.title = `${cls ? cls.name : "職業"} - 5etools`;
+ 				}
+ 			} finally {
+ 				this._unlock("sc-comparison");
+@@ -2225,7 +2233,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+ 				if (this._state.isViewActiveBook) await this._classBookView.pOpen();
+ 				else {
+ 					this._classBookView.teardown();
+-					document.title = `${cls ? cls.name : "Classes"} - 5etools`;
++					document.title = `${cls ? cls.name : "職業"} - 5etools`;
+ 				}
+ 			} finally {
+ 				this._unlock("view-book");
+diff --git a/js/render.js b/js/render.js
+index a561361..379f02c 100644
+--- a/js/render.js
++++ b/js/render.js
+@@ -4001,7 +4001,7 @@ Renderer.utils = class {
+ 		if (!Renderer.utils._TITLE_SKIP_TYPES.has(fluffEntry.type)) return false;
+ 
+ 		const fluffEntrySkippableName = Renderer.utils._getFluffTabContent_getSkippableEntryName(fluffEntry.name);
+-		const entitySkippableName = Renderer.utils._getFluffTabContent_getSkippableEntryName(entity.name);
++		const entitySkippableName = Renderer.utils._getFluffTabContent_getSkippableEntryName(entity.ENG_name || entity.name);
+ 
+ 		return fluffEntrySkippableName.includes(entitySkippableName) || entitySkippableName.includes(fluffEntrySkippableName);
+ 	}
+diff --git a/js/utils.js b/js/utils.js
+index 90d5502..9d5b1ab 100644
+--- a/js/utils.js
++++ b/js/utils.js
+@@ -3832,7 +3832,7 @@ globalThis.UrlUtil = class {
+ 	};
+ 
+ 	static getStateKeySubclass (sc) {
+-		return UrlUtil.encodeArrayForHash(["sub", sc.shortName || sc.name, sc.source]);
++		return UrlUtil.encodeArrayForHash(["sub", sc.ENG_shortName || sc.ENG_name || sc.shortName || sc.name, sc.source]);
+ 	}
+ 
+ 	static unpackStateKeySubclass (str) {
+@@ -3891,7 +3891,7 @@ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY] = UrlUtil.URL_TO_HASH_GENERIC;
+ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_SPELLS] = UrlUtil.URL_TO_HASH_GENERIC;
+ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BACKGROUNDS] = UrlUtil.URL_TO_HASH_GENERIC;
+ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS] = it => UrlUtil.encodeArrayForHash(it.name, SourceUtil.getEntitySource(it));
+-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES] = UrlUtil.URL_TO_HASH_GENERIC;
++UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES] = it => UrlUtil.encodeArrayForHash(it.ENG_name || it.name, SourceUtil.getEntitySource(it));
+ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES] = UrlUtil.URL_TO_HASH_GENERIC;
+ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_FEATS] = UrlUtil.URL_TO_HASH_GENERIC;
+ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_OPT_FEATURES] = UrlUtil.URL_TO_HASH_GENERIC;
+@@ -3975,8 +3975,8 @@ UrlUtil.URL_TO_HASH_BUILDER["subclass"] = it => {
+ 		`${UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES]({name: it.className, source: it.classSource})}${HASH_PART_SEP}${UrlUtil.getClassesPageStatePart({subclass: it})}`,
+ 	);
+ };
+-UrlUtil.URL_TO_HASH_BUILDER["classFeature"] = (it) => UrlUtil.encodeArrayForHash(it.name, it.className, it.classSource, it.level, it.source);
+-UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"] = (it) => UrlUtil.encodeArrayForHash(it.name, it.className, it.classSource, it.subclassShortName, it.subclassSource, it.level, it.source);
++UrlUtil.URL_TO_HASH_BUILDER["classFeature"] = (it) => UrlUtil.encodeArrayForHash(it.ENG_name || it.name, it.className, it.classSource, it.level, it.source);
++UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"] = (it) => UrlUtil.encodeArrayForHash(it.ENG_name || it.name, it.className, it.classSource, it.subclassShortName, it.subclassSource, it.level, it.source);
+ UrlUtil.URL_TO_HASH_BUILDER["card"] = (it) => UrlUtil.encodeArrayForHash(it.name, it.set, it.source);
+ UrlUtil.URL_TO_HASH_BUILDER["legendaryGroup"] = UrlUtil.URL_TO_HASH_GENERIC;
+ UrlUtil.URL_TO_HASH_BUILDER["itemEntry"] = UrlUtil.URL_TO_HASH_GENERIC;
+diff --git a/node/generate-pages/generate-pages-page-generator-config-list.js b/node/generate-pages/generate-pages-page-generator-config-list.js
+index 8dad7e5..c55139a 100644
+--- a/node/generate-pages/generate-pages-page-generator-config-list.js
++++ b/node/generate-pages/generate-pages-page-generator-config-list.js
+@@ -668,7 +668,8 @@ class _PageGeneratorListClasses extends PageGeneratorListBase {
+ 	_filename = "list/template-list--classes.hbs";
+ 
+ 	_page = UrlUtil.PG_CLASSES;
+-	_pageTitle = "Classes";
++	_pageTitle = "職業";
++	_navbarDescription = "從左側按名稱搜尋，點選名稱後於右側顯示。";
+ 	_scriptIdentList = "classes";
+ 	_isHasRenderer = false;
+ 
+diff --git a/node/generate-pages/template/list/template-list--classes.hbs b/node/generate-pages/template/list/template-list--classes.hbs
+index 5c1f088..60a59db 100644
+--- a/node/generate-pages/template/list/template-list--classes.hbs
++++ b/node/generate-pages/template/list/template-list--classes.hbs
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ {{> "head" }}
+ 
+@@ -27,8 +27,8 @@
+ 					<button class="ve-btn ve-btn-default ve-px-2" id="reset"><span class="glyphicon glyphicon-refresh"></span></button>
+ 				</div>
+ 				<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+-					<button class="ve-col-8 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-					<button class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
++					<button class="ve-col-8 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++					<button class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">來源</button>
+ 				</div>
+ 
+ 				<div class="list list--stats classes cls__list" id="list"></div>
+@@ -46,11 +46,11 @@
+ 	<div class="row ve-flex ve-mobile-md__flex-col">
+ 		<div class="ve-col-3 ve-mobile-md__col-12 ve-px-4">
+ 			<div class="ve-flex-vh-center ve-text-center wrp-btn-readmode ve-mb-3">
+-				<button class="ve-btn ve-btn-default ve-btn-xs no-print ve-mr-1" id="btn-comparemode" title="A pop-up table which can be used to compare subclass features.">Subclass Comparison</button>
+-				<button class="ve-btn ve-btn-default ve-btn-xs no-print ve-mr-1" id="btn-readmode" title="A pop-up reading mode with a layout and content order matching that of the books.">Book View</button>
++				<button class="ve-btn ve-btn-default ve-btn-xs no-print ve-mr-1" id="btn-comparemode" title="以彈出式表格比較各子職業特性。">子職業比較</button>
++				<button class="ve-btn ve-btn-default ve-btn-xs no-print ve-mr-1" id="btn-readmode" title="以符合原書版面與內容順序的閱讀模式顯示。">書籍檢視</button>
+ 				<div class=" ve-flex-v-center ve-btn-group">
+ 					<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-link-export"><span class="glyphicon glyphicon-magnet"></span></button>
+-					<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-sidebar-settings" title="Other Options"><span class="glyphicon glyphicon-option-vertical"></span></button>
++					<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-sidebar-settings" title="其他選項"><span class="glyphicon glyphicon-option-vertical"></span></button>
+ 				</div>
+ 			</div>
+ 
+@@ -64,7 +64,7 @@
+ 			<div id="subclasstabs" class="ve-w-100 ve-flex ve-mb-2 cls-tabs__wrp"></div>
+ 			<table id="pagecontent" class="ve-w-100 ve-stats shadow-big cls__stats">
+ 				<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-				<tr><td colspan="6" class="initial-message initial-message--med">Loading...</td></tr>
++				<tr><td colspan="6" class="initial-message initial-message--med">載入中……</td></tr>
+ 				<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 			</table>
+ 		</div>
