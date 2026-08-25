@@ -1,0 +1,5219 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"translationSource": "https://shuaishuaidnd.cn/data/class",
+		"conversion": "OpenCC s2twp plus locked project terminology"
+	},
+	"class": [
+		{
+			"name": "契術師",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"reprintedAs": [
+				"Warlock|XPHB"
+			],
+			"edition": "classic",
+			"hd": {
+				"number": 1,
+				"faces": 8
+			},
+			"proficiency": [
+				"wis",
+				"cha"
+			],
+			"spellcastingAbility": "cha",
+			"casterProgression": "pact",
+			"cantripProgression": [
+				2,
+				2,
+				2,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4
+			],
+			"spellsKnownProgression": [
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				10,
+				11,
+				11,
+				12,
+				12,
+				13,
+				13,
+				14,
+				14,
+				15,
+				15
+			],
+			"spellsKnownProgressionFixedByLevel": {
+				"11": {
+					"6": 1
+				},
+				"13": {
+					"7": 1
+				},
+				"15": {
+					"8": 1
+				},
+				"17": {
+					"9": 1
+				}
+			},
+			"optionalfeatureProgression": [
+				{
+					"name": "魔能祈喚",
+					"featureType": [
+						"EI"
+					],
+					"progression": [
+						0,
+						2,
+						2,
+						2,
+						3,
+						3,
+						4,
+						4,
+						5,
+						5,
+						5,
+						6,
+						6,
+						6,
+						7,
+						7,
+						7,
+						8,
+						8,
+						8
+					],
+					"ENG_name": "Eldritch Invocations"
+				},
+				{
+					"name": "契約恩賜",
+					"featureType": [
+						"PB"
+					],
+					"progression": {
+						"3": 1
+					},
+					"ENG_name": "Pact Boon"
+				}
+			],
+			"startingProficiencies": {
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"arcana",
+								"deception",
+								"history",
+								"intimidation",
+								"investigation",
+								"nature",
+								"religion"
+							],
+							"count": 2
+						}
+					}
+				],
+				"weapons": [
+					"simple"
+				],
+				"armor": [
+					"light"
+				],
+				"armorProficiencies": [
+					{
+						"light": true
+					}
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"default": [
+					"(a) 一把{@item light crossbow|phb|輕弩}和{@item crossbow bolts (20)|phb|20支弩箭}或 (b) 任何{@filter 簡易武器|items|source=phb|category=basic|type=simple weapon}",
+					"(a) 一個 {@item component pouch|phb|材料包}或 (b) 一件{@item arcane focus|phb|奧術法器}",
+					"(a) 一個{@item scholar's pack|phb|學者套組}或(b) 一個{@item dungeoneer's pack|phb|地城套組}",
+					"{@item Leather armor|phb|皮甲}，任意 {@filter 簡易武器|items|source=phb|category=basic|type=simple weapon}，以及兩把 {@item dagger|phb|匕首}"
+				],
+				"goldAlternative": "{@dice 4d4 × 10|4d4 × 10|起始金幣}",
+				"defaultData": [
+					{
+						"a": [
+							"light crossbow|phb",
+							"crossbow bolts (20)|phb"
+						],
+						"b": [
+							{
+								"equipmentType": "weaponSimple"
+							}
+						]
+					},
+					{
+						"a": [
+							"component pouch|phb"
+						],
+						"b": [
+							{
+								"equipmentType": "focusSpellcastingArcane"
+							}
+						]
+					},
+					{
+						"a": [
+							"scholar's pack|phb"
+						],
+						"b": [
+							"dungeoneer's pack|phb"
+						]
+					},
+					{
+						"_": [
+							"leather armor|phb",
+							{
+								"equipmentType": "weaponSimple"
+							},
+							{
+								"item": "dagger|phb",
+								"quantity": 2
+							}
+						]
+					}
+				]
+			},
+			"multiclassing": {
+				"requirements": {
+					"cha": 13
+				},
+				"proficienciesGained": {
+					"weapons": [
+						"simple"
+					],
+					"armor": [
+						"light"
+					],
+					"armorProficiencies": [
+						{
+							"light": true
+						}
+					]
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"{@filter 已知戲法|spells|level=0|class=Warlock}",
+						"{@filter 已知法術|spells|class=Warlock}",
+						"法術位",
+						"法術位環階",
+						"{@filter 已知祈喚|optionalfeatures|feature type=ei}"
+					],
+					"rows": [
+						[
+							2,
+							2,
+							1,
+							"{@filter 1環|spells|level=1|class=Warlock}",
+							0
+						],
+						[
+							2,
+							3,
+							2,
+							"{@filter 1環|spells|level=1|class=Warlock}",
+							2
+						],
+						[
+							2,
+							4,
+							2,
+							"{@filter 2環|spells|level=2|class=Warlock}",
+							2
+						],
+						[
+							3,
+							5,
+							2,
+							"{@filter 2環|spells|level=2|class=Warlock}",
+							2
+						],
+						[
+							3,
+							6,
+							2,
+							"{@filter 3環|spells|level=3|class=Warlock}",
+							3
+						],
+						[
+							3,
+							7,
+							2,
+							"{@filter 3環|spells|level=3|class=Warlock}",
+							3
+						],
+						[
+							3,
+							8,
+							2,
+							"{@filter 4環|spells|level=4|class=Warlock}",
+							4
+						],
+						[
+							3,
+							9,
+							2,
+							"{@filter 4環|spells|level=4|class=Warlock}",
+							4
+						],
+						[
+							3,
+							10,
+							2,
+							"{@filter 5環|spells|level=5|class=Warlock}",
+							5
+						],
+						[
+							4,
+							10,
+							2,
+							"{@filter 5環|spells|level=5|class=Warlock}",
+							5
+						],
+						[
+							4,
+							11,
+							3,
+							"{@filter 5環|spells|level=5|class=Warlock}",
+							5
+						],
+						[
+							4,
+							11,
+							3,
+							"{@filter 5環|spells|level=5|class=Warlock}",
+							6
+						],
+						[
+							4,
+							12,
+							3,
+							"{@filter 5環|spells|level=5|class=Warlock}",
+							6
+						],
+						[
+							4,
+							12,
+							3,
+							"{@filter 5環|spells|level=5|class=Warlock}",
+							6
+						],
+						[
+							4,
+							13,
+							3,
+							"{@filter 5環|spells|level=5|class=Warlock}",
+							7
+						],
+						[
+							4,
+							13,
+							3,
+							"{@filter 5環|spells|level=5|class=Warlock}",
+							7
+						],
+						[
+							4,
+							14,
+							4,
+							"{@filter 5環|spells|level=5|class=Warlock}",
+							7
+						],
+						[
+							4,
+							14,
+							4,
+							"{@filter 5環|spells|level=5|class=Warlock}",
+							8
+						],
+						[
+							4,
+							15,
+							4,
+							"{@filter 5環|spells|level=5|class=Warlock}",
+							8
+						],
+						[
+							4,
+							15,
+							4,
+							"{@filter 5環|spells|level=5|class=Warlock}",
+							8
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Pact Magic|Warlock||1",
+				{
+					"classFeature": "Otherworldly Patron|Warlock||1",
+					"gainSubclassFeature": true
+				},
+				"Eldritch Invocations|Warlock||2",
+				"Pact Boon|Warlock||3",
+				"Ability Score Improvement|Warlock||4",
+				"Eldritch Versatility|Warlock||4|TCE",
+				{
+					"classFeature": "Otherworldly Patron feature|Warlock||6",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Warlock||8",
+				{
+					"classFeature": "Otherworldly Patron feature|Warlock||10",
+					"gainSubclassFeature": true
+				},
+				"Mystic Arcanum (6th level)|Warlock||11",
+				"Ability Score Improvement|Warlock||12",
+				"Mystic Arcanum (7th level)|Warlock||13",
+				{
+					"classFeature": "Otherworldly Patron feature|Warlock||14",
+					"gainSubclassFeature": true
+				},
+				"Mystic Arcanum (8th level)|Warlock||15",
+				"Ability Score Improvement|Warlock||16",
+				"Mystic Arcanum (9th level)|Warlock||17",
+				"Ability Score Improvement|Warlock||19",
+				"Eldritch Master|Warlock||20"
+			],
+			"subclassTitle": "異界宗主",
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Warlock"
+		},
+		{
+			"name": "契術師",
+			"source": "XPHB",
+			"page": 152,
+			"srd52": true,
+			"basicRules2024": true,
+			"edition": "one",
+			"primaryAbility": [
+				{
+					"cha": true
+				}
+			],
+			"hd": {
+				"number": 1,
+				"faces": 8
+			},
+			"proficiency": [
+				"wis",
+				"cha"
+			],
+			"spellcastingAbility": "cha",
+			"casterProgression": "pact",
+			"preparedSpellsProgression": [
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				10,
+				11,
+				11,
+				12,
+				12,
+				13,
+				13,
+				14,
+				14,
+				15,
+				15
+			],
+			"preparedSpellsChange": "level",
+			"cantripProgression": [
+				2,
+				2,
+				2,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4
+			],
+			"spellsKnownProgressionFixedByLevel": {
+				"11": {
+					"6": 1
+				},
+				"13": {
+					"7": 1
+				},
+				"15": {
+					"8": 1
+				},
+				"17": {
+					"9": 1
+				}
+			},
+			"additionalSpells": [
+				{
+					"prepared": {
+						"9": [
+							"contact other plane|xphb"
+						]
+					}
+				}
+			],
+			"featProgression": [
+				{
+					"name": "傳奇恩惠",
+					"category": [
+						"EB"
+					],
+					"progression": {
+						"19": 1
+					},
+					"ENG_name": "Epic Boon"
+				}
+			],
+			"optionalfeatureProgression": [
+				{
+					"name": "魔能祈喚",
+					"featureType": [
+						"EI"
+					],
+					"progression": [
+						1,
+						3,
+						3,
+						3,
+						5,
+						5,
+						6,
+						6,
+						7,
+						7,
+						7,
+						8,
+						8,
+						8,
+						9,
+						9,
+						9,
+						10,
+						10,
+						10
+					],
+					"ENG_name": "Eldritch Invocations"
+				}
+			],
+			"startingProficiencies": {
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"arcana",
+								"deception",
+								"history",
+								"intimidation",
+								"investigation",
+								"nature",
+								"religion"
+							],
+							"count": 2
+						}
+					}
+				],
+				"weapons": [
+					"simple"
+				],
+				"armor": [
+					"light"
+				],
+				"armorProficiencies": [
+					{
+						"light": true
+					}
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"defaultData": [
+					{
+						"A": [
+							{
+								"item": "leather armor|xphb"
+							},
+							{
+								"item": "sickle|xphb"
+							},
+							{
+								"item": "dagger|xphb",
+								"quantity": 2
+							},
+							{
+								"item": "orb|xphb"
+							},
+							{
+								"item": "book|xphb"
+							},
+							{
+								"item": "scholar's pack|xphb"
+							},
+							{
+								"value": 1500
+							}
+						],
+						"B": [
+							{
+								"value": 10000
+							}
+						]
+					}
+				],
+				"entries": [
+					"{@i 選擇A或B：} (A) {@item Leather Armor|XPHB|皮甲}、{@item Sickle|XPHB|鐮刀}、2把{@item Dagger|XPHB|匕首}、{@item Arcane Focus|XPHB|奧術法器}（{@item orb|XPHB|法球}）、{@item Book|XPHB|書籍}（秘傳學識）、{@item Scholar's Pack|XPHB|學者套組}以及15 GP；或 (B) 100 GP"
+				]
+			},
+			"multiclassing": {
+				"proficienciesGained": {
+					"armor": [
+						"light"
+					],
+					"armorProficiencies": [
+						{
+							"light": true
+						}
+					]
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"{@filter 祈喚|optionalfeatures|feature type=ei}",
+						"{@filter 戲法|spells|level=0|class=Warlock}",
+						"{@filter 準備法術|spells|level=!0|class=Warlock}",
+						"法術位",
+						"法術位環階"
+					],
+					"rows": [
+						[
+							1,
+							2,
+							2,
+							1,
+							1
+						],
+						[
+							3,
+							2,
+							3,
+							2,
+							1
+						],
+						[
+							3,
+							2,
+							4,
+							2,
+							2
+						],
+						[
+							3,
+							3,
+							5,
+							2,
+							2
+						],
+						[
+							5,
+							3,
+							6,
+							2,
+							3
+						],
+						[
+							5,
+							3,
+							7,
+							2,
+							3
+						],
+						[
+							6,
+							3,
+							8,
+							2,
+							4
+						],
+						[
+							6,
+							3,
+							9,
+							2,
+							4
+						],
+						[
+							7,
+							3,
+							10,
+							2,
+							5
+						],
+						[
+							7,
+							4,
+							10,
+							2,
+							5
+						],
+						[
+							7,
+							4,
+							11,
+							3,
+							5
+						],
+						[
+							8,
+							4,
+							11,
+							3,
+							5
+						],
+						[
+							8,
+							4,
+							12,
+							3,
+							5
+						],
+						[
+							8,
+							4,
+							12,
+							3,
+							5
+						],
+						[
+							9,
+							4,
+							13,
+							3,
+							5
+						],
+						[
+							9,
+							4,
+							13,
+							3,
+							5
+						],
+						[
+							9,
+							4,
+							14,
+							4,
+							5
+						],
+						[
+							10,
+							4,
+							14,
+							4,
+							5
+						],
+						[
+							10,
+							4,
+							15,
+							4,
+							5
+						],
+						[
+							10,
+							4,
+							15,
+							4,
+							5
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Eldritch Invocations|Warlock|XPHB|1",
+				"Pact Magic|Warlock|XPHB|1",
+				"Eldritch Invocation Options|Warlock|XPHB|1",
+				"Magical Cunning|Warlock|XPHB|2",
+				{
+					"classFeature": "Warlock Subclass|Warlock|XPHB|3",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Warlock|XPHB|4",
+				{
+					"classFeature": "Subclass Feature|Warlock|XPHB|6",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Warlock|XPHB|8",
+				"Contact Patron|Warlock|XPHB|9",
+				{
+					"classFeature": "Subclass Feature|Warlock|XPHB|10",
+					"gainSubclassFeature": true
+				},
+				"Mystic Arcanum|Warlock|XPHB|11",
+				"Ability Score Improvement|Warlock|XPHB|12",
+				"Mystic Arcanum|Warlock|XPHB|13",
+				{
+					"classFeature": "Subclass Feature|Warlock|XPHB|14",
+					"gainSubclassFeature": true
+				},
+				"Mystic Arcanum|Warlock|XPHB|15",
+				"Ability Score Improvement|Warlock|XPHB|16",
+				"Mystic Arcanum|Warlock|XPHB|17",
+				"Epic Boon|Warlock|XPHB|19",
+				"Eldritch Master|Warlock|XPHB|20"
+			],
+			"subclassTitle": "魔契師子職",
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Warlock"
+		}
+	],
+	"subclass": [
+		{
+			"name": "至高妖精",
+			"shortName": "至高妖精",
+			"source": "PHB",
+			"className": "Warlock",
+			"classSource": "PHB",
+			"page": 108,
+			"reprintedAs": [
+				"Archfey|Warlock|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"expanded": {
+						"s1": [
+							"faerie fire",
+							"sleep"
+						],
+						"s2": [
+							"calm emotions",
+							"phantasmal force"
+						],
+						"s3": [
+							"blink",
+							"plant growth"
+						],
+						"s4": [
+							"dominate beast",
+							"greater invisibility"
+						],
+						"s5": [
+							"dominate person",
+							"seeming"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"The Archfey|Warlock||Archfey||1",
+				"Misty Escape|Warlock||Archfey||6",
+				"Beguiling Defenses|Warlock||Archfey||10",
+				"Dark Delirium|Warlock||Archfey||14"
+			],
+			"ENG_name": "The Archfey",
+			"ENG_shortName": "Archfey"
+		},
+		{
+			"name": "至高妖精",
+			"shortName": "至高妖精",
+			"source": "PHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "The Archfey",
+				"source": "PHB",
+				"shortName": "Archfey",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"The Archfey|Warlock|XPHB|Archfey||3",
+				"Misty Escape|Warlock||Archfey||6",
+				"Beguiling Defenses|Warlock||Archfey||10",
+				"Dark Delirium|Warlock||Archfey||14"
+			],
+			"ENG_name": "The Archfey",
+			"ENG_shortName": "Archfey"
+		},
+		{
+			"name": "邪魔宗主",
+			"shortName": "邪魔",
+			"source": "PHB",
+			"className": "Warlock",
+			"classSource": "PHB",
+			"page": 109,
+			"srd": true,
+			"reprintedAs": [
+				"Fiend|Warlock|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"expanded": {
+						"s1": [
+							"burning hands",
+							"command"
+						],
+						"s2": [
+							"blindness/deafness",
+							"scorching ray"
+						],
+						"s3": [
+							"fireball",
+							"stinking cloud"
+						],
+						"s4": [
+							"fire shield",
+							"wall of fire"
+						],
+						"s5": [
+							"flame strike",
+							"hallow"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"The Fiend|Warlock||Fiend||1",
+				"Dark One's Own Luck|Warlock||Fiend||6",
+				"Fiendish Resilience|Warlock||Fiend||10",
+				"Hurl Through Hell|Warlock||Fiend||14"
+			],
+			"ENG_name": "The Fiend",
+			"ENG_shortName": "Fiend"
+		},
+		{
+			"name": "邪魔宗主",
+			"shortName": "邪魔",
+			"source": "PHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "The Fiend",
+				"source": "PHB",
+				"shortName": "Fiend",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"The Fiend|Warlock|XPHB|Fiend||3",
+				"Dark One's Own Luck|Warlock||Fiend||6",
+				"Fiendish Resilience|Warlock||Fiend||10",
+				"Hurl Through Hell|Warlock||Fiend||14"
+			],
+			"ENG_name": "The Fiend",
+			"ENG_shortName": "Fiend"
+		},
+		{
+			"name": "舊日支配者",
+			"shortName": "舊日支配者",
+			"source": "PHB",
+			"className": "Warlock",
+			"classSource": "PHB",
+			"page": 109,
+			"reprintedAs": [
+				"Great Old One|Warlock|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"expanded": {
+						"s1": [
+							"dissonant whispers",
+							"Tasha's hideous laughter"
+						],
+						"s2": [
+							"detect thoughts",
+							"phantasmal force"
+						],
+						"s3": [
+							"clairvoyance",
+							"sending"
+						],
+						"s4": [
+							"dominate beast",
+							"Evard's black tentacles"
+						],
+						"s5": [
+							"dominate person",
+							"telekinesis"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"The Great Old One|Warlock||Great Old One||1",
+				"Entropic Ward|Warlock||Great Old One||6",
+				"Thought Shield|Warlock||Great Old One||10",
+				"Create Thrall|Warlock||Great Old One||14"
+			],
+			"ENG_name": "The Great Old One",
+			"ENG_shortName": "Great Old One"
+		},
+		{
+			"name": "舊日支配者",
+			"shortName": "舊日支配者",
+			"source": "PHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "The Great Old One",
+				"source": "PHB",
+				"shortName": "Great Old One",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"The Great Old One|Warlock|XPHB|Great Old One||3",
+				"Entropic Ward|Warlock||Great Old One||6",
+				"Thought Shield|Warlock||Great Old One||10",
+				"Create Thrall|Warlock||Great Old One||14"
+			],
+			"ENG_name": "The Great Old One",
+			"ENG_shortName": "Great Old One"
+		},
+		{
+			"name": "​不朽者",
+			"shortName": "不朽者",
+			"source": "SCAG",
+			"className": "Warlock",
+			"classSource": "PHB",
+			"page": 139,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"known": {
+						"1": [
+							"spare the dying#c"
+						]
+					},
+					"expanded": {
+						"s1": [
+							"false life",
+							"ray of sickness"
+						],
+						"s2": [
+							"blindness/deafness",
+							"silence"
+						],
+						"s3": [
+							"feign death",
+							"speak with dead"
+						],
+						"s4": [
+							"aura of life",
+							"death ward"
+						],
+						"s5": [
+							"contagion",
+							"legend lore"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"The Undying|Warlock||Undying|SCAG|1",
+				"Defy Death|Warlock||Undying|SCAG|6",
+				"Undying Nature|Warlock||Undying|SCAG|10",
+				"Indestructible Life|Warlock||Undying|SCAG|14"
+			],
+			"ENG_name": "The Undying",
+			"ENG_shortName": "Undying"
+		},
+		{
+			"name": "​不朽者",
+			"shortName": "不朽者",
+			"source": "SCAG",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "The Undying",
+				"source": "SCAG",
+				"shortName": "Undying",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"The Undying|Warlock|XPHB|Undying|SCAG|3",
+				"Defy Death|Warlock||Undying|SCAG|6",
+				"Undying Nature|Warlock||Undying|SCAG|10",
+				"Indestructible Life|Warlock||Undying|SCAG|14"
+			],
+			"ENG_name": "The Undying",
+			"ENG_shortName": "Undying"
+		},
+		{
+			"name": "天界宗主",
+			"shortName": "天界",
+			"source": "XGE",
+			"className": "Warlock",
+			"classSource": "PHB",
+			"page": 54,
+			"reprintedAs": [
+				"Celestial|Warlock|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"known": {
+						"1": [
+							"sacred flame#c",
+							"light#c"
+						]
+					},
+					"expanded": {
+						"s1": [
+							"cure wounds",
+							"guiding bolt"
+						],
+						"s2": [
+							"flaming sphere",
+							"lesser restoration"
+						],
+						"s3": [
+							"daylight",
+							"revivify"
+						],
+						"s4": [
+							"guardian of faith",
+							"wall of fire"
+						],
+						"s5": [
+							"flame strike",
+							"greater restoration"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"The Celestial|Warlock||Celestial|XGE|1",
+				"Radiant Soul|Warlock||Celestial|XGE|6",
+				"Celestial Resilience|Warlock||Celestial|XGE|10",
+				"Searing Vengeance|Warlock||Celestial|XGE|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "The Celestial",
+			"ENG_shortName": "Celestial"
+		},
+		{
+			"name": "天界宗主",
+			"shortName": "天界",
+			"source": "XGE",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "The Celestial",
+				"source": "XGE",
+				"shortName": "Celestial",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"The Celestial|Warlock|XPHB|Celestial|XGE|3",
+				"Radiant Soul|Warlock||Celestial|XGE|6",
+				"Celestial Resilience|Warlock||Celestial|XGE|10",
+				"Searing Vengeance|Warlock||Celestial|XGE|14"
+			],
+			"fluff": {
+				"_subclassFluff": {
+					"name": "天界宗主",
+					"source": "XGE",
+					"shortName": "天界",
+					"className": "Warlock",
+					"classSource": "PHB",
+					"ENG_name": "The Celestial"
+				}
+			},
+			"ENG_name": "The Celestial",
+			"ENG_shortName": "Celestial"
+		},
+		{
+			"name": "咒劍士",
+			"shortName": "咒劍",
+			"source": "XGE",
+			"className": "Warlock",
+			"classSource": "PHB",
+			"page": 55,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"expanded": {
+						"s1": [
+							"shield",
+							"wrathful smite"
+						],
+						"s2": [
+							"blur",
+							"branding smite"
+						],
+						"s3": [
+							"blink",
+							"elemental weapon"
+						],
+						"s4": [
+							"phantasmal killer",
+							"staggering smite"
+						],
+						"s5": [
+							"banishing smite",
+							"cone of cold"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"The Hexblade|Warlock||Hexblade|XGE|1",
+				"Accursed Specter|Warlock||Hexblade|XGE|6",
+				"Armor of Hexes|Warlock||Hexblade|XGE|10",
+				"Master of Hexes|Warlock||Hexblade|XGE|14"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "The Hexblade",
+			"ENG_shortName": "Hexblade"
+		},
+		{
+			"name": "咒劍士",
+			"shortName": "咒劍",
+			"source": "XGE",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "The Hexblade",
+				"source": "XGE",
+				"shortName": "Hexblade",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"The Hexblade|Warlock|XPHB|Hexblade|XGE|3",
+				"Accursed Specter|Warlock||Hexblade|XGE|6",
+				"Armor of Hexes|Warlock||Hexblade|XGE|10",
+				"Master of Hexes|Warlock||Hexblade|XGE|14"
+			],
+			"fluff": {
+				"_subclassFluff": {
+					"name": "咒劍士",
+					"source": "XGE",
+					"shortName": "咒劍",
+					"className": "Warlock",
+					"classSource": "PHB",
+					"ENG_name": "The Hexblade"
+				}
+			},
+			"ENG_name": "The Hexblade",
+			"ENG_shortName": "Hexblade"
+		},
+		{
+			"name": "深海意志",
+			"shortName": "深海意志",
+			"source": "TCE",
+			"className": "Warlock",
+			"classSource": "PHB",
+			"page": 72,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"expanded": {
+						"s1": [
+							"create or destroy water",
+							"thunderwave"
+						],
+						"s2": [
+							"gust of wind",
+							"silence"
+						],
+						"s3": [
+							"lightning bolt",
+							"sleet storm"
+						],
+						"s4": [
+							"control water",
+							"summon elemental|tce"
+						],
+						"s5": [
+							"Bigby's hand",
+							"cone of cold"
+						]
+					},
+					"known": {
+						"10": {
+							"daily": {
+								"1": [
+									"Evard's black tentacles"
+								]
+							}
+						}
+					}
+				}
+			],
+			"subclassFeatures": [
+				"The Fathomless|Warlock||Fathomless|TCE|1",
+				"Oceanic Soul|Warlock||Fathomless|TCE|6",
+				"Guardian Coil|Warlock||Fathomless|TCE|6",
+				"Grasping Tentacles|Warlock||Fathomless|TCE|10",
+				"Fathomless Plunge|Warlock||Fathomless|TCE|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "The Fathomless",
+			"ENG_shortName": "Fathomless"
+		},
+		{
+			"name": "深海意志",
+			"shortName": "深海意志",
+			"source": "TCE",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "The Fathomless",
+				"source": "TCE",
+				"shortName": "Fathomless",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"The Fathomless|Warlock|XPHB|Fathomless|TCE|3",
+				"Oceanic Soul|Warlock||Fathomless|TCE|6",
+				"Guardian Coil|Warlock||Fathomless|TCE|6",
+				"Grasping Tentacles|Warlock||Fathomless|TCE|10",
+				"Fathomless Plunge|Warlock||Fathomless|TCE|14"
+			],
+			"fluff": {
+				"_subclassFluff": {
+					"name": "深海意志",
+					"source": "TCE",
+					"shortName": "深海意志",
+					"className": "Warlock",
+					"classSource": "PHB",
+					"ENG_name": "The Fathomless"
+				}
+			},
+			"ENG_name": "The Fathomless",
+			"ENG_shortName": "Fathomless"
+		},
+		{
+			"name": "巨靈宗主",
+			"shortName": "巨靈",
+			"source": "TCE",
+			"className": "Warlock",
+			"classSource": "PHB",
+			"page": 73,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"name": "土巨靈",
+					"expanded": {
+						"9": [
+							"wish"
+						],
+						"s1": [
+							"detect evil and good",
+							"sanctuary"
+						],
+						"s2": [
+							"phantasmal force",
+							"spike growth"
+						],
+						"s3": [
+							"create food and water",
+							"meld into stone"
+						],
+						"s4": [
+							"phantasmal killer",
+							"stone shape"
+						],
+						"s5": [
+							"creation",
+							"wall of stone"
+						]
+					},
+					"ENG_name": "Dao"
+				},
+				{
+					"name": "氣巨靈",
+					"expanded": {
+						"9": [
+							"wish"
+						],
+						"s1": [
+							"detect evil and good",
+							"thunderwave"
+						],
+						"s2": [
+							"phantasmal force",
+							"gust of wind"
+						],
+						"s3": [
+							"create food and water",
+							"wind wall"
+						],
+						"s4": [
+							"phantasmal killer",
+							"greater invisibility"
+						],
+						"s5": [
+							"creation",
+							"seeming"
+						]
+					},
+					"ENG_name": "Djinni"
+				},
+				{
+					"name": "火巨靈",
+					"expanded": {
+						"9": [
+							"wish"
+						],
+						"s1": [
+							"detect evil and good",
+							"burning hands"
+						],
+						"s2": [
+							"phantasmal force",
+							"scorching ray"
+						],
+						"s3": [
+							"create food and water",
+							"fireball"
+						],
+						"s4": [
+							"phantasmal killer",
+							"fire shield"
+						],
+						"s5": [
+							"creation",
+							"flame strike"
+						]
+					},
+					"ENG_name": "Efreeti"
+				},
+				{
+					"name": "水巨靈",
+					"expanded": {
+						"9": [
+							"wish"
+						],
+						"s1": [
+							"detect evil and good",
+							"fog cloud"
+						],
+						"s2": [
+							"phantasmal force",
+							"blur"
+						],
+						"s3": [
+							"create food and water",
+							"sleet storm"
+						],
+						"s4": [
+							"phantasmal killer",
+							"control water"
+						],
+						"s5": [
+							"creation",
+							"cone of cold"
+						]
+					},
+					"ENG_name": "Marid"
+				}
+			],
+			"subclassFeatures": [
+				"The Genie|Warlock||Genie|TCE|1",
+				"Elemental Gift|Warlock||Genie|TCE|6",
+				"Sanctuary Vessel|Warlock||Genie|TCE|10",
+				"Limited Wish|Warlock||Genie|TCE|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "The Genie",
+			"ENG_shortName": "Genie"
+		},
+		{
+			"name": "巨靈宗主",
+			"shortName": "巨靈",
+			"source": "TCE",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "The Genie",
+				"source": "TCE",
+				"shortName": "Genie",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"The Genie|Warlock|XPHB|Genie|TCE|3",
+				"Elemental Gift|Warlock||Genie|TCE|6",
+				"Sanctuary Vessel|Warlock||Genie|TCE|10",
+				"Limited Wish|Warlock||Genie|TCE|14"
+			],
+			"fluff": {
+				"_subclassFluff": {
+					"name": "巨靈宗主",
+					"source": "TCE",
+					"shortName": "巨靈",
+					"className": "Warlock",
+					"classSource": "PHB",
+					"ENG_name": "The Genie"
+				}
+			},
+			"ENG_name": "The Genie",
+			"ENG_shortName": "Genie"
+		},
+		{
+			"name": "死靈宗主",
+			"shortName": "亡靈",
+			"source": "VRGR",
+			"className": "Warlock",
+			"classSource": "PHB",
+			"page": 30,
+			"reprintedAs": [
+				"Undead|Warlock|XPHB|RHW"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"expanded": {
+						"s1": [
+							"bane",
+							"false life"
+						],
+						"s2": [
+							"blindness/deafness",
+							"phantasmal force"
+						],
+						"s3": [
+							"phantom steed",
+							"speak with dead"
+						],
+						"s4": [
+							"death ward",
+							"greater invisibility"
+						],
+						"s5": [
+							"antilife shell",
+							"cloudkill"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"The Undead|Warlock||Undead|VRGR|1",
+				"Grave Touched|Warlock||Undead|VRGR|6",
+				"Necrotic Husk|Warlock||Undead|VRGR|10",
+				"Spirit Projection|Warlock||Undead|VRGR|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "The Undead",
+			"ENG_shortName": "Undead"
+		},
+		{
+			"name": "死靈宗主",
+			"shortName": "亡靈",
+			"source": "VRGR",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"reprintedAs": [
+				"Undead|Warlock|XPHB|RHW"
+			],
+			"_copy": {
+				"name": "The Undead",
+				"source": "VRGR",
+				"shortName": "Undead",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"The Undead|Warlock|XPHB|Undead|VRGR|3",
+				"Grave Touched|Warlock||Undead|VRGR|6",
+				"Necrotic Husk|Warlock||Undead|VRGR|10",
+				"Spirit Projection|Warlock||Undead|VRGR|14"
+			],
+			"fluff": {
+				"_subclassFluff": {
+					"name": "死靈宗主",
+					"source": "VRGR",
+					"shortName": "亡靈",
+					"className": "Warlock",
+					"classSource": "PHB",
+					"ENG_name": "The Undead"
+				}
+			},
+			"ENG_name": "The Undead",
+			"ENG_shortName": "Undead"
+		},
+		{
+			"name": "至高妖精宗主",
+			"shortName": "至高妖精",
+			"source": "XPHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"page": 159,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"calm emotions|xphb",
+							"faerie fire|xphb",
+							"misty step|xphb",
+							"phantasmal force|xphb",
+							"sleep|xphb"
+						],
+						"5": [
+							"blink|xphb",
+							"plant growth|xphb"
+						],
+						"7": [
+							"dominate beast|xphb",
+							"greater invisibility|xphb"
+						],
+						"9": [
+							"dominate person|xphb",
+							"seeming|xphb"
+						]
+					},
+					"innate": {
+						"_": {
+							"daily": {
+								"cha": [
+									"misty step|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Archfey Patron|Warlock|XPHB|Archfey|XPHB|3",
+				"Misty Escape|Warlock|XPHB|Archfey|XPHB|6",
+				"Beguiling Defenses|Warlock|XPHB|Archfey|XPHB|10",
+				"Bewitching Magic|Warlock|XPHB|Archfey|XPHB|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Archfey Patron",
+			"ENG_shortName": "Archfey"
+		},
+		{
+			"name": "天界宗主",
+			"shortName": "天界",
+			"source": "XPHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"page": 160,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"known": {
+						"1": [
+							"sacred flame|xphb#c",
+							"light|xphb#c"
+						]
+					},
+					"prepared": {
+						"3": [
+							"aid|xphb",
+							"cure wounds|xphb",
+							"guiding bolt|xphb",
+							"lesser restoration|xphb"
+						],
+						"5": [
+							"daylight|xphb",
+							"revivify|xphb"
+						],
+						"7": [
+							"guardian of faith|xphb",
+							"wall of fire|xphb"
+						],
+						"9": [
+							"greater restoration|xphb",
+							"summon celestial|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Celestial Patron|Warlock|XPHB|Celestial|XPHB|3",
+				"Radiant Soul|Warlock|XPHB|Celestial|XPHB|6",
+				"Celestial Resilience|Warlock|XPHB|Celestial|XPHB|10",
+				"Searing Vengeance|Warlock|XPHB|Celestial|XPHB|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Celestial Patron",
+			"ENG_shortName": "Celestial"
+		},
+		{
+			"name": "邪魔宗主",
+			"shortName": "邪魔",
+			"source": "XPHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"page": 161,
+			"srd52": true,
+			"basicRules2024": true,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"burning hands|xphb",
+							"command|xphb",
+							"scorching ray|xphb",
+							"suggestion|xphb"
+						],
+						"5": [
+							"fireball|xphb",
+							"stinking cloud|xphb"
+						],
+						"7": [
+							"fire shield|xphb",
+							"wall of fire|xphb"
+						],
+						"9": [
+							"geas|xphb",
+							"insect plague|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Fiend Patron|Warlock|XPHB|Fiend|XPHB|3",
+				"Dark One's Own Luck|Warlock|XPHB|Fiend|XPHB|6",
+				"Fiendish Resilience|Warlock|XPHB|Fiend|XPHB|10",
+				"Hurl Through Hell|Warlock|XPHB|Fiend|XPHB|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Fiend Patron",
+			"ENG_shortName": "Fiend"
+		},
+		{
+			"name": "舊日支配者宗主",
+			"shortName": "舊日支配者",
+			"source": "XPHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"page": 162,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"detect thoughts|xphb",
+							"dissonant whispers|xphb",
+							"phantasmal force|xphb",
+							"tasha's hideous laughter|xphb"
+						],
+						"5": [
+							"clairvoyance|xphb",
+							"hunger of hadar|xphb"
+						],
+						"7": [
+							"confusion|xphb",
+							"summon aberration|xphb"
+						],
+						"9": [
+							"modify memory|xphb",
+							"telekinesis|xphb"
+						]
+					},
+					"innate": {
+						"10": [
+							"hex|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Great Old One Patron|Warlock|XPHB|Great Old One|XPHB|3",
+				"Clairvoyant Combatant|Warlock|XPHB|Great Old One|XPHB|6",
+				"Eldritch Hex|Warlock|XPHB|Great Old One|XPHB|10",
+				"Thought Shield|Warlock|XPHB|Great Old One|XPHB|10",
+				"Create Thrall|Warlock|XPHB|Great Old One|XPHB|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Great Old One Patron",
+			"ENG_shortName": "Great Old One"
+		},
+		{
+			"name": "死靈宗主",
+			"shortName": "亡靈",
+			"source": "RHW",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"bane|xphb",
+							"blindness/deafness|xphb",
+							"phantasmal force|xphb",
+							"ray of sickness|xphb"
+						],
+						"5": [
+							"speak with dead|xphb",
+							"summon undead|xphb"
+						],
+						"7": [
+							"greater invisibility|xphb",
+							"phantasmal killer|xphb"
+						],
+						"9": [
+							"antilife shell|xphb",
+							"cloudkill|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Undead Patron|Warlock|XPHB|Undead|RHW|3|RHW",
+				"Grave Touched|Warlock|XPHB|Undead|RHW|6|RHW",
+				"Necrotic Husk|Warlock|XPHB|Undead|RHW|10|RHW",
+				"Superior Dread|Warlock|XPHB|Undead|RHW|14|RHW"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Undead Patron",
+			"ENG_shortName": "Undead"
+		}
+	],
+	"classFeature": [
+		{
+			"name": "異界宗主",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 1,
+			"entries": [
+				"第1級時，你與某個異界存在訂下契約。你可以從可用的宗主選項中選擇，例如至高妖精、邪魔或舊日支配者。你的選擇會在第1、第6、第10與第14級賦予相應的職業特性。"
+			],
+			"ENG_name": "Otherworldly Patron"
+		},
+		{
+			"name": "契約魔法",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 1,
+			"entries": [
+				"你的法術力量源於你的奧秘研究和宗主的魔法饋贈。參考{@book 第十章|PHB|10}的施法規則，以及{@book 第十一章|PHB|11}的{@filter 魔契師法術列表|spells|class=warlock}。",
+				{
+					"type": "entries",
+					"name": "戲法",
+					"entries": [
+						"你從魔契師法術列表中選擇兩個戲法作為已知法術。在獲得更高的魔契師等級後你還可以習得其它的戲法，具體資料見\"魔契師職業表\"中\"已知戲法\"一欄。"
+					],
+					"ENG_name": "Cantrips"
+				},
+				{
+					"type": "entries",
+					"name": "法術位",
+					"entries": [
+						"\"魔契師職業表\"裡記錄了你可用以施展{@filter 魔契師法術|spells|class=warlock}的1環至5環法術位數量。表格中還記錄了法術位對應的法術環階，且你所有的法術位都屬於同一環階。施展1環或更高環階的魔契師法術時，都需要消耗一枚法術位。已消耗的法術位可在完成長休或短休後恢復。",
+						"例如，達到第5級時，你總共具有兩枚3環法術位。你施展1環法術{@spell witch bolt||巫術箭}時，必須消耗這些法術位其中之一，並把它作為一個3環法術施放。"
+					],
+					"ENG_name": "Spell Slots"
+				},
+				{
+					"type": "entries",
+					"name": "1環及更高等級已知法術",
+					"entries": [
+						"第1級時，你從魔契師法術列表裡選擇兩個1環法術作為已知法術。",
+						"「魔契師職業表」的「已知法術」欄顯示你何時習得更多自選的1環或更高環階魔契師法術。你所選法術的環階不得高於表格中你目前等級的「法術位環階」欄所示環階。例如，當你達到6級時，你習得一道新的魔契師法術；該法術可以是1環、2環或3環。",
+						"另外，當你提升本職的職業等級時，你可以從魔契師法術列表裡選擇一個新法術來代替一箇舊的魔契師已知法術，但是你的角色必須擁有用以施展新選法術的可用法術位。"
+					],
+					"ENG_name": "Spells Known of 1st Level and Higher"
+				},
+				{
+					"type": "entries",
+					"name": "施法關鍵屬性",
+					"entries": [
+						"魅力是你施展魔契師法術的關鍵屬性。每當你的法術需要施法屬性時均指向你的魅力值。而你魔契師法術的豁免DC和攻擊檢定，則使用你的魅力調整值。",
+						{
+							"type": "abilityDc",
+							"name": "法術",
+							"attributes": [
+								"cha"
+							],
+							"ENG_name": "Spell"
+						},
+						{
+							"type": "abilityAttackMod",
+							"name": "法術",
+							"attributes": [
+								"cha"
+							],
+							"ENG_name": "Spell"
+						}
+					],
+					"ENG_name": "Spellcasting Ability"
+				},
+				{
+					"type": "entries",
+					"name": "施法法器",
+					"entries": [
+						"你可以使用{@item arcane focus|phb|奧術法器}作為你施展魔契師法術的法器。"
+					],
+					"ENG_name": "Spellcasting Focus"
+				}
+			],
+			"ENG_name": "Pact Magic"
+		},
+		{
+			"name": "魔能祈喚",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 2,
+			"entries": [
+				"你在神秘學識的研習過程中發掘出魔能祈喚的方式，這些禁忌的知識殘章讓你獲得了持久的魔法能力。",
+				"第2級時，你獲得兩種自選的魔能祈喚（祈喚的具體內容見{@filter 可選特性|optionalfeatures|Feature Type=EI}）。在獲得更高的魔契師等級後你還可以習得其它的魔能祈喚，具體資料見\"魔契師職業表\"中\"已知祈喚\"一欄。",
+				"另外，你提升本職的等級時，可以用新的祈喚替換一個已學會的祈喚，但你的角色必須滿足學習新祈喚的先決條件。",
+				"如果一個魔能祈喚有先決條件，你必須滿足先決條件才能學習魔能祈喚，你可以在滿足先決的同時學習這個魔能祈喚。對等級的要求意為對你魔契師職業等級的要求。"
+			],
+			"ENG_name": "Eldritch Invocations"
+		},
+		{
+			"name": "契約恩賜",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 3,
+			"entries": [
+				"第3級時，你的宗主賦予你一份饋贈作為你忠誠服務的回饋。你可以從下列特性中自選其一。",
+				{
+					"type": "options",
+					"count": 1,
+					"entries": [
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Pact of the Chain"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Pact of the Blade"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Pact of the Tome"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Pact of the Talisman|TCE"
+						}
+					]
+				}
+			],
+			"ENG_name": "Pact Boon"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 4,
+			"entries": [
+				"當你達到4級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "魔能選項",
+			"source": "TCE",
+			"page": 70,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 4,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"{@i 4級魔契師 {@variantrule optional class features|tce|可選特性}}",
+				"每當你的魔契師達到了可以獲得屬性值提升的等級，你可以做以下的一件事來代表你在奧秘研究當中重點的轉變。",
+				{
+					"type": "list",
+					"items": [
+						"可以將你從該職業契約法術中學到的戲法替換為另一個{@filter 魔契師法術列表|spells|level=0|class=Warlock}中的戲法。",
+						"可以將你從魔契恩澤中選擇的一個選項替換為此魔契的另一選項。",
+						"如果你的角色已經12級或者更高，你可以將一個玄奧秘法的法術替換為另一個同環魔契師法術。"
+					]
+				},
+				"如果這些轉變讓你不再符合某些魔能祈喚的條件，你必須現在選擇那些符合你條件的祈喚來替換它們。"
+			],
+			"ENG_name": "Eldritch Versatility"
+		},
+		{
+			"name": "異界宗主能力",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 6,
+			"entries": [
+				"在第6級時，你獲得相應的職業特性。"
+			],
+			"ENG_name": "Otherworldly Patron feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 8,
+			"entries": [
+				"當你達到第8級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過該特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "異界宗主能力",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 10,
+			"entries": [
+				"在第10級時，你獲得相應的職業特性。"
+			],
+			"ENG_name": "Otherworldly Patron feature"
+		},
+		{
+			"name": "玄奧祕法(6環)",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 11,
+			"entries": [
+				"第11級時，你的宗主賦予你一種稱為秘法的魔法奧秘。你可以選擇一個{@filter 魔契師法術列表中的6環法術|spells|level=6|class=Warlock}作為你的玄奧秘法。",
+				"你施展秘法時無需消耗法術位，而消耗掉的秘法可以透過完成一次長休進行恢復。",
+				"在獲得更高的魔契師等級後，你將可以選擇更多的魔契師法術以該方式施展：第13級時可選一個7環法術，15級時可選一個8環法術，17級時可選一個9環法術。完成一次長休後，所有消耗掉的秘法都會恢復。"
+			],
+			"ENG_name": "Mystic Arcanum (6th level)"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 12,
+			"entries": [
+				"當你達到第12級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過該特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "玄奧祕法(7環)",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 13,
+			"entries": [
+				"第13級時，你的宗主賦予你一種稱為秘法的魔法奧秘。你可以選擇一個{@filter 魔契師法術列表中的7環法術|spells|level=7|class=Warlock}作為你的玄奧秘法。",
+				"你施展秘法時無需消耗法術位，而消耗掉的秘法可以透過完成一次長休進行恢復。"
+			],
+			"ENG_name": "Mystic Arcanum (7th level)"
+		},
+		{
+			"name": "異界宗主能力",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 14,
+			"entries": [
+				"在第14級時，你獲得相應的職業特性。"
+			],
+			"ENG_name": "Otherworldly Patron feature"
+		},
+		{
+			"name": "玄奧祕法(8環)",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 15,
+			"entries": [
+				"第15級時，你的宗主賦予你一種稱為秘法的魔法奧秘。你可以選擇一個{@filter 魔契師法術列表中的8環法術|spells|level=8|class=Warlock}作為你的玄奧秘法。",
+				"你施展秘法時無需消耗法術位，而消耗掉的秘法可以透過完成一次長休進行恢復。"
+			],
+			"ENG_name": "Mystic Arcanum (8th level)"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 16,
+			"entries": [
+				"當你達到16級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "玄奧祕法(9環)",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 17,
+			"entries": [
+				"第17級時，你的宗主賦予你一種稱為秘法的魔法奧秘。你可以選擇一個{@filter 魔契師法術列表中的9環法術|spells|level=9|class=Warlock}作為你的玄奧秘法。",
+				"你施展秘法時無需消耗法術位，而消耗掉的秘法可以透過完成一次長休進行恢復。"
+			],
+			"ENG_name": "Mystic Arcanum (9th level)"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 19,
+			"entries": [
+				"當你達到19級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "魔能大師",
+			"source": "PHB",
+			"page": 105,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"level": 20,
+			"entries": [
+				"第20級時，你可以利用儲備的魔力祈求你的宗主為你恢復已消耗的法術位。你可以花1分鐘祈求宗主的幫助，恢復所有你已消耗的契約魔法法術位。使用該特性恢復法術位後，你必須完成一次長休才能再次使用該特性。"
+			],
+			"ENG_name": "Eldritch Master"
+		},
+		{
+			"name": "魔能祈喚選項",
+			"source": "XPHB",
+			"page": 153,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"魔能祈喚選項按字母順序排列。",
+				{
+					"type": "options",
+					"count": 1,
+					"entries": [
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Agonizing Blast|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Armor of Shadows|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Ascendant Step|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Devil's Sight|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Devouring Blade|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Eldritch Mind|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Eldritch Smite|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Eldritch Spear|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Fiendish Vigor|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Gaze of Two Minds|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Gift of the Depths|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Gift of the Protectors|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Investment of the Chain Master|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Lessons of the First Ones|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Lifedrinker|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Mask of Many Faces|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Master of Myriad Forms|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Misty Visions|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "One with Shadows|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Otherworldly Leap|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Pact of the Blade|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Pact of the Chain|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Pact of the Tome|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Repelling Blast|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Thirsting Blade|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Visions of Distant Realms|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Whispers of the Grave|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Witch Sight|XPHB",
+							"preserve": {
+								"prerequisite": true
+							}
+						}
+					]
+				}
+			],
+			"ENG_name": "Eldritch Invocation Options"
+		},
+		{
+			"name": "魔能祈喚",
+			"source": "XPHB",
+			"page": 153,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你在神秘學識的研習過程中發掘出了使用魔能祈喚的方式，這些禁忌的知識殘章讓你獲得了持久的魔法能力。你獲得一個自選的魔能祈喚，如書之魔契（詳見後文\"{@filter 魔能祈喚選項|optionalfeatures|feature type=EI|source=XPHB}\"）。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "先決",
+							"entries": [
+								"如果一個魔能祈喚具有先決，那你必須滿足它才能選取。例如，若一個魔能祈喚需要你魔契師等級5+，則只有你魔契師等級達到5級才可以選取該祈喚。"
+							],
+							"ENG_name": "Prerequisites"
+						},
+						{
+							"type": "entries",
+							"name": "替換與獲取魔能祈喚",
+							"entries": [
+								"每當你獲得一級魔契師等級時，你都可以用新的祈喚替換一個已有的祈喚，但你必須滿足其先決條件。如果一個祈喚是某個其他祈喚的先決條件，那你無法替換它。"
+							],
+							"ENG_name": "Replacing and Gaining Invocations"
+						}
+					]
+				},
+				"當你到達特定的魔契師等級時，你還可以習得更多的魔能祈喚，具體資料見魔契師特性表中祈喚一列。",
+				"你不能多次重複選擇同一個魔能祈喚，除非該祈喚的描述另有說明。"
+			],
+			"ENG_name": "Eldritch Invocations"
+		},
+		{
+			"name": "契約魔法",
+			"source": "XPHB",
+			"page": 153,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"依靠玄秘的儀式，你與一位神秘存在締結契約以獲得魔法力量。這位存在隱於影中，僅聞其聲，身份不明——但其恩澤是切實的。施法規則見{@book 第七章|XPHB|7}。下文將詳述如何將這些規則應用於魔契師法術，魔契師法術詳見本章後文職業描述中的{@filter 魔契師法術列表|spells|class=Warlock}。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "戲法",
+							"entries": [
+								"你知曉兩道你選擇的魔契師戲法。推薦選擇{@spell Eldritch Blast|XPHB|魔能爆}和{@spell Prestidigitation|XPHB|魔法伎倆}。每當你獲得一個魔契師等級，你都能從此特性的戲法中選擇其一替換為另一道你所選擇的魔契師戲法。",
+								"當你的魔契師等級到達4級和10級時，你都能另選一道魔契師戲法並習得，如魔契師特性表中戲法一列所示。"
+							],
+							"ENG_name": "Cantrips"
+						},
+						{
+							"type": "entries",
+							"name": "法術位",
+							"entries": [
+								"魔契師特性表中顯示了你可用於施展一環到五環魔契師法術的法術位數量。表中還顯示了法術位對應的法術環階，你所有的法術位都屬於同一環階。當你完成{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}時，你重獲所有已消耗的法術位。",
+								"例如，5級時，你總共具有兩枚三環法術位。你施展一環法術{@spell Witch Bolt|XPHB|巫術箭}時，必須消耗這些法術位其中之一，並把它作為一個三環法術施展。"
+							],
+							"ENG_name": "Spell Slots"
+						},
+						{
+							"type": "entries",
+							"name": "1環及以上的準備法術",
+							"entries": [
+								"你準備可供你以此特性施展的1環及更高環階法術列表。最初，選擇兩道1環魔契師法術。推薦選擇{@spell Charm Person|XPHB|魅惑類人}和{@spell Hex|XPHB|脆弱詛咒}。"
+							],
+							"ENG_name": "Prepared Spells of Level 1+"
+						}
+					]
+				},
+				"已準備法術數量會隨你魔契師等級的提升而增加，如魔契師特性表中的準備法術一列所示。每當這一列的數字增加時，從魔契師法術列表中選擇額外法術準備，直至已準備法術的數量與表格中的數字一致。你所選擇法術的環階必須不高於表中法術位環階一欄中的環階。例如，當你到達6級時，你可以新習得一道一環到三環的魔契師法術。",
+				"如果魔契師的其他特性給了你始終準備著的法術，這些法術不計入你以此法準備的法術數量，但這些法術對你而言都視為魔契師法術。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "改變你的準備法術",
+							"entries": [
+								"每當你獲得一個魔契師等級，你可以將你準備列表上的一道法術法術替換為另一道魔契師法術，新法術的環階必須小於或等於你當前的法術位環階。"
+							],
+							"ENG_name": "Changing Your Prepared Spells"
+						},
+						{
+							"type": "entries",
+							"name": "施法關鍵屬性",
+							"entries": [
+								"魅力是你魔契師法術的施法屬性。"
+							],
+							"ENG_name": "Spellcasting Ability"
+						},
+						{
+							"type": "entries",
+							"name": "施法法器",
+							"entries": [
+								"你可以使用{@item Arcane Focus|XPHB|奧術法器}作為你魔契師法術的{@variantrule Spellcasting Focus|XPHB|法器}。"
+							],
+							"ENG_name": "Spellcasting Focus"
+						}
+					]
+				}
+			],
+			"ENG_name": "Pact Magic"
+		},
+		{
+			"name": "秘法迴流",
+			"source": "XPHB",
+			"page": 154,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"你可以舉行一道耗時1分鐘的秘傳儀式。儀式結束時，你恢復已消耗的契約魔法法術位，但恢復數量不得超過你法術位最大數量的一半（向上取整）。此特性一經使用，直至完成一次{@variantrule Long Rest|XPHB|長休}你都無法再次使用。"
+			],
+			"ENG_name": "Magical Cunning"
+		},
+		{
+			"name": "魔契師子職",
+			"source": "XPHB",
+			"page": 154,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你選擇獲得一項魔契師子職子職是一種特化，在特定的魔契師等級給予你對應的獨特能力。此後你將獲得你所選的子職所有能力——只要其所需等級不超過你的魔契師等級。"
+			],
+			"ENG_name": "Warlock Subclass"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 155,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 4,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其他你滿足條件的{@5etools 專長|feats.html}。如魔契師特性表所示，你還會在第8，第12，第16級時再次獲得本特性。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 155,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 6,
+			"entries": [
+				"你獲得一個來自魔契師子職的特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 155,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 8,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "聯絡宗主",
+			"source": "XPHB",
+			"page": 155,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 9,
+			"entries": [
+				"在過去，你通常需要透過各種渠道才能聯絡宗主。但現在，你可以直接聯絡宗主本身。你始終準備著法術{@spell Contact Other Plane|XPHB|異界探知}。你可以無需消耗法術位地以此特性來聯絡宗主，並自動透過該法術的豁免。",
+				"一旦你以此法施展了該法術，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次以此法施展該法術。"
+			],
+			"ENG_name": "Contact Patron"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 155,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 10,
+			"entries": [
+				"你獲得一個來自魔契師子職的特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "玄奧秘法",
+			"source": "XPHB",
+			"page": 155,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 11,
+			"entries": [
+				"你的宗主賦予你一種稱為秘法的魔法奧秘。你可以選擇一道六環的魔契師法術作為你的玄奧秘法。",
+				"你可以無需消耗法術位地施展該秘法，但在你完成一次{@variantrule Long Rest|XPHB|長休}前無法再次以這種方式施展秘法。",
+				"如魔契師特性表所示，當你獲得更高的魔契師等級後，你將可以選擇更多的魔契師法術來以這種方式施展：第13級時可選一道七環法術，15級時可選一道八環法術，17級時可選一道九環法術。當你完成{@variantrule Long Rest|XPHB|長休}時，重獲所有已消耗的秘法使用次數。",
+				"每當你獲得魔契師等級時，你都可以將一道秘法的法術替換為另一道同環階的魔契師法術。"
+			],
+			"ENG_name": "Mystic Arcanum"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 155,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 12,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "玄奧秘法",
+			"source": "XPHB",
+			"page": 155,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 13,
+			"entries": [
+				"你獲得一個自選的7環魔契師法術。"
+			],
+			"ENG_name": "Mystic Arcanum"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 155,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 14,
+			"entries": [
+				"你獲得一個來自魔契師子職的特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "玄奧秘法",
+			"source": "XPHB",
+			"page": 155,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 15,
+			"entries": [
+				"你獲得一個自選的8環魔契師法術。"
+			],
+			"ENG_name": "Mystic Arcanum"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 155,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 16,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "玄奧秘法",
+			"source": "XPHB",
+			"page": 155,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 17,
+			"entries": [
+				"你獲得一個自選的 9 環魔契師法術。"
+			],
+			"ENG_name": "Mystic Arcanum"
+		},
+		{
+			"name": "傳奇恩惠",
+			"source": "XPHB",
+			"page": 155,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 19,
+			"entries": [
+				"你獲得一個{@filter 傳奇恩惠專長|feats|category=EB}或另一個你所選擇符合條件的{@5etools 專長|feats.html}。推薦選擇{@feat Boon of Fate|XPHB|扭曲命運之恩惠}。"
+			],
+			"ENG_name": "Epic Boon"
+		},
+		{
+			"name": "魔能大師",
+			"source": "XPHB",
+			"page": 155,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 20,
+			"entries": [
+				"當你使用秘法迴流特性時，你改為重獲所有已消耗的魔契師法術位。"
+			],
+			"ENG_name": "Eldritch Master"
+		}
+	],
+	"subclassFeature": [
+		{
+			"name": "至高妖精",
+			"source": "PHB",
+			"page": 108,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Archfey",
+			"subclassSource": "PHB",
+			"level": 1,
+			"entries": [
+				"你的宗主是一位妖精領主或女王，是凡人種族誕生前便守護著失落祕密的傳奇生物。這類存在的動機往往難以理解，有時反覆無常，可能追求更強的魔力或清算古老仇怨。這類存在包括霜凍親王（Prince of Frost）、暮曦宮廷（Gloaming Court）的統治者空氣與黑暗女王（Queen of Air and Darkness）、夏之王庭（Summer Court）的泰坦妮亞（Titania）、她的配偶綠之王奧伯龍（Oberon, the Green Lord）、愚者親王海爾薩姆（Hyrsam, the Prince of Fools），以及遠古鬼婆。",
+				{
+					"type": "entries",
+					"name": "擴展法術列表",
+					"entries": [
+						"學習魔契師法術時，你的至高妖精宗主賜予你將以下法術加入魔契師法術列表進行選擇的權力。",
+						{
+							"type": "table",
+							"caption": "至高妖精擴充套件法術",
+							"colLabels": [
+								"法術環階",
+								"法術"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"1級",
+									"{@spell faerie fire||妖火}, {@spell sleep||睡眠術}"
+								],
+								[
+									"2級",
+									"{@spell calm emotions||安定心神}, {@spell phantasmal force||魅影之力}"
+								],
+								[
+									"3級",
+									"{@spell blink||閃現術}, {@spell plant growth||植物滋長}"
+								],
+								[
+									"4級",
+									"{@spell dominate beast||支配野獸}, {@spell greater invisibility||高等隱形術}"
+								],
+								[
+									"5級",
+									"{@spell dominate person||支配類人}, {@spell seeming||偽裝術}"
+								]
+							]
+						}
+					],
+					"ENG_name": "Expanded Spell List"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Fey Presence|Warlock||Archfey||1"
+				}
+			],
+			"ENG_name": "The Archfey"
+		},
+		{
+			"name": "妖精威儀",
+			"source": "PHB",
+			"page": 108,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Archfey",
+			"subclassSource": "PHB",
+			"level": 1,
+			"header": 1,
+			"entries": [
+				"第1級時，你的宗主授予你如同妖精一般魅惑和威嚇他人的能力。作為一個動作，你可以令以你為原點的10尺立方區域內所有生物進行一次對抗你法術豁免DC的感知豁免，豁免失敗者直至你下一回合結束前受你{@condition charmed||魅惑}或陷入{@condition frightened||恐慌}（由你選擇）。",
+				"你必須完成一次長休或短休後才能再次使用該特性。"
+			],
+			"ENG_name": "Fey Presence"
+		},
+		{
+			"name": "霧遁",
+			"source": "PHB",
+			"page": 108,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Archfey",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級起，你在受到傷害時可以在一團迷霧中消失無蹤。你受到傷害時，可以使用你的反應進入{@condition invisible||隱形}，並傳送到60尺內一處你能看見且未被佔據的空間。直至你的下一回合開始，或直至你發動攻擊或施法，你將維持{@condition invisible||隱形}狀態。",
+				"你必須完成一次長休或短休後才能再次使用該特性。"
+			],
+			"ENG_name": "Misty Escape"
+		},
+		{
+			"name": "迷惑防護",
+			"source": "PHB",
+			"page": 108,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Archfey",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級時，你的宗主教會你如何透過逆轉敵人所施展的心智魔法對付其自身。你獲得{@condition charmed||魅惑}狀態的免疫，且當其他生物試圖魅惑你時，你可以使用你的反應將魅惑效應反施予該生物。該生物必須進行一次對抗你法術豁免DC的感知豁免，豁免失敗者將受你{@condition charmed||魅惑}，並持續1分鐘。該效應會在其受到任何傷害時終止。"
+			],
+			"ENG_name": "Beguiling Defenses"
+		},
+		{
+			"name": "黑暗妄霧",
+			"source": "PHB",
+			"page": 108,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Archfey",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"第14級時，你可以使一個生物陷入虛幻領域中。作為一個動作，你可以指定你周邊60尺範圍內一個你能看見的生物。目標生物必須進行一次對抗你法術豁免DC的感知豁免。豁免失敗者將受你{@condition charmed||魅惑}或因你而陷入{@condition frightened||恐慌}（由你選擇），並持續1分鐘，或直至你的{@status concentration||專注} 被打斷（等同於你{@status concentration||專注於}一個法術）。如果該生物受到傷害，那麼該效應提前終止。",
+				"直至幻象結束前，該生物都會以為自己迷失在了一個迷霧區域中，而區域的形象則由你選擇。該生物只看見和聽到其自身、你和幻象三者。",
+				"你必須完成一次長休或短休才能再次使用此特性。"
+			],
+			"ENG_name": "Dark Delirium"
+		},
+		{
+			"name": "邪魔宗主",
+			"source": "PHB",
+			"page": 109,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Fiend",
+			"subclassSource": "PHB",
+			"level": 1,
+			"entries": [
+				"你與某位下層位面的邪魔締結了契約。這些存在抱有邪惡的企圖，但你不一定願意與之同流合汙。邪魔們追求著世間萬物的墮落與毀滅，而這連你本身也無法獨善其身最終。那些強大到能與凡人締結契約的邪魔包括有狄摩高根（Demogorgon）、奧喀斯（Orcus）、弗拉茲厄魯（Fraz-Urb'luu）和巴弗滅（Baphomet）這樣的惡魔領主；阿斯蒙蒂斯（Asmodeus）、迪斯帕特（Dispater）、墨菲斯托費利斯（Mephistopheles）和貝利亞（Belial）這樣的大魔鬼；一些特別強大的深獄煉魔和巴洛炎魔；以及奧法羅斯魔與其他尤格羅斯魔領主。",
+				{
+					"type": "entries",
+					"name": "擴展法術列表",
+					"entries": [
+						"學習魔契師法術時，你的邪魔宗主賜予你將以下法術加入魔契師法術列表進行選擇的權力。",
+						{
+							"type": "table",
+							"caption": "邪魔宗主擴充套件法術",
+							"colLabels": [
+								"法術環階",
+								"法術"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"1級",
+									"{@spell burning hands||燃燒之手}, {@spell command||命令術}"
+								],
+								[
+									"2級",
+									"{@spell blindness/deafness||目盲術/耳聾術}, {@spell scorching ray||灼熱射線}"
+								],
+								[
+									"3級",
+									"{@spell fireball||火球術}, {@spell stinking cloud||臭雲術}"
+								],
+								[
+									"4級",
+									"{@spell fire shield||火焰護盾}, {@spell wall of fire||火牆術}"
+								],
+								[
+									"5級",
+									"{@spell flame strike||焰擊術}, {@spell hallow||聖居}"
+								]
+							]
+						}
+					],
+					"ENG_name": "Expanded Spell List"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Dark One's Blessing|Warlock||Fiend||1"
+				}
+			],
+			"ENG_name": "The Fiend"
+		},
+		{
+			"name": "黑暗者賜福",
+			"source": "PHB",
+			"page": 109,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Fiend",
+			"subclassSource": "PHB",
+			"level": 1,
+			"header": 1,
+			"entries": [
+				"第1級起，每當你把一個敵對生物的生命值降至0，你都會獲得等同於你的魅力調整值＋你的魔契師等級的臨時生命值（最低為1）。"
+			],
+			"ENG_name": "Dark One's Blessing"
+		},
+		{
+			"name": "黑暗者強運",
+			"source": "PHB",
+			"page": 109,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Fiend",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級起，你可以呼喚你的宗主有利的改寫你的命運。當你進行屬性檢定或豁免檢定時，可以使用該特性為此次擲骰增添一個{@dice d10}骰。你可在看到擲骰結果後，其結果生效前使用該特性。",
+				"你必須完成一次長休或短休後才能再次使用該特性。"
+			],
+			"ENG_name": "Dark One's Own Luck"
+		},
+		{
+			"name": "邪魔韌性",
+			"source": "PHB",
+			"page": 109,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Fiend",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級起，每當你完成一次長休或短休後你都可以選擇一種傷害型別。直到你使用此能力選擇另外一種傷害型別之前，你都擁有對於所選傷害型別的抗性。魔法武器或銀質武器所造成的傷害無視此抗性。"
+			],
+			"ENG_name": "Fiendish Resilience"
+		},
+		{
+			"name": "直墮地獄",
+			"source": "PHB",
+			"page": 109,
+			"srd": true,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Fiend",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"第14級起，每當你的攻擊成功命中一個生物時，你可以使用此能力將目標瞬間傳送並穿越下層位面。該生物立刻消失並前往如同噩夢一般的風景。",
+				"在你下一回合結束時，目標返回先前所佔據的空間、或是最近的未被佔據空間。如果目標並非邪魔，則他因這次可怖的經歷而受到{@damage 10d10}點心靈傷害。",
+				"必須完成一次長休才能再次使用該特性。"
+			],
+			"ENG_name": "Hurl Through Hell"
+		},
+		{
+			"name": "舊日支配者",
+			"source": "PHB",
+			"page": 109,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Great Old One",
+			"subclassSource": "PHB",
+			"level": 1,
+			"entries": [
+				"你的宗主是一個神祕實體，其本質與現實結構格格不入。它可能來自遙遠國度、現實之外的空間，或是一位只見於傳說的古神。凡人無法理解其動機；它的知識既浩瀚又古老，即使最偉大的圖書館也無法與其掌握的祕密相比。舊日支配者或許不知道你的存在，或對你全然漠不關心，但你習得的祕密使你能從它身上汲取魔法。這類存在包括「潛伏者」關納德（Ghaunadar, That Which Lurks）、「受縛之神」薩瑞茲頓（Tharizdun, the Chained God）、「暗夜巨蛇」丹德爾（Dendar, the Night Serpent）、「歸來者」扎貢（Zargon, the Returner）、偉大克蘇魯（Great Cthulhu），以及其他不可名狀的存在。",
+				{
+					"type": "entries",
+					"name": "擴展法術列表",
+					"entries": [
+						"學習魔契師法術時，你的舊日支配者宗主賜予你將以下法術加入魔契師法術列表進行選擇的權力。",
+						{
+							"type": "table",
+							"caption": "舊日支配者擴充套件法術",
+							"colLabels": [
+								"法術環階",
+								"法術"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"1級",
+									"{@spell dissonant whispers||不諧低語}, {@spell Tasha's hideous laughter||塔莎狂笑術}"
+								],
+								[
+									"2級",
+									"{@spell detect thoughts||偵測思想}, {@spell phantasmal force||魅影之力}"
+								],
+								[
+									"3級",
+									"{@spell clairvoyance||鷹眼術}, {@spell sending||短訊術}"
+								],
+								[
+									"4級",
+									"{@spell dominate beast||支配野獸}, {@spell Evard's black tentacles||艾伐黑觸手}"
+								],
+								[
+									"5級",
+									"{@spell dominate person||支配類人}, {@spell telekinesis||心靈遙控}"
+								]
+							]
+						}
+					],
+					"ENG_name": "Expanded Spell List"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Awakened Mind|Warlock||Great Old One||1"
+				}
+			],
+			"ENG_name": "The Great Old One"
+		},
+		{
+			"name": "喚醒心靈",
+			"source": "PHB",
+			"page": 109,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Great Old One",
+			"subclassSource": "PHB",
+			"level": 1,
+			"header": 1,
+			"entries": [
+				"第1級時，你的異界知識賦予你接觸其他生物心靈的能力。你可以與身邊30尺內任意你能看見的生物透過心靈感應方式進行交流。你不必須懂得該生物的語言也能使其理解你透過心靈感應所傳達的話語，但它必須至少能夠理解一種語言。"
+			],
+			"ENG_name": "Awakened Mind"
+		},
+		{
+			"name": "熵光防護",
+			"source": "PHB",
+			"page": 109,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Great Old One",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級時，你習得了一種可以幫你抵擋攻擊的魔法結界，並可將敵人失敗的攻擊轉化為自己的幸運。當一個生物對你發動攻擊檢定時，你可以用你的反應迫使該攻擊檢定具有劣勢。如果該攻擊檢定失敗，則你直至你下一回合結束前，下一次對該生物發動攻擊檢定時具有優勢。",
+				"你必須完成一次長休或短休後才能再次使用該特性。"
+			],
+			"ENG_name": "Entropic Ward"
+		},
+		{
+			"name": "思想護盾",
+			"source": "PHB",
+			"page": 109,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Great Old One",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級時，除非獲得你的允許，否則你的思維無法被心靈感應或者其他手段閱讀。此外你還具有對心靈傷害抗性，且每當一個生物對你造成心靈傷害時，該生物將受到與你相同的傷害。"
+			],
+			"ENG_name": "Thought Shield"
+		},
+		{
+			"name": "創造奴僕",
+			"source": "PHB",
+			"page": 109,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Great Old One",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"第14級時，你從獲得以宗主的異界魔法感染類人生物心智的能力。你可以用你的動作觸碰一個處於{@condition incapacitated||失能}狀態的類人生物。該生物隨即陷入受你{@condition charmed||魅惑} 的狀態，直至被施以法術{@spell remove curse||移除詛咒} 、其{@condition charmed||魅惑}狀態被移除，或直至你再使用此特性。",
+				"只要你和{@condition charmed||魅惑}的奴僕處於同一位面，你就可以透過心靈感應與你的奴僕進行交流。"
+			],
+			"ENG_name": "Create Thrall"
+		},
+		{
+			"name": "​不朽者",
+			"source": "SCAG",
+			"page": 139,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Undying",
+			"subclassSource": "SCAG",
+			"level": 1,
+			"entries": [
+				"死亡無法左右你的宗主；它已解開永恆生命的祕密，儘管這份成就和所有力量一樣必須付出代價。曾為凡人的不朽者看著一代代凡人的一生如四季與晝夜般流逝，並能分享歲月、生與死的祕密。這類存在包括手與眼之主維克那（Vecna, Lord of the Hand and the Eye）、恐怖的埃烏茲（Iuz）、巫妖女王沃爾（Vol）、艾雷納爾的不朽王庭（the Undying Court of Aerenal）、吉斯洋基巫妖女王維拉基斯（Vlaakith），以及不死法師費斯坦但提勒斯（Fistandantilus）。",
+				"在國度中，不朽者宗主包括陰影之王拉洛克（Larloch the Shadow King）——魔契師之穴（Warlock's Crypt）的傳奇主人——以及恩瑟神王吉爾金（Gilgeam, the God-King of Unther）。",
+				{
+					"type": "entries",
+					"name": "擴展法術列表",
+					"entries": [
+						"學習魔契師法術時，你的不朽者宗主賜予你將以下法術加入魔契師法術列表進行選擇的權力。",
+						{
+							"type": "table",
+							"caption": "不朽者擴充套件法術",
+							"colLabels": [
+								"法術環階",
+								"法術"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"1級",
+									"{@spell false life||虛假生命}, {@spell ray of sickness||致病射線}"
+								],
+								[
+									"2級",
+									"{@spell blindness/deafness||目盲術/耳聾術}, {@spell silence||沉默術}"
+								],
+								[
+									"3級",
+									"{@spell feign death||假死術}, {@spell speak with dead||死者交談}"
+								],
+								[
+									"4級",
+									"{@spell aura of life||生命靈光}, {@spell death ward||防死結界}"
+								],
+								[
+									"5級",
+									"{@spell contagion||疫病術}, {@spell legend lore||通曉傳奇}"
+								]
+							]
+						}
+					],
+					"ENG_name": "Expanded Spell List"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Among the Dead|Warlock||Undying|SCAG|1"
+				}
+			],
+			"ENG_name": "The Undying"
+		},
+		{
+			"name": "常伴死亡",
+			"source": "SCAG",
+			"page": 139,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Undying",
+			"subclassSource": "SCAG",
+			"level": 1,
+			"header": 1,
+			"entries": [
+				"從1級起，你學會戲法{@spell spare the dying||維生術}，它對你來說是一個魔契師戲法。你同時在對任何疾病的豁免上具有優勢。",
+				"此外，不死生物將更難傷害你。若有不死生物直接指定你為攻擊或者有害法術的目標，這個生物必須進行一次感知豁免來對抗你的法術豁免DC（但他不需要在使用包括你在內的區域能力時進行豁免，比如{@spell fireball||火球術}）。若失敗，這個生物必須選擇一個新的目標，如果他沒有除你以外的目標可以選擇則他將浪費這次法術或者攻擊。若他成功透過了豁免，這個不死生物在接下來24小時裡對這個效果免疫。如果你以他為目標進行攻擊或施放了有害法術，那麼這個不死生物在接下來24小時裡也會對這個效果免疫。"
+			],
+			"ENG_name": "Among the Dead"
+		},
+		{
+			"name": "反抗死亡",
+			"source": "SCAG",
+			"page": 139,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Undying",
+			"subclassSource": "SCAG",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"從6級起，你可以在成功欺騙了自己的死亡或幫助其他人欺騙死亡時，給予自己一些活力。在某些條件下，你可以立即回覆{@dice 1d8} +你的體質調整值 的生命值（最少為1點生命值）。回覆生命的前提是，你成功進行一次死亡豁免或者你使用{@spell spare the dying||維生術}使其他生物穩定傷勢時。",
+				"必須完成一次長休才能再次使用該特性。"
+			],
+			"ENG_name": "Defy Death"
+		},
+		{
+			"name": "不朽天性",
+			"source": "SCAG",
+			"page": 139,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Undying",
+			"subclassSource": "SCAG",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"從10級起，你可以無限制地屏住呼吸，並且你不再需要食物、水和睡眠，雖然你仍舊需要休息來從長/短休息中獲得收益或減少{@condition exhaustion||力竭}。",
+				"此外，你以更慢的速度的增長年齡。每過去10年，你的身體只會衰老1年，並且你免疫魔法衰老。"
+			],
+			"ENG_name": "Undying Nature"
+		},
+		{
+			"name": "不滅生命",
+			"source": "SCAG",
+			"page": 139,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Undying",
+			"subclassSource": "SCAG",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"從14級起，你得以分享「不朽者」的部分真正祕密。你可以在自己的回合用一個附贈動作恢復等同於{@dice 1d8}＋你的魔契師等級的生命值。此外，若你使用此特性時將自己被切斷的身體部位置回斷口，該部位便會重新接合。",
+				"你必須完成一次長休或短休後才能再次使用該特性。"
+			],
+			"ENG_name": "Indestructible Life"
+		},
+		{
+			"name": "深海意志",
+			"source": "TCE",
+			"page": 72,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Fathomless",
+			"subclassSource": "TCE",
+			"level": 1,
+			"entries": [
+				"你已經浸沒於和深淵的契約。你現在可以汲取整個大洋，水元素位面或者其他的異界海洋的無盡力量。你的宗主僅僅是想利用你去了解陸地，或者它希望你開啟深海的閥門去淹沒整個世界？",
+				"也許你生為的信徒，你的家族世代崇拜深海宗主和祂之眷族。或者你曾經遭遇海難，在溺死的邊緣被你的宗主所拯救，祂給了你生存的機會。不管你為何和祂締結契約，大海和它那未知的深淵聽從你的召喚。",
+				"能夠賦予魔契師力量的深淵存在包括克拉肯們（泛指神話中的海妖），古老的元素生物，寇濤魚人神話幻想中的存在，人魚半神和海鬼婆集會。",
+				{
+					"type": "entries",
+					"name": "擴展法術列表",
+					"entries": [
+						"{@i 1級深海意志特性}",
+						"當你學習一個魔契師法術時，你的深海意志宗主賜予你將以下法術加入魔契師法術列表進行選擇的權力。",
+						{
+							"type": "table",
+							"caption": "深海意志擴充套件法術",
+							"colLabels": [
+								"法術環階",
+								"法術"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"1級",
+									"{@spell create or destroy water||造水術/枯水術}, {@spell thunderwave||雷鳴波}"
+								],
+								[
+									"2級",
+									"{@spell gust of wind||造風術}, {@spell silence||沉默術}"
+								],
+								[
+									"3級",
+									"{@spell lightning bolt||閃電束}, {@spell sleet storm||雪雨暴}"
+								],
+								[
+									"4級",
+									"{@spell control water||操控水體}, {@spell summon elemental|tce|元素召喚術}（僅水元素）"
+								],
+								[
+									"5級",
+									"{@spell Bigby's hand||畢格比之手}（呈現為觸手形態）, {@spell cone of cold||寒冰錐}"
+								]
+							]
+						}
+					],
+					"ENG_name": "Expanded Spell List"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tentacle of the Deeps|Warlock||Fathomless|TCE|1"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Gift of the Sea|Warlock||Fathomless|TCE|1"
+				}
+			],
+			"ENG_name": "The Fathomless"
+		},
+		{
+			"name": "海洋饋贈",
+			"source": "TCE",
+			"page": 72,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Fathomless",
+			"subclassSource": "TCE",
+			"level": 1,
+			"header": 1,
+			"entries": [
+				"{@i 1級深海意志特性}",
+				"你獲得40尺的游泳速度，並可以在水下呼吸。"
+			],
+			"ENG_name": "Gift of the Sea"
+		},
+		{
+			"name": "深海觸手",
+			"source": "TCE",
+			"page": 72,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Fathomless",
+			"subclassSource": "TCE",
+			"level": 1,
+			"header": 1,
+			"entries": [
+				"{@i 1級深海意志特性}",
+				"你可以以魔法的形式召喚一根幽靈觸手攻擊你的敵人。以一個附贈動作，你可以在你60尺範圍內你能看見的一點上，創造一根10尺長的觸手。這根觸手會持續存在一分鐘。若你使用此能力創造另一根觸手，先前的一根會立刻消失。",
+				"當你創造觸手時，你可以立刻對其10尺內的目標進行一次近戰法術攻擊。該目標將受到{@damage 1d8}寒冷傷害，且速度降低10尺，直到你的下一回合開始前。當你魔契師等級達到10級時，這一傷害將提高至{@damage 2d8}。",
+				"在你的回合中，你可以再使用一個附贈動作將觸手移動至多30尺，然後重複上述的攻擊。",
+				"你可以召喚的觸手的次數等於你的熟練加值次，且當你完成一次長休後你重獲全部已消耗的使用次數。"
+			],
+			"ENG_name": "Tentacle of the Deeps"
+		},
+		{
+			"name": "守衛纏繞",
+			"source": "TCE",
+			"page": 72,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Fathomless",
+			"subclassSource": "TCE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 6級深海意志特性}",
+				"你的深海觸手可以保護你和其他人，用自己將你們和危險隔開。當你或你可以看見的一個位於觸手10尺內的生物承受傷害時，你可以使用反應，選擇這些受傷生物之一，並使那個生物遭受的傷害減少{@dice 1d8}。當你達到魔契師10級時，觸手可以抵消的傷害增加到{@dice 2d8}。"
+			],
+			"ENG_name": "Guardian Coil"
+		},
+		{
+			"name": "海淵魂靈",
+			"source": "TCE",
+			"page": 72,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Fathomless",
+			"subclassSource": "TCE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 6級深海意志特性}",
+				"深海對你來說如家一般熟悉。你獲得寒冷傷害的抗性。此外，當你完全浸沒在水中時，任何同樣完全被浸沒的生物都能理解你說出的話，你也能聽懂他們說的話。"
+			],
+			"ENG_name": "Oceanic Soul"
+		},
+		{
+			"name": "擒握觸手",
+			"source": "TCE",
+			"page": 72,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Fathomless",
+			"subclassSource": "TCE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10級深海意志特性}",
+				"你習得法術{@spell Evard's black tentacles||艾伐黑觸手}。它對你來說是一個魔契師法術，且不計入你的已知法術數量。你可以在不消耗法術位的情況下使用該法術一次。當你完成長休後，你重獲免費施展它的次數。",
+				"每當你施展此法術時，宗主的魔力會強化你，使你獲得等同於魔契師等級的臨時生命值。此外，傷害無法中斷你對此法術的{@status concentration||專注}。"
+			],
+			"ENG_name": "Grasping Tentacles"
+		},
+		{
+			"name": "海淵傳送",
+			"source": "TCE",
+			"page": 72,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Fathomless",
+			"subclassSource": "TCE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"{@i 14級深海意志特性}",
+				"你可以魔法性地開啟一個前往水域目的地的臨時通道。以一個動作，你可以傳送自己和最多五個30尺範圍內的可見自願生物。在一團觸鬚的漩渦中，你們全部消失，然後在至多1英里以內的你曾見過的水域（至少要有池塘的大小）或者那片水域周圍的30尺範圍內。你們當中的每一個人都出現在距離其他人30尺以內的一個未被佔據的空間內。",
+				"你必須完成一次長休或短休後才能再次使用該特性。"
+			],
+			"ENG_name": "Fathomless Plunge"
+		},
+		{
+			"name": "瓶中小憩",
+			"source": "TCE",
+			"page": 73,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Genie",
+			"subclassSource": "TCE",
+			"level": 1,
+			"entries": [
+				"以一個動作，你可以用魔法消失並進到你的器皿內，器皿將留在你所在的原地。器皿內是與其本身相似的20尺半徑，20尺高的圓柱形超維度空間。器皿內部溫度適宜，並安放有舒適的墊子和茶几。在器皿之中時，你可以如同身在器皿所在之處一般聽到外界的聲音。你在器皿內可停留的時間等同於你熟練加值雙倍數目的小時。如果你死亡，或是器皿被摧毀，抑或是使用一個附贈動作離開，你將提前從器皿中出來。當你離開器皿時，你出現在距離它最近的不被佔據的空間中。在器皿內的一切物件將被留在其中直到被取出，而倘若器皿被摧毀，其中的物品則會完好無損地出現在距離它最近的不被佔據的空間中。一旦你進入器皿，直到你完成一次長休後你不能再度進入。"
+			],
+			"ENG_name": "Bottled Respite"
+		},
+		{
+			"name": "巨靈之怒",
+			"source": "TCE",
+			"page": 73,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Genie",
+			"subclassSource": "TCE",
+			"level": 1,
+			"entries": [
+				"在你的每個回合僅限一次，你可以在你攻擊骰命中時對目標造成等同於你熟練加值的額外傷害。傷害型別取決於你的宗主型別：鈍擊（土巨靈），雷鳴（氣巨靈），火焰（火巨靈），冷凍（水巨靈）。"
+			],
+			"ENG_name": "Genie's Wrath"
+		},
+		{
+			"name": "巨靈宗主",
+			"source": "TCE",
+			"page": 73,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Genie",
+			"subclassSource": "TCE",
+			"level": 1,
+			"entries": [
+				"你與巨靈中的稀有群體，巨靈貴族締結了契約。巨靈貴族乃是廣闊的元素位面的統治者，並對其他次等巨靈與次等元素生物具有莫大的影響力。巨靈貴族們的動機各不相同，但都傲慢自大且有著匹敵次等神明的強大偉力。他們喜好讓熱衷於縛誓巨靈的凡人們反過來服侍他們，並對於締結能擴張他們在多元宇宙中勢力的契約有著巨大的熱情。",
+				"你可以選擇你宗主是哪種巨靈，也可以透過巨靈種類表讓骰子決定。",
+				{
+					"type": "table",
+					"caption": "巨靈型別",
+					"colLabels": [
+						"d4",
+						"型別",
+						"元素"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-5",
+						"col-5"
+					],
+					"rows": [
+						[
+							1,
+							"{@creature Dao||土巨靈}",
+							"土"
+						],
+						[
+							2,
+							"{@creature Djinni||氣巨靈}",
+							"空氣"
+						],
+						[
+							3,
+							"{@creature Efreeti||火巨靈}",
+							"火焰"
+						],
+						[
+							4,
+							"{@creature Marid||水巨靈}",
+							"水"
+						]
+					]
+				},
+				{
+					"name": "擴展法術列表",
+					"type": "entries",
+					"entries": [
+						"{@i 1級巨靈特性}",
+						"當你學習魔契師法術時，巨靈宗主讓你從擴充法術列表中選擇。巨靈擴充法術表會將其中法術加入你的魔契師法術列表，並依宗主種類提供相應法術：土巨靈、氣巨靈、火巨靈或水巨靈。",
+						{
+							"type": "table",
+							"caption": "巨靈擴充套件法術",
+							"colLabels": [
+								"法術環階",
+								"巨靈法術",
+								"土巨靈法術",
+								"氣巨靈法術",
+								"火巨靈法術",
+								"水巨靈法術"
+							],
+							"colStyles": [
+								"col-1 text-center",
+								"col-2-2",
+								"col-2-2",
+								"col-2-2",
+								"col-2-2",
+								"col-2-2"
+							],
+							"rows": [
+								[
+									"1級",
+									"{@spell detect evil and good||偵測善惡}",
+									"{@spell sanctuary||庇護術}",
+									"{@spell thunderwave||雷鳴波}",
+									"{@spell burning hands||燃燒之手}",
+									"{@spell fog cloud||雲霧術}"
+								],
+								[
+									"2級",
+									"{@spell phantasmal force||魅影之力}",
+									"{@spell spike growth||荊棘叢生}",
+									"{@spell gust of wind||造風術}",
+									"{@spell scorching ray||灼熱射線}",
+									"{@spell blur||朦朧術}"
+								],
+								[
+									"3級",
+									"{@spell create food and water||造糧術}",
+									"{@spell meld into stone||融身入石}",
+									"{@spell wind wall||風牆術}",
+									"{@spell fireball||火球術}",
+									"{@spell sleet storm||雪雨暴}"
+								],
+								[
+									"4級",
+									"{@spell phantasmal killer||魅影殺手}",
+									"{@spell stone shape||塑石術}",
+									"{@spell greater invisibility||高等隱形術}",
+									"{@spell fire shield||火焰護盾}",
+									"{@spell control water||操控水體}"
+								],
+								[
+									"5級",
+									"{@spell creation||造物術}",
+									"{@spell wall of stone||石牆術}",
+									"{@spell seeming||偽裝術}",
+									"{@spell flame strike||焰擊術}",
+									"{@spell cone of cold||寒冰錐}"
+								],
+								[
+									"9級",
+									"{@spell wish||祈願術}",
+									"—",
+									"—",
+									"—",
+									"—"
+								]
+							]
+						}
+					],
+					"ENG_name": "Expanded Spell List"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Genie's Vessel|Warlock||Genie|TCE|1"
+				}
+			],
+			"ENG_name": "The Genie"
+		},
+		{
+			"name": "巨靈器皿",
+			"source": "TCE",
+			"page": 73,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Genie",
+			"subclassSource": "TCE",
+			"level": 1,
+			"header": 1,
+			"entries": [
+				"{@i 1級巨靈特性}",
+				"你的宗主賜予你一個包含巨靈之力的魔法器皿。該器皿是一個微型物件，你可以將其作為施展你魔契師法術的法器。你決定物件的類別，或者你可以透過巨靈器皿表來決定。",
+				{
+					"type": "table",
+					"caption": "巨靈器皿",
+					"colLabels": [
+						"d6",
+						"器皿"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"油燈"
+						],
+						[
+							"2",
+							"甕"
+						],
+						[
+							"3",
+							"可裝東西的戒指"
+						],
+						[
+							"4",
+							"被塞住的瓶子"
+						],
+						[
+							"5",
+							"空心小雕像"
+						],
+						[
+							"6",
+							"華麗提燈"
+						]
+					]
+				},
+				"當你觸碰器皿時，你可以用以下方式使用它：",
+				{
+					"type": "options",
+					"style": "list-hang-notitle",
+					"entries": [
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Bottled Respite|Warlock|PHB|Genie|TCE|1"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Genie's Wrath|Warlock|PHB|Genie|TCE|1"
+						}
+					]
+				},
+				"器皿的AC等同於你的法術豁免DC。它的生命值等於你的魔契師等級加熟練加值，並免疫於毒素和心靈傷害。",
+				"倘若器皿被摧毀或是丟失，你可以進行一場持續1小時的儀式來從你的宗主處獲得一個替代品。這一儀式可於短休或長休時進行，並會摧毀之前仍存在的器皿。當你死亡時，器皿在一陣元素能量的閃耀中消失。"
+			],
+			"ENG_name": "Genie's Vessel"
+		},
+		{
+			"name": "元素賜福",
+			"source": "TCE",
+			"page": 73,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Genie",
+			"subclassSource": "TCE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 6級巨靈特性}",
+				"你逐漸顯露出你的巨靈宗主的特質。你對由你的宗主型別決定的一種傷害型別具有抗性：鈍擊（土巨靈），雷鳴（氣巨靈），火焰（火巨靈），冷凍（水巨靈）。",
+				"同時，以一個附贈動作，你可以獲得一個持續10分鐘的30尺飛行速度，並且在飛行時你可以懸浮。你可以使用此附贈動作的次數等同於你的熟練加值，並在完成一次長休後恢復所有使用次數。"
+			],
+			"ENG_name": "Elemental Gift"
+		},
+		{
+			"name": "器皿庇護所",
+			"source": "TCE",
+			"page": 73,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Genie",
+			"subclassSource": "TCE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10級巨靈特性}",
+				"當你透過「瓶中小憩」特性進入巨靈器皿時，可以選擇距你30尺內至多五個你可見且自願的生物；所選生物會與你一同進入器皿。",
+				"以一個附贈動作，你可以將任意數目的生物從器皿中逐出，且如果你離開器皿或是其被摧毀，所有生物都將被逐出。",
+				"同時，在器皿中停留至少10分鐘的任何生物（包括你自己）可視為完成了一次短休，且使用生命骰恢復生命值時的恢復量可以加上你的熟練加值。"
+			],
+			"ENG_name": "Sanctuary Vessel"
+		},
+		{
+			"name": "有限許願術",
+			"source": "TCE",
+			"page": 73,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Genie",
+			"subclassSource": "TCE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"{@i 14級巨靈特性}",
+				"你祈求你的宗主，並實現你的小小願望。以一個動作，你可以向你的巨靈器皿說出你的願望，並請求實現一個{@filter 6環或以下，施法時間為1個動作的法術|spells|cast time=action|level=0;1;2;3;4;5;6}的法術效應。這一法術可以來自任何職業的法術列表，且你不需要滿足法術材料需求，法術僅僅是作為此動作的一部分生效。",
+				"你使用此特性後，你直到完成{@dice 1d4}次長休後才能再次使用它。"
+			],
+			"ENG_name": "Limited Wish"
+		},
+		{
+			"name": "死靈宗主",
+			"source": "VRGR",
+			"page": 30,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "VRGR",
+			"level": 1,
+			"entries": [
+				"你與一位不死的存在一位蔑視生與死的輪迴、拋卻凡人的軀殼、永恆追尋無盡野心的生命立下了契約。對於這些存在而言，時間和道德都不過過眼雲煙，只有生命的沙漏匆匆流逝的凡夫俗子才會在意。這些古老的不死者曾是凡人，對於如何實現野心，跨過死亡之門有著切身體會。他們迫切地希望將這褻瀆的知識分享給在生者間履行他們意志之人。",
+				"這般存在包括了半巫妖阿瑟瑞克、吸血鬼暴君血手凱斯、吉斯洋基巫妖女王維拉基斯、龍巫妖卓公煞、不死法老安卡霍特普、以及失蹤的黑暗領主亞扎林雷克斯。",
+				{
+					"type": "entries",
+					"name": "擴展法術列表",
+					"entries": [
+						"{@i 1級死靈特性}",
+						"當你學習魔契師法術時，死靈宗主讓你能從擴大的法術列表中選擇，將以下法術為你新增到魔契師法術列表中。",
+						{
+							"type": "table",
+							"caption": "死靈宗主擴充套件法術",
+							"colLabels": [
+								"法術環階",
+								"法術"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"1級",
+									"{@spell bane||災禍術}, {@spell false life||虛假生命}"
+								],
+								[
+									"2級",
+									"{@spell blindness/deafness||目盲術/耳聾術}, {@spell phantasmal force||魅影之力}"
+								],
+								[
+									"3級",
+									"{@spell phantom steed||魅影駒}, {@spell speak with dead||死者交談}"
+								],
+								[
+									"4級",
+									"{@spell death ward||防死結界}, {@spell greater invisibility||高等隱形術}"
+								],
+								[
+									"5級",
+									"{@spell antilife shell||防活物護罩}, {@spell cloudkill||死雲術}"
+								]
+							]
+						}
+					],
+					"ENG_name": "Expanded Spell List"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Form of Dread|Warlock||Undead|VRGR|1"
+				}
+			],
+			"ENG_name": "The Undead"
+		},
+		{
+			"name": "戰慄形態",
+			"source": "VRGR",
+			"page": 30,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "VRGR",
+			"level": 1,
+			"header": 1,
+			"entries": [
+				"{@i 1級死靈特性}",
+				"你顯現出你宗主可怕力量的一個側面。以一個附贈動作，你變身持續1分鐘。變身時你獲得以下好處：",
+				{
+					"type": "list",
+					"items": [
+						"你獲得等於{@dice 1d10} +你的魔契師等級的臨時生命。",
+						"在你的每個回合中一次，當你攻擊檢定命中一個生物時，你可以強迫其進行一次感知豁免。若失敗，目標直到你的下一個回合結束陷入對你的{@condition frightened||恐慌} 。",
+						"你對{@condition frightened||恐慌}狀態免疫。"
+					]
+				},
+				"你可以變身的次數等於你的熟練值，當你完成長休後，你恢復所有已消耗的變身次數。",
+				"你戰慄形態下的外觀反映了你宗主的某些方面。例如，你的戰慄形態可能披著陰影的紗幕，化作你的巫妖宗主王冠和長袍的形狀，或者你的身體開始發光，現出古代葬禮儀式的符印，並被沙塵旋風所環繞，暗示著你的木乃伊宗主。"
+			],
+			"ENG_name": "Form of Dread"
+		},
+		{
+			"name": "墳冢之觸",
+			"source": "VRGR",
+			"page": 30,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "VRGR",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 6級死靈特性}",
+				"你宗主的力量對你的身體和魔法產生了深遠的影響。你不需要吃、喝、呼吸。",
+				"此外，每個你的回合中一次，當你用攻擊檢定命中一個生物並對該生物投擲傷害骰時，你可以將傷害型別替換為暗蝕傷害。當你使用戰慄形態時，你可以在決定目標受到該暗蝕傷害的數值時，額外投擲一枚傷害骰。"
+			],
+			"ENG_name": "Grave Touched"
+		},
+		{
+			"name": "死疽軀殼",
+			"source": "VRGR",
+			"page": 30,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "VRGR",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10級死靈特性}",
+				"你與亡靈和暗蝕能量的聯絡現在充斥著你的身體。你對暗蝕傷害具有抗性。如果你使用戰慄形態變身，你改為會對暗蝕傷害免疫。",
+				"此外，當你的生命值降低到0時，你可以使用反應，改為將生命值降低到1，並使你的身體爆發出死亡能量。你周圍30英尺內的每個你選擇的生物都會受到相當於{@damage 2d10}+你的魔契師等級的暗蝕傷害。你獲得1級的{@condition exhaustion||力竭}。一旦你使用該反應，直到你完成{@dice 1d4} 次長休為止你不能再次使用。"
+			],
+			"ENG_name": "Necrotic Husk"
+		},
+		{
+			"name": "靈魂投射",
+			"source": "VRGR",
+			"page": 30,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "VRGR",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"{@i 14級死靈特性}",
+				"你的靈魂能脫離你物理形態的約束。作為一個動作，你可以從你的身體投射出你的靈魂。你留下的身體會陷入{@condition unconscious||昏迷}，並處於人事不省狀態。",
+				"你的靈魂與你的正常形態各個方面高度相似，複製你的遊戲資料，但不包括你的攜帶物。任何對你的靈魂或物理身體造成的傷害或其他效果會傳遞到另一方。你的靈魂可以在你的身體之外停留長達1小時，或者直到你的{@status concentration||專注}中斷（如同{@status concentration||專注於} 於一個法術）。當你的投射結束時，你的靈魂會回到你的身體，或者你的身體會魔法地的傳送到你靈魂所在的空間（由你選擇）。",
+				"當投射你的靈魂時，你獲得以下好處：",
+				{
+					"type": "list",
+					"items": [
+						"你的靈魂和身體獲得對鈍擊、穿刺和揮砍傷害的抗性。",
+						"當你施放一個咒法學派或死靈學派的法術時，該法術不再需要語言、姿勢或不消耗金幣的材料成分。",
+						"你獲得等於你步行速度的飛行速度，並且可以在空中懸浮。你可以如同穿過{@quickref difficult terrain||3||困難地形}一般穿過生物和物體，但如果你在生物或物件內結束自己回合，你會受到{@damage 1d10}的力場傷害。",
+						"當你使用戰慄形態時，在你的每個回合中只有一次，當你對一個生物造成暗蝕傷害時，你會恢復相當於暗蝕傷害量一半的生命值。"
+					]
+				},
+				"一旦你使用了這個特性，直到你完成了一次長休為止你無法再次使用它。"
+			],
+			"ENG_name": "Spirit Projection"
+		},
+		{
+			"name": "天界宗主",
+			"source": "XGE",
+			"page": 54,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Celestial",
+			"subclassSource": "XGE",
+			"level": 1,
+			"entries": [
+				"你的宗主是上層位面的強大存在。你與一位古老的至高天、熾天神侍、麒麟、獨角獸、或其他居住於那些永享極樂的位面中的存在立下了契約。你與它們的契約讓你體會到裸身沐浴在照亮多元宇宙的聖光中的獨特體驗。",
+				"沐浴在如此力量下，你的行為和信念也許會因此改變。你可能發現自己投身於消滅不死生物、抵禦邪魔、保護無辜者的事業當中。不時地，你的心中會充斥著對你宗主擁有的天國的渴望，期冀於在你的餘生中享有的天堂美景。但你知道你現在的任務是棲身於凡世之中，並給世界的黑暗角落帶去光明。",
+				{
+					"type": "entries",
+					"name": "擴展法術列表",
+					"entries": [
+						"學習魔契師法術時，你的天界宗主賜予你將以下列表加入魔契師法術列表進行選擇的權力。",
+						{
+							"type": "table",
+							"caption": "天界宗主擴充套件法術",
+							"colLabels": [
+								"法術環階",
+								"法術"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"1級",
+									"{@spell cure wounds||療傷術}, {@spell guiding bolt||光導箭}"
+								],
+								[
+									"2級",
+									"{@spell flaming sphere||熾焰法球}, {@spell lesser restoration||次等復原術}"
+								],
+								[
+									"3級",
+									"{@spell daylight||晝明術}, {@spell revivify||回生術}"
+								],
+								[
+									"4級",
+									"{@spell guardian of faith||信仰守衛}, {@spell wall of fire||火牆術}"
+								],
+								[
+									"5級",
+									"{@spell flame strike||焰擊術}, {@spell greater restoration||高等復原術}"
+								]
+							]
+						}
+					],
+					"ENG_name": "Expanded Spell List"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bonus Cantrips|Warlock||Celestial|XGE|1"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Healing Light|Warlock||Celestial|XGE|1"
+				}
+			],
+			"ENG_name": "The Celestial"
+		},
+		{
+			"name": "額外戲法",
+			"source": "XGE",
+			"page": 54,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Celestial",
+			"subclassSource": "XGE",
+			"level": 1,
+			"header": 1,
+			"entries": [
+				"在1級時，你習得 {@spell sacred flame||聖火術}和{@spell light||光亮術} 兩個戲法。他們對你而言是魔契師戲法，且不計入你的魔契師可知戲法總數中。"
+			],
+			"ENG_name": "Bonus Cantrips"
+		},
+		{
+			"name": "治癒之光",
+			"source": "XGE",
+			"page": 54,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Celestial",
+			"subclassSource": "XGE",
+			"level": 1,
+			"header": 1,
+			"entries": [
+				"在1級時，你獲得了引導天界能量以治癒傷口的能力。它是一個有著 1+你的魔契師等級 枚的{@dice d6}骰的骰池，用以施展你的治癒能力。",
+				"作為一個附贈動作，你可以治療一個你能看到的60尺內的一個生物，消耗來自池子的骰子。你一次能消耗的最大骰子數等於你的的魅力調整值（最少一個骰子）。擲出你消耗的骰子，將它們加在一起，並恢復等於總數的生命值。",
+				"當你完成一次長休後，你的骰池將重獲所有已消耗的骰子。"
+			],
+			"ENG_name": "Healing Light"
+		},
+		{
+			"name": "光輝之魂",
+			"source": "XGE",
+			"page": 54,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Celestial",
+			"subclassSource": "XGE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"自6級起，你與你天界宗主的連結允許你化身為祂降下光耀能量的媒介。你獲得對光耀傷害的抗性，而當你施展一個造成光耀傷害或火焰傷害的法術時，你可以將你的魅力調整值加到該法術對其中一個目標造成的一次光耀傷害骰或火焰傷害骰上。"
+			],
+			"ENG_name": "Radiant Soul"
+		},
+		{
+			"name": "天族韌性",
+			"source": "XGE",
+			"page": 54,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Celestial",
+			"subclassSource": "XGE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"從10級開始，每當你完成一次長休或短休後，你都會得到一定數額的臨時生命值。其數額等同於 你的魔契師等級+你的魅力調整值。此外，在你完成休息時，你還可以選擇最多五個可見的生物。這些生物各自獲得等同於 你的魔契師等級的一半+你的魅力調整值 點的臨時生命值。"
+			],
+			"ENG_name": "Celestial Resilience"
+		},
+		{
+			"name": "灼光復仇",
+			"source": "XGE",
+			"page": 54,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Celestial",
+			"subclassSource": "XGE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"從14級開始，你引導的光耀能量能讓你抵抗死亡。當你在回合開始時，若你需要進行一次死亡豁免檢定，你可以選擇不進行，改為在一次光耀能量的爆發中躍起。你恢復等於 你最大生命值一半 的生命值，你可以選擇在這同時立刻起立。所有處於你周圍30尺範圍內的、由你所選擇的生物都將受到 {@dice 2d8}+你的魅力調整值 點的光耀傷害，並陷入 {@condition blinded||目盲}，持續直至你當前回合的結束。",
+				"必須完成一次長休才能再次使用該特性。"
+			],
+			"ENG_name": "Searing Vengeance"
+		},
+		{
+			"name": "咒劍士",
+			"source": "XGE",
+			"page": 55,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Hexblade",
+			"subclassSource": "XGE",
+			"level": 1,
+			"entries": [
+				"你與一個來自墮影冥界的神秘實體訂立了契約——是一股力量，那些在陰影物質雕琢的智慧魔法武器隱約顯露出的力量。這些智慧武器之中，最著名的是一把名為黑刃（Blackrazor）的強大巨劍，其在無數年間輾轉於多元宇宙之中。而隱藏在這些武器背後的暗影之力，能為與之立契的魔契師帶來能力。大部分咒劍魔契師會模仿這些在墮影冥界中鍛造的兵器來塑造自己的利刃。而剩下的選擇不使用這些武器，轉向連結墮影冥界的暗影魔法網路來施展法術。",
+				"鑑於人盡皆知是鴉后（Raven Queen）鍛造出了世間第一把此類武器，許多賢者推測她就是這些暗影武器力量的幕後黑手，而這些武器——以及咒劍魔契師們——只是她用來玩弄物質位面的是非，以實現她難以揣測的目的工具罷了。",
+				{
+					"type": "entries",
+					"name": "擴展法術列表",
+					"entries": [
+						"學習魔契師法術時，你的咒劍宗主賜予你將以下列表加入魔契師法術列表進行選擇的權力。",
+						{
+							"type": "table",
+							"caption": "咒劍擴充套件法術",
+							"colLabels": [
+								"法術環階",
+								"法術"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"1級",
+									"{@spell shield||護盾術}, {@spell wrathful smite||激憤斬}"
+								],
+								[
+									"2級",
+									"{@spell blur||朦朧術}, {@spell branding smite||印記斬}"
+								],
+								[
+									"3級",
+									"{@spell blink||閃現術}, {@spell elemental weapon||元素武器}"
+								],
+								[
+									"4級",
+									"{@spell phantasmal killer||魅影殺手}, {@spell staggering smite||驚懼斬}"
+								],
+								[
+									"5級",
+									"{@spell banishing smite||放逐斬}, {@spell cone of cold||寒冰錐}"
+								]
+							]
+						}
+					],
+					"ENG_name": "Expanded Spell List"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Hexblade's Curse|Warlock||Hexblade|XGE|1"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Hex Warrior|Warlock||Hexblade|XGE|1"
+				}
+			],
+			"ENG_name": "The Hexblade"
+		},
+		{
+			"name": "巫咒戰士",
+			"source": "XGE",
+			"page": 55,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Hexblade",
+			"subclassSource": "XGE",
+			"level": 1,
+			"header": 1,
+			"entries": [
+				"在1級時，你進行了有效的戰鬥訓練讓自己獲得了新裝備的熟練。你獲得中甲、盾牌、與軍用武器的熟練項。",
+				"此外，你宗主的影響也讓你得以透過一把特定武器來魔法的引導你的意志。每當你完成長休時，你都可以夠觸碰一把你已經熟練的、不具有雙手屬性的武器，接下來你用這把武器發動攻擊檢定與其傷害擲骰時，可以使用你的魅力調整值，以代替力量或敏捷。這一增益將一直持續到你完成下一次長休為止。如果你在後續選擇了刃之魔契特性，你用那個魔契召喚的任何一把契約武器都可以享受到這一增益，且不限武器型別。"
+			],
+			"ENG_name": "Hex Warrior"
+		},
+		{
+			"name": "咒劍詛咒",
+			"source": "XGE",
+			"page": 55,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Hexblade",
+			"subclassSource": "XGE",
+			"level": 1,
+			"header": 1,
+			"entries": [
+				"從1級起，你得到了向一個敵人施加惡毒詛咒的能力。以一個附贈動作，選擇你周圍30尺內的一個可見生物，該生物將被你詛咒1分鐘。該詛咒將會在目標死亡、你死亡、或你陷入{@condition incapacitated||失能}時提前結束。詛咒存在期間，你獲得以下好處：",
+				{
+					"type": "list",
+					"items": [
+						"你對受咒目標投擲的傷害擲骰得到加值。其數值等同於你的熟練加值。",
+						"你對受咒目標發動的攻擊檢定{@dice d20}在擲出19或20時即可形成重擊。",
+						"若受咒目標死亡，你恢復等於 你魔契師等級+你的魅力調整值 的生命值（至少恢復1點）。"
+					]
+				},
+				"此特性一旦被使用，直到你完成一次短休或長休前你都無法再次使用它。"
+			],
+			"ENG_name": "Hexblade's Curse"
+		},
+		{
+			"name": "咒縛幽靈",
+			"source": "XGE",
+			"page": 55,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Hexblade",
+			"subclassSource": "XGE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"從6級開始，你可以詛咒命喪你手者的靈魂，短暫的將其束縛來為你服務。當你殺死一個類人生物，你可以讓它的靈魂從屍體出現，化作一個 {@creature specter||惡靈}，其資料見《怪物手冊》。當幽靈出現時，它立刻獲得等同於你魔契師等級一半的臨時生命值。在戰鬥中，幽靈獨立投擲先攻並有自己的回合，其服從你的口頭命令。此外，它在任何攻擊檢定上都會獲得等同於 你的魅力調整值（最低+0） 點的特殊加值。",
+				"幽靈將為你服務到你完成下一次長休前，它將在此時消失並進入來世。",
+				"一旦你用此特性喚起了一個幽靈，直到完成一次長休前你都不能再次使用它。"
+			],
+			"ENG_name": "Accursed Specter"
+		},
+		{
+			"name": "巫咒護甲",
+			"source": "XGE",
+			"page": 55,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Hexblade",
+			"subclassSource": "XGE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"在10級時，你的巫咒成長為了更強大的力量。若被你咒劍詛咒的目標以一次攻擊檢定擊中了你，你可以立刻用你的反應投一次{@dice d6}。如果骰出了4或更高的骰值，則這次攻擊改為失手，不論其骰值是多少。"
+			],
+			"ENG_name": "Armor of Hexes"
+		},
+		{
+			"name": "巫咒大師",
+			"source": "XGE",
+			"page": 55,
+			"className": "Warlock",
+			"classSource": "PHB",
+			"subclassShortName": "Hexblade",
+			"subclassSource": "XGE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"從14級起，你可以將從一個被殺的生物身上的咒劍詛咒，轉移到另一個生物身上。當被你咒劍詛咒的生物死亡時，如果此時你未處於{@condition incapacitated||失能}.狀態，你就可以將那詛咒轉移到距離你30尺內的另一個你可見的生物身上。當你以此法轉移詛咒時，你無法從先前受咒目標的死亡中獲得生命值回覆。"
+			],
+			"ENG_name": "Master of Hexes"
+		},
+		{
+			"name": "至高妖精",
+			"source": "PHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Archfey",
+			"subclassSource": "PHB",
+			"level": 3,
+			"_copy": {
+				"name": "The Archfey",
+				"source": "PHB",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"subclassShortName": "Archfey",
+				"subclassSource": "PHB",
+				"level": 1,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "The Archfey"
+		},
+		{
+			"name": "邪魔宗主",
+			"source": "PHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Fiend",
+			"subclassSource": "PHB",
+			"level": 3,
+			"_copy": {
+				"name": "The Fiend",
+				"source": "PHB",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"subclassShortName": "Fiend",
+				"subclassSource": "PHB",
+				"level": 1,
+				"_preserve": {
+					"page": true,
+					"srd": true
+				}
+			},
+			"ENG_name": "The Fiend"
+		},
+		{
+			"name": "舊日支配者",
+			"source": "PHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Great Old One",
+			"subclassSource": "PHB",
+			"level": 3,
+			"_copy": {
+				"name": "The Great Old One",
+				"source": "PHB",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"subclassShortName": "Great Old One",
+				"subclassSource": "PHB",
+				"level": 1,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "The Great Old One"
+		},
+		{
+			"name": "死靈宗主",
+			"source": "RHW",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"{@i 悍不畏死以獲取褻瀆法力}",
+				"你與某種蔑視生死輪迴的存在締結了契約，那或許是強大的巫妖、古老的吸血鬼，亦或是其他某種不死實體。這些古老宗主也曾是凡人，它們親身蹚過了野心之路，更是摸透了跨越死亡大門的捷徑。如今，它們迫不及待地想要將這些褻瀆的知識與秘辛，賜予那些甘願在生者之中代行其意志的信徒。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Form of Dread|Warlock|XPHB|Undead|RHW|3|RHW"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Undead Spells|Warlock|XPHB|Undead|RHW|3|RHW"
+				}
+			],
+			"ENG_name": "Undead Patron"
+		},
+		{
+			"name": "戰慄形態",
+			"source": "RHW",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "RHW",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你可以使用附贈動作變身為你宗主那駭人偉力的化身。你獲得以下增益，持續1分鐘；當你陷入{@condition Incapacitated|XPHB|失能}狀態，或你主動結束該形態時（無需動作），該效應提前結束。你可以進行變身的次數等於你的魅力調整值（至少一次）。完成一次長休後，你恢復所有已消耗的使用次數。",
+				{
+					"type": "entries",
+					"name": "生命摹寫",
+					"entries": [
+						"你獲得等於{@dice 1d10}加上你的魔契師等級的{@variantrule Temporary Hit Points|XPHB|臨時生命值}。"
+					],
+					"ENG_name": "Facsimile of Life"
+				},
+				{
+					"type": "entries",
+					"name": "無畏之姿",
+					"entries": [
+						"你免疫{@condition Frightened|XPHB|恐慌}狀態。若你在變身時正陷入恐慌，則該狀態對你立即終止。"
+					],
+					"ENG_name": "Fearless Form"
+				},
+				{
+					"type": "entries",
+					"name": "恐懼化身",
+					"entries": [
+						"每回合一次，當你以攻擊檢定命中一個生物時，你可以迫使其進行一次對抗你法術豁免DC的感知豁免。若豁免失敗，則目標陷入{@condition Frightened|XPHB|恐慌}狀態，直至你的下一回合結束。"
+					],
+					"ENG_name": "Frightful Avatar"
+				}
+			],
+			"ENG_name": "Form of Dread"
+		},
+		{
+			"name": "死靈法術",
+			"source": "RHW",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "RHW",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"宗主賜予的魔法使你始終準備著特定的法術。當你到達死靈法術表中特定的魔契師等級時，你就始終準備著表中對應的法術。",
+				{
+					"type": "table",
+					"caption": "死靈法術",
+					"colLabels": [
+						"魔契師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Bane|XPHB|災禍術}, {@spell Blindness/Deafness|XPHB|目盲術/耳聾術}, {@spell Phantasmal Force|XPHB|魅影之力}, {@spell Ray of Sickness|XPHB|致病射線}"
+						],
+						[
+							"5",
+							"{@spell Speak with Dead|XPHB|死者交談}, {@spell Summon Undead|XPHB|亡靈召喚術}"
+						],
+						[
+							"7",
+							"{@spell Greater Invisibility|XPHB|高等隱形術}, {@spell Phantasmal Killer|XPHB|魅影殺手}"
+						],
+						[
+							"9",
+							"{@spell Antilife Shell|XPHB|防活物護罩}, {@spell Cloudkill|XPHB|死雲術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Undead Spells"
+		},
+		{
+			"name": "墳冢之觸",
+			"source": "RHW",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "RHW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"宗主的偉力深刻侵染了你的肉體與魔法，賦予你以下增益。",
+				{
+					"type": "entries",
+					"name": "壞疽秘法",
+					"entries": [
+						"源自你的攻擊、魔契師法術以及魔契師特性的暗蝕傷害，無視暗蝕傷害抗性。每回合一次，當你施展一道造成傷害的法術時，你可以將該法術的傷害型別改為暗蝕傷害。"
+					],
+					"ENG_name": "Arcane Necrosis"
+				},
+				{
+					"type": "entries",
+					"name": "戰慄死氣",
+					"entries": [
+						"使用你的戰慄形態特性期間，當你以攻擊檢定命中一個生物並造成暗蝕傷害時，你可以在決定目標受到的暗蝕傷害時額外擲一枚傷害骰。你每回合只能使用一次此增益。"
+					],
+					"ENG_name": "Dreaded Necrosis"
+				},
+				{
+					"type": "entries",
+					"name": "不死堅韌",
+					"entries": [
+						"你不會因脫水、飢餓或窒息而獲得{@condition Exhaustion|XPHB|力竭}等級。此外，你無需睡眠，魔法也無法使你陷入睡眠。"
+					],
+					"ENG_name": "Undead Endurance"
+				}
+			],
+			"ENG_name": "Grave Touched"
+		},
+		{
+			"name": "死疽軀殼",
+			"source": "RHW",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "RHW",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"你與不死者的連線徹底浸透了你的身軀。你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "暗蝕抗性",
+					"entries": [
+						"你具有暗蝕傷害抗性。使用你的戰慄形態特性期間，你具有對暗蝕傷害的免疫。"
+					],
+					"ENG_name": "Necrotic Resilience"
+				},
+				{
+					"type": "entries",
+					"name": "邪穢復甦",
+					"entries": [
+						"若你的生命值降至0且沒有立即死亡，則你可以令你的軀體爆發出一陣死亡能量。源自你的30尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內每個由你選擇的生物都必須進行一次對抗你法術豁免DC的體質豁免。若豁免失敗，則受到{@dice 2d10}+你魅力調整值的暗蝕傷害；若豁免成功，則傷害減半。隨後，你的生命值變為你魔契師等級的兩倍，同時你獲得一級{@condition Exhaustion|XPHB|力竭}。",
+						"該增益一經使用，則直至你完成一次短休或長休前，都無法再次使用。"
+					],
+					"ENG_name": "Unholy Resuscitation"
+				}
+			],
+			"ENG_name": "Necrotic Husk"
+		},
+		{
+			"name": "超凡戰慄",
+			"source": "RHW",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "RHW",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"你的戰慄形態獲得強化，並在你使用期間賦予你以下增益。",
+				{
+					"type": "entries",
+					"name": "戰慄抗性",
+					"entries": [
+						"你具有鈍擊、穿刺和揮砍傷害抗性。"
+					],
+					"ENG_name": "Dread Resistance"
+				},
+				{
+					"type": "entries",
+					"name": "幽魂飛行",
+					"entries": [
+						"你具有等同於你{@variantrule Speed|XPHB|速度}的{@variantrule Fly Speed|XPHB|飛行速度}，並且可以懸浮。你可以如同穿過{@variantrule Difficult Terrain|XPHB|困難地形}一般移動穿過生物或物件；但若你在你的回合結束時仍處於生物或物件內部，你受到{@damage 1d10}點力場傷害。"
+					],
+					"ENG_name": "Ghostly Flight"
+				},
+				{
+					"type": "entries",
+					"name": "褻瀆施法",
+					"entries": [
+						"每當你施展一道咒法學派或死靈學派的魔契師法術時，你可以免除該法術的言語、姿勢以及材料成分，除非該材料成分已標明價值或會被消耗。"
+					],
+					"ENG_name": "Profane Casting"
+				}
+			],
+			"ENG_name": "Superior Dread"
+		},
+		{
+			"name": "​不朽者",
+			"source": "SCAG",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Undying",
+			"subclassSource": "SCAG",
+			"level": 3,
+			"_copy": {
+				"name": "The Undying",
+				"source": "SCAG",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"subclassShortName": "Undying",
+				"subclassSource": "SCAG",
+				"level": 1,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "The Undying"
+		},
+		{
+			"name": "深海意志",
+			"source": "TCE",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Fathomless",
+			"subclassSource": "TCE",
+			"level": 3,
+			"_copy": {
+				"name": "The Fathomless",
+				"source": "TCE",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"subclassShortName": "Fathomless",
+				"subclassSource": "TCE",
+				"level": 1,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "The Fathomless"
+		},
+		{
+			"name": "巨靈宗主",
+			"source": "TCE",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Genie",
+			"subclassSource": "TCE",
+			"level": 3,
+			"_copy": {
+				"name": "The Genie",
+				"source": "TCE",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"subclassShortName": "Genie",
+				"subclassSource": "TCE",
+				"level": 1,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "The Genie"
+		},
+		{
+			"name": "死靈宗主",
+			"source": "VRGR",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Undead",
+			"subclassSource": "VRGR",
+			"level": 3,
+			"_copy": {
+				"name": "The Undead",
+				"source": "VRGR",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"subclassShortName": "Undead",
+				"subclassSource": "VRGR",
+				"level": 1,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "The Undead"
+		},
+		{
+			"name": "天界宗主",
+			"source": "XGE",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Celestial",
+			"subclassSource": "XGE",
+			"level": 3,
+			"_copy": {
+				"name": "The Celestial",
+				"source": "XGE",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"subclassShortName": "Celestial",
+				"subclassSource": "XGE",
+				"level": 1,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "The Celestial"
+		},
+		{
+			"name": "咒劍士",
+			"source": "XGE",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Hexblade",
+			"subclassSource": "XGE",
+			"level": 3,
+			"_copy": {
+				"name": "The Hexblade",
+				"source": "XGE",
+				"className": "Warlock",
+				"classSource": "PHB",
+				"subclassShortName": "Hexblade",
+				"subclassSource": "XGE",
+				"level": 1,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "The Hexblade"
+		},
+		{
+			"name": "至高妖精宗主",
+			"source": "XPHB",
+			"page": 159,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Archfey",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 與喜怒無常的妖精交易}",
+				"你的契約從妖精荒野，神秘的妖精國度處取得力量。當你選擇此子職時，你可能與某個強大的至高妖精簽訂了契約，比如霜凍親王；薄暮王庭之主，空與黑暗女王；仲夏王庭的泰坦尼亞，或是一位遠古鬼婆。你可能是與眾多妖精們共處，結成一道好感與人情交織的複雜網路。不管你的宗主是誰，祂們的行為往往都難以理解，有時甚至不可理喻。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Archfey Spells|Warlock|XPHB|Archfey|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Steps of the Fey|Warlock|XPHB|Archfey|XPHB|3"
+				}
+			],
+			"ENG_name": "Archfey Patron"
+		},
+		{
+			"name": "至高妖精法術",
+			"source": "XPHB",
+			"page": 159,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Archfey",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"宗主賜予的魔法使你始終準備著特定的法術。當你到達至高妖精法術表中特定的魔契師等級時，你就始終準備著表中對應的法術。",
+				{
+					"type": "table",
+					"caption": "至高妖精法術",
+					"colLabels": [
+						"魔契師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Calm Emotions|XPHB|安定心神}, {@spell Faerie Fire|XPHB|妖火}, {@spell Misty Step|XPHB|迷蹤步}, {@spell Phantasmal Force|XPHB|魅影之力}, {@spell Sleep|XPHB|睡眠術}"
+						],
+						[
+							"5",
+							"{@spell Blink|XPHB|閃現術}, {@spell Plant Growth|XPHB|植物滋長}"
+						],
+						[
+							"7",
+							"{@spell Dominate Beast|XPHB|支配野獸}, {@spell Greater Invisibility|XPHB|高等隱形術}"
+						],
+						[
+							"9",
+							"{@spell Dominate Person|XPHB|支配類人}, {@spell Seeming|XPHB|偽裝術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Archfey Spells"
+		},
+		{
+			"name": "妖精步伐",
+			"source": "XPHB",
+			"page": 159,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Archfey",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你的宗主授予你在位面的邊界之間穿行的能力。你可以無需消耗法術位地施展{@spell Misty Step|XPHB|迷蹤步}，次數等於你的魅力調整值（最少 1 次），並在完成一次{@variantrule Long Rest|XPHB|長休}時重獲所有已消耗的次數。",
+				"此外，每當你施展該法術時，你都可以選擇造成下列額外效應之一：",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "復甦步伐",
+							"entries": [
+								"在你傳送之後，你或一個你可見的位於你 10 尺內的生物立刻獲得{@dice 1d10}{@variantrule Temporary Hit Points|XPHB|臨時生命值}。"
+							],
+							"ENG_name": "Refreshing Step"
+						},
+						{
+							"type": "entries",
+							"name": "嘲弄步伐",
+							"entries": [
+								"位於你傳送前的空間 5 尺內的生物必須成功透過一次對抗你法術豁免DC的感知豁免，否則其在對除你之外的生物發動攻擊檢定時具有{@variantrule Disadvantage|XPHB|劣勢}，直至你的下一回合開始。"
+							],
+							"ENG_name": "Taunting Step"
+						}
+					]
+				}
+			],
+			"ENG_name": "Steps of the Fey"
+		},
+		{
+			"name": "霧遁",
+			"source": "XPHB",
+			"page": 159,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Archfey",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"當你受到傷害時，你可以用{@variantrule Reaction|XPHB|反應}施展{@spell Misty Step|XPHB|迷蹤步}。",
+				"此外，你的妖精步伐獲得以下選項。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "無蹤步伐",
+							"entries": [
+								"你獲得{@condition Invisible|XPHB|隱形}狀態，持續到你的下一回合開始或你進行攻擊檢定、造成傷害、或是施展一道法術之後。"
+							],
+							"ENG_name": "Disappearing Step"
+						},
+						{
+							"type": "entries",
+							"name": "驚懼步伐",
+							"entries": [
+								"位於你傳送前或傳送後的空間（由你選擇）5 尺內的生物必須進行一次對抗你法術豁免DC的感知豁免，豁免失敗則受到{@damage 2d10}心靈傷害。"
+							],
+							"ENG_name": "Dreadful Step"
+						}
+					]
+				}
+			],
+			"ENG_name": "Misty Escape"
+		},
+		{
+			"name": "迷惑防護",
+			"source": "XPHB",
+			"page": 159,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Archfey",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"你的宗主教會了你如何保護自己的心和身。你獲得對{@condition Charmed|XPHB|魅惑}狀態的免疫。",
+				"此外，當一個你能看見的敵人的攻擊檢定命中你後，你可以立刻使用{@variantrule Reaction|XPHB|反應}令該次攻擊的傷害減半（向下取整），且你可以迫使攻擊者進行一次對抗你法術豁免DC的感知豁免，豁免失敗則會受到一定的心靈傷害，具體數值等同於你本次承受的實際傷害。此{@variantrule Reaction|XPHB|反應}一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。你也可以消耗一個契約魔法法術位（無需動作）來重置此反應的使用權。"
+			],
+			"ENG_name": "Beguiling Defenses"
+		},
+		{
+			"name": "醉心魔法",
+			"source": "XPHB",
+			"page": 160,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Archfey",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"你的宗主賦予你將魔法與傳送之力編織在一起的能力。當你以一個動作消耗法術位施展一道幻術或惑控法術時，你可以無需法術位地立刻施展{@spell Misty Step|XPHB|迷蹤步}作為該動作的一部分。"
+			],
+			"ENG_name": "Bewitching Magic"
+		},
+		{
+			"name": "天界宗主",
+			"source": "XPHB",
+			"page": 160,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Celestial",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 呼喚天堂諸界之偉力}",
+				"你的契約從眾上層位面，極樂永駐之地處取得力量。當你選擇此子職時，你可能與一位至高天、一條羽蛇、一隻斯芬克斯、一匹獨角獸、或其他天界存在達成了協議。亦或是你結識了眾多與你目的一致的天界存在。你的契約令你沐浴在照亮多元宇宙的聖潔輝光之下。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Celestial Spells|Warlock|XPHB|Celestial|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Healing Light|Warlock|XPHB|Celestial|XPHB|3"
+				}
+			],
+			"ENG_name": "Celestial Patron"
+		},
+		{
+			"name": "天界法術",
+			"source": "XPHB",
+			"page": 160,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Celestial",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"宗主賜予的魔法使你始終準備著特定的法術。當你到達天界法術表中特定的魔契師等級時，你就始終準備著表中對應的法術。",
+				{
+					"type": "table",
+					"caption": "天界法術",
+					"colLabels": [
+						"魔契師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Aid|XPHB|援助術}，{@spell Cure Wounds|XPHB|療傷術}，{@spell Guiding Bolt|XPHB|光導箭}， {@spell Lesser Restoration|XPHB|次等復原術}，{@spell Light|XPHB|光亮術}，{@spell Sacred Flame|XPHB|聖火術}"
+						],
+						[
+							"5",
+							"{@spell Daylight|XPHB|晝明術}，{@spell Revivify|XPHB|回生術}"
+						],
+						[
+							"7",
+							"{@spell Guardian of Faith|XPHB|信仰守衛}，{@spell Wall of Fire|XPHB|火牆術}"
+						],
+						[
+							"9",
+							"{@spell Greater Restoration|XPHB|高等復原術}，{@spell Summon Celestial|XPHB|天界召喚術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Celestial Spells"
+		},
+		{
+			"name": "治癒之光",
+			"source": "XPHB",
+			"page": 160,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Celestial",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你獲得了引導天界能量以治癒傷口的能力。它是一個有著 1 + 你的魔契師等級枚d6骰的骰池，用以施展你的治癒能力。",
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以消耗骰池中的任意數量的骰子，來治療你自己或一個你可見的位於你 60 尺內的生物。每次你能消耗的最大骰子數量等於你的魅力調整值（最少 1 枚）。投擲全部被消耗骰子，這些骰值相加的總值即為所能恢復的{@variantrule Hit Points|XPHB|生命值}。當你完成一次{@variantrule Long Rest|XPHB|長休}時，你的骰池將重獲所有已消耗的骰子。"
+			],
+			"ENG_name": "Healing Light"
+		},
+		{
+			"name": "光輝之魂",
+			"source": "XPHB",
+			"page": 160,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Celestial",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"你與你天界宗主的連結允許你成為光耀能量的渠道。你獲得對光耀傷害的{@variantrule Resistance|XPHB|抗性}。每回合一次，當一個你施展的法術造成光耀傷害或火焰傷害時，你可以將你的魅力調整值加到該法術對其中一個目標所造成的傷害上。"
+			],
+			"ENG_name": "Radiant Soul"
+		},
+		{
+			"name": "天族韌性",
+			"source": "XPHB",
+			"page": 161,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Celestial",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"每當你使用秘法迴流，或是完成一次{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}後，你都會獲得一定的{@variantrule Temporary Hit Points|XPHB|臨時生命值}。其數值等於你的魔契師等級 + 你的魅力調整值。此外，在你獲得該{@variantrule Temporary Hit Points|XPHB|臨時生命值}時，你還可以選擇至多五個你可見的生物。這些生物也會獲得等同於你魔契師等級的一半 + 你的魅力調整值的{@variantrule Temporary Hit Points|XPHB|臨時生命值}。"
+			],
+			"ENG_name": "Celestial Resilience"
+		},
+		{
+			"name": "灼光復仇",
+			"source": "XPHB",
+			"page": 161,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Celestial",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"當你或位於你 60 尺內的一名盟友將要進行一次{@variantrule Death Saving Throw|XPHB|死亡豁免檢定}時，你可以釋放出一道光能來拯救那名生物。那名生物恢復等於其{@variantrule Hit Points|XPHB|生命值}上限一半的{@variantrule Hit Points|XPHB|生命值}，且可以選擇結束自身的{@condition Prone|XPHB|倒地}狀態。之後，每個由你選擇的位於那名生物 30 尺內的生物都將受到{@dice 2d8} + 你的魅力調整值的光耀傷害，並陷入{@condition Blinded|XPHB|目盲}狀態直至當前回合結束。",
+				"此特性一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。"
+			],
+			"ENG_name": "Searing Vengeance"
+		},
+		{
+			"name": "邪魔宗主",
+			"source": "XPHB",
+			"page": 161,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Fiend",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 與下層位面之物簽訂契約}",
+				"你的契約從眾下層位面——諸類邪魔之鄉那裡取得力量。當你選擇此子職時，你可能完成了一次交易——對方可能是一位惡魔領主，諸如狄魔高根，奧喀斯；或是一位大魔鬼，諸如阿斯蒙蒂斯；亦可能是一位極為強大的深獄煉魔，巴洛炎魔，尤格羅斯魔，甚至是夜鬼婆。無論如何，你的宗主的目標都是邪惡的——邪魔們追求著世間萬物的墮落與毀滅，而最終連你本身也無法獨善其身。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Fiend Spells|Warlock|XPHB|Fiend|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Dark One's Blessing|Warlock|XPHB|Fiend|XPHB|3"
+				}
+			],
+			"ENG_name": "Fiend Patron"
+		},
+		{
+			"name": "黑暗者賜福",
+			"source": "XPHB",
+			"page": 161,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Fiend",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"當你將一個敵人的{@variantrule Hit Points|XPHB|生命值}降至 0 時，你獲得等於你的魅力調整值 + 你的魔契師等級的{@variantrule Temporary Hit Points|XPHB|臨時生命值}（最低為 1{@variantrule Temporary Hit Points|XPHB|臨時生命值}）。而若其他人將一個位於你 10 尺內的你的敵人的{@variantrule Hit Points|XPHB|生命值}降至 0 時，你也會獲得此增益。"
+			],
+			"ENG_name": "Dark One's Blessing"
+		},
+		{
+			"name": "邪魔法術",
+			"source": "XPHB",
+			"page": 161,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Fiend",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"宗主賜予的魔法使你始終準備著特定的法術。當你到達邪魔法術表中特定的魔契師等級時，你就始終準備著表中對應的法術。",
+				{
+					"type": "table",
+					"caption": "邪魔法術",
+					"colLabels": [
+						"魔契師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Burning Hands|XPHB|燃燒之手}，{@spell Command|XPHB|命令術}，{@spell Scorching Ray|XPHB|灼熱射線}，{@spell Suggestion|XPHB|暗示術}"
+						],
+						[
+							"5",
+							"{@spell Fireball|XPHB|火球術}，{@spell Stinking Cloud|XPHB|臭雲術}"
+						],
+						[
+							"7",
+							"{@spell Fire Shield|XPHB|火焰護盾}，{@spell Wall of Fire|XPHB|火牆術}"
+						],
+						[
+							"9",
+							"{@spell Geas|XPHB|指使術}，{@spell Insect Plague|XPHB|疫病蟲群}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Fiend Spells"
+		},
+		{
+			"name": "黑暗者強運",
+			"source": "XPHB",
+			"page": 162,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Fiend",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"你可以呼喚你的宗主將命運改寫為對你有利的方向。當你進行屬性檢定或豁免檢定時，你可以使用該特性為此次擲骰增添一個{@dice 1d10}骰。你可在看到擲骰結果後，其結果生效前使用該特性。",
+				"你可以使用此特性的次數等於你的魅力調整值（最少 1 次），但你在一次檢定中只能使用此特性一次。你在完成一次{@variantrule Long Rest|XPHB|長休}後恢復所有已消耗的次數。"
+			],
+			"ENG_name": "Dark One's Own Luck"
+		},
+		{
+			"name": "邪魔韌性",
+			"source": "XPHB",
+			"page": 162,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Fiend",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"每當你完成一次{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}時，選擇一種除力場之外的傷害型別。直到你以此特性選擇另外一種傷害型別前，你都具有對所選傷害型別的{@variantrule Resistance|XPHB|抗性}。"
+			],
+			"ENG_name": "Fiendish Resilience"
+		},
+		{
+			"name": "直墮地獄",
+			"source": "XPHB",
+			"page": 162,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Fiend",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"每回合一次，當你以攻擊檢定命中一個生物時，你可以將目標瞬間傳送並拉入下層位面。目標必須進行一次對抗你法術豁免DC的魅力豁免，豁免失敗則該生物立刻消失並墜入如同噩夢一般的景色中。若目標並非邪魔，則它會受到{@damage 8d10}點心靈傷害。目標還會陷入{@condition Incapacitated|XPHB|失能}狀態直至你的下一回合結束，此時目標返回先前所佔據的空間、或是最近的未被佔據空間。",
+				"此特性一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。你也可以消耗一個契約魔法法術位（無需動作）來重置此特性的使用權。"
+			],
+			"ENG_name": "Hurl Through Hell"
+		},
+		{
+			"name": "舊日支配者宗主",
+			"source": "XPHB",
+			"page": 162,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Great Old One",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 洞見不可名狀的存在與知識}",
+				"當你選擇此子職時，你可能讓自己受縛於遙遠國度中的不可名狀存在，或一位古老神祇——例如受縛之神薩瑞茲頓、歸來者扎貢、暗黑飢渴者哈達，或偉大的克蘇魯。或者，你也可以祈喚多個存在，而不讓自己受縛於其中任何一位。這些存在的動機不可理解，而你的舊日支配者可能對你的存在漠不關心。儘管如此，你學得的祕密仍使你能從它身上汲取奇異魔法。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Great Old One Spells|Warlock|XPHB|Great Old One|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Awakened Mind|Warlock|XPHB|Great Old One|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Psychic Spells|Warlock|XPHB|Great Old One|XPHB|3"
+				}
+			],
+			"ENG_name": "Great Old One Patron"
+		},
+		{
+			"name": "喚醒心靈",
+			"source": "XPHB",
+			"page": 162,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Great Old One",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你能夠在自己與他人的意識中構建一道心靈感應的連結。以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以選擇 30 尺內一個你可見的生物創造這一連結。連結能使你與其能夠透過心靈感應方式進行交流，但交流時，你們之間距離的裡數不超過你的魅力調整值裡（至少 1 裡）。你們必須使用互相知曉的語言進行心靈交流，才能使其理解你透過心靈感應傳達的話語。",
+				"這道心靈連結持續等於你魔契師等級的分鐘。它也會在你使用此特性形成另一道心靈連結時提前結束。"
+			],
+			"ENG_name": "Awakened Mind"
+		},
+		{
+			"name": "舊日支配者法術",
+			"source": "XPHB",
+			"page": 163,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Great Old One",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"宗主賜予的魔法使你始終準備著特定的法術。當你到達舊日支配者法術表中特定的魔契師等級時，你就始終準備著表中對應的法術。",
+				{
+					"type": "table",
+					"caption": "舊日支配者法術",
+					"colLabels": [
+						"魔契師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Detect Thoughts|XPHB|偵測思想}，{@spell Dissonant Whispers|XPHB|不諧低語}，{@spell Phantasmal Force|XPHB|魅影之力}，{@spell Tasha's Hideous Laughter|XPHB|塔莎狂笑術}"
+						],
+						[
+							"5",
+							"{@spell Clairvoyance|XPHB|鷹眼術}，{@spell Hunger of Hadar|XPHB|哈達之慾}"
+						],
+						[
+							"7",
+							"{@spell Confusion|XPHB|困惑術}，{@spell Summon Aberration|XPHB|異怪召喚術}"
+						],
+						[
+							"9",
+							"{@spell Modify Memory|XPHB|篡改記憶}，{@spell Telekinesis|XPHB|心靈遙控}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Great Old One Spells"
+		},
+		{
+			"name": "心靈法術",
+			"source": "XPHB",
+			"page": 163,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Great Old One",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"當你施放一個造成傷害的魔契師法術時，你可以將其傷害型別改為心靈。此外，當你施放一個屬於{@filter 惑控|spells|class=Warlock|school=E}或{@filter 幻術|spells|class=Warlock|school=I}的魔契師法術時，你可以無需言語或姿勢成分進行施放。"
+			],
+			"ENG_name": "Psychic Spells"
+		},
+		{
+			"name": "銳眼鬥士",
+			"source": "XPHB",
+			"page": 163,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Great Old One",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"當你用喚醒心靈與一個生物形成心靈連結時，你可以迫使對方進行一次對抗你法術豁免DC的感知豁免。若豁免失敗，則該生物在連結期間對你進行的攻擊檢定具有{@variantrule Disadvantage|XPHB|劣勢}，而你對它進行的攻擊檢定具有{@variantrule Advantage|XPHB|優勢}。",
+				"一旦你使用了此特性，除非你消耗一個契約魔法法術位（無需動作）來複原其使用次數，否則你無法再次使用它，直到你完成一次{@variantrule Long Rest|XPHB|短}或{@variantrule Short Rest|XPHB|長休}。"
+			],
+			"ENG_name": "Clairvoyant Combatant"
+		},
+		{
+			"name": "駭異惡咒",
+			"source": "XPHB",
+			"page": 163,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Great Old One",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"你的異界宗主給予你強大的詛咒之力。你始終準備著{@spell Hex|XPHB|脆弱詛咒}法術。當你施展{@spell Hex|XPHB|脆弱詛咒}並選擇了一項屬性時，目標在法術持續時間內還會在以這項屬性進行的豁免上具有{@variantrule Disadvantage|XPHB|劣勢}。"
+			],
+			"ENG_name": "Eldritch Hex"
+		},
+		{
+			"name": "思想護盾",
+			"source": "XPHB",
+			"page": 163,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Great Old One",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"除非獲得你的允許，否則你的思維無法被心靈感應或者其他手段閱讀。此外你還具有對心靈傷害的{@variantrule Resistance|XPHB|抗性}，且每當一個生物對你造成心靈傷害時，該生物將受到與你承受的同等的傷害。"
+			],
+			"ENG_name": "Thought Shield"
+		},
+		{
+			"name": "創造奴僕",
+			"source": "XPHB",
+			"page": 163,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Great Old One",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"當你施展{@spell Summon Aberration|XPHB|異怪召喚術}時，你可以修改此法術使其無需{@status Concentration|XPHB|專注}。以此法施展時，此法術的持續時間將變為 1 分鐘，且召喚來的異怪擁有等於你魔契師等級 + 你的魅力調整值的{@variantrule Temporary Hit Points|XPHB|臨時生命值}。",
+				"此外，該異怪在每個回合中第一次命中一個被你的{@spell Hex|XPHB|脆弱詛咒}影響的生物時，該異怪會對目標額外造成等於此法術附加傷害的心靈傷害。"
+			],
+			"ENG_name": "Create Thrall"
+		}
+	]
+}

@@ -1,0 +1,5577 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"translationSource": "https://shuaishuaidnd.cn/data/class",
+		"conversion": "OpenCC s2twp plus locked project terminology"
+	},
+	"class": [
+		{
+			"name": "奇械師",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"reprintedAs": [
+				"Artificer|EFA"
+			],
+			"edition": "classic",
+			"hd": {
+				"number": 1,
+				"faces": 8
+			},
+			"proficiency": [
+				"con",
+				"int"
+			],
+			"spellcastingAbility": "int",
+			"casterProgression": "artificer",
+			"preparedSpells": "<$level$> / 2 + <$int_mod$>",
+			"preparedSpellsChange": "restLong",
+			"cantripProgression": [
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				3,
+				3,
+				3,
+				3,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4
+			],
+			"optionalfeatureProgression": [
+				{
+					"name": "已知注法",
+					"featureType": [
+						"AI"
+					],
+					"progression": [
+						0,
+						4,
+						4,
+						4,
+						4,
+						6,
+						6,
+						6,
+						6,
+						8,
+						8,
+						8,
+						8,
+						10,
+						10,
+						10,
+						10,
+						12,
+						12,
+						12
+					],
+					"ENG_name": "Infusions"
+				}
+			],
+			"startingProficiencies": {
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"arcana",
+								"history",
+								"investigation",
+								"medicine",
+								"nature",
+								"perception",
+								"sleight of hand"
+							],
+							"count": 2
+						}
+					}
+				],
+				"weapons": [
+					"simple",
+					{
+						"proficiency": "firearms",
+						"optional": true
+					}
+				],
+				"tools": [
+					"{@item thieves' tools|PHB|盜賊工具}",
+					"{@item tinker's tools|PHB|修補工具}",
+					"一種你自選的{@item artisan's tools|PHB|工匠工具}"
+				],
+				"toolProficiencies": [
+					{
+						"thieves' tools": true,
+						"tinker's tools": true,
+						"anyArtisansTool": 1
+					}
+				],
+				"armor": [
+					"light",
+					"medium",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"shield": true
+					}
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"default": [
+					"任意二把{@filter 簡易武器|items|source=phb|category=basic|type=simple weapon}",
+					"一把{@item light crossbow|phb|輕弩}和{@item crossbow bolts (20)|phb|20支弩箭}",
+					"(a) {@item studded leather armor|phb|鑲釘皮甲} 或 (b) {@item scale mail|phb|鱗甲}",
+					"{@item thieves' tools|phb|盜賊工具}和一個{@item dungeoneer's pack|phb|地城套組}"
+				],
+				"goldAlternative": "{@dice 5d4 × 10|5d4 × 10|起始金幣}",
+				"defaultData": [
+					{
+						"_": [
+							{
+								"equipmentType": "weaponSimple",
+								"quantity": 2
+							}
+						]
+					},
+					{
+						"_": [
+							"light crossbow|phb",
+							"crossbow bolts (20)|phb"
+						]
+					},
+					{
+						"a": [
+							"studded leather armor|phb"
+						],
+						"b": [
+							"scale mail|phb"
+						]
+					},
+					{
+						"_": [
+							"thieves' tools|phb",
+							"dungeoneer's pack|phb"
+						]
+					}
+				]
+			},
+			"multiclassing": {
+				"requirements": {
+					"int": 13
+				},
+				"proficienciesGained": {
+					"tools": [
+						"{@item thieves' tools|PHB|盜賊工具}",
+						"{@item tinker's tools|PHB|修補工具}"
+					],
+					"toolProficiencies": [
+						{
+							"thieves' tools": true,
+							"tinker's tools": true
+						}
+					],
+					"armor": [
+						"light",
+						"medium",
+						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
+					]
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"{@filter 已知注法|optionalfeatures|feature type=ai|source=TCE}",
+						"注法數量",
+						"{@filter 已知戲法|spells|level=0|class=artificer}"
+					],
+					"rows": [
+						[
+							0,
+							0,
+							2
+						],
+						[
+							4,
+							2,
+							2
+						],
+						[
+							4,
+							2,
+							2
+						],
+						[
+							4,
+							2,
+							2
+						],
+						[
+							4,
+							2,
+							2
+						],
+						[
+							6,
+							3,
+							2
+						],
+						[
+							6,
+							3,
+							2
+						],
+						[
+							6,
+							3,
+							2
+						],
+						[
+							6,
+							3,
+							2
+						],
+						[
+							8,
+							4,
+							3
+						],
+						[
+							8,
+							4,
+							3
+						],
+						[
+							8,
+							4,
+							3
+						],
+						[
+							8,
+							4,
+							3
+						],
+						[
+							10,
+							5,
+							4
+						],
+						[
+							10,
+							5,
+							4
+						],
+						[
+							10,
+							5,
+							4
+						],
+						[
+							10,
+							5,
+							4
+						],
+						[
+							12,
+							6,
+							4
+						],
+						[
+							12,
+							6,
+							4
+						],
+						[
+							12,
+							6,
+							4
+						]
+					]
+				},
+				{
+					"title": "每環法術位",
+					"colLabels": [
+						"{@filter 1環|spells|level=1|class=Artificer}",
+						"{@filter 2環|spells|level=2|class=Artificer}",
+						"{@filter 3環|spells|level=3|class=Artificer}",
+						"{@filter 4環|spells|level=4|class=Artificer}",
+						"{@filter 5環|spells|level=5|class=Artificer}"
+					],
+					"rowsSpellProgression": [
+						[
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Optional Rule: Firearm Proficiency|Artificer|TCE|1",
+				"Magical Tinkering|Artificer|TCE|1",
+				"Spellcasting|Artificer|TCE|1",
+				"Infuse Item|Artificer|TCE|2",
+				{
+					"classFeature": "Artificer Specialist|Artificer|TCE|3",
+					"gainSubclassFeature": true
+				},
+				"The Right Tool for the Job|Artificer|TCE|3",
+				"Ability Score Improvement|Artificer|TCE|4",
+				{
+					"classFeature": "Artificer Specialist Feature|Artificer|TCE|5",
+					"gainSubclassFeature": true
+				},
+				"Tool Expertise|Artificer|TCE|6",
+				"Flash of Genius|Artificer|TCE|7",
+				"Ability Score Improvement|Artificer|TCE|8",
+				{
+					"classFeature": "Artificer Specialist Feature|Artificer|TCE|9",
+					"gainSubclassFeature": true
+				},
+				"Magic Item Adept|Artificer|TCE|10",
+				"Spell-Storing Item|Artificer|TCE|11",
+				"Ability Score Improvement|Artificer|TCE|12",
+				"Magic Item Savant|Artificer|TCE|14",
+				{
+					"classFeature": "Artificer Specialist Feature|Artificer|TCE|15",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Artificer|TCE|16",
+				"Magic Item Master|Artificer|TCE|18",
+				"Ability Score Improvement|Artificer|TCE|19",
+				"Soul of Artifice|Artificer|TCE|20"
+			],
+			"subclassTitle": "奇械師專業",
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Artificer"
+		},
+		{
+			"name": "奇械師",
+			"source": "EFA",
+			"page": 7,
+			"edition": "one",
+			"primaryAbility": [
+				{
+					"int": true
+				}
+			],
+			"hd": {
+				"number": 1,
+				"faces": 8
+			},
+			"proficiency": [
+				"con",
+				"int"
+			],
+			"spellcastingAbility": "int",
+			"casterProgression": "artificer",
+			"preparedSpellsProgression": [
+				2,
+				3,
+				4,
+				5,
+				6,
+				6,
+				7,
+				7,
+				9,
+				9,
+				10,
+				10,
+				11,
+				11,
+				12,
+				12,
+				14,
+				14,
+				15,
+				15
+			],
+			"preparedSpellsChange": "restLong",
+			"cantripProgression": [
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				3,
+				3,
+				3,
+				3,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4
+			],
+			"additionalSpells": [
+				{
+					"innate": {
+						"1": [
+							"mending|xphb#c"
+						]
+					}
+				}
+			],
+			"featProgression": [
+				{
+					"name": "傳奇恩惠",
+					"category": [
+						"EB"
+					],
+					"progression": {
+						"19": 1
+					},
+					"ENG_name": "Epic Boon"
+				}
+			],
+			"startingProficiencies": {
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"arcana",
+								"history",
+								"investigation",
+								"medicine",
+								"nature",
+								"perception",
+								"sleight of hand"
+							],
+							"count": 2
+						}
+					}
+				],
+				"weapons": [
+					"simple"
+				],
+				"tools": [
+					"{@item Thieves' Tools|XPHB|盜賊工具}",
+					"{@item Tinker's Tools|XPHB|修補工具}",
+					"一種你選擇的{@item Artisan's Tools|XPHB|工匠工具}型別"
+				],
+				"toolProficiencies": [
+					{
+						"thieves' tools": true,
+						"tinker's tools": true,
+						"anyArtisansTool": 1
+					}
+				],
+				"armor": [
+					"light",
+					"medium",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"shield": true
+					}
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"defaultData": [
+					{
+						"A": [
+							{
+								"item": "studded leather armor|xphb"
+							},
+							{
+								"item": "dagger|xphb"
+							},
+							{
+								"item": "thieves' tools|xphb"
+							},
+							{
+								"item": "tinker's tools|xphb"
+							},
+							{
+								"item": "dungeoneer's pack|xphb"
+							},
+							{
+								"value": 1600
+							}
+						],
+						"B": [
+							{
+								"value": 15000
+							}
+						]
+					}
+				],
+				"entries": [
+					"{@i 選擇A或B：}（A）{@item Studded Leather Armor|XPHB|鑲釘皮甲}、{@item Dagger|XPHB|匕首}、{@item Thieves' Tools|XPHB|盜賊工具}、{@item Tinker's Tools|XPHB|修補工具}、{@item Dungeoneer's Pack|XPHB|地城套組}和16 GP；或（B）150 GP"
+				]
+			},
+			"multiclassing": {
+				"proficienciesGained": {
+					"skills": [
+						{
+							"choose": {
+								"from": [
+									"arcana",
+									"history",
+									"investigation",
+									"medicine",
+									"nature",
+									"perception",
+									"sleight of hand"
+								],
+								"count": 1
+							}
+						}
+					],
+					"tools": [
+						"{@item Tinker's Tools|XPHB|修補工具}"
+					],
+					"toolProficiencies": [
+						{
+							"tinker's tools": true
+						}
+					],
+					"armor": [
+						"light",
+						"medium",
+						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
+					]
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"已知方案",
+						"魔法物品",
+						"{@filter 戲法|spells|level=0|class=artificer}",
+						"{@filter 準備法術|spells|level=!0|class=artificer}"
+					],
+					"rows": [
+						[
+							"—",
+							"—",
+							2,
+							2
+						],
+						[
+							4,
+							2,
+							2,
+							3
+						],
+						[
+							4,
+							2,
+							2,
+							4
+						],
+						[
+							4,
+							2,
+							2,
+							5
+						],
+						[
+							4,
+							2,
+							2,
+							6
+						],
+						[
+							5,
+							3,
+							2,
+							6
+						],
+						[
+							5,
+							3,
+							2,
+							7
+						],
+						[
+							5,
+							3,
+							2,
+							7
+						],
+						[
+							5,
+							3,
+							2,
+							9
+						],
+						[
+							6,
+							4,
+							3,
+							9
+						],
+						[
+							6,
+							4,
+							3,
+							10
+						],
+						[
+							6,
+							4,
+							3,
+							10
+						],
+						[
+							6,
+							4,
+							3,
+							11
+						],
+						[
+							7,
+							5,
+							4,
+							11
+						],
+						[
+							7,
+							5,
+							4,
+							12
+						],
+						[
+							7,
+							5,
+							4,
+							12
+						],
+						[
+							7,
+							5,
+							4,
+							14
+						],
+						[
+							8,
+							6,
+							4,
+							14
+						],
+						[
+							8,
+							6,
+							4,
+							15
+						],
+						[
+							8,
+							6,
+							4,
+							15
+						]
+					]
+				},
+				{
+					"title": "每環法術位",
+					"colLabels": [
+						"{@filter 1環|spells|level=1|class=artificer}",
+						"{@filter 2環|spells|level=2|class=artificer}",
+						"{@filter 3環|spells|level=3|class=artificer}",
+						"{@filter 4環|spells|level=4|class=artificer}",
+						"{@filter 5環|spells|level=5|class=artificer}"
+					],
+					"rowsSpellProgression": [
+						[
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Spellcasting|Artificer|EFA|1|EFA",
+				"Tinker's Magic|Artificer|EFA|1|EFA",
+				"Replicate Magic Item|Artificer|EFA|2|EFA",
+				{
+					"classFeature": "Artificer Subclass|Artificer|EFA|3|EFA",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Artificer|EFA|4|EFA",
+				{
+					"classFeature": "Subclass feature|Artificer|EFA|5|EFA",
+					"gainSubclassFeature": true
+				},
+				"Magic Item Tinker|Artificer|EFA|6|EFA",
+				"Flash of Genius|Artificer|EFA|7|EFA",
+				"Ability Score Improvement|Artificer|EFA|8|EFA",
+				{
+					"classFeature": "Subclass feature|Artificer|EFA|9|EFA",
+					"gainSubclassFeature": true
+				},
+				"Magic Item Adept|Artificer|EFA|10|EFA",
+				"Spell-Storing Item|Artificer|EFA|11|EFA",
+				"Ability Score Improvement|Artificer|EFA|12|EFA",
+				"Advanced Artifice|Artificer|EFA|14|EFA",
+				{
+					"classFeature": "Subclass Feature|Artificer|EFA|15|EFA",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Artificer|EFA|16|EFA",
+				"Magic Item Master|Artificer|EFA|18|EFA",
+				"Epic Boon|Artificer|EFA|19|EFA",
+				"Soul of Artifice|Artificer|EFA|20|EFA"
+			],
+			"subclassTitle": "奇械師子職",
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Artificer"
+		}
+	],
+	"subclass": [
+		{
+			"name": "鍊金師",
+			"shortName": "鍊金師",
+			"source": "TCE",
+			"className": "Artificer",
+			"classSource": "TCE",
+			"page": 14,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 58
+				}
+			],
+			"reprintedAs": [
+				"Alchemist|Artificer|EFA|EFA"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"healing word",
+							"ray of sickness"
+						],
+						"5": [
+							"flaming sphere",
+							"melf's acid arrow"
+						],
+						"9": [
+							"gaseous form",
+							"mass healing word"
+						],
+						"13": [
+							"blight",
+							"death ward"
+						],
+						"17": [
+							"cloudkill",
+							"raise dead"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Alchemist|Artificer|TCE|Alchemist|TCE|3",
+				"Alchemical Savant|Artificer|TCE|Alchemist|TCE|5",
+				"Restorative Reagents|Artificer|TCE|Alchemist|TCE|9",
+				"Chemical Mastery|Artificer|TCE|Alchemist|TCE|15"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Alchemist",
+			"ENG_shortName": "Alchemist"
+		},
+		{
+			"name": "鍊金師",
+			"shortName": "鍊金師",
+			"source": "TCE",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"_copy": {
+				"name": "Alchemist",
+				"source": "TCE",
+				"shortName": "Alchemist",
+				"className": "Artificer",
+				"classSource": "TCE",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Alchemist",
+			"ENG_shortName": "Alchemist"
+		},
+		{
+			"name": "裝甲師",
+			"shortName": "裝甲師",
+			"source": "TCE",
+			"className": "Artificer",
+			"classSource": "TCE",
+			"page": 15,
+			"reprintedAs": [
+				"Armorer|Artificer|EFA|EFA"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"magic missile",
+							"thunderwave"
+						],
+						"5": [
+							"mirror image",
+							"shatter"
+						],
+						"9": [
+							"hypnotic pattern",
+							"lightning bolt"
+						],
+						"13": [
+							"fire shield",
+							"greater invisibility"
+						],
+						"17": [
+							"passwall",
+							"wall of force"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Armorer|Artificer|TCE|Armorer|TCE|3",
+				"Extra Attack|Artificer|TCE|Armorer|TCE|5",
+				"Armor Modifications|Artificer|TCE|Armorer|TCE|9",
+				"Perfected Armor|Artificer|TCE|Armorer|TCE|15"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Armorer",
+			"ENG_shortName": "Armorer"
+		},
+		{
+			"name": "裝甲師",
+			"shortName": "裝甲師",
+			"source": "TCE",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"_copy": {
+				"name": "Armorer",
+				"source": "TCE",
+				"shortName": "Armorer",
+				"className": "Artificer",
+				"classSource": "TCE",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Armorer",
+			"ENG_shortName": "Armorer"
+		},
+		{
+			"name": "魔炮師",
+			"shortName": "魔炮師",
+			"source": "TCE",
+			"className": "Artificer",
+			"classSource": "TCE",
+			"page": 17,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 59
+				}
+			],
+			"reprintedAs": [
+				"Artillerist|Artificer|EFA|EFA"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"shield",
+							"thunderwave"
+						],
+						"5": [
+							"scorching ray",
+							"shatter"
+						],
+						"9": [
+							"fireball",
+							"wind wall"
+						],
+						"13": [
+							"ice storm",
+							"wall of fire"
+						],
+						"17": [
+							"cone of cold",
+							"wall of force"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Artillerist|Artificer|TCE|Artillerist|TCE|3",
+				"Arcane Firearm|Artificer|TCE|Artillerist|TCE|5",
+				"Explosive Cannon|Artificer|TCE|Artillerist|TCE|9",
+				"Fortified Position|Artificer|TCE|Artillerist|TCE|15"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Artillerist",
+			"ENG_shortName": "Artillerist"
+		},
+		{
+			"name": "魔炮師",
+			"shortName": "魔炮師",
+			"source": "TCE",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"_copy": {
+				"name": "Artillerist",
+				"source": "TCE",
+				"shortName": "Artillerist",
+				"className": "Artificer",
+				"classSource": "TCE",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Artillerist",
+			"ENG_shortName": "Artillerist"
+		},
+		{
+			"name": "戰地匠師",
+			"shortName": "戰地匠師",
+			"source": "TCE",
+			"className": "Artificer",
+			"classSource": "TCE",
+			"page": 18,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 60
+				}
+			],
+			"reprintedAs": [
+				"Battle Smith|Artificer|EFA|EFA"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"heroism",
+							"shield"
+						],
+						"5": [
+							"branding smite",
+							"warding bond"
+						],
+						"9": [
+							"aura of vitality",
+							"conjure barrage"
+						],
+						"13": [
+							"aura of purity",
+							"fire shield"
+						],
+						"17": [
+							"banishing smite",
+							"mass cure wounds"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Battle Smith|Artificer|TCE|Battle Smith|TCE|3",
+				"Extra Attack|Artificer|TCE|Battle Smith|TCE|5",
+				"Arcane Jolt|Artificer|TCE|Battle Smith|TCE|9",
+				"Improved Defender|Artificer|TCE|Battle Smith|TCE|15"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Battle Smith",
+			"ENG_shortName": "Battle Smith"
+		},
+		{
+			"name": "戰地匠師",
+			"shortName": "戰地匠師",
+			"source": "TCE",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"_copy": {
+				"name": "Battle Smith",
+				"source": "TCE",
+				"shortName": "Battle Smith",
+				"className": "Artificer",
+				"classSource": "TCE",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Battle Smith",
+			"ENG_shortName": "Battle Smith"
+		},
+		{
+			"name": "鍊金師",
+			"shortName": "鍊金師",
+			"source": "EFA",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"page": 12,
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"healing word|xphb",
+							"ray of sickness|xphb"
+						],
+						"5": [
+							"flaming sphere|xphb",
+							"melf's acid arrow|xphb"
+						],
+						"9": [
+							"gaseous form|xphb",
+							"mass healing word|xphb"
+						],
+						"13": [
+							"death ward|xphb",
+							"vitriolic sphere|xphb"
+						],
+						"17": [
+							"cloudkill|xphb",
+							"raise dead|xphb"
+						]
+					},
+					"innate": {
+						"9": {
+							"daily": {
+								"int": [
+									"lesser restoration|xphb"
+								]
+							}
+						},
+						"15": {
+							"daily": {
+								"1": [
+									"tasha's bubbling cauldron|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Alchemist|Artificer|EFA|Alchemist|EFA|3|EFA",
+				"Alchemical Savant|Artificer|EFA|Alchemist|EFA|5|EFA",
+				"Restorative Reagents|Artificer|EFA|Alchemist|EFA|9|EFA",
+				"Chemical Mastery|Artificer|EFA|Alchemist|EFA|15|EFA"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Alchemist",
+			"ENG_shortName": "Alchemist"
+		},
+		{
+			"name": "裝甲師",
+			"shortName": "裝甲師",
+			"source": "EFA",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"page": 14,
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"magic missile|xphb",
+							"thunderwave|xphb"
+						],
+						"5": [
+							"mirror image|xphb",
+							"shatter|xphb"
+						],
+						"9": [
+							"hypnotic pattern|xphb",
+							"lightning bolt|xphb"
+						],
+						"13": [
+							"fire shield|xphb",
+							"greater invisibility|xphb"
+						],
+						"17": [
+							"passwall|xphb",
+							"wall of force|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Armorer|Artificer|EFA|Armorer|EFA|3|EFA",
+				"Extra Attack|Artificer|EFA|Armorer|EFA|5|EFA",
+				"Improved Armorer|Artificer|EFA|Armorer|EFA|9|EFA",
+				"Perfected Armor|Artificer|EFA|Armorer|EFA|15|EFA"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Armorer",
+			"ENG_shortName": "Armorer"
+		},
+		{
+			"name": "魔炮師",
+			"shortName": "魔炮師",
+			"source": "EFA",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"page": 16,
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"shield|xphb",
+							"thunderwave|xphb"
+						],
+						"5": [
+							"scorching ray|xphb",
+							"shatter|xphb"
+						],
+						"9": [
+							"fireball|xphb",
+							"wind wall|xphb"
+						],
+						"13": [
+							"ice storm|xphb",
+							"wall of fire|xphb"
+						],
+						"17": [
+							"cone of cold|xphb",
+							"wall of force|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Artillerist|Artificer|EFA|Artillerist|EFA|3|EFA",
+				"Arcane Firearm|Artificer|EFA|Artillerist|EFA|5|EFA",
+				"Explosive Cannon|Artificer|EFA|Artillerist|EFA|9|EFA",
+				"Fortified Position|Artificer|EFA|Artillerist|EFA|15|EFA"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Artillerist",
+			"ENG_shortName": "Artillerist"
+		},
+		{
+			"name": "戰地匠師",
+			"shortName": "戰地匠師",
+			"source": "EFA",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"page": 18,
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"heroism|xphb",
+							"shield|xphb"
+						],
+						"5": [
+							"shining smite|xphb",
+							"warding bond|xphb"
+						],
+						"9": [
+							"aura of vitality|xphb",
+							"conjure barrage|xphb"
+						],
+						"13": [
+							"aura of purity|xphb",
+							"fire shield|xphb"
+						],
+						"17": [
+							"banishing smite|xphb",
+							"mass cure wounds|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Battle Smith|Artificer|EFA|Battle Smith|EFA|3|EFA",
+				"Extra Attack|Artificer|EFA|Battle Smith|EFA|5|EFA",
+				"Arcane Jolt|Artificer|EFA|Battle Smith|EFA|9|EFA",
+				"Improved Defender|Artificer|EFA|Battle Smith|EFA|15|EFA"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Battle Smith",
+			"ENG_shortName": "Battle Smith"
+		},
+		{
+			"name": "製圖師",
+			"shortName": "製圖師",
+			"source": "EFA",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"page": 20,
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"faerie fire|xphb",
+							"guiding bolt|xphb",
+							"healing word|xphb"
+						],
+						"5": [
+							"locate object|xphb",
+							"mind spike|xphb"
+						],
+						"9": [
+							"call lightning|xphb",
+							"clairvoyance|xphb"
+						],
+						"13": [
+							"banishment|xphb",
+							"locate creature|xphb"
+						],
+						"17": [
+							"scrying|xphb",
+							"teleportation circle|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Cartographer|Artificer|EFA|Cartographer|EFA|3|EFA",
+				"Guided Precision|Artificer|EFA|Cartographer|EFA|5|EFA",
+				"Ingenious Movement|Artificer|EFA|Cartographer|EFA|9|EFA",
+				"Superior Atlas|Artificer|EFA|Cartographer|EFA|15|EFA"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Cartographer",
+			"ENG_shortName": "Cartographer"
+		},
+		{
+			"name": "蘇生師",
+			"shortName": "蘇生師",
+			"source": "RHW",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"false life|xphb",
+							"spare the dying|xphb",
+							"witch bolt|xphb"
+						],
+						"5": [
+							"blindness/deafness|xphb",
+							"enhance ability|xphb"
+						],
+						"9": [
+							"animate dead|xphb",
+							"lightning bolt|xphb"
+						],
+						"13": [
+							"blight|xphb",
+							"death ward|xphb"
+						],
+						"17": [
+							"antilife shell|xphb",
+							"raise dead|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Reanimator|Artificer|EFA|Reanimator|RHW|3|RHW",
+				"Strange Modifications|Artificer|EFA|Reanimator|RHW|5|RHW",
+				"Improved Reanimation|Artificer|EFA|Reanimator|RHW|9|RHW",
+				"Macabre Modifications|Artificer|EFA|Reanimator|RHW|9|RHW",
+				"Refined Reanimation|Artificer|EFA|Reanimator|RHW|15|RHW"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Reanimator",
+			"ENG_shortName": "Reanimator"
+		}
+	],
+	"classFeature": [
+		{
+			"name": "施法",
+			"source": "EFA",
+			"page": 7,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 1,
+			"entries": [
+				"你已學會如何透過物件引導魔法能量。關於施法的規則，請參閱{@book 玩家手冊|XPHB}。下方的訊息詳細說明了你如何將這些規則應用於奇械師法術，這些法術出現在職業描述後文的{@filter 奇械師法術列表|spells|class=Artificer}中。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "必備工具",
+							"entries": [
+								"你透過工具產生你的奇械師法術。你可以使用{@item Thieves' Tools|XPHB|盜賊工具}、{@item Tinker's Tools|XPHB|修補工具}或另一種你具有熟練項的{@item Artisan's Tools|XPHB|工匠工具}作為{@variantrule Spellcasting Focus|XPHB|法器}，並且當你施放奇械師法術時，你必須手持其中一個法器（意味著當你施放該法術時，該法術具有{@i M}成分）。"
+							],
+							"ENG_name": "Tools Required"
+						},
+						{
+							"type": "entries",
+							"name": "戲法",
+							"entries": [
+								"你知曉兩個自選的{@filter 奇械師戲法|spells|level=0|class=Artificer}。推薦{@spell Acid Splash|XPHB|酸液飛濺}和{@spell Prestidigitation|XPHB|魔法伎倆}。",
+								"每當你完成一次{@variantrule Long Rest|XPHB|長休}後，你可以將此特性中的一個戲法替換為另一個你選擇的奇械師戲法。",
+								"當你達到奇械師等級10級和14級時，你學會另一個自選的奇械師戲法，如奇械師特性表格的戲法欄所示。"
+							],
+							"ENG_name": "Cantrips"
+						},
+						{
+							"type": "entries",
+							"name": "法術位",
+							"entries": [
+								"奇械師特性表格顯示你有多少法術位來施放你的1環及以上法術。當你完成一次{@variantrule Long Rest|XPHB|長休}後，你恢復所有已消耗的法術位。"
+							],
+							"ENG_name": "Spell Slots"
+						},
+						{
+							"type": "entries",
+							"name": "1環及以上的準備法術",
+							"entries": [
+								"你準備1環及以上可透過此特性施放的法術列表。開始時，選擇兩項{@filter 一環奇械師法術|spells|level=1|class=Artificer}。推薦{@spell Cure Wounds|XPHB|療傷術}和{@spell Grease|XPHB|油膩術}。",
+								"你列表中的法術數量會隨著奇械師等級提升而增加，如奇械師特性表格的準備法術欄所示。每當該數值增加時，選擇額外的{@filter 奇械師法術|spells|class=Artificer}，直到你列表中的法術數量與表格中的數值相符。所選法術必須是你擁有相應環階法術位的法術。例如，如果你是一名5級奇械師，你的準備法術列表可以包含六個1環或2環的奇械師法術，兩種環階可任意組合。",
+								"如果另一個奇械師特性給予你總是準備著的法術，那些法術不計入你可以用此特性準備的法術數量，但那些法術在其他方面視為你的奇械師法術。"
+							],
+							"ENG_name": "Prepared Spells of Level 1+"
+						},
+						{
+							"type": "entries",
+							"name": "改變你的準備法術",
+							"entries": [
+								"每當你完成一次{@variantrule Long Rest|XPHB|長休}時，你可以改變你的準備法術列表，將其中的任何法術替換為其他你擁有法術位的奇械師法術。"
+							],
+							"ENG_name": "Changing Your Prepared Spells"
+						},
+						{
+							"type": "entries",
+							"name": "施法關鍵屬性",
+							"entries": [
+								"智力是你奇械師法術的施法屬性。"
+							],
+							"ENG_name": "Spellcasting Ability"
+						}
+					]
+				}
+			],
+			"ENG_name": "Spellcasting"
+		},
+		{
+			"name": "修補匠的魔法",
+			"source": "EFA",
+			"page": 8,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 1,
+			"entries": [
+				"你知曉{@spell Mending|XPHB|修復術}戲法。",
+				"作為持有{@item Tinker's Tools|XPHB|修補工具}時的一個{@action Magic|XPHB|魔法}動作，你可以在自身5尺內的一個未佔據空間中創造一個物品，從以下列表中選擇該物品：",
+				{
+					"type": "list",
+					"style": "list-hang",
+					"columns": 3,
+					"items": [
+						"{@item Ball Bearings|XPHB|滾珠}",
+						"{@item Basket|XPHB|籃子}",
+						"{@item Bedroll|XPHB|鋪蓋}",
+						"{@item Bell|XPHB|鈴鐺}",
+						"{@item Blanket|XPHB|毯子}",
+						"{@item Block and Tackle|XPHB|滑輪組}",
+						"{@item Glass Bottle|XPHB|玻璃瓶}",
+						"{@item Bucket|XPHB|吊桶}",
+						"{@item Caltrops|XPHB|鐵蒺藜}",
+						"{@item Candle|XPHB|蠟燭}",
+						"{@item Crowbar|XPHB|撬棍}",
+						"{@item Flask|XPHB|扁瓶}",
+						"{@item Grappling Hook|XPHB|爪鉤}",
+						"{@item Hunting Trap|XPHB|捕獵陷阱}",
+						"{@item Jug|XPHB|壺}",
+						"{@item Lamp|XPHB|油燈}",
+						"{@item Manacles|XPHB|鐐銬}",
+						"{@item Net|XPHB|捕網}",
+						"{@item Oil|XPHB|燃油}",
+						"{@item Paper|XPHB|紙張}",
+						"{@item Parchment|XPHB|羊皮紙}",
+						"{@item Pole|XPHB|長杆}",
+						"{@item Pouch|XPHB|小包}",
+						"{@item Rope|XPHB|繩索}",
+						"{@item Sack|XPHB|麻袋}",
+						"{@item Shovel|XPHB|鏟子}",
+						"{@item Iron Spikes|XPHB|鐵釘}",
+						"{@item String|XPHB|細線}",
+						"{@item Tinderbox|XPHB|火絨盒}",
+						"{@item Torch|XPHB|火把}",
+						"{@item Vial|XPHB|小瓶}"
+					]
+				},
+				"參見{@book 玩家手冊|XPHB}中該物品的規則。該物品持續到你完成一次{@variantrule Long Rest|XPHB|長休}為止，屆時它會消失。",
+				"你可以使用此特性的次數等於你的智力調整值（至少一次），並且你在完成一次{@variantrule Long Rest|XPHB|長休}後恢復所有已使用的次數。"
+			],
+			"ENG_name": "Tinker's Magic"
+		},
+		{
+			"name": "仿製魔法物品",
+			"source": "EFA",
+			"page": 8,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 2,
+			"entries": [
+				"你學會了用於製作魔法物品的奧術方案。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "已知方案",
+							"entries": [
+								"當你獲得此特性時，從魔法物品方案（奇械師等級2+）表格中選擇四個方案學習（見{@book 城主指南|XDMG}以獲取物品描述）。推薦{@item Bag of Holding|XDMG|次元袋}、{@item Cap of Water Breathing|XDMG|水下呼吸帽}、{@item Sending Stones|XDMG|短訊石}和{@item +1 Wand of the War Mage|XDMG|+1戰法師魔杖}。每當你提升奇械師等級時，你可以將一個已知方案替換為你符合條件的新方案。",
+								"當你達到特定奇械師等級時，你將學會另一個自選方案，如奇械師特性表格中的計劃已知欄所示。當你選擇要學習的方案時，你可以從任何符合資格的魔法物品方案表格中選擇；你的資格基於你的奇械師等級。"
+							],
+							"ENG_name": "Plans Known"
+						},
+						{
+							"type": "entries",
+							"name": "創造物品",
+							"entries": [
+								"當你完成一次{@variantrule Long Rest|XPHB|長休}時，如果你手上有{@item Tinker's Tools|XPHB|修補工具}，你可以建立一個或兩個不同的魔法物品。每個物品都基於你為此特性所知的一個方案。",
+								"如果創造的物品需要{@variantrule Attunement|XPHB|同調}，你可以在創造它的瞬間立即同調。如果你決定稍後同調該物品，必須使用{@variantrule Attunement|XPHB|同調}的正常流程進行同調。",
+								"當你達到奇械師特性表中魔法物品欄指定的特定奇械師等級時，你在一次{@variantrule Long Rest|XPHB|長休}結束時可以創造的魔法物品數量會增加。你創造的每件物品必須基於你所知的不同圖紙。",
+								"你無法透過此特性擁有超過奇械師特性表格中對應你等級的魔法物品欄所示數量的魔法物品。若你嘗試超出此特性的最大魔法物品數量，最舊的物品會消失，然後新物品出現。"
+							],
+							"ENG_name": "Creating an Item"
+						},
+						{
+							"type": "entries",
+							"name": "持續時間",
+							"entries": [
+								"由該特性創造的魔法物品功能與正常魔法物品相同，但其魔法並非永久性；當你死亡時，該魔法物品會在{@dice 1d4}天后消失。如果你用新方案替換已知方案，任何用被替換方案創造的魔法物品會立即消失。",
+								"如果你透過此特性創造的物品是一個容器，例如{@item Bag of Holding|XDMG|次元袋}，並且它消失了，其內容物會無害地出現在其空間內及周圍。"
+							],
+							"ENG_name": "Duration"
+						},
+						{
+							"type": "entries",
+							"name": "施法法器",
+							"entries": [
+								"你可以使用此特性創造的任何魔杖或武器作為{@variantrule Spellcasting Focus|XPHB|法器}，代替使用一套{@item Artisan's Tools|XPHB|工匠工具}。"
+							],
+							"ENG_name": "Spellcasting Focus"
+						},
+						{
+							"type": "inset",
+							"name": "製作更多魔法物品",
+							"entries": [
+								"仿製魔法物品特性並非奇械師製作魔法物品的唯一方式。{@book 城主指南|XDMG|6|Crafting Magic Items}為想要製作各種魔法物品的角色——不僅僅是奇械師——提供了規則。儘管許多不同的角色都能製作魔法物品，但奇械師能比其他人更快地完成；每個奇械師子職都能提高角色製作特定類別物品的速度。",
+								"當奇械師使用{@book 城主指南|XDMG|6|Crafting Magic Items}中的常規規則製作魔法物品時，該角色不會獲得與該物品的特殊聯絡。那些提及由你的仿製魔法物品專長所創造物品的職業特性，不適用於你透過其他方式製作的物品。"
+							],
+							"ENG_name": "Crafting More Magic Items"
+						},
+						{
+							"caption": "魔法物品方案（奇械師等級2+）",
+							"type": "table",
+							"colLabels": [
+								"魔法物品方案",
+								"同調"
+							],
+							"colStyles": [
+								"col-9",
+								"col-3 text-center"
+							],
+							"rows": [
+								[
+									"{@item Alchemy Jug|XDMG|鍊金壺}",
+									"否"
+								],
+								[
+									"{@item Bag of Holding|XDMG|次元袋}",
+									"否"
+								],
+								[
+									"{@item Cap of Water Breathing|XDMG|水下呼吸帽}",
+									"否"
+								],
+								[
+									"{@filter 普通魔法物品，且非藥水、卷軸或受詛咒物品|items|source=|type=!potion;!scroll|rarity=common|category=|miscellaneous=!cursed}*",
+									"多類"
+								],
+								[
+									"{@item Goggles of Night|XDMG|夜視鏡}",
+									"否"
+								],
+								[
+									"{@item Manifold Tool|EFA|百變工具}",
+									"是"
+								],
+								[
+									"{@item Repeating Shot|EFA|連射武器}",
+									"是"
+								],
+								[
+									"{@item Returning Weapon|EFA|回力武器}",
+									"否"
+								],
+								[
+									"{@item Rope of Climbing|XDMG|攀爬繩}",
+									"否"
+								],
+								[
+									"{@item Sending Stones|XDMG|短訊石}",
+									"否"
+								],
+								[
+									"{@item +1 Shield|XDMG|盾牌 +1}",
+									"否"
+								],
+								[
+									"{@item Wand of Magic Detection|XDMG|搜魔魔杖}",
+									"否"
+								],
+								[
+									"{@item Wand of Secrets|XDMG|探秘魔杖}",
+									"否"
+								],
+								[
+									"{@item +1 Wand of the War Mage|XDMG|戰法師魔杖 +1}",
+									"是"
+								],
+								[
+									"{@item +1 Weapon|XDMG|+1 武器}",
+									"否"
+								],
+								[
+									"{@item +1 Wraps of Unarmed Power|XDMG|神威綁帶，+1}",
+									"否"
+								]
+							],
+							"footnotes": [
+								"*你可以多次學習此選項，且每次必須選擇一個不同的物品；每個選定的物品計為一個不同的方案。"
+							]
+						},
+						{
+							"caption": "魔法物品方案（奇械師等級6+）",
+							"type": "table",
+							"colLabels": [
+								"魔法物品方案",
+								"同調"
+							],
+							"colStyles": [
+								"col-9",
+								"col-3 text-center"
+							],
+							"rows": [
+								[
+									"{@item +1 Armor|XDMG|+1護甲}",
+									"否"
+								],
+								[
+									"{@item Boots of Elvenkind|XDMG|精靈之靴}",
+									"否"
+								],
+								[
+									"{@item Boots of the Winding Path|EFA|折返之靴}",
+									"是"
+								],
+								[
+									"{@item Cloak of Elvenkind|XDMG|精靈斗篷}",
+									"是"
+								],
+								[
+									"{@item Cloak of the Manta Ray|XDMG|蝠鱝斗篷}",
+									"是"
+								],
+								[
+									"{@item Dazzling Weapon|EFA|炫目武器}",
+									"是"
+								],
+								[
+									"{@item Eyes of Charming|XDMG|魅惑鏡片}",
+									"是"
+								],
+								[
+									"{@item Eyes of Minute Seeing|XDMG|微視鏡片}",
+									"否"
+								],
+								[
+									"{@item Gloves of Thievery|XDMG|竊賊手套}",
+									"否"
+								],
+								[
+									"{@item Helm of Awareness|EFA|警覺之盔}",
+									"否"
+								],
+								[
+									"{@item Lantern of Revealing|XDMG|顯像提燈}",
+									"否"
+								],
+								[
+									"{@item Mind Sharpener|EFA|思維砥石}",
+									"是"
+								],
+								[
+									"{@item Necklace of Adaptation|XDMG|適應項鍊}",
+									"是"
+								],
+								[
+									"{@item Pipes of Haunting|XDMG|顫慄樂笙}",
+									"否"
+								],
+								[
+									"{@item Repulsion Shield|EFA|斥力之盾}",
+									"否"
+								],
+								[
+									"{@item Ring of Swimming|XDMG|善泳戒指}",
+									"否"
+								],
+								[
+									"{@item Ring of Water Walking|XDMG|水上行走戒指}",
+									"否"
+								],
+								[
+									"{@item Sentinel Shield|XDMG|警戒之盾}",
+									"否"
+								],
+								[
+									"{@item Spell-Refueling Ring|EFA|法力恢復戒指}",
+									"是"
+								],
+								[
+									"{@item Wand of Magic Missiles|XDMG|魔法飛彈魔杖}",
+									"否"
+								],
+								[
+									"{@item Wand of Web|XDMG|蛛網魔杖}",
+									"是"
+								],
+								[
+									"{@item Weapon of Warning|XDMG|警戒武器}",
+									"是"
+								]
+							]
+						},
+						{
+							"caption": "魔法物品方案（奇械師等級10+）",
+							"type": "table",
+							"colLabels": [
+								"魔法物品方案",
+								"同調"
+							],
+							"colStyles": [
+								"col-9",
+								"col-3 text-center"
+							],
+							"rows": [
+								[
+									"{@item Armor of Resistance|XDMG|抗性護甲}",
+									"是"
+								],
+								[
+									"{@item Dagger of Venom|XDMG|淬毒匕首}",
+									"否"
+								],
+								[
+									"{@item Elven Chain|XDMG|精靈鍊甲}",
+									"否"
+								],
+								[
+									"{@item Ring of Feather Falling|XDMG|羽落戒指}",
+									"是"
+								],
+								[
+									"{@item Ring of Jumping|XDMG|跳躍戒指}",
+									"是"
+								],
+								[
+									"{@item Ring of Mind Shielding|XDMG|心靈護盾戒指}",
+									"是"
+								],
+								[
+									"{@item +2 Shield|XDMG|盾牌，+2}",
+									"否"
+								],
+								[
+									"{@filter 非普通奇物，且未被詛咒|items|source=|type=wondrous item|rarity=uncommon|category=|miscellaneous=!cursed}*",
+									"多類"
+								],
+								[
+									"{@item +2 Wand of the War Mage|XDMG|戰法師魔杖，+2}",
+									"是"
+								],
+								[
+									"{@item +2 Weapon|XDMG|+2 武器}",
+									"否"
+								],
+								[
+									"{@item +2 Wraps of Unarmed Power|XDMG|神威綁帶，+2}",
+									"否"
+								]
+							],
+							"footnotes": [
+								"*你可以多次學習此選項，且每次必須選擇一個不同的物品；每個選定的物品計為一個不同的方案。"
+							]
+						},
+						{
+							"caption": "魔法物品方案（奇械師等級14+）",
+							"type": "table",
+							"colLabels": [
+								"魔法物品方案",
+								"同調"
+							],
+							"colStyles": [
+								"col-9",
+								"col-3 text-center"
+							],
+							"rows": [
+								[
+									"{@item +2 Armor|XDMG|+2護甲}",
+									"否"
+								],
+								[
+									"{@item Arrow-Catching Shield|XDMG|吸矢盾}",
+									"是"
+								],
+								[
+									"{@item Flame Tongue|XDMG|焰舌}",
+									"是"
+								],
+								[
+									"{@filter 珍稀奇物，非詛咒|items|source=|type=wondrous item|rarity=rare|category=|miscellaneous=!cursed}*",
+									"多類"
+								],
+								[
+									"{@item Ring of Free Action|XDMG|自由行動戒指}",
+									"是"
+								],
+								[
+									"{@item Ring of Protection|XDMG|防護戒指}",
+									"是"
+								],
+								[
+									"{@item Ring of the Ram|XDMG|公羊戒指}",
+									"是"
+								]
+							],
+							"footnotes": [
+								"*你可以多次學習此選項，且每次必須選擇一個不同的物品；每個選定的物品計為一個不同的方案。"
+							]
+						}
+					]
+				}
+			],
+			"ENG_name": "Replicate Magic Item"
+		},
+		{
+			"name": "奇械師子職",
+			"source": "EFA",
+			"page": 10,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 3,
+			"entries": [
+				"你獲得一個你選擇的奇械師子職。{@subclass Alchemist|Artificer|EFA|EFA|鍊金師}、{@subclass Armorer|Artificer|EFA|EFA|裝甲師}、{@subclass Artillerist|Artificer|EFA|EFA|魔炮師}、{@subclass Battle Smith|Artificer|EFA|EFA|戰地匠師}和{@subclass Cartographer|Artificer|EFA|EFA|製圖師}子職在此職業描述之後詳述。子職是一種專精，在特定奇械師等級授予你特性。在你的剩餘職業生涯中，你獲得你子職的每個特性，只要它們不高於你的奇械師等級。"
+			],
+			"ENG_name": "Artificer Subclass"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "EFA",
+			"page": 10,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 4,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或另一個你符合條件且自選的專長。你在奇械師等級8、12和16時再次獲得此特性。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "子職特性",
+			"source": "EFA",
+			"page": 8,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 5,
+			"entries": [
+				"你獲得一個來自你的奇械師子職的特性。"
+			],
+			"ENG_name": "Subclass feature"
+		},
+		{
+			"name": "魔法物品工藝師",
+			"source": "EFA",
+			"page": 10,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 6,
+			"entries": [
+				"你的{@classFeature Replicate Magic Item|Artificer|EFA|2|EFA|仿製魔法物品}特性獲得以下選項。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "為魔法物品充能",
+							"entries": [
+								"作為{@variantrule Bonus Action|XPHB|附贈動作}，你可以接觸你5尺內一個你透過仿製魔法物品創造且使用充能的魔法物品。你消耗一個1環或更高的法術位併為該物品充能。該物品恢復的充能數等於所消耗法術位的環數。"
+							],
+							"ENG_name": "Charge Magic Item"
+						},
+						{
+							"type": "entries",
+							"name": "吸取魔法物品",
+							"entries": [
+								"作為{@variantrule Bonus Action|XPHB|附贈動作}，你可以接觸一個你透過仿製魔法物品創造的5尺內的魔法物品，並使其消失，將其魔法能量轉化為一個法術位。如果物品是普通則為1環，如果物品是非普通或珍稀則為2環。一旦你使用此特性，在完成一次{@variantrule Long Rest|XPHB|長休}前不能再次使用。你透過此特性創造的任何法術位在你完成一次{@variantrule Long Rest|XPHB|長休}時消失。"
+							],
+							"ENG_name": "Drain Magic Item"
+						},
+						{
+							"type": "entries",
+							"name": "轉化魔法物品",
+							"entries": [
+								"作為一個{@action Magic|XPHB|魔法}動作，你可以接觸一個你5尺內透過仿製魔法物品創造的魔法物品，並將其轉變為另一個不同的魔法物品。生成的物品必須基於你已知的魔法物品方案。一旦你使用此特性，在完成一次{@variantrule Long Rest|XPHB|長休}前不能再次使用。"
+							],
+							"ENG_name": "Transmute Magic Item"
+						}
+					]
+				}
+			],
+			"ENG_name": "Magic Item Tinker"
+		},
+		{
+			"name": "靈光一閃",
+			"source": "EFA",
+			"page": 10,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 7,
+			"entries": [
+				"當你或一個你30尺內能看見的生物在屬性檢定或豁免檢定中失敗時，你可以執行一個{@variantrule Reaction|XPHB|反應}來為擲骰新增一個加值，可能使其成功。該加值等於你的智力調整值（最低為+1）。",
+				"你可以使用此{@variantrule Reaction|XPHB|反應}的次數等於你的智力調整值（至少一次）。當你完成一次{@variantrule Long Rest|XPHB|長休}時，你恢復所有已消耗的使用次數。"
+			],
+			"ENG_name": "Flash of Genius"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "EFA",
+			"page": 10,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 8,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或另一個你符合條件且選擇的專長。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "子職特性",
+			"source": "EFA",
+			"page": 8,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 9,
+			"entries": [
+				"你獲得一個來自你的奇械師子職的特性。"
+			],
+			"ENG_name": "Subclass feature"
+		},
+		{
+			"name": "魔法物品熟稔",
+			"source": "EFA",
+			"page": 10,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 10,
+			"entries": [
+				"你現在可以同時與最多四件魔法物品同調。"
+			],
+			"ENG_name": "Magic Item Adept"
+		},
+		{
+			"name": "儲法物品",
+			"source": "EFA",
+			"page": 11,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 11,
+			"entries": [
+				"每當你完成一次{@variantrule Long Rest|XPHB|長休}時，你可以接觸一件簡易或軍用武器或一件你可以用作{@variantrule Spellcasting Focus|XPHB|法器}的物品，並在其中儲存一個法術，選擇一個施法時間為動作且不需要消耗材料成分的1環、2環或3環奇械師法術（你無需準備該法術）。",
+				"當持握該物件時，一個生物可以執行一個{@action Magic|XPHB|魔法}動作來從中產生該法術的效果，使用你的施法屬性調整值。如果該法術需要{@status Concentration|XPHB|專注}，該生物必須保持專注。一旦一個生物使用該物件產生了該法術的效果，該物件直到該生物的下個回合開始前都不能再以此方式使用。",
+				"該法術會留在該物件中，直到它被使用的次數等於你智力調整值的兩倍（最低為兩次）或直到你再次使用此特性將一個法術儲存在一個物件中。"
+			],
+			"ENG_name": "Spell-Storing Item"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "EFA",
+			"page": 10,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 12,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或另一個你符合條件且選擇的專長。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "高等巧計",
+			"source": "EFA",
+			"page": 11,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 14,
+			"entries": [
+				"你獲得以下增益。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "魔法物品專家",
+							"entries": [
+								"你現在可以同時與最多五件魔法物品同調。"
+							],
+							"ENG_name": "Magic Item Savant"
+						},
+						{
+							"type": "entries",
+							"name": "煥發天才",
+							"entries": [
+								"當你完成一次{@variantrule Short Rest|XPHB|短休}時，你恢復一次已消耗的{@classFeature Flash of Genius|Artificer|EFA|7|EFA|靈光一閃}特性的使用次數。"
+							],
+							"ENG_name": "Refreshed Genius"
+						}
+					]
+				}
+			],
+			"ENG_name": "Advanced Artifice"
+		},
+		{
+			"name": "子職特性",
+			"source": "EFA",
+			"page": 8,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 15,
+			"entries": [
+				"你獲得一個來自你的奇械師子職的特性。"
+			],
+			"ENG_name": "Subclass feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "EFA",
+			"page": 10,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 16,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或另一個你符合條件且選擇的專長。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "魔法物品大師",
+			"source": "EFA",
+			"page": 11,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 18,
+			"entries": [
+				"你現在最多可以同時同調於六個魔法物品。"
+			],
+			"ENG_name": "Magic Item Master"
+		},
+		{
+			"name": "傳奇恩惠",
+			"source": "EFA",
+			"page": 11,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 19,
+			"entries": [
+				"你獲得一個傳奇恩惠專長或另一個你符合條件且自選的專長。推薦{@feat Boon of Energy Resistance|XPHB|能量抗性之恩惠}。"
+			],
+			"ENG_name": "Epic Boon"
+		},
+		{
+			"name": "奇械之魂",
+			"source": "EFA",
+			"page": 11,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"level": 20,
+			"entries": [
+				"你已與你的魔法物品建立了神秘連線，可以從中汲取援助。你獲得以下好處。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "倖免於難",
+							"entries": [
+								"如果你被減少到0{@variantrule Hit Points|XPHB|生命值}但未被直接殺死，你可以解離任意數量由你的仿製魔法物品特性創造的非普通或珍稀魔法物品。如果你這樣做，你的{@variantrule Hit Points|XPHB|生命值}將改為等於20乘以被解離的魔法物品數量。"
+							],
+							"ENG_name": "Cheat Death"
+						},
+						{
+							"type": "entries",
+							"name": "魔法指引",
+							"entries": [
+								"當你完成一次{@variantrule Short Rest|XPHB|短休}時，如果你與至少一件魔法物品{@variantrule Attunement|XPHB|同調}，你恢復所有已消耗的{@classFeature Flash of Genius|Artificer|EFA|7|EFA|靈光一閃}使用次數。"
+							],
+							"ENG_name": "Magical Guidance"
+						}
+					]
+				}
+			],
+			"ENG_name": "Soul of Artifice"
+		},
+		{
+			"name": "魔法工藝",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 1,
+			"entries": [
+				"{@i 1級奇械師特性}",
+				"你學習瞭如何在平凡的物品中注入魔法的火花。要使用這個能力，你必須手持著{@item thieves' tools|PHB|盜賊工具}，或{@item artisan's tools|PHB|工匠工具}，然後用一個動作去觸控一件微型的、非魔法的物件。你從以下魔法屬性中選擇一個賦予它：",
+				{
+					"type": "list",
+					"items": [
+						"該物體提供5尺半徑的明亮光照，以及該範圍外5尺範圍的昏暗光照。",
+						"無論何時，只要該物品被生物觸碰，就會發出可在10英尺外聽到的錄音資訊。錄入的資訊在你將此屬性賦予物件時決定，且時長不可超過6秒。",
+						"物品不斷地發出一種氣味或一種非語言的聲音（風聲、浪聲、鳥叫或類似的聲音）。這一現象最多能在10尺範圍內被感知到。",
+						"一個靜態的視覺效果出現在物體的表面上。這個效果可以是一幅圖片、一段最多25個單詞的文字、一些線條、或一些形狀，或者這些元素的混合體，如你所願。"
+					]
+				},
+				"所選的魔法屬性持續時間無限。你能夠觸控物件，以一個動作來提前結束它的魔法屬性。",
+				"你能夠透過此特性將魔力賦予多個物件，每次使用該特性時都需要觸控一個物件，並且單個物件一次只能承載一個魔法屬性。你能夠使用該特性影響的物件的最大數量等於你的智力調整值（最少一個物品）。如果你試圖影響超出上限的物件，最早的魔法屬性會先立即結束，然後新的魔法屬性才會生效。"
+			],
+			"ENG_name": "Magical Tinkering"
+		},
+		{
+			"name": "可選規則：火器熟練",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 1,
+			"entries": [
+				"D&D多元宇宙的各個角落都早已發現火藥的秘密。如果你的DM啟用{@book 城主指南|DMG}中的{@book 第九章|DMG|9|Firearms}，且你的奇械師已經接觸過此類武器的操作方法，那麼你的奇械師便也會具有它們的熟練項。"
+			],
+			"ENG_name": "Optional Rule: Firearm Proficiency"
+		},
+		{
+			"name": "施法",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 1,
+			"entries": [
+				"{@i 1級奇械師特性}",
+				"你已經學習了魔法的工作原理，知道如何引導魔法進入物體，以及如何喚醒魔法。因此，你獲得了有限的施法能力。在旁觀者看來，你不會用傳統的方式施法——你看起來好像在透過各種物品創造奇蹟。",
+				{
+					"type": "entries",
+					"name": "必備工具",
+					"entries": [
+						"你透過你的工具來產生你奇械師法術的效果。當你使用施法特性來施展法術時，你必須手持著法器——即你具有熟練的{@item thieves' tools|phb|盜賊工具}或某件{@item artisan's tools|phb|工匠工具}（這意味著你施展的法術被視為一個擁有\"M（材料）\"成分的法術）。這些工具的描述請參見{@book 第五章|PHB|4}\"裝備\"（《{@book 玩家手冊|PHB}》）。",
+						"當你在第2級獲得物品注法特性後，你也能使用任何你注入魔法的物品來作為法器使用。",
+						{
+							"type": "inset",
+							"name": "技藝的魔法",
+							"entries": [
+								"身為一名奇械師，你會使用工具施法。描述施法時，想想你如何用工具產生法術效果。例如，你以{@item alchemist's supplies|PHB|鍊金工具}施展{@spell cure wounds||療傷術}時，可能快速製成一份藥膏；以{@item tinker's tools|PHB|修補工具}施展時，則可能用一隻微型機械蜘蛛縫合傷口。施展{@spell poison spray||毒氣噴湧}時，你可能潑灑惡臭的化學藥劑，或使用會噴出毒液的魔杖。法術效果與其他職業施法者的相同，但你的施法方式別具特色。",
+								"此原則同樣適用於你準備法術時。作為一名奇械師，你不是藉由研讀法術書或祈禱來準備法術，而是使用工具，製作出用來產生法術效果的特殊物品。如果你以{@spell heat metal||灼熱金屬}替換{@spell cure wounds||療傷術}，你可能會改造原本用於治療的裝置，使它改為引導熱能。",
+								"這些細節不會以任何方式限制你，也不會給你帶來任何好處。你不需要證明你是如何使用工具來施展法術的。但是創造性地描述你的施法是一種能夠讓你從其他施法者中脫穎而出的有趣方法。"
+							],
+							"ENG_name": "The Magic of Artifice"
+						}
+					],
+					"ENG_name": "Tools Required"
+				},
+				{
+					"type": "entries",
+					"name": "戲法",
+					"entries": [
+						"第1級時，你從{@filter 奇械師法術列表|spells|level=0|class=Artificer}中習得兩個戲法。在更高的等級時，你可以根據\"奇械師職業表\"習得更多戲法。",
+						"當你提升一個奇械師等級時，你能夠從奇械師法術列表中習得一個新的戲法來替換一個原有的已知戲法。"
+					],
+					"ENG_name": "Cantrips (0-Level Spells)"
+				},
+				{
+					"type": "entries",
+					"name": "法術的準備和施展",
+					"entries": [
+						"\"奇械師職業表\"顯示出你有多少能用於施法的法術位。施展某個1環以上的奇械師法術時，你必須同時消耗其對應環階或更高環階的法術位。而已消耗的法術位則可以透過完成一次長休進行恢復。",
+						"你需要從{@filter 奇械師法術列表|spells|class=Artificer}中準備你想要施展的法術，你能準備的法術總數等同於 你的智力調整值＋你奇械師職業等級的一半，向下取整（至少1個法術）。不過你能準備的法術必須是已獲得相應環階法術位的法術。",
+						"例如，作為一名5級奇械師時，你擁有四枚1環法術位和兩枚2環法術位。假如你的智力為14，則你的準備法術列表可以囊括總共四個1環或2環法術的組合。如果你準備了1環法術{@spell cure wounds||療傷術}，則你可以使用1環或者2環的法術位來施展它。施展過的法術並不會從你的準備列表中移除。",
+						"你可以在完成長休後改變你的準備法術列表。如需準備新的奇械師法術，你需要花時間來調整你的法器：每個準備列表中的法術的每個環階要花費至少1分鐘的時間。"
+					],
+					"ENG_name": "Preparing and Casting Spells"
+				},
+				{
+					"type": "entries",
+					"name": "施法關鍵屬性",
+					"entries": [
+						"你對魔法理論的理解使你能夠以更高超的技法來使用這些法術，因此智力是你的施法屬性。每當你的法術需要施法屬性時均指向你的智力值。而你奇械師法術的豁免DC和攻擊檢定，也使用你的智力調整值。",
+						{
+							"type": "abilityDc",
+							"name": "法術",
+							"attributes": [
+								"int"
+							],
+							"ENG_name": "Spell"
+						},
+						{
+							"type": "abilityAttackMod",
+							"name": "法術",
+							"attributes": [
+								"int"
+							],
+							"ENG_name": "Spell"
+						}
+					],
+					"ENG_name": "Spellcasting Ability"
+				},
+				{
+					"type": "entries",
+					"name": "儀式施法",
+					"entries": [
+						"如果你準備了帶有儀式標籤的法術，則你可以用這些法術進行儀式施法。"
+					],
+					"ENG_name": "Ritual Casting"
+				}
+			],
+			"ENG_name": "Spellcasting"
+		},
+		{
+			"name": "物品注法",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 2,
+			"entries": [
+				"{@i 2級奇械師特性}",
+				"你獲得了將特定魔法注法灌注於普通物品中、使其轉化為魔法物品的能力。",
+				{
+					"type": "refClassFeature",
+					"classFeature": "Infusions Known|Artificer|TCE|2"
+				},
+				{
+					"type": "inset",
+					"name": "奇械師注法",
+					"entries": [
+						"奇械師注法是一種非凡的、能將非魔法物品變成魔法物品的工序。對於沒有受過訓練的人來說，奇械師就像神奇的工匠，能夠在數小時內完成別人需要數週才能完成的事情。",
+						"每個注法的描述都會告訴你可以接受它的物品型別，以及所產生的魔法物品是否需要同調的要求。",
+						"有些注法規定了最低的奇械師等級。你必須達到那個等級或以上才能學習該注法。",
+						"除非注法的描述中寫明，否則你無法重複學習同一個注法。"
+					],
+					"ENG_name": "Artificer Infusions"
+				},
+				{
+					"type": "entries",
+					"name": "爲物品進行注法",
+					"entries": [
+						"每當你完成一個長休後，你都可以觸控一個非魔法的物件，使用奇械師注法來把它變成一個魔法物品。注法只能在注法描述中指定的物品型別上生效。如果該物品需要同調，你可以在為物品進行注法時立刻與其同調。如果你決定以後再與這個物品進行同調，你就必須進行通常的同調程式了（參見\"{@book 同調|DMG|7|Attunement}\"規則（《{@book 城主指南|DMG}》））。",
+						"你的注法持續時間無限，但當你死亡時，注法會在你智力調整值的天數後消失（至少1天）。如果你將某個注法從已知中替換掉，該注法的效果也將消失。",
+						"你能在一次長休後為複數物品進行注法；其最大數量請參見\"奇械師職業表\"的\"注法數量\"列。你必須觸控每一個物體。你的每種注法在同一時間內只能存在於一個物品上，而一個物品也無法被同時進行復數次注法。如果你試圖超過你的最大注法數量，則最舊的注法立即結束，然後新的注法適用。",
+						"如果注法結束時該物品中仍包含有其他物品，其中的物品將無害地出現在它周圍的空間中，如同{@item bag of holding||次元袋}一樣。"
+					],
+					"ENG_name": "Infusing an Item"
+				}
+			],
+			"ENG_name": "Infuse Item"
+		},
+		{
+			"name": "已知注法",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"當你獲得這個特性時，從職業描述末尾的\"{@filter 奇械師注法|optionalfeatures|feature type=ai|source=TCE}\"列表中選擇選擇四個奇械師注法習得。當你提升奇械師等級時，還能夠根據\"奇械師職業表\"習得更多注法。",
+				"當你提升一個奇械師等級時，你能將已習得的一個奇械師注法替換為另一個新的注法。"
+			],
+			"ENG_name": "Infusions Known"
+		},
+		{
+			"name": "奇械師專業",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 3,
+			"entries": [
+				"{@i 3級奇械師特性}",
+				"選擇自己將成為哪種型別的專家，這些專業會在職業描述的最後進行說明。你的選擇將決定你在5級、9級和15級時獲得的特性。"
+			],
+			"ENG_name": "Artificer Specialist"
+		},
+		{
+			"name": "稱手工具",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 3,
+			"entries": [
+				"{@i 3級奇械師特性}",
+				"你學習到了如何精確地製作你所需要的工具：使用你手中的{@item thieves' tools|PHB|盜賊工具}或{@item artisan's tools|PHB|工匠工具}，你可以在離你5尺內的一處未被佔據的空間中，魔法性地製作出一套{@item artisan's tools|PHB|工匠工具}。這一製造過程需要1小時的不間斷工作，但其可以在短休或長休的過程中進行。這套工具是魔法的產物，但其本身是非魔法的。當你再次使用此特性時，之前製造的工具就會消失。"
+			],
+			"ENG_name": "The Right Tool for the Job"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 4,
+			"entries": [
+				"{@i 4級奇械師特性}",
+				"當你達到4級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "奇械師專業能力",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 5,
+			"entries": [
+				"{@i 5級奇械師特性}",
+				"你獲得由你選擇的奇械師專業賦予的特性。"
+			],
+			"ENG_name": "Artificer Specialist Feature"
+		},
+		{
+			"name": "工具專精",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 6,
+			"entries": [
+				"{@i 6級奇械師特性}",
+				"你在使用你熟練的工具時所進行的任何屬性檢定均能夠使用你的雙倍的熟練加值。"
+			],
+			"ENG_name": "Tool Expertise"
+		},
+		{
+			"name": "靈光一閃",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 7,
+			"entries": [
+				"{@i 7級奇械師特性}",
+				"你獲得了在壓力下想出解決方案的能力。當你或距離你30尺內的另一可見生物進行屬性檢定或豁免檢定時，你能以一個反應將你的智力調整值新增到此次檢定中。",
+				"你能使用此能力的次數等於你的智力調整值（最少1次）。在你完成一次長休後，你恢復所有已被消耗的使用次數。"
+			],
+			"ENG_name": "Flash of Genius"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 8,
+			"entries": [
+				"{@i 8級奇械師特性}",
+				"當你達到第8級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過該特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "奇械師專業能力",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 9,
+			"entries": [
+				"{@i 9級奇械師特性}",
+				"你獲得由你選擇的奇械師專業賦予的特性。"
+			],
+			"ENG_name": "Artificer Specialist Feature"
+		},
+		{
+			"name": "魔法物品熟稔",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 10,
+			"entries": [
+				"{@i 10級奇械師特性}",
+				"你對如何使用和製作魔法物品有了深刻的理解：",
+				{
+					"type": "list",
+					"items": [
+						"你最多可以同時同調於四個魔法物品。",
+						"你製作一件稀有度為普通或非普通的魔法物品時，所需的時間為通常的四分之一，而且所耗的金錢只有通常的一半。"
+					]
+				}
+			],
+			"ENG_name": "Magic Item Adept"
+		},
+		{
+			"name": "儲法物品",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 11,
+			"entries": [
+				"{@i 11級奇械師特性}",
+				"你現在可以在一個物體中儲存一個法術。每當你完成一次長休時，你都能觸控一把{@filter 簡易或軍用武器|items|source=phb|category=basic|type=martial weapon;simple weapon}、或一個你可以將其作為法器使用的物品，你向它之中注入一種法術——從{@filter 奇械師法術列表|spells|class=Artificer|cast time=action|level=1;2}中選擇一個需要一個動作來施展的1環或2環法術（你不需要準備這個法術）。",
+				"任何生物在持握這件物品時，都能夠以一個動作，透過該物品來產生儲存法術的效果（使用你的施法屬性）。如果該法術需要{@status concentration||專注}，則啟動物品的生物必須為其保持專注。該法術將留存在物品中，直到使用次數用完（最大使用次數等於你智力調整值的兩倍（至少兩次））或直到你再次使用該特性。"
+			],
+			"ENG_name": "Spell-Storing Item"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 12,
+			"entries": [
+				"{@i 12級奇械師特性}",
+				"當你達到第12級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過該特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "魔法物品專家",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 14,
+			"entries": [
+				"{@i 14級奇械師特性}",
+				"你的魔法物品技術愈發精進：",
+				{
+					"type": "list",
+					"items": [
+						"你最多可以同時同調於五個魔法物品。",
+						"你無視同調或使用魔法物品時所需的任何職業、種族、法術和等級條件。"
+					]
+				}
+			],
+			"ENG_name": "Magic Item Savant"
+		},
+		{
+			"name": "奇械師專業能力",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 15,
+			"entries": [
+				"{@i 15級奇械師特性}",
+				"你獲得由你選擇的奇械師專業賦予的特性。"
+			],
+			"ENG_name": "Artificer Specialist Feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 16,
+			"entries": [
+				"{@i 16級奇械師特性}",
+				"當你達到16級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "魔法物品大師",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 18,
+			"entries": [
+				"{@i 18級奇械師特性}",
+				"你現在最多可以同時同調於六個魔法物品。"
+			],
+			"ENG_name": "Magic Item Master"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 19,
+			"entries": [
+				"{@i 19級奇械師特性}",
+				"當你達到19級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "奇械之魂",
+			"source": "TCE",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 54
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"level": 20,
+			"entries": [
+				"{@i 20級奇械師特性}",
+				"你與你的魔法物品建立了一種神秘的聯絡，你可以利用它來保護自己：",
+				{
+					"type": "list",
+					"items": [
+						"你的每一件同調中的魔法物品，都會使你的所有豁免檢定中得到+1加值。",
+						"如果你的生命值降低至0，但沒有立即死亡時，你就能以一個反應解除一個奇械師注法，作為降為0的代替，使你的生命值降到1。"
+					]
+				}
+			],
+			"ENG_name": "Soul of Artifice"
+		}
+	],
+	"subclassFeature": [
+		{
+			"name": "鍊金師",
+			"source": "EFA",
+			"page": 12,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Alchemist",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"{@i 製造魔法靈藥和藥水}",
+				"鍊金師是結合試劑產生魔法效應的專家。鍊金師使用他們的造物賦予生命和剝奪生命。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tools of the Trade|Artificer|EFA|Alchemist|EFA|3|EFA"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Alchemist Spells|Artificer|EFA|Alchemist|EFA|3|EFA"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Experimental Elixir|Artificer|EFA|Alchemist|EFA|3|EFA"
+				}
+			],
+			"ENG_name": "Alchemist"
+		},
+		{
+			"name": "鍊金師法術",
+			"source": "EFA",
+			"page": 13,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Alchemist",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"當你達到鍊金師法術表格中指定的奇械師等級時，你此後始終準備所列出的法術。",
+				{
+					"caption": "鍊金師法術",
+					"type": "table",
+					"page": 13,
+					"colLabels": [
+						"奇械師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-3 text-center",
+						"col-9"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Healing Word|XPHB|治癒真言}, {@spell Ray of Sickness|XPHB|致病射線}"
+						],
+						[
+							"5",
+							"{@spell Flaming Sphere|XPHB|熾焰法球}, {@spell Melf's Acid Arrow|XPHB|馬友夫強酸箭}"
+						],
+						[
+							"9",
+							"{@spell Gaseous Form|XPHB|氣化形體}, {@spell Mass Healing Word|XPHB|群體治癒真言}"
+						],
+						[
+							"13",
+							"{@spell Death Ward|XPHB|防死結界}, {@spell Vitriolic Sphere|XPHB|濃酸球}"
+						],
+						[
+							"17",
+							"{@spell Cloudkill|XPHB|死雲術}, {@spell Raise Dead|XPHB|死者復活}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Alchemist Spells"
+		},
+		{
+			"name": "實驗性靈藥",
+			"source": "EFA",
+			"page": 13,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Alchemist",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"每當你持有{@item Alchemist's Supplies|XPHB|鍊金工具}完成一次{@variantrule Long Rest|XPHB|長休}時，你可以使用該工具魔法般地製造兩瓶靈藥。對於每瓶靈藥，在實驗性靈藥表格上擲骰以確定靈藥的效果，當有人飲用靈藥時觸發該效果。靈藥出現在一個小瓶中，當靈藥被飲用或倒出時小瓶消失。如果在你完成一次{@variantrule Long Rest|XPHB|長休}時仍有任何靈藥剩餘，該靈藥及其小瓶都會消失。",
+				{
+					"type": "entries",
+					"name": "飲用一瓶靈藥",
+					"entries": [
+						"作為一個{@variantrule Bonus Action|XPHB|附贈動作}，一個生物可以飲用該靈藥或將其給予5尺內的另一個生物。"
+					],
+					"ENG_name": "Drinking an Elixir"
+				},
+				{
+					"type": "entries",
+					"name": "製造額外靈藥",
+					"entries": [
+						"作為持有{@item Alchemist's Supplies|XPHB|鍊金工具}時的一個{@action Magic|XPHB|魔法}動作，你可以消耗一個法術位來製造另一瓶靈藥。當你這樣做時，你可以從實驗性靈藥表格中選擇其效應而非隨機擲骰。",
+						"當你達到特定奇械師等級時，你可以在每次{@variantrule Long Rest|XPHB|長休}結束時製作一份額外的靈藥：5級時總共三份，9級時四份，15級時五份。"
+					],
+					"ENG_name": "Creating Additional Elixirs"
+				},
+				{
+					"caption": "實驗性靈藥",
+					"type": "table",
+					"page": 13,
+					"colLabels": [
+						"1d6",
+						"效應"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"{@b 治療。} 飲用者恢復等於 {@dice 2d8} 加上你的智力調整值的 {@variantrule Hit Points|XPHB|生命值}。當你達到奇械師等級9（{@dice 3d8}）和15（{@dice 4d8}）時，恢復的 {@variantrule Hit Points|XPHB|生命值} 數值增加 {@dice 1d8}。"
+						],
+						[
+							"2",
+							"{@b 迅捷。} 飲用者的{@variantrule Speed|XPHB|速度}在1小時內增加10尺。當你達到奇械師等級9（15尺）和15（20尺）時，此加值增加。"
+						],
+						[
+							"3",
+							"{@b 韌性。} 飲用者在10分鐘內獲得AC+1加值。當你達到奇械師等級9（1小時）和15（8小時）時，持續時間增加。"
+						],
+						[
+							"4",
+							"{@b 勇氣。} 飲用者可以擲 {@dice 1d4} 並將擲出的數值新增到接下來1分鐘內進行的每次攻擊檢定和豁免檢定中。當你達到奇械師等級9（10分鐘）和15（1小時）時，持續時間增加。"
+						],
+						[
+							"5",
+							"{@b 飛行。} 飲用者獲得10尺的{@variantrule Fly Speed|XPHB|飛行速度}，持續10分鐘。當你達到奇械師等級9（20尺）和15（30尺）時，{@variantrule Fly Speed|XPHB|飛行速度}增加。"
+						],
+						[
+							"6",
+							"你透過選擇此表格中的其他一行來確定靈藥的效果。"
+						]
+					]
+				}
+			],
+			"ENG_name": "Experimental Elixir"
+		},
+		{
+			"name": "本職工具",
+			"source": "EFA",
+			"page": 12,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Alchemist",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "本職工具",
+					"entries": [
+						"你獲得{@item Alchemist's Supplies|XPHB|鍊金工具}和{@item Herbalism Kit|XPHB|草藥工具}的熟練項。若你已擁有其中一項熟練項，則改為獲得一種自選的{@item Artisan's Tools|XPHB|工匠工具}熟練項（若兩項均已掌握，則可選擇兩種其他型別的工匠工具）。"
+					],
+					"ENG_name": "Tool Proficiency"
+				},
+				{
+					"type": "entries",
+					"name": "藥水手作",
+					"entries": [
+						"當你使用{@book 城主指南|XDMG|6|Crafting Magic Items}中的製作規則釀造藥水時，所需的製作時間減半。"
+					],
+					"ENG_name": "Potion Crafting"
+				}
+			],
+			"ENG_name": "Tools of the Trade"
+		},
+		{
+			"name": "鍊金術掌握",
+			"source": "EFA",
+			"page": 14,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Alchemist",
+			"subclassSource": "EFA",
+			"level": 5,
+			"header": 2,
+			"entries": [
+				"每當你使用你的{@item Alchemist's Supplies|XPHB|鍊金工具}作為{@variantrule Spellcasting Focus|XPHB|法器}施法時，你在該法術的一個擲骰上獲得加值。該擲骰必須恢復{@variantrule Hit Points|XPHB|生命值}或是造成強酸、火焰或毒素傷害的傷害擲骰。該加值等於你的智力調整值（最低加值為+1）。"
+			],
+			"ENG_name": "Alchemical Savant"
+		},
+		{
+			"name": "復原藥劑",
+			"source": "EFA",
+			"page": 14,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Alchemist",
+			"subclassSource": "EFA",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"你可以施放{@spell Lesser Restoration|XPHB|次等復原術}而不消耗法術位且無需準備該法術，前提是你使用{@item Alchemist's Supplies|XPHB|鍊金工具}作為{@variantrule Spellcasting Focus|XPHB|法器}。你可以這樣做的次數等於你的智力調整值（至少一次），並且你在完成一次{@variantrule Long Rest|XPHB|長休}後恢復所有已消耗的使用次數。"
+			],
+			"ENG_name": "Restorative Reagents"
+		},
+		{
+			"name": "化學專家",
+			"source": "EFA",
+			"page": 14,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Alchemist",
+			"subclassSource": "EFA",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "鍊金噴發",
+					"entries": [
+						"當你施放一個對目標造成強酸、火焰或毒素傷害的奇械師法術時，你也可以對該目標造成{@damage 2d8}力場傷害。你每回合只能使用此增益一次。"
+					],
+					"ENG_name": "Alchemical Eruption"
+				},
+				{
+					"type": "entries",
+					"name": "鍊金抗性",
+					"entries": [
+						"你獲得對強酸傷害和毒素傷害的{@variantrule Resistance|XPHB|抗性}。你還獲得對{@condition Poisoned|XPHB|中毒}狀態的{@variantrule Immunity|XPHB|免疫}。"
+					],
+					"ENG_name": "Chemical Resistance"
+				},
+				{
+					"type": "entries",
+					"name": "咒喚坩堝",
+					"entries": [
+						"你可以施放{@spell Tasha's Bubbling Cauldron|XPHB|塔莎泡泡坩堝}而不消耗法術位、不準備該法術且無需材質成分，前提是你使用{@item Alchemist's Supplies|XPHB|鍊金工具}作為{@variantrule Spellcasting Focus|XPHB|法器}。一旦你使用此特性，在完成一次{@variantrule Long Rest|XPHB|長休}前無法再次使用。"
+					],
+					"ENG_name": "Conjured Cauldron"
+				}
+			],
+			"ENG_name": "Chemical Mastery"
+		},
+		{
+			"name": "奧能裝甲",
+			"source": "EFA",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Armorer",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"當你手上有{@item Smith's Tools|XPHB|鐵匠工具}時，你可以用一個{@action Magic|XPHB|魔法}動作將你穿著的一套盔甲轉變為奧能裝甲。該盔甲會保持為奧能裝甲，直到你裝著另一套盔甲或你死亡為止。",
+				"當你穿著你的奧能裝甲時，你獲得以下好處。",
+				{
+					"type": "entries",
+					"name": "無需力量需求",
+					"entries": [
+						"如果你的盔甲通常對穿戴者的力量有要求，奧能裝甲能讓你無視它。"
+					],
+					"ENG_name": "No Strength Requirement"
+				},
+				{
+					"type": "entries",
+					"name": "速穿速脫",
+					"entries": [
+						"你可以用一個{@action Utilize|XPHB|操作}動作裝著或卸除該護甲。該護甲無法違揹你的意願被移除。"
+					],
+					"ENG_name": "Quick Don and Doff"
+				},
+				{
+					"type": "entries",
+					"name": "施法法器",
+					"entries": [
+						"你可以將奧能裝甲用作你奇械師法術的{@variantrule Spellcasting Focus|XPHB|法器}。"
+					],
+					"ENG_name": "Spellcasting Focus"
+				}
+			],
+			"ENG_name": "Arcane Armor"
+		},
+		{
+			"name": "裝甲型號",
+			"source": "EFA",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Armorer",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"你可以定製你的奧能裝甲。當你這樣做時，選擇以下裝甲型號之一：{@subclassFeature Dreadnaught|Artificer|EFA|Armorer|EFA|3|EFA|無畏戰甲}、{@subclassFeature Guardian|Artificer|EFA|Armorer|EFA|3|EFA|守護者}或{@subclassFeature Infiltrator|Artificer|EFA|Armorer|EFA|3|EFA|滲透者}。你選擇的型號在你穿著時會給予你特殊益處。",
+				"每個型號包括一個特殊武器。當你使用該武器攻擊時，你可以將你的智力調整值，而非力量或敏捷調整值，新增到攻擊和傷害擲骰中。",
+				"只要你手中有{@item Smith's Tools|XPHB|鐵匠工具}，便能在完成一次{@variantrule Short Rest|XPHB|短休}或{@variantrule Long Rest|XPHB|長休}時改變裝甲型號。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Dreadnaught|Artificer|EFA|Armorer|EFA|3|EFA"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Guardian|Artificer|EFA|Armorer|EFA|3|EFA"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Infiltrator|Artificer|EFA|Armorer|EFA|3|EFA"
+				}
+			],
+			"ENG_name": "Armor Model"
+		},
+		{
+			"name": "裝甲師",
+			"source": "EFA",
+			"page": 14,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Armorer",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"{@i 製造魔法護甲以增強你的屬性}",
+				"裝甲師將護甲改造得幾乎像第二形態一樣。護甲被增強以磨練裝甲師的魔法，釋放強大的攻擊，並生成強大的防禦。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tools of the Trade|Artificer|EFA|Armorer|EFA|3|EFA"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Armorer Spells|Artificer|EFA|Armorer|EFA|3|EFA"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Armor|Artificer|EFA|Armorer|EFA|3|EFA"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Armor Model|Artificer|EFA|Armorer|EFA|3|EFA"
+				}
+			],
+			"ENG_name": "Armorer"
+		},
+		{
+			"name": "裝甲師法術",
+			"source": "EFA",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Armorer",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"當你達到裝甲師法術表格中指定的奇械師等級時，你此後始終準備所列出的法術。",
+				{
+					"caption": "裝甲師法術",
+					"type": "table",
+					"page": 15,
+					"colLabels": [
+						"奇械師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-3 text-center",
+						"col-9"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Magic Missile|XPHB|魔法飛彈}, {@spell Thunderwave|XPHB|雷鳴波}"
+						],
+						[
+							"5",
+							"{@spell Mirror Image|XPHB|鏡影術}, {@spell Shatter|XPHB|粉碎音波}"
+						],
+						[
+							"9",
+							"{@spell Hypnotic Pattern|XPHB|催眠圖紋}, {@spell Lightning Bolt|XPHB|閃電束}"
+						],
+						[
+							"13",
+							"{@spell Fire Shield|XPHB|火焰護盾}, {@spell Greater Invisibility|XPHB|高等隱形術}"
+						],
+						[
+							"17",
+							"{@spell Passwall|XPHB|穿牆術}, {@spell Wall of Force|XPHB|力場牆}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Armorer Spells"
+		},
+		{
+			"name": "無畏戰甲",
+			"source": "EFA",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Armorer",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"你將你的護甲設計成在戰鬥中成為一座高聳的巨像。它具有以下特性：",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "力場毀滅者",
+							"entries": [
+								"一道奧術破城錘或攻城大錘從你的護甲中投射而出。該破城錘視為具有{@itemProperty R|XPHB|觸及}屬性的簡易近戰武器，並在命中時造成{@damage 1d10}力場傷害。如果你用破城錘命中一個體型至少比你小一級的生物，你可以將該生物推離自身最多10尺，或將其拉向自身最多10尺。"
+							],
+							"ENG_name": "Force Demolisher"
+						},
+						{
+							"type": "item",
+							"name": "巨人體型",
+							"entries": [
+								"作為{@variantrule Bonus Action|XPHB|附贈動作}，你變形並放大你的護甲，持續1分鐘。在持續時間內，你的觸及增加5尺，並且如果你小於大型，則你變為大型，連同你穿戴的任何物品。如果沒有足夠的空間讓你增大體型，你的體型不會變化。你可以使用這個{@variantrule Bonus Action|XPHB|附贈動作}的次數等於你的智力調整值（至少一次）。當你完成一次{@variantrule Long Rest|XPHB|長休}時，你恢復所有已使用的次數。"
+							],
+							"ENG_name": "Giant Stature"
+						}
+					]
+				}
+			],
+			"ENG_name": "Dreadnaught"
+		},
+		{
+			"name": "守護者",
+			"source": "EFA",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Armorer",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"你將裝甲設計為適合衝鋒陷陣。它擁有下列特性：",
+				{
+					"type": "item",
+					"name": "雷鳴脈衝",
+					"entries": [
+						"你可以透過護甲釋放衝擊波。該脈衝視為簡易近戰武器並在命中時造成{@damage 1d8}雷鳴傷害。被脈衝命中的生物在攻擊除你以外的目標時攻擊檢定具有{@variantrule Disadvantage|XPHB|劣勢}，直到你的下個回合開始。"
+					],
+					"ENG_name": "Thunder Pulse"
+				},
+				{
+					"type": "item",
+					"name": "防護場",
+					"entries": [
+						"處於{@status Bloodied|XPHB|浴血}狀態時，你可以使用一個{@variantrule Bonus Action|XPHB|附贈動作}來獲得等同於你奇械師等級的{@variantrule Temporary Hit Points|XPHB|臨時生命值}。若卸下護甲則會失去這些{@variantrule Temporary Hit Points|XPHB|臨時生命值}。"
+					],
+					"ENG_name": "Defensive Field"
+				}
+			],
+			"ENG_name": "Guardian"
+		},
+		{
+			"name": "滲透者",
+			"source": "EFA",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Armorer",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"你為更隱秘的行動定製了護甲。它擁有以下特性：",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "閃電發射器",
+							"entries": [
+								"一個寶石般的節點出現在你的護甲上，你可以從中發射閃電弩矢。該發射器視為一把簡易遠端武器，正常射程90尺，最大射程300尺，命中時造成{@damage 1d6}閃電傷害。在你的每個回合中一次，當你用該發射器命中一個生物時，你可以對該目標造成額外{@damage 1d6}閃電傷害。"
+							],
+							"ENG_name": "Lightning Launcher"
+						},
+						{
+							"type": "item",
+							"name": "動力步伐",
+							"entries": [
+								"你的{@variantrule Speed|XPHB|速度}增加5尺。"
+							],
+							"ENG_name": "Powered Steps"
+						},
+						{
+							"type": "item",
+							"name": "減震場",
+							"entries": [
+								"你在敏捷（{@skill Stealth|XPHB|隱匿}）檢定上具有{@variantrule Advantage|XPHB|優勢}。如果該護甲對此類檢定施加{@variantrule Disadvantage|XPHB|劣勢}，則{@variantrule Advantage|XPHB|優勢}和{@variantrule Disadvantage|XPHB|劣勢}相互抵消，如常。"
+							],
+							"ENG_name": "Dampening Field"
+						}
+					]
+				}
+			],
+			"ENG_name": "Infiltrator"
+		},
+		{
+			"name": "本職工具",
+			"source": "EFA",
+			"page": 14,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Armorer",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "護甲受訓",
+					"page": 15,
+					"entries": [
+						"你獲得重甲受訓。"
+					],
+					"ENG_name": "Armor Training"
+				},
+				{
+					"type": "entries",
+					"name": "本職工具",
+					"page": 15,
+					"entries": [
+						"你獲得{@item Smith's Tools|XPHB|鐵匠工具}的熟練項。如果你已經擁有該工具熟練項，則你可以選擇獲得另一種{@item Artisan's Tools|XPHB|工匠工具}的熟練項。"
+					],
+					"ENG_name": "Tool Proficiency"
+				},
+				{
+					"type": "entries",
+					"name": "護甲手作",
+					"page": 15,
+					"entries": [
+						"當你製造非魔法或魔法護甲時，所需製造時間減半。"
+					],
+					"ENG_name": "Armor Crafting"
+				}
+			],
+			"ENG_name": "Tools of the Trade"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "EFA",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Armorer",
+			"subclassSource": "EFA",
+			"level": 5,
+			"header": 2,
+			"entries": [
+				"當你在自己的回合執行{@action Attack|XPHB|攻擊}動作時，你可以發動兩次攻擊而非一次。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "高等裝甲師",
+			"source": "EFA",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Armorer",
+			"subclassSource": "EFA",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "裝甲仿製",
+					"page": 16,
+					"entries": [
+						"你為你的仿製魔法物品特性學習一個額外的方案，且它必須屬於護甲類別。如果你替換該方案，你必須用另一個護甲方案替換它。",
+						"此外，你可以用該特性額外創造一個物品，且該物品也必須是護甲類別。"
+					],
+					"ENG_name": "Armor Replication"
+				},
+				{
+					"type": "entries",
+					"name": "強化軍械庫",
+					"page": 16,
+					"entries": [
+						"你使用奧能裝甲型號的特殊武器進行攻擊和傷害擲骰時獲得+1加值。"
+					],
+					"ENG_name": "Improved Arsenal"
+				}
+			],
+			"ENG_name": "Improved Armorer"
+		},
+		{
+			"name": "完美裝甲",
+			"source": "EFA",
+			"page": 16,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Armorer",
+			"subclassSource": "EFA",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"你的奧能裝甲根據其型號獲得額外好處，如下所述。",
+				{
+					"type": "entries",
+					"name": "無畏戰甲",
+					"entries": [
+						"你的力場毀滅者的傷害骰增加至{@damage 2d6}力場傷害。",
+						"此外，當你使用巨人體型時，你的觸及增加10尺，你的體型可以增長至大型或巨型（由你選擇），並且在持續時間內你在力量檢定和力量豁免檢定上具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Dreadnaught"
+				},
+				{
+					"type": "entries",
+					"name": "守護者",
+					"entries": [
+						"你的雷鳴脈衝的傷害骰提升至{@damage 1d10}雷鳴傷害。",
+						"此外，當一個你能看見的巨型或更小的生物在其回合結束時處於你30尺內，你可以採取一個{@variantrule Reaction|XPHB|反應}來魔法性地迫使該生物進行一次對抗你法術豁免DC的力量豁免檢定。豁免失敗時，你將該生物直接朝你方向拉動至多25尺至一個未佔據空間。如果你將目標拉至距離你自身5尺內的空間，你可以作為此{@variantrule Reaction|XPHB|反應}的一部分對其發動一次近戰武器攻擊。",
+						"你可以使用此{@variantrule Reaction|XPHB|反應}的次數等於你的智力調整值（至少一次），並且當你完成一次{@variantrule Long Rest|XPHB|長休}時恢復所有已使用的次數。"
+					],
+					"ENG_name": "Guardian"
+				},
+				{
+					"type": "entries",
+					"name": "滲透者",
+					"entries": [
+						"你的閃電發射器的傷害骰提升至{@damage 2d6}閃電傷害。任何從你的閃電發射器受到閃電傷害的生物會閃爍魔法光芒直到你的下個回合開始。閃爍的生物在5尺半徑內散發{@variantrule Dim Light|XPHB|微光光照}，並且它在對你進行攻擊檢定時具有{@variantrule Disadvantage|XPHB|劣勢}，因為光芒會在它攻擊你時電擊它。",
+						"此外，以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以獲得等於你{@variantrule Speed|XPHB|速度}兩倍的{@variantrule Fly Speed|XPHB|飛行速度}，直到目前回合結束。你可使用此附贈動作的次數等於你的智力調整值（至少一次），並在完成一次{@variantrule Long Rest|XPHB|長休}後恢復所有已消耗的使用次數。"
+					],
+					"ENG_name": "Infiltrator"
+				}
+			],
+			"ENG_name": "Perfected Armor"
+		},
+		{
+			"name": "魔炮師",
+			"source": "EFA",
+			"page": 16,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Artillerist",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"{@i 從遠處掌控毀滅性法力}",
+				"魔炮師專精於使用魔法在戰場上猛投能量、投射物和爆炸。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tools of the Trade|Artificer|EFA|Artillerist|EFA|3|EFA"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Artillerist Spells|Artificer|EFA|Artillerist|EFA|3|EFA"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Eldritch Cannon|Artificer|EFA|Artillerist|EFA|3|EFA"
+				}
+			],
+			"ENG_name": "Artillerist"
+		},
+		{
+			"name": "魔炮師法術",
+			"source": "EFA",
+			"page": 16,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Artillerist",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"當你達到魔炮師法術表格中指定的奇械師等級時，你此後始終準備所列出的法術。",
+				{
+					"caption": "魔炮師法術",
+					"type": "table",
+					"page": 16,
+					"colLabels": [
+						"奇械師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-3 text-center",
+						"col-9"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Shield|XPHB|護盾術}, {@spell Thunderwave|XPHB|雷鳴波}"
+						],
+						[
+							"5",
+							"{@spell Scorching Ray|XPHB|灼熱射線}, {@spell Shatter|XPHB|粉碎音波}"
+						],
+						[
+							"9",
+							"{@spell Fireball|XPHB|火球術}, {@spell Wind Wall|XPHB|風牆術}"
+						],
+						[
+							"13",
+							"{@spell Ice Storm|XPHB|冰風暴}, {@spell Wall of Fire|XPHB|火牆術}"
+						],
+						[
+							"17",
+							"{@spell Cone of Cold|XPHB|寒冰錐}, {@spell Wall of Force|XPHB|力場牆}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Artillerist Spells"
+		},
+		{
+			"name": "魔能炮臺",
+			"source": "EFA",
+			"page": 16,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Artillerist",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"使用{@item Smith's Tools|XPHB|鐵匠工具}或{@item Woodcarver's Tools|XPHB|木雕工具}，你可以執行一個{@action Magic|XPHB|魔法}動作，在自身5尺內水平表面的一處未佔據空間創造一門小型或微型{@object Eldritch Cannon|EFA|魔能炮臺}。你決定它的外觀，包括你要攜帶它，或讓它裝有腿或輪子。當炮臺降至0{@variantrule Hit Points|XPHB|生命值}或存在1小時後，它會消失。你也能以一個魔法動作提前使它消失。",
+				"一旦你創造了一個魔能炮臺，你就不能再這樣做，直到你完成一次{@variantrule Long Rest|XPHB|長休}或消耗一個法術位來創造一個。你一次只能擁有一個魔能炮臺，並且當你已經擁有一個時無法再創造。"
+			],
+			"ENG_name": "Eldritch Cannon"
+		},
+		{
+			"name": "本職工具",
+			"source": "EFA",
+			"page": 16,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Artillerist",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "遠端武器",
+					"entries": [
+						"你獲得{@filter 軍事遠端武器|items|type=martial weapon;ranged weapon=sand}的熟練項。"
+					],
+					"ENG_name": "Ranged Weaponry"
+				},
+				{
+					"type": "entries",
+					"name": "本職工具",
+					"entries": [
+						"你獲得{@item Woodcarver's Tools|XPHB|木雕工具}的熟練項。如果你已有此熟練項，則獲得一種你選擇的其他型別的{@item Artisan's Tools|XPHB|工匠工具}的熟練項。"
+					],
+					"ENG_name": "Tool Proficiency"
+				},
+				{
+					"type": "entries",
+					"name": "魔杖手作",
+					"entries": [
+						"當你製作一個魔法{@item Wand|XPHB|魔杖}時，所需時間減半。"
+					],
+					"ENG_name": "Wand Crafting"
+				}
+			],
+			"ENG_name": "Tools of the Trade"
+		},
+		{
+			"name": "奧法火器",
+			"source": "EFA",
+			"page": 17,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Artillerist",
+			"subclassSource": "EFA",
+			"level": 5,
+			"header": 2,
+			"entries": [
+				"當你完成一次{@variantrule Long Rest|XPHB|長休}時，你可以使用{@item Woodcarver's Tools|XPHB|木雕工具}將特殊符文雕刻到{@item Rod|XPHB|權杖}、{@item Staff|XPHB|法杖}、{@item Wand|XPHB|魔杖}或{@filter 軍用遠端武器|items|type=martial weapon;ranged weapon=sand}上，從而將其轉化為你的奧法火器。如果你之後在不同物品上雕刻這些符文，它們會從原物件上消失。否則這些符文將無限期持續存在。",
+				"你可以將你的奧法火器用作奇械師法術的{@variantrule Spellcasting Focus|XPHB|法器}。當你透過該槍械施放一個奇械師法術時，擲{@damage 1d8}，並且你獲得一個等於擲骰數值的加值到該法術的一個傷害擲骰上。"
+			],
+			"ENG_name": "Arcane Firearm"
+		},
+		{
+			"name": "高爆炮臺",
+			"source": "EFA",
+			"page": 17,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Artillerist",
+			"subclassSource": "EFA",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"你創造的每個{@object Eldritch Cannon|EFA|魔能炮臺}現在更具破壞性。你獲得以下好處。",
+				{
+					"type": "entries",
+					"name": "引爆",
+					"entries": [
+						"當你的炮臺受到傷害時，若你在其60尺範圍內，可以採取一個{@variantrule Reaction|XPHB|反應}來命令炮臺引爆。這樣做會摧毀炮臺，並迫使每個在其20尺範圍內的生物進行一次對抗你法術豁免DC的敏捷豁免檢定，豁免失敗則受到{@damage 3d10}力場傷害，豁免成功則只受一半傷害。"
+					],
+					"ENG_name": "Detonate"
+				},
+				{
+					"type": "entries",
+					"name": "火力",
+					"entries": [
+						"炮臺的傷害擲骰，以及「防護者」提供的{@variantrule Temporary Hit Points|XPHB|臨時生命值}，均增加{@dice 1d8}。"
+					],
+					"ENG_name": "Firepower"
+				}
+			],
+			"ENG_name": "Explosive Cannon"
+		},
+		{
+			"name": "堅固要塞",
+			"source": "EFA",
+			"page": 17,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Artillerist",
+			"subclassSource": "EFA",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"你是使用你的{@object Eldritch Cannon|EFA|魔能炮臺}構築防禦良好的陣位的大師。你獲得以下好處。",
+				{
+					"type": "item",
+					"name": "雙倍火力",
+					"entries": [
+						"你現在可以同時擁有兩門火炮，並且你可以用同一個{@action Magic|XPHB|魔法}動作創造兩門。（如果你消耗一個法術位來創造第一門火炮，你必須消耗另一個法術位來創造第二門。）你可以用同一個{@variantrule Bonus Action|XPHB|附贈動作}啟用它們兩者，命令它們使用相同的啟用選項或不同的選項。當你擁有兩門火炮時，你不能創造第三門。"
+					],
+					"ENG_name": "Double Firepower"
+				},
+				{
+					"type": "entries",
+					"name": "閃爍場投影",
+					"entries": [
+						"你和你的盟友在你的{@object Eldritch Cannon|EFA|魔能炮臺}10尺內擁有{@variantrule Cover|XPHB|半身掩護}。"
+					],
+					"ENG_name": "Shimmering Field Projection"
+				}
+			],
+			"ENG_name": "Fortified Position"
+		},
+		{
+			"name": "戰鬥準備",
+			"source": "EFA",
+			"page": 18,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"你的戰鬥訓練和魔法實驗以兩種方式取得了回報。",
+				{
+					"type": "entries",
+					"name": "奧法增強",
+					"entries": [
+						"當你使用魔法武器攻擊時，你可以用智力調整值代替力量或敏捷調整值來進行攻擊和傷害擲骰。"
+					],
+					"ENG_name": "Arcane Empowerment"
+				},
+				{
+					"type": "entries",
+					"name": "武器學識",
+					"entries": [
+						"你獲得{@filter 軍用武器|items|type=martial weapon}的熟練項。你可以將你擁有熟練項的武器作為你奇械師法術的{@variantrule Spellcasting Focus|XPHB|法器}。"
+					],
+					"ENG_name": "Weapon Knowledge"
+				}
+			],
+			"ENG_name": "Battle Ready"
+		},
+		{
+			"name": "戰地匠師",
+			"source": "EFA",
+			"page": 18,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"{@i 命令構裝守護者}",
+				"戰地匠師是防禦者和醫療兵的結合體，是保護他人和修復物資與人員的專家。為了協助他們的工作，戰地匠師會有一個{@creature Steel Defender|EFA|鋼鐵守衛}相伴，這是他們自己創造的防護性同伴。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tools of the Trade|Artificer|EFA|Battle Smith|EFA|3|EFA"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Battle Smith Spells|Artificer|EFA|Battle Smith|EFA|3|EFA"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Battle Ready|Artificer|EFA|Battle Smith|EFA|3|EFA"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Steel Defender|Artificer|EFA|Battle Smith|EFA|3|EFA"
+				}
+			],
+			"ENG_name": "Battle Smith"
+		},
+		{
+			"name": "戰地匠師法術",
+			"source": "EFA",
+			"page": 18,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"當你達到戰地匠師法術表格中指定的奇械師等級時，你此後始終準備著列出的法術。",
+				{
+					"caption": "戰地匠師法術",
+					"type": "table",
+					"page": 18,
+					"colLabels": [
+						"奇械師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-3 text-center",
+						"col-9"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Heroism|XPHB|英雄氣概}, {@spell Shield|XPHB|護盾術}"
+						],
+						[
+							"5",
+							"{@spell Shining Smite|XPHB|閃耀斬}, {@spell Warding Bond|XPHB|守護之鏈}"
+						],
+						[
+							"9",
+							"{@spell Aura of Vitality|XPHB|活力靈光}, {@spell Conjure Barrage|XPHB|箭如雨下}"
+						],
+						[
+							"13",
+							"{@spell Aura of Purity|XPHB|淨化靈光}, {@spell Fire Shield|XPHB|火焰護盾}"
+						],
+						[
+							"17",
+							"{@spell Banishing Smite|XPHB|放逐斬}, {@spell Mass Cure Wounds|XPHB|群體療傷術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Battle Smith Spells"
+		},
+		{
+			"name": "鋼鐵守衛",
+			"source": "EFA",
+			"page": 18,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"你的修補為你帶來了一個同伴，一個{@creature Steel Defender|EFA|鋼鐵守衛}。你決定防禦者的外貌以及它有兩條腿還是四條腿；你的選擇不會影響防禦者的遊戲資料。",
+				"該{@creature Steel Defender|EFA|防禦者}對你和你的盟友{@variantrule Friendly [Attitude]|XPHB|友好}並服從你。如果你死亡，它會消失。",
+				{
+					"type": "entries",
+					"name": "戰鬥中的守衛",
+					"entries": [
+						"在戰鬥中，防禦者會在你的回合行動。它可以自行移動和使用{@variantrule Reaction|XPHB|反應}，但除非你使用{@variantrule Bonus Action|XPHB|附贈動作}命令它執行一個動作，否則它只能執行迴避動作。如果你處於{@condition Incapacitated|XPHB|失能}狀態，防禦者會自行行動且不受限於迴避動作。"
+					],
+					"ENG_name": "The Defender in Combat"
+				},
+				{
+					"type": "entries",
+					"name": "恢復與替換守衛",
+					"page": 19,
+					"entries": [
+						"如果防禦者在過去1小時內死亡，你可以使用一個{@action Magic|XPHB|魔法}動作來接觸它並消耗一個法術位。防禦者會在1分鐘後復活，並恢復所有{@variantrule Hit Points|XPHB|生命值}。",
+						"每當你完成一次{@variantrule Long Rest|XPHB|長休}，如果你手中有{@item Smith's Tools|XPHB|鐵匠工具}，就可以建立一個新的{@creature Steel Defender|EFA|防禦者}。如果你已經透過此特性擁有一個防禦者，則第一個防禦者會消失。"
+					],
+					"ENG_name": "Restoring or Replacing the Defender"
+				}
+			],
+			"ENG_name": "Steel Defender"
+		},
+		{
+			"name": "本職工具",
+			"source": "EFA",
+			"page": 18,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "本職工具",
+					"entries": [
+						"你獲得{@item Smith's Tools|XPHB|鐵匠工具}的熟練項。如果你已有此熟練項，則可以選擇獲得另一種{@item Artisan's Tools|XPHB|工匠工具}的熟練項。"
+					],
+					"ENG_name": "Tool Proficiency"
+				},
+				{
+					"type": "entries",
+					"name": "武器手作",
+					"entries": [
+						"當你製造非魔法或魔法武器時，所需時間減半。"
+					],
+					"ENG_name": "Weapon Crafting"
+				}
+			],
+			"ENG_name": "Tools of the Trade"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "EFA",
+			"page": 19,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "EFA",
+			"level": 5,
+			"header": 2,
+			"entries": [
+				"你在你的回合執行{@action Attack|XPHB|攻擊}動作時，可以攻擊兩次而非一次。當你執行{@action Attack|XPHB|攻擊}動作時，可以放棄其中一次攻擊來命令你的{@creature Steel Defender|EFA|鋼鐵守衛}執行力場強化撕裂動作。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "奧能震盪",
+			"source": "EFA",
+			"page": 19,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "EFA",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"當你使用魔法武器以攻擊檢定命中一個目標或你的{@creature Steel Defender|EFA|鋼鐵守衛}命中一個目標時，你可以透過打擊引導魔法能量來創造以下效應之一：",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "毀滅能量",
+							"entries": [
+								"目標受到額外的{@damage 2d6}點力場傷害。"
+							],
+							"ENG_name": "Destructive Energy"
+						},
+						{
+							"type": "item",
+							"name": "復甦能量",
+							"entries": [
+								"選擇你能看見的目標30尺內的一個生物或物件。治療能量流入所選目標，為其恢復{@dice 2d6}{@variantrule Hit Points|XPHB|生命值}。"
+							],
+							"ENG_name": "Restorative Energy"
+						}
+					]
+				},
+				"你可使用此能量的次數等於你的智力調整值（至少一次），但每回合最多只能使用一次。完成一次{@variantrule Long Rest|XPHB|長休}後，你恢復所有已消耗的使用次數。"
+			],
+			"ENG_name": "Arcane Jolt"
+		},
+		{
+			"name": "改良守衛",
+			"source": "EFA",
+			"page": 19,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "EFA",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"你的{@subclassFeature Arcane Jolt|Artificer|EFA|Battle Smith|EFA|9|EFA|奧能震盪}和{@creature Steel Defender|EFA|鋼鐵守衛}變得更加強大，賦予以下增益。",
+				{
+					"type": "entries",
+					"name": "強化激盪",
+					"entries": [
+						"你的奧能震盪的額外傷害和治療都提升至{@dice 4d6}。"
+					],
+					"ENG_name": "Improved Jolt"
+				},
+				{
+					"type": "entries",
+					"name": "強化偏轉",
+					"entries": [
+						"每當你的{@creature Steel Defender|EFA|鋼鐵守衛}使用其招架攻擊時，攻擊手受到等於{@dice 1d4}加上你的智力調整值的力場傷害。"
+					],
+					"ENG_name": "Improved Deflection"
+				}
+			],
+			"ENG_name": "Improved Defender"
+		},
+		{
+			"name": "冒險者地圖匣",
+			"source": "EFA",
+			"page": 20,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Cartographer",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"每當你持用{@item Cartographer's Tools|XPHB|製圖工具}完成一次{@variantrule Long Rest|XPHB|長休}時，你可以使用該工具透過接觸至少兩個生物（其中一個可以是你自己）來建立一套魔法地圖，最多生物數量等於1加上你的智力調整值（最少兩個生物）。每個目標獲得一張魔法地圖，該地圖會不斷更新以顯示所有地圖持有者的相對位置，但對所有其他人來說都是無法辨認的。這些地圖持續到你死亡或你再次使用此特性為止，此時任何由該特性建立的現有地圖會立即消失。",
+				"當攜帶該地圖時，目標獲得以下好處。",
+				{
+					"type": "entries",
+					"name": "警覺",
+					"entries": [
+						"目標在其{@variantrule Initiative|XPHB|先攻}檢定上增加{@dice 1d4}。"
+					],
+					"ENG_name": "Awareness"
+				},
+				{
+					"type": "entries",
+					"name": "定位",
+					"entries": [
+						"目標知曉與其處於同一存在位面的所有其他地圖持有者的位置。當施放法術或創造另一個需要能夠看見效果目標的效應時，地圖持有者可以無視視線或掩護來以另一個地圖持有者為目標，只要該地圖持有者仍處於效應射程內。"
+					],
+					"ENG_name": "Positioning"
+				}
+			],
+			"ENG_name": "Adventurer's Atlas"
+		},
+		{
+			"name": "製圖師",
+			"source": "EFA",
+			"page": 20,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Cartographer",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"{@i 繪製動盪中的優勢航線}",
+				"製圖師是頂級的導航員和偵察代理人。使用他們的造物，製圖師可以高亮威脅、佑護盟友，並開闢通往遙遠地點的傳送門。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tools of the Trade|Artificer|EFA|Cartographer|EFA|3|EFA"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Cartographer Spells|Artificer|EFA|Cartographer|EFA|3|EFA"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Adventurer's Atlas|Artificer|EFA|Cartographer|EFA|3|EFA"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Mapping Magic|Artificer|EFA|Cartographer|EFA|3|EFA"
+				}
+			],
+			"ENG_name": "Cartographer"
+		},
+		{
+			"name": "製圖師法術",
+			"source": "EFA",
+			"page": 20,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Cartographer",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"當你達到製圖師法術表格中指定的奇械師等級時，你此後始終準備所列出的法術。",
+				{
+					"caption": "製圖師法術",
+					"type": "table",
+					"page": 20,
+					"colLabels": [
+						"奇械師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-3 text-center",
+						"col-9"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Faerie Fire|XPHB|妖火}, {@spell Guiding Bolt|XPHB|光導箭}, {@spell Healing Word|XPHB|治癒真言}"
+						],
+						[
+							"5",
+							"{@spell Locate Object|XPHB|物件定位術}, {@spell Mind Spike|XPHB|心靈尖刺}"
+						],
+						[
+							"9",
+							"{@spell Call Lightning|XPHB|召雷術}, {@spell Clairvoyance|XPHB|鷹眼術}"
+						],
+						[
+							"13",
+							"{@spell Banishment|XPHB|放逐術}, {@spell Locate Creature|XPHB|生物定位術}"
+						],
+						[
+							"17",
+							"{@spell Scrying|XPHB|探知術}, {@spell Teleportation Circle|XPHB|傳送法陣}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Cartographer Spells"
+		},
+		{
+			"name": "製圖魔法",
+			"source": "EFA",
+			"page": 21,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Cartographer",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "發光地圖繪圖師",
+					"entries": [
+						"你可以施放{@spell Faerie Fire|XPHB|妖火}而不消耗法術位，將受影響的生物輪廓描繪得如同墨水勾勒一般。你可以如此施放的次數等於你的智力調整值（至少一次），並且你在完成一次{@variantrule Long Rest|XPHB|長休}後恢復所有已消耗的使用次數。"
+					],
+					"ENG_name": "Illuminated Cartography"
+				},
+				{
+					"type": "entries",
+					"name": "傳送門躍",
+					"entries": [
+						"在你的回合，你可以消耗等於你{@variantrule Speed|XPHB|速度}一半（向下取整）的移動力，傳送至你能看見的自身10尺內未佔據空間，或位於你30尺內、持有你冒險者地圖匣之地圖的生物5尺內未佔據空間。若你的速度為0，便不能使用此增益。"
+					],
+					"ENG_name": "Portal Jump"
+				}
+			],
+			"ENG_name": "Mapping Magic"
+		},
+		{
+			"name": "本職工具",
+			"source": "EFA",
+			"page": 20,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Cartographer",
+			"subclassSource": "EFA",
+			"level": 3,
+			"entries": [
+				"你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "本職工具",
+					"entries": [
+						"你獲得{@item Calligrapher's Supplies|XPHB|書法工具}和{@item Cartographer's Tools|XPHB|製圖工具}的熟練項。若你已擁有其中一項熟練項，則你可以選擇獲得另一種{@item Artisan's Tools|XPHB|工匠工具}的熟練項（若你已擁有兩項熟練項，則可選擇獲得另外兩種）。"
+					],
+					"ENG_name": "Tool Proficiency"
+				},
+				{
+					"type": "entries",
+					"name": "卷軸手作",
+					"entries": [
+						"當你使用{@book 玩家手冊|PHB}中的手作規則來抄寫{@item Spell Scroll|XDMG|法術卷軸}時，製造它所需的時間減半。"
+					],
+					"ENG_name": "Scroll Crafting"
+				}
+			],
+			"ENG_name": "Tools of the Trade"
+		},
+		{
+			"name": "制導精準",
+			"source": "EFA",
+			"page": 21,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Cartographer",
+			"subclassSource": "EFA",
+			"level": 5,
+			"header": 2,
+			"entries": [
+				"每回合一次，每當你從你的製圖師法術列表中施放一個法術或使用攻擊檢定命中一個受你的{@spell Faerie Fire|XPHB|妖火}影響的生物時，你可以將你的智力調整值新增到該法術或攻擊的一個傷害擲骰上。",
+				"此外，受到傷害不會使你失去對{@spell Faerie Fire|XPHB|妖火}的{@status Concentration|XPHB|專注}。"
+			],
+			"ENG_name": "Guided Precision"
+		},
+		{
+			"name": "靈機一動",
+			"source": "EFA",
+			"page": 21,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Cartographer",
+			"subclassSource": "EFA",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"當你使用你的{@classFeature Flash of Genius|Artificer|EFA|7|EFA|靈光一閃}時，你或一個你選擇的你能看見的30尺內願意的生物可以傳送至多30尺至一個你能看見的未佔據空間，作為同一個{@variantrule Reaction|XPHB|反應}的一部分。"
+			],
+			"ENG_name": "Ingenious Movement"
+		},
+		{
+			"name": "萬能地圖匣",
+			"source": "EFA",
+			"page": 21,
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Cartographer",
+			"subclassSource": "EFA",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"你的冒險者地圖匣得到強化，獲得以下好處。",
+				{
+					"type": "entries",
+					"name": "安全歸處",
+					"entries": [
+						"當地圖持有者將被減少至0{@variantrule Hit Points|XPHB|生命值}但未被直接殺死時，該生物可以摧毀其地圖。該生物的{@variantrule Hit Points|XPHB|生命值}改為等於你奇械師等級兩倍的數值，且該生物被傳送到你5尺內或另一個它選擇的地圖持有者5尺內的未佔據空間。"
+					],
+					"ENG_name": "Safe Haven"
+				},
+				{
+					"type": "entries",
+					"name": "徑路悉曉",
+					"entries": [
+						"若你是冒險者地圖匣的地圖持有者之一，可以施展{@spell Find the Path|XPHB|尋路術}，且無需消耗法術位、準備該法術或提供法術成分。使用此增益後，完成一次{@variantrule Long Rest|XPHB|長休}前不能再次使用。"
+					],
+					"ENG_name": "Unerring Path"
+				}
+			],
+			"ENG_name": "Superior Atlas"
+		},
+		{
+			"name": "再起伴兵",
+			"source": "RHW",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Reanimator",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"你能夠以一個{@action Magic|XPHB|魔法}動作，使用{@item Tinker's Tools|XPHB|修補工具}或你具有熟練的其他種類的工匠工具，透過亡靈法術與科學的力量創造一名{@creature Reanimated Companion|RHW|再起伴兵}（資料卡見下）。伴兵顯現於你5尺的未佔據空間中。伴兵的外觀由你決定，但你的選擇不會改變其遊戲資料。",
+				"伴兵對你和你的盟友態度{@variantrule Friendly [Attitude]|XPHB|友好}並服從於你。伴兵存在持續至你完成長休，或在你執行魔法動作令其解散時提前結束。此時伴兵無害地坍塌為一堆內臟。若你死亡，則伴兵立即降至0生命值並死亡（觸發其自爆特質）。",
+				"一旦你創造了一名伴兵，你無法再次創造伴兵直至你完成長休或你消耗一個法術位來創造伴兵。你同時只能擁有一名伴兵，伴兵存在期間你無法創造伴兵。",
+				{
+					"type": "entries",
+					"name": "戰鬥中的伴兵",
+					"entries": [
+						"在戰鬥中，伴兵在你的回合內行動。其可以移動並自行執行反應，但除非你以附贈動作命令其執行動作，否則其唯一可用的動作是迴避動作。若你陷入{@condition Incapacitated|XPHB|失能}狀態，則伴兵會自行行動且不再限制於迴避動作。"
+					],
+					"ENG_name": "The Companion in Combat"
+				}
+			],
+			"ENG_name": "Reanimated Companion"
+		},
+		{
+			"name": "蘇生師",
+			"source": "RHW",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Reanimator",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"{@i 重組屍體並喚回死者}",
+				"蘇生師無視自然法則，只為追求那些駭人聽聞的實驗。這些陰森的奇械師將來自不同屍體的殘骸縫合成僕從，以汙穢而禁忌的魔法強化生者，並將死靈術轉化為一種令人戰慄的科學。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Reanimator Spells|Artificer|EFA|Reanimator|RHW|3|RHW"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Reanimator's Skill Set|Artificer|EFA|Reanimator|RHW|3|RHW"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Reanimated Companion|Artificer|EFA|Reanimator|RHW|3|RHW"
+				}
+			],
+			"ENG_name": "Reanimator"
+		},
+		{
+			"name": "蘇生師法術",
+			"source": "RHW",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Reanimator",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"當你到達蘇生師法術表中特定的奇械師等級時，你就始終準備著表中對應的法術。",
+				{
+					"type": "table",
+					"caption": "蘇生師法術",
+					"colLabels": [
+						"奇械師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell False Life|XPHB|虛假生命}, {@spell Spare the Dying|XPHB|維生術}, {@spell Witch Bolt|XPHB|巫術箭}"
+						],
+						[
+							"5",
+							"{@spell Blindness/Deafness|XPHB|目盲術/耳聾術}, {@spell Enhance Ability|XPHB|強化屬性}"
+						],
+						[
+							"9",
+							"{@spell Animate Dead|XPHB|活化死屍}, {@spell Lightning Bolt|XPHB|閃電束}"
+						],
+						[
+							"13",
+							"{@spell Blight|XPHB|枯萎術}, {@spell Death Ward|XPHB|防死結界}"
+						],
+						[
+							"17",
+							"{@spell Antilife Shell|XPHB|防活物護罩}, {@spell Raise Dead|XPHB|死者復活}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Reanimator Spells"
+		},
+		{
+			"name": "蘇生師技藝",
+			"source": "RHW",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Reanimator",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "電顫復律",
+					"entries": [
+						"你施展{@spell Spare the Dying|XPHB|維生術}時，可以修改此法術使其向目標發射一陣電流，令其回生。目標恢復等於你奇械師等級的生命值，且位於源自其10尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名你選擇的生物必須進行一次對抗你法術豁免DC的敏捷豁免，豁免失敗則受到{@damage 2d4}閃電傷害，豁免成功則受到一半傷害。",
+						"你能夠以此法修改法術的次數等於你的智力調整值。你在完成長休時重獲所有已消耗的使用次數。此特性的閃電傷害在你的奇械師等級達到11級（{@dice 3d4}）和17級（{@dice 4d4}）時提高{@dice 1d4}。"
+					],
+					"ENG_name": "Jolt to Life"
+				},
+				{
+					"type": "entries",
+					"name": "蘇生師工具",
+					"entries": [
+						"你獲得{@item Alchemist's Supplies|XPHB|鍊金工具}的熟練。若你已經擁有其熟練，則你獲得另一種你選擇的工匠工具的熟練。"
+					],
+					"ENG_name": "Reanimator's Tools"
+				}
+			],
+			"ENG_name": "Reanimator's Skill Set"
+		},
+		{
+			"name": "怪異改造",
+			"source": "RHW",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Reanimator",
+			"subclassSource": "RHW",
+			"level": 5,
+			"header": 2,
+			"entries": [
+				"每當你創造一名{@creature Reanimated Companion|RHW|再起伴兵}時，你選擇以下選項之一令其獲得之。你在創造伴兵時進行選擇。",
+				{
+					"type": "entries",
+					"name": "奧法導管",
+					"entries": [
+						"你可以如同身處伴兵所在的空間一樣施展法術，但你仍需使用你自己的感官。每回合一次，每當你施展一道塑能或死靈學派的奇械師法術並造成傷害時，若伴兵位於你120尺內，則你將你的智力調整值加入該法術的其中一枚傷害骰。"
+					],
+					"ENG_name": "Arcane Conduit"
+				},
+				{
+					"type": "entries",
+					"name": "狂怒",
+					"entries": [
+						"伴兵恐怖橫掃動作的傷害骰增加至{@dice 1d6}。"
+					],
+					"ENG_name": "Ferocity"
+				}
+			],
+			"ENG_name": "Strange Modifications"
+		},
+		{
+			"name": "強化蘇生",
+			"source": "RHW",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Reanimator",
+			"subclassSource": "RHW",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"你{@creature Reanimated Companion|RHW|復生同伴的}的自爆傷害增加至{@dice 4d4}。你伴兵造成的暗蝕傷害無視抗性。"
+			],
+			"ENG_name": "Improved Reanimation"
+		},
+		{
+			"name": "駭懼改造",
+			"source": "RHW",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Reanimator",
+			"subclassSource": "RHW",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"你嘗試進一步改造你的伴兵。每當你創造一名{@creature Reanimated Companion|RHW|再起伴兵}時，伴兵可以獲得兩個（而非一個）怪異改造選項。此外，你選擇怪異改造選項時也可以從以下選項中選擇。",
+				{
+					"type": "entries",
+					"name": "腫脹",
+					"entries": [
+						"伴兵變為大型。每當其以恐怖橫掃動作命中不超過大型的生物時，該生物被伴兵推離至多10尺。此外，你可以將你的智力調整值加入伴兵自爆造成的傷害。"
+					],
+					"ENG_name": "Bloated"
+				},
+				{
+					"type": "entries",
+					"name": "枯瘦",
+					"entries": [
+						"伴兵的速度提升至45尺，且其獲得等於其速度的攀爬速度。伴兵可以在難以攀爬的表面上攀爬，包括沿著天花板移動，且無需為此進行屬性檢定。此外，每當一名你選擇的生物在源自你伴兵的10尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內開始其回合時，該生物必須成功透過一次對抗你法術豁免DC的感知豁免，否則陷入{@condition Frightened|XPHB|恐慌}狀態直至其下個回合開始。"
+					],
+					"ENG_name": "Gaunt"
+				},
+				{
+					"type": "entries",
+					"name": "溼滑",
+					"entries": [
+						"伴兵獲得等於其速度的游泳速度，且其可以移動穿過最窄1寸寬的空間而無需額外消耗移動力。此外，每當伴兵被位於其10尺內生物的一次攻擊檢定命中時，攻擊者受到等於你智力調整值的強酸傷害。"
+					],
+					"ENG_name": "Moist"
+				}
+			],
+			"ENG_name": "Macabre Modifications"
+		},
+		{
+			"name": "精純蘇生",
+			"source": "RHW",
+			"className": "Artificer",
+			"classSource": "EFA",
+			"subclassShortName": "Reanimator",
+			"subclassSource": "RHW",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"你已經徹底掌握了復活回生的科學技術，並獲得下述增益。",
+				{
+					"type": "entries",
+					"name": "便捷回生",
+					"entries": [
+						"只要你使用{@item Tinker's Tools|XPHB|修補工具}或你具有熟練的其他種類的工匠工具作為施法法器，你便可以無需材料成分且無需法術位地施展一次{@spell Raise Dead|XPHB|死者復活}。此特性一經使用，直到你完成長休都無法再次使用。"
+					],
+					"ENG_name": "Facilitated Revival"
+				},
+				{
+					"type": "entries",
+					"name": "性命流轉",
+					"entries": [
+						"你可以汲取你{@creature Reanimated Companion|RHW|再起伴兵}體內的活化魔法以強化自身。當你或你的伴兵受到傷害時，你能夠以反應恢復等於你伴兵當前生命值的生命值。伴兵隨後立即降至0生命值並死亡（觸發其自爆特質）。"
+					],
+					"ENG_name": "Life Transfer"
+				},
+				{
+					"type": "entries",
+					"name": "卓越改造",
+					"entries": [
+						"每當你創造{@creature Reanimated Companion|RHW|再起伴兵}時，其現在可以獲得三個怪異改造選項。"
+					],
+					"ENG_name": "Superior Modifications"
+				}
+			],
+			"ENG_name": "Refined Reanimation"
+		},
+		{
+			"name": "鍊金師",
+			"source": "TCE",
+			"page": 14,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 58
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Alchemist",
+			"subclassSource": "TCE",
+			"level": 3,
+			"entries": [
+				"鍊金師是將奇異的原料混合在一起以產生種種新物質的專家，鍊金師的創造物能用來延續生命，也能用來奪走生命。鍊金術是最古老的奇械師技藝，它的多功能性在戰爭與和平時都長期受到重視。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tool Proficiency|Artificer|TCE|Alchemist|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Alchemist Spells|Artificer|TCE|Alchemist|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Experimental Elixir|Artificer|TCE|Alchemist|TCE|3"
+				}
+			],
+			"ENG_name": "Alchemist"
+		},
+		{
+			"name": "鍊金師法術",
+			"source": "TCE",
+			"page": 14,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 58
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Alchemist",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"第3級起，只要你達到相應的職業等級，鍊金師法術表格中的法術總是被視為已準備。這些法術對你來說是奇械師法術，且不會計入你可以準備法術的總數。",
+				{
+					"type": "table",
+					"caption": "鍊金師法術",
+					"colLabels": [
+						"奇械師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell healing word||治癒真言}, {@spell ray of sickness||致病射線}"
+						],
+						[
+							"5級",
+							"{@spell flaming sphere||熾焰法球}, {@spell Melf's acid arrow||馬友夫強酸箭}"
+						],
+						[
+							"9級",
+							"{@spell gaseous form||氣化形體}, {@spell mass healing word||群體治癒真言}"
+						],
+						[
+							"13級",
+							"{@spell blight||枯萎術}, {@spell death ward||防死結界}"
+						],
+						[
+							"17級",
+							"{@spell cloudkill||死雲術}, {@spell raise dead||死者復活}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Alchemist Spells"
+		},
+		{
+			"name": "實驗性靈藥",
+			"source": "TCE",
+			"page": 14,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 58
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Alchemist",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"自3級起，每當你完成一次長休時，你可以在一個所觸碰的空燒瓶中，以魔法製造一瓶{@i 實驗性靈藥}。在實驗性靈藥表上擲骰以決定靈藥的效果；有人飲用時便會觸發該效果。生物能以一個動作飲用靈藥，或將其餵給一個{@condition incapacitated||失能}生物。",
+				"你必須要擁有{@item alchemist's supplies|PHB|鍊金工具}才能製造{@i 實驗性靈藥}，你透過此特性創造的任何靈藥會一直存在，直到被飲用、或是你的下一次長休結束時。",
+				"當你在本職業達到特定等級時，可以在長休結束時製造更多靈藥：6級時兩瓶，15級時三瓶。分別為每瓶靈藥的效果擲骰，且每瓶靈藥都需要各自的燒瓶。",
+				"你可以為每瓶額外的{@i 實驗性靈藥}消耗一個1環或更高環的法術位。此時，你以一個動作在所觸碰的空燒瓶中製造靈藥，並從實驗性靈藥表選擇其效果。",
+				{
+					"type": "table",
+					"caption": "實驗性靈藥",
+					"colLabels": [
+						"d6",
+						"效應"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"{@b 治療}。飲用者恢復等同於{@dice 2d4}+你智力調整值 的生命值。"
+						],
+						[
+							"2",
+							"{@b 迅捷}。飲用者的速度增加10尺，持續1小時。"
+						],
+						[
+							"3",
+							"{@b 韌性}。飲用者的AC獲得+1加值，持續10分鐘。"
+						],
+						[
+							"4",
+							"{@b 勇氣}。飲用者在接下來的一分鐘內，能夠在每個攻擊檢定與豁免檢定中投擲一枚{@dice d4}並將結果加入到檢定中。"
+						],
+						[
+							"5",
+							"{@b 飛行}。飲用者獲得10尺飛行速度，持續10分鐘。"
+						],
+						[
+							"6",
+							"{@b 變形}。飲用者的身體產生如同受到法術{@spell alter self||變身術}一樣的變化。法術的變化具體怎樣由飲用者決定，該效果會持續10分鐘。"
+						]
+					]
+				}
+			],
+			"ENG_name": "Experimental Elixir"
+		},
+		{
+			"name": "本職工具",
+			"source": "TCE",
+			"page": 14,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 58
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Alchemist",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"當你在3級時選擇本專業時，你獲得{@item alchemist's supplies|PHB|鍊金工具}的熟練。如果你已經擁有此熟練，作為代替，你能獲得另一種{@item artisan's tools|PHB|工匠工具}的熟練。"
+			],
+			"ENG_name": "Tool Proficiency"
+		},
+		{
+			"name": "鍊金術掌握",
+			"source": "TCE",
+			"page": 14,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 58
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Alchemist",
+			"subclassSource": "TCE",
+			"level": 5,
+			"header": 2,
+			"entries": [
+				"第5級時，你對魔法化學物質的掌握變得非常熟練，這使得你透過鍊金物質造成的治療和傷害更加有效。當你使用{@item alchemist's supplies|PHB|鍊金工具}作為法器施展任何法術時，你在法術的一次擲骰中獲得等同於你的智力調整值（最低+1）的加值。該擲骰必須是恢復的生命值量，或是造成強酸、火焰、暗蝕、或毒素傷害。"
+			],
+			"ENG_name": "Alchemical Savant"
+		},
+		{
+			"name": "復原藥劑",
+			"source": "TCE",
+			"page": 14,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 58
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Alchemist",
+			"subclassSource": "TCE",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"第9級起，你可以在你的一些作品中加入復原藥劑：",
+				{
+					"type": "list",
+					"items": [
+						"每當一個生物飲用一瓶你製造的{@i 實驗性靈藥}時，生物都將獲得 {@dice 2d6}+你智力調整值 的臨時生命值（至少1點臨時生命值）。",
+						"你就可以在不花費法術位、無需準備的情況下施展{@spell lesser restoration||次等復原術}，只要你使用{@item alchemist's supplies|PHB|鍊金工具}作為你的法器。你能夠這麼做的次數等於你的智力調整值（最少1次），當你完成一次長休後，你恢復所有已被消耗的次數。"
+					]
+				}
+			],
+			"ENG_name": "Restorative Reagents"
+		},
+		{
+			"name": "化學專家",
+			"source": "TCE",
+			"page": 14,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 58
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Alchemist",
+			"subclassSource": "TCE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"第15級時，你已經接觸了太多的化學物質，並解開了它們的秘密，它們對你的危害很小，你可以使用它們來迅速治癒某些疾病：",
+				{
+					"type": "list",
+					"items": [
+						"你獲得對強酸傷害和毒素傷害的抗性，並且你免疫於{@condition poisoned||中毒}狀態。",
+						"只要你使用{@item alchemist's supplies|PHB|鍊金工具}作為法器，就能在不消耗法術位、無需準備法術且無需材料成分的情況下施展{@spell greater restoration||高等復原術}與{@spell heal||醫療術}。一旦你以此特性施展其中一個法術，完成一次長休前便不能再以此特性施展該法術。"
+					]
+				}
+			],
+			"ENG_name": "Chemical Mastery"
+		},
+		{
+			"name": "裝甲師",
+			"source": "TCE",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Armorer",
+			"subclassSource": "TCE",
+			"level": 3,
+			"entries": [
+				"對於裝甲師專業的奇械師來說，裝甲就像是第二層皮膚。這一裝甲能夠增強奇械師的魔法，釋放強力的攻擊，產生絕佳的防護。這些奇械師與他們的裝甲之間有著強力的紐帶，在他們經過實驗並改進裝甲的魔法效能後，甚至能夠合二為一。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tools of the Trade|Artificer|TCE|Armorer|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Armorer Spells|Artificer|TCE|Armorer|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Armor|Artificer|TCE|Armorer|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Armor Model|Artificer|TCE|Armorer|TCE|3"
+				}
+			],
+			"ENG_name": "Armorer"
+		},
+		{
+			"name": "減震場",
+			"source": "TCE",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Armorer",
+			"subclassSource": "TCE",
+			"level": 3,
+			"type": "item",
+			"entries": [
+				"你在敏捷（{@skill Stealth||隱匿}）檢定中具有優勢。如果你的盔甲原本會讓你在此檢定上具有劣勢，優勢和劣勢將會正常抵消。"
+			],
+			"ENG_name": "Dampening Field"
+		},
+		{
+			"name": "防護場",
+			"source": "TCE",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Armorer",
+			"subclassSource": "TCE",
+			"level": 3,
+			"type": "item",
+			"entries": [
+				"在每個你的回合，你能以一個附贈動作獲得等於你奇械師職業等級的臨時生命值，這會取代你現有的任何臨時生命值。如果你脫下裝甲，你會失去這些臨時生命值。你能執行此附贈動作熟練加值次，在完成一次長休後將恢復所有花費的使用次數。"
+			],
+			"ENG_name": "Defensive Field"
+		},
+		{
+			"name": "閃電發射器",
+			"source": "TCE",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Armorer",
+			"subclassSource": "TCE",
+			"level": 3,
+			"type": "item",
+			"entries": [
+				"你在胸部或覆蓋裝甲的拳頭（根據你的選擇）上安裝了一個寶石狀的節點。它被視為一件簡易遠端武器，它擁有90尺的常規射程和300尺的最大射程，在命中後會造成{@damage 1d6}閃電傷害。每個你的回合一次，你在透過閃電發射器命中一個生物時，能夠額外造成{@damage 1d6}閃電傷害。"
+			],
+			"ENG_name": "Lightning Launcher"
+		},
+		{
+			"name": "動力步伐",
+			"source": "TCE",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Armorer",
+			"subclassSource": "TCE",
+			"level": 3,
+			"type": "item",
+			"entries": [
+				"你的步行速度增加5尺。"
+			],
+			"ENG_name": "Powered Steps"
+		},
+		{
+			"name": "雷霆戰拳",
+			"source": "TCE",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Armorer",
+			"subclassSource": "TCE",
+			"level": 3,
+			"type": "item",
+			"entries": [
+				"每一隻裝甲附帶的手套在沒有持握任何物品時皆可被視為一件簡易近戰武器，命中後會造成{@damage 1d8}雷鳴傷害。被戰拳擊中的生物，會被裝甲釋放的魔法性干擾脈衝影響，使其對除你之外的目標攻擊時有劣勢，直到你的下個回合開始。"
+			],
+			"ENG_name": "Thunder Gauntlets"
+		},
+		{
+			"name": "奧能裝甲",
+			"source": "TCE",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Armorer",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級裝甲師特性}",
+				"你對冶金的鑽研讓你的盔甲成為了實現你奇械師魔法的渠道。只要你手持{@item smith's tools|PHB|鐵匠工具}，就能以一個動作將你正穿著的一套護甲變成奧能裝甲。",
+				"穿著奧能裝甲期間，你獲得以下好處：",
+				{
+					"type": "list",
+					"items": [
+						"如果你的盔甲通常對穿戴者的力量有要求，奧能裝甲能讓你無視它。",
+						"你能夠將奧能裝甲作為你奇械師法術的法器。",
+						"穿在你身上的奧能裝甲除非你自願，否則無法移除。 同時，奧能裝甲能夠擴充套件到覆蓋你的整個身體，你可以以一個附贈動作收回或展開頭盔。盔甲會替換你所有缺失的肢體，替換肢體的部分擁有和正常肢體一樣的功能。",
+						"你可以以一個動作穿上或脫下這套盔甲。轉化為奧能裝甲的盔甲會一直保有其功能，直到你穿上另一套盔甲、或你死亡為止。"
+					]
+				}
+			],
+			"ENG_name": "Arcane Armor"
+		},
+		{
+			"name": "裝甲型號",
+			"source": "TCE",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Armorer",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級裝甲師特性}",
+				"你能夠定製你的奧能裝甲。 你可以從以下兩種型號中選擇其一：守護者、與滲透者。你選擇的型號會在你穿著時提供特殊的好處。",
+				"每種型號都包括一種特殊武器。當你使用該武器攻擊時，你可以使用你的智力調整值來進行攻擊和傷害擲骰，而不是力量或敏捷。",
+				"只要你手上有{@item smith's tools|PHB|鐵匠工具}，就可以在完成一次短休或長休後更換你的裝甲型號。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "守護者",
+							"entries": [
+								"你將裝甲設計為適合衝鋒陷陣。它擁有下列特性：",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "refSubclassFeature",
+											"subclassFeature": "Thunder Gauntlets|Artificer|TCE|Armorer|TCE|3"
+										},
+										{
+											"type": "refSubclassFeature",
+											"subclassFeature": "Defensive Field|Artificer|TCE|Armorer|TCE|3"
+										}
+									]
+								}
+							],
+							"ENG_name": "Guardian"
+						},
+						{
+							"type": "entries",
+							"name": "滲透者",
+							"entries": [
+								"你出於某些特殊需要對你的裝甲進行了定製。它擁有下列特性：",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "refSubclassFeature",
+											"subclassFeature": "Lightning Launcher|Artificer|TCE|Armorer|TCE|3"
+										},
+										{
+											"type": "refSubclassFeature",
+											"subclassFeature": "Powered Steps|Artificer|TCE|Armorer|TCE|3"
+										},
+										{
+											"type": "refSubclassFeature",
+											"subclassFeature": "Dampening Field|Artificer|TCE|Armorer|TCE|3"
+										}
+									]
+								}
+							],
+							"ENG_name": "Infiltrator"
+						}
+					]
+				}
+			],
+			"ENG_name": "Armor Model"
+		},
+		{
+			"name": "裝甲師法術",
+			"source": "TCE",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Armorer",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級裝甲師特性}",
+				"只要你達到相應的職業等級，裝甲師法術表格中的法術總是被視為已準備。這些法術對你來說是奇械師法術，且不會計入你可準備法術的總數。",
+				{
+					"type": "table",
+					"caption": "裝甲師法術",
+					"colLabels": [
+						"奇械師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell magic missile||魔法飛彈}, {@spell thunderwave||雷鳴波}"
+						],
+						[
+							"5級",
+							"{@spell mirror image||鏡影術}, {@spell shatter||粉碎音波}"
+						],
+						[
+							"9級",
+							"{@spell hypnotic pattern||催眠圖紋}, {@spell lightning bolt||閃電束}"
+						],
+						[
+							"13級",
+							"{@spell fire shield||火焰護盾}, {@spell greater invisibility||高等隱形術}"
+						],
+						[
+							"17級",
+							"{@spell passwall||穿牆術}, {@spell wall of force||力場牆}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Armorer Spells"
+		},
+		{
+			"name": "本職工具",
+			"source": "TCE",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Armorer",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級裝甲師特性}",
+				"你獲得重甲的熟練。你同時獲得{@item smith's tools|PHB|鐵匠工具}的熟練，如果你已經熟練於此工具，作為代替，你能獲得另一種{@item artisan's tools|PHB|工匠工具}的熟練。"
+			],
+			"ENG_name": "Tools of the Trade"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "TCE",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Armorer",
+			"subclassSource": "TCE",
+			"level": 5,
+			"header": 2,
+			"entries": [
+				"{@i 5級裝甲師特性}",
+				"你在自己回合內執行{@action Attack||攻擊}動作時可以發動兩次攻擊而非一次。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "裝甲改造",
+			"source": "TCE",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Armorer",
+			"subclassSource": "TCE",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"{@i 9級裝甲師特性}",
+				"你學會使用奇械師注法特別改造奧能裝甲。對物品注法特性而言，該裝甲現在分別視為四件物品：盔甲（胸甲）、靴子、頭盔，以及裝甲的特殊武器。每件物品都能承載一項注法；若你以裝甲型號特性改變裝甲型號，這些注法也會轉移過去。此外，你可同時注法的物品數量上限增加2，但這兩件額外物品必須是奧能裝甲的一部分。"
+			],
+			"ENG_name": "Armor Modifications"
+		},
+		{
+			"name": "守護者",
+			"source": "TCE",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Armorer",
+			"subclassSource": "TCE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"當一個你能看見的巨型或更小生物在你30尺內結束其回合時，你能以一個反應，魔法性地迫使它進行一次對抗你法術豁免DC的力量豁免。豁免失敗時，你將該生物直接朝你拉動至多25尺，到一處未佔據空間。若你將目標拉至你5尺內的空間，可以在同一反應中對它進行一次近戰武器攻擊。",
+				"你能夠執行此反應的次數等同於你的熟練加值次。在完成一次長休後你將恢復所有已被使用的次數。"
+			],
+			"ENG_name": "Guardian"
+		},
+		{
+			"name": "滲透者",
+			"source": "TCE",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Armorer",
+			"subclassSource": "TCE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"任何被你閃電發射器造成閃電傷害的生物將在你的下個回合到來前發出魔法性的光亮。發光的生物會放出 5尺半徑的昏暗光照。當它試圖攻擊你時會因為燈光的震顫而導致在攻擊檢定中具有劣勢。 此外，下次以該生物為目標發動的攻擊檢定具有優勢，且如果那次攻擊成功命中，該生物還將額外受到{@damage 1d6}閃電傷害。"
+			],
+			"ENG_name": "Infiltrator"
+		},
+		{
+			"name": "完美裝甲",
+			"source": "TCE",
+			"page": 15,
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Armorer",
+			"subclassSource": "TCE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"{@i 15級裝甲師特性}",
+				"你的奧能裝甲根據其型號獲得下列額外好處。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Guardian|Artificer|TCE|Armorer|TCE|15"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Infiltrator|Artificer|TCE|Armorer|TCE|15"
+				}
+			],
+			"ENG_name": "Perfected Armor"
+		},
+		{
+			"name": "魔炮師",
+			"source": "TCE",
+			"page": 17,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 59
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Artillerist",
+			"subclassSource": "TCE",
+			"level": 3,
+			"entries": [
+				"魔炮師是在戰場上投射能量、炮彈和爆炸物的專家。這種破壞力在終末戰爭中受到所有軍隊的重視。而現在，戰爭已經結束，這一專業的部分人員開始試圖運用自己的力量來消滅科瓦雷中的戰爭火種，從而建立一個更加和平的世界。",
+				"看上去不像，但事實上是卡尼斯家族戰俑計劃關鍵人物的侏儒奇械師Vi一直都大力宣揚要做正確的事：\"現在這個時代，應該致力於修復，而不是把一切都轟下地獄。\"",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tool Proficiency|Artificer|TCE|Artillerist|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Artillerist Spells|Artificer|TCE|Artillerist|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Eldritch Cannon|Artificer|TCE|Artillerist|TCE|3"
+				}
+			],
+			"ENG_name": "Artillerist"
+		},
+		{
+			"name": "魔炮師法術",
+			"source": "TCE",
+			"page": 17,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 59
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Artillerist",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"第3級起，只要你達到相應的職業等級，魔炮師法術表格中的法術總是被視為已準備。這些法術對你來說是奇械師法術，且不會計入你可以準備法術的總數。",
+				{
+					"type": "table",
+					"caption": "魔炮師法術",
+					"colLabels": [
+						"奇械師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell shield||護盾術}, {@spell thunderwave||雷鳴波}"
+						],
+						[
+							"5級",
+							"{@spell scorching ray||灼熱射線}, {@spell shatter||粉碎音波}"
+						],
+						[
+							"9級",
+							"{@spell fireball||火球術}, {@spell wind wall||風牆術}"
+						],
+						[
+							"13級",
+							"{@spell ice storm||冰風暴}, {@spell wall of fire||火牆術}"
+						],
+						[
+							"17級",
+							"{@spell cone of cold||寒冰錐}, {@spell wall of force||力場牆}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Artillerist Spells"
+		},
+		{
+			"name": "魔能炮臺",
+			"source": "TCE",
+			"page": 17,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 59
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Artillerist",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"第3級時，你習得了如何製造一個魔法炮臺。使用你的{@item woodcarver's tools|PHB|木雕工具}或{@item smith's tools|PHB|鐵匠工具}，你能用一個動作在距離你5尺且沒被佔據的水平空間內魔法性地召喚出一架小型或微型炮臺。小型魔能炮臺會佔據它所在的方格，而微型炮臺能用一隻手持用。",
+				"創造一門炮臺後，你要到完成一次長休，或消耗一個1環或更高環的法術位，才能再次創造炮臺。你同時只能擁有一門炮臺；已有炮臺存在時，不能再創造另一門。",
+				"炮臺是魔法物件。不論尺寸，其AC為18，生命值等於你奇械師等級的5倍。它免疫毒素傷害、心靈傷害與所有狀態。若被迫進行屬性檢定或豁免檢定，將其所有屬性值視為10（+0）。若對它施展{@spell mending||修復術}，它恢復{@dice 2d6}生命值。炮臺降至0生命值或存在1小時後便會消失；你也能以一個動作提前使它消失。",
+				"當你製造炮臺時，你決定它的外觀，以及是否有腿。你還需要決定它的型別——從下方的魔能炮臺列表中選擇一項。在你的每個回合中，只要你離炮臺不到60尺，你就能以一個附贈動作來使炮臺啟用。作為該附贈動作的一部分，你還可以引導有腿的炮臺步行或攀爬到15尺內的一處未被佔據的空間中。",
+				{
+					"type": "table",
+					"caption": "魔能炮臺",
+					"colLabels": [
+						"火炮",
+						"啟用效應"
+					],
+					"colStyles": [
+						"col-2",
+						"col-10"
+					],
+					"rows": [
+						[
+							"{@object Eldritch Cannon, Flamethrower|TCE|投火機}",
+							"炮臺向著你指定方向的15尺錐形範圍內發射火焰。該區域內的每個生物必須進行一次敏捷豁免，對抗你的法術豁免DC。如果豁免失敗將受到{@damage 2d8}火焰傷害，成功時只受一半傷害。火焰會點燃該區域內任何未被穿戴或攜帶的易燃物。"
+						],
+						[
+							"{@object Eldritch Cannon, Force Ballista|TCE|力場弩炮}",
+							"以炮臺為源點，向著它120尺以內的生物或物體進行一次遠端法術攻擊。擊中時，目標將受到{@damage 2d8}力場傷害，如果目標是一個生物，它將被向著遠離炮臺的方向推開5尺。"
+						],
+						[
+							"{@object Eldritch Cannon, Protector|TCE|保護者}",
+							"炮臺釋放出一股正能量，給予它自己和10尺距離內每個你選擇的生物{@damage 1d8}+你智力調整值的臨時生命值（最低+1）。"
+						]
+					]
+				}
+			],
+			"ENG_name": "Eldritch Cannon"
+		},
+		{
+			"name": "本職工具",
+			"source": "TCE",
+			"page": 17,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 59
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Artillerist",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"當你在第3級時選擇本專業，你獲得{@item woodcarver's tools|PHB|木雕工具}的熟練。如果你已經擁有此熟練，作為代替，你能獲得另一種{@item artisan's tools|PHB|工匠工具}的熟練。"
+			],
+			"ENG_name": "Tool Proficiency"
+		},
+		{
+			"name": "奧法火器",
+			"source": "TCE",
+			"page": 17,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 59
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Artillerist",
+			"subclassSource": "TCE",
+			"level": 5,
+			"header": 2,
+			"entries": [
+				"第5級時，你習得了如何把魔杖、法杖、或權杖變為奧法火器——一種傳輸你的毀滅性法術的管道。當你完成一次長休後，你可以用{@item woodcarver's tools|PHB|木雕工具}在一根魔杖、法杖或權杖上刻印一個特殊印記，從而把它變成你的奧法火器。印記會在你為另一件物品上刻上這種印記時消失，否則印記將永久存在。",
+				"你可以將你的奧法火器作為你奇械師法術的法器。當你透過奧法火器施展一個奇械師法術時，擲一個{@damage d8}，你在法術的一次傷害擲骰中獲得與擲骰結果相同的加值。"
+			],
+			"ENG_name": "Arcane Firearm"
+		},
+		{
+			"name": "高爆炮臺",
+			"source": "TCE",
+			"page": 17,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 59
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Artillerist",
+			"subclassSource": "TCE",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"第9級起，你製造的每一門奧法炮臺都將擁有更大的破壞力：",
+				{
+					"type": "list",
+					"items": [
+						"所有炮臺的傷害骰增加{@damage 1d8}。",
+						"如果你距離炮臺不到60尺，你能以一個動作命令你的炮臺自爆。這麼做會摧毀炮臺，並迫使每一個離它20尺以內的生物進行一次對抗你的法術豁免DC的敏捷豁免，若豁免失敗，將受到{@damage 3d8}力場傷害，成功時只會受到一半傷害。"
+					]
+				}
+			],
+			"ENG_name": "Explosive Cannon"
+		},
+		{
+			"name": "堅固要塞",
+			"source": "TCE",
+			"page": 17,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 59
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Artillerist",
+			"subclassSource": "TCE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"第15級起，你成為了用魔能炮臺構築陣地的大師。",
+				{
+					"type": "list",
+					"items": [
+						"由於你用魔能炮臺特性創造的炮臺所發出的閃光魔法保護場，你和你的盟友在距離炮臺周圍10尺範圍內會獲得{@quickref Cover||3||半身掩護}。",
+						"你現在可以同時擁有兩門炮臺，也能以同一個動作創造兩門（但不能用同一個法術位創造兩門），並以同一個附贈動作啟用兩門。你決定兩門炮臺要彼此相同或不同。擁有兩門炮臺時，你不能創造第三門。"
+					]
+				}
+			],
+			"ENG_name": "Fortified Position"
+		},
+		{
+			"name": "戰地匠師",
+			"source": "TCE",
+			"page": 18,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 60
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "TCE",
+			"level": 3,
+			"entries": [
+				"軍隊需要保護，但當防衛戰失敗時，需要有人來進行重整。身為守護者和醫生的結合，戰地匠師是進行防衛，以及重整工事與人員的專家。戰地匠師大多都攜帶一個由自己製造的防衛性隨從——鋼鐵守衛來輔助自己。無數士兵都曾講述過關於瀕臨死亡的自己被一名戰地匠師，以及他的鋼鐵守衛所拯救的故事。",
+				"戰地匠師在卡尼斯家族製造戰鬥構裝體和最初的戰俑時扮演了關鍵的角色。在終末戰爭過後，這些奇械師致力於救助在恐怖的戰爭中受傷的人。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tool Proficiency|Artificer|TCE|Battle Smith|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Battle Smith Spells|Artificer|TCE|Battle Smith|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Battle Ready|Artificer|TCE|Battle Smith|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Steel Defender|Artificer|TCE|Battle Smith|TCE|3"
+				}
+			],
+			"ENG_name": "Battle Smith"
+		},
+		{
+			"name": "戰鬥準備",
+			"source": "TCE",
+			"page": 18,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 60
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"第3級時，你的戰鬥訓練和魔法實驗為你帶來了兩種好處：",
+				{
+					"type": "list",
+					"items": [
+						"你獲得{@filter 軍用武器|items|type=martial weapon}的熟練項。",
+						"當你以魔法武器攻擊時，你可以在攻擊檢定與傷害擲骰中使用智力調整值，以代替力量或敏捷。"
+					]
+				}
+			],
+			"ENG_name": "Battle Ready"
+		},
+		{
+			"name": "戰地匠師法術",
+			"source": "TCE",
+			"page": 18,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 60
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"第3級起，只要你達到相應的職業等級，戰地匠師法術表格中的法術總是被視為已準備。這些法術對你來說是奇械師法術，且不會計入你可以準備法術的總數。",
+				{
+					"type": "table",
+					"caption": "戰地匠師法術",
+					"colLabels": [
+						"奇械師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell heroism||英雄氣概}, {@spell shield||護盾術}"
+						],
+						[
+							"5級",
+							"{@spell branding smite||印記斬}, {@spell warding bond||守護之鏈}"
+						],
+						[
+							"9級",
+							"{@spell aura of vitality||活力靈光}, {@spell conjure barrage||箭如雨下}"
+						],
+						[
+							"13級",
+							"{@spell aura of purity||淨化靈光}, {@spell fire shield||火焰護盾}"
+						],
+						[
+							"17級",
+							"{@spell banishing smite||放逐斬}, {@spell mass cure wounds||群體療傷術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Battle Smith Spells"
+		},
+		{
+			"name": "鋼鐵守衛",
+			"source": "TCE",
+			"page": 18,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 60
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"第3級時，你的工匠技藝為你誕生出了一名可靠的同伴，一個{@creature steel defender|tce|鋼鐵守衛}。它對你和你的同伴友好，並且服從你的命令。鋼鐵守衛的遊戲資料見下，它的資料中某幾項會適用你的熟練加值（PB）。該生物的外觀，兩足步行還是四足步行皆由你決定；你的決定對它的遊戲資料沒有影響。",
+				"在戰鬥中，鋼鐵守衛使用你的先攻，並且在你的回合後立即行動。它能自由移動和執行反應，但除非你以一個附贈動作命令它進行動作，否則它在回合中只能進行{@action Dodge||迴避}動作。它可以執行下方寫出的動作選項，或是其他的動作選項。如果你陷入了{@condition incapacitated||失能}，鋼鐵守衛可以依靠它自己的選擇進行任何動作，而不僅僅是{@action Dodge||迴避}。",
+				"若對鋼鐵守衛施展{@spell mending||修復術}，它恢復{@dice 2d6}生命值。若它在過去1小時內死亡，且你位於它5尺內，便能以一個動作使用{@item smith's tools|PHB|鐵匠工具}並消耗一個1環或更高環的法術位來復活它。1分鐘後，鋼鐵守衛以全滿生命值復活。",
+				"當你在手頭有{@item smith's tools|PHB|鐵匠工具}的情況下完成一次長休時，你可以創造一個新的鋼鐵守衛。如果你已經透過此特性擁有一個鋼鐵守衛，則上一個會立即消失。如果你死亡，鋼鐵守衛也會隨之損毀。"
+			],
+			"ENG_name": "Steel Defender"
+		},
+		{
+			"name": "本職工具",
+			"source": "TCE",
+			"page": 18,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 60
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"第3級選擇本專業時，你獲得{@item smith's tools|PHB|鐵匠工具}的熟練。如果你已經擁有此熟練，作為代替，你能獲得另一種{@item artisan's tools|PHB|工匠工具}的熟練。"
+			],
+			"ENG_name": "Tool Proficiency"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "TCE",
+			"page": 18,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 60
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "TCE",
+			"level": 5,
+			"header": 2,
+			"entries": [
+				"從5級起，每當你在自己的回合執行{@action Attack||攻擊}動作時，可以攻擊兩次而非一次。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "奧能震盪",
+			"source": "TCE",
+			"page": 18,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 60
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "TCE",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"第9級時，你學會了新的方法來引導奧術能量進行傷害或治療。當你使用魔法武器攻擊或鋼鐵守衛命中目標時，你可以將奧術能量引導至攻擊中，以獲得以下一種效應：",
+				{
+					"type": "list",
+					"items": [
+						"目標受到額外的{@damage 2d6}點力場傷害。",
+						"選擇距離目標30尺以內的一個可見生物或物體。治癒能量湧進選擇的物件，為其恢復{@dice 2d6}生命值。"
+					]
+				},
+				"你可以引導奧術能量的次數等同於你的智力調整值（至少1次），但每回合只能這麼做一次。在你完成長休時，恢復所有已被消耗的次數。"
+			],
+			"ENG_name": "Arcane Jolt"
+		},
+		{
+			"name": "改良守衛",
+			"source": "TCE",
+			"page": 18,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 60
+				}
+			],
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Battle Smith",
+			"subclassSource": "TCE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"到達15級後，你的奧能震盪和鋼鐵守衛變得更強了：",
+				{
+					"type": "list",
+					"items": [
+						"奧能震盪特性的額外傷害和生命恢復變為{@damage 4d6}。",
+						"你的鋼鐵守衛AC獲得+2加值。",
+						"當你的鋼鐵守衛使用偏轉攻擊時，攻擊者受到{@damage 1d4}+你的智力調整值的力場傷害。"
+					]
+				}
+			],
+			"ENG_name": "Improved Defender"
+		}
+	]
+}

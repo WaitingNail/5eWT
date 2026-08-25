@@ -1,21 +1,41 @@
 import fs from "node:fs";
 import path from "node:path";
-import {spawnSync} from "node:child_process";
+import {execFileSync, spawnSync} from "node:child_process";
 
+const UPSTREAM_REPOSITORY = "https://github.com/5etools-mirror-3/5etools-src.git";
+const UPSTREAM_TAG = "v2.33.3";
+const UPSTREAM_COMMIT = "e5f3e77b303a92df10487207857200245e71957c";
 const target = path.resolve("vendor", "5etools-src");
+
+function verifyCommit () {
+  const actual = execFileSync("git", ["rev-parse", "HEAD"], {
+    cwd: target,
+    encoding: "utf8",
+  }).trim();
+  if (actual !== UPSTREAM_COMMIT) {
+    throw new Error("Unexpected upstream commit: " + actual + "; expected " + UPSTREAM_COMMIT);
+  }
+}
+
 if (fs.existsSync(target)) {
-  console.log(`Upstream already exists: ${target}`);
+  if (!fs.existsSync(path.join(target, ".git"))) {
+    throw new Error("vendor/5etools-src exists but is not a Git checkout.");
+  }
+  verifyCommit();
+  console.log("Pinned upstream is already present: " + target);
   process.exit(0);
 }
 
 fs.mkdirSync(path.dirname(target), {recursive: true});
 const result = spawnSync("git", [
   "clone",
-  "--branch", "v2.33.3",
+  "--branch", UPSTREAM_TAG,
   "--depth", "1",
-  "https://github.com/5etools-mirror-3/5etools-src.git",
+  UPSTREAM_REPOSITORY,
   target,
 ], {stdio: "inherit"});
 
 if (result.status !== 0) process.exit(result.status ?? 1);
-console.log("Upstream v2.33.3 is ready.");
+verifyCommit();
+console.log("Upstream " + UPSTREAM_TAG + " is ready.");
+

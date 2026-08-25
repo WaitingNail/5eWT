@@ -5,6 +5,7 @@ import {fileURLToPath} from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, "../..");
 const CLASS_TERMS_PATH = path.join(ROOT_DIR, "translation", "zh-TW", "classes", "generated", "class-terms.csv");
+const CLASS_TERMS_FULL_PATH = path.join(ROOT_DIR, "translation", "zh-TW", "classes", "generated", "class-terms-full.csv");
 const UI_TERMS_PATH = path.join(ROOT_DIR, "translation", "zh-TW", "classes", "class-ui-glossary.csv");
 const OUTPUT_JSON_PATH = path.join(ROOT_DIR, "data", "zh-TW", "class.json");
 const OUTPUT_MEMORY_PATH = path.join(ROOT_DIR, "translation", "zh-TW", "classes", "translation-memory.csv");
@@ -89,13 +90,15 @@ const locale = {
 const memory = [];
 const seenMemory = new Set();
 
-for (const row of rowsToObjects(parseCsv(fs.readFileSync(CLASS_TERMS_PATH, "utf8")))) {
+const classTermsInputPath = fs.existsSync(CLASS_TERMS_FULL_PATH) ? CLASS_TERMS_FULL_PATH : CLASS_TERMS_PATH;
+for (const row of rowsToObjects(parseCsv(fs.readFileSync(classTermsInputPath, "utf8")))) {
 	const targetCategory = CATEGORY_MAP[row.category];
-	if (!targetCategory || !row.proposed_zh_tw) continue;
-	if (locale.terms[targetCategory][row.english] && locale.terms[targetCategory][row.english] !== row.proposed_zh_tw) {
+	const translated = row.final_zh_tw || row.proposed_zh_tw;
+	if (!targetCategory || !translated) continue;
+	if (locale.terms[targetCategory][row.english] && locale.terms[targetCategory][row.english] !== translated) {
 		throw new Error(`Conflicting locale term: ${targetCategory}/${row.english}`);
 	}
-	locale.terms[targetCategory][row.english] = row.proposed_zh_tw;
+	locale.terms[targetCategory][row.english] = translated;
 
 	const memoryKey = `${targetCategory}\u0000${row.english}`;
 	if (seenMemory.has(memoryKey)) continue;
@@ -103,12 +106,16 @@ for (const row of rowsToObjects(parseCsv(fs.readFileSync(CLASS_TERMS_PATH, "utf8
 	memory.push({
 		english: row.english,
 		category: targetCategory,
-		zhTw: row.proposed_zh_tw,
+		zhTw: translated,
 		alternativeZhTw: row.alternative_zh_tw,
-		source: row.translation_source,
+		source: row.final_source || row.translation_source,
 		status: "approved",
 		lock: true,
-		notes: row.status === "conflict" ? "User approved the first listed candidate; may revise later." : "",
+		notes: row.status === "conflict"
+			? "User approved the first listed candidate; may revise later."
+			: !row.proposed_zh_tw
+				? "User approved proceeding with the discovered full-Class translation source; may revise later."
+				: "",
 	});
 }
 

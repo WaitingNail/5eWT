@@ -1,0 +1,5207 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"translationSource": "https://shuaishuaidnd.cn/data/class",
+		"conversion": "OpenCC s2twp plus locked project terminology"
+	},
+	"class": [
+		{
+			"name": "遊俠",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"reprintedAs": [
+				"Ranger|XPHB"
+			],
+			"edition": "classic",
+			"hd": {
+				"number": 1,
+				"faces": 10
+			},
+			"proficiency": [
+				"str",
+				"dex"
+			],
+			"spellcastingAbility": "wis",
+			"casterProgression": "1/2",
+			"spellsKnownProgression": [
+				0,
+				2,
+				3,
+				3,
+				4,
+				4,
+				5,
+				5,
+				6,
+				6,
+				7,
+				7,
+				8,
+				8,
+				9,
+				9,
+				10,
+				10,
+				11,
+				11
+			],
+			"optionalfeatureProgression": [
+				{
+					"name": "戰鬥風格",
+					"featureType": [
+						"FS:R"
+					],
+					"progression": {
+						"2": 1
+					},
+					"ENG_name": "Fighting Style"
+				}
+			],
+			"startingProficiencies": {
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"animal handling",
+								"athletics",
+								"insight",
+								"investigation",
+								"nature",
+								"perception",
+								"stealth",
+								"survival"
+							],
+							"count": 3
+						}
+					}
+				],
+				"weapons": [
+					"simple",
+					"martial"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"shield": true
+					}
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"default": [
+					"(a) {@item scale mail|phb|鱗甲} 或 (b) {@item leather armor|phb|皮甲}",
+					"(a) 二把{@item shortsword|phb|短劍}或 (b) 二把{@filter 簡易近戰武器|items|source=phb|category=basic|type=simple weapon;melee weapon=sand}",
+					"(a) 一個{@item dungeoneer's pack|phb|地城套組}或(b) 一個{@item explorer's pack|phb|探索套組}",
+					"一把{@item longbow|phb|長弓}和一個{@item quiver|phb|箭袋}（內含{@item arrows (20)|phb|20支箭}）"
+				],
+				"goldAlternative": "{@dice 5d4 × 10|5d4 × 10|起始金幣}",
+				"defaultData": [
+					{
+						"a": [
+							"scale mail|phb"
+						],
+						"b": [
+							"leather armor|phb"
+						]
+					},
+					{
+						"a": [
+							{
+								"item": "shortsword|phb",
+								"quantity": 2
+							}
+						],
+						"b": [
+							{
+								"equipmentType": "weaponSimpleMelee",
+								"quantity": 2
+							}
+						]
+					},
+					{
+						"a": [
+							"dungeoneer's pack|phb"
+						],
+						"b": [
+							"explorer's pack|phb"
+						]
+					},
+					{
+						"_": [
+							"longbow|phb",
+							"arrows (20)|phb"
+						]
+					}
+				]
+			},
+			"multiclassing": {
+				"requirements": {
+					"dex": 13,
+					"wis": 13
+				},
+				"proficienciesGained": {
+					"skills": [
+						{
+							"choose": {
+								"from": [
+									"animal handling",
+									"athletics",
+									"insight",
+									"investigation",
+									"nature",
+									"perception",
+									"stealth",
+									"survival"
+								],
+								"count": 1
+							}
+						}
+					],
+					"weapons": [
+						"simple",
+						"martial"
+					],
+					"armor": [
+						"light",
+						"medium",
+						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
+					]
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"{@filter 已知法術|spells|class=ranger}"
+					],
+					"rows": [
+						[
+							0
+						],
+						[
+							2
+						],
+						[
+							3
+						],
+						[
+							3
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							6
+						],
+						[
+							6
+						],
+						[
+							7
+						],
+						[
+							7
+						],
+						[
+							8
+						],
+						[
+							8
+						],
+						[
+							9
+						],
+						[
+							9
+						],
+						[
+							10
+						],
+						[
+							10
+						],
+						[
+							11
+						],
+						[
+							11
+						]
+					]
+				},
+				{
+					"title": "每環法術位",
+					"colLabels": [
+						"{@filter 1環|spells|level=1|class=Ranger}",
+						"{@filter 2環|spells|level=2|class=Ranger}",
+						"{@filter 3環|spells|level=3|class=Ranger}",
+						"{@filter 4環|spells|level=4|class=Ranger}",
+						"{@filter 5環|spells|level=5|class=Ranger}"
+					],
+					"rowsSpellProgression": [
+						[
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Favored Enemy|Ranger||1",
+				"Favored Foe|Ranger||1|TCE",
+				"Natural Explorer|Ranger||1",
+				"Deft Explorer|Ranger||1|TCE",
+				"Fighting Style|Ranger||2",
+				"Spellcasting|Ranger||2",
+				"Spellcasting Focus|Ranger||2|TCE",
+				{
+					"classFeature": "Ranger Archetype|Ranger||3",
+					"gainSubclassFeature": true
+				},
+				"Primeval Awareness|Ranger||3",
+				"Primal Awareness|Ranger||3|TCE",
+				"Ability Score Improvement|Ranger||4",
+				"Martial Versatility|Ranger||4|TCE",
+				"Extra Attack|Ranger||5",
+				"Favored Enemy and Natural Explorer improvements|Ranger||6",
+				"Deft Explorer Improvement|Ranger||6|TCE",
+				{
+					"classFeature": "Ranger Archetype feature|Ranger||7",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Ranger||8",
+				"Land's Stride|Ranger||8",
+				"Hide in Plain Sight|Ranger||10",
+				"Nature's Veil|Ranger||10|TCE",
+				"Natural Explorer improvement|Ranger||10",
+				"Deft Explorer Improvement|Ranger||10|TCE",
+				{
+					"classFeature": "Ranger Archetype feature|Ranger||11",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Ranger||12",
+				"Vanish|Ranger||14",
+				"Favored Enemy improvement|Ranger||14",
+				{
+					"classFeature": "Ranger Archetype feature|Ranger||15",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Ranger||16",
+				"Feral Senses|Ranger||18",
+				"Ability Score Improvement|Ranger||19",
+				"Foe Slayer|Ranger||20"
+			],
+			"subclassTitle": "遊俠範型",
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Ranger"
+		},
+		{
+			"name": "遊俠",
+			"source": "XPHB",
+			"page": 118,
+			"srd52": true,
+			"basicRules2024": true,
+			"edition": "one",
+			"primaryAbility": [
+				{
+					"dex": true,
+					"wis": true
+				}
+			],
+			"hd": {
+				"number": 1,
+				"faces": 10
+			},
+			"proficiency": [
+				"str",
+				"dex"
+			],
+			"spellcastingAbility": "wis",
+			"casterProgression": "artificer",
+			"preparedSpellsProgression": [
+				2,
+				3,
+				4,
+				5,
+				6,
+				6,
+				7,
+				7,
+				9,
+				9,
+				10,
+				10,
+				11,
+				11,
+				12,
+				12,
+				14,
+				14,
+				15,
+				15
+			],
+			"preparedSpellsChange": "restLong",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"1": [
+							"hunter's mark|xphb"
+						]
+					}
+				}
+			],
+			"featProgression": [
+				{
+					"name": "戰鬥風格",
+					"category": [
+						"FS",
+						"FS:R"
+					],
+					"progression": {
+						"2": 1
+					},
+					"ENG_name": "Fighting Style"
+				},
+				{
+					"name": "傳奇恩惠",
+					"category": [
+						"EB"
+					],
+					"progression": {
+						"19": 1
+					},
+					"ENG_name": "Epic Boon"
+				}
+			],
+			"startingProficiencies": {
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"animal handling",
+								"athletics",
+								"insight",
+								"investigation",
+								"nature",
+								"perception",
+								"stealth",
+								"survival"
+							],
+							"count": 3
+						}
+					}
+				],
+				"weapons": [
+					"simple",
+					"martial"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"shield": true
+					}
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"defaultData": [
+					{
+						"A": [
+							{
+								"item": "studded leather armor|xphb"
+							},
+							{
+								"item": "scimitar|xphb"
+							},
+							{
+								"item": "shortsword|xphb"
+							},
+							{
+								"item": "longbow|xphb"
+							},
+							{
+								"item": "arrows (20)|xphb"
+							},
+							{
+								"item": "quiver|xphb"
+							},
+							{
+								"item": "sprig of mistletoe|xphb"
+							},
+							{
+								"item": "explorer's pack|xphb"
+							},
+							{
+								"value": 700
+							}
+						],
+						"B": [
+							{
+								"value": 15000
+							}
+						]
+					}
+				],
+				"entries": [
+					"{@i 選擇A或B：} (A) {@item Studded Leather Armor|XPHB|鑲釘皮甲}、{@item Scimitar|XPHB|彎刀}、{@item Shortsword|XPHB|短劍}、{@item Longbow|XPHB|長弓}、{@item Arrows (20)|XPHB|20支箭}、{@item Quiver|XPHB|箭袋}、{@item Druidic Focus|XPHB|德魯伊法器}（{@item sprig of mistletoe|XPHB|槲寄生枝條}）、{@item Explorer's Pack|XPHB|探索套組}和7 GP；或 (B) 150 GP"
+				]
+			},
+			"multiclassing": {
+				"proficienciesGained": {
+					"skills": [
+						{
+							"choose": {
+								"from": [
+									"animal handling",
+									"athletics",
+									"insight",
+									"investigation",
+									"nature",
+									"perception",
+									"stealth",
+									"survival"
+								],
+								"count": 1
+							}
+						}
+					],
+					"weapons": [
+						"martial"
+					],
+					"armor": [
+						"light",
+						"medium",
+						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
+					]
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"宿敵"
+					],
+					"rows": [
+						[
+							2
+						],
+						[
+							2
+						],
+						[
+							2
+						],
+						[
+							2
+						],
+						[
+							3
+						],
+						[
+							3
+						],
+						[
+							3
+						],
+						[
+							3
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							6
+						],
+						[
+							6
+						],
+						[
+							6
+						],
+						[
+							6
+						]
+					]
+				},
+				{
+					"colLabels": [
+						"{@filter 準備法術|spells|level=!0|class=Ranger}"
+					],
+					"rows": [
+						[
+							2
+						],
+						[
+							3
+						],
+						[
+							4
+						],
+						[
+							5
+						],
+						[
+							6
+						],
+						[
+							6
+						],
+						[
+							7
+						],
+						[
+							7
+						],
+						[
+							9
+						],
+						[
+							9
+						],
+						[
+							10
+						],
+						[
+							10
+						],
+						[
+							11
+						],
+						[
+							11
+						],
+						[
+							12
+						],
+						[
+							12
+						],
+						[
+							14
+						],
+						[
+							14
+						],
+						[
+							15
+						],
+						[
+							15
+						]
+					]
+				},
+				{
+					"title": "每環法術位",
+					"colLabels": [
+						"{@filter 1環|spells|level=1|class=ranger}",
+						"{@filter 2環|spells|level=2|class=ranger}",
+						"{@filter 3環|spells|level=3|class=ranger}",
+						"{@filter 4環|spells|level=4|class=ranger}",
+						"{@filter 5環|spells|level=5|class=ranger}"
+					],
+					"rowsSpellProgression": [
+						[
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Spellcasting|Ranger|XPHB|1",
+				"Favored Enemy|Ranger|XPHB|1",
+				"Weapon Mastery|Ranger|XPHB|1",
+				"Deft Explorer|Ranger|XPHB|2",
+				"Fighting Style|Ranger|XPHB|2",
+				{
+					"classFeature": "Ranger Subclass|Ranger|XPHB|3",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Ranger|XPHB|4",
+				"Extra Attack|Ranger|XPHB|5",
+				"Roving|Ranger|XPHB|6",
+				{
+					"classFeature": "Subclass Feature|Ranger|XPHB|7",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Ranger|XPHB|8",
+				"Expertise|Ranger|XPHB|9",
+				"Tireless|Ranger|XPHB|10",
+				{
+					"classFeature": "Subclass Feature|Ranger|XPHB|11",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Ranger|XPHB|12",
+				"Relentless Hunter|Ranger|XPHB|13",
+				"Nature's Veil|Ranger|XPHB|14",
+				{
+					"classFeature": "Subclass Feature|Ranger|XPHB|15",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Ranger|XPHB|16",
+				"Precise Hunter|Ranger|XPHB|17",
+				"Feral Senses|Ranger|XPHB|18",
+				"Epic Boon|Ranger|XPHB|19",
+				"Foe Slayer|Ranger|XPHB|20"
+			],
+			"subclassTitle": "遊俠子職",
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Ranger"
+		}
+	],
+	"subclass": [
+		{
+			"name": "獸王",
+			"shortName": "獸王",
+			"source": "PHB",
+			"className": "Ranger",
+			"classSource": "PHB",
+			"page": 93,
+			"reprintedAs": [
+				"Beast Master|Ranger|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"subclassFeatures": [
+				"Beast Master|Ranger||Beast Master||3",
+				"Exceptional Training|Ranger||Beast Master||7",
+				"Bestial Fury|Ranger||Beast Master||11",
+				"Share Spells|Ranger||Beast Master||15"
+			],
+			"ENG_name": "Beast Master",
+			"ENG_shortName": "Beast Master"
+		},
+		{
+			"name": "獸王",
+			"shortName": "獸王",
+			"source": "PHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Beast Master",
+				"source": "PHB",
+				"shortName": "Beast Master",
+				"className": "Ranger",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Beast Master",
+			"ENG_shortName": "Beast Master"
+		},
+		{
+			"name": "獵人",
+			"shortName": "獵人",
+			"source": "PHB",
+			"className": "Ranger",
+			"classSource": "PHB",
+			"page": 93,
+			"srd": true,
+			"reprintedAs": [
+				"Hunter|Ranger|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"subclassFeatures": [
+				"Hunter|Ranger||Hunter||3",
+				"Defensive Tactics|Ranger||Hunter||7",
+				"Multiattack|Ranger||Hunter||11",
+				"Superior Hunter's Defense|Ranger||Hunter||15"
+			],
+			"ENG_name": "Hunter",
+			"ENG_shortName": "Hunter"
+		},
+		{
+			"name": "獵人",
+			"shortName": "獵人",
+			"source": "PHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Hunter",
+				"source": "PHB",
+				"shortName": "Hunter",
+				"className": "Ranger",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Hunter",
+			"ENG_shortName": "Hunter"
+		},
+		{
+			"name": "幽域追蹤者",
+			"shortName": "幽域追蹤者",
+			"source": "XGE",
+			"className": "Ranger",
+			"classSource": "PHB",
+			"page": 41,
+			"reprintedAs": [
+				"Gloom Stalker|Ranger|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							"disguise self"
+						],
+						"5": [
+							"rope trick"
+						],
+						"9": [
+							"fear"
+						],
+						"13": [
+							"greater invisibility"
+						],
+						"17": [
+							"seeming"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Gloom Stalker|Ranger||Gloom Stalker|XGE|3",
+				"Iron Mind|Ranger||Gloom Stalker|XGE|7",
+				"Stalker's Flurry|Ranger||Gloom Stalker|XGE|11",
+				"Shadowy Dodge|Ranger||Gloom Stalker|XGE|15"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Gloom Stalker",
+			"ENG_shortName": "Gloom Stalker"
+		},
+		{
+			"name": "幽域追蹤者",
+			"shortName": "幽域追蹤者",
+			"source": "XGE",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Gloom Stalker",
+				"source": "XGE",
+				"shortName": "Gloom Stalker",
+				"className": "Ranger",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Gloom Stalker",
+			"ENG_shortName": "Gloom Stalker"
+		},
+		{
+			"name": "境界行者",
+			"shortName": "境界行者",
+			"source": "XGE",
+			"className": "Ranger",
+			"classSource": "PHB",
+			"page": 42,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							"protection from evil and good"
+						],
+						"5": [
+							"misty step"
+						],
+						"9": [
+							"haste"
+						],
+						"13": [
+							"banishment"
+						],
+						"17": [
+							"teleportation circle"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Horizon Walker|Ranger||Horizon Walker|XGE|3",
+				"Ethereal Step|Ranger||Horizon Walker|XGE|7",
+				"Distant Strike|Ranger||Horizon Walker|XGE|11",
+				"Spectral Defense|Ranger||Horizon Walker|XGE|15"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Horizon Walker",
+			"ENG_shortName": "Horizon Walker"
+		},
+		{
+			"name": "境界行者",
+			"shortName": "境界行者",
+			"source": "XGE",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Horizon Walker",
+				"source": "XGE",
+				"shortName": "Horizon Walker",
+				"className": "Ranger",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Horizon Walker",
+			"ENG_shortName": "Horizon Walker"
+		},
+		{
+			"name": "怪物殺手",
+			"shortName": "怪物殺手",
+			"source": "XGE",
+			"className": "Ranger",
+			"classSource": "PHB",
+			"page": 43,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							"protection from evil and good"
+						],
+						"5": [
+							"zone of truth"
+						],
+						"9": [
+							"magic circle"
+						],
+						"13": [
+							"banishment"
+						],
+						"17": [
+							"hold monster"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Monster Slayer|Ranger||Monster Slayer|XGE|3",
+				"Supernatural Defense|Ranger||Monster Slayer|XGE|7",
+				"Magic-User's Nemesis|Ranger||Monster Slayer|XGE|11",
+				"Slayer's Counter|Ranger||Monster Slayer|XGE|15"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Monster Slayer",
+			"ENG_shortName": "Monster Slayer"
+		},
+		{
+			"name": "怪物殺手",
+			"shortName": "怪物殺手",
+			"source": "XGE",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Monster Slayer",
+				"source": "XGE",
+				"shortName": "Monster Slayer",
+				"className": "Ranger",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Monster Slayer",
+			"ENG_shortName": "Monster Slayer"
+		},
+		{
+			"name": "妖精漫遊者",
+			"shortName": "妖精漫遊者",
+			"source": "TCE",
+			"className": "Ranger",
+			"classSource": "PHB",
+			"page": 58,
+			"reprintedAs": [
+				"Fey Wanderer|Ranger|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							"charm person"
+						],
+						"5": [
+							"misty step"
+						],
+						"9": [
+							"dispel magic"
+						],
+						"13": [
+							"dimension door"
+						],
+						"17": [
+							"mislead"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Fey Wanderer|Ranger||Fey Wanderer|TCE|3",
+				"Beguiling Twist|Ranger||Fey Wanderer|TCE|7",
+				"Fey Reinforcements|Ranger||Fey Wanderer|TCE|11",
+				"Misty Wanderer|Ranger||Fey Wanderer|TCE|15"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Fey Wanderer",
+			"ENG_shortName": "Fey Wanderer"
+		},
+		{
+			"name": "妖精漫遊者",
+			"shortName": "妖精漫遊者",
+			"source": "TCE",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Fey Wanderer",
+				"source": "TCE",
+				"shortName": "Fey Wanderer",
+				"className": "Ranger",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "妖精漫遊者",
+					"source": "TCE",
+					"shortName": "妖精漫遊者",
+					"className": "Ranger",
+					"classSource": "PHB",
+					"ENG_name": "Fey Wanderer"
+				}
+			},
+			"ENG_name": "Fey Wanderer",
+			"ENG_shortName": "Fey Wanderer"
+		},
+		{
+			"name": "集羣守衛",
+			"shortName": "集羣守衛",
+			"source": "TCE",
+			"className": "Ranger",
+			"classSource": "PHB",
+			"page": 59,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							"mage hand#c",
+							"faerie fire"
+						],
+						"5": [
+							"web"
+						],
+						"9": [
+							"gaseous form"
+						],
+						"13": [
+							"arcane eye"
+						],
+						"17": [
+							"insect plague"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Swarmkeeper|Ranger||Swarmkeeper|TCE|3",
+				"Writhing Tide|Ranger||Swarmkeeper|TCE|7",
+				"Mighty Swarm|Ranger||Swarmkeeper|TCE|11",
+				"Swarming Dispersal|Ranger||Swarmkeeper|TCE|15"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Swarmkeeper",
+			"ENG_shortName": "Swarmkeeper"
+		},
+		{
+			"name": "集羣守衛",
+			"shortName": "集羣守衛",
+			"source": "TCE",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Swarmkeeper",
+				"source": "TCE",
+				"shortName": "Swarmkeeper",
+				"className": "Ranger",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "集羣守衛",
+					"source": "TCE",
+					"shortName": "叢集守衛",
+					"className": "Ranger",
+					"classSource": "PHB",
+					"ENG_name": "Swarmkeeper"
+				}
+			},
+			"ENG_name": "Swarmkeeper",
+			"ENG_shortName": "Swarmkeeper"
+		},
+		{
+			"name": "龍獸守衛",
+			"shortName": "龍獸守衛",
+			"source": "FTD",
+			"className": "Ranger",
+			"classSource": "PHB",
+			"page": 15,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							"thaumaturgy#c"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Drakewarden|Ranger||Drakewarden|FTD|3",
+				"Bond of Fang and Scale|Ranger||Drakewarden|FTD|7",
+				"Drake's Breath|Ranger||Drakewarden|FTD|11",
+				"Perfected Bond|Ranger||Drakewarden|FTD|15"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Drakewarden",
+			"ENG_shortName": "Drakewarden"
+		},
+		{
+			"name": "龍獸守衛",
+			"shortName": "龍獸守衛",
+			"source": "FTD",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Drakewarden",
+				"source": "FTD",
+				"shortName": "Drakewarden",
+				"className": "Ranger",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "龍獸守衛",
+					"source": "FTD",
+					"shortName": "龍獸守衛",
+					"className": "Ranger",
+					"classSource": "PHB",
+					"ENG_name": "Drakewarden"
+				}
+			},
+			"ENG_name": "Drakewarden",
+			"ENG_shortName": "Drakewarden"
+		},
+		{
+			"name": "獸王",
+			"shortName": "獸王",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"page": 123,
+			"edition": "one",
+			"subclassFeatures": [
+				"Beast Master|Ranger|XPHB|Beast Master|XPHB|3",
+				"Exceptional Training|Ranger|XPHB|Beast Master|XPHB|7",
+				"Bestial Fury|Ranger|XPHB|Beast Master|XPHB|11",
+				"Share Spells|Ranger|XPHB|Beast Master|XPHB|15"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Beast Master",
+			"ENG_shortName": "Beast Master"
+		},
+		{
+			"name": "妖精漫遊者",
+			"shortName": "妖精漫遊者",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"page": 124,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							"charm person|xphb"
+						],
+						"5": [
+							"misty step|xphb"
+						],
+						"9": [
+							"summon fey|xphb"
+						],
+						"13": [
+							"dimension door|xphb"
+						],
+						"17": [
+							"mislead|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Fey Wanderer|Ranger|XPHB|Fey Wanderer|XPHB|3",
+				"Beguiling Twist|Ranger|XPHB|Fey Wanderer|XPHB|7",
+				"Fey Reinforcements|Ranger|XPHB|Fey Wanderer|XPHB|11",
+				"Misty Wanderer|Ranger|XPHB|Fey Wanderer|XPHB|15"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Fey Wanderer",
+			"ENG_shortName": "Fey Wanderer"
+		},
+		{
+			"name": "幽域追蹤者",
+			"shortName": "幽域追蹤者",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"page": 125,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"disguise self|xphb"
+						],
+						"5": [
+							"rope trick|xphb"
+						],
+						"9": [
+							"fear|xphb"
+						],
+						"13": [
+							"greater invisibility|xphb"
+						],
+						"17": [
+							"seeming|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Gloom Stalker|Ranger|XPHB|Gloom Stalker|XPHB|3",
+				"Iron Mind|Ranger|XPHB|Gloom Stalker|XPHB|7",
+				"Stalker's Flurry|Ranger|XPHB|Gloom Stalker|XPHB|11",
+				"Shadowy Dodge|Ranger|XPHB|Gloom Stalker|XPHB|15"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Gloom Stalker",
+			"ENG_shortName": "Gloom Stalker"
+		},
+		{
+			"name": "獵人",
+			"shortName": "獵人",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"page": 127,
+			"srd52": true,
+			"basicRules2024": true,
+			"edition": "one",
+			"subclassFeatures": [
+				"Hunter|Ranger|XPHB|Hunter|XPHB|3",
+				"Defensive Tactics|Ranger|XPHB|Hunter|XPHB|7",
+				"Superior Hunter's Prey|Ranger|XPHB|Hunter|XPHB|11",
+				"Superior Hunter's Defense|Ranger|XPHB|Hunter|XPHB|15"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Hunter",
+			"ENG_shortName": "Hunter"
+		},
+		{
+			"name": "凜冬行者",
+			"shortName": "凜冬行者",
+			"source": "FRHoF",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"page": 21,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"ice knife|xphb"
+						],
+						"5": [
+							"hold person|xphb"
+						],
+						"9": [
+							"remove curse|xphb"
+						],
+						"13": [
+							"ice storm|xphb"
+						],
+						"17": [
+							"cone of cold|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Winter Walker|Ranger|XPHB|Winter Walker|FRHoF|3|FRHoF",
+				"Fortifying Soul|Ranger|XPHB|Winter Walker|FRHoF|7|FRHoF",
+				"Chilling Retribution|Ranger|XPHB|Winter Walker|FRHoF|11|FRHoF",
+				"Frozen Haunt|Ranger|XPHB|Winter Walker|FRHoF|15|FRHoF"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Winter Walker",
+			"ENG_shortName": "Winter Walker"
+		},
+		{
+			"name": "幽邃戍衛",
+			"shortName": "幽邃戍衛",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"wrathful smite|xphb"
+						],
+						"5": [
+							"alter self|xphb"
+						],
+						"9": [
+							"phantom steed|xphb"
+						],
+						"13": [
+							"dominate beast|xphb"
+						],
+						"17": [
+							"steel wind strike|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Hollow Warden|Ranger|XPHB|Hollow Warden|RHW|3|RHW",
+				"Hungering Might|Ranger|XPHB|Hollow Warden|RHW|7|RHW",
+				"Rot and Violence|Ranger|XPHB|Hollow Warden|RHW|11|RHW",
+				"Ancient Might|Ranger|XPHB|Hollow Warden|RHW|15|RHW"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Hollow Warden",
+			"ENG_shortName": "Hollow Warden"
+		}
+	],
+	"classFeature": [
+		{
+			"name": "熟練探險家",
+			"source": "TCE",
+			"page": 56,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 1,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"{@i 1級遊俠{@variantrule optional class features|tce|可選特性}，替代自然探索者特性}",
+				"你是一個無與倫比的探險家和求生專家。你在1級時獲得對應的特性，然後在第6級和第10級時再各獲得對應的特性。",
+				{
+					"name": "精明",
+					"type": "entries",
+					"entries": [
+						"你選擇一項你擁有熟練的技能，你在使用該技能時所做的任何屬性檢定中的熟練加值變為兩倍。",
+						"你還可以額外說、讀、寫兩門額外的自選語言。"
+					],
+					"ENG_name": "Canny"
+				}
+			],
+			"ENG_name": "Deft Explorer"
+		},
+		{
+			"name": "宿敵",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 1,
+			"entries": [
+				"第1級起，你針對一種特定型別敵人的研究令你有著充足的經驗用以追蹤、狩獵乃至與之交流。",
+				"從下列種類中選擇其一作為宿敵： {@filter 異怪|bestiary|type=aberration}, {@filter 野獸|bestiary|type=beast}、{@filter 天族|bestiary|type=celestial}, {@filter 構裝|bestiary|type=construct}、{@filter 龍|bestiary|type=dragon}、{@filter 元素|bestiary|type=elemental}、{@filter 妖精|bestiary|type=fey}、{@filter 邪魔|bestiary|type=fiend}、{@filter 巨人|bestiary|type=giant}、{@filter 怪獸|bestiary|type=monstrosity}、{@filter 泥怪|bestiary|type=ooze}、{@filter 植物|bestiary|type=plant}、{@filter 亡靈|bestiary|type=undead}。或者作為另一種方案，你也可以選擇兩個{@filter 類人|bestiary|type=humanoid}種族（例如{@creature gnoll||鬣狗人}和{@creature orc||獸人}）作為宿敵。",
+				"追蹤宿敵時，你的感知（{@skill Survival||求生}）檢定，以及回想關於宿敵資訊時進行的智力檢定具有優勢。",
+				"獲得該特性時，如果你選擇的宿敵具有語言能力，則你還可以學會宿敵所知曉的一門語言。",
+				"第6和第14級時，你將分別獲得一個額外的宿敵以及相關語言。另外，隨著等級的提升，你所選擇的宿敵應該與你在冒險中所遭遇怪物的種類層次相符。"
+			],
+			"ENG_name": "Favored Enemy"
+		},
+		{
+			"name": "夙敵",
+			"source": "TCE",
+			"page": 56,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 1,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"{@i 1級遊俠{@variantrule optional class features|tce|可選特性}，替代宿敵特性並與屠滅眾敵特性同時生效}",
+				"當你以一次攻擊擲骰命中一個生物時，你可以呼喚你與自然的神秘羈連以將目標標記為你的夙敵，持續一分鐘或直到你失去{@status concentration||專注}(如同你在{@status concentration||專注於}一道法術)。",
+				"你在你的回合內第一次命中你的夙敵並對其造成傷害，包括你標記它的時候，你可以造成額外的{@damage 1d4}點傷害。",
+				"你可以使用同等於你的熟練加值次該特性來標記你的夙敵，你在完成一次長休後恢復所有已使用的次數。",
+				"此特性的額外傷害會在你達到該職業特定等級時提升：6級時提升至{@damage 1d6}，14級時提升至{@damage 1d8}。"
+			],
+			"ENG_name": "Favored Foe"
+		},
+		{
+			"name": "自然探索者",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 1,
+			"entries": [
+				"你對某種自然環境特別熟悉，並擅長在其中旅行與求生。從下列類型中選擇一種偏好地形：極地、海岸、沙漠、森林、草原、山地、沼澤或幽暗地域。當你進行與偏好地形相關的智力或感知檢定時，若使用你具有熟練的技能，熟練加值便加倍。",
+				"當你在偏好地形上移動一小時或更長時間時，你獲得以下增益：",
+				{
+					"type": "list",
+					"items": [
+						"你的隊伍旅行時不會因困難地形而變慢",
+						"除非受魔法效應影響，否則你的隊伍不會迷路",
+						"旅行時，即使你進行另一項活動（如覓食、導航或追蹤），仍能對危險保持警覺。",
+						"獨自旅行時，你能夠保持隱匿狀態以正常步調移動",
+						"覓食時，你會發現兩倍的食物。",
+						"追蹤其他生物時，你還能瞭解他們的確切數量、體型以及離開蹤跡的時間。"
+					]
+				},
+				"你在第6級和第10級時將分別獲得一個額外的偏好地形。"
+			],
+			"ENG_name": "Natural Explorer"
+		},
+		{
+			"name": "戰鬥風格",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 2,
+			"entries": [
+				"第2級起，你將精進於一種戰鬥風格，從下列選項中選擇其一。另外，即使你有多次選擇戰鬥風格的機會，也不能重複選擇同一個戰鬥風格。",
+				{
+					"type": "options",
+					"count": 1,
+					"entries": [
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Archery"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Defense"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Dueling"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Two-Weapon Fighting"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Blind Fighting|TCE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Druidic Warrior|TCE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Thrown Weapon Fighting|TCE"
+						}
+					]
+				}
+			],
+			"ENG_name": "Fighting Style"
+		},
+		{
+			"name": "施法",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 2,
+			"entries": [
+				"第2級起，你學會運用自然世界的魔法本源進行施法，你的施法方式與德魯伊類似。參考{@book 第十章|PHB|10}的施法基本規則以及{@book 第十一章|PHB|11}的{@filter 遊俠法術列表|spells|class=ranger}。",
+				{
+					"type": "entries",
+					"name": "法術位",
+					"entries": [
+						"\"遊俠職業表\"中記錄了你可用以施展你{@filter 遊俠法術|spells|class=ranger}的1環及更高環階法術位數量。施展某個遊俠法術時，你必須同時消耗其對應環階的法術位。而已消耗的法術位則可以透過完成一次長休進行恢復。",
+						"例如，如果你已經習得一環法術{@spell animal friendship||化獸為友}，並且有一個一環和二環法術位可用，你可以使用任一法術位來施放{@spell animal friendship||化獸為友}。"
+					],
+					"ENG_name": "Spell Slots"
+				},
+				{
+					"type": "entries",
+					"name": "1環及更高等級已知法術",
+					"entries": [
+						"你從遊俠法術列表裡選兩個1環法術作為自己的已知法術。",
+						"\"遊俠職業表\"中\"已知法術\"一欄記錄了你獲得更多已知法術時的相應等級。你只能獲取已有相應環階法術位的法術。比如，當你達到第5級時，你將獲得一個1環或2環法術。",
+						"另外，你每提升一個遊俠等級，還可以從遊俠法術列表裡選擇一個新法術來代替一個已知法術列表中的舊法術。但是，你必須擁有新法術的相應環階法術位。"
+					],
+					"ENG_name": "Spells Known of 1st Level and Higher"
+				},
+				{
+					"type": "entries",
+					"name": "施法關鍵屬性",
+					"entries": [
+						"你的魔法來自你與自然的同調，因此感知是你施展遊俠法術的關鍵屬性。每當你的遊俠法術需要施法屬性時均指向你的感知值。而你遊俠法術的豁免DC和攻擊檢定，則使用你的感知調整值。",
+						{
+							"type": "abilityDc",
+							"name": "法術",
+							"attributes": [
+								"wis"
+							],
+							"ENG_name": "Spell"
+						},
+						{
+							"type": "abilityAttackMod",
+							"name": "法術",
+							"attributes": [
+								"wis"
+							],
+							"ENG_name": "Spell"
+						}
+					],
+					"ENG_name": "Spellcasting Ability"
+				}
+			],
+			"ENG_name": "Spellcasting"
+		},
+		{
+			"name": "施法法器",
+			"source": "TCE",
+			"page": 56,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 2,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"{@i 2級遊俠{@variantrule optional class features|tce|可選特性}}",
+				"你可以使用{@item druidic focus|phb|德魯伊法器}作為你的遊俠法術的施法法器。德魯伊法器可能是一小枝槲寄生或冬青、由紫杉或其他特殊木材製成的魔杖或權杖、從活樹上完整取下的法杖，或是包含神聖動物的羽毛、皮毛、骨頭和牙齒的物品。"
+			],
+			"ENG_name": "Spellcasting Focus"
+		},
+		{
+			"name": "原始意識",
+			"source": "TCE",
+			"page": 56,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 3,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"{@i 3級遊俠{@variantrule optional class features|tce|可選特性}，替代原初意識特性}",
+				"你可以透過與自然的共鳴而集中你的意識:若你尚未習得下方表格種的法術，那麼你在抵達對應等級時學會下方原始意識法術表格中的法術。這些法術不佔用你的遊俠已知法術。",
+				{
+					"type": "table",
+					"caption": "原始意識法術",
+					"colLabels": [
+						"遊俠等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell speak with animals||動物交談}"
+						],
+						[
+							"5級",
+							"{@spell beast sense||野獸感官}"
+						],
+						[
+							"9級",
+							"{@spell speak with plants||植物交談}"
+						],
+						[
+							"13級",
+							"{@spell locate creature||生物定位術}"
+						],
+						[
+							"17級",
+							"{@spell commune with nature||問道自然}"
+						]
+					]
+				},
+				"你可以不消耗法術位的施展這些法術每個一次。一旦你用這種方式施展了那個法術，直到你完成一次長休前你都不能再次以此施展它。"
+			],
+			"ENG_name": "Primal Awareness"
+		},
+		{
+			"name": "原初意識",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 3,
+			"entries": [
+				"第3級起，你可以消耗一枚遊俠法術位，並用動作將你的意識集中在身處的區域，感測1裡內是否存在以下型別生物（在偏愛地形中時，擴充套件至6裡）：異怪、天界生物、龍、精類生物、邪魔、元素生物和不死生物。所消耗法術位每提高一環階感測效果持續時間就多加1分鐘。另外，該特性並不會知曉生物的位置或數量。"
+			],
+			"ENG_name": "Primeval Awareness"
+		},
+		{
+			"name": "遊俠範型",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 3,
+			"entries": [
+				"第3級時，你選擇學習一種特定的戰鬥範型。你可以從範型列表中進行選擇。隨後，你將在第3，第7，第11、第15級時獲得所選範型的相應特性。"
+			],
+			"ENG_name": "Ranger Archetype"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 4,
+			"entries": [
+				"當你達到4級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "替換武術",
+			"source": "TCE",
+			"page": 56,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 4,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"{@i 4級遊俠{@variantrule optional class features|tce|可選特性}}",
+				"當你的遊俠職業等級抵達能讓你獲得屬性值提升職業特性時，你能用一個遊俠可用的戰鬥風格替換原有的一個戰鬥風格。這種變化代表著你改變了武術訓練和練習的重點。"
+			],
+			"ENG_name": "Martial Versatility"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 5,
+			"entries": [
+				"第5級起，你在自己回合內執行{@action Attack||攻擊}動作時可以攻擊兩次而非一次。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "熟練探險家強化",
+			"source": "TCE",
+			"page": 56,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 6,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"該職業等級6級時，獲得額外的特性。",
+				{
+					"type": "entries",
+					"name": "越野",
+					"entries": [
+						"你的步行速度增加5。同時，你獲得等於你步行速度的攀爬速度和游泳速度。"
+					],
+					"ENG_name": "Roving"
+				}
+			],
+			"ENG_name": "Deft Explorer Improvement"
+		},
+		{
+			"name": "宿敵和自然探索者強化",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 6,
+			"entries": [
+				"第6級時，你獲得一個額外的偏好地形。",
+				"第6級時，你將獲得一個額外的宿敵以及相關語言。你所選擇的宿敵應該與你在冒險中所遭遇怪物的種類層次相符。"
+			],
+			"ENG_name": "Favored Enemy and Natural Explorer improvements"
+		},
+		{
+			"name": "遊俠範型能力",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 7,
+			"entries": [
+				"第7級時，你獲得所選範型的相應特性。"
+			],
+			"ENG_name": "Ranger Archetype feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 8,
+			"entries": [
+				"當你達到第8級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過該特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "大地行者",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 8,
+			"entries": [
+				"第8級起，你穿過非魔法的{@quickref difficult terrain||3||困難地形}時不會消耗額外移動力。你穿過非魔法的植物時不會消耗額外移動力，且這類植物的荊棘、毛刺或類似的危害物也無法對你造成傷害。",
+				"另外，在抵抗魔法制造或控制的植物造成的移動障礙效應時（例如{@spell entangle||糾纏術}），你進行豁免檢定時具有優勢。"
+			],
+			"ENG_name": "Land's Stride"
+		},
+		{
+			"name": "熟練探險家強化",
+			"source": "TCE",
+			"page": 56,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 10,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"該職業等級10級時，獲得額外的特性。",
+				{
+					"type": "entries",
+					"name": "不知疲倦",
+					"entries": [
+						"以一個動作，你能夠給予自己{@dice 1d8}+你的感知調整值的臨時生命值（至少1點臨時生命值）。你能夠使用此特性的次數等於你的熟練加值次，當你完成一次長休後，你恢復已消費的全部次數。",
+						"此外，當你完成一次短休時，你的{@condition exhaustion||力竭}等級減少1級（若有）。"
+					],
+					"ENG_name": "Tireless"
+				}
+			],
+			"ENG_name": "Deft Explorer Improvement"
+		},
+		{
+			"name": "避人耳目",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 10,
+			"entries": [
+				"第10級起，你可以花1分鐘來為自己製作偽裝。你需要取用新鮮的泥土、植物、煤煙、以及其他天然物料製作這套偽裝。",
+				"偽裝完成後，你可以將自己貼上至少跟自己等高等闊的實體表面（如樹幹或牆壁）並嘗試躲藏。如果你留在原地不移動且不執行動作，則你的敏捷（{@skill Stealth||隱匿}）檢定獲得 +10加值。一旦移動、執行動作或執行反應，你都必須重新偽裝以重獲該增益。"
+			],
+			"ENG_name": "Hide in Plain Sight"
+		},
+		{
+			"name": "自然探索者強化",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 10,
+			"entries": [
+				"你獲得了一個額外的偏好地形。"
+			],
+			"ENG_name": "Natural Explorer improvement"
+		},
+		{
+			"name": "自然面紗",
+			"source": "TCE",
+			"page": 56,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 10,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"{@i 10級遊俠{@variantrule optional class features|tce|可選特性}，替代蔽於平野特性}",
+				"你可以暫時地使用自然的力量將你的身形遮蔽。以一個附贈動作，你可以魔法地使自己與正攜帶、著裝的任何裝備變得{@condition invisible||隱形}，直到你的下個回合開始。",
+				"你可以使用此能力的次數等同於你的熟練加值。當你完成一次長休後，你重獲全部已消耗的使用次數。"
+			],
+			"ENG_name": "Nature's Veil"
+		},
+		{
+			"name": "遊俠範型能力",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 11,
+			"entries": [
+				"第11級時，你獲得所選範型的相應特性。"
+			],
+			"ENG_name": "Ranger Archetype feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 12,
+			"entries": [
+				"當你達到第12級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過該特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "宿敵強化",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 14,
+			"entries": [
+				"第14級時，你將獲得一個額外的宿敵以及相關語言。你所選擇的宿敵應該與你在冒險中所遭遇怪物的種類層次相符。"
+			],
+			"ENG_name": "Favored Enemy improvement"
+		},
+		{
+			"name": "無蹤步",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 14,
+			"entries": [
+				"第14級起，你可以在自己回合以一個附贈動作的形式執行{@action Hide||躲藏}動作。此時，你無法被非魔法手段追蹤到，除非你主動留下蹤跡。"
+			],
+			"ENG_name": "Vanish"
+		},
+		{
+			"name": "遊俠範型能力",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 15,
+			"entries": [
+				"第15級時，你獲得所選範型的相應特性。"
+			],
+			"ENG_name": "Ranger Archetype feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 16,
+			"entries": [
+				"當你達到16級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "野性感官",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 18,
+			"entries": [
+				"第18級時，你獲得超自然感官，能協助你對抗無法看見的生物。當你攻擊一個你看不見的生物時，不會因為看不見它而使攻擊檢定具有劣勢。此外，你能察覺30尺內任何{@condition invisible||隱形}生物的位置，前提是該生物並未對你躲藏，而且你未陷入{@condition blinded||目盲}或{@condition deafened||耳聾}狀態。"
+			],
+			"ENG_name": "Feral Senses"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 19,
+			"entries": [
+				"當你達到19級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "衆敵屠戮",
+			"source": "PHB",
+			"page": 89,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"level": 20,
+			"entries": [
+				"第20級時，你成為了獵殺敵人的無雙獵手。你在自己的每個回合內，都有一次機會將你的感知調整值加到你對宿敵進行的攻擊檢定或傷害擲骰上。你可以在擲骰之前或者之後決定使用該特性，但必須在該擲骰的相關效應被應用之前。"
+			],
+			"ENG_name": "Foe Slayer"
+		},
+		{
+			"name": "宿敵",
+			"source": "XPHB",
+			"page": 120,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你始終準備著法術{@spell Hunter's Mark|XPHB|獵人印記}。你可以無需法術位地施展此法術共計兩次，並在完成一次{@variantrule Long Rest|XPHB|長休}後恢復此能力的所有使用次數。",
+				"你能無需法術位施展該法術的次數會在你獲得特定遊俠等級時提升，見遊俠特性表中的宿敵一欄。"
+			],
+			"ENG_name": "Favored Enemy"
+		},
+		{
+			"name": "施法",
+			"source": "XPHB",
+			"page": 119,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你學會運用自然世界的魔法本源進行施法。施法規則見{@book 第七章|XPHB|7}。下文將詳述如何將這些規則應用於遊俠法術，遊俠法術詳見本章後文職業描述中的{@filter 遊俠法術列表|spells|class=Ranger}。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "法術位",
+							"entries": [
+								"遊俠特性表顯示了你可用於施展一環及以上法術的法術位數量。當你完成{@variantrule Long Rest|XPHB|長休}時，你重獲所有已消耗的法術位。"
+							],
+							"ENG_name": "Spell Slots"
+						},
+						{
+							"type": "entries",
+							"name": "1環及以上的準備法術",
+							"entries": [
+								"你準備可供你以此特性施展的一環及更高環階的法術列表。最初，選擇兩道{@filter 1環遊俠法術|spells|class=Ranger|level=1}。推薦選擇{@spell Cure Wounds|XPHB|療傷術}和{@spell Ensnaring Strike|XPHB|誘捕打擊}。",
+								"已準備法術數量會隨你遊俠等級的提升而增加，如遊俠特性表中的準備法術一列所示。每當這一列的數字增加時，從遊俠法術列表中選擇額外法術準備，直至已準備法術的數量與表格中的數字一致。你所選擇法術的環階必須是你所擁有法術位對應的環階。例如，如果你是一名5級遊俠，則你的準備法術列表能包括六道一環或二環的遊俠法術，隨意組合。",
+								"如果遊俠的其他特性給了你始終準備著的法術，這些法術不計入你以此法準備的法術數量，但這些法術對你而言都視為遊俠法術。"
+							],
+							"ENG_name": "Prepared Spells of Level 1+"
+						},
+						{
+							"type": "entries",
+							"name": "改變你的準備法術",
+							"entries": [
+								"每當你完成一次{@variantrule Long Rest|XPHB|長休}時，你可以將你準備列表上的一道法術替換為其他遊俠法術，新替換的法術必須是你擁有法術位的法術。"
+							],
+							"ENG_name": "Changing Your Prepared Spells"
+						},
+						{
+							"type": "entries",
+							"name": "施法關鍵屬性",
+							"entries": [
+								"感知是你遊俠法術的施法屬性。"
+							],
+							"ENG_name": "Spellcasting Ability"
+						},
+						{
+							"type": "entries",
+							"name": "施法法器",
+							"entries": [
+								"你可以使用{@item Druidic Focus|XPHB|德魯伊法器}作為你遊俠法術的{@variantrule Spellcasting Focus|XPHB|法器}。"
+							],
+							"ENG_name": "Spellcasting Focus"
+						}
+					]
+				}
+			],
+			"ENG_name": "Spellcasting"
+		},
+		{
+			"name": "武器精通",
+			"source": "XPHB",
+			"page": 120,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你對武器的訓練使你能夠運用兩種自選、且你具有熟練的{@filter 武器|items|type=simple weapon;martial weapon}之{@variantrule weapon mastery properties|XPHB|精通詞條}，例如{@item Longbow|XPHB|長弓}和{@item Shortsword|XPHB|短劍}。",
+				"每當你完成一次{@variantrule Long Rest|XPHB|長休}時，你可以更換所選的武器種類。例如，你可以改選{@item Scimitar|XPHB|彎刀}和{@item Longsword|XPHB|長劍}，並使用它們的{@variantrule weapon mastery properties|XPHB|精通詞條}。"
+			],
+			"ENG_name": "Weapon Mastery"
+		},
+		{
+			"name": "熟練探險家",
+			"source": "XPHB",
+			"page": 120,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"得益於你的旅行經歷，你獲得以下增益。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "專精",
+							"entries": [
+								"選擇一項你熟練但不具備{@variantrule Expertise|XPHB|專精}的技能。你在那個技能上獲得{@variantrule Expertise|XPHB|專精}。"
+							],
+							"ENG_name": "Expertise"
+						},
+						{
+							"type": "entries",
+							"name": "語言",
+							"entries": [
+								"你從{@book 第2章|XPHB|2|Choose Languages}的語言表中，自選習得兩種語言。"
+							],
+							"ENG_name": "Languages"
+						}
+					]
+				}
+			],
+			"ENG_name": "Deft Explorer"
+		},
+		{
+			"name": "戰鬥風格",
+			"source": "XPHB",
+			"page": 120,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"你獲得一項{@filter 戰鬥風格專長|feats|category=FS}專長。你也可以選擇下列選項作為替代。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "refFeat",
+							"feat": "Druidic Warrior|XPHB"
+						}
+					]
+				}
+			],
+			"ENG_name": "Fighting Style"
+		},
+		{
+			"name": "遊俠子職",
+			"source": "XPHB",
+			"page": 120,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你選擇獲得一項遊俠子職子職是一種特化，在特定的遊俠等級給予你對應的獨特能力。此後你將獲得你所選的子職所有能力——只要其所需等級不超過你的遊俠等級。"
+			],
+			"ENG_name": "Ranger Subclass"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 120,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 4,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其他你滿足條件的{@5etools 專長|feats.html}。你還會在你的遊俠等級達到第8、第12和第16級時再次獲得本特性。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "XPHB",
+			"page": 120,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"當你在自己的回合執行{@action Attack|XPHB|攻擊}動作時，你可以發動兩次攻擊而非一次。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "越野",
+			"source": "XPHB",
+			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 6,
+			"entries": [
+				"只要你未著裝重甲，你的{@variantrule Speed|XPHB|速度}提升 10 尺。你也獲得{@variantrule Climb Speed|XPHB|攀爬速度}和{@variantrule Swim Speed|XPHB|游泳速度}（等於你的{@variantrule Speed|XPHB|速度}）。"
+			],
+			"ENG_name": "Roving"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 7,
+			"entries": [
+				"你獲得一個來自你遊俠子職的特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 8,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "專精",
+			"source": "XPHB",
+			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 9,
+			"entries": [
+				"選擇兩項你熟練但不具備{@variantrule Expertise|XPHB|專精}的技能，你獲得這些技能的{@variantrule Expertise|XPHB|專精}。"
+			],
+			"ENG_name": "Expertise"
+		},
+		{
+			"name": "不知疲倦",
+			"source": "XPHB",
+			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 10,
+			"entries": [
+				"原初的力量現在會幫你重整旗鼓，重新踏上旅途。你因它獲得以下增益：",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "臨時生命值",
+							"entries": [
+								"以一個{@action Magic|XPHB|魔法}動作，你能夠給予自己{@dice 1d8} + 你的感知調整值（最低為 1） 的{@variantrule Temporary Hit Points|XPHB|臨時生命值}。你能夠使用此特性的次數等於你的感知調整值次（最少 1 次），當你完成一次{@variantrule Long Rest|XPHB|長休}時，你重獲全部已消耗的使用次數。"
+							],
+							"ENG_name": "Temporary Hit Points"
+						},
+						{
+							"type": "entries",
+							"name": "減少力竭",
+							"entries": [
+								"當你完成一次{@variantrule Short Rest|XPHB|短休}時，你的{@condition Exhaustion|XPHB|力竭}等級減少 1 級（若有）。"
+							],
+							"ENG_name": "Decrease Exhaustion"
+						}
+					]
+				}
+			],
+			"ENG_name": "Tireless"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 11,
+			"entries": [
+				"你獲得一個來自你遊俠子職的特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 12,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "永恆追獵",
+			"source": "XPHB",
+			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 13,
+			"entries": [
+				"受到傷害不會打斷你對獵人印記的{@status Concentration|XPHB|專注}。"
+			],
+			"ENG_name": "Relentless Hunter"
+		},
+		{
+			"name": "自然面紗",
+			"source": "XPHB",
+			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 14,
+			"entries": [
+				"你祈喚自然精魂，魔法性地將身形遮蔽隱蔽。以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以讓自己進入 {@condition Invisible|XPHB|隱形}狀態，持續到你的下一回合結束。",
+				"你可以使用該特性的次數等同於你的感知調整值（最少 1 次）。你在完成一次{@variantrule Long Rest|XPHB|長休}時重獲所有已消耗的使用次數。"
+			],
+			"ENG_name": "Nature's Veil"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 15,
+			"entries": [
+				"你獲得一個來自你遊俠子職的特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 16,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "致命獵殺",
+			"source": "XPHB",
+			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 17,
+			"entries": [
+				"你在對你的獵人印記當前指定的目標的攻擊檢定中具有{@variantrule Advantage|XPHB|優勢}。"
+			],
+			"ENG_name": "Precise Hunter"
+		},
+		{
+			"name": "野性感官",
+			"source": "XPHB",
+			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 18,
+			"entries": [
+				"你與自然的連結給予了你30尺{@sense Blindsight|XPHB|盲視}。"
+			],
+			"ENG_name": "Feral Senses"
+		},
+		{
+			"name": "傳奇恩惠",
+			"source": "XPHB",
+			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 19,
+			"entries": [
+				"你獲得一項{@filter 傳奇恩惠專長|feats|category=EB}或其他一項你選擇的適用的{@5etools 專長|feats.html}。推薦選擇{@feat Boon of Dimensional Travel|XPHB|次元旅行之恩惠}。"
+			],
+			"ENG_name": "Epic Boon"
+		},
+		{
+			"name": "衆敵屠戮",
+			"source": "XPHB",
+			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 20,
+			"entries": [
+				"你的獵人印記的傷害骰為{@damage d10}而非{@damage d6}。"
+			],
+			"ENG_name": "Foe Slayer"
+		}
+	],
+	"subclassFeature": [
+		{
+			"name": "龍獸守衛",
+			"source": "FTD",
+			"page": 15,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Drakewarden",
+			"subclassSource": "FTD",
+			"level": 3,
+			"entries": [
+				"你與自然的連線形式表現為一條龍族精魄，精魄能化形為龍獸。隨著你的能量增長，你的龍獸也會一同增長，從四條腿的小夥伴蛻變為宏偉的巨大帶翼生物，強壯到能讓你騎乘。這一過程中，你也會不斷獲得增長的，令人敬畏的龍族力量。",
+				"思考與你聯結的龍族精魄的起源。龍獸守衛起源表提供了範例。",
+				{
+					"type": "table",
+					"caption": "龍獸守衛起源",
+					"colLabels": [
+						"d6",
+						"起源"
+					],
+					"colStyles": [
+						"col-1 text-center",
+						"col-11"
+					],
+					"rows": [
+						[
+							"1",
+							"你透過研究龍的鱗片或爪子，或一件從龍的寶庫裡找到的飾品，從這些徽記物上獲取了殘留的龍族魔法，構成了聯結。"
+						],
+						[
+							"2",
+							"一個專門收集和保護龍族學問的遊俠會社向你傳授了他們的道途。"
+						],
+						[
+							"3",
+							"一條龍給了你一枚晶球或寶石，並讓你進行照看，你沒想到的是，龍獸從這塊石頭裡孵化了出來。"
+						],
+						[
+							"4",
+							"你曾吞下了幾滴龍血，永遠給你的自然魔法注入了龍的力量。"
+						],
+						[
+							"5",
+							"當你大聲朗讀巨石柱上的古代龍紋銘文後，你被賦予了力量。"
+						],
+						[
+							"6",
+							"你做了一個逼真的夢，你夢見一個神秘的人物，有七隻黃色的金絲雀伴隨其左右，警告你即將到來的浩劫。當你醒來時，你的龍獸就在你的身邊盯著你。"
+						]
+					]
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Draconic Gift|Ranger||Drakewarden|FTD|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Drake Companion|Ranger||Drakewarden|FTD|3"
+				}
+			],
+			"ENG_name": "Drakewarden"
+		},
+		{
+			"name": "龍族贈禮",
+			"source": "FTD",
+			"page": 15,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Drakewarden",
+			"subclassSource": "FTD",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級龍獸守衛特性}",
+				"透過與你龍獸的聯結，你獲得與龍族之間的聯絡，增強你的氣場，賦予你知識，你獲得以下增益 :",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "奇術",
+							"entry": "你習得戲法{@spell thaumaturgy||奇術}，這對你而言是一個遊俠法術。",
+							"ENG_name": "Thaumaturgy"
+						},
+						{
+							"type": "item",
+							"name": "龍之言語",
+							"entry": "你學會說，讀，寫龍語或另一門你選擇的語言。",
+							"ENG_name": "Tongue of Dragons"
+						}
+					]
+				}
+			],
+			"ENG_name": "Draconic Gift"
+		},
+		{
+			"name": "龍獸夥伴",
+			"source": "FTD",
+			"page": 15,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Drakewarden",
+			"subclassSource": "FTD",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級龍獸守衛特性}",
+				"以一個動作，你能魔法地召喚出與你聯結的龍獸。龍獸會出現在你30尺內一處由你選擇的未被佔據的空間裡。",
+				"這隻龍獸對你和你的同伴是友好的，並且它服從你的命令。請參閱隨附的{@creature Drake Companion|FTD|龍獸夥伴}具體數值塊中的遊戲具體數值，它在幾個地方使用了你的熟練加值（PB）。每當你召喚龍獸時，從它的龍族精華特性中選擇一種傷害型別。你可以決定龍獸的外觀特徵，如它的顏色、它的鱗片質地，或任何可見的龍族精華效果；你的選擇不會影響它的遊戲具體數值。",
+				"戰鬥中，龍獸與你共享先攻，會在你的回合結束之後立即進行自己的回合。龍獸能自己獨自移動和使用反應，除非你在你的回合裡使用附贈動作命令龍獸執行一個動作，否則龍獸只會使用{@action Dodge||迴避}動作。執行的動作可以是資料卡上的，也可以是其他的。當你{@condition incapacitated||失能}時，龍獸能獨自進行任何動作選項，而不是隻能{@action Dodge||迴避}。",
+				"龍獸持續直到它的生命值降為0，或你使用本特性召喚另一隻龍獸，或你死亡。當龍獸消失時，它穿戴和攜帶的物品會留在原地。",
+				"當你召喚龍獸後，你需要完成一次長休才能再次這樣做。你也能使用一個一環或更高的法術位來召喚龍獸。"
+			],
+			"ENG_name": "Drake Companion"
+		},
+		{
+			"name": "牙鱗之聯",
+			"source": "FTD",
+			"page": 15,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Drakewarden",
+			"subclassSource": "FTD",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"{@i 7級龍獸守衛特性}",
+				"你與龍獸之間的紐帶加強，激發龍獸的狂怒，為你提供保護。當你召喚龍獸時，一對翅膀在其背後長出，並獲得與步行速度相等的飛行速度。",
+				"此外，當召喚的龍獸在場時，你和龍獸獲得以下增益:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "龍獸坐騎",
+							"entries": [
+								"龍獸成長為中等體型。作為你特別聯結的反映，你能夠將龍獸當做坐騎騎乘，即使你的體型也為中型。當你騎乘龍獸時，龍獸不能使用從本特性中獲得的飛行速度。"
+							],
+							"ENG_name": "Drake Mount"
+						},
+						{
+							"type": "item",
+							"name": "魔法獠牙",
+							"entries": [
+								"龍獸的啃咬攻擊額外造成與龍族精粹傷害型別相同的{@damage 1d6}傷害。"
+							],
+							"ENG_name": "Magic Fang"
+						},
+						{
+							"type": "item",
+							"name": "抗性",
+							"entries": [
+								"你獲得與龍族精粹傷害型別相同的傷害抗性。"
+							],
+							"ENG_name": "Resistance"
+						}
+					]
+				}
+			],
+			"ENG_name": "Bond of Fang and Scale"
+		},
+		{
+			"name": "龍獸吐息",
+			"source": "FTD",
+			"page": 15,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Drakewarden",
+			"subclassSource": "FTD",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"{@i 11級龍獸守衛特性}",
+				"使用一個動作，你能噴吐 30尺錐形的傷害吐息，或者你也能將噴射起點設為你的龍獸。選擇強酸，冷凍，閃電，火焰，或毒性傷害。（你的選擇和龍族精粹特性無關。）錐形範圍內的生物進行一次敏捷豁免對抗你的法術DC，豁免失敗時受到{@damage 8d6}傷害，成功時受到一半的傷害。",
+				"當你在此職業達到15級時，此傷害提升至{@damage 10d6}。",
+				"當你使用本特性後，你需要完成一次長休才能再次這樣做。你也能使用一個三環或更高的法術位來再次使用。"
+			],
+			"ENG_name": "Drake's Breath"
+		},
+		{
+			"name": "完美聯結",
+			"source": "FTD",
+			"page": 15,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Drakewarden",
+			"subclassSource": "FTD",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"{@i 15級龍獸守衛特性}",
+				"你與龍獸的聯結抵達其力量的巔峰。當召喚的龍獸在場時，你和龍獸獲得以下增益 :",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "強化啃咬",
+							"entries": [
+								"龍獸的啃咬攻擊額外造成與龍族精粹屬性相同的 {@damage 1d6}傷害。（總共{@damage 2d6}額外傷害。）"
+							],
+							"ENG_name": "Empowered Bite"
+						},
+						{
+							"type": "item",
+							"name": "大型龍獸",
+							"entries": [
+								"你的龍獸成長為大型。當你騎乘龍獸時，使用飛行速度不再受限於牙鱗之聯。"
+							],
+							"ENG_name": "Large Drake"
+						},
+						{
+							"type": "item",
+							"name": "反射抗性",
+							"entries": [
+								"當你與龍獸彼此相距30尺內，且你或龍獸受到傷害時，你可以使用反應，使你自己或龍獸對該次傷害具有抗性。你使用此反應的次數等於你的熟練加值；完成一次長休後，你恢復所有已消耗的使用次數。"
+							],
+							"ENG_name": "Reflexive Resistance"
+						}
+					]
+				}
+			],
+			"ENG_name": "Perfected Bond"
+		},
+		{
+			"name": "獸王",
+			"source": "PHB",
+			"page": 93,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Beast Master",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"馴獸師範型體現了文明種族與野獸之間的友誼。野獸和遊俠團結一致，共同對抗威脅文明或自然的可怕敵人。追隨馴獸師之道意味著將自己奉獻予這一理念，並以伴侶和朋友的身份與一名動物協同合作。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Ranger's Companion|Ranger||Beast Master||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Primal Companion|Ranger||Beast Master||3|TCE"
+				}
+			],
+			"ENG_name": "Beast Master"
+		},
+		{
+			"name": "原初動物夥伴",
+			"source": "TCE",
+			"page": 61,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Beast Master",
+			"subclassSource": "PHB",
+			"level": 3,
+			"isClassFeatureVariant": true,
+			"header": 1,
+			"entries": [
+				"{@i 3級馴獸師變體特性，替代遊俠伴侶特性}",
+				"你魔法性的召喚出一隻原初野獸，其力量來自於與你與自然的聯絡。這隻野獸對你和你的夥伴態度友善，並會聽從你的命令。你從{@creature Beast of the Land|TCE|大地野獸}，{@creature Beast of the Sea|TCE|海洋野獸}和{@creature Beast of the Sky|TCE|天空野獸}的資料中為它選擇其一作為它的資料，它資料表中許多地方將會用到你的熟練加值（PB）。且你決定原初野獸是何種動物，選擇適合其資料的外形。無論你選擇什麼樣的動物，這隻野獸都帶有原始的印記，暗示著其神秘的起源。",
+				"在戰鬥中，原初野獸會在你的回合中行動。它能自主的移動或使用反應，但除非你在你的回合中以一個附贈動作命令它執行其他動作，它只會執行{@action Dodge||迴避} 動作。命令的動作可以是其資料中列出的動作或是之外的其他動作。作為另一種命令方式，你也能在使用自己的{@action Attack||攻擊}動作時，犧牲其中一次自己的攻擊來命令野獸執行{@action Attack||攻擊}動作。如果你陷入{@condition incapacitated||失能}，野獸將會自主行動，而非僅使用{@action Dodge||迴避}動作。",
+				"如果野獸死亡不超過一小時，你能使用你的動作觸碰它，並消耗一個一環或更高的法術位使它復活。它會在一分鐘後死而復生並獲得所有生命值。",
+				"當你結束一次長休後，你能夠召喚一隻不同的原初野獸。這隻新的野獸出現在你5尺內未被佔據的空間內，並由你選擇其資料和外表。如果你已經透過此特性獲得了一隻原初野獸，它會在新的原初野獸出現時消失。原初野獸也會在你死亡時消失。"
+			],
+			"ENG_name": "Primal Companion"
+		},
+		{
+			"name": "遊俠動物夥伴",
+			"source": "PHB",
+			"page": 93,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Beast Master",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你獲得一個野獸伴侶陪你一起冒險，這名訓練有素的夥伴能與你合作無間地戰鬥。指定一個{@filter 體型不超過中型且挑戰等級為1/4或更低的野獸|bestiary|challenge rating=[&0;&1/4]|type=beast|size=f;d;t;s;m|miscellaneous=!swarm}。將你的熟練加值加到該野獸的AC，攻擊檢定，傷害擲骰以及其所有具有熟練項的豁免和技能檢定中。其生命值上限選用其原上限，或你遊俠等級的四倍兩者中較高者。跟其他別的生物一樣，該野獸也可在短休時使用生命骰。",
+				"野獸會盡其所能服從你的命令。它在你的先攻順位行動。在你的回合中，你可以口頭命令野獸移動到何處（你無需為此使用動作）。你可以使用你的動作，口頭命令它執行{@action Attack||攻擊}、{@action Dash||疾走}、{@action Disengage||撤離}或{@action Help||協助}動作。若你沒有下達命令，野獸便執行{@action Dodge||迴避}動作。當你取得額外攻擊特性後，你命令野獸執行{@action Attack||攻擊}動作時，自己可以進行一次武器攻擊。",
+				"若你陷入{@condition incapacitated||失能}或並不在場，該野獸將自主活動，並集中致力於保護你和它自己。該野獸此時無需你下達指令即可使用其反應，比如以此發動一次藉機攻擊。",
+				"身處偏好地形時，如果只有該野獸與你一起，則你仍可以保持隱匿狀態以正常步調旅行。",
+				"如果野獸死亡，你可以花費8小時，以魔法與一隻對你不具敵意且符合上述條件的野獸建立聯結，取得新的動物夥伴。"
+			],
+			"ENG_name": "Ranger's Companion"
+		},
+		{
+			"name": "超絕訓練",
+			"source": "PHB",
+			"page": 93,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Beast Master",
+			"subclassSource": "PHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"第7級起，如果你的野獸伴侶在你的回合內未曾發動攻擊，則你可以在本回合用一個附贈動作命令該野獸在其回合內執行{@action Dash||疾走}， {@action Disengage||撤離}，或{@action Help||協助}動作。此外，該野獸的攻擊作用於非魔法攻擊與傷害的免疫與抗性時視為魔法。"
+			],
+			"ENG_name": "Exceptional Training"
+		},
+		{
+			"name": "野性狂怒",
+			"source": "PHB",
+			"page": 93,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Beast Master",
+			"subclassSource": "PHB",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"第11級起，當你命令野獸伴侶執行{@action Attack||攻擊}動作時，它可以發動兩次攻擊；或者，若它具有「多重攻擊」動作，也可以改為執行該動作。"
+			],
+			"ENG_name": "Bestial Fury"
+		},
+		{
+			"name": "法術共享",
+			"source": "PHB",
+			"page": 93,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Beast Master",
+			"subclassSource": "PHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"第15級起，當你施展一個目標為自身的法術時，如果你的野獸伴侶處於你身邊30尺範圍內，則該法術效應同時也作用於你的野獸伴侶。"
+			],
+			"ENG_name": "Share Spells"
+		},
+		{
+			"name": "獵人",
+			"source": "PHB",
+			"page": 93,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"選擇獵人範型，意味著你接受文明社會與驚粟荒野間的交界作為你的戰鬥崗位。走上獵人之路後，你將學習專業的戰鬥技巧，並面臨的各種威脅：從狂暴的食人魔和成群的獸人，到高聳的巨人和可怕的龍都是你前進的障礙。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Hunter's Prey|Ranger||Hunter||3"
+				}
+			],
+			"ENG_name": "Hunter"
+		},
+		{
+			"name": "滅族者",
+			"source": "PHB",
+			"page": 93,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"進行武器攻擊時，你可以用該武器對位於目標5尺內，且在你武器射程內的另一生物發動一次攻擊。你在每個自己的回合裡只能造成一次這種額外攻擊。"
+			],
+			"ENG_name": "Horde Breaker"
+		},
+		{
+			"name": "狩者獵物",
+			"source": "PHB",
+			"page": 93,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"第3級時，你選擇獲得以下特性之一。",
+				{
+					"type": "options",
+					"count": 1,
+					"entries": [
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Colossus Slayer|Ranger||Hunter||3"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Giant Killer|Ranger||Hunter||3"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Horde Breaker|Ranger||Hunter||3"
+						}
+					]
+				}
+			],
+			"ENG_name": "Hunter's Prey"
+		},
+		{
+			"name": "巨怪獵者",
+			"source": "PHB",
+			"page": 93,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"你強而有力的攻擊可以擊倒最強壯的對手。當你用武器攻擊命中敵人時，如果該敵人當前生命值低於其上限，則其額外受到{@damage 1d8}點傷害。你每回合只能造成一次這種額外傷害。"
+			],
+			"ENG_name": "Colossus Slayer"
+		},
+		{
+			"name": "巨人殺手",
+			"source": "PHB",
+			"page": 93,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"一個距離你5尺內的大型或更大體型生物對你發動攻擊時，無論該次攻擊是否命中，只要你能看見它就可以在該攻擊結束後用一個反應對該生物發動攻擊。"
+			],
+			"ENG_name": "Giant Killer"
+		},
+		{
+			"name": "防禦性戰術",
+			"source": "PHB",
+			"page": 93,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "PHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"第7級時，你選擇獲得以下特性之一。",
+				{
+					"type": "options",
+					"count": 1,
+					"entries": [
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Escape the Horde|Ranger||Hunter||7"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Multiattack Defense|Ranger||Hunter||7"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Steel Will|Ranger||Hunter||7"
+						}
+					]
+				}
+			],
+			"ENG_name": "Defensive Tactics"
+		},
+		{
+			"name": "逃離衆敵",
+			"source": "PHB",
+			"page": 93,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "PHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"以你為目標的藉機攻擊具有劣勢。"
+			],
+			"ENG_name": "Escape the Horde"
+		},
+		{
+			"name": "防禦多重攻擊",
+			"source": "PHB",
+			"page": 93,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "PHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"你被生物的攻擊命中時，你在本回合內對抗該敵人所有後續攻擊的AC獲得 +4加值。"
+			],
+			"ENG_name": "Multiattack Defense"
+		},
+		{
+			"name": "鋼鐵意志",
+			"source": "PHB",
+			"page": 93,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "PHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"你進行對抗{@condition frightened||恐慌}的豁免時具有優勢。"
+			],
+			"ENG_name": "Steel Will"
+		},
+		{
+			"name": "多重攻擊",
+			"source": "PHB",
+			"page": 93,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "PHB",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"第11級時，你選擇獲得以下特性之一。",
+				{
+					"type": "options",
+					"count": 1,
+					"entries": [
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Volley|Ranger||Hunter||11"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Whirlwind Attack|Ranger||Hunter||11"
+						}
+					]
+				}
+			],
+			"ENG_name": "Multiattack"
+		},
+		{
+			"name": "箭雨",
+			"source": "PHB",
+			"page": 93,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "PHB",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"你使用你的動作指定你的遠端武器射程內你能看見的某點，並分別對該點周圍10尺範圍內任意數量的生物發動一次遠端攻擊。發動該特性時，你必須有足夠的彈藥用以攻擊敵人，且要為每個目標進行獨立的攻擊檢定。"
+			],
+			"ENG_name": "Volley"
+		},
+		{
+			"name": "劍刃風暴",
+			"source": "PHB",
+			"page": 93,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "PHB",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"你使用你的動作指定你身邊5尺內任意數量的生物，並分別對其發動一次近戰攻擊，每個受此攻擊的目標必須進行獨立的攻擊檢定。"
+			],
+			"ENG_name": "Whirlwind Attack"
+		},
+		{
+			"name": "反射閃避",
+			"source": "PHB",
+			"page": 93,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "PHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"你可以靈巧躲過某些特定的區域效應，比如紅龍的火焰吐息或是法術{@spell lightning bolt||閃電束}。你在成為某一範圍效應影響物件時，若該效應允許你透過成功的敏捷豁免來使傷害減半，則你在該豁免成功時不受傷害，而豁免失敗時只受一半傷害。"
+			],
+			"ENG_name": "Evasion"
+		},
+		{
+			"name": "逆潮而立",
+			"source": "PHB",
+			"page": 93,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "PHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"當敵人對你的近戰攻擊未命中時，你可以用反應迫使敵人向你所指定的生物（除攻擊者外）重新發動攻擊。"
+			],
+			"ENG_name": "Stand Against the Tide"
+		},
+		{
+			"name": "卓越獵人防禦",
+			"source": "PHB",
+			"page": 93,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "PHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"第15級時，你選擇獲得以下特性之一。",
+				{
+					"type": "options",
+					"count": 1,
+					"entries": [
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Evasion|Ranger||Hunter||15"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Stand Against the Tide|Ranger||Hunter||15"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Uncanny Dodge|Ranger||Hunter||15"
+						}
+					]
+				}
+			],
+			"ENG_name": "Superior Hunter's Defense"
+		},
+		{
+			"name": "直覺閃避",
+			"source": "PHB",
+			"page": 93,
+			"srd": true,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "PHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"當一個你能看見的敵人攻擊命中你時，你可以用反應讓此次攻擊的傷害減半。"
+			],
+			"ENG_name": "Uncanny Dodge"
+		},
+		{
+			"name": "妖精漫遊者",
+			"source": "TCE",
+			"page": 58,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Fey Wanderer",
+			"subclassSource": "TCE",
+			"level": 3,
+			"entries": [
+				"或來自一位至高妖精的恩惠，或是來自你食用的一枚從能言之樹上取下的閃亮果實，或是來自你曾浸遊於中的魔法清泉，或是來自其它妙事，你的身側因那次奇遇而有妖精的魔力纏繞。無論你是怎麼得到你來自妖精的魔法的，你現在是一名代表了凡間與妖精國度雙方的遊俠妖精漫遊者。你漫步於多元宇宙之時，你輕快的笑聲為受壓迫者們帶來欣喜的希望，你英勇的技藝直擊你敵人的恐懼，你所就的偉績乃是妖精的喜悅，你散步的恐懼乃是妖精的憤怒。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Dreadful Strikes|Ranger||Fey Wanderer|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Fey Wanderer Magic|Ranger||Fey Wanderer|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Otherworldly Glamour|Ranger||Fey Wanderer|TCE|3"
+				}
+			],
+			"ENG_name": "Fey Wanderer"
+		},
+		{
+			"name": "哀懼靈襲",
+			"source": "TCE",
+			"page": 58,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Fey Wanderer",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級妖精漫遊者特性}",
+				"你能夠使用來自妖精荒野中黑暗空洞的攝心魔法以強化你的武器攻擊。當你用一把武器擊中一個生物時，你可以對目標造成額外的{@damage 1d4}點心靈傷害。每個生物在每個回合只能夠受到這一額外傷害一次。",
+				"當你在此職業達到11級時，額外傷害提升至{@damage 1d6}。"
+			],
+			"ENG_name": "Dreadful Strikes"
+		},
+		{
+			"name": "妖精漫遊者法術",
+			"source": "TCE",
+			"page": 58,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Fey Wanderer",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級妖精漫遊者特性}",
+				"你在達到特定等級時，你會額外習得一個下方妖精漫遊者法術列表中列出的法術。這些法術對你而言視作遊俠法術，且不計入你的遊俠已知法術數量中。",
+				{
+					"type": "table",
+					"caption": "妖精漫遊者法術",
+					"colLabels": [
+						"遊俠等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell charm person||魅惑類人}"
+						],
+						[
+							"5級",
+							"{@spell misty step||迷蹤步}"
+						],
+						[
+							"9級",
+							"{@spell dispel magic||解除魔法}"
+						],
+						[
+							"13級",
+							"{@spell dimension door||任意門}"
+						],
+						[
+							"17級",
+							"{@spell mislead||假象術}"
+						]
+					]
+				},
+				"你還獲得了來自一位妖精盟友或一處妖精神力的神奇祝福。你可以在下方妖精荒原之賜表格中選擇你的祝福，或者隨機決定它。",
+				{
+					"type": "table",
+					"caption": "精野之賜",
+					"colLabels": [
+						"d6",
+						"贈禮"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"在你進行長休或短休時，縹緲的蝴蝶在你周身振翅。"
+						],
+						[
+							"2",
+							"每天黎明，新鮮的、當季的花朵將在你的頭髮中生長。"
+						],
+						[
+							"3",
+							"你身上有淡淡的肉桂、薰衣草或肉豆蔻，或另一種令人舒適的藥草或香料的香味。"
+						],
+						[
+							"4",
+							"你的影子會在沒人直視它時起舞。"
+						],
+						[
+							"5",
+							"你的頭髮中長出纖細的觸角或鹿角。"
+						],
+						[
+							"6",
+							"每天黎明，你的膚色和髮色會隨當前季節的變化而變化。"
+						]
+					]
+				}
+			],
+			"ENG_name": "Fey Wanderer Magic"
+		},
+		{
+			"name": "妖冶嫺都",
+			"source": "TCE",
+			"page": 58,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Fey Wanderer",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級妖精漫遊者特性}",
+				"你的妖精特質給予了你超脫凡俗的魅惑力。因此，每當你進行一次魅力檢定時，你都可以在那次檢定中獲得等同於你的感知調整值的加值（至少+1）。",
+				"另外，你獲得下列技能之一的熟練項（由你選擇）：{@skill Deception||欺瞞}、{@skill Performance||表演}、或{@skill Persuasion||遊說}。"
+			],
+			"ENG_name": "Otherworldly Glamour"
+		},
+		{
+			"name": "妖思魅縷",
+			"source": "TCE",
+			"page": 58,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Fey Wanderer",
+			"subclassSource": "TCE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"{@i 7級妖精漫遊者特性}",
+				"妖精荒原的魔法護衛著你的心靈。你在對抗陷入{@condition charmed||魅惑}或{@condition frightened||恐慌}的豁免檢定上具有優勢。",
+				"此外，當你或周圍120尺內你可見的一個生物成功透過了一次對抗{@condition charmed||魅惑}或{@condition frightened||恐慌}的豁免檢定時，你可以用你的反應迫使120尺內的另一個你可見的不同生物透過一次感知豁免，豁免DC等同於你的法術豁免DC。若其豁免失敗，則目標被你{@condition charmed||魅惑}，或對你{@condition frightened||恐慌}（由你選擇），持續一分鐘。目標能夠在他的每回合結束時重複這次豁免，豁免成功時效果提前終止。"
+			],
+			"ENG_name": "Beguiling Twist"
+		},
+		{
+			"name": "精宸所與",
+			"source": "TCE",
+			"page": 58,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Fey Wanderer",
+			"subclassSource": "TCE",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"{@i 11級妖精漫遊者特性}",
+				"妖精荒原的皇庭賜予你獲得精類援助的祝福：你習得法術{@spell summon fey|tce|妖精召喚術}。它不計入你的已知遊俠法術，且你施展它時無需材料成分。你可以免費施展這個法術一次而不需要消耗法術位，在你完成一次長休後，你重獲免費施展該法術的能力。",
+				"每當你施展此法術前，你都可以微調這一法術使其本次施展與維持無需你保持{@status concentration||專注}。以無需專注的方式施展時，該法術的持續時間將變為一分鐘。"
+			],
+			"ENG_name": "Fey Reinforcements"
+		},
+		{
+			"name": "霧行漫遊",
+			"source": "TCE",
+			"page": 58,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Fey Wanderer",
+			"subclassSource": "TCE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"{@i 15級妖精漫遊者特性}",
+				"你可以在眨眼之間穿梭妖精荒原以進行移動：你可以免費施展{@spell misty step||迷蹤步}而不需要消耗法術位，次數等同於你的感知調整值（至少一次），在完成一次長休後，你重獲所有的已消耗的次數。",
+				"另外，每當你施展{@i 迷蹤步}時，你可以攜帶一個五尺以內你可見的自願生物與你一同傳送。那個生物會被傳送到由你選擇的，位於你的目標位置周圍五尺範圍內的一處未被佔據的空間內。"
+			],
+			"ENG_name": "Misty Wanderer"
+		},
+		{
+			"name": "集羣守衛",
+			"source": "TCE",
+			"page": 59,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Swarmkeeper",
+			"subclassSource": "TCE",
+			"level": 3,
+			"entries": [
+				"有的遊俠感受到了與周身自然之間的緊密聯絡，他們透過自己與世界之間的魔法聯絡向自然的本源伸出雙手，並透過一片自然精魂的叢集與自然本身羈連。叢集隨後化作戰鬥中的強力幫手，或遊俠的一位得力助手。有的遊俠是被放逐者或隱士，他們更在意修行自我而非與他人打交道並找不快。而其他的叢集守衛則樂意創造服務於所有被他們視為自然叢集的一部分者集體利益的美麗社會。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Gathered Swarm|Ranger||Swarmkeeper|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Swarmkeeper Magic|Ranger||Swarmkeeper|TCE|3"
+				}
+			],
+			"ENG_name": "Swarmkeeper"
+		},
+		{
+			"name": "蜂聚集羣",
+			"source": "TCE",
+			"page": 59,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Swarmkeeper",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級叢集牧者特性}",
+				"無形自然精魂形成的叢集與你形影不離並會在戰鬥中對你施以援手。直到你死亡為止，叢集會存在於你的空間中，在你身上爬行或在你周身的空間裡飛舞或竄動。你自行決定叢集的外觀，或者你投擲叢集外觀表格來決定其外觀。",
+				{
+					"type": "table",
+					"caption": "叢集外觀",
+					"colLabels": [
+						"d4",
+						"外貌"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"群聚的昆蟲"
+						],
+						[
+							"2",
+							"微小的枯枝怪"
+						],
+						[
+							"3",
+							"飛舞的群鳥"
+						],
+						[
+							"4",
+							"好動的皮克精"
+						]
+					]
+				},
+				"每個你的回合一次，當你的攻擊命中一個生物後，你能立刻讓叢集以以下一種方式助你一臂之力：",
+				{
+					"type": "list",
+					"items": [
+						"叢集對這次攻擊的目標造成{@damage 1d6}點穿刺傷害。",
+						"這次攻擊的目標必須成功透過對抗你法術豁免DC的力量豁免檢定，豁免失敗將被叢集水平移動最多15尺，方向由你選擇。",
+						"你被叢集水平移動5尺，方向由你選擇。"
+					]
+				},
+				{
+					"type": "inset",
+					"name": "你的叢集",
+					"entries": [
+						"一位叢集守衛的叢集和法術反應了角色與自然精魂的聯絡。在遊戲中，多抓住機會來描述你自己的叢集和遊俠法術。比方說，當你的遊俠施展氣化形體時，施法物件可能會消失在他自己的叢集中，而非變為一團霧氣，而{@spell arcane eye||秘法眼}則可以創造出一部分分離的叢集為你進行偵查。這樣的描述不會改變法術的效應，但它們能讓透過特性描述自己的角色更加引人入勝。需要更多個性化法術的指導，請見第三章中的\"定製法術\"一節。",
+						"同樣，記住你的叢集外表能由你自己定製，別侷限於單一的造型。也許精魂的外表會隨著遊俠的情緒而千變萬化，或者隨著季節而呈現出不同的形象。這一切都由你自己選擇。"
+					],
+					"ENG_name": "It's Your Swarm"
+				}
+			],
+			"ENG_name": "Gathered Swarm"
+		},
+		{
+			"name": "集羣守衛魔法",
+			"source": "TCE",
+			"page": 59,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Swarmkeeper",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級叢集牧者特性}",
+				"若你之前還未習得{@spell mage hand||法師之手}這個戲法，你習得之。當你施展法師之手時，那隻手會以你的叢集自然精魂形態出現。",
+				"此外，當你到達指定遊俠等級時，你會習得一個額外的1環或更高環階的法術，如叢集守衛法術列表所示。這些法術對你視為遊俠法術，且不計入你的已知法術總數中。",
+				{
+					"type": "table",
+					"caption": "叢集守衛法術",
+					"colLabels": [
+						"遊俠等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell faerie fire||妖火}"
+						],
+						[
+							"5級",
+							"{@spell web||蛛網術}"
+						],
+						[
+							"9級",
+							"{@spell gaseous form||氣化形體}"
+						],
+						[
+							"13級",
+							"{@spell arcane eye||秘法眼}"
+						],
+						[
+							"17級",
+							"{@spell insect plague||疫病蟲群}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Swarmkeeper Magic"
+		},
+		{
+			"name": "翻騰浪涌",
+			"source": "TCE",
+			"page": 59,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Swarmkeeper",
+			"subclassSource": "TCE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"{@i 7級叢集牧者特性}",
+				"你能將你的叢集的一部分凝聚成一股集中的力量，來將你托起。以一個附贈動作，你獲得10尺飛行速度，且能懸浮。該效應持續1分鐘。若你陷入{@condition incapacitated||失能}狀態，它會提前結束。",
+				"你可以使用此能力的次數等同於你的熟練加值。當你完成一次長休後，你重獲全部已消耗的使用次數。"
+			],
+			"ENG_name": "Writhing Tide"
+		},
+		{
+			"name": "壯大集羣",
+			"source": "TCE",
+			"page": 59,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Swarmkeeper",
+			"subclassSource": "TCE",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"{@i 11級叢集牧者特性}",
+				"你的蜂聚叢集透過以下方式變得更加強大：",
+				{
+					"type": "list",
+					"items": [
+						"蜂聚叢集造成的傷害提升至{@damage 1d8}。",
+						"如果一個生物在對抗被蜂聚叢集移動的豁免中失敗，你還能驅使叢集將該生物擊倒在地（陷入{@condition prone||倒地}）。",
+						"當你被蜂聚叢集移動後，直至你下個回合開始前，它會使你獲得{@quickref Cover||3||半身掩護}。"
+					]
+				}
+			],
+			"ENG_name": "Mighty Swarm"
+		},
+		{
+			"name": "羣逸逃散",
+			"source": "TCE",
+			"page": 59,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Swarmkeeper",
+			"subclassSource": "TCE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"{@i 15級叢集牧者特性}",
+				"你能將自己散入叢集來躲避危險。當你受到傷害時，你能使用你的反應讓自己獲得對該次傷害的抗性。你會消失在自己的叢集之中，然後傳送至30尺內一個未被佔據的可見空間中，你的叢集使你重新出現在那裡。",
+				"你可以使用此能力的次數等同於你的熟練加值。當你完成一次長休後，你重獲全部已消耗的使用次數。"
+			],
+			"ENG_name": "Swarming Dispersal"
+		},
+		{
+			"name": "幽域追蹤者",
+			"source": "XGE",
+			"page": 41,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Gloom Stalker",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"幽域追蹤者居身於致暗之地：地表深處，暗巷之間，太古叢林，和其他任何光無法照亮的地方。很多人進入到這種地區都會有種強烈的不安，但是幽域追蹤者卻能在黑暗中大膽冒險，在敵人能夠觸及到更開闊的地區之前搜尋並襲擊他們。這種遊俠經常出現在幽暗地域，但是他們會前往任何邪惡勢力蟄伏的地區。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Gloom Stalker Magic|Ranger||Gloom Stalker|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Dread Ambusher|Ranger||Gloom Stalker|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Umbral Sight|Ranger||Gloom Stalker|XGE|3"
+				}
+			],
+			"ENG_name": "Gloom Stalker"
+		},
+		{
+			"name": "懼怖伏兵",
+			"source": "XGE",
+			"page": 41,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Gloom Stalker",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"在第3級時，你精通於伏擊的藝術。你的先攻檢定獲得等同於你感知調整值的加值。",
+				"在每一場戰鬥中你的第一個回合的開始時，你的步行速度增加10尺，持續直至該回合結束。如果你在該回合進行{@action Attack||攻擊}動作，則你可以做一次額外的武器攻擊，作為那次攻擊動作的一部分。如果那次攻擊成功命中，目標還將受到額外{@damage 1d8}點傷害，額外傷害型別與武器相同。"
+			],
+			"ENG_name": "Dread Ambusher"
+		},
+		{
+			"name": "幽域追蹤者魔法",
+			"source": "XGE",
+			"page": 41,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Gloom Stalker",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"3級起，每當你在此職業達到特定等級時你都能學會一個額外的遊俠法術，如幽域追蹤者法術表所示的那樣。這些法術對你視為遊俠法術，且它們不計入你的遊俠已知法術總數中。",
+				{
+					"type": "table",
+					"caption": "幽域追蹤者法術",
+					"colLabels": [
+						"遊俠等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell disguise self||易容術}"
+						],
+						[
+							"5級",
+							"{@spell rope trick||魔繩術}"
+						],
+						[
+							"9級",
+							"{@spell fear||恐懼術}"
+						],
+						[
+							"13級",
+							"{@spell greater invisibility||高等隱形術}"
+						],
+						[
+							"17級",
+							"{@spell seeming||偽裝術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Gloom Stalker Magic"
+		},
+		{
+			"name": "幽影視覺",
+			"source": "XGE",
+			"page": 41,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Gloom Stalker",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"自3級起，你獲得60尺{@sense darkvision||黑暗視覺}。如果你已經從種族特質中獲得了{@sense darkvision||黑暗視覺}，則改為那一黑暗視覺範圍增加30尺。",
+				"你還擅長迴避依賴{@sense darkvision||黑暗視覺}的生物。在黑暗中，你對於任何依靠{@sense darkvision||黑暗視覺}觀察你的生物而言視為{@condition invisible||隱形}的生物。"
+			],
+			"ENG_name": "Umbral Sight"
+		},
+		{
+			"name": "鋼鐵心智",
+			"source": "XGE",
+			"page": 41,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Gloom Stalker",
+			"subclassSource": "XGE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"7級時，你已經磨鍊出用來抵禦來自於你的獵物的精神影響能量的能力。你獲得感知豁免的熟練。如果你已經有此熟練項，作為代替，你獲得智力豁免、或魅力豁免的熟練（由你選擇）。"
+			],
+			"ENG_name": "Iron Mind"
+		},
+		{
+			"name": "追獵如風",
+			"source": "XGE",
+			"page": 41,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Gloom Stalker",
+			"subclassSource": "XGE",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"在11級時，你學會了以出人意料的速度來發動攻擊，以至於你能夠將一次失手轉化為另一次攻擊。每個你的回合一次，當你的一次武器攻擊未命中時，你可以作出另一次武器攻擊，作為同一動作的一部分。"
+			],
+			"ENG_name": "Stalker's Flurry"
+		},
+		{
+			"name": "暗影閃避",
+			"source": "XGE",
+			"page": 41,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Gloom Stalker",
+			"subclassSource": "XGE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"15級起，伴隨著一縷圍繞在你身邊的神奇暗影，你能以某種讓人始料未及的方式躲閃。無論何時，當一名角色對你進行一次攻擊檢定，且那次檢定不具有優勢時，你能用反應對其施加劣勢。你必須在知曉攻擊檢定的結果之前使用此特性。"
+			],
+			"ENG_name": "Shadowy Dodge"
+		},
+		{
+			"name": "境界行者",
+			"source": "XGE",
+			"page": 42,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Horizon Walker",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"邊界行者會保護世界不受其他位面或者那些妄圖利用異界魔法摧殘現有世界的惡徒的威脅。他們會找到傳送門並看守他們，會為了追捕他們的敵人而穿梭於內層位面與外層外面。這些遊俠也是多元宇宙中任何守護位面秩序與生靈勢力的盟友——尤其是那些向善的龍類、精類與元素生物。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Horizon Walker Magic|Ranger||Horizon Walker|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Detect Portal|Ranger||Horizon Walker|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Planar Warrior|Ranger||Horizon Walker|XGE|3"
+				}
+			],
+			"ENG_name": "Horizon Walker"
+		},
+		{
+			"name": "偵測傳送門",
+			"source": "XGE",
+			"page": 42,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Horizon Walker",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"在3級時，你得到了偵測位面傳送門的魔法感官。以一個動作，你偵測在你周圍1裡的範圍內距離你最近的位面傳送門，並以此知曉它於你之間的距離和方向。",
+				"你必須完成一次長休或短休後才能再次使用該特性。",
+				"詳見《地下城主指南》第二章的\"位面旅行\"章節，以瞭解位面傳送門的範例。"
+			],
+			"ENG_name": "Detect Portal"
+		},
+		{
+			"name": "境界行者魔法",
+			"source": "XGE",
+			"page": 42,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Horizon Walker",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"3級起，每當你在此職業達到特定等級時你都能學會一個額外的遊俠法術，如邊界行者法術表所示的那樣。這些法術對你視為遊俠法術，且它們不計入你的遊俠已知法術總數中。",
+				{
+					"type": "table",
+					"caption": "邊界行者法術",
+					"colLabels": [
+						"遊俠等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell protection from evil and good||防護善惡}"
+						],
+						[
+							"5級",
+							"{@spell misty step||迷蹤步}"
+						],
+						[
+							"9級",
+							"{@spell haste||加速術}"
+						],
+						[
+							"13級",
+							"{@spell banishment||放逐術}"
+						],
+						[
+							"17級",
+							"{@spell teleportation circle||傳送法陣}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Horizon Walker Magic"
+		},
+		{
+			"name": "位面戰士",
+			"source": "XGE",
+			"page": 42,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Horizon Walker",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"3級時，你學會了如何透過吸取多元宇宙的能量來強化你的攻擊。",
+				"以一個附贈動作，選擇你周圍30尺範圍內的一名你可見的角色。本回合內你對其的下一次武器攻擊命中時，本次攻擊將造成力場傷害，且目標額外受到來自於該攻擊的{@damage 1d8}力場傷害。當你的在此職業上到達11級時，這一額外傷害將變為{@damage 2d8}。"
+			],
+			"ENG_name": "Planar Warrior"
+		},
+		{
+			"name": "靈界漫步",
+			"source": "XGE",
+			"page": 42,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Horizon Walker",
+			"subclassSource": "XGE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"在7級時，你習得了如何踏入以太位面。以一個附贈動作，你能夠用此特性施展法術{@spell etherealness||以太化}，無需消耗法術位。但是這個法術在當前回合結束時結束。",
+				"你必須完成一次長休或短休後才能再次使用該特性。"
+			],
+			"ENG_name": "Ethereal Step"
+		},
+		{
+			"name": "閃現打擊",
+			"source": "XGE",
+			"page": 42,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Horizon Walker",
+			"subclassSource": "XGE",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"在11級時，你獲得眨眼間穿梭位面的能力。當你執行{@action Attack||攻擊}動作時，可以在每次攻擊前傳送至多10尺，到達一處你可見且未被佔據的空間。",
+				"如果你在攻擊動作中，攻擊了至少兩個不同的生物，則你可以額外發動一次攻擊，以攻擊第三個生物。"
+			],
+			"ENG_name": "Distant Strike"
+		},
+		{
+			"name": "虛體防禦",
+			"source": "XGE",
+			"page": 42,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Horizon Walker",
+			"subclassSource": "XGE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"在15級時，你的位面傳送能力使你能在戰鬥中流轉於空間邊緣以減少傷害。當你因一次攻擊而受到傷害時，你可以用你的反應以獲取那次攻擊傷害中包含的所有型別的抗性，持續直至當前回合結束。"
+			],
+			"ENG_name": "Spectral Defense"
+		},
+		{
+			"name": "怪物殺手",
+			"source": "XGE",
+			"page": 43,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Monster Slayer",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"怪物殺手們專注於獵殺那些黑夜中的怪物與邪惡魔法的使用者。他們四處搜尋著吸血鬼、龍、邪惡精類、邪魔、以及其他的魔法威脅。他們為了擊敗這些怪物而訓練超自然的技巧。怪物殺手精通於找出並擊敗這些強大且神秘的敵人。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Monster Slayer Magic|Ranger||Monster Slayer|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Hunter's Sense|Ranger||Monster Slayer|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Slayer's Prey|Ranger||Monster Slayer|XGE|3"
+				}
+			],
+			"ENG_name": "Monster Slayer"
+		},
+		{
+			"name": "獵人感知",
+			"source": "XGE",
+			"page": 43,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Monster Slayer",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"自3級起，你獲得了觀察生物並魔法性地分析出最佳狩獵方式的能力。以一個動作，選擇周圍60尺範圍內的一個你可見的生物。你立刻知曉該生物擁有的傷害免疫、抗性、與易傷。如果該生物被預言系魔法所隱瞞，你只會感知到它沒有任何傷害免疫，抗性、易傷。",
+				"你能使用該特性的次數等同於你的感知調整值次（至少1次），當你完成一次長休後你重獲全部已被消耗的使用次數。"
+			],
+			"ENG_name": "Hunter's Sense"
+		},
+		{
+			"name": "怪物殺手魔法",
+			"source": "XGE",
+			"page": 43,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Monster Slayer",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"3級起，每當你在此職業達到特定等級時你都能學會一個額外的遊俠法術，如怪物殺手法術表所示的那樣。這些法術對你視為遊俠法術，且它們不計入你的遊俠已知法術總數中。",
+				{
+					"type": "table",
+					"caption": "怪物殺手法術",
+					"colLabels": [
+						"遊俠等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell protection from evil and good||防護善惡}"
+						],
+						[
+							"5級",
+							"{@spell zone of truth||誠實之域}"
+						],
+						[
+							"9級",
+							"{@spell magic circle||防護法陣}"
+						],
+						[
+							"13級",
+							"{@spell banishment||放逐術}"
+						],
+						[
+							"17級",
+							"{@spell hold monster||定身怪物}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Monster Slayer Magic"
+		},
+		{
+			"name": "殺手獵物",
+			"source": "XGE",
+			"page": 43,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Monster Slayer",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"自3級起，你能將你的怒火集中於單一敵人，增幅你對其造成的損傷。以一個附贈動作，你指定周圍60尺範圍內的一個你可見的生物作為本特性的目標。接下來，每個回合中你首次以武器攻擊命中該目標時，它額外受到{@damage 1d6}點傷害，額外傷害型別與武器相同。",
+				"此增益將一直持續到你完成短休或長休為止。如果你用其指定了另外一個生物，前一次的增益也將提前結束。"
+			],
+			"ENG_name": "Slayer's Prey"
+		},
+		{
+			"name": "超常防禦",
+			"source": "XGE",
+			"page": 43,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Monster Slayer",
+			"subclassSource": "XGE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"7級時，你對那些嘗試攻破你心靈與肉體的敵人擁有著額外的抵抗力。當你的狩獵開始特性目標迫使你進行一次豁免檢定時，或你為逃脫那個目標的擒抱而進行一次屬性檢定時，你可以投擲{@dice 1d6}，並將骰值加入到你的那次檢定上。"
+			],
+			"ENG_name": "Supernatural Defense"
+		},
+		{
+			"name": "魔法剋星",
+			"source": "XGE",
+			"page": 43,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Monster Slayer",
+			"subclassSource": "XGE",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"11級時，你獲得干擾其他人的魔法的能力。當你看見你周圍60尺範圍內有生物施展法術或者傳送時，你可以用你的反應，嘗試魔法性地阻止它。那個生物必須透過一次DC等同於你的法術豁免DC的感知豁免，否則它的法術或傳送將失敗並浪費。",
+				"你必須完成一次長休或短休後才能再次使用該特性。"
+			],
+			"ENG_name": "Magic-User's Nemesis"
+		},
+		{
+			"name": "殺手反制",
+			"source": "XGE",
+			"page": 43,
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Monster Slayer",
+			"subclassSource": "XGE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"15級時，你得到了在你的獵物企圖干擾你時進行回擊的能力。當你的狩獵開始特性目標迫使你進行一次豁免檢定時，你可以在進行豁免檢定前，立刻用你的反應來對其進行一次武器攻擊。一旦你的攻擊命中，除了攻擊的正常效果外，你本次豁免將自動成功。"
+			],
+			"ENG_name": "Slayer's Counter"
+		},
+		{
+			"name": "凍原探索者",
+			"source": "FRHoF",
+			"page": 21,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Winter Walker",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "刺骨嚴寒",
+					"page": 6,
+					"entries": [
+						"你的武器攻擊、遊俠法術以及遊俠特性所造成的傷害無視寒冷{@variantrule Resistance|XPHB|抗性}。"
+					],
+					"ENG_name": "Biting Cold"
+				},
+				{
+					"type": "entries",
+					"name": "冰霜抵抗",
+					"page": 6,
+					"entries": [
+						"你獲得寒冷傷害的{@variantrule Resistance|XPHB|抗性}。"
+					],
+					"ENG_name": "Frost Resistance"
+				},
+				{
+					"type": "entries",
+					"name": "極地打擊",
+					"page": 6,
+					"entries": [
+						"當你用武器對生物進行一次攻擊檢定並命中時，你可以額外對目標造成{@damage 1d4}點寒冷傷害。每名目標每回合僅會受到一次該額外傷害。你的遊俠等級達到11級時，這一額外傷害變為{@dice 1d6}。"
+					],
+					"ENG_name": "Polar Strikes"
+				}
+			],
+			"ENG_name": "Frigid Explorer"
+		},
+		{
+			"name": "冬獵霜寒",
+			"source": "FRHoF",
+			"page": 21,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Winter Walker",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"冰霜會覆蓋你和你的獵物，保護你並讓你的獵物變得遲緩。當你施展{@spell Hunter's Mark|XPHB|獵人印記}法術時，你獲得等同於{@dice 1d10}+你{@class Ranger|XPHB|遊俠}等級的{@variantrule Temporary Hit Points|XPHB|臨時生命值}。",
+				"此外，當一個生物被你的{@spell Hunter's Mark|XPHB|獵人印記}法術所標記時，其不可執行{@action Disengage|XPHB|撤離}動作。"
+			],
+			"ENG_name": "Hunter's Rime"
+		},
+		{
+			"name": "凜冬行者",
+			"source": "FRHoF",
+			"page": 21,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Winter Walker",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"{@i 抵禦來自冰凍荒原的恐怖}",
+				"凜冬行者在冰風谷等充斥著極寒和荒蕪的地區中磨練他們的技藝.這些冷酷無情，披冰蓋雪的遊俠狩獵著那些盤踞在極北荒原的怪物，最終自身也成為凜冽的恐怖存在。凜冬行者深諳發生在這片土地上的種種特異現象，包括在墜落的耐瑟瑞爾都市中沉寂的魔法，{@creature yeti|XMM|雪怪們}和{@creature crag cat|SKT|峭壁貓}等本土怪物，以及來自幽暗地域的入侵者們日漸迫近的威脅。凜冬行者冷酷的追求實效，掌握的恐怖魔法，以及對這片土地掌控，令人們又尊敬又害怕。十鎮的居民們說，凜冬行者因其頻繁接觸邪惡存在的經歷，賦予了他們令人畏懼的力量。另一種說法則是，瑞格冰川的遊牧民認為，這是自然精魂賦予凜冬行者的一種獨特詛咒。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Frigid Explorer|Ranger|XPHB|Winter Walker|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Hunter's Rime|Ranger|XPHB|Winter Walker|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Winter Walker Spells|Ranger|XPHB|Winter Walker|FRHoF|3|FRHoF"
+				}
+			],
+			"ENG_name": "Winter Walker"
+		},
+		{
+			"name": "凜冬行者魔法",
+			"source": "FRHoF",
+			"page": 22,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Winter Walker",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"在達到下方凜冬行者法術列表中列出特定等級時，你將始終準備了等級對應的法術。",
+				{
+					"type": "table",
+					"colLabels": [
+						"遊俠等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Ice Knife|XPHB|冰刃}"
+						],
+						[
+							"5",
+							"{@spell Hold Person|XPHB|定身類人}"
+						],
+						[
+							"9",
+							"{@spell Remove Curse|XPHB|移除詛咒}"
+						],
+						[
+							"13",
+							"{@spell Ice Storm|XPHB|冰風暴}"
+						],
+						[
+							"17",
+							"{@spell Cone of Cold|XPHB|寒冰錐}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Winter Walker Spells"
+		},
+		{
+			"name": "凝凍之魂",
+			"source": "FRHoF",
+			"page": 22,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Winter Walker",
+			"subclassSource": "FRHoF",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"你在酷烈環境中生存的經驗不僅足夠支撐你自己，也能幫助你的盟友。以一個{@action Magic|XPHB|魔法}動作，你可以選擇等同於你感知調整值（至少1個）數量的可見生物。所選的生物能夠恢復等同於 {@dice 1d10}+你的遊俠等級點的{@variantrule Hit Points|XPHB|生命值}，且接下來的1小時內，其為避免或結束{@condition Frightened|XPHB|恐慌}狀態所進行的豁免具有{@variantrule Advantage|XPHB|優勢}。",
+				"此特性一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。"
+			],
+			"ENG_name": "Fortifying Soul"
+		},
+		{
+			"name": "寒心復仇",
+			"source": "FRHoF",
+			"page": 22,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Winter Walker",
+			"subclassSource": "FRHoF",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"當你被一次攻擊檢定命中時，你可以用你的{@variantrule Reaction|XPHB|反應}迫使攻擊你的該生物進行一次感知豁免（使用你的法術豁免DC），豁免失敗則目標將陷入{@condition Stunned|XPHB|震懾}狀態直到你的下個回合結束。且當目標因此陷入{@condition Stunned|XPHB|震懾}狀態時，其{@variantrule Speed|XPHB|速度}降至0。",
+				"你可以使用該特性的次數等同於你的感知調整值（最少 1 次）。你在完成一次{@variantrule Long Rest|XPHB|長休}時重獲所有已消耗的使用次數。"
+			],
+			"ENG_name": "Chilling Retribution"
+		},
+		{
+			"name": "冰之惡靈",
+			"source": "FRHoF",
+			"page": 22,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Winter Walker",
+			"subclassSource": "FRHoF",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"當你施展{@spell Hunter's Mark|XPHB|獵人印記}時，你還能化身為冰雪覆蓋的幽靈形態。這一形態持續直至該法術結束為止。處於該形態下，你將獲得以下這些增益。這一特性一經使用，直到你完成一次{@variantrule Long Rest|XPHB|長休}前你都無法再次使用它，除非你為此消耗一枚環階4+的法術位（無需動作）。",
+				{
+					"type": "entries",
+					"name": "寒冰之魂",
+					"page": 6,
+					"entries": [
+						"你{@variantrule Immunity|XPHB|免疫}寒冷傷害。在你化身為幽靈形態時（以及在此形態的後續每個回合開始時），以你自身為源點，15尺{@variantrule Emanation [Area of Effect]|XPHB|光環}範圍內的每名由你選擇的生物都將受到{@damage 2d4}點寒冷傷害。"
+					],
+					"ENG_name": "Frozen Soul"
+				},
+				{
+					"type": "entries",
+					"name": "區域性虛化",
+					"page": 6,
+					"entries": [
+						"你對{@condition Grappled|XPHB|受擒}、{@condition Prone|XPHB|倒地}與{@condition Restrained|XPHB|束縛}狀態具有{@variantrule Immunity|XPHB|免疫}。你可以穿過生物與物件，如同它們是{@variantrule Difficult Terrain|XPHB|困難地形}；但若你在自己的回合結束時仍位於生物或物件內，便受到{@damage 1d10}點力場傷害。如果形態在你位於生物或物件內時結束，你會被推移到最近的未佔據空間。"
+					],
+					"ENG_name": "Partially Incorporeal"
+				}
+			],
+			"ENG_name": "Frozen Haunt"
+		},
+		{
+			"name": "幽邃戍衛",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hollow Warden",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"{@i 汲取荒古災厄之威}",
+				"傳說，在大地那些最為古老的幽邃深處，潛伏著最為原始且嗜血的駭人存在。幽邃戍衛們敬奉這些恐怖實體並從中汲取力量，將自身化作冷酷無情的怪異護衛。他們在嶙峋的海岸、險峻的群山絕壁，以及其他無盡黑暗的蠻荒之地中潛行遊獵。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Hollow Warden Spells|Ranger|XPHB|Hollow Warden|RHW|3|RHW"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Wrath of the Wild|Ranger|XPHB|Hollow Warden|RHW|3|RHW"
+				}
+			],
+			"ENG_name": "Hollow Warden"
+		},
+		{
+			"name": "幽邃戍衛魔法",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hollow Warden",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"當你到達幽邃戍衛法術表中特定的遊俠等級時，你就始終準備了表中對應的法術。",
+				{
+					"type": "table",
+					"caption": "幽邃戍衛魔法",
+					"colLabels": [
+						"遊俠等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Wrathful Smite|XPHB|激憤斬}"
+						],
+						[
+							"5",
+							"{@spell Alter Self|XPHB|變身術}"
+						],
+						[
+							"9",
+							"{@spell Phantom Steed|XPHB|魅影駒}"
+						],
+						[
+							"13",
+							"{@spell Dominate Beast|XPHB|支配野獸}"
+						],
+						[
+							"17",
+							"{@spell Steel Wind Strike|XPHB|鋼風斬}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Hollow Warden Spells"
+		},
+		{
+			"name": "荒野之怒",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hollow Warden",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"你汲取這片土地上古老而奇詭的恐怖力量，令你的身體上長出不自然之物，例如滴血的鹿角或腐臭的獠牙，或者令你身後的陰影被拉長並扭曲著纏繞全身。你可以執行附贈動作消耗一次宿敵特性的使用次數來變身為駭人形態。該形態持續1分鐘，或直至你陷入{@condition Incapacitated|XPHB|失能}狀態、死亡，亦或是主動結束變身（無需動作）。變身期間，你獲得以下增益：",
+				{
+					"type": "entries",
+					"name": "遠古護甲",
+					"entries": [
+						"你的身軀被腐朽的樹皮與野獸般的粗毛所包裹，使你的AC獲得+1加值。當你的遊俠等級到達11級時，該加值提升至+2。"
+					],
+					"ENG_name": "Ancient Armor"
+				},
+				{
+					"type": "entries",
+					"name": "巡獵報復",
+					"entries": [
+						"當你5尺範圍內一個你可見的生物對你或你的一名盟友造成傷害後，你可以立即對該生物發動一次{@action Opportunity Attack|XPHB|藉機攻擊}。"
+					],
+					"ENG_name": "Prowling Retribution"
+				},
+				{
+					"type": "entries",
+					"name": "恐嚇靈光",
+					"entries": [
+						"當你變身時，以及之後每個你的回合開始時，源自你的10尺{@variantrule Emanation [Area of Effect]|XPHB|光環}內每個由你指定的生物，都必須進行一次對抗你法術豁免DC的感知豁免。若豁免失敗，則生物陷入{@condition Frightened|XPHB|恐慌}狀態，直至你的下一回合開始。"
+					],
+					"ENG_name": "Unnerving Aura"
+				}
+			],
+			"ENG_name": "Wrath of the Wild"
+		},
+		{
+			"name": "渴血予力",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hollow Warden",
+			"subclassSource": "RHW",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"你的體質豁免檢定獲得等同於你感知調整值的加值（至少為+1）。",
+				"此外，每回合一次，當你處於荒野之怒變身下並以攻擊檢定命中一個生物時，若你在命中目標時處於{@status Bloodied|XPHB|浴血}，則你恢復等於{@dice 1d10}+你感知調整值的生命值。"
+			],
+			"ENG_name": "Hungering Might"
+		},
+		{
+			"name": "枯朽殘虐",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hollow Warden",
+			"subclassSource": "RHW",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"你對荒野中那些詭異存在的供奉進一步改變了你。當你使用荒野之怒變形時，你獲得以下額外增益：",
+				{
+					"type": "entries",
+					"name": "威嚇靈光",
+					"entries": [
+						"當一個生物在對抗你悚然靈光的豁免檢定中失敗時，直至你的下一回合開始，其還會無法恢復生命值，也無法執行反應。"
+					],
+					"ENG_name": "Menacing Aura"
+				},
+				{
+					"type": "entries",
+					"name": "索命根鬚",
+					"entries": [
+						"當你使用武器發動攻擊檢定命中一個生物時，除了這把武器本身的精通詞條外，你還可以為其應用{@itemMastery Sap||削弱}或{@itemMastery Slow||緩速}精通詞條。"
+					],
+					"ENG_name": "Strangling Roots"
+				}
+			],
+			"ENG_name": "Rot and Violence"
+		},
+		{
+			"name": "古源蠻力",
+			"source": "RHW",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hollow Warden",
+			"subclassSource": "RHW",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"荒野中那古老而駭人的力量充盈你的全身，賦予你以下增益：",
+				{
+					"type": "entries",
+					"name": "死兆強襲",
+					"entries": [
+						"當你以攻擊檢定命中一個陷入{@condition Frightened|XPHB|恐慌}狀態的生物時，該次攻擊造成等同於你感知調整值的額外傷害。"
+					],
+					"ENG_name": "Ominous Strikes"
+				},
+				{
+					"type": "entries",
+					"name": "不息狂怒",
+					"entries": [
+						"當你處於荒野之怒變身下，且生命值被降至0但未被立即殺死時，你可以使狂野之力噴薄而出。你的生命值改為變成等同於你遊俠等級兩倍的數值。該特性一經使用，則直至你完成一次長休前，都無法再次使用。你也可以消耗一枚四環或更高環階的法術位來恢復該特性的使用次數（無需動作）。"
+					],
+					"ENG_name": "Persistent Wrath"
+				},
+				{
+					"type": "entries",
+					"name": "永不安眠",
+					"entries": [
+						"你免疫{@condition Exhaustion|XPHB|力竭}狀態。"
+					],
+					"ENG_name": "Timeless"
+				}
+			],
+			"ENG_name": "Ancient Might"
+		},
+		{
+			"name": "獸王",
+			"source": "XPHB",
+			"page": 123,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Beast Master",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 與原始野獸結緣}",
+				"馴獸師，他們同這片大地有著深刻的共鳴，揮舞著原初魔法與超自然野獸形成了神秘的聯絡。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Primal Companion|Ranger|XPHB|Beast Master|XPHB|3"
+				}
+			],
+			"ENG_name": "Beast Master"
+		},
+		{
+			"name": "原初動物夥伴",
+			"source": "XPHB",
+			"page": 123,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Beast Master",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你魔法性的召喚出一隻原初野獸，其力量來自於與你與自然的聯絡。你從{@creature Beast of the Land|XPHB|大地野獸}、{@creature Beast of the Sea|XPHB|海洋野獸}和{@creature Beast of the Sky|XPHB|天空野獸}中選擇其一項作為它的資料卡。你決定原初野獸是何種動物，選擇適合其資料卡的外形。無論你選擇什麼樣的動物，這隻野獸都帶有原初之力的印痕，暗示著其超凡起源。",
+				"這隻野獸對你和你的夥伴態度友善，並會聽從你的命令。野獸會在你死亡時消失。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "戰鬥中的野獸",
+							"entries": [
+								"戰鬥中，原初野獸會在你的回合中行動。它能自主地移動或使用{@variantrule Reaction|XPHB|反應}，但除非你在你的回合中以一個{@variantrule Bonus Action|XPHB|附贈動作}命令它執行其他動作，它只會執行迴避動作。命令的動作可以是其資料卡中列出的動作或是之外的其他動作。作為另一種命令方式，你也能在使用自己的{@action Attack|XPHB|攻擊}動作時，犧牲一次自己的攻擊來命令野獸執行野獸打擊動作。如果你陷入{@condition Incapacitated|XPHB|失能}，野獸將會自主行動，而非僅使用迴避動作。"
+							],
+							"ENG_name": "The Beast in Combat"
+						},
+						{
+							"type": "entries",
+							"name": "復活或替換野獸",
+							"entries": [
+								"如果野獸在過去1小時內死亡，你可以執行一個{@action Magic|XPHB|魔法}動作觸碰它，並消耗一個法術位。1分鐘後，野獸復活並恢復所有{@variantrule Hit Points|XPHB|生命值}。",
+								"每當你完成{@variantrule Long Rest|XPHB|長休}時，你都能召喚一隻不同的原初野獸。這隻新的野獸出現在位於你 5 尺內的一處未佔據空間內，並由你選擇其資料卡和外表。如果你已經透過此特性獲得了一隻原初野獸，它會在新的原初野獸出現時消失。"
+							],
+							"ENG_name": "Restoring or Replacing the Beast"
+						}
+					]
+				}
+			],
+			"ENG_name": "Primal Companion"
+		},
+		{
+			"name": "超絕訓練",
+			"source": "XPHB",
+			"page": 124,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Beast Master",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"當你以{@variantrule Bonus Action|XPHB|附贈動作}命令你的原初行侶野獸執行動作時，你還可以令它以它自己的{@variantrule Bonus Action|XPHB|附贈動作}執行{@action Dash|XPHB|疾走}、{@action Disengage|XPHB|撤離}、迴避或協助動作。",
+				"此外，每當你的野獸的攻擊檢定命中並造成傷害時，其傷害型別可以是力場傷害或其原本的傷害型別（由你選擇）"
+			],
+			"ENG_name": "Exceptional Training"
+		},
+		{
+			"name": "野性狂怒",
+			"source": "XPHB",
+			"page": 124,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Beast Master",
+			"subclassSource": "XPHB",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"當你命令原初行侶執行野獸打擊動作時，它能使用該動作兩次。",
+				"此外，每個回合中，當它首次擊中一個受到你的法術{@spell Hunter's Mark|XPHB|獵人印記}影響的生物時，它可以額外造成一定的力場傷害，其數值等同於那個法術的額外傷害。"
+			],
+			"ENG_name": "Bestial Fury"
+		},
+		{
+			"name": "法術共享",
+			"source": "XPHB",
+			"page": 124,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Beast Master",
+			"subclassSource": "XPHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"當你施展的法術指定了你自己作為目標，並且你的原初行侶正位於你 30 尺範圍內時，你可以讓該法術效應同時作用於你的原初行侶。"
+			],
+			"ENG_name": "Share Spells"
+		},
+		{
+			"name": "妖精漫遊者",
+			"source": "XPHB",
+			"page": 124,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Fey Wanderer",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 駕馭妖精的哀與樂}",
+				"或來自一位至高妖精的恩惠，或是在妖精荒野中的一次奇遇，你的身側因那次奇遇而有妖精的魔力纏繞。無論你是怎麼得到你來自妖精的魔法的，你現在是一名妖精漫遊者。你輕快的笑聲為受壓迫者們帶來欣喜的希望，你英勇的技藝直擊你敵人的恐懼，你所就的偉績乃是妖精的喜悅，你散佈的恐懼乃是妖精的憤怒。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Dreadful Strikes|Ranger|XPHB|Fey Wanderer|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Fey Wanderer Spells|Ranger|XPHB|Fey Wanderer|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Otherworldly Glamour|Ranger|XPHB|Fey Wanderer|XPHB|3"
+				}
+			],
+			"ENG_name": "Fey Wanderer"
+		},
+		{
+			"name": "哀懼靈襲",
+			"source": "XPHB",
+			"page": 124,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Fey Wanderer",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你能夠使用來自妖精荒野中黑暗空洞的攝心魔法以強化你的武器攻擊。當你用一把武器擊中一個生物時，你可以對目標造成額外的{@damage 1d4}點心靈傷害。每個生物在每個回合只能夠受到這一額外傷害一次。你的遊俠等級達到11級時，這一額外傷害變為{@damage 1d6}。"
+			],
+			"ENG_name": "Dreadful Strikes"
+		},
+		{
+			"name": "妖精漫遊者法術",
+			"source": "XPHB",
+			"page": 124,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Fey Wanderer",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"當你到達妖精漫遊者法術表中特定的遊俠等級時，你就始終準備著表中對應的法術。",
+				{
+					"type": "table",
+					"caption": "妖精漫遊者法術",
+					"colLabels": [
+						"遊俠等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell Charm Person|XPHB|魅惑類人}"
+						],
+						[
+							"5級",
+							"{@spell Misty Step|XPHB|迷蹤步}"
+						],
+						[
+							"9級",
+							"{@spell Summon Fey|XPHB|妖精召喚術}"
+						],
+						[
+							"13級",
+							"{@spell Dimension Door|XPHB|任意門}"
+						],
+						[
+							"17級",
+							"{@spell Mislead|XPHB|假象術}"
+						]
+					]
+				},
+				"你還獲得了一種妖精祝福。你可以在下方精野之賜表中選擇你的祝福或者隨機決定它。",
+				{
+					"type": "table",
+					"caption": "精野之賜",
+					"colLabels": [
+						"1d6",
+						"贈禮"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"當你進行{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}時，縹緲的蝴蝶在你周身振翅。"
+						],
+						[
+							"2",
+							"每天拂曉時分，花朵從你的髮間盛放。"
+						],
+						[
+							"3",
+							"你身上有淡淡的肉桂、薰衣草或肉豆蔻，或另一種令人舒適的藥草或香料的香味。"
+						],
+						[
+							"4",
+							"你的影子會在沒人直視它時起舞。"
+						],
+						[
+							"5",
+							"你的頭髮中長出纖細的觸角或鹿角。"
+						],
+						[
+							"6",
+							"你的膚色和髮色會在每個拂曉時改變。"
+						]
+					]
+				}
+			],
+			"ENG_name": "Fey Wanderer Spells"
+		},
+		{
+			"name": "妖冶嫺都",
+			"source": "XPHB",
+			"page": 124,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Fey Wanderer",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"每當你進行一次魅力檢定時，你都可以在那次檢定中獲得等於你的感知調整值的加值（至少 +1）。",
+				"另外，你選擇獲得下列技能之一的熟練：{@skill Deception|XPHB|欺瞞}、{@skill Performance|XPHB|表演}或{@skill Persuasion|XPHB|遊說}。"
+			],
+			"ENG_name": "Otherworldly Glamour"
+		},
+		{
+			"name": "妖思魅縷",
+			"source": "XPHB",
+			"page": 125,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Fey Wanderer",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"妖精荒原的魔法護衛著你的心靈。你在對抗或終止{@condition Charmed|XPHB|魅惑}或{@condition Frightened|XPHB|恐慌}狀態的豁免檢定上具有{@variantrule Advantage|XPHB|優勢}。",
+				"此外，當你或位於你 120 尺內的一個你可見的生物，透過了一次對抗或終止{@condition Charmed|XPHB|魅惑}或{@condition Frightened|XPHB|恐慌}狀態的豁免檢定時，你可以用你的{@variantrule Reaction|XPHB|反應}迫使位於你 120 尺內的另一個你可見的不同生物，進行一次對抗你法術豁免DC的感知豁免。豁免失敗，目標則陷入{@condition Charmed|XPHB|魅惑}或{@condition Frightened|XPHB|恐慌}狀態（由你選擇）1 分鐘。目標在其每回合結束時重複此豁免，豁免成功則結束此效應。"
+			],
+			"ENG_name": "Beguiling Twist"
+		},
+		{
+			"name": "精宸所與",
+			"source": "XPHB",
+			"page": 125,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Fey Wanderer",
+			"subclassSource": "XPHB",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"你可以無需材料成分地施展{@spell Summon Fey|XPHB|妖精召喚術}。同時，你可以免費施展這個法術一次而不需要消耗法術位，在你完成一次{@variantrule Long Rest|XPHB|長休}後，你重獲免費施展該法術的能力。",
+				"每當你開始施展此法術時，都可以修改此法術使其無需{@status Concentration|XPHB|專注}。以此法施展時，此法術的持續時間將變為 1 分鐘。"
+			],
+			"ENG_name": "Fey Reinforcements"
+		},
+		{
+			"name": "霧行漫遊",
+			"source": "XPHB",
+			"page": 125,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Fey Wanderer",
+			"subclassSource": "XPHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"你可以免費施展{@spell Misty Step|XPHB|迷蹤步}而不需要消耗法術位，次數等同於你的感知調整值次（最少 1 次），在完成一次{@variantrule Long Rest|XPHB|長休}後，你重獲所有的已消耗的次數。",
+				"另外，每當你施展{@spell Misty Step|XPHB|迷蹤步}時，你可以攜帶一個位於你 5 尺內你可見的自願生物與你一同傳送。那個生物會被傳送到由你選擇的，位於你的目標位置 5 尺內的一處未佔據空間內。"
+			],
+			"ENG_name": "Misty Wanderer"
+		},
+		{
+			"name": "懼怖伏兵",
+			"source": "XPHB",
+			"page": 125,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Gloom Stalker",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你精通於伏擊的恐怖技藝，並獲得了以下增益。",
+				{
+					"type": "entries",
+					"name": "伏擊者之躍",
+					"entries": [
+						"在每一場戰鬥的你的第一個回合的開始，你的{@variantrule Speed|XPHB|速度}增加 10 尺，直到那個回合結束。"
+					],
+					"ENG_name": "Ambusher's Leap"
+				},
+				{
+					"type": "entries",
+					"name": "恐懼打擊",
+					"entries": [
+						"當你用武器對生物攻擊並命中時，你可以額外對目標造成{@damage 2d6}點心靈傷害。你在每回閤中只能使用一次這個增益，你可以使用這一增益的次數等同於你的感知調整值（最低一次），並在完成一次{@variantrule Long Rest|XPHB|長休}後重獲全部已消耗的使用次數。"
+					],
+					"ENG_name": "Dreadful Strike"
+				},
+				{
+					"type": "entries",
+					"name": "先攻加值",
+					"entries": [
+						"當你投擲{@variantrule Initiative|XPHB|先攻}時，你可以在那次擲骰中加入你的感知調整值。"
+					],
+					"ENG_name": "Initiative Bonus"
+				}
+			],
+			"ENG_name": "Dread Ambusher"
+		},
+		{
+			"name": "幽域追蹤者",
+			"source": "XPHB",
+			"page": 125,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Gloom Stalker",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 利用陰影魔法制敵}",
+				"幽域追獵者們以至暗之地為家，駕馭著來自墮影冥界的魔法與潛伏在黑暗中的敵人作戰。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Dread Ambusher|Ranger|XPHB|Gloom Stalker|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Gloom Stalker Spells|Ranger|XPHB|Gloom Stalker|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Umbral Sight|Ranger|XPHB|Gloom Stalker|XPHB|3"
+				}
+			],
+			"ENG_name": "Gloom Stalker"
+		},
+		{
+			"name": "幽域追蹤者法術",
+			"source": "XPHB",
+			"page": 126,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Gloom Stalker",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"當你到達幽域追獵者法術表中特定的遊俠等級時，你就始終準備著表中對應的法術。",
+				{
+					"type": "table",
+					"caption": "幽域追蹤者法術",
+					"colLabels": [
+						"遊俠等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-1 text-center",
+						"col-11"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Disguise Self|XPHB|易容術}"
+						],
+						[
+							"5",
+							"{@spell Rope Trick|XPHB|魔繩術}"
+						],
+						[
+							"9",
+							"{@spell Fear|XPHB|恐懼術}"
+						],
+						[
+							"13",
+							"{@spell Greater Invisibility|XPHB|高等隱形術}"
+						],
+						[
+							"17",
+							"{@spell Seeming|XPHB|偽裝術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Gloom Stalker Spells"
+		},
+		{
+			"name": "幽影視覺",
+			"source": "XPHB",
+			"page": 126,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Gloom Stalker",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你獲得 60 尺黑暗視覺。如果你獲得本特性時已擁有了{@sense Darkvision|XPHB|黑暗視覺}，那個{@sense Darkvision|XPHB|黑暗視覺}的範圍增加 60 尺。",
+				"你還擅長避開依賴{@sense Darkvision|XPHB|黑暗視覺}的角色。完全身處{@variantrule Darkness|XPHB|黑暗}期間，對於任何依靠{@sense Darkvision|XPHB|黑暗視覺}觀察{@variantrule Darkness|XPHB|黑暗}中的你的生物而言，你具有{@condition Invisible|XPHB|隱形}狀態。"
+			],
+			"ENG_name": "Umbral Sight"
+		},
+		{
+			"name": "鋼鐵心智",
+			"source": "XPHB",
+			"page": 126,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Gloom Stalker",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"你已經磨鍊出了抵禦精神影響的能力。你獲得感知豁免熟練。如果你已經有這項熟練，你可以獲得智力或者魅力豁免熟練（由你選擇）來代替。"
+			],
+			"ENG_name": "Iron Mind"
+		},
+		{
+			"name": "追獵如風",
+			"source": "XPHB",
+			"page": 126,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Gloom Stalker",
+			"subclassSource": "XPHB",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"你的恐懼打擊造成的心靈傷害變為{@damage 2d8}。另外，當你使用恐懼伏擊的恐懼打擊特性時，你可以創造出以下的額外效應之一。",
+				{
+					"type": "entries",
+					"name": "突發猛擊",
+					"entries": [
+						"你可以用同一把武器，對位於原目標5尺範圍內的另一生物再發動一次攻擊，新目標必須處於你武器的觸及或射程內。"
+					],
+					"ENG_name": "Sudden Strike"
+				},
+				{
+					"type": "entries",
+					"name": "群慌",
+					"entries": [
+						"目標與位於目標10尺範圍內的每個生物都必須透過一次對抗你法術豁免DC的感知豁免。若豁免失敗，生物將會陷入{@condition Frightened|XPHB|恐慌}狀態，持續至你的下一回合開始。"
+					],
+					"ENG_name": "Mass Fear"
+				}
+			],
+			"ENG_name": "Stalker's Flurry"
+		},
+		{
+			"name": "暗影閃避",
+			"source": "XPHB",
+			"page": 126,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Gloom Stalker",
+			"subclassSource": "XPHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"當一個生物對你發動了一次攻擊檢定時，你能用{@variantrule Reaction|XPHB|反應}對這次檢定施加{@variantrule Disadvantage|XPHB|劣勢}。不管那次攻擊命中或失手，你都能在那之後傳送至你 30 尺範圍內的一處未被佔據的、你可見的空間。"
+			],
+			"ENG_name": "Shadowy Dodge"
+		},
+		{
+			"name": "獵人",
+			"source": "XPHB",
+			"page": 127,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 保護自然與人民免於毀滅}",
+				"你追逐獵物直到天涯海角，運用你的獵人的本領去保護自然與人民，使其不受災禍的毀滅。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Hunter's Prey|Ranger|XPHB|Hunter|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Hunter's Lore|Ranger|XPHB|Hunter|XPHB|3"
+				}
+			],
+			"ENG_name": "Hunter"
+		},
+		{
+			"name": "獵人學識",
+			"source": "XPHB",
+			"page": 127,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你可以呼喚自然的力量以揭曉獵物的強弱。在一個生物被你的獵人印記標記的期間，你知道那個生物是否擁有任何免疫、抗性或易傷，並且能夠得知其具體的專案是什麼。"
+			],
+			"ENG_name": "Hunter's Lore"
+		},
+		{
+			"name": "狩者獵物",
+			"source": "XPHB",
+			"page": 127,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你選擇並獲得以下特性選項之一。當你完成一次{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}時，你可以將所選的選項替換為另一個。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "巨怪獵者",
+							"entries": [
+								"你的韌性足以磨倒最堅強的敵手。當你以武器命中一個生物時，如果該生物已失去任何{@variantrule Hit Points|XPHB|生命值}，該武器對目標額外造成{@damage 1d8}點傷害。此額外傷害每回合只能造成一次。"
+							],
+							"ENG_name": "Colossus Slayer"
+						},
+						{
+							"type": "entries",
+							"name": "滅族者",
+							"entries": [
+								"每個你的回合一次，當你用武器進行攻擊時，你可以用該武器對位於目標5尺內的另一生物發動另一次攻擊。額外攻擊的目標必須處於你武器射程或範圍內，且是你這回合沒有攻擊過的目標。"
+							],
+							"ENG_name": "Horde Breaker"
+						}
+					]
+				}
+			],
+			"ENG_name": "Hunter's Prey"
+		},
+		{
+			"name": "防禦性戰術",
+			"source": "XPHB",
+			"page": 127,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"你選擇並獲得以下特性選項之一。當你完成一次{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}時，你可以將所選的選項替換為另一個。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "逃離衆敵",
+							"entries": [
+								"對你發動的{@action Opportunity Attack|XPHB|藉機攻擊}具有{@variantrule Disadvantage|XPHB|劣勢}。"
+							],
+							"ENG_name": "Escape the Horde"
+						},
+						{
+							"type": "entries",
+							"name": "防禦多重攻擊",
+							"entries": [
+								"當一個生物的攻擊檢定命中你時，該生物在本回合內對你進行的其他攻擊檢定具有{@variantrule Disadvantage|XPHB|劣勢}。"
+							],
+							"ENG_name": "Multiattack Defense"
+						}
+					]
+				}
+			],
+			"ENG_name": "Defensive Tactics"
+		},
+		{
+			"name": "高階獵殺技藝",
+			"source": "XPHB",
+			"page": 127,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "XPHB",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"每回合一次，當你對被你的獵人印記所標記的生物造成傷害時，你可以對位於這個生物 30 尺範圍內的一個你能看見的另一名生物，同樣施加由獵人印記造成的額外傷害。"
+			],
+			"ENG_name": "Superior Hunter's Prey"
+		},
+		{
+			"name": "卓越獵人防禦",
+			"source": "XPHB",
+			"page": 127,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Hunter",
+			"subclassSource": "XPHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"當你受到傷害時，你可以用你的{@variantrule Reaction|XPHB|反應}使你獲得對該傷害以及相同傷害型別的{@variantrule Resistance|XPHB|抗性}, 直至當前回合結束。"
+			],
+			"ENG_name": "Superior Hunter's Defense"
+		}
+	]
+}

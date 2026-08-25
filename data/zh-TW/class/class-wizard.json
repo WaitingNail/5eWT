@@ -1,0 +1,5085 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"translationSource": "https://shuaishuaidnd.cn/data/class",
+		"conversion": "OpenCC s2twp plus locked project terminology"
+	},
+	"class": [
+		{
+			"name": "法師",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Wizard|XPHB"
+			],
+			"edition": "classic",
+			"hd": {
+				"number": 1,
+				"faces": 6
+			},
+			"proficiency": [
+				"int",
+				"wis"
+			],
+			"spellcastingAbility": "int",
+			"casterProgression": "full",
+			"preparedSpells": "<$level$> + <$int_mod$>",
+			"cantripProgression": [
+				3,
+				3,
+				3,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5
+			],
+			"spellsKnownProgressionFixed": [
+				6,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2
+			],
+			"spellsKnownProgressionFixedAllowLowerLevel": true,
+			"startingProficiencies": {
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"arcana",
+								"history",
+								"insight",
+								"investigation",
+								"medicine",
+								"religion"
+							],
+							"count": 2
+						}
+					}
+				],
+				"weapons": [
+					"{@item dagger|phb|匕首}",
+					"{@item dart|phb|飛鏢}",
+					"{@item sling|phb|投石索}",
+					"{@item quarterstaff|phb|長棍}",
+					"{@item light crossbow|phb|輕弩}"
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"default": [
+					"(a) 一根{@item quarterstaff|phb|長棍}或 (b) 一把{@item dagger|phb|匕首}",
+					"(a) 一個 {@item component pouch|phb|材料包}或 (b) 一件{@item arcane focus|phb|奧術法器}",
+					"(a) 一個{@item scholar's pack|phb|學者套組}或(b)一個{@item explorer's pack|phb|探索套組}",
+					"一本{@item spellbook|phb|法術書}"
+				],
+				"goldAlternative": "{@dice 4d4 × 10|4d4 × 10|起始金幣}",
+				"defaultData": [
+					{
+						"a": [
+							"quarterstaff|phb"
+						],
+						"b": [
+							"dagger|phb"
+						]
+					},
+					{
+						"a": [
+							"component pouch|phb"
+						],
+						"b": [
+							{
+								"equipmentType": "focusSpellcastingArcane"
+							}
+						]
+					},
+					{
+						"a": [
+							"scholar's pack|phb"
+						],
+						"b": [
+							"explorer's pack|phb"
+						]
+					},
+					{
+						"_": [
+							"spellbook|phb"
+						]
+					}
+				]
+			},
+			"multiclassing": {
+				"requirements": {
+					"int": 13
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"{@filter 已知戲法|spells|level=0|class=Wizard}"
+					],
+					"rows": [
+						[
+							3
+						],
+						[
+							3
+						],
+						[
+							3
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						]
+					]
+				},
+				{
+					"title": "每環法術位",
+					"colLabels": [
+						"{@filter 1環|spells|level=1|class=Wizard}",
+						"{@filter 2環|spells|level=2|class=Wizard}",
+						"{@filter 3環|spells|level=3|class=Wizard}",
+						"{@filter 4環|spells|level=4|class=Wizard}",
+						"{@filter 5環|spells|level=5|class=Wizard}",
+						"{@filter 6環|spells|level=6|class=Wizard}",
+						"{@filter 7環|spells|level=7|class=Wizard}",
+						"{@filter 8環|spells|level=8|class=Wizard}",
+						"{@filter 9環|spells|level=9|class=Wizard}"
+					],
+					"rowsSpellProgression": [
+						[
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							1,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							2,
+							2,
+							1,
+							1
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Arcane Recovery|Wizard||1",
+				"Spellcasting|Wizard||1",
+				{
+					"classFeature": "Arcane Tradition|Wizard||2",
+					"gainSubclassFeature": true
+				},
+				"Cantrip Formulas|Wizard||3|TCE",
+				"Ability Score Improvement|Wizard||4",
+				{
+					"classFeature": "Arcane Tradition feature|Wizard||6",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Wizard||8",
+				{
+					"classFeature": "Arcane Tradition feature|Wizard||10",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Wizard||12",
+				{
+					"classFeature": "Arcane Tradition feature|Wizard||14",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Wizard||16",
+				"Spell Mastery|Wizard||18",
+				"Ability Score Improvement|Wizard||19",
+				"Signature Spells|Wizard||20"
+			],
+			"subclassTitle": "奧術傳承",
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Wizard"
+		},
+		{
+			"name": "法師",
+			"source": "XPHB",
+			"page": 164,
+			"srd52": true,
+			"basicRules2024": true,
+			"edition": "one",
+			"primaryAbility": [
+				{
+					"int": true
+				}
+			],
+			"hd": {
+				"number": 1,
+				"faces": 6
+			},
+			"proficiency": [
+				"int",
+				"wis"
+			],
+			"spellcastingAbility": "int",
+			"casterProgression": "full",
+			"preparedSpellsProgression": [
+				4,
+				5,
+				6,
+				7,
+				9,
+				10,
+				11,
+				12,
+				14,
+				15,
+				16,
+				16,
+				17,
+				18,
+				19,
+				21,
+				22,
+				23,
+				24,
+				25
+			],
+			"preparedSpellsChange": "restLong",
+			"cantripProgression": [
+				3,
+				3,
+				3,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5
+			],
+			"spellsKnownProgressionFixed": [
+				6,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2
+			],
+			"spellsKnownProgressionFixedAllowLowerLevel": true,
+			"featProgression": [
+				{
+					"name": "傳奇恩惠",
+					"category": [
+						"EB"
+					],
+					"progression": {
+						"19": 1
+					},
+					"ENG_name": "Epic Boon"
+				}
+			],
+			"startingProficiencies": {
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"arcana",
+								"history",
+								"insight",
+								"investigation",
+								"medicine",
+								"nature",
+								"religion"
+							],
+							"count": 2
+						}
+					}
+				],
+				"weapons": [
+					"simple"
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"defaultData": [
+					{
+						"A": [
+							{
+								"item": "dagger|xphb",
+								"quantity": 2
+							},
+							{
+								"item": "quarterstaff|xphb"
+							},
+							{
+								"item": "robe|xphb"
+							},
+							{
+								"special": "Spellbook"
+							},
+							{
+								"item": "scholar's pack|xphb"
+							},
+							{
+								"value": 500
+							}
+						],
+						"B": [
+							{
+								"value": 5500
+							}
+						]
+					}
+				],
+				"entries": [
+					"{@i 選擇A或B：} (A) 2把{@item Dagger|XPHB|匕首}, {@item Arcane Focus|XPHB|奧術法器} ({@item Quarterstaff|XPHB|長棍}), {@item Robe|XPHB|法袍}, 法術書, {@item Scholar's Pack|XPHB|學者套組}以及5 GP；或 (B) 55 GP"
+				]
+			},
+			"multiclassing": {},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"{@filter 戲法|spells|level=0|class=Wizard}",
+						"{@filter 準備法術|spells|level=!0|class=Wizard}"
+					],
+					"rows": [
+						[
+							3,
+							4
+						],
+						[
+							3,
+							5
+						],
+						[
+							3,
+							6
+						],
+						[
+							4,
+							7
+						],
+						[
+							4,
+							9
+						],
+						[
+							4,
+							10
+						],
+						[
+							4,
+							11
+						],
+						[
+							4,
+							12
+						],
+						[
+							4,
+							14
+						],
+						[
+							5,
+							15
+						],
+						[
+							5,
+							16
+						],
+						[
+							5,
+							16
+						],
+						[
+							5,
+							17
+						],
+						[
+							5,
+							18
+						],
+						[
+							5,
+							19
+						],
+						[
+							5,
+							21
+						],
+						[
+							5,
+							22
+						],
+						[
+							5,
+							23
+						],
+						[
+							5,
+							24
+						],
+						[
+							5,
+							25
+						]
+					]
+				},
+				{
+					"title": "每環法術位",
+					"colLabels": [
+						"{@filter 1環|spells|level=1|class=Wizard}",
+						"{@filter 2環|spells|level=2|class=Wizard}",
+						"{@filter 3環|spells|level=3|class=Wizard}",
+						"{@filter 4環|spells|level=4|class=Wizard}",
+						"{@filter 5環|spells|level=5|class=Wizard}",
+						"{@filter 6環|spells|level=6|class=Wizard}",
+						"{@filter 7環|spells|level=7|class=Wizard}",
+						"{@filter 8環|spells|level=8|class=Wizard}",
+						"{@filter 9環|spells|level=9|class=Wizard}"
+					],
+					"rowsSpellProgression": [
+						[
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							1,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							2,
+							2,
+							1,
+							1
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Spellcasting|Wizard|XPHB|1",
+				"Ritual Adept|Wizard|XPHB|1",
+				"Arcane Recovery|Wizard|XPHB|1",
+				"Scholar|Wizard|XPHB|2",
+				{
+					"classFeature": "Wizard Subclass|Wizard|XPHB|3",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Wizard|XPHB|4",
+				"Memorize Spell|Wizard|XPHB|5",
+				{
+					"classFeature": "Subclass Feature|Wizard|XPHB|6",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Wizard|XPHB|8",
+				{
+					"classFeature": "Subclass Feature|Wizard|XPHB|10",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Wizard|XPHB|12",
+				{
+					"classFeature": "Subclass Feature|Wizard|XPHB|14",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Wizard|XPHB|16",
+				"Spell Mastery|Wizard|XPHB|18",
+				"Epic Boon|Wizard|XPHB|19",
+				"Signature Spells|Wizard|XPHB|20"
+			],
+			"subclassTitle": "法師子職",
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Wizard"
+		}
+	],
+	"subclass": [
+		{
+			"name": "防護學派",
+			"shortName": "防護",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 115,
+			"reprintedAs": [
+				"Abjurer|Wizard|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"subclassFeatures": [
+				"School of Abjuration|Wizard||Abjuration||2",
+				"Projected Ward|Wizard||Abjuration||6",
+				"Improved Abjuration|Wizard||Abjuration||10",
+				"Spell Resistance|Wizard||Abjuration||14"
+			],
+			"ENG_name": "School of Abjuration",
+			"ENG_shortName": "Abjuration"
+		},
+		{
+			"name": "防護學派",
+			"shortName": "防護",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "School of Abjuration",
+				"source": "PHB",
+				"shortName": "Abjuration",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"School of Abjuration|Wizard|XPHB|Abjuration||3",
+				"Projected Ward|Wizard||Abjuration||6",
+				"Improved Abjuration|Wizard||Abjuration||10",
+				"Spell Resistance|Wizard||Abjuration||14"
+			],
+			"ENG_name": "School of Abjuration",
+			"ENG_shortName": "Abjuration"
+		},
+		{
+			"name": "咒法學派",
+			"shortName": "咒法",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 116,
+			"edition": "classic",
+			"subclassFeatures": [
+				"School of Conjuration|Wizard||Conjuration||2",
+				"Benign Transposition|Wizard||Conjuration||6",
+				"Focused Conjuration|Wizard||Conjuration||10",
+				"Durable Summons|Wizard||Conjuration||14"
+			],
+			"ENG_name": "School of Conjuration",
+			"ENG_shortName": "Conjuration"
+		},
+		{
+			"name": "咒法學派",
+			"shortName": "咒法",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "School of Conjuration",
+				"source": "PHB",
+				"shortName": "Conjuration",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"School of Conjuration|Wizard|XPHB|Conjuration||3",
+				"Benign Transposition|Wizard||Conjuration||6",
+				"Focused Conjuration|Wizard||Conjuration||10",
+				"Durable Summons|Wizard||Conjuration||14"
+			],
+			"ENG_name": "School of Conjuration",
+			"ENG_shortName": "Conjuration"
+		},
+		{
+			"name": "預言學派",
+			"shortName": "預言",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 116,
+			"reprintedAs": [
+				"Diviner|Wizard|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"subclassFeatures": [
+				"School of Divination|Wizard||Divination||2",
+				"Expert Divination|Wizard||Divination||6",
+				"The Third Eye|Wizard||Divination||10",
+				"Greater Portent|Wizard||Divination||14"
+			],
+			"ENG_name": "School of Divination",
+			"ENG_shortName": "Divination"
+		},
+		{
+			"name": "預言學派",
+			"shortName": "預言",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "School of Divination",
+				"source": "PHB",
+				"shortName": "Divination",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"School of Divination|Wizard|XPHB|Divination||3",
+				"Expert Divination|Wizard||Divination||6",
+				"The Third Eye|Wizard||Divination||10",
+				"Greater Portent|Wizard||Divination||14"
+			],
+			"ENG_name": "School of Divination",
+			"ENG_shortName": "Divination"
+		},
+		{
+			"name": "惑控學派",
+			"shortName": "惑控",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 117,
+			"edition": "classic",
+			"subclassFeatures": [
+				"School of Enchantment|Wizard||Enchantment||2",
+				"Instinctive Charm|Wizard||Enchantment||6",
+				"Split Enchantment|Wizard||Enchantment||10",
+				"Alter Memories|Wizard||Enchantment||14"
+			],
+			"ENG_name": "School of Enchantment",
+			"ENG_shortName": "Enchantment"
+		},
+		{
+			"name": "惑控學派",
+			"shortName": "惑控",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "School of Enchantment",
+				"source": "PHB",
+				"shortName": "Enchantment",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"School of Enchantment|Wizard|XPHB|Enchantment||3",
+				"Instinctive Charm|Wizard||Enchantment||6",
+				"Split Enchantment|Wizard||Enchantment||10",
+				"Alter Memories|Wizard||Enchantment||14"
+			],
+			"ENG_name": "School of Enchantment",
+			"ENG_shortName": "Enchantment"
+		},
+		{
+			"name": "塑能學派",
+			"shortName": "塑能",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 117,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Evoker|Wizard|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"subclassFeatures": [
+				"School of Evocation|Wizard||Evocation||2",
+				"Potent Cantrip|Wizard||Evocation||6",
+				"Empowered Evocation|Wizard||Evocation||10",
+				"Overchannel|Wizard||Evocation||14"
+			],
+			"ENG_name": "School of Evocation",
+			"ENG_shortName": "Evocation"
+		},
+		{
+			"name": "塑能學派",
+			"shortName": "塑能",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "School of Evocation",
+				"source": "PHB",
+				"shortName": "Evocation",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"School of Evocation|Wizard|XPHB|Evocation||3",
+				"Potent Cantrip|Wizard||Evocation||6",
+				"Empowered Evocation|Wizard||Evocation||10",
+				"Overchannel|Wizard||Evocation||14"
+			],
+			"ENG_name": "School of Evocation",
+			"ENG_shortName": "Evocation"
+		},
+		{
+			"name": "幻術學派",
+			"shortName": "幻術",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 118,
+			"reprintedAs": [
+				"Illusionist|Wizard|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"known": {
+						"1": [
+							"minor illusion#c"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"School of Illusion|Wizard||Illusion||2",
+				"Malleable Illusions|Wizard||Illusion||6",
+				"Illusory Self|Wizard||Illusion||10",
+				"Illusory Reality|Wizard||Illusion||14"
+			],
+			"ENG_name": "School of Illusion",
+			"ENG_shortName": "Illusion"
+		},
+		{
+			"name": "幻術學派",
+			"shortName": "幻術",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "School of Illusion",
+				"source": "PHB",
+				"shortName": "Illusion",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"School of Illusion|Wizard|XPHB|Illusion||3",
+				"Malleable Illusions|Wizard||Illusion||6",
+				"Illusory Self|Wizard||Illusion||10",
+				"Illusory Reality|Wizard||Illusion||14"
+			],
+			"ENG_name": "School of Illusion",
+			"ENG_shortName": "Illusion"
+		},
+		{
+			"name": "死靈學派",
+			"shortName": "死靈",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 118,
+			"edition": "classic",
+			"subclassFeatures": [
+				"School of Necromancy|Wizard||Necromancy||2",
+				"Undead Thralls|Wizard||Necromancy||6",
+				"Inured to Undeath|Wizard||Necromancy||10",
+				"Command Undead|Wizard||Necromancy||14"
+			],
+			"ENG_name": "School of Necromancy",
+			"ENG_shortName": "Necromancy"
+		},
+		{
+			"name": "死靈學派",
+			"shortName": "死靈",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "School of Necromancy",
+				"source": "PHB",
+				"shortName": "Necromancy",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"School of Necromancy|Wizard|XPHB|Necromancy||3",
+				"Undead Thralls|Wizard||Necromancy||6",
+				"Inured to Undeath|Wizard||Necromancy||10",
+				"Command Undead|Wizard||Necromancy||14"
+			],
+			"ENG_name": "School of Necromancy",
+			"ENG_shortName": "Necromancy"
+		},
+		{
+			"name": "變化學派",
+			"shortName": "變化",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 119,
+			"edition": "classic",
+			"subclassFeatures": [
+				"School of Transmutation|Wizard||Transmutation||2",
+				"Transmuter's Stone|Wizard||Transmutation||6",
+				"Shapechanger|Wizard||Transmutation||10",
+				"Master Transmuter|Wizard||Transmutation||14"
+			],
+			"ENG_name": "School of Transmutation",
+			"ENG_shortName": "Transmutation"
+		},
+		{
+			"name": "變化學派",
+			"shortName": "變化",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "School of Transmutation",
+				"source": "PHB",
+				"shortName": "Transmutation",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"School of Transmutation|Wizard|XPHB|Transmutation||3",
+				"Transmuter's Stone|Wizard||Transmutation||6",
+				"Shapechanger|Wizard||Transmutation||10",
+				"Master Transmuter|Wizard||Transmutation||14"
+			],
+			"ENG_name": "School of Transmutation",
+			"ENG_shortName": "Transmutation"
+		},
+		{
+			"name": "戰爭魔法",
+			"shortName": "戰爭",
+			"source": "XGE",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 59,
+			"edition": "classic",
+			"subclassFeatures": [
+				"War Magic|Wizard||War|XGE|2",
+				"Power Surge|Wizard||War|XGE|6",
+				"Durable Magic|Wizard||War|XGE|10",
+				"Deflecting Shroud|Wizard||War|XGE|14"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "War Magic",
+			"ENG_shortName": "War"
+		},
+		{
+			"name": "戰爭魔法",
+			"shortName": "戰爭",
+			"source": "XGE",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "War Magic",
+				"source": "XGE",
+				"shortName": "War",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"War Magic|Wizard|XPHB|War|XGE|3",
+				"Power Surge|Wizard||War|XGE|6",
+				"Durable Magic|Wizard||War|XGE|10",
+				"Deflecting Shroud|Wizard||War|XGE|14"
+			],
+			"fluff": {
+				"_subclassFluff": {
+					"name": "戰爭魔法",
+					"source": "XGE",
+					"shortName": "戰爭",
+					"className": "Wizard",
+					"classSource": "PHB",
+					"ENG_name": "War Magic"
+				}
+			},
+			"ENG_name": "War Magic",
+			"ENG_shortName": "War"
+		},
+		{
+			"name": "時間魔法",
+			"shortName": "時間",
+			"source": "EGW",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 184,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"expanded": {
+						"1": [
+							{
+								"all": "source=EGW"
+							}
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Chronurgy Magic|Wizard||Chronurgy|EGW|2",
+				"Momentary Stasis|Wizard||Chronurgy|EGW|6",
+				"Arcane Abeyance|Wizard||Chronurgy|EGW|10",
+				"Convergent Future|Wizard||Chronurgy|EGW|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Chronurgy Magic",
+			"ENG_shortName": "Chronurgy"
+		},
+		{
+			"name": "時間魔法",
+			"shortName": "時間",
+			"source": "EGW",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Chronurgy Magic",
+				"source": "EGW",
+				"shortName": "Chronurgy",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"Chronurgy Magic|Wizard|XPHB|Chronurgy|EGW|3",
+				"Momentary Stasis|Wizard||Chronurgy|EGW|6",
+				"Arcane Abeyance|Wizard||Chronurgy|EGW|10",
+				"Convergent Future|Wizard||Chronurgy|EGW|14"
+			],
+			"fluff": {
+				"_subclassFluff": {
+					"name": "時間魔法",
+					"source": "EGW",
+					"shortName": "時間",
+					"className": "Wizard",
+					"classSource": "PHB",
+					"ENG_name": "Chronurgy Magic"
+				}
+			},
+			"ENG_name": "Chronurgy Magic",
+			"ENG_shortName": "Chronurgy"
+		},
+		{
+			"name": "重力魔法",
+			"shortName": "重力",
+			"source": "EGW",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 185,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"expanded": {
+						"1": [
+							{
+								"all": "source=EGW"
+							}
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Graviturgy Magic|Wizard||Graviturgy|EGW|2",
+				"Gravity Well|Wizard||Graviturgy|EGW|6",
+				"Violent Attraction|Wizard||Graviturgy|EGW|10",
+				"Event Horizon|Wizard||Graviturgy|EGW|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Graviturgy Magic",
+			"ENG_shortName": "Graviturgy"
+		},
+		{
+			"name": "重力魔法",
+			"shortName": "重力",
+			"source": "EGW",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Graviturgy Magic",
+				"source": "EGW",
+				"shortName": "Graviturgy",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"Graviturgy Magic|Wizard|XPHB|Graviturgy|EGW|3",
+				"Gravity Well|Wizard||Graviturgy|EGW|6",
+				"Violent Attraction|Wizard||Graviturgy|EGW|10",
+				"Event Horizon|Wizard||Graviturgy|EGW|14"
+			],
+			"fluff": {
+				"_subclassFluff": {
+					"name": "重力魔法",
+					"source": "EGW",
+					"shortName": "重力",
+					"className": "Wizard",
+					"classSource": "PHB",
+					"ENG_name": "Graviturgy Magic"
+				}
+			},
+			"ENG_name": "Graviturgy Magic",
+			"ENG_shortName": "Graviturgy"
+		},
+		{
+			"name": "劍詠",
+			"shortName": "劍詠",
+			"source": "TCE",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "SCAG",
+					"page": 141
+				}
+			],
+			"reprintedAs": [
+				"Bladesinger|Wizard|XPHB|FRHoF"
+			],
+			"edition": "classic",
+			"subclassFeatures": [
+				"Bladesinging|Wizard||Bladesinging|TCE|2",
+				"Extra Attack|Wizard||Bladesinging|TCE|6",
+				"Song of Defense|Wizard||Bladesinging|TCE|10",
+				"Song of Victory|Wizard||Bladesinging|TCE|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Bladesinging",
+			"ENG_shortName": "Bladesinging"
+		},
+		{
+			"name": "劍詠",
+			"shortName": "劍詠",
+			"source": "TCE",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"reprintedAs": [
+				"Bladesinger|Wizard|XPHB|FRHoF"
+			],
+			"_copy": {
+				"name": "Bladesinging",
+				"source": "TCE",
+				"shortName": "Bladesinging",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"Bladesinging|Wizard|XPHB|Bladesinging|TCE|3",
+				"Extra Attack|Wizard||Bladesinging|TCE|6",
+				"Song of Defense|Wizard||Bladesinging|TCE|10",
+				"Song of Victory|Wizard||Bladesinging|TCE|14"
+			],
+			"fluff": {
+				"_subclassFluff": {
+					"name": "劍詠",
+					"source": "TCE",
+					"shortName": "劍詠者",
+					"className": "Wizard",
+					"classSource": "PHB",
+					"ENG_name": "Bladesinging"
+				}
+			},
+			"ENG_name": "Bladesinging",
+			"ENG_shortName": "Bladesinging"
+		},
+		{
+			"name": "書士會",
+			"shortName": "書士",
+			"source": "TCE",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 77,
+			"edition": "classic",
+			"subclassFeatures": [
+				"Order of Scribes|Wizard||Scribes|TCE|2",
+				"Manifest Mind|Wizard||Scribes|TCE|6",
+				"Master Scrivener|Wizard||Scribes|TCE|10",
+				"One with the Word|Wizard||Scribes|TCE|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Order of Scribes",
+			"ENG_shortName": "Scribes"
+		},
+		{
+			"name": "書士會",
+			"shortName": "書士",
+			"source": "TCE",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Order of Scribes",
+				"source": "TCE",
+				"shortName": "Scribes",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"subclassFeatures": [
+				"Order of Scribes|Wizard|XPHB|Scribes|TCE|3",
+				"Manifest Mind|Wizard||Scribes|TCE|6",
+				"Master Scrivener|Wizard||Scribes|TCE|10",
+				"One with the Word|Wizard||Scribes|TCE|14"
+			],
+			"fluff": {
+				"_subclassFluff": {
+					"name": "書士會",
+					"source": "TCE",
+					"shortName": "書士",
+					"className": "Wizard",
+					"classSource": "PHB",
+					"ENG_name": "Order of Scribes"
+				}
+			},
+			"ENG_name": "Order of Scribes",
+			"ENG_shortName": "Scribes"
+		},
+		{
+			"name": "防護師",
+			"shortName": "防護師",
+			"source": "XPHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"page": 172,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"10": [
+							"counterspell|xphb",
+							"dispel magic|xphb"
+						]
+					},
+					"known": {
+						"3": [
+							{
+								"choose": "level=0;1;2|class=Wizard|school=A"
+							},
+							{
+								"choose": "level=0;1;2|class=Wizard|school=A"
+							}
+						],
+						"5": [
+							{
+								"choose": "level=0;1;2;3|class=Wizard|school=A"
+							}
+						],
+						"7": [
+							{
+								"choose": "level=0;1;2;3;4|class=Wizard|school=A"
+							}
+						],
+						"9": [
+							{
+								"choose": "level=0;1;2;3;4;5|class=Wizard|school=A"
+							}
+						],
+						"11": [
+							{
+								"choose": "level=0;1;2;3;4;5;6|class=Wizard|school=A"
+							}
+						],
+						"13": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7|class=Wizard|school=A"
+							}
+						],
+						"15": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7;8|class=Wizard|school=A"
+							}
+						],
+						"17": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7;8;9|class=Wizard|school=A"
+							}
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Abjurer|Wizard|XPHB|Abjurer|XPHB|3",
+				"Projected Ward|Wizard|XPHB|Abjurer|XPHB|6",
+				"Spell Breaker|Wizard|XPHB|Abjurer|XPHB|10",
+				"Spell Resistance|Wizard|XPHB|Abjurer|XPHB|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Abjurer",
+			"ENG_shortName": "Abjurer"
+		},
+		{
+			"name": "預言師",
+			"shortName": "預言師",
+			"source": "XPHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"page": 173,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"innate": {
+						"10": [
+							"see invisibility|xphb"
+						]
+					},
+					"known": {
+						"3": [
+							{
+								"choose": "level=0;1;2|class=Wizard|school=D"
+							},
+							{
+								"choose": "level=0;1;2|class=Wizard|school=D"
+							}
+						],
+						"5": [
+							{
+								"choose": "level=0;1;2;3|class=Wizard|school=D"
+							}
+						],
+						"7": [
+							{
+								"choose": "level=0;1;2;3;4|class=Wizard|school=D"
+							}
+						],
+						"9": [
+							{
+								"choose": "level=0;1;2;3;4;5|class=Wizard|school=D"
+							}
+						],
+						"11": [
+							{
+								"choose": "level=0;1;2;3;4;5;6|class=Wizard|school=D"
+							}
+						],
+						"13": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7|class=Wizard|school=D"
+							}
+						],
+						"15": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7;8|class=Wizard|school=D"
+							}
+						],
+						"17": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7;8;9|class=Wizard|school=D"
+							}
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Diviner|Wizard|XPHB|Diviner|XPHB|3",
+				"Expert Divination|Wizard|XPHB|Diviner|XPHB|6",
+				"The Third Eye|Wizard|XPHB|Diviner|XPHB|10",
+				"Greater Portent|Wizard|XPHB|Diviner|XPHB|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Diviner",
+			"ENG_shortName": "Diviner"
+		},
+		{
+			"name": "塑能師",
+			"shortName": "塑能師",
+			"source": "XPHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"page": 174,
+			"srd52": true,
+			"basicRules2024": true,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							{
+								"choose": "level=0;1;2|class=Wizard|school=V"
+							},
+							{
+								"choose": "level=0;1;2|class=Wizard|school=V"
+							}
+						],
+						"5": [
+							{
+								"choose": "level=0;1;2;3|class=Wizard|school=V"
+							}
+						],
+						"7": [
+							{
+								"choose": "level=0;1;2;3;4|class=Wizard|school=V"
+							}
+						],
+						"9": [
+							{
+								"choose": "level=0;1;2;3;4;5|class=Wizard|school=V"
+							}
+						],
+						"11": [
+							{
+								"choose": "level=0;1;2;3;4;5;6|class=Wizard|school=V"
+							}
+						],
+						"13": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7|class=Wizard|school=V"
+							}
+						],
+						"15": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7;8|class=Wizard|school=V"
+							}
+						],
+						"17": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7;8;9|class=Wizard|school=V"
+							}
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Evoker|Wizard|XPHB|Evoker|XPHB|3",
+				"Sculpt Spells|Wizard|XPHB|Evoker|XPHB|6",
+				"Empowered Evocation|Wizard|XPHB|Evoker|XPHB|10",
+				"Overchannel|Wizard|XPHB|Evoker|XPHB|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Evoker",
+			"ENG_shortName": "Evoker"
+		},
+		{
+			"name": "幻術師",
+			"shortName": "幻術師",
+			"source": "XPHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"page": 175,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							"minor illusion|xphb#c",
+							{
+								"choose": "level=0;1;2|class=Wizard|school=I"
+							},
+							{
+								"choose": "level=0;1;2|class=Wizard|school=I"
+							}
+						],
+						"5": [
+							{
+								"choose": "level=0;1;2;3|class=Wizard|school=I"
+							}
+						],
+						"7": [
+							{
+								"choose": "level=0;1;2;3;4|class=Wizard|school=I"
+							}
+						],
+						"9": [
+							{
+								"choose": "level=0;1;2;3;4;5|class=Wizard|school=I"
+							}
+						],
+						"11": [
+							{
+								"choose": "level=0;1;2;3;4;5;6|class=Wizard|school=I"
+							}
+						],
+						"13": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7|class=Wizard|school=I"
+							}
+						],
+						"15": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7;8|class=Wizard|school=I"
+							}
+						],
+						"17": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7;8;9|class=Wizard|school=I"
+							}
+						]
+					},
+					"prepared": {
+						"6": [
+							"summon beast|xphb",
+							"summon fey|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Illusionist|Wizard|XPHB|Illusionist|XPHB|3",
+				"Phantasmal Creatures|Wizard|XPHB|Illusionist|XPHB|6",
+				"Illusory Self|Wizard|XPHB|Illusionist|XPHB|10",
+				"Illusory Reality|Wizard|XPHB|Illusionist|XPHB|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Illusionist",
+			"ENG_shortName": "Illusionist"
+		},
+		{
+			"name": "劍詠者",
+			"shortName": "劍詠者",
+			"source": "FRHoF",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"page": 26,
+			"edition": "one",
+			"subclassFeatures": [
+				"Bladesinger|Wizard|XPHB|Bladesinger|FRHoF|3|FRHoF",
+				"Extra Attack|Wizard|XPHB|Bladesinger|FRHoF|6|FRHoF",
+				"Song of Defense|Wizard|XPHB|Bladesinger|FRHoF|10|FRHoF",
+				"Song of Victory|Wizard|XPHB|Bladesinger|FRHoF|14|FRHoF"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Bladesinger",
+			"ENG_shortName": "Bladesinger"
+		}
+	],
+	"classFeature": [
+		{
+			"name": "奧術恢復",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 1,
+			"entries": [
+				"你學會了透過研讀法術書來恢復魔法能量的辦法。你可以每日使用一次奧術回想，以在你完成一次短休後恢復若干已消耗的法術位，所恢復的法術位環階總和不得大於你法師等級的一半（向上取整），且任何一枚法術位的環階都必須小於6環。",
+				"例如，作為一名4級法師時，你可恢復環階總數最多為2的法術位。你可以選擇恢復一枚2環法術位或兩枚1環法術位。"
+			],
+			"ENG_name": "Arcane Recovery"
+		},
+		{
+			"name": "施法",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 1,
+			"entries": [
+				"作為一名奧術魔法的研習者，你擁有一本自己的法術書。書中所包含的法術隱約透露著你真正的力量。參考{@book 第十章|PHB|10}的施法規則，以及{@book 第十一章|PHB|11}的{@filter 法師法術列表|spells|class=wizard}。",
+				{
+					"type": "entries",
+					"name": "戲法",
+					"entries": [
+						"第1級時，你從法師法術列表中選擇三個戲法作為已知法術。在獲得更高的法師等級後你還可以習得其它的戲法，具體數量參見\"法師職業表\"中\"已知戲法\"一欄。"
+					],
+					"ENG_name": "Cantrips"
+				},
+				{
+					"type": "entries",
+					"name": "法術書",
+					"entries": [
+						"第1級時，你讓一本法術書紀錄上六個你自選的1環{@filter 法師法術|spells|class=wizard}。你的法術書儲存著你除戲法外的所有已知法術，而你的戲法則直接銘記在你腦海中。"
+					],
+					"ENG_name": "Spellbook"
+				},
+				{
+					"type": "entries",
+					"name": "法術的準備和施展",
+					"entries": [
+						"\"法師職業表\"裡記錄了你用以施展你法師法術的1環及更高環階法術位數量。施展某個法師法術時，你必須同時消耗其對應環階的法術位。已消耗的法術位可在完成長休後恢復。",
+						"你可以準備一系列符合當前施法條件的法師法術。準備法術時，你從法術書中選擇的準備法術總數等於你的智力調整值＋你的法師職業等級（最少為1）。另外，你只能準備已經獲得相應環階法術位的法術。",
+						"例如，作為一名3級法師時，你擁有四枚1環法術位和兩枚2環法術位。假如你的智力為16，則你的準備法術列表可以囊括總共六個1環或2環法術的組合。如果你準備了1環法術{@spell magic missile||魔法飛彈}，則你可以使用1環或者2環的法術位來施展它。另外，已施展的法術並不會從你的準備列表中移除。",
+						"你可以在完成長休後改變你的準備法術列表。準備新的法師法術列表時，你要再花時間研讀你的法術書，並重新記憶所準備法術的咒語和施展動作。準備時，你要為你列表上每個法術的每個環階都花費至少1分鐘時間。"
+					],
+					"ENG_name": "Preparing and Casting Spells"
+				},
+				{
+					"type": "entries",
+					"name": "施法關鍵屬性",
+					"entries": [
+						"你的法術來自你專注的研習和記憶，因此智力是你施展法師法術的關鍵屬性。每當你的法術需要施法屬性時均指向你的智力值。而你法師法術的豁免DC和攻擊檢定，則使用你的智力調整值。",
+						{
+							"type": "abilityDc",
+							"name": "法術",
+							"attributes": [
+								"int"
+							],
+							"ENG_name": "Spell"
+						},
+						{
+							"type": "abilityAttackMod",
+							"name": "法術",
+							"attributes": [
+								"int"
+							],
+							"ENG_name": "Spell"
+						}
+					],
+					"ENG_name": "Spellcasting Ability"
+				},
+				{
+					"type": "entries",
+					"name": "儀式施法",
+					"entries": [
+						"如果你法術書記錄了帶有儀式標籤的法術，則你可以用這些法術進行儀式施法。進行儀式施法時，你不需要準備相應的法術。"
+					],
+					"ENG_name": "Ritual Casting"
+				},
+				{
+					"type": "entries",
+					"name": "施法法器",
+					"entries": [
+						"你可以使用{@item arcane focus|phb|奧術法器}來作為施展法師法術的法器。"
+					],
+					"ENG_name": "Spellcasting Focus"
+				},
+				{
+					"type": "entries",
+					"name": "學習1環與更高環階法術",
+					"entries": [
+						"你每提升一個法師等級，可以將兩項自選的法師法術加入你的法術書中。但是，你只能加入已經獲得相應環階法術位的法術。你在冒險過程中所發現的法術也可以加入到法術書中（詳見\"你的法術書\"邊欄）。"
+					],
+					"ENG_name": "Learning Spells of 1st Level and Higher"
+				},
+				{
+					"type": "inset",
+					"name": "你的法術書",
+					"entries": [
+						"你在等級提升時加入法術書中的法師法術，體現了你的奧術研究成果，同時也代表你對多元宇宙本質的認知的新突破。你也許會在冒險過程中發現其他的法術。例如，你可能在一個邪惡法師的箱子裡發現了一張記載有法術的卷軸，或者在一個上古圖書館中發現了灰塵覆蓋的卷冊。",
+						"法術書中不包含戲法。",
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"name": "將法術抄入法術書",
+									"entries": [
+										"當你發現一道1環或更高環階的法師法術時，你可以將其抄入你的法術書中，前提是，你必須能夠準備該法術，且也有時間去解讀和複製它。",
+										"抄寫法術時，你必須先重構該法術的基礎式，然後解讀抄寫該法術的法師所使用的獨特符號系統。你必須反覆練習這個法術，直至完全理解其所需的咒語",
+										"這個過程將消耗每法術環階2小時的時間和每法術環階50 gp的資金。這筆開銷代表你在練習這個法術的過程中消耗的材料成分，還有抄錄法術所需的上好的墨水。當你花費了這一筆時間和金錢後，你就可以如同準備其他法術一般準備這個法術了。",
+										{
+											"type": "entries",
+											"name": "從法術卷軸中抄寫",
+											"source": "DMG",
+											"page": 139,
+											"entries": [
+												"法術卷軸上的法師法術可以像法術書中的法術一樣被抄寫。當你從法術卷軸抄寫法術時，你必須成功進行一次智力（{@skill Arcana||奧秘}）檢定，難度等級（DC）等於10 + 法術環位。如果檢定成功，法術就被成功抄寫。無論檢定成功還是失敗，法術卷軸都會被銷燬。"
+											],
+											"ENG_name": "Copying from a Spell Scroll"
+										}
+									],
+									"ENG_name": "Copying a Spell into the Book"
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"name": "替換法術書",
+									"entries": [
+										"你可以把法術從你的法術書抄到另一本書上。例如，你打算為你的法術書做一個備份時，就可以這麼做。這個程序和將新法術抄入法術書相似，但更快也更簡單，因為你早已理解了你自己的符號系統，也知道如何施展這個法術。這時，你只需要花費每環階1小時和每環階10 gp的花費。",
+										"如果你弄丟了法術書，你也可以用相同的流程將你準備的法術抄入一本新法術書中。而要填滿法術書的其餘部分就需要你自己去尋找新的法術了。所以，很多法師都喜歡在安全的地方儲存好備份的法術書。"
+									],
+									"ENG_name": "Replacing the Book"
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"name": "法術書外觀",
+									"entries": [
+										"你的法術書是一本獨特的法術合集，其上有著獨特的使用痕跡和空白頁。它可以是導師贈予的簡潔實用的皮冊；或是在遠古圖書館中發現的華麗鑲邊書冊；甚至可以是在你遭遇意外後，鬆散的訂在一起的一堆手稿。"
+									],
+									"ENG_name": "The Book's Appearance"
+								}
+							]
+						}
+					],
+					"ENG_name": "Your Spellbook"
+				}
+			],
+			"ENG_name": "Spellcasting"
+		},
+		{
+			"name": "奧法學派",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 2,
+			"entries": [
+				"第2級時，你選擇一種奧術傳承以使你的訓練專注於一種學派，你可以在學派列表中選擇。隨後，你將在第2、第6、第10、第14級時獲得所選學派相應的特性。"
+			],
+			"ENG_name": "Arcane Tradition"
+		},
+		{
+			"name": "戲法公式",
+			"source": "TCE",
+			"page": 75,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 3,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"{@i 3級法師{@variantrule optional class features|tce|可選特性}}",
+				"你在法術書中寫下了一套奧法公式，並能藉此在心中推演出一個戲法。每當你完成一次長休，你可以查閱法術書中所記的公式，以將你的一個已知法師戲法替換為另一個來自法師法術列表的戲法。"
+			],
+			"ENG_name": "Cantrip Formulas"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 4,
+			"entries": [
+				"當你達到4級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "奧法學派能力",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 6,
+			"entries": [
+				"第6級時，獲得所選學派相應的特性。"
+			],
+			"ENG_name": "Arcane Tradition feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 8,
+			"entries": [
+				"當你達到第8級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過該特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "奧法學派能力",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 10,
+			"entries": [
+				"第10級時，獲得所選學派相應的特性。"
+			],
+			"ENG_name": "Arcane Tradition feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 12,
+			"entries": [
+				"當你達到第12級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過該特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "奧法學派能力",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 14,
+			"entries": [
+				"第14級時，獲得所選學派相應的特性。"
+			],
+			"ENG_name": "Arcane Tradition feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 16,
+			"entries": [
+				"當你達到16級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "法術精通",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 18,
+			"entries": [
+				"第18級時，你對特定的法術精熟於心，甚至可以隨意施展這些法術。選擇你法術書中的一項1環法師法術和一項2環法師法術，此後只要你準備了它們，就可以隨意施展其最低環階版本，且無需消耗法術位。你也可以消耗法術位來施展其更高環階版本。",
+				"透過8小時的研習，你可以將這兩項法術中的任一項替換為同環階的其他法術。"
+			],
+			"ENG_name": "Spell Mastery"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 19,
+			"entries": [
+				"當你達到19級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "招牌法術",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 20,
+			"entries": [
+				"第20級時，你精通兩個強大的法術，甚至可以用更低的成本施展這些法術。選擇你的法術書中的兩個3環法師法術，作為你的招牌法術。此後這兩個法術將永遠視為已準備法術，且不計入你的準備法術數量之中。你可以施展這兩個法術的3環版本各一次，且無需消耗法術位。招牌法術使用後，需要完成一次短休或長休才能再次使用。",
+				"你也可以消耗法術位施展這兩個法術的更高環階版本。"
+			],
+			"ENG_name": "Signature Spells"
+		},
+		{
+			"name": "奧術恢復",
+			"source": "XPHB",
+			"page": 155,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你學會了透過研讀法術書來恢復魔法能量的辦法。你完成一次{@variantrule Short Rest|XPHB|短休}後，可以選擇恢復已消耗的法術位。所恢復的法術位環階總和不得大於你法師等級的一半（向上取整），且任何一個法術位的環階都必須小於六環。例如，作為一名4級法師時，你可恢復環階總數最多為二的法術位。你可以選擇恢復一個二環法術位或兩個一環法術位。",
+				"此特性一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。"
+			],
+			"ENG_name": "Arcane Recovery"
+		},
+		{
+			"name": "儀式學家",
+			"source": "XPHB",
+			"page": 155,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你能以{@variantrule Ritual|XPHB|儀式}施展你法術書中任何帶有{@variantrule Ritual|XPHB|儀式}標籤的法術。你不需要準備這些法術，但你以此法施展法術時必須閱讀這本書。"
+			],
+			"ENG_name": "Ritual Adept"
+		},
+		{
+			"name": "施法",
+			"source": "XPHB",
+			"page": 165,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你已經入門了奧術魔法，學會了如何施展法術。施法規則見{@book 第七章|XPHB|7}。下文將詳述如何將這些規則應用於法師法術，法師法術詳見本章後文職業描述中的{@filter 法師法術列表|spells|class=Wizard}表。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "戲法",
+							"entries": [
+								"你知曉三道你選擇的法師戲法。推薦選擇{@spell Light|XPHB|光亮術}、{@spell Mage Hand|XPHB|法師之手}和{@spell Ray of Frost|XPHB|冷凍射線}。每當你完成一次{@variantrule Long Rest|XPHB|長休}時，你都能從此特性的戲法中選擇其一替換為另一道你所選擇的法師戲法。",
+								"當你的法師等級到達4級和10級時，你都能另選一道法師戲法並習得，如法師特性表中戲法一列所示。"
+							],
+							"ENG_name": "Cantrips"
+						},
+						{
+							"type": "entries",
+							"name": "法術書",
+							"entries": [
+								"你在法師學徒階段獲取的所有成果彙集於一本獨特的書：你的法術書。它是一個重3磅的微型物件，內有100頁，並且只能被你自己或者施展了{@spell Identify|XPHB|鑑定術}的人閱讀。你來決定法術書的外貌和材料，比如一本鑲金邊的典籍或用麻繩裝訂的牛皮紙集。",
+								"這本書包含所有你已知的1環及更高環階法術。最初，它記錄著六道你自選的1環法師法術。推薦選擇{@spell Detect Magic|XPHB|偵測魔法}、{@spell Feather Fall|XPHB|羽落術}、{@spell Mage Armor|XPHB|法師護甲}、{@spell Magic Missile|XPHB|魔法飛彈}、{@spell Sleep|XPHB|睡眠術}和{@spell Thunderwave|XPHB|雷鳴波}。",
+								"1級之後每當你獲得一個法師等級時，你就可以往法術書中新增兩道你選擇的法師法術。你所選擇法術的環階必須是你所擁有法術位對應的環階，你所擁有的法術位如法師特性表中所示。這些法術是你定期進行奧術研究的成果。"
+							],
+							"ENG_name": "Spellbook"
+						},
+						{
+							"type": "entries",
+							"name": "法術位",
+							"entries": [
+								"法師特性表顯示了你可用於施展一環及以上法術的法術位數量。當你完成{@variantrule Long Rest|XPHB|長休}時，你重獲所有已消耗的法術位。"
+							],
+							"ENG_name": "Spell Slots"
+						},
+						{
+							"type": "entries",
+							"name": "1環及以上的準備法術",
+							"entries": [
+								"你準備可供你以此特性施展的一環及更高環階的法術列表。為此，從法術書中選擇四道法師法術。你所選擇法術的環階必須是你所擁有法術位對應的環階。",
+								"已準備法術數量會隨你法師等級的提升而增加，如法師特性表中的準備法術一列所示。每當該數字增加時，從你的法術書中選擇額外法術準備，直至已準備法術的數量與表格中的數字一致。你所選擇法術的環階必須是你所擁有法術位對應的環階。例如，如果你是一名3級法師，則你的準備法術列表能包括六道一環或二環的法師法術（從法術書中選取），隨意組合。",
+								"如果法師的其他特性給了你始終準備著的法術，這些法術不計入你以此法準備的法術數量，但這些法術對你而言都視為法師法術。"
+							],
+							"ENG_name": "Prepared Spells of Level 1+"
+						},
+						{
+							"type": "entries",
+							"name": "改變你的準備法術",
+							"entries": [
+								"每當你完成一次{@variantrule Long Rest|XPHB|長休}時，你可以將你準備列表上的一道或更多法術替換為你法術書上的其他法師法術。"
+							],
+							"ENG_name": "Changing Your Prepared Spells"
+						},
+						{
+							"type": "entries",
+							"name": "施法關鍵屬性",
+							"entries": [
+								"你法師法術的施法屬性是智力。"
+							],
+							"ENG_name": "Spellcasting Ability"
+						},
+						{
+							"type": "entries",
+							"name": "施法法器",
+							"entries": [
+								"你可以使用{@item Arcane Focus|XPHB|奧術法器}或你的法術書作為你法師法術的{@variantrule Spellcasting Focus|XPHB|法器}。"
+							],
+							"ENG_name": "Spellcasting Focus"
+						},
+						{
+							"type": "inset",
+							"name": "擴充套件與替換法術書",
+							"entries": [
+								"你獲得職業等級時新增到法術書中的法術反映了你自己進行的魔法研究，但你可能會在冒險過程中發現其他可以新增至法術書中的法術。例如，你可能在一張{@item Spell Scroll|XDMG|法術卷軸}中發現一道法師法術，然後將該法術抄到你的法術書中。",
+								{
+									"type": "entries",
+									"name": "將法術抄入法術書",
+									"entries": [
+										"當你發現一道一環或更高環階的法師法術時，如果它是你能進行準備的法術位環階且你能抽出時間來抄寫它，則你可以將其抄寫到你的法術書中。每個法術環階的抄錄過程都需要2小時並花費50GP。在此之後，你就可以像準備法術書中的其他法術一樣準備該法術了。"
+									],
+									"ENG_name": "Copying a Spell into the Book"
+								},
+								{
+									"type": "entries",
+									"name": "抄寫法術書",
+									"entries": [
+										"你可以將法術從你自己的法術書複製到另一本書中。這就像將新法術複製到你的法術書中一樣，但更快也更簡單，因為你已經知道如何施展這些法術。複製過程只需每個法術環階花費1小時和10GP。",
+										"如果你失去了你的法術書，則你可以使用相同的過程將你已準備的法師法術轉錄到新的法術書中。你仍需要找到新的法術來填滿新書的剩餘部分。出於這個原因，許多法師都會保留一本備用法術書。"
+									],
+									"ENG_name": "Copying the Book"
+								}
+							],
+							"ENG_name": "Expanding and Replacing a Spellbook"
+						}
+					]
+				}
+			],
+			"ENG_name": "Spellcasting"
+		},
+		{
+			"name": "學者",
+			"source": "XPHB",
+			"page": 166,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"在學習法術之餘，你還對一門學術領域有過專門的研究。從下列技能中選擇一項你具有熟練的技能：{@skill Arcana|XPHB|奧秘}、{@skill History|XPHB|歷史}、{@skill Investigation|XPHB|調查}、{@skill Medicine|XPHB|醫藥}、{@skill Nature|XPHB|自然}或{@skill Religion|XPHB|宗教}。你獲得所選技能的{@variantrule Expertise|XPHB|專精}。"
+			],
+			"ENG_name": "Scholar"
+		},
+		{
+			"name": "法師子職",
+			"source": "XPHB",
+			"page": 167,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你獲得一項自選的法師子職。子職是一種特化，在特定的法師等級給予你對應的獨特能力。此後你將獲得你所選的子職所有能力——只要其所需等級不超過你的法師等級。"
+			],
+			"ENG_name": "Wizard Subclass"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 167,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 4,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其他你滿足條件的{@5etools 專長|feats.html}。如法師特性表所示，你還會在第8，第12，第16級時再次獲得本特性。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "記憶法術",
+			"source": "XPHB",
+			"page": 167,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"每當你完成一次{@variantrule Short Rest|XPHB|短休}時，你可以研究你的法術書並且將其中一道你以施法特性準備的一環及以上的法術替換為你法術書中的另一道一環及以上的法術。"
+			],
+			"ENG_name": "Memorize Spell"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 167,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 6,
+			"entries": [
+				"你獲得一個來自法師子職的特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 167,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 8,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 167,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 10,
+			"entries": [
+				"你獲得一個來自法師子職的特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 167,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 12,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 167,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 14,
+			"entries": [
+				"你獲得一個來自法師子職的特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 167,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 16,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "法術精通",
+			"source": "XPHB",
+			"page": 167,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 18,
+			"entries": [
+				"你對特定法術精熟於心，能隨意施展它們。從你的法術書中選擇一道1環法術與一道2環法術；這兩道法術的施法時間都必須是一個動作。你總是準備這些法術，且能不消耗法術位地以最低環階施展它們。若要以更高環階施展其中任一道法術，你必須消耗法術位。",
+				"每當你完成一次{@variantrule Long Rest|XPHB|長休}時，你可以研究你的法術書並將其中一道法術更換為另一個符合條件的同環階法術。"
+			],
+			"ENG_name": "Spell Mastery"
+		},
+		{
+			"name": "傳奇恩惠",
+			"source": "XPHB",
+			"page": 167,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 19,
+			"entries": [
+				"你獲得一項{@filter 傳奇恩惠專長|feats|category=EB}或其他一項你選擇的適用的{@5etools 專長|feats.html}。推薦選擇法術{@feat Boon of Spell Recall|XPHB|法術溯回之恩惠}。"
+			],
+			"ENG_name": "Epic Boon"
+		},
+		{
+			"name": "招牌法術",
+			"source": "XPHB",
+			"page": 167,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 20,
+			"entries": [
+				"從你的法術書中選擇兩道3環法術作為你的招牌法術。你總是準備這些法術，且能不消耗法術位地以3環施展每道法術各一次。當你以此方式施展其中一道法術後，直到完成一次{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}前，你都不能再次以此方式施展該法術。若要以更高環階施展其中任一道法術，你必須消耗法術位。"
+			],
+			"ENG_name": "Signature Spells"
+		}
+	],
+	"subclassFeature": [
+		{
+			"name": "時間魔法",
+			"source": "EGW",
+			"page": 184,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Chronurgy",
+			"subclassSource": "EGW",
+			"level": 2,
+			"entries": [
+				"追隨時間使傳承的法師們專注於操縱時間，他們學會了如何按照自己的想法來改寫現實的流動。利用可預期的秘跡能量，這些法師可以像熟練的樂師演奏樂器那樣扭曲時間的流動，在眨眼間賦予他們自己以及他們的盟友戰鬥優勢。",
+				"{@note 注：此子職業可使用{@book 秘跡學法術|EGW|5|Dunamancy Spells}}.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Chronal Shift|Wizard||Chronurgy|EGW|2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Temporal Awareness|Wizard||Chronurgy|EGW|2"
+				}
+			],
+			"ENG_name": "Chronurgy Magic"
+		},
+		{
+			"name": "時間變幻",
+			"source": "EGW",
+			"page": 184,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Chronurgy",
+			"subclassSource": "EGW",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"{@i 2級時間魔法特性}",
+				"你可以對生物周圍的時間流動的進行魔法性的、有限的控制。在你或你周圍30尺內你可見的生物進行一次攻擊檢定、屬性檢定、或豁免檢定後，你可以用反應迫使該生物重投。你可以在得知該檢定是否成功後做出這一反應，且該生物必須使用第二次的結果。",
+				"你可以使用此特性兩次，在你完成一次長休後你重獲全部已消耗的使用次數。"
+			],
+			"ENG_name": "Chronal Shift"
+		},
+		{
+			"name": "現世感知",
+			"source": "EGW",
+			"page": 184,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Chronurgy",
+			"subclassSource": "EGW",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"{@i 2級時間魔法特性}",
+				"你的先攻檢定獲得等同於你智力調整值的加值。"
+			],
+			"ENG_name": "Temporal Awareness"
+		},
+		{
+			"name": "瞬時靜止",
+			"source": "EGW",
+			"page": 184,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Chronurgy",
+			"subclassSource": "EGW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 6級時間魔法特性}",
+				"以一個動作，你可以魔法地迫使60尺內你可以看見的一個大型或更小體型的生物進行一次對抗你法術豁免DC的體質豁免。若豁免失敗，該生物將被禁錮於一個魔法能量構成的力場中，直至你的下回合結束或者該生物受到任何傷害為止。當以此法被禁錮時，該生物速度的降至0，並陷入{@condition incapacitated||失能}狀態。",
+				"你可以使用這一特性的次數等同於你智力調整值次（至少1次）。在你完成一次長休後你重獲全部已消耗的使用次數。"
+			],
+			"ENG_name": "Momentary Stasis"
+		},
+		{
+			"name": "奧法暫滯",
+			"source": "EGW",
+			"page": 184,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Chronurgy",
+			"subclassSource": "EGW",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10級時間魔法特性}",
+				"當你消耗一個四環或更低的法術位來施展一個法術時，你可以將該法術的法力濃縮成一抹微塵。該法術將被凍結在它施展的那一刻，並被儲存在一個灰色的小珠中。這個小珠是一個擁有15AC和1點生命值的物件，並免疫毒素和心靈傷害。在1小時後或者珠子被摧毀時，它會散發出一閃光芒，然後消失，其中儲存的法術將被浪費。",
+				"持握著小珠的生物可以使用他的動作來釋放其內的法術，隨後小珠將會消失。該法術使用你的法術攻擊加值和法術豁免DC，而在其他方面均被視為由釋放它的生物施展。",
+				"在你以此特性創造一個小珠後，你在完成一次短休或長休前不能再次這樣做。"
+			],
+			"ENG_name": "Arcane Abeyance"
+		},
+		{
+			"name": "收束未來",
+			"source": "EGW",
+			"page": 184,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Chronurgy",
+			"subclassSource": "EGW",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"{@i 14級時間魔法特性}",
+				"你可以看透一切未來的可能性，你還能魔法性的將其中一個未來引導至你周遭發生的事物上，以確保事件如你所願的發生。當你或你周圍60尺範圍內一個你可見的生物進行一次攻擊檢定、屬性檢定、或豁免檢定時，你可以以你的反應來跳過擲骰，直接決定本次擲骰骰出的是使檢定正好能成功的最低骰值，或是比該成功骰值低1點的骰值（由你選擇）。",
+				"當你使用該特性時，你獲得一級{@condition exhaustion||力竭} 。以此法獲取的{@condition exhaustion||力竭}等級只能透過長休來消除。"
+			],
+			"ENG_name": "Convergent Future"
+		},
+		{
+			"name": "重力魔法",
+			"source": "EGW",
+			"page": 185,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Graviturgy",
+			"subclassSource": "EGW",
+			"level": 2,
+			"entries": [
+				"理解並掌控著將物體的物質聚合或分離的力量，重力奧術傳承的學生們透過學習來更進一步掌控扭曲並操縱重力的狂暴能量來增益自己，或是為他們的敵人帶來恐怖的傷害。",
+				"{@note 注：此子職業可使用{@book 秘跡學法術|EGW|5|Dunamancy Spells}}.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Adjust Density|Wizard||Graviturgy|EGW|2"
+				}
+			],
+			"ENG_name": "Graviturgy Magic"
+		},
+		{
+			"name": "調節密度",
+			"source": "EGW",
+			"page": 185,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Graviturgy",
+			"subclassSource": "EGW",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"{@i 2級重力魔法特性}",
+				"以一個動作，你能魔法性的修改你周圍30尺內的、一個你可見的物件或生物的重量。目標物件或目標生物的體型必須為大型或更小。你將目標的重量減半或翻倍，持續至多一分鐘，若你的{@status concentration||專注}終止（如同你正{@status concentration||專注於}一個法術一樣），它將提前結束。",
+				"生物的重量因此特性減半期間，該生物的移動速度增加10尺，其跳躍的距離變為正常的兩倍，但在進行力量檢定或力量豁免時具有劣勢。生物的重量因此特性翻倍期間，該生物的移動速度減少10尺，但在進行力量檢定或力量豁免時具有優勢。",
+				"當你在此職業到達第10級時，你可以對巨型或更小的物件或生物使用本特性。"
+			],
+			"ENG_name": "Adjust Density"
+		},
+		{
+			"name": "重力井",
+			"source": "EGW",
+			"page": 185,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Graviturgy",
+			"subclassSource": "EGW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 6級重力魔法特性}",
+				"你習得了如何操縱活物周遭的重力：每當你將一道法術施展到一個生物身上時，你能移動該目標5尺至一處由你選擇且未被佔據的空間。這一特性只有在法術的目標自願被你移動、或法術中的某次攻擊命中了該目標、亦或該目標在對抗這道法術的某次豁免檢定失敗的情況下，才能生效。"
+			],
+			"ENG_name": "Gravity Well"
+		},
+		{
+			"name": "狂暴牽引",
+			"source": "EGW",
+			"page": 185,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Graviturgy",
+			"subclassSource": "EGW",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10級重力魔法特性}",
+				"當處於你周圍60尺範圍內且你可見的生物（除你以外）發動的武器攻擊命中時，你都能用你的反應增幅這次攻擊的速度，使被攻擊的目標額外受到{@damage 1d10}點傷害，此額外傷害的型別與武器的傷害型別相同。",
+				"此外，當你周圍60尺範圍內的生物承受墜落傷害時，你也能用你的反應來增幅這次墜落，使墜落傷害增加{@damage 2d10}。",
+				"你可以使用這一特性的次數等同於你智力調整值次（至少1次）。在你完成一次長休後你重獲全部已消耗的使用次數。"
+			],
+			"ENG_name": "Violent Attraction"
+		},
+		{
+			"name": "事件視界",
+			"source": "EGW",
+			"page": 185,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Graviturgy",
+			"subclassSource": "EGW",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"{@i 14級重力魔法特性}",
+				"以一個動作，你可以魔法性地釋放一個強大的重力能量場，牽引其他生物，持續至多1分鐘，或直到你的{@status concentration||專注}結束（如同你正在{@status concentration||專注於}一道法術）。持續期間，每當一個對你具敵意的生物在距你30尺內開始其回合時，必須進行一次力量豁免，對抗你的法術豁免DC。豁免失敗時，它受到{@damage 2d10}點力場傷害，且速度降為0，直到其下一回合開始。豁免成功時，它受到一半傷害，且在該回合每移動1尺，都必須額外花費2尺移動力。",
+				"一旦你使用了本特性，直到你完成一次長休前你都無法再次使用它。你也可以花費一個3環或更高的法術位來再次使用它。"
+			],
+			"ENG_name": "Event Horizon"
+		},
+		{
+			"name": "防護學派",
+			"source": "PHB",
+			"page": 115,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Abjuration",
+			"subclassSource": "PHB",
+			"level": 2,
+			"entries": [
+				"防護學派的法術注重阻礙、驅逐與保護。其反對者們認為該學派的傳承只懂迴避與拒絕，而缺乏主動的否定。但你明白，終止負面效應，防護弱點以及驅逐邪惡影響都絕非虛無之事，而是一份值得驕傲又值得尊敬的使命。",
+				"每當惡靈需要被祛除，重要地點需要隔絕魔法探測，通向其他存在位面的傳送門需要關閉時，正是需要本學派法師——護法師體現價值之時。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Abjuration Savant|Wizard||Abjuration||2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Ward|Wizard||Abjuration||2"
+				}
+			],
+			"ENG_name": "School of Abjuration"
+		},
+		{
+			"name": "防護學者",
+			"source": "PHB",
+			"page": 115,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Abjuration",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"從第2級你選擇該學派起，你向法術書中抄寫防護系法術的時間和金錢花費減半。"
+			],
+			"ENG_name": "Abjuration Savant"
+		},
+		{
+			"name": "奧法防護",
+			"source": "PHB",
+			"page": 115,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Abjuration",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"第2級起，你可以編織身邊的魔法用作防護。你施展一道{@filter 1環或更高環位的防護法術|spells|school=A|level=!0}時，可以用該法術的一絲魔力創造一個保護自己的魔法結界，該結界將持續至你完成一次長休。結界的最大生命值等於你法師等級的兩倍＋你的智力調整值。每當你受傷害時，該結界都會替你承受傷害。如果傷害使結界的生命值降至0，則你將承受剩餘的傷害。",
+				"奧術守禦的生命值降至0時不再吸收傷害，但其魔法仍然存在。你每次施展{@filter 1環或更高環位的防護法術|spells|school=A|level=!0}時，結界都能以此恢復兩倍於該法術環階數量的生命值。",
+				"創造奧術守禦後，你必須完成一次長休才能再次創造新的奧術守禦。"
+			],
+			"ENG_name": "Arcane Ward"
+		},
+		{
+			"name": "投射防護",
+			"source": "PHB",
+			"page": 115,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Abjuration",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級起，你周邊30尺內一個你能看見的生物受到傷害時，你可以用你的反應，以你現有的奧術守禦吸收這次傷害。如果這次傷害將結界的生命值降至0，則被保護的目標將承受剩餘的傷害值。"
+			],
+			"ENG_name": "Projected Ward"
+		},
+		{
+			"name": "精通防護",
+			"source": "PHB",
+			"page": 115,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Abjuration",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級起，你施展一個需要你在施法過程中進行屬性檢定的防護系法術時（比如{@spell counterspell||法術反制}和{@spell dispel magic||解除魔法}），你可以在進行相應的屬性檢定時加上你的熟練加值。"
+			],
+			"ENG_name": "Improved Abjuration"
+		},
+		{
+			"name": "法術抗性",
+			"source": "PHB",
+			"page": 115,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Abjuration",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"第14級起，你抵抗法術時進行的豁免檢定具有優勢。",
+				"此外，你對法術造成的傷害具有抗性。"
+			],
+			"ENG_name": "Spell Resistance"
+		},
+		{
+			"name": "咒法學派",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Conjuration",
+			"subclassSource": "PHB",
+			"level": 2,
+			"entries": [
+				"作為一名咒法師，你偏愛那些憑空創造物件和生物的法術。你可以招來翻滾的致死霧氣，或召喚出為你而戰的生物。你掌握了足夠精熟的技術後還可以學習傳送類的法術，甚至可依此在彈指間跨越遙遠的距離，乃至傳送到另一存在位面。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Conjuration Savant|Wizard||Conjuration||2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Minor Conjuration|Wizard||Conjuration||2"
+				}
+			],
+			"ENG_name": "School of Conjuration"
+		},
+		{
+			"name": "咒法學者",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Conjuration",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"從第2級你選擇該學派起，你向法術書中抄寫咒法系法術的時間和金錢花費減半。"
+			],
+			"ENG_name": "Conjuration Savant"
+		},
+		{
+			"name": "次級咒喚",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Conjuration",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"從第2級你選擇該學派起，你可以用你的動作召來一件無生命的物件。該物件將出現在你手中，或者你周邊10尺範圍內一處那你能看見且未被佔據的地面空間。該物件每邊長度不得大於3尺，重量不得大於10磅。其形狀必須是你曾經見過的一件非魔法物件的形狀。該物件看起來明顯是由魔法構成且散發著出5尺範圍的微光光照。",
+				"該物件將在1小時後消失不見。當你再次使用該特性，或當其受到傷害或造成傷害時，物件也會提前消失。"
+			],
+			"ENG_name": "Minor Conjuration"
+		},
+		{
+			"name": "移形換位",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Conjuration",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級起，你可以用你的動作傳送至一處距離你30尺內，你能看見且未被佔據的空間。你也可以指定一處該距離內被一個小型或中型生物所佔據的空間，如果該生物願意，則你就可以與它交換位置。",
+				"你必須完成一次長休，或施展一個環階不低於1環的咒法系法術才能再次使用該特性。"
+			],
+			"ENG_name": "Benign Transposition"
+		},
+		{
+			"name": "咒法專注",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Conjuration",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級起，你在{@status concentration||專注於}咒法系法術時，不會因承受傷害而打斷{@status concentration||專注}。"
+			],
+			"ENG_name": "Focused Conjuration"
+		},
+		{
+			"name": "強韌召喚",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Conjuration",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"第14級起，你用咒法系法術所召喚或創造的生物獲得30點臨時生命值。"
+			],
+			"ENG_name": "Durable Summons"
+		},
+		{
+			"name": "預言學派",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Divination",
+			"subclassSource": "PHB",
+			"level": 2,
+			"entries": [
+				"不管是王侯貴族還是平凡人家，總會想要得到預言師的指點，以尋求對某些過去，現在或未來事情更加明晰的情報。作為一名預言師，你致力於揭開時空與意識的神秘面紗，讓事物看起來更加清楚明瞭。你努力掌握的法術囊括了鑑別、遠視、超自然學識以及預知等各方面內容。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Divination Savant|Wizard||Divination||2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Portent|Wizard||Divination||2"
+				}
+			],
+			"ENG_name": "School of Divination"
+		},
+		{
+			"name": "預言學者",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Divination",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"從第2級你選擇該學派起，你向法術書中抄寫預言系法術的時間和金錢花費減半。"
+			],
+			"ENG_name": "Divination Savant"
+		},
+		{
+			"name": "預兆",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Divination",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"從第2級你選擇該學派起，預知未來的片段會時常在你意識中閃過。你在每次完成長休時投兩次{@dice d20}並記下兩組骰值。此後，你可以用這兩組預知骰骰值中的任意一個，替代任何一次由你，或者由你能看見的某個生物所進行的攻擊檢定，豁免檢定或屬性檢定。你必須在相關檢定開始前決定是否使用預知骰，且你每回合只能使用一次預知骰。",
+				"每個預知骰只能使用一次。你完成一次長休後，將失去所有未使用的預知骰。"
+			],
+			"ENG_name": "Portent"
+		},
+		{
+			"name": "預言專家",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Divination",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級起，你對施展預言法術的技巧駕輕就熟，幾乎不用使什麼力氣。你用法術位施展一個{@filter 環階不低於2環的預言系法術|spells|school=D}時，可以恢復一個已耗用的法術位。所恢復的法術位環階必須比你正施展的預言系法術所用的法術位低，且不能高於5環。"
+			],
+			"ENG_name": "Expert Divination"
+		},
+		{
+			"name": "天眼通",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Divination",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級起，你可以用你的動作增強你的感知能力。使用此特性時，你選擇以下增益其中之一併獲得之。其效應將持續至你陷入{@condition incapacitated||失能}狀態，或直至你開始一次短休或長休。你必須完成一次休息才能再次使用該特性。",
+				{
+					"type": "options",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "黑暗視覺",
+							"entries": [
+								"你獲得60尺的{@sense darkvision||黑暗視覺}。"
+							],
+							"ENG_name": "Darkvision"
+						},
+						{
+							"type": "entries",
+							"name": "以太視界",
+							"entries": [
+								"你可以看到自身周邊60尺範圍內的以太位面。"
+							],
+							"ENG_name": "Ethereal Sight"
+						},
+						{
+							"type": "entries",
+							"name": "高等理解力",
+							"entries": [
+								"你可以讀懂任何語言。"
+							],
+							"ENG_name": "Greater Comprehension"
+						},
+						{
+							"type": "entries",
+							"name": "識破隱形",
+							"entries": [
+								"你可以看到距離你10尺內，且處在你視線範圍內的{@condition invisible||隱形}生物或物件。"
+							],
+							"ENG_name": "See Invisibility"
+						}
+					]
+				}
+			],
+			"ENG_name": "The Third Eye"
+		},
+		{
+			"name": "高等預兆",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Divination",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"第14級起，你夢中的景象更為清晰精確的在你意識中描繪出了將要發生的一切。你的預兆特性獲得三個{@dice d20}預知骰，而不再是兩個。"
+			],
+			"ENG_name": "Greater Portent"
+		},
+		{
+			"name": "惑控學派",
+			"source": "PHB",
+			"page": 117,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Enchantment",
+			"subclassSource": "PHB",
+			"level": 2,
+			"entries": [
+				"作為惑控學派法師的一員，你專注於磨練用魔法來迷引或騙誘其他人或怪物。一些惑控師是和平締造者，致力於蠱惑暴力者使之放下武器，魅惑殘忍者使之展現慈憫。另一些惑控師是暴君，用魔法強制不情願的人們為他工作。而絕大多數惑控師則處於兩者之間。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Enchantment Savant|Wizard||Enchantment||2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Hypnotic Gaze|Wizard||Enchantment||2"
+				}
+			],
+			"ENG_name": "School of Enchantment"
+		},
+		{
+			"name": "惑控學者",
+			"source": "PHB",
+			"page": 117,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Enchantment",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"從第2級你選擇該學派起，你向法術書中抄寫惑控系法術的時間和金錢花費減半。"
+			],
+			"ENG_name": "Enchantment Savant"
+		},
+		{
+			"name": "催眠凝視",
+			"source": "PHB",
+			"page": 117,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Enchantment",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"從第2級你選擇該學派起，你可以用輕柔的語言和魅惑的目光來施展魔法奴役其他生物。作為一個動作，你指定身邊5尺範圍內一個你能看見的生物。如果該生物能看見你或者能聽到你的聲音，則其必須進行一次對抗你法師法術豁免DC的感知豁免，豁免失敗則受你{@condition charmed||魅惑}，其狀態持續至你下一回合結束。該被{@condition charmed||魅惑}生物的速度降至0，並陷入{@condition incapacitated||失能}狀態。外表上看該生物會是一副頭暈目眩的樣子。",
+				"在接下來的回合中，你可以用另一個動作來延續該效應，以將其持續時間再延續至你的下一回合結束。然而，如果你移動到目標生物5尺以外，或者該生物變得不能看見你也不能聽到你的聲音，又或者目標生物受到傷害時，該效應將提前終止。",
+				"如果該效應終止，或者該生物在最初的豁免中成功，則你將無法對這個生物再使用該特性，直至你完成一次長休。"
+			],
+			"ENG_name": "Hypnotic Gaze"
+		},
+		{
+			"name": "本能魅惑",
+			"source": "PHB",
+			"page": 117,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Enchantment",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級起，一個身處你周邊30尺範圍內你能看見的生物對你發動攻擊檢定時，你可以用你的反應來偏轉本次攻擊，前提是必須有另一生物在本次攻擊的攻擊範圍內。攻擊者必須進行一次對抗你法師法術豁免DC的感知豁免。豁免失敗則攻擊者必須轉而攻擊距離他最近的生物（不包括你或他自身）。如果有多個目標離他的距離相等且都為最近，則攻擊者可以從中自選一個攻擊物件。如果攻擊者豁免成功，則你將無法對這個生物再使用該特性，直至你完成一次長休。",
+				"你必須在攻擊確認命中與否前使用該特性。而免疫{@condition charmed||魅惑}的生物也同樣免疫該特性。"
+			],
+			"ENG_name": "Instinctive Charm"
+		},
+		{
+			"name": "分散惑控",
+			"source": "PHB",
+			"page": 117,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Enchantment",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級起，你施展一個以單一生物為目標的1環或更高環階的惑控系法術時，可以為該法術指定第二個目標。"
+			],
+			"ENG_name": "Split Enchantment"
+		},
+		{
+			"name": "改動記憶",
+			"source": "PHB",
+			"page": 117,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Enchantment",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"第14級起，你獲得讓生物無法認識到你對其魔法影響的能力。你施展一個可以魅惑一個或更多生物的惑控系法術時，可以改變某一個生物的認識，以令其無法察覺自己已經被{@condition charmed||魅惑}。",
+				"此外，在法術持續時間結束前，你有一次機會可以用你的動作嘗試修改被指定生物的記憶，讓他忘記被{@condition charmed||魅惑}期間的一些記憶。該生物必須進行一次對抗你法師法術豁免DC的智力豁免，豁免失敗則其失去一定小時的記憶，其數值為1＋你的魅力調整值（至少為1）。你可以選擇讓目標忘記更短時間內的記憶，而所忘記記憶的長度不能超過該惑控法術的持續時間。"
+			],
+			"ENG_name": "Alter Memories"
+		},
+		{
+			"name": "塑能學派",
+			"source": "PHB",
+			"page": 117,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Evocation",
+			"subclassSource": "PHB",
+			"level": 2,
+			"entries": [
+				"你專注於研習以魔力創造威力驚人的元素力量，諸如：苦寒、灼焰、驚雷、汲電、烈酸。一些塑能師會接受軍隊的僱傭，在軍隊的後方作為在遠距離轟炸敵人的\"重炮手\"。另一些則以其驚人力量四處保護弱小，或是僅僅為滿足自身而成為匪徒、冒險家、甚至野心勃勃的暴君。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Evocation Savant|Wizard||Evocation||2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Sculpt Spells|Wizard||Evocation||2"
+				}
+			],
+			"ENG_name": "School of Evocation"
+		},
+		{
+			"name": "塑能學者",
+			"source": "PHB",
+			"page": 117,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Evocation",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"從第2級你選擇該學派起，你向法術書中抄寫塑能系法術的時間和金錢花費減半。"
+			],
+			"ENG_name": "Evocation Savant"
+		},
+		{
+			"name": "形塑法術",
+			"source": "PHB",
+			"page": 117,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Evocation",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"第2級起，你的塑能系法術作用範圍裡可以保留一小部分相對安全的區域。你施展某個塑能系法術時，如果該法術的效應影響你能看見的其他生物，則你可以從中指定一定數量的生物作特殊處理。被指定生物的數量等於1＋該法術的環階，而被指定生物進行該法術豁免時將直接判為成功，且豁免成功傷害減半的法術此時也不對該生物造成任何傷害"
+			],
+			"ENG_name": "Sculpt Spells"
+		},
+		{
+			"name": "強力戲法",
+			"source": "PHB",
+			"page": 117,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Evocation",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級起，你造成傷害的戲法可以影響本可免受戲法效應影響的生物。生物對抗你戲法的豁免成功時，它仍將受到一半傷害（若有），但仍不會受該戲法的其他效應影響。"
+			],
+			"ENG_name": "Potent Cantrip"
+		},
+		{
+			"name": "強效塑能",
+			"source": "PHB",
+			"page": 117,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Evocation",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級起，你可以將你的智力調整值加入到任何由你施展的法師塑能法術的其中一次傷害擲骰中。"
+			],
+			"ENG_name": "Empowered Evocation"
+		},
+		{
+			"name": "重載導魔",
+			"source": "PHB",
+			"page": 117,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Evocation",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"第14級起，你可以提升較低環階法術的威力。當你施展一道造成傷害的1環至5環法師法術時，可以讓該法術造成最大傷害。",
+				"首次發動該特性時，你並不會承受任何減益。如果你在完成一次長休前再次使用此特性，則你將在施法完成後立刻受到等於該法術每環階{@damage 2d12}點暗蝕傷害。你在完成一次長休前，每再使用一次該特性，每環階的暗蝕傷害就增加{@damage 1d12}。這種反噬傷害將無視任何的抗性和免疫。"
+			],
+			"ENG_name": "Overchannel"
+		},
+		{
+			"name": "幻術學派",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Illusion",
+			"subclassSource": "PHB",
+			"level": 2,
+			"entries": [
+				"你專注於用魔法擾亂感官，迷惑意識，甚至可以欺詐最具智慧的人。你的魔法看似細微卻奧妙無窮，這些用你的敏銳思維創造的幻象足夠以假亂真。一些幻術師（包括許多侏儒法師）是些以法術娛樂他人的和善戲法師。而另一些更險惡的欺詐大師，則用他們的幻術恐嚇愚弄他人以滿足其個人的利益。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Illusion Savant|Wizard||Illusion||2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Improved Minor Illusion|Wizard||Illusion||2"
+				}
+			],
+			"ENG_name": "School of Illusion"
+		},
+		{
+			"name": "幻術學者",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Illusion",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"從第2級你選擇該學派起，你向法術書中抄寫幻術系法術的時間和金錢花費減半。"
+			],
+			"ENG_name": "Illusion Savant"
+		},
+		{
+			"name": "精通次級幻象",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Illusion",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"從第2級你選擇該學派起，你習得戲法{@spell minor illusion||次級幻象}。如果你已學會此戲法，則你可以學習另一個自選的法師戲法。該戲法不計入你的已知戲法數目限制。",
+				"你施展戲法{@spell minor illusion||次級幻象}時，可以在一次施法中同時創造出聲音和影像。"
+			],
+			"ENG_name": "Improved Minor Illusion"
+		},
+		{
+			"name": "可塑幻象",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Illusion",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級起，你施展持續時間不少於1分鐘的幻術系法術時，可以用你的動作改變幻象的外形（仍需遵守相應法術的描述），前提是你必須可以看見該幻象。"
+			],
+			"ENG_name": "Malleable Illusions"
+		},
+		{
+			"name": "幻影化形",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Illusion",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級起，你可以如同本能反應般，瞬間創造出一個自身的幻象分身以應對危險。當一個生物對你發動攻擊檢定時，你可以用你的反應，在攻擊者和你之間插入你自身的幻象分身。攻擊者對你的攻擊將直接判為未命中，幻象分身也隨即消失。",
+				"你必須完成一次長休或短休後才能再次使用該特性。"
+			],
+			"ENG_name": "Illusory Self"
+		},
+		{
+			"name": "亦真亦幻",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Illusion",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"第14級起，你學會將暗影魔法編入幻術中的秘法，並以此使你的幻術獲得半真實的效果。你施展一個1環或更高環階的幻術系法術時，可以選擇幻象中一個非活化的非魔法物件，並讓該物件化作真實。你可以在自己回合中，相應法術持續時間內以一個附贈動作完成此事。被指定的物件將在接下來1分鐘內保持真實。例如，你可以用幻術創造出一座橋樑橫跨峽谷，而後將之化作真實以讓你的隊友在持續時間內穿行於橋面。",
+				"被化作真實的物件無法造成傷害，也無法以任何其他方式直接傷害任何事物。"
+			],
+			"ENG_name": "Illusory Reality"
+		},
+		{
+			"name": "死靈學派",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Necromancy",
+			"subclassSource": "PHB",
+			"level": 2,
+			"entries": [
+				"死靈學派致力於探索宇宙中的生命、死亡與亡靈之力。你在專注於該傳承時學習瞭如何操控那些驅動活物的能量。而你隨著研究的深入，還可以在用魔法摧毀敵人肉體的同時削弱其生命力，並將這些生命能量化作供你驅役的秘法之力。",
+				"正因死靈學派與死亡的緊密聯絡，導致大多數人認為死靈師都是恐怖的邪惡份子。事實上，儘管其操縱的力量在許多社會中都被視作禁忌，但仍有不少死靈師不屬於邪惡一方。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Necromancy Savant|Wizard||Necromancy||2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Grim Harvest|Wizard||Necromancy||2"
+				}
+			],
+			"ENG_name": "School of Necromancy"
+		},
+		{
+			"name": "殘怖收割",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Necromancy",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"第2級時，你可以在用法術殺死敵人時汲取其生命能量。你每回合有一次機會，在以一個環階不低於1環的法術殺死一個或多個生物時，可以恢復等於該法術環階兩倍的生命值。如果你使用的是{@filter 死靈學派|spells|school=N}法術，則其恢復的生命值為法術環階的三倍。你以此殺死不死生物或構裝生物時，無法從該特性獲得任何益處。"
+			],
+			"ENG_name": "Grim Harvest"
+		},
+		{
+			"name": "死靈學者",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Necromancy",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"從第2級你選擇該學派起，你向法術書中抄寫死靈系法術的時間和金錢花費減半。"
+			],
+			"ENG_name": "Necromancy Savant"
+		},
+		{
+			"name": "不死奴僕",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Necromancy",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級起，如果你法術書中未有法術{@spell animate dead||活化死屍}，則將之加入法術書。施展{@spell animate dead||活化死屍}時，你可以指定額外的一具屍體或一堆骸骨以創造一個額外的殭屍或骷髏，並按法術詳述進行設定。",
+				"此外，每當你用死靈系法術創造不死生物時，這些生物還可以獲得以下增益：",
+				{
+					"type": "list",
+					"items": [
+						"其生命值上限增加，數值等於你的法師等級。",
+						"其武器的傷害擲骰可以加上你的熟練加值。"
+					]
+				}
+			],
+			"ENG_name": "Undead Thralls"
+		},
+		{
+			"name": "不死適應",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Necromancy",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級起，你對暗蝕傷害具有抗性，且你的生命值上限不會被降低。你已經花了相當長的時間研究不死生物和驅役其力量，所以你已經可以適應其一些負面效應。"
+			],
+			"ENG_name": "Inured to Undeath"
+		},
+		{
+			"name": "命令不死生物",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Necromancy",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"第14級起，你可以用魔法奪取不死生物的控制權，甚至可以奪取其他法師所創造的不死生物。作為一個動作，你可以指定一個在距你60尺內你能看見的不死生物。該生物必須進行一次對抗你法師法術豁免DC的魅力豁免。若豁免成功，則你將不能對該生物再次使用此特性。若豁免失敗，則該生物變為對你友善，並服從你的命令，直至你再次使用此特性。",
+				"以該方式操縱智慧不死生物要更難一些。如果目標的智力值不低於8，則它在進行該豁免時具有優勢。而智力不低於12的不死生物，即使其豁免失敗也可以每小時重擲豁免，直至其豁免成功並掙脫你的控制。"
+			],
+			"ENG_name": "Command Undead"
+		},
+		{
+			"name": "變化學派",
+			"source": "PHB",
+			"page": 119,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Transmutation",
+			"subclassSource": "PHB",
+			"level": 2,
+			"entries": [
+				"你致力於研習改變物質和能量的法術。你覺得世間萬物並非不變且具有相當的可塑性，你也非常樂於為這種變化充當使者。你駕馭著創世的原生材料，並研究如何改變物理形態和心靈本質。而魔法則是你的工具，讓你得以成為鑄造現實的工匠。",
+				"一些變化師是惡作劇者和搗蛋鬼，喜歡把人變成蟾蜍或把銅變成銀子再以此取樂或偶爾從中獲利。另一些變化師會極其嚴肅的研究相關魔法，以求從中尋得創世或滅世的神之力。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Transmutation Savant|Wizard||Transmutation||2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Minor Alchemy|Wizard||Transmutation||2"
+				}
+			],
+			"ENG_name": "School of Transmutation"
+		},
+		{
+			"name": "次級鍊金",
+			"source": "PHB",
+			"page": 119,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Transmutation",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"從第2級你選擇該學派起，你可以暫時轉變一件非魔法物件的物理屬性，將其構成材料變成另一種物質。你對一件物件施行某些特殊的鍊金程式使其完成轉化，該物件必須完全由木材，石頭（不包括寶石），鋼鐵，銅，或者白銀製成，而後你可以將其變為上述材質中的另一種。你每花費10分鐘施行該程式，就可以轉變1立方尺的物質。1小時後，或者當你的{@status concentration||專注}中斷時（其規則等同於你{@status concentration||專注於}一個法術），材質就會復原。"
+			],
+			"ENG_name": "Minor Alchemy"
+		},
+		{
+			"name": "變化學者",
+			"source": "PHB",
+			"page": 119,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Transmutation",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"從第2級你選擇該學派起，你向法術書中抄寫變化系法術的時間和金錢花費減半。"
+			],
+			"ENG_name": "Transmutation Savant"
+		},
+		{
+			"name": "變化師之石",
+			"source": "PHB",
+			"page": 119,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Transmutation",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級起，你可以花費8小時時間創造一顆儲存著變化魔力的變化師之石。你可以自己保有石頭獲得其增益或將其贈予別人。持有變化師之石的生物將從中獲得你所選擇的增益。在創造變化師之石時，選擇下述效應其一：",
+				{
+					"type": "list",
+					"items": [
+						"60尺黑暗視覺，詳見第8章",
+						"該生物未處於過載時，其速度提升10尺",
+						"具有體質豁免檢定的熟練項",
+						"具有對強酸、冷凍、閃電、火焰、雷鳴傷害之一的抗性（每當你選擇該增益時自選一種傷害型別）"
+					]
+				},
+				"你自己持有變化師之石時，你每施展一個1環或更高環階變化系法術，都可以改變你的變化師之石所帶的效應。",
+				"你創造了一顆新的變化師之石後，原有的石頭便會失效。"
+			],
+			"ENG_name": "Transmuter's Stone"
+		},
+		{
+			"name": "變形者",
+			"source": "PHB",
+			"page": 119,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Transmutation",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級起，如果你的法術書中尚未包含{@spell polymorph||變形術}，則你將之加入法術書。你可以無需消耗法術位的施展{@spell polymorph||變形術}。此時，你可以指定的目標將限定為你自身，而其效應為變成一種{@filter 挑戰等級不高於1的野獸|bestiary|challenge rating=[&0;&1]|type=beast|miscellaneous=!swarm}。",
+				"你以該方式施展{@spell polymorph||變形術}後，必須完成一次長休或短休才能再次使用該特性，但仍可正常消耗法術位地施展它。"
+			],
+			"ENG_name": "Shapechanger"
+		},
+		{
+			"name": "變化宗師",
+			"source": "PHB",
+			"page": 119,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Transmutation",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"第14級起，你可以用你的動作將儲存在你變化師之石中的變化魔力一次耗盡。此時你可以選擇下述效應之一。你的變化師之石將因此被毀，而你必須完成一次長休後才能再創作新的變化師之石頭。",
+				{
+					"type": "options",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "強效變化",
+							"entries": [
+								"你可以將一件不大於5尺立方的非魔法物件變成體積和質量相近，價值等同或更低的另一件非魔法物件。你必須花10分鐘來完成轉化。"
+							],
+							"ENG_name": "Major Transformation"
+						},
+						{
+							"type": "entries",
+							"name": "萬靈密藥",
+							"entries": [
+								"你用變化師之石觸碰一個生物，移除其身上生效的所有詛咒、中毒以及疾病效應，同時恢復該生物的全部生命值。"
+							],
+							"ENG_name": "Panacea"
+						},
+						{
+							"type": "entries",
+							"name": "起死回生",
+							"entries": [
+								"你用變化師之石觸碰一個生物，並以此對其施展法術{@spell raise dead||死者復活}，而無需消耗任何法術位，也不需要法術書中有該法術。"
+							],
+							"ENG_name": "Restore Life"
+						},
+						{
+							"type": "entries",
+							"name": "返老還童",
+							"entries": [
+								"你以變化師之石觸碰一個自願生物，使該生物的外表年齡減少{@dice 3d10}年，但最低不會低於13歲。此效應不會延長該生物的壽命。"
+							],
+							"ENG_name": "Restore Youth"
+						}
+					]
+				}
+			],
+			"ENG_name": "Master Transmuter"
+		},
+		{
+			"name": "劍詠",
+			"source": "TCE",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "SCAG",
+					"page": 141
+				}
+			],
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Bladesinging",
+			"subclassSource": "TCE",
+			"level": 2,
+			"entries": [
+				"劍詠者精通一種將劍術與舞蹈相結合的奧法傳承。這門傳承最初由精靈開創，後來並非精靈的修習者也開始採用，他們信守精靈傳統、同時又加以擴充套件。",
+				"在戰鬥中，劍詠者會使用一系列紛繁優雅的武技，以此偏轉攻擊並引導魔法化作致命的打擊與詭譎的防禦。許多目睹過處於戰鬥之中的劍詠者的人，都會將這伴隨歌詠之劍的壯麗舞蹈當作人生中最為美妙的經歷之一銘記於心。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Training in War and Song (Bladesinging)|Wizard||Bladesinging|TCE|2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bladesong|Wizard||Bladesinging|TCE|2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bladesinger Styles|Wizard||Bladesinging|TCE|2"
+				}
+			],
+			"ENG_name": "Bladesinging"
+		},
+		{
+			"name": "劍詠者風格",
+			"source": "TCE",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "SCAG",
+					"page": 141
+				}
+			],
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Bladesinging",
+			"subclassSource": "TCE",
+			"level": 2,
+			"header": 1,
+			"type": "inset",
+			"entries": [
+				"劍詠者一開始是作為一個劍術和魔法相結合的藝術，一把劍，更具體來說長劍是劍詠者的基礎。然而經過一代又一代的學習與發展，各種各樣的基於近戰武器發展出的劍歌風格出現了。這些不同風格的知識在各種不同的小學校中由導師一代一代傳承給學徒們。即使最新創造出的風格也有著上百年的歷史，但是由於精靈們擁有著漫長的生命，最初的創造者仍可以親自傳承他們所創造的風格。大部分劍詠者的學校坐落在永聚島或者埃弗拉斯卡。曾經有一所學校坐落在密斯卓諾，但是由於城市的毀滅，那些倖存下來的學徒們已經走失分散在世界各地。",
+				"劍歌的風格種類基於武器運用的型別以及分別對應的動物型別來分別。這些特定的風格型別透過偏愛法術型別的運用，導師技藝的風格和特殊武器的運用來用特定的動物型別進行命名。劍詠者學徒們通常會得到一個他們所選擇導師風格的動物紋身。一些劍詠者會學習多種劍歌風格，並獲得許多的紋身，透過他們皮膚上的紋身警告那些不懷好意的人，他們擁有著致命的技藝。",
+				{
+					"type": "entries",
+					"name": "貓",
+					"entries": [
+						"這類風格的劍詠者習慣使用劍來戰鬥。獅子學派，最古老的風格，訓練劍詠者們使用長劍並且不使用任何特定風格的法術。獵豹學派，專注於使用短劍，隱匿技巧以及幻術類法術的運用。紅虎學派，3個世紀前才出現的風格，這類劍詠者在旋轉的防禦性劍舞中使用彎刀突然發起跳躍和攻擊。"
+					],
+					"ENG_name": "Cat"
+				},
+				{
+					"type": "entries",
+					"name": "鳥",
+					"entries": [
+						"這類風格的劍詠者習慣使用帶把柄的武器，例如斧頭或者錘子。這些新興的劍歌風格，他們所使用的武器通常不被精靈們所喜愛。山鷹學派，使用小手斧，此類風歌的劍詠者習慣用優美的動作丟出手中的武器並再抽出一把新的武器。渡鴉學派，習慣使用戰鎬，並使用可以讓劍詠者在戰鬥中更加靈巧的相關法術。"
+					],
+					"ENG_name": "Bird"
+				},
+				{
+					"type": "entries",
+					"name": "蛇",
+					"entries": [
+						"這類風格的劍詠者會使用連枷、鐵鏈或是皮鞭。蝮蛇學派，所用的武器是皮鞭，儘管作為武器相當簡陋粗俗的，但是蝮蛇學派擁有著同獅子學派一樣悠久的歷史。這類風格的大師們強調他們的劍歌是伴隨著一連串絕妙而迅速的鞭擊，讓許多敵人陷入困境，同時允許使用某些關於中毒和疾病殘忍的法術。"
+					],
+					"ENG_name": "Snake"
+				}
+			],
+			"ENG_name": "Bladesinger Styles"
+		},
+		{
+			"name": "劍歌",
+			"source": "TCE",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "SCAG",
+					"page": 141
+				}
+			],
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Bladesinging",
+			"subclassSource": "TCE",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"第2級開始，你可咒喚一種名喚\"劍歌\"的精靈魔法，前提是你必須未著裝中甲、重甲，也未使用盾牌。這一魔法將使你獲得超乎尋常的速度、敏捷與專注。",
+				"你可以用一個附贈動作啟動劍歌，並使之維持1分鐘。當你陷入{@condition incapacitated||失能}，或完成中甲、重甲或盾牌的著裝、又或者你雙手並用使用武器發動一次攻擊時，你的劍歌將提前終止。你也可以隨時隨意的解除劍歌（不需要動作）。",
+				"在劍歌啟用期間，你獲得以下好處：",
+				{
+					"type": "list",
+					"items": [
+						"你獲得AC加值，其數值等於你的智力調整值（至少為+1）。",
+						"你的步行速度增加10尺。",
+						"你進行敏捷（{@skill Acrobatics||特技}）檢定時有優勢。",
+						"你為維持法術{@status concentration||專注}而進行的體質豁免獲得加值，其數值等於你的智力調整值（至少為+1）。"
+					]
+				},
+				"你能使用本特性的次數等於你的熟練加值。完成一次長休後，你重獲所有已消耗的使用次數。"
+			],
+			"ENG_name": "Bladesong"
+		},
+		{
+			"name": "戰歌訓練 (劍詠)",
+			"source": "TCE",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "SCAG",
+					"page": 141
+				}
+			],
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Bladesinging",
+			"subclassSource": "TCE",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"當你在第2級選擇此奧術傳承時，你獲得輕甲的熟練項，並獲得一種自選單手近戰武器的熟練。",
+				"你同時獲得{@skill Performance||表演}技能的熟練項（若你沒有）。"
+			],
+			"ENG_name": "Training in War and Song (Bladesinging)"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "TCE",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "SCAG",
+					"page": 141
+				}
+			],
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Bladesinging",
+			"subclassSource": "TCE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級起，你在自己回合執行{@action Attack||攻擊}動作時可以發動兩次攻擊而非一次攻擊。不僅如此，你還可以將自己回合\"攻擊\"動作中的這些攻擊之中的一次替換為施展一個戲法。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "守禦之歌",
+			"source": "TCE",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "SCAG",
+					"page": 141
+				}
+			],
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Bladesinging",
+			"subclassSource": "TCE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級起，劍歌啟用期間，你能夠引導自己的魔法為你吸收傷害。受到傷害時，你可以用自己的反應來消耗一個法術位，以使你受到的傷害減少等同於該法術位環階五倍的數值。"
+			],
+			"ENG_name": "Song of Defense"
+		},
+		{
+			"name": "勝利之歌",
+			"source": "TCE",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "SCAG",
+					"page": 141
+				}
+			],
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Bladesinging",
+			"subclassSource": "TCE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"第14級起，劍歌啟用期間，你可以將你的智力調整值（至少為+1）加到你的近戰武器傷害上。"
+			],
+			"ENG_name": "Song of Victory"
+		},
+		{
+			"name": "書士會",
+			"source": "TCE",
+			"page": 77,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Scribes",
+			"subclassSource": "TCE",
+			"level": 2,
+			"entries": [
+				"許多人將法師魔法稱為\"書之魔法\"，想想法師為研讀卷宗與書寫魔法理論花費了多少時間，這稱呼也是名副其實。旅行中的法師包裡，總是撐滿書本卷宗；若能一探遠古知識，法師願意赴湯蹈火。",
+				"書士會是法師之間與書卷的聯絡最為緊密的群體。儘管書士會在不同的世界之間有著不同的形態，但無論位於何處，其主要任務都是同一的：將魔法上的發現記載下來，令法師魔法繁榮昌盛。儘管所有法師都將法術書視為珍寶，書士會的法師卻能用魔法喚醒他們的法術書，將其變為值得信賴的夥伴；所有法師都會研習書本，但書士卻能與書本對話！",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Wizardly Quill|Wizard||Scribes|TCE|2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Awakened Spellbook|Wizard||Scribes|TCE|2"
+				}
+			],
+			"ENG_name": "Order of Scribes"
+		},
+		{
+			"name": "覺醒魔典",
+			"source": "TCE",
+			"page": 77,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Scribes",
+			"subclassSource": "TCE",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"{@i 2級書士會特性}",
+				"透過特別準備的墨水和書士會所傳承的咒語，你喚醒了法術書中具有智慧的奧法存在。",
+				"當你持握你的法術書時，它將為你提供以下好處：",
+				{
+					"type": "list",
+					"items": [
+						"你可以將本書用作施展法師法術的法器。",
+						"當你消耗法術位施展一個法師法術時，你可以將它的傷害型別臨時替換為你法術書內另一個法術的傷害型別你的法術書魔法性的改變了此次施法所用的奧法公式。那另一個法術的環階必須與你花費的法術位環階相同。",
+						"當你用儀式施法施展一個法師法術時，你可以使用法術的正常施法時間，而不用額外增加10分鐘。當你使用過這個好處後，直到你完成一次長休後你才能再次使用此增益。"
+					]
+				},
+				"如有必要，你可以在一次短休期間使用「法師之筆」，於空白書本或你已同調的魔法法術書中寫下奧術符印來更換此書。休息結束時，法術書的意識會被召入新書，將其連同所有法術轉化為你的法術書。若舊書仍存在於某處，其頁面上的所有法術都會消失。"
+			],
+			"ENG_name": "Awakened Spellbook"
+		},
+		{
+			"name": "法師之筆",
+			"source": "TCE",
+			"page": 77,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Scribes",
+			"subclassSource": "TCE",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"{@i 2級書士會特性}",
+				"以一個附贈動作，你能在你空著的手中用魔法創造一支微型羽毛筆。這支魔法羽毛筆具有以下特性：",
+				{
+					"type": "list",
+					"items": [
+						"這支羽毛筆不需要墨水。當你用它書寫時，它會在用於書寫的表面上自行生成墨水，墨水的顏色由你選擇。",
+						"若你使用這根羽毛筆來將法術抄入法術書，你只需花費每個法術等級2分鐘的時間。",
+						"若你用羽毛筆書寫的文字在你身邊5尺範圍之內，你可以用一個附贈動作在文字上方晃動羽毛將其消除。"
+					]
+				},
+				"這根羽毛筆將在你創造另一支筆或是死亡時消失。"
+			],
+			"ENG_name": "Wizardly Quill"
+		},
+		{
+			"name": "神識顯現",
+			"source": "TCE",
+			"page": 78,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Scribes",
+			"subclassSource": "TCE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 6級書士會特性}",
+				"你能將你覺醒法術書中的意識召喚出來。當你持有該法術書時，你可以以一個附贈動作令書中的意識顯現為一個微型的靈體物件，使其懸浮於距離你60尺以內且未被佔據的、由你選擇的空間中。這一靈體意識是無形的，不會佔據其空間，並會在其周圍半徑10尺範圍內發出微光光照。它看上去如同一本靈體卷宗、一摞文字、或是一位歷史中的學者（由你選擇）。",
+				"顯現時，該靈體意識能夠聽音視物，並具有60尺的{@sense darkvision||黑暗視覺}。它能用心靈感應將它所看見和聽到的資訊分享給你（無需動作）。",
+				"每當你在自己的回合內施放法師法術時，你可以使用靈體意識的感官、如同身處它所在的空間一樣釋放該法術。你每天能如此施法的次數等於你的熟練加值次，完成一次長休後，你恢復所有已消耗的使用次數。",
+				"以一個附贈動作，你可以令靈體意識飄浮到其周圍30尺內、你或它可見且未被佔據的空間。靈體意識可以穿過生物但不能穿過物件。",
+				"若遇到以下情況之一，靈體意識的顯現將會停止：與你的距離超過300尺、被某人施展了{@spell dispel magic||解除魔法} 、覺醒魔法書被摧毀、你死亡時、或是你以一個附贈動作將其驅散。",
+				"顯現過靈體意識後，你必須完成一次長休、或是消耗一枚任意環位的法術位，才能再次顯現它。"
+			],
+			"ENG_name": "Manifest Mind"
+		},
+		{
+			"name": "書士宗師",
+			"source": "TCE",
+			"page": 78,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Scribes",
+			"subclassSource": "TCE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10級書士會特性}",
+				"每當你完成一次長休，你可以令你的法師筆觸碰一張空白的紙張或是羊皮紙，以將你覺醒魔典中的一個法術並複製到這張紙上、並製造一個魔法卷軸。你製造卷軸時，魔典必須在你5尺之內。",
+				"被複制的法術必須是1環或2環法術，且施法時間必須為1個動作。一旦它被抄入卷軸，這個法術的力量就將被強化，令其視為比平常高1環階的法術。你可以以一個動作閱讀卷軸來施展其中的法術。卷軸對其他任何人都不可理解，且當你施展其中法術、或是完成下次長休後，卷軸上記載的法術將會消失。",
+				"你也擅長製作法術卷軸，其規則見《城主指南》的寶藏章節。當你使用「法師之筆」製作此類卷軸時，所需花費的金幣與時間減半。"
+			],
+			"ENG_name": "Master Scrivener"
+		},
+		{
+			"name": "書人合一",
+			"source": "TCE",
+			"page": 78,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Scribes",
+			"subclassSource": "TCE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"{@i 14級書士會特性}",
+				"你和你的覺醒魔法書的聯絡已經變得如此深刻，以至於你的靈魂已經和它纏結在一起。攜帶這本書時，你在任何智力（{@skill Arcana||奧秘}）檢定中都會具有優勢，法術書會幫助你記住那些魔法學識。",
+				"此外，如果你在法術書的意識處於顯現狀態時受到傷害時，你可以利用你的反應驅散靈體意識、利用其中的魔法來拯救自己，從而避免所有對你的傷害。之後，擲{@dice 3d6}。法術書暫時失去一些由你自選的法術，這些法術的環階之和必須大於或等於骰值。例如，如果骰值是9，則從書中消失的法術環階之和至少為9或許是一個9環法術，或是三個3環法術，或其他組合方式。如果書中沒有足夠的法術來支付這個代價，你就會降到0點生命。",
+				"你必須完成{@dice 1d6}次長休後，才能再次施放失去的法術；在此期間，即使你在卷軸上或其他法術書中找到這些法術，也無法施展它們。完成所需的長休次數後，法術會重新出現在法術書中。",
+				"用過這個反應之後，你必須完成一次長休才能再次使用它。"
+			],
+			"ENG_name": "One with the Word"
+		},
+		{
+			"name": "戰爭魔法",
+			"source": "XGE",
+			"page": 59,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "War",
+			"subclassSource": "XGE",
+			"level": 2,
+			"entries": [
+				"許多奧術學院專門培養用於戰爭的法師。戰爭之傳承精妙地融合了塑能與防護的機理，而非專精於獨一學派。它既授予施法者增進法術威力的技巧，同時也為法師提供了改良防禦能力的手法。",
+				"這個奧術傳承的追隨者們被稱為戰法師。他們將他們的魔法視為武器和盔甲，比任何一塊鋼鐵都更為堅韌的材料。戰法師在戰鬥中行動迅速，用他們的法術奪取對戰局的戰術控制。他們的法術迅猛非常，而他們的防守技巧挫敗了對手的反擊勢頭。戰法師也善於導引其他施法者的魔法能量反過來攻擊他們。",
+				"於恢弘的大戰中，戰法師時常與塑能師、防護師和其他型別的法師相共事。塑能師最常嘲笑戰法師分心於攻守之間，而一位戰法師的經典回應是：\"死人可丟不了{@spell fireball||火球術}。\"",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Deflection|Wizard||War|XGE|2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tactical Wit|Wizard||War|XGE|2"
+				}
+			],
+			"ENG_name": "War Magic"
+		},
+		{
+			"name": "祕法偏斜",
+			"source": "XGE",
+			"page": 59,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "War",
+			"subclassSource": "XGE",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"在2級時，你學會了編織魔法以更強韌的面對傷害。當你被一次攻擊擊中、或失敗於一次豁免時，你可以使用你的反應來在對抗那次攻擊的AC上獲得+2加值，或在那次豁免檢定中獲得+4加值。",
+				"當你使用此特性後，直到你的下個回合結束為止你都不能施展戲法之外的法術。"
+			],
+			"ENG_name": "Arcane Deflection"
+		},
+		{
+			"name": "戰術思維",
+			"source": "XGE",
+			"page": 59,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "War",
+			"subclassSource": "XGE",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"從2級起，你對於戰略格局的急速把控讓你能在戰鬥中快速的反應。你在先攻檢定中獲得等同於你智力調整值的加值。"
+			],
+			"ENG_name": "Tactical Wit"
+		},
+		{
+			"name": "力量涌動",
+			"source": "XGE",
+			"page": 59,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "War",
+			"subclassSource": "XGE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"從6級起，你可以將魔法能量存於體內並於之後增幅你危險異常的法術。以這種方式儲存的能量。便被稱為一股魔力潮湧。",
+				"你可以儲存至多等同於你智力調整值（至少1）股的魔力潮湧。當你完成一次長休時，你的魔力潮湧數量將變回一股。當你成功用{@spell dispel magic||解除魔法}或{@spell counterspell||法術反制}終止或打斷一個法術時，你可以從被你挫敗的法術中竊得魔力，以此獲得一股魔力潮湧。而當你在沒有任何一股魔力潮湧的情況下完成一次短休時，你也能獲得一股魔力潮湧。",
+				"每回合一次，當你用一個法師法術對一個生物或物件造成傷害時，你可以消耗一股魔力潮湧來對那個目標造成等同於你的法師等級半數的額外力場傷害。"
+			],
+			"ENG_name": "Power Surge"
+		},
+		{
+			"name": "耐久魔法",
+			"source": "XGE",
+			"page": 59,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "War",
+			"subclassSource": "XGE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"從10級起，你引導的魔法也能幫你阻絕傷害。在你{@status concentration||專注}於一個法術期間，你的AC與你所進行的任何豁免檢定具有+2加值。"
+			],
+			"ENG_name": "Durable Magic"
+		},
+		{
+			"name": "偏斜罩幕",
+			"source": "XGE",
+			"page": 59,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "War",
+			"subclassSource": "XGE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"14級時，你的「奧術偏斜」被注入致命魔法。當你使用「奧術偏斜」特性時，可以讓魔法能量從身上迸發。選擇距你60尺內至多三個你可見的生物；每個目標受到等同於你法師等級一半的力場傷害。"
+			],
+			"ENG_name": "Deflecting Shroud"
+		},
+		{
+			"name": "時間魔法",
+			"source": "EGW",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Chronurgy",
+			"subclassSource": "EGW",
+			"level": 3,
+			"_copy": {
+				"name": "Chronurgy Magic",
+				"source": "EGW",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"subclassShortName": "Chronurgy",
+				"subclassSource": "EGW",
+				"level": 2,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "Chronurgy Magic"
+		},
+		{
+			"name": "重力魔法",
+			"source": "EGW",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Graviturgy",
+			"subclassSource": "EGW",
+			"level": 3,
+			"_copy": {
+				"name": "Graviturgy Magic",
+				"source": "EGW",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"subclassShortName": "Graviturgy",
+				"subclassSource": "EGW",
+				"level": 2,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "Graviturgy Magic"
+		},
+		{
+			"name": "劍詠者",
+			"source": "FRHoF",
+			"page": 26,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Bladesinger",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"{@i 御劍喚法，靈動優雅}",
+				"劍詠者們掌握著一種將劍術與舞蹈相結合的奧法傳承。在戰鬥中，劍詠者會運用一系列錯綜複雜而又不失優雅的招式來抵禦傷害，並將魔法匯入毀滅性的攻擊和精妙的防禦中。許多曾目睹過劍詠者展露技藝之人，都將那番景象視為其一生中最為美妙的經歷之一——那是一場華麗之舞，伴隨著高歌之劍刃。",
+				"劍詠與最早掌握並命名此技藝的古代精靈社會密切相關。直到今日，多數劍詠者仍出身於迷斯卓諾（Myth Drannor）等古老精靈國度，或來自銀色邊境（Silver Marches）等與精靈共享土地和歷史的非精靈社會。無論故鄉何在，劍詠者都會將天賦帶往國度各處，幫助平民並成就英雄事蹟；多數社群會把劍詠者的到來視為吉兆。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bladesong|Wizard|XPHB|Bladesinger|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Training in War and Song|Wizard|XPHB|Bladesinger|FRHoF|3|FRHoF"
+				}
+			],
+			"ENG_name": "Bladesinger"
+		},
+		{
+			"name": "劍歌",
+			"source": "FRHoF",
+			"page": 26,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Bladesinger",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"作為一個{@variantrule Bonus Action|XPHB|附贈動作}，你喚起一種被稱為劍歌的精靈魔法，前提是你沒有著裝護甲或使用盾牌。",
+				"劍歌持續1分鐘，並在你處於{@condition Incapacitated|XPHB|失能}狀態、著甲或持用盾牌、或使用雙手進行武器攻擊時提前結束。你可以隨時終止劍歌（無需動作）。",
+				"劍歌啟用期間，你獲得以下增益。你能夠喚起劍歌的次數等於你的智力調整值（至少1次）。完成一次{@variantrule Long Rest|XPHB|長休}後，你重獲所有已消耗的使用次數。當你使用奧術回想時，你會恢復一次已消耗的使用次數。",
+				{
+					"type": "entries",
+					"name": "靈動",
+					"entries": [
+						"你的AC獲得等同於你智力調整值的加值（最低+1），且你的{@variantrule Speed|XPHB|速度}增加10尺。此外，你進行敏捷（{@skill Acrobatics|XPHB|特技}）檢定時具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Agility"
+				},
+				{
+					"type": "entries",
+					"name": "劍法",
+					"entries": [
+						"當你使用你具有熟練的武器進行攻擊時，你可以使用你的智力調整值替代力量或敏捷來進行攻擊與傷害擲骰。"
+					],
+					"ENG_name": "Bladework"
+				},
+				{
+					"type": "entries",
+					"name": "專注",
+					"entries": [
+						"當你為維持{@status Concentration|XPHB|專注}而進行體質豁免時，你可以將你的智力調整值加到擲骰總值當中。"
+					],
+					"ENG_name": "Focus"
+				}
+			],
+			"ENG_name": "Bladesong"
+		},
+		{
+			"name": "戰歌訓練",
+			"source": "FRHoF",
+			"page": 27,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Bladesinger",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"你獲得所有不具有{@itemProperty 2H|XPHB|雙手}或{@itemProperty H|XPHB|重型}詞條的近戰軍用武器熟練。你可以使用你具有熟練的近戰武器作為你法師法術的施法{@variantrule Spellcasting Focus|XPHB|法器}。",
+				"此外，你獲得下列你所選擇的一項技能的熟練：{@skill Acrobatics|XPHB|特技}、{@skill Athletics|XPHB|運動}、{@skill Performance|XPHB|表演}或{@skill Persuasion|XPHB|遊說}。"
+			],
+			"ENG_name": "Training in War and Song"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "FRHoF",
+			"page": 27,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Bladesinger",
+			"subclassSource": "FRHoF",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"你在你的回合內執行{@action Attack|XPHB|攻擊}動作時，可以進行兩次攻擊而非一次。此外，你可以將額外攻擊中的一次，替換為施展你的{@filter 一道施法時間為動作的法師戲法|spells|level=0|class=wizard|cast time=action}。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "守禦之歌",
+			"source": "FRHoF",
+			"page": 27,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Bladesinger",
+			"subclassSource": "FRHoF",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"在你的劍歌啟用期間，當你受到傷害時，你可以執行{@variantrule Reaction|XPHB|反應}以消耗一枚法術位並將該傷害降低等同於該法術位環階5倍的數值。"
+			],
+			"ENG_name": "Song of Defense"
+		},
+		{
+			"name": "勝利之歌",
+			"source": "FRHoF",
+			"page": 27,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Bladesinger",
+			"subclassSource": "FRHoF",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"在你施展一道施法時間為一動作的法術後，你能夠以一個{@variantrule Bonus Action|XPHB|附贈動作}，使用一把武器發動一次攻擊。"
+			],
+			"ENG_name": "Song of Victory"
+		},
+		{
+			"name": "防護學派",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Abjuration",
+			"subclassSource": "PHB",
+			"level": 3,
+			"_copy": {
+				"name": "School of Abjuration",
+				"source": "PHB",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"subclassShortName": "Abjuration",
+				"subclassSource": "PHB",
+				"level": 2,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "School of Abjuration"
+		},
+		{
+			"name": "咒法學派",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Conjuration",
+			"subclassSource": "PHB",
+			"level": 3,
+			"_copy": {
+				"name": "School of Conjuration",
+				"source": "PHB",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"subclassShortName": "Conjuration",
+				"subclassSource": "PHB",
+				"level": 2,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "School of Conjuration"
+		},
+		{
+			"name": "預言學派",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Divination",
+			"subclassSource": "PHB",
+			"level": 3,
+			"_copy": {
+				"name": "School of Divination",
+				"source": "PHB",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"subclassShortName": "Divination",
+				"subclassSource": "PHB",
+				"level": 2,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "School of Divination"
+		},
+		{
+			"name": "惑控學派",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Enchantment",
+			"subclassSource": "PHB",
+			"level": 3,
+			"_copy": {
+				"name": "School of Enchantment",
+				"source": "PHB",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"subclassShortName": "Enchantment",
+				"subclassSource": "PHB",
+				"level": 2,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "School of Enchantment"
+		},
+		{
+			"name": "塑能學派",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Evocation",
+			"subclassSource": "PHB",
+			"level": 3,
+			"_copy": {
+				"name": "School of Evocation",
+				"source": "PHB",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"subclassShortName": "Evocation",
+				"subclassSource": "PHB",
+				"level": 2,
+				"_preserve": {
+					"page": true,
+					"srd": true,
+					"basicRules": true
+				}
+			},
+			"ENG_name": "School of Evocation"
+		},
+		{
+			"name": "幻術學派",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Illusion",
+			"subclassSource": "PHB",
+			"level": 3,
+			"_copy": {
+				"name": "School of Illusion",
+				"source": "PHB",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"subclassShortName": "Illusion",
+				"subclassSource": "PHB",
+				"level": 2,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "School of Illusion"
+		},
+		{
+			"name": "死靈學派",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Necromancy",
+			"subclassSource": "PHB",
+			"level": 3,
+			"_copy": {
+				"name": "School of Necromancy",
+				"source": "PHB",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"subclassShortName": "Necromancy",
+				"subclassSource": "PHB",
+				"level": 2,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "School of Necromancy"
+		},
+		{
+			"name": "變化學派",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Transmutation",
+			"subclassSource": "PHB",
+			"level": 3,
+			"_copy": {
+				"name": "School of Transmutation",
+				"source": "PHB",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"subclassShortName": "Transmutation",
+				"subclassSource": "PHB",
+				"level": 2,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "School of Transmutation"
+		},
+		{
+			"name": "劍詠",
+			"source": "TCE",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Bladesinging",
+			"subclassSource": "TCE",
+			"level": 3,
+			"_copy": {
+				"name": "Bladesinging",
+				"source": "TCE",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"subclassShortName": "Bladesinging",
+				"subclassSource": "TCE",
+				"level": 2,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "Bladesinging"
+		},
+		{
+			"name": "書士會",
+			"source": "TCE",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Scribes",
+			"subclassSource": "TCE",
+			"level": 3,
+			"_copy": {
+				"name": "Order of Scribes",
+				"source": "TCE",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"subclassShortName": "Scribes",
+				"subclassSource": "TCE",
+				"level": 2,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "Order of Scribes"
+		},
+		{
+			"name": "戰爭魔法",
+			"source": "XGE",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "War",
+			"subclassSource": "XGE",
+			"level": 3,
+			"_copy": {
+				"name": "War Magic",
+				"source": "XGE",
+				"className": "Wizard",
+				"classSource": "PHB",
+				"subclassShortName": "War",
+				"subclassSource": "XGE",
+				"level": 2,
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "War Magic"
+		},
+		{
+			"name": "防護師",
+			"source": "XPHB",
+			"page": 172,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Abjurer",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 庇護同伴，放逐敵人}",
+				"你對魔法的研究集中在阻擋、驅逐和保護的法術上——結束有害影響、消除邪惡影響和保護弱者。防護師能夠驅逐惡靈、於重要地點防範魔法窺視、關閉通往其他存在位面的門扉。防護師對冒險隊伍非常有價值，因為他們能夠從各種敵對魔法和其他攻擊中保護同伴。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Abjuration Savant|Wizard|XPHB|Abjurer|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Ward|Wizard|XPHB|Abjurer|XPHB|3"
+				}
+			],
+			"ENG_name": "Abjurer"
+		},
+		{
+			"name": "防護學者",
+			"source": "XPHB",
+			"page": 172,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Abjurer",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"從{@filter 防護學派的法師法術|spells|level=0;1;2|class=Wizard|school=A}列表中選擇兩道不高於二環的法術，並將其免費加入你的法術書中。",
+				"此外，每當你在本職業中獲得一個新環階的法術位時，你都能免費將一道法師法術列表中的防護學派法術加入你的法術書中。你所選的法術都必須是你當前擁有法術位的環階。"
+			],
+			"ENG_name": "Abjuration Savant"
+		},
+		{
+			"name": "奧法防護",
+			"source": "XPHB",
+			"page": 172,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Abjurer",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你可以在自己周圍編織魔法來保護自己。當你消耗法術位施展一道防護學派法術時，你能同時使用該法術的一縷魔力為自己建立一個魔法結界，該結界會持續至你完成一次{@variantrule Long Rest|XPHB|長休}。該結界的{@variantrule Hit Points|XPHB|生命值}上限等同於你法師等級的兩倍加上你的智力調整值。每當你受到傷害時，結界會代替你受到此傷害，如果你具有任何抗性或易傷，則先為傷害應用抗性和易傷後再計算結界{@variantrule Hit Points|XPHB|生命值}減損。如果該傷害會使結界的{@variantrule Hit Points|XPHB|生命值}降至 0，你將會受到溢位部分的傷害。當結界的{@variantrule Hit Points|XPHB|生命值}為 0 時，它無法吸收傷害，但其魔力仍然存在。",
+				"每當你消耗法術位施展一道防護學派法術時，結界就會恢復等同於該法術位環階兩倍的{@variantrule Hit Points|XPHB|生命值}。此外，你也能夠以一個{@variantrule Bonus Action|XPHB|附贈動作}，消耗一個法術位使結界恢復等同於所消耗法術位環階兩倍的{@variantrule Hit Points|XPHB|生命值}。",
+				"結界一經建立，直至你完成一次{@variantrule Long Rest|XPHB|長休}都無法再次被建立。"
+			],
+			"ENG_name": "Arcane Ward"
+		},
+		{
+			"name": "投射防護",
+			"source": "XPHB",
+			"page": 172,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Abjurer",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"當 30 尺內一個你可見的生物受到傷害時，你可以用你的{@variantrule Reaction|XPHB|反應}讓你的奧術守禦吸收此次傷害。如果該傷害使結界的{@variantrule Hit Points|XPHB|生命值}降為 0，則被保護的生物將承受所有剩餘傷害。如果被保護的生物有任何抗性或易傷，則應在計算結界{@variantrule Hit Points|XPHB|生命值}承傷之前先結算抗性和易傷。"
+			],
+			"ENG_name": "Projected Ward"
+		},
+		{
+			"name": "法術破壞者",
+			"source": "XPHB",
+			"page": 173,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Abjurer",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"你始終準備著法術{@spell Counterspell|XPHB|法術反制}和{@spell Dispel Magic|XPHB|解除魔法}。此外，你能夠以一個{@variantrule Bonus Action|XPHB|附贈動作}施展{@spell Dispel Magic|XPHB|解除魔法}，且你能在其屬性檢定中加入你的{@variantrule Proficiency|XPHB|熟練加值}。",
+				"你消耗法術位施展其中任意一道法術時，若該法術未能成功阻止法術施展或未能成功解除法術效應，則你用於施展法術反制或解除魔法的法術位不會被消耗。"
+			],
+			"ENG_name": "Spell Breaker"
+		},
+		{
+			"name": "法術抗性",
+			"source": "XPHB",
+			"page": 173,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Abjurer",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"你抵抗法術時進行的豁免檢定具有{@variantrule Advantage|XPHB|優勢}，且你對法術造成的傷害具有{@variantrule Resistance|XPHB|抗性}。"
+			],
+			"ENG_name": "Spell Resistance"
+		},
+		{
+			"name": "預言師",
+			"source": "XPHB",
+			"page": 173,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Diviner",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 探究多元宇宙之秘}",
+				"那些尋求對過去、現在和未來有更清晰瞭解的人會尋求預言師的建議。作為一位預言師，你致力於揭開空間、時間與意識的面紗。你努力掌握的法術囊括識別能力、千里眼、超自然學識和預警等內容。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Divination Savant|Wizard|XPHB|Diviner|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Portent|Wizard|XPHB|Diviner|XPHB|3"
+				}
+			],
+			"ENG_name": "Diviner"
+		},
+		{
+			"name": "預言學者",
+			"source": "XPHB",
+			"page": 173,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Diviner",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"從{@filter 預言學派的法師法術|spells|level=0;1;2|class=Wizard|school=D}列表中選擇兩道不高於二環的法術，並將其免費加入你的法術書中。",
+				"此外，每當你在本職業中獲得一個新環階的法術位時，你都能免費將一道{@filter 預言學派的法師法術|spells|class=Wizard|school=D}加入你的法術書中。你所選的法術都必須是你當前擁有法術位的環階。"
+			],
+			"ENG_name": "Divination Savant"
+		},
+		{
+			"name": "預兆",
+			"source": "XPHB",
+			"page": 173,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Diviner",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"預知未來的片段開始湧入你的意識。每當你完成一次{@variantrule Long Rest|XPHB|長休}時，擲兩顆d20並記錄結果。你可以用其中一個預言骰的結果，替換你或一個你能看見的生物所進行的任何{@variantrule D20 Test|XPHB|D20檢定}。你必須在擲骰前決定這麼做，且每回合只能以此方式替換一次擲骰。",
+				"每個預言骰只能被使用一次。當你完成一次{@variantrule Long Rest|XPHB|長休}時，你失去所有未消耗的預言骰。"
+			],
+			"ENG_name": "Portent"
+		},
+		{
+			"name": "預言專家",
+			"source": "XPHB",
+			"page": 173,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Diviner",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"施展預言學派法術對你來說是如此容易，以至於其只會佔用你施法努力中的一小部分。你消耗法術位施展一個環階為二環或更高的預言學派法術時，可以恢復一個已消耗的法術位。所恢復的法術位環階必須低於你正施展的預言學派法術，且不高於五環。"
+			],
+			"ENG_name": "Expert Divination"
+		},
+		{
+			"name": "天眼通",
+			"source": "XPHB",
+			"page": 173,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Diviner",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"你可以增強你的察覺能力。以一個{@variantrule Bonus Action|XPHB|附贈動作}，從以下增益中選擇其一，其會持續至你開始一次{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}。此特性一經使用，直至完成{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}你都無法再次使用。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "黑暗視覺",
+							"entries": [
+								"你具有 120 尺{@sense Darkvision|XPHB|黑暗視覺}。"
+							],
+							"ENG_name": "Darkvision"
+						},
+						{
+							"type": "entries",
+							"name": "高等理解力",
+							"entries": [
+								"你可以讀懂任何語言。"
+							],
+							"ENG_name": "Greater Comprehension"
+						},
+						{
+							"type": "entries",
+							"name": "識破隱形",
+							"entries": [
+								"你能不消耗法術位地施展法術{@spell See Invisibility|XPHB|識破隱形} 。"
+							],
+							"ENG_name": "See Invisibility"
+						}
+					]
+				}
+			],
+			"ENG_name": "The Third Eye"
+		},
+		{
+			"name": "高等預兆",
+			"source": "XPHB",
+			"page": 173,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Diviner",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"你夢中的景象更為清晰地在你意識中描繪出了將要發生的一切。為你的預兆  特性擲3次d20，而不是2次。"
+			],
+			"ENG_name": "Greater Portent"
+		},
+		{
+			"name": "塑能師",
+			"source": "XPHB",
+			"page": 174,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Evoker",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 創造炸裂的元素特效}",
+				"你專注於研習以魔力創造威力驚人的元素力量，諸如苦寒、灼焰、驚雷、汲電和烈酸。一些塑能師會接受軍隊的僱傭，充當從遠處轟炸敵人的炮兵。其他人以其驚人力量保護弱小，另一些人則作為冒險者尋求自身的利益。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Evocation Savant|Wizard|XPHB|Evoker|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Potent Cantrip|Wizard|XPHB|Evoker|XPHB|3"
+				}
+			],
+			"ENG_name": "Evoker"
+		},
+		{
+			"name": "塑能學者",
+			"source": "XPHB",
+			"page": 174,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Evoker",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"從{@filter 塑能學派的法師法術|spells|level=0;1;2|class=Wizard|school=V}列表中選擇兩道不高於二環的法術，並將其免費加入你的法術書中。",
+				"此外，每當你在本職業中獲得一個新環階的法術位時，你都能免費將一道法師法術列表中的塑能學派法術加入你的法術書中。你所選的法術都必須是你當前擁有法術位的環階。"
+			],
+			"ENG_name": "Evocation Savant"
+		},
+		{
+			"name": "強力戲法",
+			"source": "XPHB",
+			"page": 174,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Evoker",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你造成傷害的戲法甚至能影響到本可免受戲法效應影響的生物。當你施展一道戲法，其攻擊檢定失手，或目標對抗你戲法的豁免成功時，它仍會受到一半傷害（若有），但不會受到該戲法的其他效應影響。"
+			],
+			"ENG_name": "Potent Cantrip"
+		},
+		{
+			"name": "形塑法術",
+			"source": "XPHB",
+			"page": 174,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Evoker",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"你的塑能學派法術作用範圍裡可以保留一小部分相對安全的區域。當你施展一個會影響你可見的其他生物的塑能學派法術時，你能從中指定數量等同於 1 + 該法術環階的生物。被指定的生物進行對抗該法術的豁免時將直接成功，且如果法術在豁免成功後仍然造成一半的傷害，這些生物不會承受任何傷害。"
+			],
+			"ENG_name": "Sculpt Spells"
+		},
+		{
+			"name": "強效塑能",
+			"source": "XPHB",
+			"page": 174,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Evoker",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"當你施展一道法師法術列表裡的塑能學派法術時，你能將你的智力 調整值加入該法術的其中一次傷害擲骰中。"
+			],
+			"ENG_name": "Empowered Evocation"
+		},
+		{
+			"name": "重載導魔",
+			"source": "XPHB",
+			"page": 174,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Evoker",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"你能增強你法術的力量。當你用一個一至五環的法術位施展一個會造成傷害的法師法術時，你能在施展它的回合中令其造成的傷害取最大值。",
+				"你首次這麼做時不會承受任何負面效應。但如果你在完成一次{@variantrule Long Rest|XPHB|長休}前再次使用該特性，則你會在施展法術後立即受到每環階{@damage 2d12}暗蝕傷害。該傷害無視任何{@variantrule Resistance|XPHB|抗性}或{@variantrule Immunity|XPHB|免疫}。",
+				"你在完成一次{@variantrule Long Rest|XPHB|長休}前每多使用此特性一次，每環階造成的傷害就提升{@damage 1d12}。"
+			],
+			"ENG_name": "Overchannel"
+		},
+		{
+			"name": "幻術師",
+			"source": "XPHB",
+			"page": 175,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Illusionist",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 編織精妙的欺瞞法術}",
+				"你專精於能擾亂感官、迷惑心靈的魔法，而你創造的幻象足夠以假亂真。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Illusion Savant|Wizard|XPHB|Illusionist|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Improved Illusions|Wizard|XPHB|Illusionist|XPHB|3"
+				}
+			],
+			"ENG_name": "Illusionist"
+		},
+		{
+			"name": "幻術學者",
+			"source": "XPHB",
+			"page": 175,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Illusionist",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"從{@filter 幻術學派的法師法術|spells|level=0;1;2|class=Wizard|school=I}列表中選擇兩道不高於二環的法術，並將其免費加入你的法術書中。",
+				"此外，每當你在本職業中獲得一個新環階的法術位時，你都能免費將一道法師法術列表中的幻術學派法術加入你的法術書中。你所選的法術都必須是你當前擁有法術位的環階。"
+			],
+			"ENG_name": "Illusion Savant"
+		},
+		{
+			"name": "強化幻術",
+			"source": "XPHB",
+			"page": 175,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Illusionist",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你施展幻術學派法術時無需言語成分，且若你施展的幻術學派法術的施法距離不小於10尺，則其施法距離增加60尺。",
+				"你同時知曉{@spell Minor Illusion|XPHB|次級幻象}戲法。如果你已經知曉了此戲法，則你習得另一道你選擇的法師戲法。此戲法不計入你的已知戲法數。當你施展{@spell Minor Illusion|XPHB|次級幻象}時，可以在一次施法中同時創造出聲音和影像，並且你能以一個{@variantrule Bonus Action|XPHB|附贈動作}施展它。"
+			],
+			"ENG_name": "Improved Illusions"
+		},
+		{
+			"name": "魅影生物",
+			"source": "XPHB",
+			"page": 175,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Illusionist",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"你始終準備了{@spell Summon Beast|XPHB|野獸召喚術}和{@spell Summon Fey|XPHB|妖精召喚術}。你施展其中任意一道法術時，可以選擇將其學派變為幻術學派，這會使召喚出的生物變得虛幻。你可以不消耗法術位地施展這兩道法術的幻術版本各一次，但無需法術位地施展這兩道法術會使其召喚出的生物只有一半{@variantrule Hit Points|XPHB|生命值}。一旦你無需法術位地施展了其中任意一道法術，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再以此法施展那道法術。"
+			],
+			"ENG_name": "Phantasmal Creatures"
+		},
+		{
+			"name": "幻影化形",
+			"source": "XPHB",
+			"page": 175,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Illusionist",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"當一名生物對你進行的一次攻擊檢定命中時，你可以使用你的{@variantrule Reaction|XPHB|反應}在攻擊者與你之間插入幻象分身。這次攻擊對你自動失手，隨後幻象分身消失。",
+				"此特性一經使用，直至完成{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}你都無法再次使用。你也可以消耗一個二環或更高環階的法術位（無需動作）重置此特性的使用權。"
+			],
+			"ENG_name": "Illusory Self"
+		},
+		{
+			"name": "亦真亦幻",
+			"source": "XPHB",
+			"page": 175,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Illusionist",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"你習得藉由將暗影魔法編入你的幻術，從而使其獲得半真實效果的秘密。當你用法術位施展一道幻術學派法術時，你能選擇一個屬於幻象一部分的非活化非魔法物件，並讓該物件化作真實。你可以在法術持續過程中在自己的回合以一個{@variantrule Bonus Action|XPHB|附贈動作}這樣做。該物件將在接下來 1 分鐘內保持真實，它在此期間無法造成傷害或賦予任何狀態。例如，你可以創造一座橫跨峽谷的橋樑幻象，而後將之化作真實，使你的隊友能從橋上跨越峽谷。"
+			],
+			"ENG_name": "Illusory Reality"
+		}
+	]
+}

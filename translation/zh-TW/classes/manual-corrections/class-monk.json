@@ -1,0 +1,111 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"scope": "2014/classSource PHB rule-accuracy audit"
+	},
+	"corrections": [
+		{
+			"path": "/classFeature/0/entries/2/items/2",
+			"expected": "你使用徒手打擊或武僧武器執行{@action Attack||攻擊}動作時，可以在自己回合內以附贈動作發動一次徒手打擊。例如，你執行{@action Attack||攻擊}動作並使用長棍發動攻擊時，若你本輪沒有執行任何附贈動作，則可以用附贈動作來發動一次徒手打擊。",
+			"value": "當你在自己回合中以徒手打擊或武僧武器執行{@action Attack||攻擊}動作時，可以用附贈動作發動一次徒手打擊。例如，若你執行{@action Attack||攻擊}動作並以長棍攻擊，而且本回合尚未使用附贈動作，便也能用附贈動作發動一次徒手打擊。",
+			"reason": "原文限制為 this turn；譯文誤用「本輪」，可能混淆回合與輪次。"
+		},
+		{
+			"path": "/subclassFeature/13/entries/0",
+			"expected": "你可以在擊中敵人時操作其體內的氣。當你用疾風連擊特性的攻擊擊中敵人時，你可以讓該目標承受下列效應之一：",
+			"value": "你可以在運用自身氣的同時操縱敵手的氣。每當你以疾風連擊所賦予的一次攻擊命中一個生物時，可以對該目標施加下列一項效應：",
+			"reason": "規則觸發目標為 creature，不限敵人。"
+		},
+		{
+			"path": "/subclassFeature/13/entries/1/items/0",
+			"expected": "目標必須進行一次敏捷豁免，豁免失敗則應擊{@condition prone||倒地}。",
+			"value": "目標必須成功通過一次敏捷豁免，否則陷入{@condition prone||倒地}。",
+			"reason": "修正錯字並明確保留成功／失敗條件。"
+		},
+		{
+			"path": "/classFeature/34/entries/0",
+			"expected": "你可以用一個{@variantrule Unarmed Strike|XPHB|附贈動作}進行一次{@variantrule Bonus Action|XPHB|徒手打擊}。",
+			"value": "你可以用一個{@variantrule Bonus Action|XPHB|附贈動作}發動一次{@variantrule Unarmed Strike|XPHB|徒手打擊}。",
+			"reason": "修正附贈動作與徒手打擊交叉引用標籤互換。"
+		},
+		{
+			"path": "/classFeature/41/entries/0",
+			"expected": "你能以一個{@variantrule Bonus Action|XPHB|附贈動作}執行{@action Disengage|XPHB|撤離}動作。此外，你可以消耗 1 點功力，以一個{@variantrule Bonus Action|XPHB|附贈動作}同時執行迴避與{@action Disengage|XPHB|撤離}動作。",
+			"value": "你可以用一個{@variantrule Bonus Action|XPHB|附贈動作}執行{@action Disengage|XPHB|撤離}動作。或者，你可以消耗1點功力，用一個{@variantrule Bonus Action|XPHB|附贈動作}同時執行{@action Disengage|XPHB|撤離}與{@action Dodge|XPHB|迴避}動作。",
+			"reason": "原文是替代選項，非額外疊加；並修正撤離與迴避交叉引用標籤互換。"
+		},
+		{
+			"path": "/classFeature/48/entries/0",
+			"expected": "當你要承受墜落傷害時，你可以使用{@variantrule Reaction|XPHB|反應}將傷害減少等同於五倍武僧職業等級的數值。",
+			"value": "當你墜落時，可以使用{@variantrule Reaction|XPHB|反應}，使你因該次墜落所受的任何傷害減少等於你武僧等級五倍的數值。",
+			"reason": "原文觸發時點是 when you fall，不是即將承受墜落傷害時。"
+		},
+		{
+			"path": "/classFeature/50/entries/0",
+			"expected": "每回合一次，當你使用{@variantrule Unarmed Strike|XPHB|徒手打擊}或武僧武器命中一個生物後，你可以消耗 1 點功力嘗試發動震懾拳。目標必須進行一次體質豁免，豁免失敗則陷入{@condition Stunned|XPHB|震懾}狀態，直至你的下個回合開始。若豁免成功，則目標的{@variantrule Speed|XPHB|速度}減半，直至你的下個回合開始，並且下一次對該目標進行的攻擊檢定具有{@variantrule Advantage|XPHB|優勢}。",
+			"value": "每回合一次，當你以武僧武器或{@variantrule Unarmed Strike|XPHB|徒手打擊}命中一個生物時，可以消耗1點功力嘗試震懾打擊。目標必須進行一次體質豁免。豁免失敗時，目標陷入{@condition Stunned|XPHB|震懾}狀態，直到你的下一回合開始；豁免成功時，目標的{@variantrule Speed|XPHB|速度}減半，直到你的下一回合開始，而且在此之前下一次對該目標進行的攻擊檢定具有{@variantrule Advantage|XPHB|優勢}。",
+			"reason": "補回成功豁免後，攻擊優勢只適用於你下一回合開始前的時限。"
+		},
+		{
+			"path": "/classFeature/55/entries/0",
+			"expected": "若你未著裝任何護甲也沒持用{@item Shield|XPHB|盾牌}，你便可以在你的回合中在垂直表面和液體表面上移動而不會墜落。",
+			"value": "只要你未穿著護甲且未持用{@item Shield|XPHB|盾牌}，便能在自己的回合中沿垂直表面與越過液體移動，並且在這段移動期間不會墜落。",
+			"reason": "補回不會墜落只適用於 during the movement 的持續範圍。"
+		},
+		{
+			"path": "/subclassFeature/60/entries/1/entries/1/entries/0",
+			"expected": "當你使用{@variantrule Unarmed Strike|XPHB|徒手打擊}攻擊命中時，你可以選擇使其造成強酸、寒冷、火焰、閃電或雷鳴傷害，而非通常的傷害型別。當你以徒手打擊造成以上種類的傷害時，你可以迫使目標進行一次力量豁免。若失敗，你可以利用周身的元素之力將目標拉近或推離 10 尺。",
+			"value": "每當你以{@variantrule Unarmed Strike|XPHB|徒手打擊}命中時，可以使其造成強酸、寒冷、火焰、閃電或雷鳴傷害（由你選擇），而非其一般傷害類型。當該打擊造成上述任一傷害類型時，你也可以迫使目標進行一次力量豁免；豁免失敗時，可以將目標朝你移動或推離你至多10尺。",
+			"reason": "原文為 up to 10 feet；譯文誤寫成固定移動 10 尺。"
+		},
+		{
+			"path": "/subclassFeature/61/entries/0",
+			"expected": "你習得戲法{@spell Elementalism|XPHB|四象法門}，其施法屬性為感知。",
+			"value": "你習得{@spell Elementalism|XPHB|四象法門}法術；感知是你施展該法術的施法關鍵屬性。",
+			"reason": "修正法術譯名重複字「四象四象法門」。"
+		},
+		{
+			"path": "/subclassFeature/64/entries/0",
+			"expected": "當你處於元素同調特性啟用期間，你獲得相當於你{@variantrule Fly Speed|XPHB|速度}的{@variantrule Swim Speed|XPHB|飛行速度}與{@variantrule Speed|XPHB|游泳速度}。",
+			"value": "元素同調啟用期間，你也具有等於你{@variantrule Speed|XPHB|速度}的{@variantrule Fly Speed|XPHB|飛行速度}與{@variantrule Swim Speed|XPHB|游泳速度}。",
+			"reason": "修正速度、飛行速度與游泳速度三個交叉引用標籤錯置。"
+		},
+		{
+			"path": "/subclassFeature/65/entries/2/entries/0",
+			"expected": "當你使用疾步如風時，你的{@variantrule Speed|XPHB|速度}提升 20 尺，直至這個回合結束。在持續時間內，當你進入到某個生物 5 尺範圍內的時候，你可以對其造成相當於你武藝骰的傷害，數量不限。此傷害的型別由你選擇：強酸、寒冷、火焰、閃電或雷鳴。一個生物每回合只會受到一次此傷害。",
+			"value": "當你使用疾步如風時，你的{@variantrule Speed|XPHB|速度}提高20尺，直到該回合結束。在此期間，每當你進入距一名由你選擇的生物5尺內的一處空間，該生物受到等於一枚武藝骰骰值的傷害；傷害類型由你選擇為強酸、寒冷、火焰、閃電或雷鳴。同一生物每回合只能受到一次此傷害。",
+			"reason": "移除原文沒有的「數量不限」，並精確保留任選生物與每生物每回合一次的限制。"
+		},
+		{
+			"path": "/subclassFeature/73/entries/2/entries/0",
+			"expected": "目標必須成功透過一次力量豁免，否則被你推離 15 尺。",
+			"value": "目標必須成功通過一次力量豁免，否則被你推離至多15尺。",
+			"reason": "原文為 up to 15 feet；譯文誤寫成固定推離 15 尺。"
+		},
+		{
+			"path": "/classFeature/0/entries/3",
+			"expected": "某些宗派的武僧會使用一些奇異的武僧武器，比如鐵鏈連線的兩根短棒（雙截棍nunchaku），或者帶直刃的鐮刀（單鐮kama）。",
+			"value": "某些宗派的武僧會使用特殊形式的武僧武器。例如，你可以使用以短鏈連接兩截木棍的雙截棍，或是刀刃較短而筆直的單鐮。",
+			"reason": "移除一般武器名稱後黏連的未翻譯英文。"
+		},
+		{
+			"path": "/subclassFeature/42/entries/0",
+			"expected": "當你3級時，選擇了這個範型的武僧使得你學會了如何在 疾風連擊Flurry of Blows 中快速的扭轉與行動軀體。每當你使用 疾風連擊Flurry of Blows 時，你都將獲得執行了{@action Disengage||撤離}動作的好處，且你的步行速度增加10尺，持續直至當前回合結束。",
+			"value": "3級時，你學會在「疾風連擊」中迅速扭轉與移動。每當你使用「疾風連擊」時，便獲得{@action Disengage||撤離}動作的增益，且步行速度增加10尺，直到當前回合結束。",
+			"reason": "移除兩處特性名稱後黏連的未翻譯英文。"
+		},
+		{
+			"path": "/subclassFeature/47/entries/0",
+			"expected": "當你17級時，你得到了對一大群敵人進行超量次數的亂舞打擊的能力。每當你使用你的 疾風連擊Flurry of Blows 時，你可以用它進行最多三次的額外攻擊（即 疾風連擊Flurry of Blows 合計可以進行五次攻擊），不過，每一次 疾風連擊Flurry of Blows 的攻擊在本回閤中都得以一個不同生物作為攻擊目標。",
+			"value": "17級時，你能對一群敵人發動大量攻擊。當你使用「疾風連擊」時，可以用它進行至多三次額外攻擊（合計至多五次「疾風連擊」攻擊），但本回合中每次「疾風連擊」攻擊都必須以不同生物為目標。",
+			"reason": "移除三處特性名稱後黏連的未翻譯英文並保留不同目標限制。"
+		},
+		{
+			"path": "/subclassFeature/56/entries/1",
+			"expected": "你可以在 {@action Attack||攻擊} 動作中發動一種新的特殊攻擊：一次30尺範圍的遠端法術攻擊。你熟練於這種攻擊，且可以在攻擊檢定與其傷害擲骰上使用你的敏捷調整值。它造成光耀傷害，傷害骰為{@damage d4}。這一攻擊的傷害骰大小會隨著你的等級增長而改變，其大小即武僧職業表中的 武藝Martial Arts 一列。",
+			"value": "你獲得一種能隨{@action Attack||攻擊}動作使用的新攻擊選項。此特殊攻擊是射程30尺的遠端法術攻擊；你對其具有熟練，並將敏捷調整值加到攻擊與傷害擲骰。它造成光耀傷害，傷害骰為{@damage d4}。此傷害骰會隨武僧等級改變，如武僧表「武藝」欄所示。",
+			"reason": "移除表格欄名後黏連的未翻譯英文並保留攻擊規則。"
+		}
+	]
+}

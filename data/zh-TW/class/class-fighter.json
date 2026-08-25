@@ -1,0 +1,5618 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"translationSource": "https://shuaishuaidnd.cn/data/class",
+		"conversion": "OpenCC s2twp plus locked project terminology"
+	},
+	"class": [
+		{
+			"name": "戰士",
+			"source": "PHB",
+			"page": 70,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Fighter|XPHB"
+			],
+			"edition": "classic",
+			"hd": {
+				"number": 1,
+				"faces": 10
+			},
+			"proficiency": [
+				"str",
+				"con"
+			],
+			"optionalfeatureProgression": [
+				{
+					"name": "戰鬥風格",
+					"featureType": [
+						"FS:F"
+					],
+					"progression": {
+						"1": 1
+					},
+					"ENG_name": "Fighting Style"
+				}
+			],
+			"startingProficiencies": {
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"acrobatics",
+								"animal handling",
+								"athletics",
+								"history",
+								"insight",
+								"intimidation",
+								"perception",
+								"survival"
+							],
+							"count": 2
+						}
+					}
+				],
+				"weapons": [
+					"simple",
+					"martial"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"heavy",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"heavy": true,
+						"shield": true
+					}
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"default": [
+					"(a) {@item chain mail|phb|20支箭} 或 (b) {@item leather armor|phb|鍊甲}、{@item longbow|phb|皮甲} 和 {@item arrows (20)|phb|長弓}",
+					"(a) 一把{@filter 軍用武器|items|source=phb|category=basic|type=martial weapon}和一面{@item shield|phb|盾牌} ，或 (b) 兩把{@filter 軍用武器|items|source=phb|category=basic|type=martial weapon}",
+					"(a) 一把{@item light crossbow|phb|輕弩}和{@item crossbow bolts (20)|phb|20支弩箭}或者 (b) 兩把{@item handaxe|phb|手斧}",
+					"(a) 一個{@item dungeoneer's pack|phb|地城套組}或(b) 一個{@item explorer's pack|phb|探索套組}"
+				],
+				"goldAlternative": "{@dice 5d4 × 10|5d4 × 10|起始金幣}",
+				"defaultData": [
+					{
+						"a": [
+							"chain mail|phb"
+						],
+						"b": [
+							"leather armor|phb",
+							"longbow|phb",
+							"arrows (20)|phb"
+						]
+					},
+					{
+						"a": [
+							{
+								"equipmentType": "weaponMartial"
+							},
+							"shield|phb"
+						],
+						"b": [
+							{
+								"equipmentType": "weaponMartial",
+								"quantity": 2
+							}
+						]
+					},
+					{
+						"a": [
+							"light crossbow|phb",
+							"crossbow bolts (20)|phb"
+						],
+						"b": [
+							{
+								"item": "handaxe|phb",
+								"quantity": 2
+							}
+						]
+					},
+					{
+						"a": [
+							"dungeoneer's pack|phb"
+						],
+						"b": [
+							"explorer's pack|phb"
+						]
+					}
+				]
+			},
+			"multiclassing": {
+				"requirements": {
+					"or": [
+						{
+							"str": 13,
+							"dex": 13
+						}
+					]
+				},
+				"proficienciesGained": {
+					"weapons": [
+						"simple",
+						"martial"
+					],
+					"armor": [
+						"light",
+						"medium",
+						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
+					]
+				}
+			},
+			"classFeatures": [
+				"Fighting Style|Fighter||1",
+				"Second Wind|Fighter||1",
+				"Action Surge|Fighter||2",
+				{
+					"classFeature": "Martial Archetype|Fighter||3",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Fighter||4",
+				"Martial Versatility|Fighter||4|TCE",
+				"Extra Attack|Fighter||5",
+				"Ability Score Improvement|Fighter||6",
+				{
+					"classFeature": "Martial Archetype feature|Fighter||7",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Fighter||8",
+				"Indomitable|Fighter||9",
+				{
+					"classFeature": "Martial Archetype feature|Fighter||10",
+					"gainSubclassFeature": true
+				},
+				"Extra Attack (2)|Fighter||11",
+				"Ability Score Improvement|Fighter||12",
+				"Indomitable (two uses)|Fighter||13",
+				"Ability Score Improvement|Fighter||14",
+				{
+					"classFeature": "Martial Archetype feature|Fighter||15",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Fighter||16",
+				"Action Surge (two uses)|Fighter||17",
+				"Indomitable (three uses)|Fighter||17",
+				{
+					"classFeature": "Martial Archetype feature|Fighter||18",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Fighter||19",
+				"Extra Attack (3)|Fighter||20"
+			],
+			"subclassTitle": "武術範型",
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Fighter"
+		},
+		{
+			"name": "戰士",
+			"source": "XPHB",
+			"page": 90,
+			"srd52": true,
+			"basicRules2024": true,
+			"edition": "one",
+			"primaryAbility": [
+				{
+					"str": true
+				},
+				{
+					"dex": true
+				}
+			],
+			"hd": {
+				"number": 1,
+				"faces": 10
+			},
+			"proficiency": [
+				"str",
+				"con"
+			],
+			"featProgression": [
+				{
+					"name": "戰鬥風格",
+					"category": [
+						"FS"
+					],
+					"progression": {
+						"1": 1
+					},
+					"ENG_name": "Fighting Style"
+				},
+				{
+					"name": "傳奇恩惠",
+					"category": [
+						"EB"
+					],
+					"progression": {
+						"19": 1
+					},
+					"ENG_name": "Epic Boon"
+				}
+			],
+			"startingProficiencies": {
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"acrobatics",
+								"animal handling",
+								"athletics",
+								"history",
+								"insight",
+								"intimidation",
+								"persuasion",
+								"perception",
+								"survival"
+							],
+							"count": 2
+						}
+					}
+				],
+				"weapons": [
+					"simple",
+					"martial"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"heavy",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"heavy": true,
+						"shield": true
+					}
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"defaultData": [
+					{
+						"A": [
+							{
+								"item": "chain mail|xphb"
+							},
+							{
+								"item": "greatsword|xphb"
+							},
+							{
+								"item": "flail|xphb"
+							},
+							{
+								"item": "javelin|xphb",
+								"quantity": 8
+							},
+							{
+								"item": "dungeoneer's pack|xphb"
+							},
+							{
+								"value": 400
+							}
+						],
+						"B": [
+							{
+								"item": "studded leather armor|xphb"
+							},
+							{
+								"item": "scimitar|xphb"
+							},
+							{
+								"item": "shortsword|xphb"
+							},
+							{
+								"item": "longbow|xphb"
+							},
+							{
+								"item": "arrows (20)|xphb"
+							},
+							{
+								"item": "quiver|xphb"
+							},
+							{
+								"item": "dungeoneer's pack|xphb"
+							},
+							{
+								"value": 1100
+							}
+						],
+						"C": [
+							{
+								"value": 15500
+							}
+						]
+					}
+				],
+				"entries": [
+					"{@i 選擇A、B或C：} (A) {@item Chain Mail|XPHB|鍊甲}, {@item Greatsword|XPHB|巨劍}, {@item Flail|XPHB|鏈枷}, 8 {@item Javelin|XPHB|標槍}, {@item Dungeoneer's Pack|XPHB|地城套組}和4 GP; (B) {@item Studded Leather Armor|XPHB|鑲釘皮甲}, {@item Scimitar|XPHB|彎刀}, {@item Shortsword|XPHB|短劍}, {@item Longbow|XPHB|長弓}, {@item Arrows (20)|XPHB|20支箭}, {@item Quiver|XPHB|箭袋}, {@item Dungeoneer's Pack|XPHB|地城套組}和11 GP; 或 (C) 155 GP"
+				]
+			},
+			"multiclassing": {
+				"proficienciesGained": {
+					"weapons": [
+						"martial"
+					],
+					"armor": [
+						"light",
+						"medium",
+						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
+					]
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"回氣",
+						"武器精通"
+					],
+					"rows": [
+						[
+							"2",
+							"3"
+						],
+						[
+							"2",
+							"3"
+						],
+						[
+							"2",
+							"3"
+						],
+						[
+							"3",
+							"4"
+						],
+						[
+							"3",
+							"4"
+						],
+						[
+							"3",
+							"4"
+						],
+						[
+							"3",
+							"4"
+						],
+						[
+							"3",
+							"4"
+						],
+						[
+							"3",
+							"4"
+						],
+						[
+							"4",
+							"5"
+						],
+						[
+							"4",
+							"5"
+						],
+						[
+							"4",
+							"5"
+						],
+						[
+							"4",
+							"5"
+						],
+						[
+							"4",
+							"5"
+						],
+						[
+							"4",
+							"5"
+						],
+						[
+							"4",
+							"6"
+						],
+						[
+							"4",
+							"6"
+						],
+						[
+							"4",
+							"6"
+						],
+						[
+							"4",
+							"6"
+						],
+						[
+							"4",
+							"6"
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Fighting Style|Fighter|XPHB|1",
+				"Second Wind|Fighter|XPHB|1",
+				"Weapon Mastery|Fighter|XPHB|1",
+				"Action Surge|Fighter|XPHB|2",
+				"Tactical Mind|Fighter|XPHB|2",
+				{
+					"classFeature": "Fighter Subclass|Fighter|XPHB|3",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Fighter|XPHB|4",
+				"Extra Attack|Fighter|XPHB|5",
+				"Tactical Shift|Fighter|XPHB|5",
+				"Ability Score Improvement|Fighter|XPHB|6",
+				{
+					"classFeature": "Subclass Feature|Fighter|XPHB|7",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Fighter|XPHB|8",
+				"Indomitable|Fighter|XPHB|9",
+				"Tactical Master|Fighter|XPHB|9",
+				{
+					"classFeature": "Subclass Feature|Fighter|XPHB|10",
+					"gainSubclassFeature": true
+				},
+				"Two Extra Attacks|Fighter|XPHB|11",
+				"Ability Score Improvement|Fighter|XPHB|12",
+				"Indomitable|Fighter|XPHB|13",
+				"Studied Attacks|Fighter|XPHB|13",
+				"Ability Score Improvement|Fighter|XPHB|14",
+				{
+					"classFeature": "Subclass Feature|Fighter|XPHB|15",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Fighter|XPHB|16",
+				"Action Surge|Fighter|XPHB|17",
+				"Indomitable|Fighter|XPHB|17",
+				{
+					"classFeature": "Subclass Feature|Fighter|XPHB|18",
+					"gainSubclassFeature": true
+				},
+				"Epic Boon|Fighter|XPHB|19",
+				"Three Extra Attacks|Fighter|XPHB|20"
+			],
+			"subclassTitle": "戰士子職",
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Fighter"
+		}
+	],
+	"subclass": [
+		{
+			"name": "戰鬥大師",
+			"shortName": "戰鬥大師",
+			"source": "PHB",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"page": 73,
+			"reprintedAs": [
+				"Battle Master|Fighter|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"optionalfeatureProgression": [
+				{
+					"name": "戰技",
+					"featureType": [
+						"MV:B"
+					],
+					"progression": {
+						"3": 3,
+						"7": 5,
+						"10": 7,
+						"15": 9
+					},
+					"ENG_name": "Maneuvers"
+				}
+			],
+			"subclassFeatures": [
+				"Battle Master|Fighter||Battle Master||3",
+				"Additional Maneuvers|Fighter||Battle Master||7",
+				"Additional Superiority Die|Fighter||Battle Master||7",
+				"Know Your Enemy|Fighter||Battle Master||7",
+				"Additional Maneuvers|Fighter||Battle Master||10",
+				"Improved Combat Superiority (d10)|Fighter||Battle Master||10",
+				"Additional Maneuvers|Fighter||Battle Master||15",
+				"Additional Superiority Die|Fighter||Battle Master||15",
+				"Relentless|Fighter||Battle Master||15",
+				"Improved Combat Superiority (d12)|Fighter||Battle Master||18"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Battle Master",
+			"ENG_shortName": "Battle Master"
+		},
+		{
+			"name": "戰鬥大師",
+			"shortName": "戰鬥大師",
+			"source": "PHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Battle Master",
+				"source": "PHB",
+				"shortName": "Battle Master",
+				"className": "Fighter",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Battle Master",
+			"ENG_shortName": "Battle Master"
+		},
+		{
+			"name": "勇士",
+			"shortName": "勇士",
+			"source": "PHB",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Champion|Fighter|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"optionalfeatureProgression": [
+				{
+					"name": "戰鬥風格",
+					"featureType": [
+						"FS:F"
+					],
+					"progression": {
+						"10": 1
+					},
+					"ENG_name": "Fighting Style"
+				}
+			],
+			"subclassFeatures": [
+				"Champion|Fighter||Champion||3",
+				"Remarkable Athlete|Fighter||Champion||7",
+				"Additional Fighting Style|Fighter||Champion||10",
+				"Superior Critical|Fighter||Champion||15",
+				"Survivor|Fighter||Champion||18"
+			],
+			"ENG_name": "Champion",
+			"ENG_shortName": "Champion"
+		},
+		{
+			"name": "勇士",
+			"shortName": "勇士",
+			"source": "PHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Champion",
+				"source": "PHB",
+				"shortName": "Champion",
+				"className": "Fighter",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Champion",
+			"ENG_shortName": "Champion"
+		},
+		{
+			"name": "奧法騎士",
+			"shortName": "奧法騎士",
+			"source": "PHB",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"page": 74,
+			"reprintedAs": [
+				"Eldritch Knight|Fighter|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"spellcastingAbility": "int",
+			"casterProgression": "1/3",
+			"cantripProgression": [
+				0,
+				0,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3
+			],
+			"spellsKnownProgression": [
+				0,
+				0,
+				3,
+				4,
+				4,
+				4,
+				5,
+				6,
+				6,
+				7,
+				8,
+				8,
+				9,
+				10,
+				10,
+				11,
+				11,
+				11,
+				12,
+				13
+			],
+			"additionalSpells": [
+				{
+					"expanded": {
+						"3": [
+							{
+								"all": "level=0|class=Wizard"
+							},
+							{
+								"all": "level=1|class=Wizard"
+							}
+						],
+						"7": [
+							{
+								"all": "level=2|class=Wizard"
+							}
+						],
+						"13": [
+							{
+								"all": "level=3|class=Wizard"
+							}
+						],
+						"19": [
+							{
+								"all": "level=4|class=Wizard"
+							}
+						]
+					}
+				}
+			],
+			"subclassTableGroups": [
+				{
+					"subclasses": [
+						{
+							"name": "奧法騎士",
+							"source": "PHB",
+							"ENG_name": "Eldritch Knight"
+						}
+					],
+					"colLabels": [
+						"{@filter 已知戲法|spells|level=0|subclass=Fighter: Eldritch Knight}",
+						"{@filter 已知法術|spells|subclass=Fighter: Eldritch Knight}"
+					],
+					"rows": [
+						[
+							0,
+							0
+						],
+						[
+							0,
+							0
+						],
+						[
+							2,
+							3
+						],
+						[
+							2,
+							4
+						],
+						[
+							2,
+							4
+						],
+						[
+							2,
+							4
+						],
+						[
+							2,
+							5
+						],
+						[
+							2,
+							6
+						],
+						[
+							2,
+							6
+						],
+						[
+							3,
+							7
+						],
+						[
+							3,
+							8
+						],
+						[
+							3,
+							8
+						],
+						[
+							3,
+							9
+						],
+						[
+							3,
+							10
+						],
+						[
+							3,
+							10
+						],
+						[
+							3,
+							11
+						],
+						[
+							3,
+							11
+						],
+						[
+							3,
+							11
+						],
+						[
+							3,
+							12
+						],
+						[
+							3,
+							13
+						]
+					]
+				},
+				{
+					"title": "每環法術位",
+					"subclasses": [
+						{
+							"name": "奧法騎士",
+							"source": "PHB",
+							"ENG_name": "Eldritch Knight"
+						}
+					],
+					"colLabels": [
+						"{@filter 1環|spells|level=1|subclass=Fighter: Eldritch Knight}",
+						"{@filter 2環|spells|level=2|subclass=Fighter: Eldritch Knight}",
+						"{@filter 3環|spells|level=3|subclass=Fighter: Eldritch Knight}",
+						"{@filter 4環|spells|level=4|subclass=Fighter: Eldritch Knight}"
+					],
+					"rowsSpellProgression": [
+						[
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							2,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							1
+						]
+					]
+				}
+			],
+			"subclassFeatures": [
+				"Eldritch Knight|Fighter||Eldritch Knight||3",
+				"War Magic|Fighter||Eldritch Knight||7",
+				"Eldritch Strike|Fighter||Eldritch Knight||10",
+				"Arcane Charge|Fighter||Eldritch Knight||15",
+				"Improved War Magic|Fighter||Eldritch Knight||18"
+			],
+			"ENG_name": "Eldritch Knight",
+			"ENG_shortName": "Eldritch Knight"
+		},
+		{
+			"name": "奧法騎士",
+			"shortName": "奧法騎士",
+			"source": "PHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Eldritch Knight",
+				"source": "PHB",
+				"shortName": "Eldritch Knight",
+				"className": "Fighter",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Eldritch Knight",
+			"ENG_shortName": "Eldritch Knight"
+		},
+		{
+			"name": "紫龍騎士（旗將）",
+			"shortName": "紫龍騎士（旗將）",
+			"source": "SCAG",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"page": 128,
+			"reprintedAs": [
+				"Banneret|Fighter|XPHB|FRHoF"
+			],
+			"edition": "classic",
+			"subclassFeatures": [
+				"Purple Dragon Knight (Banneret)|Fighter||Purple Dragon Knight (Banneret)|SCAG|3",
+				"Royal Envoy|Fighter||Purple Dragon Knight (Banneret)|SCAG|7",
+				"Inspiring Surge|Fighter||Purple Dragon Knight (Banneret)|SCAG|10",
+				"Bulwark|Fighter||Purple Dragon Knight (Banneret)|SCAG|15",
+				"Inspiring Surge|Fighter||Purple Dragon Knight (Banneret)|SCAG|18"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Purple Dragon Knight (Banneret)",
+			"ENG_shortName": "Purple Dragon Knight (Banneret)"
+		},
+		{
+			"name": "紫龍騎士（旗將）",
+			"shortName": "紫龍騎士（旗將）",
+			"source": "SCAG",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"reprintedAs": [
+				"Banneret|Fighter|XPHB|FRHoF"
+			],
+			"_copy": {
+				"name": "Purple Dragon Knight (Banneret)",
+				"source": "SCAG",
+				"shortName": "Purple Dragon Knight (Banneret)",
+				"className": "Fighter",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "紫龍騎士（旗將）",
+					"source": "SCAG",
+					"shortName": "紫龍騎士(旗將)",
+					"className": "Fighter",
+					"classSource": "PHB",
+					"ENG_name": "Purple Dragon Knight (Banneret)"
+				}
+			},
+			"ENG_name": "Purple Dragon Knight (Banneret)",
+			"ENG_shortName": "Purple Dragon Knight (Banneret)"
+		},
+		{
+			"name": "魔射手",
+			"shortName": "魔射手",
+			"source": "XGE",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"page": 28,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							"prestidigitation#c"
+						]
+					}
+				},
+				{
+					"known": {
+						"3": [
+							"druidcraft#c"
+						]
+					}
+				}
+			],
+			"optionalfeatureProgression": [
+				{
+					"name": "奧術射擊",
+					"featureType": [
+						"AS"
+					],
+					"progression": {
+						"3": 2,
+						"7": 3,
+						"10": 4,
+						"15": 5,
+						"18": 6
+					},
+					"ENG_name": "Arcane Shots"
+				}
+			],
+			"subclassFeatures": [
+				"Arcane Archer|Fighter||Arcane Archer|XGE|3",
+				"Magic Arrow|Fighter||Arcane Archer|XGE|7",
+				"Curving Shot|Fighter||Arcane Archer|XGE|7",
+				"Additional Arcane Shot Option|Fighter||Arcane Archer|XGE|7",
+				"Additional Arcane Shot Option|Fighter||Arcane Archer|XGE|10",
+				"Ever-Ready Shot|Fighter||Arcane Archer|XGE|15",
+				"Additional Arcane Shot Option|Fighter||Arcane Archer|XGE|15",
+				"Additional Arcane Shot Option|Fighter||Arcane Archer|XGE|18"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Arcane Archer",
+			"ENG_shortName": "Arcane Archer"
+		},
+		{
+			"name": "魔射手",
+			"shortName": "魔射手",
+			"source": "XGE",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Arcane Archer",
+				"source": "XGE",
+				"shortName": "Arcane Archer",
+				"className": "Fighter",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Arcane Archer",
+			"ENG_shortName": "Arcane Archer"
+		},
+		{
+			"name": "騎兵",
+			"shortName": "騎兵",
+			"source": "XGE",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"page": 30,
+			"edition": "classic",
+			"subclassFeatures": [
+				"Cavalier|Fighter||Cavalier|XGE|3",
+				"Warding Maneuver|Fighter||Cavalier|XGE|7",
+				"Hold the Line|Fighter||Cavalier|XGE|10",
+				"Ferocious Charger|Fighter||Cavalier|XGE|15",
+				"Vigilant Defender|Fighter||Cavalier|XGE|18"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Cavalier",
+			"ENG_shortName": "Cavalier"
+		},
+		{
+			"name": "騎兵",
+			"shortName": "騎兵",
+			"source": "XGE",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Cavalier",
+				"source": "XGE",
+				"shortName": "Cavalier",
+				"className": "Fighter",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Cavalier",
+			"ENG_shortName": "Cavalier"
+		},
+		{
+			"name": "武士",
+			"shortName": "武士",
+			"source": "XGE",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"page": 31,
+			"edition": "classic",
+			"subclassFeatures": [
+				"Samurai|Fighter||Samurai|XGE|3",
+				"Elegant Courtier|Fighter||Samurai|XGE|7",
+				"Tireless Spirit|Fighter||Samurai|XGE|10",
+				"Rapid Strike|Fighter||Samurai|XGE|15",
+				"Strength before Death|Fighter||Samurai|XGE|18"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Samurai",
+			"ENG_shortName": "Samurai"
+		},
+		{
+			"name": "武士",
+			"shortName": "武士",
+			"source": "XGE",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Samurai",
+				"source": "XGE",
+				"shortName": "Samurai",
+				"className": "Fighter",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Samurai",
+			"ENG_shortName": "Samurai"
+		},
+		{
+			"name": "迴音騎士",
+			"shortName": "迴音騎士",
+			"source": "EGW",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"page": 183,
+			"edition": "classic",
+			"subclassFeatures": [
+				"Echo Knight|Fighter||Echo Knight|EGW|3",
+				"Echo Avatar|Fighter||Echo Knight|EGW|7",
+				"Shadow Martyr|Fighter||Echo Knight|EGW|10",
+				"Reclaim Potential|Fighter||Echo Knight|EGW|15",
+				"Legion of One|Fighter||Echo Knight|EGW|18"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Echo Knight",
+			"ENG_shortName": "Echo Knight"
+		},
+		{
+			"name": "迴音騎士",
+			"shortName": "迴音騎士",
+			"source": "EGW",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Echo Knight",
+				"source": "EGW",
+				"shortName": "Echo Knight",
+				"className": "Fighter",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "迴音騎士",
+					"source": "EGW",
+					"shortName": "迴音騎士",
+					"className": "Fighter",
+					"classSource": "PHB",
+					"ENG_name": "Echo Knight"
+				}
+			},
+			"ENG_name": "Echo Knight",
+			"ENG_shortName": "Echo Knight"
+		},
+		{
+			"name": "靈能武士",
+			"shortName": "靈能武士",
+			"source": "TCE",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"page": 42,
+			"reprintedAs": [
+				"Psi Warrior|Fighter|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"innate": {
+						"18": {
+							"daily": {
+								"1": [
+									"telekinesis"
+								]
+							}
+						}
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Psi Warrior|Fighter||Psi Warrior|TCE|3",
+				"Telekinetic Adept|Fighter||Psi Warrior|TCE|7",
+				"Guarded Mind|Fighter||Psi Warrior|TCE|10",
+				"Bulwark of Force|Fighter||Psi Warrior|TCE|15",
+				"Telekinetic Master|Fighter||Psi Warrior|TCE|18"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Psi Warrior",
+			"ENG_shortName": "Psi Warrior"
+		},
+		{
+			"name": "靈能武士",
+			"shortName": "靈能武士",
+			"source": "TCE",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Psi Warrior",
+				"source": "TCE",
+				"shortName": "Psi Warrior",
+				"className": "Fighter",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "靈能武士",
+					"source": "TCE",
+					"shortName": "靈能武士",
+					"className": "Fighter",
+					"classSource": "PHB",
+					"ENG_name": "Psi Warrior"
+				}
+			},
+			"ENG_name": "Psi Warrior",
+			"ENG_shortName": "Psi Warrior"
+		},
+		{
+			"name": "符文騎士",
+			"shortName": "符文騎士",
+			"source": "TCE",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"page": 44,
+			"edition": "classic",
+			"optionalfeatureProgression": [
+				{
+					"name": "符文",
+					"featureType": [
+						"RN"
+					],
+					"progression": {
+						"3": 2,
+						"7": 3,
+						"10": 4,
+						"15": 5
+					},
+					"ENG_name": "Runes"
+				}
+			],
+			"subclassFeatures": [
+				"Rune Knight|Fighter||Rune Knight|TCE|3",
+				"Runic Shield|Fighter||Rune Knight|TCE|7",
+				"Additional Rune Known|Fighter||Rune Knight|TCE|7",
+				"Great Stature|Fighter||Rune Knight|TCE|10",
+				"Additional Rune Known|Fighter||Rune Knight|TCE|10",
+				"Master of Runes|Fighter||Rune Knight|TCE|15",
+				"Additional Rune Known|Fighter||Rune Knight|TCE|15",
+				"Runic Juggernaut|Fighter||Rune Knight|TCE|18"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Rune Knight",
+			"ENG_shortName": "Rune Knight"
+		},
+		{
+			"name": "符文騎士",
+			"shortName": "符文騎士",
+			"source": "TCE",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Rune Knight",
+				"source": "TCE",
+				"shortName": "Rune Knight",
+				"className": "Fighter",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "符文騎士",
+					"source": "TCE",
+					"shortName": "符文騎士",
+					"className": "Fighter",
+					"classSource": "PHB",
+					"ENG_name": "Rune Knight"
+				}
+			},
+			"ENG_name": "Rune Knight",
+			"ENG_shortName": "Rune Knight"
+		},
+		{
+			"name": "戰鬥大師",
+			"shortName": "戰鬥大師",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"page": 93,
+			"edition": "one",
+			"optionalfeatureProgression": [
+				{
+					"name": "戰技",
+					"featureType": [
+						"MV:B"
+					],
+					"progression": {
+						"3": 3,
+						"7": 5,
+						"10": 7,
+						"15": 9
+					},
+					"ENG_name": "Maneuvers"
+				}
+			],
+			"subclassFeatures": [
+				"Battle Master|Fighter|XPHB|Battle Master|XPHB|3",
+				"Know Your Enemy|Fighter|XPHB|Battle Master|XPHB|7",
+				"Improved Combat Superiority|Fighter|XPHB|Battle Master|XPHB|10",
+				"Relentless|Fighter|XPHB|Battle Master|XPHB|15",
+				"Ultimate Combat Superiority|Fighter|XPHB|Battle Master|XPHB|18"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Battle Master",
+			"ENG_shortName": "Battle Master"
+		},
+		{
+			"name": "勇士",
+			"shortName": "勇士",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"page": 96,
+			"srd52": true,
+			"basicRules2024": true,
+			"edition": "one",
+			"featProgression": [
+				{
+					"name": "戰鬥風格",
+					"category": [
+						"FS"
+					],
+					"progression": {
+						"7": 1
+					},
+					"ENG_name": "Fighting Style"
+				}
+			],
+			"subclassFeatures": [
+				"Champion|Fighter|XPHB|Champion|XPHB|3",
+				"Additional Fighting Style|Fighter|XPHB|Champion|XPHB|7",
+				"Heroic Warrior|Fighter|XPHB|Champion|XPHB|10",
+				"Superior Critical|Fighter|XPHB|Champion|XPHB|15",
+				"Survivor|Fighter|XPHB|Champion|XPHB|18"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Champion",
+			"ENG_shortName": "Champion"
+		},
+		{
+			"name": "奧法騎士",
+			"shortName": "奧法騎士",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"page": 96,
+			"edition": "one",
+			"spellcastingAbility": "int",
+			"casterProgression": "1/3",
+			"preparedSpellsProgression": [
+				0,
+				0,
+				3,
+				4,
+				4,
+				4,
+				5,
+				6,
+				6,
+				7,
+				8,
+				8,
+				9,
+				10,
+				10,
+				11,
+				11,
+				11,
+				12,
+				13
+			],
+			"preparedSpellsChange": "level",
+			"cantripProgression": [
+				0,
+				0,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3
+			],
+			"additionalSpells": [
+				{
+					"expanded": {
+						"3": [
+							{
+								"all": "level=0|class=Wizard"
+							},
+							{
+								"all": "level=1|class=Wizard"
+							}
+						],
+						"7": [
+							{
+								"all": "level=2|class=Wizard"
+							}
+						],
+						"13": [
+							{
+								"all": "level=3|class=Wizard"
+							}
+						],
+						"19": [
+							{
+								"all": "level=4|class=Wizard"
+							}
+						]
+					}
+				}
+			],
+			"subclassTableGroups": [
+				{
+					"subclasses": [
+						{
+							"name": "奧法騎士",
+							"source": "XPHB",
+							"ENG_name": "Eldritch Knight"
+						}
+					],
+					"colLabels": [
+						"{@filter 法術準備|spells|subclass=Fighter: Eldritch Knight}"
+					],
+					"rows": [
+						[
+							0
+						],
+						[
+							0
+						],
+						[
+							3
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							5
+						],
+						[
+							6
+						],
+						[
+							6
+						],
+						[
+							7
+						],
+						[
+							8
+						],
+						[
+							8
+						],
+						[
+							9
+						],
+						[
+							10
+						],
+						[
+							10
+						],
+						[
+							11
+						],
+						[
+							11
+						],
+						[
+							11
+						],
+						[
+							12
+						],
+						[
+							13
+						]
+					]
+				},
+				{
+					"title": "每環法術位",
+					"subclasses": [
+						{
+							"name": "奧法騎士",
+							"source": "XPHB",
+							"ENG_name": "Eldritch Knight"
+						}
+					],
+					"colLabels": [
+						"{@filter 1環|spells|level=1|subclass=Fighter: Eldritch Knight}",
+						"{@filter 2環|spells|level=2|subclass=Fighter: Eldritch Knight}",
+						"{@filter 3環|spells|level=3|subclass=Fighter: Eldritch Knight}",
+						"{@filter 4環|spells|level=4|subclass=Fighter: Eldritch Knight}"
+					],
+					"rowsSpellProgression": [
+						[
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							2,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							1
+						]
+					]
+				}
+			],
+			"subclassFeatures": [
+				"Eldritch Knight|Fighter|XPHB|Eldritch Knight|XPHB|3",
+				"War Magic|Fighter|XPHB|Eldritch Knight|XPHB|7",
+				"Eldritch Strike|Fighter|XPHB|Eldritch Knight|XPHB|10",
+				"Arcane Charge|Fighter|XPHB|Eldritch Knight|XPHB|15",
+				"Improved War Magic|Fighter|XPHB|Eldritch Knight|XPHB|18"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Eldritch Knight",
+			"ENG_shortName": "Eldritch Knight"
+		},
+		{
+			"name": "靈能武士",
+			"shortName": "靈能武士",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"page": 98,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"innate": {
+						"18": {
+							"daily": {
+								"1": [
+									"telekinesis|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"subclassTableGroups": [
+				{
+					"subclasses": [
+						{
+							"name": "靈能武士",
+							"source": "XPHB",
+							"ENG_name": "Psi Warrior"
+						}
+					],
+					"colLabels": [
+						"{@tip 骰子大小|靈能骰大小}",
+						"{@tip 數值|靈能骰數值}"
+					],
+					"rows": [
+						[
+							0,
+							0
+						],
+						[
+							0,
+							0
+						],
+						[
+							"{@dice D6}",
+							4
+						],
+						[
+							"{@dice D6}",
+							4
+						],
+						[
+							"{@dice D8}",
+							6
+						],
+						[
+							"{@dice D8}",
+							6
+						],
+						[
+							"{@dice D8}",
+							6
+						],
+						[
+							"{@dice D8}",
+							6
+						],
+						[
+							"{@dice D8}",
+							8
+						],
+						[
+							"{@dice D8}",
+							8
+						],
+						[
+							"{@dice D10}",
+							8
+						],
+						[
+							"{@dice D10}",
+							8
+						],
+						[
+							"{@dice D10}",
+							10
+						],
+						[
+							"{@dice D10}",
+							10
+						],
+						[
+							"{@dice D10}",
+							10
+						],
+						[
+							"{@dice D10}",
+							10
+						],
+						[
+							"{@dice D12}",
+							12
+						],
+						[
+							"{@dice D12}",
+							12
+						],
+						[
+							"{@dice D12}",
+							12
+						],
+						[
+							"{@dice D12}",
+							12
+						]
+					]
+				}
+			],
+			"subclassFeatures": [
+				"Psi Warrior|Fighter|XPHB|Psi Warrior|XPHB|3",
+				"Telekinetic Adept|Fighter|XPHB|Psi Warrior|XPHB|7",
+				"Guarded Mind|Fighter|XPHB|Psi Warrior|XPHB|10",
+				"Bulwark of Force|Fighter|XPHB|Psi Warrior|XPHB|15",
+				"Telekinetic Master|Fighter|XPHB|Psi Warrior|XPHB|18"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Psi Warrior",
+			"ENG_shortName": "Psi Warrior"
+		},
+		{
+			"name": "旗將",
+			"shortName": "旗將",
+			"source": "FRHoF",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"page": 19,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"innate": {
+						"3": {
+							"ritual": [
+								"comprehend languages|xphb"
+							]
+						}
+					},
+					"ability": "cha"
+				}
+			],
+			"subclassFeatures": [
+				"Banneret|Fighter|XPHB|Banneret|FRHoF|3|FRHoF",
+				"Team Tactics|Fighter|XPHB|Banneret|FRHoF|7|FRHoF",
+				"Rallying Surge|Fighter|XPHB|Banneret|FRHoF|10|FRHoF",
+				"Shared Resilience|Fighter|XPHB|Banneret|FRHoF|15|FRHoF",
+				"Inspiring Commander|Fighter|XPHB|Banneret|FRHoF|18|FRHoF"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Banneret",
+			"ENG_shortName": "Banneret"
+		}
+	],
+	"classFeature": [
+		{
+			"name": "戰鬥風格",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 1,
+			"entries": [
+				"你專精於一種戰鬥風格，並從下列選項中選擇。另外，即使你有多次選擇戰鬥風格的機會，也不能多次選擇同一個戰鬥風格。",
+				{
+					"type": "options",
+					"count": 1,
+					"entries": [
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Archery"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Defense"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Dueling"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Great Weapon Fighting"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Protection"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Two-Weapon Fighting"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Blind Fighting|TCE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Interception|TCE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Superior Technique|TCE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Thrown Weapon Fighting|TCE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Unarmed Fighting|TCE"
+						}
+					]
+				}
+			],
+			"ENG_name": "Fighting Style"
+		},
+		{
+			"name": "回氣",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 1,
+			"entries": [
+				"你擁有少量精力儲備可用來保護自己免受傷害。你可以在自己回合內用一個附贈動作恢復生命值，其總值為{@dice 1d10}＋你的戰士職業等級。",
+				"你必須完成一次短休或長休才能再次使用該特性。"
+			],
+			"ENG_name": "Second Wind"
+		},
+		{
+			"name": "動作如潮",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 2,
+			"entries": [
+				"第2級起，你可以在短時間內突破極限，以使你在自己回合內執行一個額外的動作。",
+				"該特性在使用後必須完成一次短休或長休才能再使用。第17級起，你可在休息前使用兩次該特性，但每一回合只能使用一次。"
+			],
+			"ENG_name": "Action Surge"
+		},
+		{
+			"name": "武術範型",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 3,
+			"entries": [
+				"第3級時，你選擇一種範型以體現你的戰鬥風格和技巧。隨後，你將在第3、第7、第10、第15、第18級獲得所選範型的相應特性。"
+			],
+			"ENG_name": "Martial Archetype"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 4,
+			"entries": [
+				"當你達到4級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "替換武術",
+			"source": "TCE",
+			"page": 41,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 4,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"{@i 4級戰士{@variantrule optional class features|tce|可選特性}}",
+				"當你的戰士職業等級抵達能讓你獲得屬性值提升職業特性時，你能進行以下一項改變。這種變化代表著你改變了武術訓練和練習的重點：",
+				{
+					"type": "list",
+					"items": [
+						"用一個戰士可用的戰鬥風格替換原有的一個{@filter 戰鬥風格|optionalfeatures|feature type=FS:F}。",
+						"如果你的{@filter 戰技|optionalfeatures|feature type=MV:B}是透過{@class fighter|phb|戰鬥大師}範型掌握的，你可以將你的一個已知戰技替換為一個不同的戰技。"
+					]
+				}
+			],
+			"ENG_name": "Martial Versatility"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 5,
+			"entries": [
+				"第5級起，你在自己回合內執行{@action Attack||攻擊}動作時可以攻擊兩次而非一次。",
+				"你在本職業達到第11級時，攻擊次數提高為三次；達到第20級時，攻擊次數提高為四次。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 6,
+			"entries": [
+				"當你達到第6級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "武術範型能力",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 7,
+			"entries": [
+				"第7級時，你將獲得所選範型的相應特性。"
+			],
+			"ENG_name": "Martial Archetype feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 8,
+			"entries": [
+				"當你達到第8級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過該特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "不屈",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 9,
+			"entries": [
+				"第9級起，你可以重擲失敗的豁免檢定。不過你必須採用重擲的結果。你必須完成一次長休才能再次使用該特性。",
+				"第13級起，你可以在兩次長休之間使用兩次該特性。第17級起，你可以在兩次長休之間使用三次該特性。"
+			],
+			"ENG_name": "Indomitable"
+		},
+		{
+			"name": "武術範型能力",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 10,
+			"entries": [
+				"第10級時，你將獲得所選範型的相應特性。"
+			],
+			"ENG_name": "Martial Archetype feature"
+		},
+		{
+			"name": "額外攻擊(2)",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 11,
+			"entries": [
+				"第11級後，每當你在自己回合採取{@action Attack||攻擊}行動時，你可以攻擊三次。"
+			],
+			"ENG_name": "Extra Attack (2)"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 12,
+			"entries": [
+				"當你達到第12級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過該特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "不屈(2次)",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 13,
+			"entries": [
+				"第13級起，你可以在兩次長休之間使用兩次該特性。"
+			],
+			"ENG_name": "Indomitable (two uses)"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 14,
+			"entries": [
+				"當你達到14級時，你可以選擇一項屬性值提升2點，或是選擇兩項屬性各提升1點。不過，你無法透過該特性讓屬性值超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "武術範型能力",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 15,
+			"entries": [
+				"第15級時，你將獲得所選範型的相應特性。"
+			],
+			"ENG_name": "Martial Archetype feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 16,
+			"entries": [
+				"當你達到16級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "動作如潮(2次)",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 17,
+			"entries": [
+				"第17級起，你可在休息前使用兩次該特性，但每一回合只能使用一次。"
+			],
+			"ENG_name": "Action Surge (two uses)"
+		},
+		{
+			"name": "不屈(3次)",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 17,
+			"entries": [
+				"第17級起，你可以在兩次長休之間使用三次該特性。"
+			],
+			"ENG_name": "Indomitable (three uses)"
+		},
+		{
+			"name": "武術範型能力",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 18,
+			"entries": [
+				"第18級時，你將獲得所選範型的相應特性。"
+			],
+			"ENG_name": "Martial Archetype feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 19,
+			"entries": [
+				"當你達到19級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "額外攻擊(3)",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"level": 20,
+			"entries": [
+				"第20級時，每當你在自己回合中執行{@action Attack||攻擊}動作，便可以攻擊四次。"
+			],
+			"ENG_name": "Extra Attack (3)"
+		},
+		{
+			"name": "戰鬥風格",
+			"source": "XPHB",
+			"page": 91,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"不斷磨練你的武藝。你獲得一項你選擇的{@filter 戰鬥風格專長|feats|category=FS}。推薦選擇{@feat Defense|XPHB|防禦}。",
+				"每當你獲得戰士等級時，你可以將其改為另一個{@filter 戰鬥風格專長|feats|category=FS}。"
+			],
+			"ENG_name": "Fighting Style"
+		},
+		{
+			"name": "回氣",
+			"source": "XPHB",
+			"page": 91,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你可以利用有限的精力與體力來重整旗鼓。以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以用此法恢復{@variantrule Hit Points|XPHB|生命值}，其總值為{@dice 1d10} + 你的戰士職業等級。",
+				"你可以使用此特性兩次，並且在完成{@variantrule Short Rest|XPHB|短休}後恢復一次已消耗的使用次數，完成{@variantrule Long Rest|XPHB|長休}後恢復所有已消耗的使用次數。",
+				"當你到達特定戰士等級時，你獲得這項特性的額外使用次數，已列在戰士特性表的回氣一列。"
+			],
+			"ENG_name": "Second Wind"
+		},
+		{
+			"name": "武器精通",
+			"source": "XPHB",
+			"page": 91,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你對武器的訓練使你能夠運用三種自選的{@filter 簡易武器|items|type=simple weapon}或{@filter 軍用武器|items|type=martial weapon}的{@variantrule weapon mastery properties|XPHB|精通詞條}。每當你完成一次{@variantrule Long Rest|XPHB|長休}時，你可以重新演練武器技巧，改變其中一個武器選擇。",
+				"當你達到特定的戰士等級時，你將獲得使用更多種類武器的{@variantrule weapon mastery properties|XPHB|精通詞條}的能力，如戰士特性表格中的武器精通欄所示。"
+			],
+			"ENG_name": "Weapon Mastery"
+		},
+		{
+			"name": "動作如潮",
+			"source": "XPHB",
+			"page": 91,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"你可以在短期內讓自己突破身為凡骨的極限。在你的回合中，你可以執行一個額外的動作，但不能是{@action Magic|XPHB|魔法}動作。",
+				"你使用此特性後，你必須在完成一次{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}後才能再次使用。第 17 級起，你可以在每次休息之間使用此特性兩次，但每回合只能使用一次。"
+			],
+			"ENG_name": "Action Surge"
+		},
+		{
+			"name": "戰術思維",
+			"source": "XPHB",
+			"page": 91,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"在戰場內外，你都能夠運用你的戰術思維。當你在一次屬性檢定上失敗時，你可以消耗一次回氣次數讓你更接近成功。你擲{@dice 1d10}並將骰值加入到結果之中，而非恢復{@variantrule Hit Points|XPHB|生命值}。這可能會讓結果變為成功。如果檢定依舊失敗，則不會消耗回氣次數。"
+			],
+			"ENG_name": "Tactical Mind"
+		},
+		{
+			"name": "戰士子職",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你選擇獲得一項戰士子職。子職是一種特化，在特定的戰士等級給予你對應的獨特能力。此後你將獲得你所選的子職所有能力——只要其所需等級不超過你的戰士等級。"
+			],
+			"ENG_name": "Fighter Subclass"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 4,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其他你滿足條件的{@5etools 專長|feats.html}。如戰士特性表所示，你還會在第6、第8、第12、第14、第16級時再次獲得本特性。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"當你在自己的回合執行{@action Attack|XPHB|攻擊}動作時，你可以發動兩次攻擊而非一次。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "戰術轉進",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"每當你使用{@variantrule Bonus Action|XPHB|附贈動作}進行回氣時，你可以移動至多相當於你{@variantrule Speed|XPHB|速度}一半的距離，且不會引發{@action Opportunity Attack|XPHB|藉機攻擊}。"
+			],
+			"ENG_name": "Tactical Shift"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 6,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 7,
+			"entries": [
+				"你獲得一個戰士子職特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 8,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "不屈",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 9,
+			"entries": [
+				"當你在一次豁免檢定中失敗時，你可以重投並獲得等同你戰士等級的加值。你必須使用新的擲骰結果，你使用此特性後，你必須在完成一次{@variantrule Long Rest|XPHB|長休}後才能再次使用。",
+				"第 13 級起，你可以在兩次{@variantrule Long Rest|XPHB|長休}之間使用此特性兩次；第 17 級起，你可以在兩次{@variantrule Long Rest|XPHB|長休}之間使用此特性三次。"
+			],
+			"ENG_name": "Indomitable"
+		},
+		{
+			"name": "戰術主宰",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 9,
+			"entries": [
+				"當你以一把能使用其精通屬性的武器發動攻擊時，可以在該次攻擊中將該屬性替換為{@itemMastery Push|XPHB|推離}、{@itemMastery Sap|XPHB|削弱}或{@itemMastery Slow|XPHB|緩速}屬性。"
+			],
+			"ENG_name": "Tactical Master"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 10,
+			"entries": [
+				"你獲得一個戰士子職特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "額外攻擊（二）",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 11,
+			"entries": [
+				"你在自己回合內執行{@action Attack|XPHB|攻擊}動作時，可以發動三次攻擊而非一次。"
+			],
+			"ENG_name": "Two Extra Attacks"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 12,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "不屈",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 13,
+			"entries": [
+				"當你在一次豁免檢定中失敗時，你可以重投並獲得等同你戰士等級的加值。你必須使用新的擲骰結果，你使用此特性後，你必須在完成一次{@variantrule Long Rest|XPHB|長休}後才能再次使用。",
+				"第 13 級起，你可以在兩次{@variantrule Long Rest|XPHB|長休}之間使用此特性兩次；第 17 級起，你可以在兩次{@variantrule Long Rest|XPHB|長休}之間使用此特性三次。"
+			],
+			"ENG_name": "Indomitable"
+		},
+		{
+			"name": "究明攻擊",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 13,
+			"entries": [
+				"你已深曉對手的一舉一動，並且從每次攻擊中吸取經驗教訓。如果你對一個生物進行攻擊檢定但失手，那麼直到你的下個回合結束前，你對其的下次攻擊檢定具有{@variantrule Advantage|XPHB|優勢}。"
+			],
+			"ENG_name": "Studied Attacks"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 14,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 15,
+			"entries": [
+				"你獲得一個戰士子職特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 16,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "動作如潮",
+			"source": "XPHB",
+			"page": 91,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 17,
+			"entries": [
+				"你可以在短期內讓自己突破身為凡骨的極限。在你的回合中，你可以執行一個額外的動作，但不能是{@action Magic|XPHB|魔法}動作。",
+				"你使用此特性後，你必須在完成一次{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}後才能再次使用。第 17 級起，你可以在每次休息之間使用此特性兩次，但每回合只能使用一次。"
+			],
+			"ENG_name": "Action Surge"
+		},
+		{
+			"name": "不屈",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 17,
+			"entries": [
+				"當你在一次豁免檢定中失敗時，你可以重投並獲得等同你戰士等級的加值。你必須使用新的擲骰結果，你使用此特性後，你必須在完成一次{@variantrule Long Rest|XPHB|長休}後才能再次使用。",
+				"第 13 級起，你可以在兩次{@variantrule Long Rest|XPHB|長休}之間使用此特性兩次；第 17 級起，你可以在兩次{@variantrule Long Rest|XPHB|長休}之間使用此特性三次。"
+			],
+			"ENG_name": "Indomitable"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 18,
+			"entries": [
+				"你獲得一個戰士子職特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "傳奇恩惠",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 19,
+			"entries": [
+				"你獲得一項{@filter 傳奇恩惠專長|feats|category=EB}或其他一項你選擇的適用的{@5etools 專長|feats.html}。推薦選擇{@feat Boon of Combat Prowess|XPHB|英勇戰鬥之恩惠}。"
+			],
+			"ENG_name": "Epic Boon"
+		},
+		{
+			"name": "額外攻擊（三）",
+			"source": "XPHB",
+			"page": 92,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 20,
+			"entries": [
+				"你在自己回合內執行{@action Attack|XPHB|攻擊}動作時，可以發動四次攻擊而非一次。"
+			],
+			"ENG_name": "Three Extra Attacks"
+		}
+	],
+	"subclassFeature": [
+		{
+			"name": "迴音騎士",
+			"source": "EGW",
+			"page": 183,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Echo Knight",
+			"subclassSource": "EGW",
+			"level": 3,
+			"entries": [
+				"迴音騎士是克靈王朝的一種神秘並且令人忌憚的前線鬥士，他們掌握並運用秘跡能量（dunamis）的技藝，召喚未能成為現實的眾多時間線裡的消逝之影，以此協助他們自身進行戰鬥。在自身力量的迴音的圍繞下，他們衝鋒陷陣姿態宛如兇猛來襲的陰影叢集。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Manifest Echo|Fighter||Echo Knight|EGW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Unleash Incarnation|Fighter||Echo Knight|EGW|3"
+				}
+			],
+			"ENG_name": "Echo Knight"
+		},
+		{
+			"name": "顯現迴音",
+			"source": "EGW",
+			"page": 183,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Echo Knight",
+			"subclassSource": "EGW",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級迴音騎士特性}",
+				"你能使用附贈動作，魔法性的在你周圍15尺內的一處未被佔據的可見空間內，顯現出一個你自身的迴音。該回音是魔法性的、半透明的、形如你的黑白形象。迴音將一直存在，直到被摧毀、你以一個附贈動作將其消解、顯現另一個迴音、或你陷入{@condition incapacitated||失能}狀態為止。",
+				"你的迴音具有等同於 14+你的熟練加值 的AC，其只有1點生命值，但免疫於所有狀態。如果迴音被迫進行一次豁免，則它使用你的豁免加值。它的體型與你一樣，且會佔據空間。在你的回合中，你能僅靠思想來命令迴音向著任意方向移動至多30尺（無需動作）。在你的回合結束時，如果你與你的迴音之間的距離超過可30尺，那麼它會被摧毀。",
+				"你能用以下方式使用顯現出的迴音：",
+				{
+					"type": "list",
+					"items": [
+						"以一個附贈動作，你能消耗15尺移動力進行傳送，魔法性的與你的迴音互換位置，且不論迴音與你之間的距離。",
+						"當你在你的回合裡執行{@action Attack||攻擊}動作時，你用該動作進行的任何攻擊可以從你的位置或迴音的位置發出。每一次攻擊的發出位置都由你決定。",
+						"當你的迴音周圍5尺範圍內、你可見的某一生物向著遠離迴音的方向移動至少5尺時，你能如同位於迴音所處的空間內一樣，用你的反應來對該生物進行一次藉機攻擊。"
+					]
+				}
+			],
+			"ENG_name": "Manifest Echo"
+		},
+		{
+			"name": "釋放化身",
+			"source": "EGW",
+			"page": 183,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Echo Knight",
+			"subclassSource": "EGW",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級迴音騎士特性}",
+				"你能夠強化你迴音的狂怒。每當你執行{@action Attack||攻擊}動作時，你都可以在迴音的位置上發動額外一次近戰攻擊。",
+				"你能使用此特性的次數等同於你的體質調整值（至少1次）。在你完成一次長休後，你重獲全部已消耗的使用次數。"
+			],
+			"ENG_name": "Unleash Incarnation"
+		},
+		{
+			"name": "迴音化身",
+			"source": "EGW",
+			"page": 183,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Echo Knight",
+			"subclassSource": "EGW",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"{@i 7級迴音騎士特性}",
+				"你能暫時地將你的意識轉移到你的迴音上。以一個動作，你在接下來的10分鐘內可以用你的迴音的雙眼視物，用迴音的雙耳來聆聽。意識轉移期間，你的本體將陷入 {@condition deafened||耳聾}和{@condition blinded||目盲}狀態，不過你可以隨時終止意識轉移（無需動作）。此外，以此利用你的迴音期間，它能與你之間相隔至多1000尺的距離而不會自動摧毀。"
+			],
+			"ENG_name": "Echo Avatar"
+		},
+		{
+			"name": "陰影殉道者",
+			"source": "EGW",
+			"page": 183,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Echo Knight",
+			"subclassSource": "EGW",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10級迴音騎士特性}",
+				"若你可見的其他生物被指定為一次攻擊的目標，你能操控你的迴音，讓它前去攔截這次攻擊。在此次攻擊檢定擲骰前，你能用反應讓迴音傳送到即將被攻擊的那一生物周圍5尺範圍內的一處未被佔據的空間。而觸發反應的那次攻擊檢定將由你的迴音代為承受。",
+				"你必須完成一次長休或短休後才能再次使用該特性。"
+			],
+			"ENG_name": "Shadow Martyr"
+		},
+		{
+			"name": "回收潛能",
+			"source": "EGW",
+			"page": 183,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Echo Knight",
+			"subclassSource": "EGW",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"{@i 15級迴音騎士特性}",
+				"你習得了如何吸收被摧毀的迴音身上的殘餘魔力。當你的迴音因承受傷害而被摧毀，你可以因此獲得相當於{@dice 2d6}+你的體質調整值 點的臨時生命值。你必須不具有任何臨時生命值才能受益於這一特性。",
+				"你能使用此特性的次數等同於你的體質調整值（至少1次）。在你完成一次長休後，你重獲全部已消耗的使用次數。"
+			],
+			"ENG_name": "Reclaim Potential"
+		},
+		{
+			"name": "一人成軍",
+			"source": "EGW",
+			"page": 183,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Echo Knight",
+			"subclassSource": "EGW",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"{@i 18級迴音騎士特性}",
+				"你現在可以使用「顯化迴音」特性，以一個附贈動作同時創造兩個迴音，且兩者可以共存。若你試圖創造第三個迴音，先前的兩個迴音都會被摧毀。你能從其中一個迴音所在位置做的任何事，也可以改從另一個迴音所在位置進行。",
+				"此外，當你投擲先攻時，若你已沒有「釋放化身」的剩餘使用次數，便恢復該特性的一次使用次數。"
+			],
+			"ENG_name": "Legion of One"
+		},
+		{
+			"name": "戰鬥大師",
+			"source": "PHB",
+			"page": 73,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"戰鬥大師選擇磨鍊列代先輩傳承下來的戰鬥技巧。戰鬥大師們將戰鬥視為一門學問，而其內容不止包含戰鬥本身，還包括鑄造武器和書法等等。並非每個戰士都能適應戰鬥大師範型對學習歷史，理論和藝術的要求，但能做到的人則都是技藝精熟，知識豐富的多面手。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Student of War|Fighter||Battle Master||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Combat Superiority|Fighter||Battle Master||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Maneuvers|Fighter||Battle Master||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Maneuver Options|Fighter||Battle Master||3|TCE"
+				}
+			],
+			"ENG_name": "Battle Master"
+		},
+		{
+			"name": "戰鬥卓越",
+			"source": "PHB",
+			"page": 73,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"在你選擇此範型的第3級時，你習得戰技並獲得驅動戰技的卓越骰。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "戰技",
+							"entries": [
+								"你習得三種自選戰技，詳見後文。戰技強化了你的攻擊。而你在每次攻擊時只能應用一種戰技。",
+								"你在第7，第10和第15級時均習得兩種新戰技。習得新戰技時，你還可以額外替換一個已經習得的戰技。"
+							],
+							"ENG_name": "Maneuvers"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "卓越骰",
+							"entries": [
+								"你擁有四個{@dice d8}卓越骰。卓越骰一經使用即消耗，完成短休或長休後恢復。",
+								"你的卓越骰在第7和第15級時各增加一粒。"
+							],
+							"ENG_name": "Superiority Dice"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "豁免檢定",
+							"entries": [
+								"某些戰技需要目標進行豁免檢定作抵抗。戰技的豁免DC為：",
+								{
+									"type": "abilityDc",
+									"name": "戰技",
+									"attributes": [
+										"str",
+										"dex"
+									],
+									"ENG_name": "Maneuver"
+								}
+							],
+							"ENG_name": "Saving Throws"
+						}
+					]
+				}
+			],
+			"ENG_name": "Combat Superiority"
+		},
+		{
+			"name": "戰技選項",
+			"source": "TCE",
+			"page": 41,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 3,
+			"isClassFeatureVariant": true,
+			"header": 1,
+			"entries": [
+				"{@i 3級戰士{@variantrule optional class features|tce|可選特性}}",
+				"如果你能夠使用戰技，以下戰技將加入可選列表。使用戰技的能力可以透過戰鬥大師武術範型、{@optfeature Superior Technique|TCE|卓越技巧}戰鬥風格或{@feat Martial Adept||戰技專家}專長來獲得。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "options",
+							"entries": [
+								{
+									"type": "refOptionalfeature",
+									"optionalfeature": "Ambush|TCE"
+								},
+								{
+									"type": "refOptionalfeature",
+									"optionalfeature": "Bait and Switch|TCE"
+								},
+								{
+									"type": "refOptionalfeature",
+									"optionalfeature": "Brace|TCE"
+								},
+								{
+									"type": "refOptionalfeature",
+									"optionalfeature": "Commanding Presence|TCE"
+								},
+								{
+									"type": "refOptionalfeature",
+									"optionalfeature": "Grappling Strike|TCE"
+								},
+								{
+									"type": "refOptionalfeature",
+									"optionalfeature": "Quick Toss|TCE"
+								},
+								{
+									"type": "refOptionalfeature",
+									"optionalfeature": "Tactical Assessment|TCE"
+								}
+							]
+						}
+					]
+				}
+			],
+			"ENG_name": "Maneuver Options"
+		},
+		{
+			"name": "戰技",
+			"source": "PHB",
+			"page": 73,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"以下戰技按名稱首字母順序排列。",
+				{
+					"type": "options",
+					"count": 3,
+					"entries": [
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Commander's Strike"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Disarming Attack"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Distracting Strike"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Evasive Footwork"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Feinting Attack"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Goading Attack"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Lunging Attack"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Maneuvering Attack"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Menacing Attack"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Parry"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Precision Attack"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Pushing Attack"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Rally"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Riposte"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Sweeping Attack"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Trip Attack"
+						}
+					]
+				}
+			],
+			"ENG_name": "Maneuvers"
+		},
+		{
+			"name": "戰爭學徒",
+			"source": "PHB",
+			"page": 73,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"第3級時，你選擇一種{@filter 工匠工具|items|source=phb|miscellaneous=mundane|type=artisan's tools}並獲得其熟練項。"
+			],
+			"ENG_name": "Student of War"
+		},
+		{
+			"name": "額外戰技",
+			"source": "PHB",
+			"page": 73,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"第7級時，你可以選擇學習兩個額外的戰技。"
+			],
+			"ENG_name": "Additional Maneuvers"
+		},
+		{
+			"name": "額外卓越骰",
+			"source": "PHB",
+			"page": 73,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"第7級時，你的卓越骰增加一粒。"
+			],
+			"ENG_name": "Additional Superiority Die"
+		},
+		{
+			"name": "知己知彼",
+			"source": "PHB",
+			"page": 73,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"你在戰鬥外觀察某生物或與之互動至少1分鐘後，可以獲知有關其能力的一些情報。從下列選項中選擇其二，DM將告訴你在這兩項上你是強於該生物，弱於該生物，或是與之相仿。",
+				{
+					"type": "list",
+					"items": [
+						"力量值",
+						"敏捷值",
+						"體質值",
+						"護甲等級",
+						"當前生命值",
+						"總職業等級（如果有）",
+						"戰士職業等級（如果有）"
+					]
+				}
+			],
+			"ENG_name": "Know Your Enemy"
+		},
+		{
+			"name": "額外戰技",
+			"source": "PHB",
+			"page": 73,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級時，你可以選擇學習兩個額外的戰技。"
+			],
+			"ENG_name": "Additional Maneuvers"
+		},
+		{
+			"name": "精通戰鬥卓越(d10)",
+			"source": "PHB",
+			"page": 73,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級時，你的卓越骰變為{@dice d10}。"
+			],
+			"ENG_name": "Improved Combat Superiority (d10)"
+		},
+		{
+			"name": "額外戰技",
+			"source": "PHB",
+			"page": 73,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"第15級時，你可以選擇學習兩個額外的戰技。"
+			],
+			"ENG_name": "Additional Maneuvers"
+		},
+		{
+			"name": "額外卓越骰",
+			"source": "PHB",
+			"page": 73,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"第15級時，你的卓越骰增加一粒。"
+			],
+			"ENG_name": "Additional Superiority Die"
+		},
+		{
+			"name": "頑強",
+			"source": "PHB",
+			"page": 73,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"第15級起，你骰先攻時若沒可用的卓越骰，則你獲得1枚卓越骰。"
+			],
+			"ENG_name": "Relentless"
+		},
+		{
+			"name": "精通戰鬥卓越(d12)",
+			"source": "PHB",
+			"page": 73,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"第18級時，你的卓越骰變為{@dice d12}。"
+			],
+			"ENG_name": "Improved Combat Superiority (d12)"
+		},
+		{
+			"name": "勇士",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"勇士範型追求在肉體力量上登峰造極。選擇此範型的人將戰鬥訓練與強身健體相結合，令自己的攻擊無堅不摧。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Improved Critical|Fighter||Champion||3"
+				}
+			],
+			"ENG_name": "Champion"
+		},
+		{
+			"name": "強化重擊",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"從你第3級選擇此範型起，你的武器攻擊在擲出19或20時即可造成重擊。"
+			],
+			"ENG_name": "Improved Critical"
+		},
+		{
+			"name": "運動健將",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "PHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"第7級起，你可以將一半的熟練加值（向上取整）加在你不包含熟練加值的任何力量、敏捷或體質檢定上。",
+				"另外，當你助跑跳遠時，你能跳出的距離增加等同於你力量調整值的尺數。"
+			],
+			"ENG_name": "Remarkable Athlete"
+		},
+		{
+			"name": "額外戰鬥風格",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級時，你可以額外選擇一個戰鬥風格。"
+			],
+			"ENG_name": "Additional Fighting Style"
+		},
+		{
+			"name": "卓越重擊",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "PHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"第15級起，你的武器攻擊擲出18~20時即可造成重擊。"
+			],
+			"ENG_name": "Superior Critical"
+		},
+		{
+			"name": "生還者",
+			"source": "PHB",
+			"page": 72,
+			"srd": true,
+			"basicRules": true,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "PHB",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"第18級時，你在戰鬥中的韌性達到巔峰。你的每個回合開始時，若目前生命值不超過生命值上限的一半，便恢復等於5＋你的體質調整值的生命值。若你的生命值為0，則不會獲得此增益。"
+			],
+			"ENG_name": "Survivor"
+		},
+		{
+			"name": "奧法騎士",
+			"source": "PHB",
+			"page": 74,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"奧法騎士將戰士的武術與嚴謹的魔法研究相結合。他們使用與法師類似的魔法技巧，但只專注於兩個學派：防護和塑能。他們以防護法術保護自身，再以塑能法術同時攻擊多個敵人，因而使其在戰場上更加全面。奧法騎士只能掌握較少的法術，因此只需靠記憶完成而無需使用法術書。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Spellcasting|Fighter||Eldritch Knight||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Weapon Bond|Fighter||Eldritch Knight||3"
+				}
+			],
+			"ENG_name": "Eldritch Knight"
+		},
+		{
+			"name": "施法",
+			"source": "PHB",
+			"page": 74,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"第3級時，你學會以武鬥技術施展法術的能力。參考{@book 第十章|PHB|10}的施法規則，以及{@book 第十一章|PHB|11}的{@filter 法師法術列表|spells|class=wizard}。",
+				{
+					"type": "entries",
+					"name": "戲法",
+					"entries": [
+						"你從{@filter 法師法術列表|spells|class=wizard}中選擇兩個戲法作為已知法術。第10級時，你再獲得一個額外的法師戲法。"
+					],
+					"ENG_name": "Cantrips"
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "法術位",
+							"entries": [
+								"\"奧法騎士施法能力\"表中列出了你用以施展你的{@filter 法師法術|spells|class=wizard}的1環及更高環階法術位數量。施展這些法術時，你必須同時消耗一個不低於該法術環階的法術位。而已消耗的法術位可以透過完成一次長休進行恢復。",
+								"例如，如果你已經習得1環法術{@spell shield||護盾術}，並且有一個1環和一個2環法術位可用，你可以使用任一法術位來施放{@spell shield||護盾術}。"
+							],
+							"ENG_name": "Spell Slots"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "已知一環及以上法術",
+							"entries": [
+								"你習得三個自選的1環法師法術，其中兩個必須從防護系和塑能系中選擇。",
+								"「奧法騎士施法」表的「已知法術」欄顯示你何時學會更多一環或以上的法師法術。每個法術都必須是你所選擇的防護系或塑能系法術，且其環階必須是你擁有對應法術位的環階。例如，當你在本職業達到第7級時，可以學會一個新的一環或二環法術。",
+								"在第8、14和20級時，你可以學習任何學派的法術。",
+								"你每次提升本職業等級時，可以將一個已知的法師法術替換為另一個法師法術。這個新法術的環階不能超過你所擁有的最高法術位的環階，且必須從防護系或塑能系中選擇（除非你替換的是第3、第8、第14和第20級時習得的任何學派法術）。"
+							],
+							"ENG_name": "Spells Known of 1st-Level and Higher"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "施法關鍵屬性",
+							"entries": [
+								"你透過研究和記憶學習魔法，因此智力是你施展法師法術的關鍵屬性。每當你的法術需要施法屬性時均指向你的智力值。而你法師法術的豁免DC和攻擊檢定，則使用你的智力調整值。",
+								{
+									"type": "abilityDc",
+									"name": "法術",
+									"attributes": [
+										"int"
+									],
+									"ENG_name": "Spell"
+								},
+								{
+									"type": "abilityAttackMod",
+									"name": "法術",
+									"attributes": [
+										"int"
+									],
+									"ENG_name": "Spell"
+								}
+							],
+							"ENG_name": "Spellcasting Ability"
+						}
+					]
+				}
+			],
+			"ENG_name": "Spellcasting"
+		},
+		{
+			"name": "武器聯結",
+			"source": "PHB",
+			"page": 74,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"第3級時，你學會一種在自己與一把武器之間建立魔法聯結的儀式。儀式耗時1小時，並可在短休期間進行。整個儀式過程中，該武器都必須在你的觸及範圍內；儀式結束時，你觸碰該武器並建立聯結。",
+				"聯結建立後，只要你不處於{@condition incapacitated||失能}狀態，使用聯結武器時就不會被繳械。如果聯結武器與你處於同一位面，則你可以用一個附贈動作召喚其瞬間傳送回到你手中。",
+				"你至多可以擁有兩把建立聯結的武器，但一個附贈動作只能召喚一把武器。如果你試圖和第三把武器建立聯結，則必須與已經聯結的一把武器取消聯結。"
+			],
+			"ENG_name": "Weapon Bond"
+		},
+		{
+			"name": "戰爭魔法",
+			"source": "PHB",
+			"page": 74,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "PHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"第7級起，當你使用動作施展戲法時，可以用附贈動作發動一次武器攻擊。"
+			],
+			"ENG_name": "War Magic"
+		},
+		{
+			"name": "魔能打擊",
+			"source": "PHB",
+			"page": 74,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級時，你習得用武器攻擊削弱敵人對你法術抵抗能力的方法。當你的武器攻擊命中敵人後，直至你下一回合結束前，該生物對抗你下一個法術所進行的豁免檢定具有劣勢。"
+			],
+			"ENG_name": "Eldritch Strike"
+		},
+		{
+			"name": "祕法衝鋒",
+			"source": "PHB",
+			"page": 74,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "PHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"第15級時，你可以在使用動作如潮時傳送至多30尺距離。傳送的目的地必須是你能看到且未被佔據的空間。你可以在使用動作如潮提供的額外動作之前或之後進行傳送。"
+			],
+			"ENG_name": "Arcane Charge"
+		},
+		{
+			"name": "精通戰爭魔法",
+			"source": "PHB",
+			"page": 74,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "PHB",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"第18級起，你執行施法動作時，可以用附贈動作發動一次武器攻擊。"
+			],
+			"ENG_name": "Improved War Magic"
+		},
+		{
+			"name": "紫龍騎士（旗將）",
+			"source": "SCAG",
+			"page": 128,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Purple Dragon Knight (Banneret)",
+			"subclassSource": "SCAG",
+			"level": 3,
+			"entries": [
+				"紫龍騎士是來自科米爾王國的戰士。他們承諾守護王國的傳承，對抗王國領土內的邪惡。他們的任務是作為漫遊騎士巡遊祖國的土地，他們依靠判斷力、英勇無畏、對騎士精神的忠貞來指引他們擊敗邪惡勢力。",
+				"一名紫龍騎士透過在戰鬥中的英勇表現激發其他人的戰力。在一個小村莊內僅有一名騎士也足以讓一些獸人們和土匪們不隨便打這個村子的主意。一名孤獨的騎士是一名技藝嫻熟的戰士，但是如果一名騎士領導著一隊盟友，即使是裝備最差的民兵也會轉變成一個激昂的戰鬥團隊。",
+				"紫龍騎士們用行動而非言語證明自己。他們永遠作為先頭部隊衝鋒在隊伍的最前方，用他們無畏的戰鬥喚醒友軍的勇氣和信念，正如他們自己所一直擁有的那樣",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Restriction: Knighthood|Fighter||Purple Dragon Knight (Banneret)|SCAG|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Rallying Cry|Fighter||Purple Dragon Knight (Banneret)|SCAG|3"
+				}
+			],
+			"ENG_name": "Purple Dragon Knight (Banneret)"
+		},
+		{
+			"name": "鼓舞戰吼",
+			"source": "SCAG",
+			"page": 128,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Purple Dragon Knight (Banneret)",
+			"subclassSource": "SCAG",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"從你3級選擇這一武術範型起，你學會了如何激勵你的盟友來對抗傷害。",
+				"當你使用「回氣」特性時，可以選擇距你60尺內至多三個與你結盟的生物。只要該生物能看見或聽見你，它便恢復等同於你戰士等級的生命值。"
+			],
+			"ENG_name": "Rallying Cry"
+		},
+		{
+			"name": "限制：騎士爵位",
+			"source": "SCAG",
+			"page": 128,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Purple Dragon Knight (Banneret)",
+			"subclassSource": "SCAG",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"紫龍騎士是一個特殊的、與科米爾地區的騎士繫結的範型。",
+				"如果你想把它用在其他的戰役模組或者是除了紫龍騎士團以外的軍閥模型中，請使用旗將（Banneret）作為這一範型的名稱。"
+			],
+			"ENG_name": "Restriction: Knighthood"
+		},
+		{
+			"name": "皇家特使",
+			"source": "SCAG",
+			"page": 128,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Purple Dragon Knight (Banneret)",
+			"subclassSource": "SCAG",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"紫龍騎士擔當著科米爾王室的外交特使的身份。地位顯赫的騎士們被認為舉止應當優雅。",
+				"從7級起，你熟練於{@skill Persuasion||遊說}技能。如果你已經對這項技能熟練，你可以改為以下一項技能熟練中的一項：{@skill Animal Handling||馴獸}、{@skill Insight||洞悉}、{@skill Intimidation||威嚇}、{@skill Performance||表演}。",
+				"你進行任何使用{@skill Persuasion||遊說}的屬性檢定時，熟練加值都會加倍。不論你從此特性獲得哪一項技能熟練，都能得到此增益。"
+			],
+			"ENG_name": "Royal Envoy"
+		},
+		{
+			"name": "振奮之潮",
+			"source": "SCAG",
+			"page": 128,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Purple Dragon Knight (Banneret)",
+			"subclassSource": "SCAG",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"從10級起，當你使用「動作如潮」特性時，可以選擇距你60尺內一個與你結盟的生物。只要該生物能看見或聽見你，它便可以用反應進行一次近戰或遠端武器攻擊。",
+				"從18級起，你可以選擇兩個在你周圍60尺範圍內的對你友好的生物，而不侷限於一個。"
+			],
+			"ENG_name": "Inspiring Surge"
+		},
+		{
+			"name": "意志壁壘",
+			"source": "SCAG",
+			"page": 128,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Purple Dragon Knight (Banneret)",
+			"subclassSource": "SCAG",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"從15級起，你可以將「不屈」特性的增益延伸給盟友。當你決定使用「不屈」重擲智力、感知或魅力豁免，且未陷入{@condition incapacitated||失能}時，可以選擇距你60尺內一個對相同效果豁免失敗的盟友。若該生物能看見或聽見你，它可以重擲該豁免，且必須使用新的結果。"
+			],
+			"ENG_name": "Bulwark"
+		},
+		{
+			"name": "振奮之潮",
+			"source": "SCAG",
+			"page": 128,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Purple Dragon Knight (Banneret)",
+			"subclassSource": "SCAG",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"從18級起，你可以選擇兩個在你周圍60尺範圍內的對你友好的生物，而不侷限於一個。"
+			],
+			"ENG_name": "Inspiring Surge"
+		},
+		{
+			"name": "庇護力場",
+			"source": "TCE",
+			"page": 42,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "TCE",
+			"level": 3,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"當你或者另一個對你30尺內可見的生物受到傷害，你可以用反應消耗一枚靈能骰，對其降低等同於靈能骰骰出的數值加你的智力調整值的傷害（至少減少1點），如同你創造了一面瞬間的念力盾牌。"
+			],
+			"ENG_name": "Protective Field"
+		},
+		{
+			"name": "靈能武士",
+			"source": "TCE",
+			"page": 42,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "TCE",
+			"level": 3,
+			"entries": [
+				"覺醒了內在心靈力量的靈能戰士使用灌注靈能力量的武器攻擊、念力鞭撻和靈能屏障來強化自己肉體力量的戰士。很多吉斯洋基人受訓成為這樣的戰士，一些極度自律的高等精靈也會這麼做。在艾伯倫的世界中，許多年輕的離夢人（kalashtar）夢想著成為靈能武士。",
+				"作為一個靈能武士，你必須透過極度的自律來磨礪靈能力量，在一個大師的指導下覺醒，或在一個學院中精進對於靈能粉塵化為武器或盾牌力量的掌握。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Psionic Power|Fighter||Psi Warrior|TCE|3"
+				}
+			],
+			"ENG_name": "Psi Warrior"
+		},
+		{
+			"name": "靈能打擊",
+			"source": "TCE",
+			"page": 42,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "TCE",
+			"level": 3,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"你可以用靈能驅動你的武器。每個你的回合一次，當你擊中並對30尺以內的目標造成武器傷害，你可以立即消耗一枚靈能骰，對目標造成等同於靈能骰骰出的數值加你的智力調整值的力場傷害。"
+			],
+			"ENG_name": "Psionic Strike"
+		},
+		{
+			"name": "念力控物",
+			"source": "TCE",
+			"page": 42,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "TCE",
+			"level": 3,
+			"entries": [
+				"你可以用意念移動一個物體或生物。你可以使用一個動作選中一個最多大型的物體或一個除你以外的自願生物。如果你可以看見目標且目標在你30尺範圍內，你就可以將其移動至多30尺至另一個對你可見的未被佔據的空間內。另外，如果目標是一個微型物件，你可以從你的手中給出或收回。無論採取哪種方式，你都可以或水平、或垂直、或任意方向地移動它。當你使用該異能後，直到你完成一次短休或長休為止你都不能再次使用它。你也可以消耗一枚靈能骰來再次使用該異能。"
+			],
+			"ENG_name": "Telekinetic Movement"
+		},
+		{
+			"name": "靈能力量",
+			"source": "TCE",
+			"page": 42,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級靈能武士特性}",
+				"你內心擁有一個靈能力量的源泉。這股能量表現為每個{@dice d6}的靈能骰。你擁有兩倍熟練加值的靈能骰數量，且它們為你所擁有的各種心靈異能提供能量，詳情如下。",
+				"你在使用一些能力時需要消耗靈能骰，如異能描述中所述，如果一些異能在你的靈能骰全部擲完後還需要你使用一個靈能骰，你就不能使用該異能。你可以在完成一次長休後恢復所有已使用的靈能骰。此外，你可以使用一個附贈動作重新獲得一個已使用的靈能骰，但你在完成一次短休或長休之前不能再次獲得。",
+				"當你達到此職業的特定等級時，你的靈能骰大小有所增長：第5級({@dice d8})，第11級({@dice d10})，第17級({@dice d12})。",
+				"可以在以下異能使用你的靈能骰：",
+				{
+					"type": "options",
+					"style": "list-hang-notitle",
+					"entries": [
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Protective Field|Fighter|PHB|Psi Warrior|TCE|3"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Psionic Strike|Fighter|PHB|Psi Warrior|TCE|3"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Telekinetic Movement|Fighter|PHB|Psi Warrior|TCE|3"
+						}
+					]
+				}
+			],
+			"ENG_name": "Psionic Power"
+		},
+		{
+			"name": "靈力躍動",
+			"source": "TCE",
+			"page": 42,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "TCE",
+			"level": 7,
+			"entries": [
+				"你可以使用一個附贈動作用你的意志來驅使你的身體。你獲得等同於兩倍步行速度的飛行速度直到該回合結束。當你使用該異能後，直到你完成一次短休或長休為止你都不能再次使用它。你也可以消耗一枚靈能骰來再次使用該異能。"
+			],
+			"ENG_name": "Psi-Powered Leap"
+		},
+		{
+			"name": "念力突刺",
+			"source": "TCE",
+			"page": 42,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "TCE",
+			"level": 7,
+			"entries": [
+				"當你使用靈能打擊對一個目標造成傷害時，你可以使目標進行一次力量豁免來對抗DC等於8+你的熟練加值+你的智力調整值。如果豁免失敗，你可以將目標擊倒（{@condition prone||倒地}）或者將其在任意方向水平移動至多10英尺。"
+			],
+			"ENG_name": "Telekinetic Thrust"
+		},
+		{
+			"name": "念力擅長",
+			"source": "TCE",
+			"page": 42,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "TCE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"{@i 7級靈能武士特性}",
+				"你已經掌握了使用念力異能的新方式，如下所示。",
+				{
+					"type": "options",
+					"style": "list-hang-notitle",
+					"entries": [
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Psi-Powered Leap|Fighter|PHB|Psi Warrior|TCE|7"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Telekinetic Thrust|Fighter|PHB|Psi Warrior|TCE|7"
+						}
+					]
+				}
+			],
+			"ENG_name": "Telekinetic Adept"
+		},
+		{
+			"name": "意念守護",
+			"source": "TCE",
+			"page": 42,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "TCE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10級靈能武士特性}",
+				"被靈能力量沐浴的你，意念得到增強。你獲得心靈傷害的抗性。此外，如果你在你的回合開始時處於{@condition charmed||魅惑}或者{@condition frightened||恐慌}的狀態，你可以消耗一個靈能骰並結束自己身上全部包含這些狀態的效應。"
+			],
+			"ENG_name": "Guarded Mind"
+		},
+		{
+			"name": "壁壘之力",
+			"source": "TCE",
+			"page": 42,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "TCE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"{@i 15級靈能武士特性}",
+				"你可以使用念力庇護你自己和其他人。你可以使用一個附贈動作選擇數個30尺範圍內你可見生物（可以包括你），其數量等同於你的智力調整值（最少1個生物）。每個被選中的生物獲得一分鐘{@quickref Cover||3||半身掩護}的保護，該保護將會在你{@condition incapacitated||失能}時提前結束。",
+				"當你使用此附贈動作後，直到你完成一次長休為止你都不能再次使用它。你也可以消耗一枚靈能骰來再次使用它。"
+			],
+			"ENG_name": "Bulwark of Force"
+		},
+		{
+			"name": "念力宗師",
+			"source": "TCE",
+			"page": 42,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "TCE",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"{@i 18級靈能武士特性}",
+				"你用意念移動生物和物體的能力無人能及。你可以在無需任何法術成分的情況下使用法術 {@spell telekinesis||心靈遙控} ，你施展這一法術的施法屬性為智力。在每一個你對該法術維持專注的回合，包括你使用它的回合，你都可以使用附贈動作來進行一次武器攻擊。",
+				"每當你使用以特性施展此法術，直到你完成一次長休為止你都不能再次使用它。你也可以消耗一枚靈能骰來再次施展它。"
+			],
+			"ENG_name": "Telekinetic Master"
+		},
+		{
+			"name": "符文騎士",
+			"source": "TCE",
+			"page": 44,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Rune Knight",
+			"subclassSource": "TCE",
+			"level": 3,
+			"entries": [
+				"符文騎士使用超自然符文和沿襲於遠古巨人傳統的力量來增強他們的威能。在任何一個巨人家族中，符文切割者隨處可見，並且你很可能直接或間接地從這樣一個神秘的工匠那裡學到了你的方法。無論你是在山丘或洞穴中發現了巨人的雕刻藝術；跟從賢者研習符文；或是親自和巨人會面，你研究巨人的工藝並學會了如何使用魔法符文來增強你的裝備。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bonus Proficiencies|Fighter||Rune Knight|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Rune Carver|Fighter||Rune Knight|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Giant's Might|Fighter||Rune Knight|TCE|3"
+				}
+			],
+			"ENG_name": "Rune Knight"
+		},
+		{
+			"name": "額外熟練",
+			"source": "TCE",
+			"page": 44,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Rune Knight",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級符文騎士特性}",
+				"你獲得{@item smith's tools|PHB|鐵匠工具}的熟練項，並且學會說、讀、寫{@language Giant||巨人語}。"
+			],
+			"ENG_name": "Bonus Proficiencies"
+		},
+		{
+			"name": "巨人之力",
+			"source": "TCE",
+			"page": 44,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Rune Knight",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級符文騎士特性}",
+				"你已經學會了如何使用巨人之力灌注自身。你可以使用一個附贈動作，魔法性地獲得以下能力，持續一分鐘。",
+				{
+					"type": "list",
+					"items": [
+						"如果你的體型小於大型，你和你所穿戴的所有物品一起變為大型。如果你缺少變為大型的空間，則你的體型不會發生變化。",
+						"你進行力量檢定和力量豁免時具有優勢。",
+						"你的每回合內一次，你的武器攻擊或徒手打擊可以在擊中後對目標造成額外{@damage 1d6}的傷害。"
+					]
+				},
+				"你能使用本特性的次數等於你的熟練加值。完成一次長休後，你重獲所有已消耗的使用次數。"
+			],
+			"ENG_name": "Giant's Might"
+		},
+		{
+			"name": "符文雕刻者",
+			"source": "TCE",
+			"page": 44,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Rune Knight",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級符文騎士特性}",
+				"你可以使用魔法符文來增強你的裝備。你可以從下列的被描述的符文當中，選擇並學會兩個符文，且每當你在此職業中升一級，你可以從此特性中選擇一個不同的符文來替換一個你已知的符文。當你達到特定的職業等級，你可以學會更多的符文，具體數量如下表所示。",
+				"每當你完成了一次長休時，你可以接觸數量等於你已知符文數物品，並在每個物品上銘刻不同的符文。符合條件的物品必須為一把武器、一套盔甲、一面盾牌、一件首飾、或者任何其他你可以穿著或手持的物品。你的符文會保留在物品上直到你完成一次長休，且一件物品同時只能承載你的一個符文。",
+				{
+					"type": "table",
+					"caption": "已知符文",
+					"colLabels": [
+						"戰士等級",
+						"符文數量"
+					],
+					"colStyles": [
+						"col-6 text-center",
+						"col-6 text-center"
+					],
+					"rows": [
+						[
+							"3級",
+							"2"
+						],
+						[
+							"7級",
+							"3"
+						],
+						[
+							"10級",
+							"4"
+						],
+						[
+							"15級",
+							"5"
+						]
+					]
+				},
+				"當你研習符文時，下列的符文可供你選擇。如果一個符文具有等級需求，那麼你的戰士等級必須達到相應等級才能研習該符文。如果一個符文需要透過豁免檢定，你的符文魔法豁免DC等於8+你的熟練加值+你的體質調整值。",
+				{
+					"type": "options",
+					"count": 2,
+					"entries": [
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Cloud Rune|TCE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Fire Rune|TCE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Frost Rune|TCE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Stone Rune|TCE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Hill Rune|TCE",
+							"name": "山丘符文(7級或更高)",
+							"ENG_name": "Hill Rune (7th Level or Higher)"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Storm Rune|TCE",
+							"name": "風暴符文(7級或更高)",
+							"ENG_name": "Storm Rune (7th Level or Higher)"
+						}
+					]
+				}
+			],
+			"ENG_name": "Rune Carver"
+		},
+		{
+			"name": "額外符文已知",
+			"source": "TCE",
+			"page": 44,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Rune Knight",
+			"subclassSource": "TCE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"{@i 7級符文騎士特性}",
+				"你學會了一個額外的符文。"
+			],
+			"ENG_name": "Additional Rune Known"
+		},
+		{
+			"name": "符文之盾",
+			"source": "TCE",
+			"page": 44,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Rune Knight",
+			"subclassSource": "TCE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"{@i 7級符文騎士特性}",
+				"你學會了啟用你的符文魔法來保護你的盟友。當另一個60尺內且對你可見的生物被一次攻擊檢定命中，你可以使用一個反應來強迫攻擊者重新投擲{@dice d20}並採用新的攻擊檢定結果。",
+				"你可以使用此能力的次數等同於你的熟練加值。當你完成一次長休後，你重獲全部已消耗的使用次數。"
+			],
+			"ENG_name": "Runic Shield"
+		},
+		{
+			"name": "額外符文已知",
+			"source": "TCE",
+			"page": 44,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Rune Knight",
+			"subclassSource": "TCE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10級符文騎士特性}",
+				"你學會了一個額外的符文。"
+			],
+			"ENG_name": "Additional Rune Known"
+		},
+		{
+			"name": "奇偉身軀",
+			"source": "TCE",
+			"page": 44,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Rune Knight",
+			"subclassSource": "TCE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10級符文騎士特性}",
+				"符文的魔力永久性的改變了你。當你獲得該特性時，投擲{@dice 3d4}。你的身高增加該骰結果的英寸數。",
+				"此外，你的巨人之力特性造成的額外傷害提高至{@dice 1d8}。"
+			],
+			"ENG_name": "Great Stature"
+		},
+		{
+			"name": "額外符文已知",
+			"source": "TCE",
+			"page": 44,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Rune Knight",
+			"subclassSource": "TCE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"{@i 15級符文騎士特性}",
+				"你學會了一個額外的符文。"
+			],
+			"ENG_name": "Additional Rune Known"
+		},
+		{
+			"name": "符文大師",
+			"source": "TCE",
+			"page": 44,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Rune Knight",
+			"subclassSource": "TCE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"{@i 15級符文騎士特性}",
+				"你可以對每個你在符文雕刻者特性中已知的符文啟用兩次，而不是一次，且你可以在完成一次短休或長休之後恢復所有已使用的次數。"
+			],
+			"ENG_name": "Master of Runes"
+		},
+		{
+			"name": "符文主宰",
+			"source": "TCE",
+			"page": 44,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Rune Knight",
+			"subclassSource": "TCE",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"{@i 18級符文騎士特性}",
+				"你學會增強你對於符文力量的轉換。因此，你的巨人之力特性造成的額外傷害提高至{@dice 1d10}。此外，當你使用該特性時，你可以使體型變為巨型而非大型，且當你變為巨型體型時，你的觸及範圍會提高5尺。"
+			],
+			"ENG_name": "Runic Juggernaut"
+		},
+		{
+			"name": "魔射手",
+			"source": "XGE",
+			"page": 28,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"魔射手學習一種獨特的射箭方法，將魔法注入到攻擊中併產生超自然效果的獨特精靈箭技。魔射手是精靈中最精銳的戰士。他們會駐足守望精靈國土的邊界，致力於觀察那些入侵者並在那些怪物和入侵者來到精靈的居住地之前用注魔箭矢擊敗他們。在這數個世紀之間，這種精靈箭技已經被其他能夠在魔法和箭藝中找到平衡的種族習得。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Archer Lore|Fighter||Arcane Archer|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Shot|Fighter||Arcane Archer|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Shot Options|Fighter||Arcane Archer|XGE|3"
+				}
+			],
+			"ENG_name": "Arcane Archer"
+		},
+		{
+			"name": "魔射手學識",
+			"source": "XGE",
+			"page": 28,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"在3級時，你熟知那些魔法理論或某些自然之秘——那些通常只為精靈軍事傳統的研習者準備的學識。你獲得{@skill Arcana||奧秘}技能與{@skill Nature||自然}技能之一的熟練項（由你選擇），且你習得戲法{@spell prestidigitation||魔法伎倆}與戲法{@spell druidcraft||德魯伊伎倆}之一（由你選擇）。"
+			],
+			"ENG_name": "Arcane Archer Lore"
+		},
+		{
+			"name": "祕法射擊",
+			"source": "XGE",
+			"page": 28,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"在3級時，你學會了在射擊時為箭矢施放一些特殊的魔法效應。當你獲得這個特性時，你習得兩種由你選擇的奧術射擊選項（見下方的\"奧術射擊選項\"一節）。",
+				"每回合一次，當你在{@action Attack||攻擊}動作中，來用短弓或者長弓射出箭矢時，你可以為你的箭矢挑選一個你擁有的奧術射擊選項並適用。除非一個選項寫明瞭它不需要攻擊檢定，否則你均可以在射出箭矢命中生物後再決定是否使用選項。你擁有兩次使用此能力的機會，而且你在完成一次短休或長休後重新獲得所有已被消耗的使用次數。",
+				"當你到達特定戰士等級時，你可以習得一個額外的奧術射擊選項：7級，10級，15級和18級。而所有的選項在你戰士等級達到18級時將會獲得強化。"
+			],
+			"ENG_name": "Arcane Shot"
+		},
+		{
+			"name": "祕法射擊選項",
+			"source": "XGE",
+			"page": 28,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"奧術射擊特性允許你在特定等級時選擇數個選項。以下選項以首字母順序排列。它們均為都是魔法性的效應，且每一個選項都對應著一個法術學派。",
+				"如果一個選項需要進行豁免投擲，你的奧術射擊豁免投擲DC的計算方式如下：",
+				{
+					"type": "abilityDc",
+					"name": "祕法射擊",
+					"attributes": [
+						"int"
+					],
+					"ENG_name": "Arcane Shot"
+				},
+				{
+					"type": "options",
+					"count": 2,
+					"entries": [
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Banishing Arrow|XGE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Beguiling Arrow|XGE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Bursting Arrow|XGE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Enfeebling Arrow|XGE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Grasping Arrow|XGE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Piercing Arrow|XGE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Seeking Arrow|XGE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Shadow Arrow|XGE"
+						}
+					]
+				}
+			],
+			"ENG_name": "Arcane Shot Options"
+		},
+		{
+			"name": "額外祕法射擊選項",
+			"source": "XGE",
+			"page": 28,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "XGE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"當你達到7級時，你可以習得一個額外的奧術射擊選項。"
+			],
+			"ENG_name": "Additional Arcane Shot Option"
+		},
+		{
+			"name": "曲射",
+			"source": "XGE",
+			"page": 28,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "XGE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"在7級時，你學會如何引導偏離的箭矢到新的目標上。當你使用魔法箭矢進行的攻擊檢定未命中時，你可以用附贈動作來指定距原本目標不超過60尺的另一目標，對其重骰本次攻擊檢定。"
+			],
+			"ENG_name": "Curving Shot"
+		},
+		{
+			"name": "魔法箭矢",
+			"source": "XGE",
+			"page": 28,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "XGE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"在7級時，你獲得了為箭矢中注入魔力的能力。當你用短弓或長弓射出非魔法箭矢時，你都可以將其轉變為魔法箭矢，用以克服對非魔法攻擊與傷害的抗性或免疫。魔法將在箭矢命中或未命中目標後立刻消失。"
+			],
+			"ENG_name": "Magic Arrow"
+		},
+		{
+			"name": "額外祕法射擊選項",
+			"source": "XGE",
+			"page": 28,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "XGE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"當你達到10級時，你可以習得一個額外的奧術射擊選項。。"
+			],
+			"ENG_name": "Additional Arcane Shot Option"
+		},
+		{
+			"name": "額外祕法射擊選項",
+			"source": "XGE",
+			"page": 28,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "XGE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"當你達到15級時，你可以習得一個額外的奧術射擊選項。。"
+			],
+			"ENG_name": "Additional Arcane Shot Option"
+		},
+		{
+			"name": "常備射擊",
+			"source": "XGE",
+			"page": 28,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "XGE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"15級起，無論戰鬥何時開始，你永遠準備著你的魔箭。投擲先攻時，如果你已耗盡你的奧術射擊使用次數，則你重獲一次使用次數。"
+			],
+			"ENG_name": "Ever-Ready Shot"
+		},
+		{
+			"name": "額外祕法射擊選項",
+			"source": "XGE",
+			"page": 28,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "XGE",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"當你達到18級時，你可以習得一個額外的奧術射擊選項。所有的選項在你戰士等級達到18級時將會獲得強化。"
+			],
+			"ENG_name": "Additional Arcane Shot Option"
+		},
+		{
+			"name": "騎兵",
+			"source": "XGE",
+			"page": 30,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Cavalier",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"這騎兵範型十分擅長乘騎作戰。他們通常出身於貴族，成長在宮廷，騎兵往往在家族中領導騎兵隊衝鋒陷陣或在國家慶典中擔任儀仗或守衛。他們學習如何在衝鋒時保護他人不受傷害，經常以保護者的身份服務於他們的長官或者弱者。他們被強迫去懲奸除惡或取得榮耀，他們中的一些戰士會為了在冒險中提升自己而離開了他們的安逸生活。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bonus Proficiency|Fighter||Cavalier|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Born to the Saddle|Fighter||Cavalier|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Unwavering Mark|Fighter||Cavalier|XGE|3"
+				}
+			],
+			"ENG_name": "Cavalier"
+		},
+		{
+			"name": "額外熟練",
+			"source": "XGE",
+			"page": 30,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Cavalier",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"當你在3級選擇此範型時，選擇以下技能之一，你獲得其熟練項：{@skill Animal Handling||馴獸}、{@skill History||歷史}、{@skill Insight||洞悉}、{@skill Performance||表演}、或{@skill Persuasion||遊說}。或者作為代替，你可以改為學會一門由你自選的語言。"
+			],
+			"ENG_name": "Bonus Proficiency"
+		},
+		{
+			"name": "生而爲騎",
+			"source": "XGE",
+			"page": 30,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Cavalier",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"3級起，你無時不刻透露著你作為騎手的精湛技藝。你為進行避免從坐騎上摔下所進行的豁免檢定具有優勢。只要你未{@condition incapacitated||失能}，當你從你的坐騎上摔落且摔落高度不超過10尺時，你能夠雙腳著陸。",
+				"此外，騎上一個生物或從騎乘生物身上下來只需要花費你5尺的移動力，而非你速度的一半。"
+			],
+			"ENG_name": "Born to the Saddle"
+		},
+		{
+			"name": "堅定印記",
+			"source": "XGE",
+			"page": 30,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Cavalier",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"第3級起，你可以威嚇對手、阻撓其攻擊，並懲罰它傷害他人的行為。當你以近戰武器攻擊命中一個生物時，可以標記該生物直到你的下回合結束。若你陷入{@condition incapacitated||失能}、死亡，或其他人標記了該生物，此效應會提前結束。",
+				"由你標記的生物位於距你5尺內時，其任何不以你為目標的攻擊檢定都具有劣勢。",
+				"此外，若由你標記的生物對你以外的任何人造成傷害，你可以在自己的下回合中用附贈動作，對該受標記生物發動一次特殊近戰武器攻擊。該攻擊檢定具有優勢；若命中，攻擊所用武器對目標額外造成等同於你戰士等級一半的傷害。",
+				"無論你標記了多少生物，此特殊攻擊的使用次數都等於你的力量調整值（至少一次）；完成一次長休後，你重獲所有已消耗的使用次數。"
+			],
+			"ENG_name": "Unwavering Mark"
+		},
+		{
+			"name": "防護戰術",
+			"source": "XGE",
+			"page": 30,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Cavalier",
+			"subclassSource": "XGE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"7級起，你學會如何抵禦向你、你的坐騎、或你周圍生物襲來的攻擊。只要你持用著一把近戰武器或一面盾牌，當你或你周圍5尺範圍內你可見的生物被一次攻擊命中時，你能以一個反應，投擲{@dice 1d8}並將骰值加入被攻擊生物的AC中，如果這次攻擊仍然命中了，則被攻擊目標將具有本次攻擊傷害的抗性。",
+				"你能夠使用該特性的次數等同於你的體質調整值次（至少1次），當你完成一次長休時，你重獲全部已被消耗的次數。"
+			],
+			"ENG_name": "Warding Maneuver"
+		},
+		{
+			"name": "堅守戰線",
+			"source": "XGE",
+			"page": 30,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Cavalier",
+			"subclassSource": "XGE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"10級起，你成為了阻擊敵人的大師。當有生物在你觸及範圍內移動了5尺或更多的距離，那個生物將會引發你的藉機攻擊。且，當你以藉機攻擊擊中了一個生物時，那個生物的速度將被降低為0，持續直至本回合結束。"
+			],
+			"ENG_name": "Hold the Line"
+		},
+		{
+			"name": "勇猛衝鋒",
+			"source": "XGE",
+			"page": 30,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Cavalier",
+			"subclassSource": "XGE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"從15級起，無論你是否乘騎著你的坐騎，你永遠能夠擊潰你的敵人。每個你的回合一次，如果你在攻擊一個生物前至少直線移動了10尺，且這次攻擊成功命中，那麼目標就必須透過一次力量豁免（{@dc 8}+你的熟練加值+你的力量調整值），豁免失敗將應擊{@condition prone||倒地} 。"
+			],
+			"ENG_name": "Ferocious Charger"
+		},
+		{
+			"name": "警戒防衛者",
+			"source": "XGE",
+			"page": 30,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Cavalier",
+			"subclassSource": "XGE",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"18級起，以你的極致警覺，你能察覺並應對一切危險。戰鬥中，你在每個其他生物的回合中可以進行一次額外的特殊反應。這一反應只能用於發動藉機攻擊，且你不能在同一回合中既使用特殊反應與又使用你原本的反應。"
+			],
+			"ENG_name": "Vigilant Defender"
+		},
+		{
+			"name": "武士",
+			"source": "XGE",
+			"page": 31,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Samurai",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"武士是一種以堅決的戰鬥意志擊潰對手的戰士。他的信念幾乎堅不可摧，擋著他道的敵人只有兩種選擇：要麼屈服，要麼戰鬥至死。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bonus Proficiency|Fighter||Samurai|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Fighting Spirit|Fighter||Samurai|XGE|3"
+				}
+			],
+			"ENG_name": "Samurai"
+		},
+		{
+			"name": "額外熟練",
+			"source": "XGE",
+			"page": 31,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Samurai",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"當你在3級選擇此範型時，選擇以下技能之一，你獲得其熟練項：{@skill History||歷史}、{@skill Insight||洞悉}、{@skill Performance||表演}、或{@skill Persuasion||遊說}。或者作為代替，你可以改為學會一門由你自選的語言。"
+			],
+			"ENG_name": "Bonus Proficiency"
+		},
+		{
+			"name": "戰鬥之魂",
+			"source": "XGE",
+			"page": 31,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Samurai",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"3級起，你在戰鬥中的氣勢能武裝你，並使你攻擊更加精準致命。在你的回合中，你可以用附贈動作為你本回合發動的任何武器攻擊提供優勢。此外，使用這一附贈動作時，你還能獲得5點臨時生命值。臨時生命的數值會在你到達特定戰士等級後增加，在10級後增加至10點，在15級後增加至15點。",
+				"你能使用該特性三次，而完成長休後，你重獲所有已被消耗的使用次數。"
+			],
+			"ENG_name": "Fighting Spirit"
+		},
+		{
+			"name": "典雅侍臣",
+			"source": "XGE",
+			"page": 31,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Samurai",
+			"subclassSource": "XGE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"7級起，你對於細節的嚴謹和專注讓你能勝任各種公共場合。當你進行魅力（{@skill Persuasion||遊說}）檢定時，本次檢定獲得等同於你感知調整值的加值。",
+				"你的自控能力也讓你獲得了感知豁免的熟練。如果你已經有此熟練項，作為代替，你獲得智力豁免、或魅力豁免的熟練（由你選擇）。"
+			],
+			"ENG_name": "Elegant Courtier"
+		},
+		{
+			"name": "不懈戰魂",
+			"source": "XGE",
+			"page": 31,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Samurai",
+			"subclassSource": "XGE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"10級起，當你投擲先攻時，若你戰意的使用次數已被用盡時，你將重獲一次使用次數。"
+			],
+			"ENG_name": "Tireless Spirit"
+		},
+		{
+			"name": "迅捷打擊",
+			"source": "XGE",
+			"page": 31,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Samurai",
+			"subclassSource": "XGE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"15級起，你學會了如何將精準轉化為迅捷的連擊。當你在自己回合中執行了{@action Attack||攻擊} 動作，且你在其中某次對抗某一目標的攻擊檢定中具有優勢，你就可以放棄那次檢定的那一優勢，轉而額外對那個目標發動一次攻擊作為本次攻擊動作的一部分。每回合你只能這麼做一次。"
+			],
+			"ENG_name": "Rapid Strike"
+		},
+		{
+			"name": "迴光返照",
+			"source": "XGE",
+			"page": 31,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Samurai",
+			"subclassSource": "XGE",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"18級起，你的戰意能延緩死亡的到來。如果你受到會將你的生命值降到0且不會立即殺死你的傷害時，你可以用你的反應來延緩陷入{@condition unconscious||昏迷}，且你能立刻進行一個額外的回合並打斷當前回合。如果你在這個額外回合中，以0生命值的狀態承受傷害，則仍舊如往常一樣計為一次死亡豁免失敗，且三次死亡豁免失敗依舊會殺死你。當這個額外回合結束時，如果你的生命值為0，你依舊會陷入{@condition unconscious||昏迷}。",
+				"必須完成一次長休才能再次使用該特性。"
+			],
+			"ENG_name": "Strength before Death"
+		},
+		{
+			"name": "旗將",
+			"source": "FRHoF",
+			"page": 19,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Banneret",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"{@i 用振奮人心的領導力集結同道英雄}",
+				"旗將是那些保護無辜者，並將冒險者團結在正義和自由事業中、象徵英勇無畏和領導氣概、為了正義和自由的事業而奮鬥的人中典範。許多旗將以騎士的身份，在科米爾、銀色聯邦、達馬拉、闕森塔或費倫大地上的其他地方服役。他們以流浪騎士的身份行於國度各地，在王國邊境之外與邪惡作鬥爭。",
+				"旗將依靠判斷力，勇氣和對騎士精神的堅守來引導他們打敗惡人。一個孤身行動的旗將是一個技藝高超的戰士，但當他們帶領一群盟友時，只要有一位旗將在此，即使是裝備簡陋的民兵小隊也能變成一支兇猛的戰團。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Knightly Envoy|Fighter|XPHB|Banneret|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Group Recovery|Fighter|XPHB|Banneret|FRHoF|3|FRHoF"
+				}
+			],
+			"ENG_name": "Banneret"
+		},
+		{
+			"name": "群體恢復",
+			"source": "FRHoF",
+			"page": 19,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Banneret",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"當你使用你的回氣特性來回復{@variantrule Hit Points|XPHB|生命值}時，你可以選擇等同於你魅力調整值數量（最少為1）的，在以你自身為源點30尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的盟友。每個盟友獲得等同於{@dice 1d4}+你的戰士等級的{@variantrule Hit Points|XPHB|生命值}回覆。每當你使用此能力後，直至你完成一次{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}前無法再次使用。"
+			],
+			"ENG_name": "Group Recovery"
+		},
+		{
+			"name": "騎士禮節",
+			"source": "FRHoF",
+			"page": 19,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Banneret",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"身為貴族使節的你總能維持得體的舉止。你獲得以下好處。",
+				{
+					"type": "entries",
+					"name": "理解",
+					"entries": [
+						"你可以施展法術{@spell Comprehend Languages|XPHB|通曉語言}（僅作為{@variantrule Ritual|XPHB|儀式}）。魅力是你該法術的施法屬性。"
+					],
+					"ENG_name": "Comprehension"
+				},
+				{
+					"type": "entries",
+					"name": "悟性",
+					"entries": [
+						"你從《玩家手冊》或本書第二章的語言表中習得一門語言。每當你完成一次{@variantrule Long Rest|XPHB|長休}，你可以用另一種你在過去24小時內聽過、看過或讀過的語言來代替從這個特性中學到的語言。"
+					],
+					"ENG_name": "Polyglot"
+				},
+				{
+					"type": "entries",
+					"name": "言辭",
+					"entries": [
+						"你選擇並獲得下列一項技能的熟練項：{@skill Insight|XPHB|洞悉}、{@skill Intimidation|XPHB|威嚇}、{@skill Persuasion|XPHB|遊說}、{@skill Performance|XPHB|表演}。"
+					],
+					"ENG_name": "Well Spoken"
+				}
+			],
+			"ENG_name": "Knightly Envoy"
+		},
+		{
+			"name": "團體戰術",
+			"source": "FRHoF",
+			"page": 19,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Banneret",
+			"subclassSource": "FRHoF",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"當你使用群體恢復特性後，直到你的下個回合開始，你選擇的盟友在進行{@variantrule Advantage|XPHB|D20 檢定}時具有{@variantrule D20 Test|XPHB|優勢}。"
+			],
+			"ENG_name": "Team Tactics"
+		},
+		{
+			"name": "集結如潮",
+			"source": "FRHoF",
+			"page": 19,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Banneret",
+			"subclassSource": "FRHoF",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"當你使用你的動作如潮特性時，你可以選擇等同於你魅力調整值數量（最少為1）的，在以你自身為源點30尺{@variantrule Emanation [Area of Effect]|XPHB|光環}範圍區域內的盟友。每一個你選擇的盟友都可以立即執行一次{@variantrule Reaction|XPHB|反應}來使用下列選項之一：",
+				{
+					"type": "entries",
+					"name": "攻擊",
+					"entries": [
+						"該盟友使用武器或進行一次攻擊。該盟友用武器或{@variantrule Unarmed Strike|XPHB|徒手打擊}發動一次攻擊。"
+					],
+					"ENG_name": "Attack"
+				},
+				{
+					"type": "entries",
+					"name": "移動",
+					"entries": [
+						"該盟友移動等於其{@variantrule Speed|XPHB|速度}一半的距離且不觸發{@action Opportunity Attack|XPHB|藉機攻擊}。"
+					],
+					"ENG_name": "Move"
+				}
+			],
+			"ENG_name": "Rallying Surge"
+		},
+		{
+			"name": "同築堅城",
+			"source": "FRHoF",
+			"page": 20,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Banneret",
+			"subclassSource": "FRHoF",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"當一位60尺內你可見的盟友失敗於一次豁免檢定的時候，你可以用一個個{@variantrule Reaction|XPHB|反應}並消耗掉一次你的不屈次數。該盟友可以立即重投那項豁免檢定並在此檢定中加上等同於你戰士等級的加值；他必須使用新的擲骰結果。"
+			],
+			"ENG_name": "Shared Resilience"
+		},
+		{
+			"name": "振軍將帥",
+			"source": "FRHoF",
+			"page": 20,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Banneret",
+			"subclassSource": "FRHoF",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "眾志成城",
+					"entries": [
+						"群體恢復和集結如潮特性的效應區域都變為60尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域。"
+					],
+					"ENG_name": "Bolstered Rally"
+				},
+				{
+					"type": "entries",
+					"name": "不當之勇",
+					"entries": [
+						"你{@variantrule Immunity|XPHB|免疫}於{@condition Charmed|XPHB|魅惑}和{@condition Frightened|XPHB|恐慌}狀態。"
+					],
+					"ENG_name": "Unshakable Bravery"
+				}
+			],
+			"ENG_name": "Inspiring Commander"
+		},
+		{
+			"name": "戰鬥大師",
+			"source": "XPHB",
+			"page": 93,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 戰技百般昭武藝}",
+				"戰鬥大師是研習戰鬥技藝的學者，他們勤學代代相傳的武術。那些最負盛名的戰鬥大師將苦心練就的武功與史學、藝術與理論相互結合，由此，他們往往兼備文才武略。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Student of War|Fighter|XPHB|Battle Master|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Maneuver Options|Fighter|XPHB|Battle Master|XPHB|3"
+				}
+			],
+			"ENG_name": "Battle Master"
+		},
+		{
+			"name": "戰鬥卓越",
+			"source": "XPHB",
+			"page": 93,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你的戰鬥技巧在戰場上接受了磨礪，你習得戰技並獲得一種名為卓越骰的特殊骰。",
+				{
+					"type": "entries",
+					"name": "戰技",
+					"entries": [
+						"你從{@filter 戰技選項|optionalfeatures|feature type=MV:B|source=XPHB}中習得三種自選戰技（詳見後文）。許多戰技能夠以某種方式增幅你的攻擊，而你在每次攻擊時只能應用一次戰技。",
+						"你在第 7、第 10 和第 15 級時均習得兩種自選的新戰技。習得新戰技時，你還可以額外替換一個已經習得的戰技。"
+					],
+					"ENG_name": "Maneuvers"
+				},
+				{
+					"type": "entries",
+					"name": "卓越骰",
+					"entries": [
+						"你擁有四個{@dice d8|d8s}卓越骰。卓越骰一經使用即消耗，完成{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}後恢復。",
+						"你的卓越骰在第 7（共 5 枚）和第 15 級（共 6 枚）時各增加一枚。"
+					],
+					"ENG_name": "Superiority Dice"
+				},
+				{
+					"type": "entries",
+					"name": "豁免檢定",
+					"entries": [
+						"若一個戰技需要進行一次豁免檢定，則該戰技的豁免DC等於 8 + 你的力量或敏捷調整值（由你選擇）+ 你的{@variantrule Proficiency|XPHB|熟練加值}。"
+					],
+					"ENG_name": "Saving Throws"
+				}
+			],
+			"ENG_name": "Combat Superiority"
+		},
+		{
+			"name": "戰技選項",
+			"source": "XPHB",
+			"page": 94,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"此處戰技按字母順序排列。",
+				{
+					"type": "options",
+					"count": 3,
+					"entries": [
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Ambush|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Bait and Switch|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Commander's Strike|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Commanding Presence|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Disarming Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Distracting Strike|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Evasive Footwork|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Feinting Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Goading Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Lunging Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Maneuvering Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Menacing Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Parry|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Precision Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Pushing Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Rally|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Riposte|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Sweeping Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Tactical Assessment|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Trip Attack|XPHB"
+						}
+					]
+				}
+			],
+			"ENG_name": "Maneuver Options"
+		},
+		{
+			"name": "戰爭學徒",
+			"source": "XPHB",
+			"page": 94,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你選擇一種{@item Artisan's Tools|XPHB|工匠工具}並獲得其熟練。此外，你選擇一項戰士 1 級可用的技能，並獲得該技能的熟練。"
+			],
+			"ENG_name": "Student of War"
+		},
+		{
+			"name": "知己知彼",
+			"source": "XPHB",
+			"page": 94,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以獲知一名位於你 30 尺內你可見的生物的長處和短處。你知曉該生物是否具有抗性、免疫或易傷，若有，則你知曉其具體內容是什麼。",
+				"此特性一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。你也可以消耗 1 粒卓越骰（無需動作）重置此特性的使用權。"
+			],
+			"ENG_name": "Know Your Enemy"
+		},
+		{
+			"name": "精通卓越戰技",
+			"source": "XPHB",
+			"page": 94,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"你的卓越骰變為{@dice d10}。"
+			],
+			"ENG_name": "Improved Combat Superiority"
+		},
+		{
+			"name": "頑強",
+			"source": "XPHB",
+			"page": 94,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"每回合一次，當你使用一項戰技時，你可以不消耗卓越骰，而是擲{@dice 1d8}並使用結果作為代替。"
+			],
+			"ENG_name": "Relentless"
+		},
+		{
+			"name": "究極戰技",
+			"source": "XPHB",
+			"page": 94,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"你的卓越骰變為{@dice d12}。"
+			],
+			"ENG_name": "Ultimate Combat Superiority"
+		},
+		{
+			"name": "勇士",
+			"source": "XPHB",
+			"page": 96,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 勇冠三軍彰英豪}",
+				"在對勝利的不懈追求中，勇士專注於發展自身的武勇。他們透過嚴酷的訓練鍛冶出卓絕的肉體以直面打擊，跨越險境，尋覓榮譽。無論是在角鬥場之中還是血染的疆場上，勇士都只為奪得勝利之桂冠而奮戰。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Improved Critical|Fighter|XPHB|Champion|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Remarkable Athlete|Fighter|XPHB|Champion|XPHB|3"
+				}
+			],
+			"ENG_name": "Champion"
+		},
+		{
+			"name": "強化重擊",
+			"source": "XPHB",
+			"page": 96,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"你使用武器或{@variantrule Unarmed Strike|XPHB|徒手打擊}進行的攻擊檢定，在{@dice d20}擲出19或20時便能造成{@variantrule Critical Hit|XPHB|重擊}。"
+			],
+			"ENG_name": "Improved Critical"
+		},
+		{
+			"name": "運動健將",
+			"source": "XPHB",
+			"page": 96,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"得益於你平日的體育鍛煉，你能獲得一些{@variantrule Advantage|XPHB|優勢}，即你在{@variantrule Initiative|XPHB|先攻}檢定和力量（{@skill Athletics|XPHB|運動}）檢定中具有優勢。",
+				"此外，當你造成一次{@variantrule Critical Hit|XPHB|重擊}時，你可立即移動至多等於你{@variantrule Speed|XPHB|速度}一半的距離，這次移動不會引發{@action Opportunity Attack|XPHB|藉機攻擊}。"
+			],
+			"ENG_name": "Remarkable Athlete"
+		},
+		{
+			"name": "額外戰鬥風格",
+			"source": "XPHB",
+			"page": 96,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"你獲得另一個自選的{@filter 戰鬥風格專長|feats|category=FS}。"
+			],
+			"ENG_name": "Additional Fighting Style"
+		},
+		{
+			"name": "勇戰英豪",
+			"source": "XPHB",
+			"page": 96,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"戰鬥的艱難只會使你朝勝利更進一步。在戰鬥中，若你回合開始時沒有{@variantrule Heroic Inspiration|XPHB|英雄激勵}，你可以獲得之。"
+			],
+			"ENG_name": "Heroic Warrior"
+		},
+		{
+			"name": "卓越重擊",
+			"source": "XPHB",
+			"page": 96,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "XPHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"你使用武器或徒手打擊進行的攻擊檢定在{@dice d20}中擲出 18-20 時即可造成{@variantrule Critical Hit|XPHB|重擊}。"
+			],
+			"ENG_name": "Superior Critical"
+		},
+		{
+			"name": "生還者",
+			"source": "XPHB",
+			"page": 96,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "XPHB",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"你持續戰鬥的能力達到巔峰，賦予了你以下好處：",
+				{
+					"type": "entries",
+					"name": "反抗死亡",
+					"entries": [
+						"你進行{@variantrule Death Saving Throw|XPHB|死亡豁免檢定}時具有{@variantrule Advantage|XPHB|優勢}。此外，當你在{@variantrule Death Saving Throw|XPHB|死亡豁免檢定}擲出18–20時，會獲得如同擲出20的好處。"
+					],
+					"ENG_name": "Defy Death"
+				},
+				{
+					"type": "entries",
+					"name": "英氣風發",
+					"entries": [
+						"你的回合開始時，若你已{@status Bloodied|XPHB|浴血}且擁有至少 1 點{@variantrule Hit Points|XPHB|生命值}，你恢復等同於5加上你的體質調整值的{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Heroic Rally"
+				}
+			],
+			"ENG_name": "Survivor"
+		},
+		{
+			"name": "奧法騎士",
+			"source": "XPHB",
+			"page": 96,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 奧法遍身附劍戟}",
+				"奧法騎士將所有戰士共通的高超武技與對魔法的精妙研究融合貫通。法術補足並拓展了他們的武技，為甲冑提供額外的保護，並使他們能夠使用爆發性的魔法同時與多個敵人鏖戰。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Spellcasting|Fighter|XPHB|Eldritch Knight|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "War Bond|Fighter|XPHB|Eldritch Knight|XPHB|3"
+				}
+			],
+			"ENG_name": "Eldritch Knight"
+		},
+		{
+			"name": "施法",
+			"source": "XPHB",
+			"page": 96,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你學會了如何施展法術。施法規則見{@book 第七章|XPHB|7}。下文將詳述如何將這些規則應用於奧法騎士。",
+				{
+					"type": "entries",
+					"name": "戲法",
+					"entries": [
+						"你知曉兩道你從{@filter 法師法術列表|spells|class=Wizard}中選擇的戲法。推薦選擇{@spell Ray of Frost|XPHB|冷凍射線}和{@spell Shocking Grasp|XPHB|電爪}。每當你獲得一個戰士等級時，你都能從此特性的戲法中選擇其一替換為另一道你從{@filter 法師法術列表|spells|class=Wizard}中選擇的戲法。",
+						"當你的戰士等級到達10級時，你能另選一道法師戲法並習得。"
+					],
+					"ENG_name": "Cantrips"
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "法術位",
+							"entries": [
+								"奧法騎士施法表顯示了你可用於施展一環及以上法術的法術位數量。你在完成一次{@variantrule Long Rest|XPHB|長休}時恢復所有已消耗的法術位。"
+							],
+							"ENG_name": "Spell Slots"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "1環及以上的準備法術",
+							"entries": [
+								"你準備一份可供此特性施展的1環及更高環階法術列表。起始時，從{@filter 法師法術列表|spells|class=Wizard}中選擇三道1環法術。推薦選擇{@spell Burning Hands|XPHB|燃燒之手}、{@spell Jump|XPHB|跳躍術}和{@spell Shield|XPHB|護盾術}。",
+								"你列表中的法術數量會隨戰士等級提高，如奧法騎士施法表的準備法術欄所示。每當該數量增加時，從{@filter 法師法術列表|spells|class=Wizard}中選擇額外法術，直到列表中的法術數量等於表中數量；所選法術必須是你擁有相應環階法術位的法術。例如，若你是7級戰士，準備列表可以任意組合五道1環或2環法師法術。"
+							],
+							"ENG_name": "Prepared Spells of Level 1+"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "更換你的準備法術",
+							"entries": [
+								"每當你獲得一個戰士等級，就可以將你準備列表上的一道法術替換為另一道法師法術，你必須擁有替換後法術對應環階的法術位才可以替換。"
+							],
+							"ENG_name": "Changing your Prepared Spells"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "施法關鍵屬性",
+							"entries": [
+								"你法師法術的施法屬性是智力。"
+							],
+							"ENG_name": "Spellcasting Ability"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "施法法器",
+							"entries": [
+								"你可以使用{@item Arcane Focus|XPHB|奧術法器}作為你法師法術的{@variantrule Spellcasting Focus|XPHB|法器}。"
+							],
+							"ENG_name": "Spellcasting Focus"
+						}
+					]
+				}
+			],
+			"ENG_name": "Spellcasting"
+		},
+		{
+			"name": "戰爭聯結",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你習得一種讓你和你的武器建立魔法聯結的儀式。你執行持續一小時的儀式，且可在{@variantrule Short Rest|XPHB|短休}時進行。整個儀式過程中武器必須在你的觸及範圍內，直至儀式結束前，該武器必須一直在你觸手可及的範圍內，以完成聯結。若該武器已與另一名戰士建立聯結，或是一把已被他人同調的魔法物品，儀式則會失敗。",
+				"聯結建立後，只要你不處於{@condition Incapacitated|XPHB|失能}狀態，使用聯結武器時就不會被繳械。如果聯結武器與你處於同一位面，則你可以用一個{@variantrule Bonus Action|XPHB|附贈動作}使其立即傳送到你手中。",
+				"你至多可以擁有兩把建立聯結的武器，但一個{@variantrule Bonus Action|XPHB|附贈動作}只能召喚一把武器。如果你試圖和第三把武器建立聯結，則必須與已經聯結的兩把武器其中的一把取消聯結。"
+			],
+			"ENG_name": "War Bond"
+		},
+		{
+			"name": "戰爭魔法",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"當你在自己回合執行{@action Attack|XPHB|攻擊}動作時，你可以將該動作攻擊中的一次攻擊替換為施展一道施法時間為動作的你的法師戲法。"
+			],
+			"ENG_name": "War Magic"
+		},
+		{
+			"name": "魔能打擊",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"你習得用武器攻擊削弱敵人對你法術抵抗能力的方法。當你使用一把武器命中一個生物後，直到你的下個回合結束為止，該生物在對抗你法術所進行的下一次豁免檢定中具有{@variantrule Disadvantage|XPHB|劣勢}。"
+			],
+			"ENG_name": "Eldritch Strike"
+		},
+		{
+			"name": "祕法衝鋒",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "XPHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"你可以在使用動作如潮時傳送至多 30 尺至一個你能看到的未被佔據的空間。你可以在使用動作如潮提供的額外動作之前或之後進行傳送。"
+			],
+			"ENG_name": "Arcane Charge"
+		},
+		{
+			"name": "精通戰爭魔法",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "XPHB",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"當你在自己的回合執行{@action Attack|XPHB|攻擊}動作時，可以將其中兩次攻擊替換為施展你的一道1環或2環法師法術；該法術的施法時間必須為一個動作。"
+			],
+			"ENG_name": "Improved War Magic"
+		},
+		{
+			"name": "靈能武士",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 靈能庇體顯神威}",
+				"靈能武士喚醒他們心靈中的力量以增強自身的體魄，他們將這種被稱為靈能的力量注入於刀兵之中，用念動力鞭笞他們的敵人，並以精神力鑄造無形壁壘抵禦攻擊。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Psionic Power|Fighter|XPHB|Psi Warrior|XPHB|3"
+				}
+			],
+			"ENG_name": "Psi Warrior"
+		},
+		{
+			"name": "靈能力量",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你內心擁有一個靈能力量的源泉。這股能量表現為靈能骰，它是你從此子職中獲得的可消耗能力。靈能武士靈能骰表展示了你在達到特定戰士等級後的靈能骰大小與數量。",
+				{
+					"type": "table",
+					"caption": "靈能武士靈能骰",
+					"colLabels": [
+						"戰士等級",
+						"骰子大小",
+						"數值"
+					],
+					"colStyles": [
+						"col-4 text-center",
+						"col-4 text-center",
+						"col-4 text-center"
+					],
+					"rows": [
+						[
+							"3",
+							"{@dice D6}",
+							"4"
+						],
+						[
+							"5",
+							"{@dice D8}",
+							"6"
+						],
+						[
+							"9",
+							"{@dice D8}",
+							"8"
+						],
+						[
+							"11",
+							"{@dice D10}",
+							"8"
+						],
+						[
+							"13",
+							"{@dice D10}",
+							"10"
+						],
+						[
+							"17",
+							"{@dice D12}",
+							"12"
+						]
+					]
+				},
+				"此子職中所有需要使用靈能骰的特性只能使用你從該子職獲得的靈能骰。你在使用某些能力時需要消耗靈能骰，如異能描述中所述，如果某個異能在你的靈能骰全部消耗完後還需要你使用一個靈能骰，你就不能使用該異能。",
+				"你可以在完成{@variantrule Short Rest|XPHB|短休}時重獲一枚已消耗的靈能骰，完成{@variantrule Long Rest|XPHB|長休}時重獲所有已消耗的靈能骰。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Protective Field|Fighter|XPHB|Psi Warrior|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Psionic Strike|Fighter|XPHB|Psi Warrior|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Telekinetic Movement|Fighter|XPHB|Psi Warrior|XPHB|3"
+				}
+			],
+			"ENG_name": "Psionic Power"
+		},
+		{
+			"name": "庇護力場",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"當你或者另一個位於你 30 尺內的你可見的生物受到傷害時，你可以執行一個{@variantrule Reaction|XPHB|反應}來消耗一枚靈能骰，對其降低等同於靈能骰骰出的數值加你的智力調整值的傷害（最少 1 點），如同你創造了一面瞬間的念力盾牌。"
+			],
+			"ENG_name": "Protective Field"
+		},
+		{
+			"name": "靈能打擊",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"你可以用靈能驅動你的武器。每個你的回合一次，當你用武器命中並對位於你 30 尺範圍內的目標造成傷害時，你可以立即消耗一枚靈能骰，對目標造成等同於靈能骰骰出的數值加你的智力調整值的力場傷害。"
+			],
+			"ENG_name": "Psionic Strike"
+		},
+		{
+			"name": "念力控物",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"你可以用意念移動物件或生物。以一個{@action Magic|XPHB|魔法}動作，選擇距你30尺內一個你能看見的目標；該目標必須是大型或更小的未固定物件，或你以外的一個自願生物。你將目標移動至多30尺，到一處你能看見的未佔據空間。或者，若目標是微型物件，你可以將它傳送到手中，或從手中傳送出去。",
+				"此異能一經使用，直至完成{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}你都無法再次使用。你也可以消耗一枚靈能骰（無需動作）重置此異能的使用權。"
+			],
+			"ENG_name": "Telekinetic Movement"
+		},
+		{
+			"name": "靈力躍動",
+			"source": "XPHB",
+			"page": 99,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你獲得{@variantrule Fly Speed|XPHB|飛行速度}，等同於兩倍{@variantrule Speed|XPHB|速度}，直到本回合結束為止。一旦你執行了此{@variantrule Bonus Action|XPHB|附贈動作}，直到你完成一次{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}為止你都不能再次使用它。你也可以消耗一枚靈能骰（無需動作）來再次使用該異能。"
+			],
+			"ENG_name": "Psi-Powered Leap"
+		},
+		{
+			"name": "念力擅長",
+			"source": "XPHB",
+			"page": 99,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"你已經掌握了使用念力異能的新方式，如下所示。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Psi-Powered Leap|Fighter|XPHB|Psi Warrior|XPHB|7"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Telekinetic Thrust|Fighter|XPHB|Psi Warrior|XPHB|7"
+				}
+			],
+			"ENG_name": "Telekinetic Adept"
+		},
+		{
+			"name": "念力突刺",
+			"source": "XPHB",
+			"page": 99,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"當你以靈能打擊對目標造成傷害時，可以迫使目標進行一次力量豁免（DC為{@dc 8}＋你的智力調整值＋你的{@variantrule Proficiency|XPHB|熟練加值}）。豁免失敗時，你可以使目標陷入{@condition Prone|XPHB|倒地}狀態，或將其水平移動至多10尺。"
+			],
+			"ENG_name": "Telekinetic Thrust"
+		},
+		{
+			"name": "意念守護",
+			"source": "XPHB",
+			"page": 99,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"你獲得心靈傷害的{@variantrule Resistance|XPHB|抗性}。此外，如果你在你的回合開始時處於{@condition Charmed|XPHB|魅惑}或者{@condition Frightened|XPHB|恐慌}狀態，你可以消耗一個靈能骰（無需動作）並結束自己身上全部造成這些狀態的效應。"
+			],
+			"ENG_name": "Guarded Mind"
+		},
+		{
+			"name": "壁壘之力",
+			"source": "XPHB",
+			"page": 99,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 15,
+			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"你可以使用念力庇護你自己和其他人。以一個{@variantrule Bonus Action|XPHB|附贈動作}，包括你在內，你可以選擇數名位於你 30 尺範圍內的生物，其數量等同於你的智力調整值（最少 1 名）。每名被選中的生物將在 1 分鐘內視為處於{@variantrule Cover|XPHB|半身掩護}中，該保護將會在你陷入{@condition Incapacitated|XPHB|失能}狀態時提前結束。",
+				"此特性一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。你也可以消耗一枚靈能骰（無需動作）重置此特性的使用權。"
+			],
+			"ENG_name": "Bulwark of Force"
+		},
+		{
+			"name": "念力宗師",
+			"source": "XPHB",
+			"page": 99,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 18,
+			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"你始終準備著{@spell Telekinesis|XPHB|心靈遙控}法術，你可以在無需任何法術成分和法術位的情況下使用它，你施展這一法術的施法屬性為智力。在每一個你對該法術維持{@status Concentration|XPHB|專注}的回合，包括你施放它的回合，你都能夠以一個{@variantrule Bonus Action|XPHB|附贈動作}使用一把武器發動一次攻擊。",
+				"一旦你以此特性施展此法術，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再如此做。你也可以消耗一枚靈能骰（無需動作）重置此法術的施展。"
+			],
+			"ENG_name": "Telekinetic Master"
+		}
+	]
+}

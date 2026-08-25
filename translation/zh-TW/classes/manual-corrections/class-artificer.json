@@ -1,0 +1,207 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"scope": "Artificer rule-accuracy and mixed-text audit"
+	},
+	"corrections": [
+		{
+			"path": "/classFeature/0/entries/1/entries/3/entries/1",
+			"expected": "你列表中的法術數量會隨著奇械師等級提升而增加，如奇械師特性表格的準備法術欄所示。每當該數值增加時，選擇額外的{@filter 奇械師法術|spells|class=Artificer}直到你列表中的法術數量與表格中的數值匹配。所選法術必須是你擁有法術位的等級。例如，如果你是一個5環奇械師，你的準備法術列表可以包含六種1環和2環的奇械師法術，且可以任意組合。",
+			"value": "你列表中的法術數量會隨著奇械師等級提升而增加，如奇械師特性表格的準備法術欄所示。每當該數值增加時，選擇額外的{@filter 奇械師法術|spells|class=Artificer}，直到你列表中的法術數量與表格中的數值相符。所選法術必須是你擁有相應環階法術位的法術。例如，如果你是一名5級奇械師，你的準備法術列表可以包含六個1環或2環的奇械師法術，兩種環階可任意組合。",
+			"reason": "範例角色是5級奇械師，不是5環奇械師；同時釐清準備法術的環階限制。"
+		},
+		{
+			"path": "/classFeature/2/entries/1/entries/0/entries/0",
+			"expected": "當你獲得此特性時，從魔法物品方案（奇械師等級2+）表格中選擇四個方案學習（見{@book 城主指南|XDMG}以獲取物品描述）。推薦{@item Bag of Holding|XDMG|次元袋}、{@item Cap of Water Breathing|XDMG|水下呼吸帽}、{@item Sending Stones|XDMG|短訊石}和{@item +1 Wand of the War Mage|XDMG|戰法師魔杖}。每當你提升奇械師等級時，你可以將一個已知方案替換為你符合條件的新方案。",
+			"value": "當你獲得此特性時，從魔法物品方案（奇械師等級2+）表格中選擇四個方案學習（見{@book 城主指南|XDMG}以獲取物品描述）。推薦{@item Bag of Holding|XDMG|次元袋}、{@item Cap of Water Breathing|XDMG|水下呼吸帽}、{@item Sending Stones|XDMG|短訊石}和{@item +1 Wand of the War Mage|XDMG|+1戰法師魔杖}。每當你提升奇械師等級時，你可以將一個已知方案替換為你符合條件的新方案。",
+			"reason": "保留推薦魔法物品名稱中的+1加值。"
+		},
+		{
+			"path": "/classFeature/21/entries/2/entries/2/entries/0",
+			"expected": "身為一名奇械師，你使用工具來施法。當描述你的施法時，請想想你是如何使用這個工具的。比方說，如果你使用{@item alchemist's supplies|PHB|鍊金工具}來施展{@spell cure wounds||療傷術}，你可以很快的製造出一份藥膏。如果你用{@item tinker's tools|PHB|修補工具}來施展，你可能會拿出一個微型機械蜘蛛來縫合傷口。當你施放毒氣噴湧時，你可以噴射出有毒的化學物質，或者使用一根噴射毒液的魔杖。雖然法術的效果與其他的施法者職業沒有區別。",
+			"value": "身為一名奇械師，你會使用工具施法。描述施法時，想想你如何用工具產生法術效果。例如，你以{@item alchemist's supplies|PHB|鍊金工具}施展{@spell cure wounds||療傷術}時，可能快速製成一份藥膏；以{@item tinker's tools|PHB|修補工具}施展時，則可能用一隻微型機械蜘蛛縫合傷口。施展{@spell poison spray||毒氣噴湧}時，你可能潑灑惡臭的化學藥劑，或使用會噴出毒液的魔杖。法術效果與其他職業施法者的相同，但你的施法方式別具特色。",
+			"reason": "補回原文最後的轉折句，並恢復毒氣噴湧的法術標籤。"
+		},
+		{
+			"path": "/classFeature/21/entries/2/entries/2/entries/1",
+			"expected": "此原則同樣適用於你準備法術的時候。作為一名奇械師，你並非透過研讀法術書或祈禱來準備你的法術列表，而是透過製造特定的物品來產生相應的效果。如果你用{@spell cure wounds||灼熱金屬}替換{@spell heat metal||療傷術}，你可能會改造你用來治療的裝置——也許是將治療能量傳輸改裝為熱量傳導功能。",
+			"value": "此原則同樣適用於你準備法術時。作為一名奇械師，你不是藉由研讀法術書或祈禱來準備法術，而是使用工具，製作出用來產生法術效果的特殊物品。如果你以{@spell heat metal||灼熱金屬}替換{@spell cure wounds||療傷術}，你可能會改造原本用於治療的裝置，使它改為引導熱能。",
+			"reason": "原譯把療傷術與灼熱金屬的規則標籤及顯示名稱對調。"
+		},
+		{
+			"path": "/subclassFeature/17/entries/3/entries/1",
+			"expected": "此外，作為{@variantrule Bonus Action|XPHB|附贈動作}，你可以獲得等於兩倍{@variantrule Fly Speed|XPHB|速度}的{@variantrule Speed|XPHB|飛行速度}，直到當前回合結束。你可以使用此{@variantrule Bonus Action|XPHB|附贈動作}的次數等於你的智力調整值（至少一次），並且當你完成一次{@variantrule Long Rest|XPHB|長休}時恢復所有已使用的次數。",
+			"value": "此外，以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以獲得等於你{@variantrule Speed|XPHB|速度}兩倍的{@variantrule Fly Speed|XPHB|飛行速度}，直到目前回合結束。你可使用此附贈動作的次數等於你的智力調整值（至少一次），並在完成一次{@variantrule Long Rest|XPHB|長休}後恢復所有已消耗的使用次數。",
+			"reason": "修正速度與飛行速度的規則標籤對調。"
+		},
+		{
+			"path": "/subclassFeature/20/entries/0",
+			"expected": "使用{@item Smith's Tools|XPHB|鐵匠工具}或{@item Woodcarver's Tools|XPHB|木雕工具}，你可以採取一個{@action Magic|XPHB|魔法}動作在你自身5尺內的水平面上一個未佔據空間創造一個小型或微型{@object Eldritch Cannon|EFA|魔能炮臺}。你決定它的外貌，包括你是否攜帶它（以及你為後者選擇腿或輪子）。如果它被縮小到0{@variantrule Hit Points|XPHB|生命值}或1小時後，它會消失。你可以透過一個{@action Magic|XPHB|魔法}動作提前解散它。",
+			"value": "使用{@item Smith's Tools|XPHB|鐵匠工具}或{@item Woodcarver's Tools|XPHB|木雕工具}，你可以執行一個{@action Magic|XPHB|魔法}動作，在自身5尺內水平表面的一處未佔據空間創造一門小型或微型{@object Eldritch Cannon|EFA|魔能炮臺}。你決定它的外觀，包括你要攜帶它，或讓它裝有腿或輪子。當炮臺降至0{@variantrule Hit Points|XPHB|生命值}或存在1小時後，它會消失。你也能以一個魔法動作提前使它消失。",
+			"reason": "生命值是降至0，不是體型縮小到0；並釐清炮臺外形選項。"
+		},
+		{
+			"path": "/subclassFeature/31/entries/2",
+			"expected": "你可以使用此能量的次數等於你的智力調整值（至少一次），但每回合最多隻能使用一次。當你完成一次{@variantrule Long Rest|XPHB|長休}後，你恢復所有已消耗的使用次數。",
+			"value": "你可使用此能量的次數等於你的智力調整值（至少一次），但每回合最多只能使用一次。完成一次{@variantrule Long Rest|XPHB|長休}後，你恢復所有已消耗的使用次數。",
+			"reason": "修正「只」被錯轉成量詞「隻」的明顯文字錯誤。"
+		},
+		{
+			"path": "/subclassFeature/51/entries/0",
+			"expected": "每當你完成一次長休，你能在一個你接觸的空的 扁瓶flask 中魔法性的製造出一瓶{@i 實驗性靈藥}。透過實驗性靈藥表來擲骰決定這瓶靈藥在被某人飲用時的效果。生物能以一個動作飲用這瓶靈藥、或是將靈藥灌給一個{@condition incapacitated||失能}生物飲用。",
+			"value": "自3級起，每當你完成一次長休時，你可以在一個所觸碰的空燒瓶中，以魔法製造一瓶{@i 實驗性靈藥}。在實驗性靈藥表上擲骰以決定靈藥的效果；有人飲用時便會觸發該效果。生物能以一個動作飲用靈藥，或將其餵給一個{@condition incapacitated||失能}生物。",
+			"reason": "移除「扁瓶flask」中英混雜垃圾，補回自3級起與飲用時觸發。"
+		},
+		{
+			"path": "/subclassFeature/51/entries/2",
+			"expected": "當你在本職業達到某些特定等級時，你將能夠在長休結束時製造更多靈藥：6級時2瓶，15級時3瓶。每一瓶靈藥都需要擲骰決定效果，且都需要用獨立的 扁瓶flask 盛放。",
+			"value": "當你在本職業達到特定等級時，可以在長休結束時製造更多靈藥：6級時兩瓶，15級時三瓶。分別為每瓶靈藥的效果擲骰，且每瓶靈藥都需要各自的燒瓶。",
+			"reason": "移除「扁瓶flask」中英混雜垃圾，保留6級兩瓶與15級三瓶。"
+		},
+		{
+			"path": "/subclassFeature/51/entries/3",
+			"expected": "你能透過消耗一枚1環或更高環的法術位來製造額外的{@i 實驗性靈藥}。此時，你以一個動作接觸一個空的 扁瓶flask ，在其中充入靈藥，然後從實驗性靈藥表中選擇這瓶靈藥的效果。",
+			"value": "你可以為每瓶額外的{@i 實驗性靈藥}消耗一個1環或更高環的法術位。此時，你以一個動作在所觸碰的空燒瓶中製造靈藥，並從實驗性靈藥表選擇其效果。",
+			"reason": "移除「扁瓶flask」中英混雜垃圾，並保留每瓶額外靈藥各消耗一個法術位。"
+		},
+		{
+			"path": "/subclassFeature/55/entries/1/items/1",
+			"expected": "只要你使用{@item alchemist's supplies|PHB|鍊金工具}作為你的法器，就能夠在不消費法術位、不需要準備、不需要材料成分的情況下施展{@spell greater restoration||高等復原術}與醫療術。一旦你透過此特性施展這些法術中的一個，你就不能再以這種方式施展那個法術，直到你完成一次長休。",
+			"value": "只要你使用{@item alchemist's supplies|PHB|鍊金工具}作為法器，就能在不消耗法術位、無需準備法術且無需材料成分的情況下施展{@spell greater restoration||高等復原術}與{@spell heal||醫療術}。一旦你以此特性施展其中一個法術，完成一次長休前便不能再以此特性施展該法術。",
+			"reason": "恢復醫療術的法術標籤，並修正文句。"
+		},
+		{
+			"path": "/subclassFeature/67/entries/1",
+			"expected": "你習得了如何透過奇械師注法對你的奧能裝甲進行特殊改造。 奧能裝甲現在你進行注法時，能夠被視為下列獨立物品： 盔甲（胸甲部分）、靴子、頭盔、以及裝甲的特殊武器。 每件物品都能進行一次注法。 此外，你的注法物品的數量上限增加2，但增加的部分只能用於為奧能裝甲的一部分注法。",
+			"value": "你學會使用奇械師注法特別改造奧能裝甲。對物品注法特性而言，該裝甲現在分別視為四件物品：盔甲（胸甲）、靴子、頭盔，以及裝甲的特殊武器。每件物品都能承載一項注法；若你以裝甲型號特性改變裝甲型號，這些注法也會轉移過去。此外，你可同時注法的物品數量上限增加2，但這兩件額外物品必須是奧能裝甲的一部分。",
+			"reason": "補回改變裝甲型號時注法會轉移的規則，並保留額外2件的限制。"
+		},
+		{
+			"path": "/subclassFeature/68/entries/0",
+			"expected": "當你可見的一個體型為巨型或更小的生物在距離你 30尺內的地方結束其回合時，你能以一個反應迫使該生物進行一次對抗你的法術豁免 DC的力量豁免，豁免失敗時將被拉向你最多 30尺。如果你將目標拉到距離你 5尺的地方，作為此反應的一部分，你能對該生物進行一次近戰武器攻擊。",
+			"value": "當一個你能看見的巨型或更小生物在你30尺內結束其回合時，你能以一個反應，魔法性地迫使它進行一次對抗你法術豁免DC的力量豁免。豁免失敗時，你將該生物直接朝你拉動至多25尺，到一處未佔據空間。若你將目標拉至你5尺內的空間，可以在同一反應中對它進行一次近戰武器攻擊。",
+			"reason": "拉動距離上限是25尺，不是30尺；保留30尺觸發距離與5尺近戰條件。"
+		},
+		{
+			"path": "/subclassFeature/73/entries/1",
+			"expected": "當你創造炮臺後，直到你完成一次長休前你都不能再創造它，或者你也可以透過消耗一個法術位來創造它。你只能同時擁有一個炮臺，在上一個炮臺還在的情況下你不能創造第二個炮臺。",
+			"value": "創造一門炮臺後，你要到完成一次長休，或消耗一個1環或更高環的法術位，才能再次創造炮臺。你同時只能擁有一門炮臺；已有炮臺存在時，不能再創造另一門。",
+			"reason": "補回用來再次創造炮臺的法術位必須為1環或更高環。"
+		},
+		{
+			"path": "/subclassFeature/73/entries/2",
+			"expected": "炮臺是一個魔法物件。不論尺寸，它的AC都是18，而其生命值是你奇械師等級的5倍。它免疫於毒素傷害和心靈傷害。如果它被迫進行屬性檢定或豁免檢定，則將其所有屬性都視為10(+0)。如果一個法術{@spell mending||修復術}被施展到它身上，它將恢復{@dice 2d6}生命值。炮臺在生命值降至0或1小時後消失。你也可以以一個動作來提早讓它消失。",
+			"value": "炮臺是魔法物件。不論尺寸，其AC為18，生命值等於你奇械師等級的5倍。它免疫毒素傷害、心靈傷害與所有狀態。若被迫進行屬性檢定或豁免檢定，將其所有屬性值視為10（+0）。若對它施展{@spell mending||修復術}，它恢復{@dice 2d6}生命值。炮臺降至0生命值或存在1小時後便會消失；你也能以一個動作提前使它消失。",
+			"reason": "補回炮臺免疫所有狀態，並保留AC、生命值、屬性值與持續時間數值。"
+		},
+		{
+			"path": "/subclassFeature/77/entries/1/items/1",
+			"expected": "你現在可以同時擁有二個炮臺，你能以一個動作同時製造兩臺炮臺（但並不使用同一法術位），此外，你能夠以一個附贈動作來同時啟用兩個炮臺。這二個炮臺可以是不同的型別。你在擁有兩個炮臺時，不能製造第三個炮臺。",
+			"value": "你現在可以同時擁有兩門炮臺，也能以同一個動作創造兩門（但不能用同一個法術位創造兩門），並以同一個附贈動作啟用兩門。你決定兩門炮臺要彼此相同或不同。擁有兩門炮臺時，你不能創造第三門。",
+			"reason": "補回兩門炮臺可以相同或不同的選擇。"
+		},
+		{
+			"path": "/subclassFeature/81/entries/2",
+			"expected": "如果一個{@spell mending||修復術}被施展到了鋼鐵守衛的身上，它將恢復{@dice 2d6}生命值。如果它在最近一小時內死亡，你能夠以一個動作使用{@item smith's tools|PHB|鐵匠工具}花費一個至少1環的法術位來在距離你5尺的空格內復活它。鋼鐵守衛會在1分鐘後復活，在復活時會回滿生命值。",
+			"value": "若對鋼鐵守衛施展{@spell mending||修復術}，它恢復{@dice 2d6}生命值。若它在過去1小時內死亡，且你位於它5尺內，便能以一個動作使用{@item smith's tools|PHB|鐵匠工具}並消耗一個1環或更高環的法術位來復活它。1分鐘後，鋼鐵守衛以全滿生命值復活。",
+			"reason": "5尺是你必須與鋼鐵守衛相距的使用條件，不是復活位置；保留1小時、1環與1分鐘。"
+		},
+		{
+			"path": "/subclassFeature/83/entries/0",
+			"expected": "從6級起，你在自己回合內執行{@action Attack||攻擊}動作時可以攻擊兩次而非一次。",
+			"value": "從5級起，每當你在自己的回合執行{@action Attack||攻擊}動作時，可以攻擊兩次而非一次。",
+			"reason": "戰地匠師在5級獲得額外攻擊，不是6級。"
+		},
+		{
+			"path": "/classFeature/2/entries/1/entries/5/rows/3/0",
+			"expected": "{@filter 通用魔法物品，不是藥水、卷軸或詛咒物品|items|source=|type=!potion;!scroll|rarity=common|category=|miscellaneous=!cursed}*",
+			"value": "{@filter 普通魔法物品，且非藥水、卷軸或受詛咒物品|items|source=|type=!potion;!scroll|rarity=common|category=|miscellaneous=!cursed}*",
+			"reason": "Common 在此是魔法物品稀有度「普通」，不是「通用」。"
+		},
+		{
+			"path": "/classFeature/2/entries/1/entries/8/rows/0/0",
+			"expected": "{@item +2 Armor|XDMG|+2 彈藥}",
+			"value": "{@item +2 Armor|XDMG|+2護甲}",
+			"reason": "Armor 被誤譯成 Ammunition；此項是+2護甲。"
+		},
+		{
+			"path": "/classFeature/6/entries/1/entries/0/name",
+			"expected": "衝鋒魔法物品",
+			"value": "為魔法物品充能",
+			"reason": "Charge 在此指補充物品的充能，不是衝鋒攻擊。"
+		},
+		{
+			"path": "/classFeature/22/entries/1",
+			"expected": "你獲得為普通物品注入魔法的能力。使用此特性創造的魔法物品是永久性魔法物品的原型。",
+			"value": "你獲得了將特定魔法注法灌注於普通物品中、使其轉化為魔法物品的能力。",
+			"reason": "補回「特定注法」，並移除原文沒有的「永久性魔法物品原型」。"
+		},
+		{
+			"path": "/subclassFeature/8/entries/2",
+			"expected": "你可以在完成一次{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}時改變裝甲的型號，前提是你手中有{@item Smith's Tools|XPHB|鐵匠工具}。",
+			"value": "只要你手中有{@item Smith's Tools|XPHB|鐵匠工具}，便能在完成一次{@variantrule Short Rest|XPHB|短休}或{@variantrule Long Rest|XPHB|長休}時改變裝甲型號。",
+			"reason": "短休標籤的顯示文字只剩「短」，補回完整名稱。"
+		},
+		{
+			"path": "/subclassFeature/23/entries/2/entries/0",
+			"expected": "該火炮的傷害擲骰和防禦者提供的{@variantrule Temporary Hit Points|XPHB|臨時生命值}數值增加{@dice 1d8}。",
+			"value": "炮臺的傷害擲骰，以及「防護者」提供的{@variantrule Temporary Hit Points|XPHB|臨時生命值}，均增加{@dice 1d8}。",
+			"reason": "Protector 是魔能炮臺的啟動模式，不是鋼鐵守衛或一般防禦者。"
+		},
+		{
+			"path": "/subclass/13/name",
+			"expected": "蘇生師",
+			"value": "蘇生師",
+			"reason": "統一 Reanimator 子職譯名，與蘇生師法術、技藝及工具一致。"
+		},
+		{
+			"path": "/subclass/13/shortName",
+			"expected": "蘇生師",
+			"value": "蘇生師",
+			"reason": "統一 Reanimator 子職簡稱。"
+		},
+		{
+			"path": "/subclassFeature/42/name",
+			"expected": "蘇生師",
+			"value": "蘇生師",
+			"reason": "統一 Reanimator 子職特性標題。"
+		},
+		{
+			"path": "/subclassFeature/42/entries/0",
+			"expected": "{@i 損傷管制屍體並喚起死者}",
+			"value": "{@i 重組屍體並喚回死者}",
+			"reason": "修正 Reassemble Corpses 的明顯機翻垃圾。"
+		},
+		{
+			"path": "/subclassFeature/45/entries/1/name",
+			"expected": "奧法挪移",
+			"value": "奧法導管",
+			"reason": "Arcane Conduit 是施法導管，不是傳送或挪移能力。"
+		},
+		{
+			"path": "/subclassFeature/33/name",
+			"expected": "冒險者的地圖匣",
+			"value": "冒險者地圖匣",
+			"reason": "鎖定 Adventurer's Atlas 的統一特性名稱。"
+		},
+		{
+			"path": "/subclassFeature/36/entries/2/entries/0",
+			"expected": "在你的回合，你可以消耗等於你{@variantrule Speed|XPHB|速度}一半（向下取整）的移動力，傳送到你能看見的自身10尺內未佔據空間，或30尺內持有你冒險者圖鑑地圖的生物5尺內未佔據空間。如果你的{@variantrule Speed|XPHB|速度}為0，則無法使用此增益。",
+			"value": "在你的回合，你可以消耗等於你{@variantrule Speed|XPHB|速度}一半（向下取整）的移動力，傳送至你能看見的自身10尺內未佔據空間，或位於你30尺內、持有你冒險者地圖匣之地圖的生物5尺內未佔據空間。若你的速度為0，便不能使用此增益。",
+			"reason": "統一 Adventurer's Atlas 名稱，並保留10尺、30尺、5尺及速度0限制。"
+		},
+		{
+			"path": "/subclassFeature/40/entries/0",
+			"expected": "你的冒險者圖鑑得到提升，獲得以下好處。",
+			"value": "你的冒險者地圖匣得到強化，獲得以下好處。",
+			"reason": "統一 Adventurer's Atlas 的特性名稱。"
+		},
+		{
+			"path": "/subclassFeature/40/entries/2/entries/0",
+			"expected": "如果你是冒險者圖鑑的地圖持有者之一，你可以施放{@spell Find the Path|XPHB|尋路術}而不消耗法術位、不準備該法術且不需要法術成分。一旦你使用此增益，在完成一次{@variantrule Long Rest|XPHB|長休}前無法再次使用。",
+			"value": "若你是冒險者地圖匣的地圖持有者之一，可以施展{@spell Find the Path|XPHB|尋路術}，且無需消耗法術位、準備該法術或提供法術成分。使用此增益後，完成一次{@variantrule Long Rest|XPHB|長休}前不能再次使用。",
+			"reason": "統一 Adventurer's Atlas 的特性名稱並保留三項免除條件。"
+		}
+	]
+}

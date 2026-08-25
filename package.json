@@ -1,12 +1,19 @@
 {
   "name": "5ewt-zh-tw-overlay",
+  "version": "2.33.3-zh-tw.1",
   "private": true,
   "type": "module",
   "scripts": {
     "bootstrap": "node scripts/bootstrap-upstream.mjs",
     "apply": "node scripts/apply-overlay.mjs",
+    "setup:python": "python -m pip install -r requirements-zh-tw.txt",
     "extract:classes": "node scripts/run-extract-classes.mjs",
-    "build:class-locale": "node node/zh-tw/build-class-locale.mjs",
-    "validate:glossary": "node node/zh-tw/validate-glossary.mjs"
+    "import:classes": "node scripts/run-upstream.mjs python node/zh-tw/import-full-class-translations.py",
+    "build:class-locale": "node scripts/run-upstream.mjs node node/zh-tw/build-class-locale.mjs",
+    "test:class-body": "node scripts/run-upstream.mjs node node/zh-tw/test-class-body-i18n.mjs",
+    "test:class-body-full": "node scripts/run-upstream.mjs node node/zh-tw/test-class-body-i18n-full.mjs",
+    "validate:classes": "node scripts/run-upstream.mjs node node/zh-tw/validate-full-class-translations.mjs",
+    "verify": "node scripts/verify-overlay.mjs"
   }
 }
+

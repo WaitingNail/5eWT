@@ -18,6 +18,18 @@ export class I18nZhTwClass {
 		return entity?.ENG_shortName || entity?.shortName || this.getCanonicalName(entity);
 	}
 
+	static localizeSourceHtml (html) {
+		return html
+			.replaceAll("<b>Source:</b>", "<b>來源：</b>")
+			.replace(/, page (\d+)/gu, "，第 $1 頁")
+			.replaceAll("Additional information from", "其他資訊出自")
+			.replaceAll("Also found in", "亦見於")
+			.replaceAll("Referenced in", "引用於")
+			.replaceAll("External sources:", "外部來源：")
+			.replaceAll("Reprinted as", "再版為")
+			.replaceAll(" in <i", "，收錄於 <i");
+	}
+
 	static applyToData (data) {
 		if (!this._locale || !data || typeof data !== "object") return data;
 		(data.class || []).forEach(entity => this._applyEntity(entity, "class"));
@@ -53,7 +65,7 @@ export class I18nZhTwClass {
 		}
 
 		for (const [key, child] of Object.entries(entity)) {
-			if (["ENG_name", "ENG_shortName"].includes(key)) continue;
+			if (["ENG_name", "ENG_shortName", "_classFluff", "_subclassFluff"].includes(key)) continue;
 			const childCategory = key === "classFeatures"
 				? "classFeature"
 				: key === "subclassFeatures"
