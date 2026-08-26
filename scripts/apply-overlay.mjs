@@ -37,17 +37,21 @@ for (const relativePath of copyRoots) {
   copyRecursive(sourcePath, path.join(upstreamRoot, relativePath));
 }
 
+const canGitApply = args => {
+  try {
+    execFileSync("git", ["apply", ...args, "--check", patchPath], {cwd: upstreamRoot, stdio: "pipe"});
+    return true;
+  } catch {
+    return false;
+  }
+};
 const runGitApply = args => execFileSync("git", ["apply", ...args, patchPath], {cwd: upstreamRoot, stdio: "inherit"});
 
-try {
-  runGitApply(["--check"]);
+if (canGitApply([])) {
   runGitApply([]);
-  console.log("Applied zh-TW Class overlay.");
-} catch {
-  try {
-    runGitApply(["--reverse", "--check"]);
-    console.log("zh-TW Class overlay is already applied; assets were refreshed.");
-  } catch {
-    throw new Error("Class overlay does not apply cleanly to the pinned upstream tag.");
-  }
+  console.log("Applied zh-TW interface, Class, core-rules, and Quick Reference overlay.");
+} else if (canGitApply(["--reverse"])) {
+  console.log("zh-TW overlay is already applied; assets were refreshed.");
+} else {
+  throw new Error("zh-TW overlay does not apply cleanly to the pinned upstream tag.");
 }

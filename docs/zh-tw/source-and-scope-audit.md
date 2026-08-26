@@ -18,6 +18,8 @@
 - 英文 canonical key、來源代碼與頁碼維持原樣，私人譯文使用 sidecar 或 locale 檔保存。
 - 本專案的 private 狀態不視為著作權授權；若日後改為 public，發布前須重新做授權範圍掃描。
 
+目前私人覆蓋層已完成全站共用介面、2014／2024 Classes，以及動作、狀態／疾病、技能、感官、核心／變體規則與 2014 Quick Reference。非 SRD 譯文的來源、固定 commit、CC BY-NC-SA 4.0 署名與機器 QA 記錄在 `translation/zh-TW/classes/` 及 `translation/zh-TW/rules/`。
+
 ## 上游版本
 
 - Repository：`5etools-mirror-3/5etools-src`

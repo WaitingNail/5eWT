@@ -4,12 +4,14 @@
 
 ## 目前狀態
 
-- `glossary-proposed.csv`：174 個核心介面與 D&D 規則術語，狀態尚未鎖定。
+- `glossary-proposed.csv`：175 個核心介面與 D&D 規則術語；驗證器會鎖定唯一英文 key 與核准狀態。
 - `style-guide.md`：本專案翻譯與技術規則草案。
 - `generated/srd-manifest.json`：SRD 條目統計與來源版本。
 - `generated/srd-entity-index.csv`：每個 `srd`／`srd52` 條目的檔案與 JSON Pointer。
 - `generated/srd-entity-terms.csv`：2,085 個不重複英文名稱，待後續補入譯名。
-- `classes/`：Classes 頁面的資料盤點、1,987 個術語候選與第一批核准清單。
+- `classes/`：2014 與 2024 Classes 全量翻譯、人工修正與 QA 報告。
+- `site/`：624 筆全站共用介面訊息與 locale 建置說明。
+- `rules/`：動作、狀態／疾病、技能、感官、核心／變體規則與 2014 Quick Reference 的匯入來源、署名與 QA 報告。
 
 ## 重新產生盤點
 
@@ -26,13 +28,12 @@ npm run zh-tw:validate-glossary
 
 術語核准後，將 `status` 改為 `approved`，再建立鎖定翻譯記憶。任何 `conflict` 項目在核准前不得用於批量翻譯正文。
 
-## 下一個閘門
+## 完整驗證
 
-核准下列高影響詞組後，才開始批量翻譯：
+```bash
+npm run zh-tw:verify
+```
 
-- `Wisdom`／`Perception`
-- `Species`／`Race`
-- `Incapacitated`、`Grappled`、`Prone`、`Frightened`
-- `Necrotic`、`Resistance`
-- `Rogue`、`Warlock`
-- `Opportunity Attack`
+此命令會驗證術語、Class 全量 sidecar、共用介面、核心規則 runtime、canonical 欄位／inline tags，以及 Quick Reference 的英文 hash 與雙語搜尋。
+
+`rules/` 與部分 `classes/` 資料包含非 SRD 書籍內容，只能用於私人、自用 repository；授權與署名界線見各子目錄說明。

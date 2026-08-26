@@ -1,0 +1,1175 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked Class memory; approved first-candidate glossary",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"action": [
+		{
+			"name": "啟用物品",
+			"source": "DMG",
+			"page": 141,
+			"srd": true,
+			"basicRules": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"一些魔法物品需要其使用者做一些特別的事情才能啟用，比如拿著物品說出相應的命令語、讀出卷軸上的內容或者引用藥水。每個物品品類或單個物品的描述中都詳述了啟用該物品的方法。而某些特定的物品會使用下列其一或多項作為其啟用規則。",
+				"如果某物品需要用一個動作啟用，則該動作本身並不作為{@action Use an Object||使用物件}動作，因此一些特性，如遊蕩者的{@subclassFeature Fast Hands|Rogue||Thief||3||快手}特性就無法用於啟用這些物品。",
+				{
+					"type": "entries",
+					"name": "命令語",
+					"entries": [
+						"命令語以說話方式發出的一個單詞或短句，用以驅使物品開始工作。需要命令語的魔法物品無法在聲音被壓制的區域裡啟用，比如法術沉默術silence的效應範圍裡。"
+					],
+					"ENG_name": "Command Word"
+				},
+				{
+					"type": "entries",
+					"name": "消耗品",
+					"entries": [
+						"一些物品被啟用後將被消耗殆盡。藥水或靈藥以服用的方式，而油類則用在相應的實體上。被閱讀使用後的卷軸其上的文字消失不見。使用過後，消耗品類的物品也隨之失去其魔法。"
+					],
+					"ENG_name": "Consumables"
+				},
+				{
+					"type": "entries",
+					"name": "法術",
+					"entries": [
+						"一些魔法物品可以讓其使用者從物品中施展法術。除非相應物品的描述中另有說明，否則以此施展的法術總是視為以法術的最低環階和最低施法者等級施展的，施法者將不消耗法術位，也不需要任何法術成分。這些法術使用它正常的施法時間、施法距離和持續時間，如果法術需要專注則該物品的使用者還必須對物品進行{@status concentration||專注}。許多物品（比如藥水），可以直接跳過施法而直接賦予法術的效應並維持通常的持續時間。而一些特定的物品與該規則不同，會改變法術的施法時間，持續時間以及法術的其他內容。",
+						"許多物品（比如藥水），可以直接跳過施法而直接賦予法術的效應並維持通常的持續時間。而一些特定的物品與該規則不同，會改變法術的施法時間，持續時間以及法術的其他內容。",
+						"一些魔法物品（比如某些法杖）可能會在你用其施展法術時，還會要求你使用你自身的施法能力。此時如果你擁有超過一種施法能力，則可以自行選擇使用其一。如果你沒有施法能力（也許你是一名有著\"使用魔法裝置Use Magic Device\"特性的遊蕩者），則此時你用該物品時的施法屬性調整值為+0，同時你也可以使用相應的熟練加值。"
+					],
+					"ENG_name": "Spells"
+				},
+				{
+					"type": "entries",
+					"name": "充能",
+					"entries": [
+						"一些魔法物品需要花費充能來啟用屬性。一件物品保留的充能次數可以透過對其施展鑑定術identify來查明，與之同調的生物也可以透過直覺得知。此外，當一件物品恢復充能時，與之同調的生物也會在第一時間得知其擁有的充能總量。"
+					],
+					"ENG_name": "Charges"
+				}
+			],
+			"ENG_name": "Activate an Item"
+		},
+		{
+			"name": "攻擊",
+			"source": "PHB",
+			"page": 192,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Attack|XPHB"
+			],
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"攻擊動作是戰鬥中最常見的動作，包括了揮劍劈砍，彎弓射箭，或是直接徒手揮拳等動作。",
+				"利用此動作，你可以發動一次近戰或遠端攻擊。見\"{@book 發動攻擊|phb|9|making an attack}\"一節以獲得更多跟攻擊相關的規則。",
+				"某些特性，例如戰士的\"額外攻擊\"特性，允許你用此動作發動多於一次攻擊。"
+			],
+			"seeAlsoAction": [
+				"Disarm|DMG",
+				"Grapple",
+				"Mark|DMG",
+				"Shove",
+				"Shove Aside|DMG",
+				"Two-Weapon Fighting"
+			],
+			"ENG_name": "Attack"
+		},
+		{
+			"name": "攻擊",
+			"source": "XPHB",
+			"page": 361,
+			"srd52": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"當你執行攻擊動作時，你可以用你的武器或{@variantrule Unarmed Strike|XPHB|徒手打擊}進行一次攻擊檢定。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "裝備武器與卸下武器",
+							"entries": [
+								"作為攻擊動作的一部分，每當你發動一次攻擊時，你都可以裝備或卸下一把武器。你可以在此次攻擊之前或之後裝備/卸下武器。如果你在發動一次攻擊前裝備一把武器，你不需要以這把武器發動這次攻擊。裝備武器的行為包括從鞘（或類似的收納物）中拔出你的武器以及撿起一把武器。卸下武器的行為包括把武器收入鞘（或類似的收納物）中、收起來以及丟下它。"
+							],
+							"ENG_name": "Equipping and Unequipping Weapons"
+						},
+						{
+							"type": "entries",
+							"name": "攻擊間移動",
+							"entries": [
+								"你的回合中，如果你具有某些可以使你在攻擊動作中發動複數次攻擊的特性（例如額外攻擊Extra Attack），你可以使用一部分或全部移動力，在這幾次攻擊之間進行移動。"
+							],
+							"ENG_name": "Moving Between Attacks"
+						}
+					]
+				}
+			],
+			"seeAlsoAction": [
+				"Two-Weapon Fighting|XPHB"
+			],
+			"ENG_name": "Attack"
+		},
+		{
+			"name": "施展法術",
+			"source": "PHB",
+			"page": 192,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Magic|XPHB"
+			],
+			"time": [
+				"Varies"
+			],
+			"entries": [
+				"施法者（如法師，牧師，或者某些怪物）都掌握著法術能力，並且可以在戰鬥中有效地施展。每一項法術都有註明其施法時間，即指定施法者需要用一個動作、一個反應，還是幾分鐘，甚至幾小時的時間去進行施展。因此施法不一定是一個動作。只是大部分法術確實只需一個動作去施展，因此施法者經常在戰鬥中使用其動作進行法術的施展。施法的具體規則見{@book 第十章|phb|10|casting a spell}。"
+			],
+			"ENG_name": "Cast a Spell"
+		},
+		{
+			"name": "爬到更大生物身上",
+			"source": "DMG",
+			"page": 271,
+			"fromVariant": "Action Options",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"如果一個生物想要跳到另一個生物身上，則它可以透過{@action grapple||擒抱}來實現這點。然而，除非擒抱者使用魔法或擁有超自然神力，否則一個小型或中型的生物幾乎不可能成功擒抱一個巨型或超巨型生物。",
+				"作為替代，身形足夠大的對手可以被視為地形，以跳到其後背或攀附其肢體。小體型生物完成必要的屬性檢定爬上更大體型生物的身上後，小生物必須用其動作進行一次力量（{@skill Athletics||運動}）檢定或敏捷（{@skill Acrobatics||體操}）檢定，並對抗目標的敏捷（{@skill Acrobatics||體操}）檢定。如果小生物的檢定勝出，則表示他成功移動進入目標生物所在空間位置並攀附在目標身軀上。小生物在目標所在空間內時將與目標一同移動，對目標發動的攻擊也將獲得優勢。",
+				"小生物可以在該大生物所在空間內移動，並視該空間為{@quickref difficult terrain||3||困難地形}。大生物以自身能力攻擊小生物時，將由你判定小生物的位置是否合適。此時大生物可以用一個動作將該小生物逐出其空間（把它打下來，拍到牆上，或者抓住它丟出去），以此進行一次力量（{@skill Athletics||運動}）檢定，來對抗小生物的力量（{@skill Athletics||運動}）檢定或敏捷（{@skill Acrobatics||體操}）檢定。小生物自行選擇使用哪項檢定。"
+			],
+			"ENG_name": "Climb onto a Bigger Creature"
+		},
+		{
+			"name": "疾走",
+			"source": "PHB",
+			"page": 192,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Dash|XPHB"
+			],
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"執行疾走動作時，你可以在本回合裡獲得額外的移動力。其數值等於你的速度，適用的調整值也會包括其中。例如，當你的速度為30尺時，你執行疾走動作後可以移動最多60尺。",
+				"你速度的增減對這額外的移動力有同樣的影響。比如，當你的30尺速度被減到15尺時，你執行疾走動作後則只可以移動最多30尺。"
+			],
+			"ENG_name": "Dash"
+		},
+		{
+			"name": "疾走",
+			"source": "XPHB",
+			"page": 365,
+			"srd52": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"當你執行疾走動作時，你可以獲得供當前回合使用的一些額外移動力。額外移動力的量等於你的{@variantrule Speed|XPHB|速度}（在一切調整值計算完後）。舉個例子，如果你有 30 尺{@variantrule Speed|XPHB|速度}，而你執行了疾走動作，那麼當前回合你就可以移動至多 60 尺距離。如果你的{@variantrule Speed|XPHB|速度}被從 30 尺降至 15 尺，那麼在你執行了疾走動作的回合中你只能移動至多 30 尺。",
+				"如果你擁有特殊速度（例如{@variantrule Fly Speed|XPHB|飛行速度}或{@variantrule Swim Speed|XPHB|游泳速度}），你可以使用該速度代替你的{@variantrule Speed|XPHB|速度}來執行疾走動作。每次你執行疾走動作時你都需要選擇具體使用哪個速度。"
+			],
+			"ENG_name": "Dash"
+		},
+		{
+			"name": "繳械",
+			"source": "DMG",
+			"page": 271,
+			"fromVariant": "Action Options",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"生物可以用武器攻擊來打下目標手中的武器或其他物品。攻擊者進行一次攻擊檢定，其數值對抗目標的力量（{@skill Athletics||運動}）檢定或敏捷（{@skill Acrobatics||體操}）檢定。如果攻擊者勝出對抗，則該攻擊不造成傷害或其他負面效應，但防禦方將掉落該物品。",
+				"如果目標用兩隻或更多手持握該物品，則攻擊者的本次攻擊具有劣勢。如果目標體型比攻擊者更大則目標的檢定將具有優勢，如果體型更小則具有劣勢。"
+			],
+			"seeAlsoAction": [
+				"Attack"
+			],
+			"ENG_name": "Disarm"
+		},
+		{
+			"name": "撤離",
+			"source": "PHB",
+			"page": 192,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Disengage|XPHB"
+			],
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"如果你執行撤離動作，則你隨後在本回合內的移動都不會觸發藉機攻擊。"
+			],
+			"ENG_name": "Disengage"
+		},
+		{
+			"name": "撤離",
+			"source": "XPHB",
+			"page": 366,
+			"srd52": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"執行撤離動作後，當前回合的剩餘時間內，你的移動不會引發{@action Opportunity Attack|XPHB|借機攻擊}。"
+			],
+			"ENG_name": "Disengage"
+		},
+		{
+			"name": "閃避",
+			"source": "PHB",
+			"page": 192,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Dodge|XPHB"
+			],
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"執行迴避動作後，你會將注意力集中於迴避來襲的攻擊。直到你下一回合開始之前，所有你可見的敵人對你發動的攻擊檢定都將具有劣勢，並且你進行的敏捷豁免具有優勢。如果你陷入失能狀態（見附錄），或者如果你的速度降為0，則你同時失去該增益。"
+			],
+			"ENG_name": "Dodge"
+		},
+		{
+			"name": "閃避",
+			"source": "XPHB",
+			"page": 366,
+			"srd52": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"如果你採取迴避動作，你將獲得以下增益：直到你的下一回合開始前，任何針對你發動的攻擊檢定，只要你能看見攻擊者，就會具有{@variantrule Disadvantage|XPHB|劣勢}，並且你在進行敏捷{@variantrule Saving Throw|XPHB|豁免檢定}時具有{@variantrule Advantage|XPHB|優勢}。",
+				"如果你陷入{@condition Incapacitated|XPHB|無力}或你的{@variantrule Speed|XPHB|速度}降至了 0，你會失去這些增益。"
+			],
+			"ENG_name": "Dodge"
+		},
+		{
+			"name": "裝備或卸除盾牌",
+			"source": "PHB",
+			"page": 146,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Don or Doff a Shield|XPHB"
+			],
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"護甲的著裝與卸除時間視護甲類別各有不同。具體可參考{@table Getting Into and Out of Armor; Donning and Doffing Armor|phb|取決於護甲的類別}。一個 {@item shield|phb|盾牌} 可以作為動作來裝備或卸下。"
+			],
+			"ENG_name": "Don or Doff a Shield"
+		},
+		{
+			"name": "裝備或卸除盾牌",
+			"source": "XPHB",
+			"page": 219,
+			"srd52": true,
+			"basicRules2024": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"可以以一個動作裝備或卸下{@item Shield|XPHB|盾牌}。"
+			],
+			"ENG_name": "Don or Doff a Shield"
+		},
+		{
+			"name": "終止專注",
+			"source": "PHB",
+			"page": 203,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"End Concentration|XPHB"
+			],
+			"time": [
+				"Free"
+			],
+			"entries": [
+				"需要{@status concentration||專注}的法術會在其持續時間條目中說明，同時還會指明為其保持專注情況下法術能持續時間的上限。你可以隨時終止你的{@status concentration||專注}（無需動作）。"
+			],
+			"ENG_name": "End Concentration"
+		},
+		{
+			"name": "終止專注",
+			"source": "XPHB",
+			"page": 363,
+			"srd52": true,
+			"basicRules2024": true,
+			"time": [
+				"Free"
+			],
+			"entries": [
+				"部分法術及其他的效應會在它們的描述中註明其需要維持專注來保持效應啟用。你可以在任何時間終止它的專注（無需動作）。"
+			],
+			"ENG_name": "End Concentration"
+		},
+		{
+			"name": "結束擒抱",
+			"source": "PHB",
+			"page": 195,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Escape a Grapple|XPHB"
+			],
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"{@condition grappled||受擒}的生物可以用他的動作進行逃脫。此時，他必須進行一次力量（{@skill Athletics||運動}）或敏捷（{@skill Acrobatics||體操}）檢定，並與你的力量（{@skill Athletics||運動}）檢定作對抗。如果其勝出對抗，則成功逃脫。"
+			],
+			"seeAlsoAction": [
+				"Grapple"
+			],
+			"ENG_name": "Escape a Grapple"
+		},
+		{
+			"name": "結束擒抱",
+			"source": "XPHB",
+			"page": 367,
+			"srd52": true,
+			"basicRules2024": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"受擒生物可以用其動作進行一次力量（{@skill Athletics|XPHB|運動}）或敏捷（{@skill Acrobatics|XPHB|體操}）檢定，對抗此次擒抱的逃脫DC，檢定成功時，受擒{@variantrule Condition|XPHB|狀態}將結束。若擒抱者陷入{@condition Incapacitated|XPHB|無力}，或是擒抱者與受擒者之間的距離超出了此次擒抱的範圍，受擒{@variantrule Condition|XPHB|狀態}也會提前結束。此外，擒抱者可以在任意時間釋放其擒抱目標（無需動作）。"
+			],
+			"ENG_name": "Escape a Grapple"
+		},
+		{
+			"name": "擒抱",
+			"source": "PHB",
+			"page": 195,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				{
+					"uid": "Unarmed Strike|XPHB",
+					"tag": "variantrule"
+				}
+			],
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"當你想抓住或摔倒某個生物時，你可以用\"{@action Attack||攻擊} \"動作發動一種特殊的近戰攻擊，即為擒抱。如果你可以用\"{@action Attack||攻擊} \"動作發動多次攻擊，則這種攻擊會取代其中之一。  被擒抱目標的體型不能比你大超過一級，並且要位處你的觸及範圍之內。",
+				"你至少要騰出一隻空手來抓住對方，並進行一次擒抱檢定：即進行一次力量（{@skill Athletics||運動}）檢定，並與對方的力量（{@skill Athletics||運動}）或敏捷（{@skill Acrobatics||體操}）檢定（由對方選擇）作對抗。若目標正處於{@condition incapacitated||失能}狀態，則你直接檢定成功。若你勝出該檢定對抗，則你讓對方陷入{@condition grappled||受擒}狀態（見附錄A）。附錄中詳細說明了結束擒抱的條件，你也可以隨時放開目標（不需要動作）。",
+				{
+					"type": "entries",
+					"name": "擒抱中移動",
+					"entries": [
+						"當你移動時，你可以拖行或背起{@condition grappled||受擒}的生物，但你的速度因此減半，而除非該生物的體型比你小兩級或更多。"
+					],
+					"ENG_name": "Moving a Grappled Target"
+				}
+			],
+			"seeAlsoAction": [
+				"Escape a Grapple"
+			],
+			"ENG_name": "Grapple"
+		},
+		{
+			"name": "療愈",
+			"source": "DMG",
+			"page": 266,
+			"fromVariant": "Healing",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"作為一個動作項，一名角色可以使用一次療愈並花費至多自身半數的生命骰。該角色每擲一枚以此花費的生命骰都加上自己的體質調整值。所有總值即為該角色恢復的生命值。玩家可以在每次擲骰後再決定是否繼續花費更多生命骰。",
+				"角色使用療愈過後，在完成一次短休或長休前都無法再次執行該動作。在此選用規則下，角色將在長休完成後，一次性恢復所有的生命骰。完成短休時，角色可以恢復的生命骰數量等於該角色當前等級數除以四（至少一枚）。"
+			],
+			"ENG_name": "Healing Surge"
+		},
+		{
+			"name": "協助",
+			"source": "PHB",
+			"page": 192,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Help|XPHB"
+			],
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"你可以協助其他生物達成其行動。執行協助動作時，受你協助的生物進行相應行動時作出的下一次屬性檢定具有優勢，所作檢定必須在你下一回合開始前進行。",
+				"此外，你也可以協助另一名友方生物攻擊位處你身邊5尺範圍內的一個生物。你用假動作或其他手段干擾目標使受協助者更易攻擊。如果受協助者在你下一回合前攻擊該目標，則其首次攻擊檢定具有優勢。"
+			],
+			"ENG_name": "Help"
+		},
+		{
+			"name": "協助",
+			"source": "XPHB",
+			"page": 368,
+			"srd52": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"當你執行協助動作時，你可以做到以下兩種效果之一。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "輔助一次屬性檢定",
+							"entries": [
+								"選擇一項你的技能熟練或工具熟練，並選擇一個與你之間距離不遠，至少你足以口頭/物理上輔助的盟友。那個盟友下一次使用你所選擇的技能/工具進行的屬性檢定具有{@variantrule Advantage|XPHB|優勢}。在你的下個回合開始前，若該盟友仍未使用掉這一輔助效果，輔助效果會消失。DM擁有你是否可以輔助的最終解釋權。"
+							],
+							"ENG_name": "Assist an Ability Check"
+						},
+						{
+							"type": "entries",
+							"name": "輔助一次攻擊檢定",
+							"entries": [
+								"你迅速地虛晃位於你 5 尺內的一個敵人，令下一次由你的某名盟友對該敵人進行的攻擊檢定具有{@variantrule Advantage|XPHB|優勢}。這一輔助效果會在你的下一回合開始時消失。"
+							],
+							"ENG_name": "Assist an Attack Roll"
+						}
+					]
+				},
+				"{@note 此外，協助動作可用於{@book 穩定傷勢|XPHB|1|Stabilizing a Character}。}"
+			],
+			"ENG_name": "Help"
+		},
+		{
+			"name": "躲藏",
+			"source": "PHB",
+			"page": 192,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Hide|XPHB"
+			],
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"當你執行躲藏動作時，你進行一次敏捷（{@skill Stealth||隱匿}）檢定以嘗試躲藏，遵循{@book 第七章|phb|7|hiding}中關於躲藏的規則。若你成功，你將獲得特定益處，如《玩家手冊》中\"{@book 不可見的攻擊者與目標|PHB|9|unseen attackers and targets}\"章節所述。"
+			],
+			"ENG_name": "Hide"
+		},
+		{
+			"name": "躲藏",
+			"source": "XPHB",
+			"page": 368,
+			"srd52": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"執行躲藏動作時，你嘗試將自己隱蔽起來。為了執行躲藏，你必須透過一次{@dc 15}的敏捷（{@skill Stealth|XPHB|隱匿}）檢定，你只有身處{@variantrule Heavily Obscured|XPHB|重度遮蔽}之中、處於{@variantrule Cover|XPHB|掩護}之後或處於全身掩護之後，也不在任何敵人的視野內（如果你能看到一個生物，你就可以判斷它是否能夠看見你），才能這麼做。",
+				"檢定成功時，你在躲藏期間獲得{@condition Invisible|XPHB|隱形}狀態。記錄你的檢定總值，該值即為其他生物透過感知（{@skill Perception|XPHB|感知}）檢定發現你的DC。",
+				"發生以下情況時，你結束躲藏：你發出了高於低語的響聲；敵人找到了你；你進行一次攻擊檢定；你施展了一個帶有言語成分的法術。"
+			],
+			"ENG_name": "Hide"
+		},
+		{
+			"name": "辨識法術",
+			"source": "XGE",
+			"page": 85,
+			"fromVariant": "Spellcasting|XGE",
+			"time": [
+				{
+					"number": 1,
+					"unit": "reaction"
+				},
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"有時一個角色會想要識別一個對方正在施放或已經施放的法術。為此，角色可以在對方施放法術時使用他們的反應來識別法術，或者他們可以在對方施放之後使用一個動作來識別法術的效果。",
+				"如果一個角色感知到了施法、法術效果，或者兩者都感知到了，該角色可以透過反應或動作來做一個智力（{@skill Arcana||奧秘}）檢定。DC = 15 +法術等級。如果被感知者的法術以職業法術的形式施放，並且進行感知的角色也是該職業，那麼此次法術辨識檢定將帶有優勢。例如，如果施法者以牧師身份施放法術，另一個牧師在這次識別法術檢定上帶有優勢。某些法術在施放時不會與任何職業發生衝突，比如當一個怪物使用其固有的施法特性。",
+				"這個智力（{@skill Arcana||奧秘}）檢定代表一個事實，即識別一個法術需要敏銳的頭腦及熟悉施法的理論和實踐。即使對於一個施法能力是感知或魅力的角色也是如此。能夠施法本身並不能讓你熟練地推斷出別人施法時在做什麼。"
+			],
+			"ENG_name": "Identify a Spell"
+		},
+		{
+			"name": "即興發揮的一次動作",
+			"source": "PHB",
+			"page": 193,
+			"basicRules": true,
+			"reprintedAs": [
+				"Improvising an Action|XPHB"
+			],
+			"time": [
+				"Varies"
+			],
+			"entries": [
+				"你的角色可以執行本章未說明的動作，例如破門、威嚇、探知魔防弱點、求和等。可執行動作的唯一限制是你的想像力以及角色的屬性值。參考{@book 第七章|phb|7|Ability Scores and Modifiers}中關於屬性值的說明以啟發你的想像力。",
+				"你想作出一次規則沒有說明的動作時，DM會告訴你該動作是否可行，以及你是否需要進行什麼檢定去決定動作的成敗。"
+			],
+			"ENG_name": "Improvising an Action"
+		},
+		{
+			"name": "即興發揮的一次動作",
+			"source": "XPHB",
+			"page": 15,
+			"basicRules2024": true,
+			"time": [
+				"Varies"
+			],
+			"entries": [
+				"玩家角色和怪物也可以進行除這些動作以外的事情。有很多職業特性和其他能力都會提供額外的動作選項，此外你也可以即興做其他動作。當你描述一項規則中沒有的動作時，地下城主會告訴你這個動作是否可行，以及你是否需要進行某種{@variantrule D20 Test|XPHB|d20 檢定}。"
+			],
+			"ENG_name": "Improvising an Action"
+		},
+		{
+			"name": "影響",
+			"source": "XPHB",
+			"page": 369,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"藉由影響動作，你嘗試要求一個怪物去做些什麼事。請描述或扮演出你與怪物之間是如何交流的。你是在欺騙它？恐嚇它？取悅它？還是和藹地說服它？然後，根據你與怪物的互動，由DM來決定這怪物願意、不願意還是猶豫不決，這三種情況將決定你是否需要進行屬性檢定，具體如下所述。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "願意",
+							"entries": [
+								"如果你要求的方向與該怪物的欲求一致，那麼你不需要進行屬性檢定，而怪物會以它偏好的方式去完成你的要求。"
+							],
+							"ENG_name": "Willing"
+						},
+						{
+							"type": "entries",
+							"name": "不願意",
+							"entries": [
+								"如果你的要求對於怪物來說是無法接受的，或者有悖於其陣營，那麼你也不需要進行屬性檢定，因為它不會同意的。"
+							],
+							"ENG_name": "Unwilling"
+						},
+						{
+							"type": "entries",
+							"name": "猶豫不決",
+							"entries": [
+								"果怪物對於你要求去做的事情有些猶豫，你必須進行一次屬性檢定。此次檢定會受到怪物的態度（冷漠、友好、敵對）影響，這些態度均在術語彙編中有所定義。影響檢定表上基於你與怪物的互動方式，建議了所需進行的屬性檢定，但具體的檢定型別由DM來選擇。檢定的DC預設為 15 或怪物的智力屬性值，兩者取高者。檢定成功時，怪物會按你要求的去做。檢定失敗時，你必須等待 24 小時（或者DM設定的一段時間）後才能再次以影響動作向它要求。"
+							],
+							"ENG_name": "Hesitant"
+						},
+						{
+							"type": "table",
+							"caption": "影響檢定",
+							"colLabels": [
+								"屬性檢定",
+								"互動"
+							],
+							"colStyles": [
+								"col-4",
+								"col-8"
+							],
+							"rows": [
+								[
+									"魅力（{@skill Deception|XPHB|欺瞞}）",
+									"欺騙一個可以理解你的怪物"
+								],
+								[
+									"魅力（{@skill Intimidation|XPHB|威嚇}）",
+									"恐嚇一個怪物"
+								],
+								[
+									"魅力（{@skill Performance|XPHB|表演}）",
+									"取悅一個怪物"
+								],
+								[
+									"魅力（{@skill Persuasion|XPHB|說服}）",
+									"說服一個可以理解你的怪物"
+								],
+								[
+									"感知（{@skill Animal Handling|XPHB|馴獸}）",
+									"和藹地勸誘一隻野獸或怪獸"
+								]
+							]
+						}
+					]
+				}
+			],
+			"ENG_name": "Influence"
+		},
+		{
+			"name": "魔法",
+			"source": "XPHB",
+			"page": 371,
+			"srd52": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"當你執行{@action Magic|XPHB|魔法}動作時，你施展某個施法時間為動作的法術、使用某個需要使用{@action Magic|XPHB|魔法}動作的特性或是使用一個\"需要魔法動作來啟用\"的魔法物品。",
+				"若你需要施展一道施法時間為 1 分鐘以上的法術，你必須在施展該法術期間的每個回合中都執行{@action Magic|XPHB|魔法}動作，且你必須為其保持{@status Concentration|XPHB|專注}。若你的{@status Concentration|XPHB|專注}被打斷，法術將施展失敗，但你不會因此消耗法術位。"
+			],
+			"ENG_name": "Magic"
+		},
+		{
+			"name": "標記",
+			"source": "DMG",
+			"page": 271,
+			"fromVariant": "Action Options",
+			"entries": [
+				"該選項讓近戰參戰者們在貼身戰時更容易使用藉機攻擊。",
+				"當生物發動近戰攻擊時，它還同時還可以標記它的目標。攻擊者在其自己的下一回合結束前，對該被標記目標發動的所有藉機攻擊均具有優勢。該藉機攻擊不會消耗該攻擊者的反應，但該攻擊者不能在無法執行反應時發動該攻擊（比如，陷入{@condition incapacitated||失能}狀態，或者受法術{@spell shocking grasp||電爪}影響時）。該攻擊者每回合只能有一次機會發動藉機攻擊。"
+			],
+			"seeAlsoAction": [
+				"Attack"
+			],
+			"ENG_name": "Mark"
+		},
+		{
+			"name": "借機攻擊",
+			"source": "PHB",
+			"page": 195,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Opportunity Attack|XPHB"
+			],
+			"time": [
+				{
+					"number": 1,
+					"unit": "reaction"
+				}
+			],
+			"entries": [
+				"在混戰中，每人都會注意把握機會攻擊任何試圖逃開或經過身邊的敵人。這種攻擊即為藉機攻擊。",
+				"當敵人離開你的觸及範圍，而你又可以看見他時，你可以發動一次藉機攻擊。你需要用你的反應對引起你注意的生物發動一次近戰攻擊。該攻擊發生在該生物離開你觸及範圍之前的一瞬間，並且打斷它的移動。",
+				"你可以用{@action Disengage||撤離}動作來避免觸發藉機攻擊。而當你進行傳送，或當某人某事迫使你進行移動（且沒有花費你的移動力、動作、或反應）時，你也不會因此觸發藉機攻擊。例如，如果有爆炸將你推出敵人的觸及範圍，或者地心引力令你墜離時，你都不會引發藉機攻擊。"
+			],
+			"ENG_name": "Opportunity Attack"
+		},
+		{
+			"name": "借機攻擊",
+			"source": "XPHB",
+			"page": 371,
+			"srd52": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "reaction"
+				}
+			],
+			"entries": [
+				"你可見的生物，使用其動作、其{@variantrule Bonus Action|XPHB|附贈動作}、其{@variantrule Reaction|XPHB|反應}或者其任一速度嘗試離開你的觸及範圍時，你可以對其發動一次藉機攻擊。為發動藉機攻擊，你執行你的{@variantrule Reaction|XPHB|反應}，用武器或{@variantrule Unarmed Strike|XPHB|徒手打擊}對引發藉機的生物發動一次近戰攻擊。此次攻擊發生在該生物離開你觸及範圍之前的一瞬間。"
+			],
+			"ENG_name": "Opportunity Attack"
+		},
+		{
+			"name": "其他動作",
+			"source": "PHB",
+			"page": 190,
+			"srd": true,
+			"basicRules": true,
+			"time": [
+				"Varies"
+			],
+			"entries": [
+				"你在自己回合內除了移動和執行動作外，還可以進行各種各樣的其他行為。",
+				"你在自已回合中可以隨意的透過短句和手勢與他人進行溝通。",
+				"你在自己回合中進行移動或執行動作時，你也可以跟一個物件或環境的特性進行自由互動。舉例來說，在你移動接近敵人的途中你可以開啟一扇門，或作為攻擊動作的一部分，拔出你的武器。",
+				"如果你想跟另一個物件互動，你就需要使用你的動作了。某些魔法物品或特殊物件也會需要用一個動作來使用，而這通常會在它們的文字描述中提及。",
+				"進行比較費神或不尋常的活動時，DM也可能會要求你用一個動作。例如，DM可以合理的要求你開啟一扇卡死的門的行為需要一個動作，或者操作曲柄放下吊橋的行為需要一個動作。",
+				{
+					"type": "inset",
+					"name": "與身邊物件互動",
+					"entries": [
+						"以下是一些你移動或執行動作期間可連帶著進行的互動的範例：",
+						{
+							"type": "list",
+							"items": [
+								"將一把劍拔出或收起",
+								"將一扇門開啟或關上",
+								"從揹包取出一瓶藥劑",
+								"從地上撿起一把掉落的斧頭",
+								"從桌上拿起飾品",
+								"從自己手上取下一枚戒指",
+								"將一些食物塞進自己嘴裡",
+								"將一面旗插進土裡",
+								"將幾枚硬幣從小包裡撈出",
+								"將酒壺裡所有的麥酒喝掉",
+								"將拉桿或開關放下",
+								"從壁臺上取下一支火把",
+								"從夠得到的書架上拿一本書",
+								"將一處小火苗撲滅",
+								"戴上一副面具",
+								"拉起斗篷的兜帽遮住頭部",
+								"將耳朵貼到門上",
+								"踢飛一顆小石子",
+								"轉動插上鎖孔的鑰匙",
+								"用一根10尺長杆輕拍地面",
+								"將一件物品遞給另一名角色"
+							]
+						}
+					],
+					"ENG_name": "Interacting with Objects Around You"
+				}
+			],
+			"ENG_name": "Other Activity"
+		},
+		{
+			"name": "強衝",
+			"source": "DMG",
+			"page": 272,
+			"fromVariant": "Action Options",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				},
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"entries": [
+				"生物試圖強行穿越敵對生物所佔空間時，移動者可以對該敵對生物執行強衝強行透過其關卡。作為一個動作項或附贈動作項，移動者必須進行一次力量（{@skill Athletics||運動}）檢定，以對抗敵對生物的力量（{@skill Athletics||運動}）檢定。嘗試強衝的生物如果比敵對生物體型更大則其檢定具有優勢，如果更小則具有劣勢。若移動者贏得對抗，則它可以在本回合內移動穿過該敵對生物所佔空間一次。"
+			],
+			"seeAlsoAction": [
+				"Tumble|DMG"
+			],
+			"ENG_name": "Overrun"
+		},
+		{
+			"name": "準備",
+			"source": "PHB",
+			"page": 193,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Ready|XPHB"
+			],
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"有時你可能會想攔下敵人或者等待適當時機行動。這時，你可以在自已回合中執行預備動作，並在當前戰鬥輪稍後的時間用反應來作出動作。",
+				"首先，你要形容一件可以觀察的事件，並以此觸發你的反應。然後，你再決定將會執行的動作，或者選擇觸發你移動不高於自身速度的距離。例如，\"那信徒踩在陷阱上時，我就立刻拉下拉桿啟動它\"或\"那個地精一來到我身邊，我就走開。\"",
+				"當你的觸發條件被滿足時，你可以選擇在觸發條件完成之後立刻執行你的反應，或選擇不觸發。當然，你每輪依然只能執行一個反應。",
+				"當你預備一項法術時，你如常施展法術並將其的力量壓制住，直到你用反應來將其釋放。只有施法時間為1次動作的法術可以被預備，而且你需要{@status concentration||專注}於受壓制法術的能量（在{@book 第十章|phb|10|concentration}中解釋）。如果你{@status concentration||專注}被打斷，則法術的能量將會消散並不會產生任何效應。例如，如果你在{@status concentration||專注於}維持一個蛛網術web的同時執行動作來預備法術魔法飛彈magic missile，則你的蛛網術效果結束。而如果你在用反應釋放魔法飛彈 之前受傷，則你可能因而失去{@status concentration||專注}並失去該法術的預備效果。",
+				"你必須在你的下一回合開始前執行已經預備的動作。"
+			],
+			"ENG_name": "Ready"
+		},
+		{
+			"name": "準備",
+			"source": "XPHB",
+			"page": 372,
+			"srd52": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"你可以執行預備動作來等待某個特定事件到來，再進行你的行動。為此，你需要在自己回合中執行預備動作，使你可以在自己的下個回合開始前執行一項{@variantrule Reaction|XPHB|反應}。",
+				"首先，你需要設定\"何種可感知的事件能觸發你的{@variantrule Reaction|XPHB|反應}\"。然後，作為你對該事件的響應，你選擇你當時要執行的動作或是選擇移動等於你{@variantrule Speed|XPHB|速度}的距離。舉個例子，你可以設定\"當那個邪教徒踩上了活板門時，我就拉下開啟活板門的拉桿\"或是\"當那個喪屍走到我身旁時，我就跑開\"。",
+				"當觸發事件發生時，你可以選擇在觸發事件完成後緊跟著執行你設定的{@variantrule Reaction|XPHB|反應}動作或是選擇無視該觸發事件。",
+				"當你預備一道法術時，你需要如常施展它（消耗如常施展它所需的各種資源）來維持其能量，並在觸發事件發生時用你的{@variantrule Reaction|XPHB|反應}去釋放它。為預備一道法術，這道法術的施法時間必須是動作，且你在維持法術魔法能量期間必須為其保持{@status Concentration|XPHB|專注}（此專注至多持續至你的下一回合開始時）。如果你的{@status Concentration|XPHB|專注}被打斷，法術將消散，且不會產生任何效應。"
+			],
+			"ENG_name": "Ready"
+		},
+		{
+			"name": "搜尋",
+			"source": "PHB",
+			"page": 193,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Search|XPHB"
+			],
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"執行搜尋動作時，你全情投入於搜尋某物。DM根據你想要進行搜尋的方式，可能會要求你進行一次感知（{@skill Perception||感知}）檢定或智力（{@skill Investigation||調查}）檢定。"
+			],
+			"ENG_name": "Search"
+		},
+		{
+			"name": "搜尋",
+			"source": "XPHB",
+			"page": 373,
+			"srd52": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"當你執行搜尋動作，你進行一次感知檢定來搜尋某個\"並不顯眼\"的東西。根據你嘗試搜尋的具體內容，搜尋表提供了你在執行此動作時可用技能的建議。",
+				{
+					"type": "table",
+					"caption": "搜尋",
+					"colLabels": [
+						"技能",
+						"要搜尋的東西"
+					],
+					"colStyles": [
+						"col-4",
+						"col-8"
+					],
+					"rows": [
+						[
+							"{@skill Insight|XPHB|洞悉}",
+							"生物的心理狀態"
+						],
+						[
+							"{@skill Medicine|XPHB|醫療}",
+							"生物的傷勢，或是死因"
+						],
+						[
+							"{@skill Perception|XPHB|感知}",
+							"被藏匿的生物或物件"
+						],
+						[
+							"{@skill Survival|XPHB|求生}",
+							"蹤跡或食物"
+						]
+					]
+				}
+			],
+			"ENG_name": "Search"
+		},
+		{
+			"name": "推撞",
+			"source": "PHB",
+			"page": 195,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				{
+					"uid": "Unarmed Strike|XPHB",
+					"tag": "variantrule"
+				}
+			],
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"你可以用{@action Attack||攻擊}動作發動一種特殊的近戰攻擊去推撞對手，將他推開或者令他{@condition prone||倒地}。如果你可以用 {@action Attack||攻擊}動作發動多次攻擊，則這種攻擊會取代其中之一。",
+				"被推撞目標的體型不能比你大超過一級，並且要位處你的觸及範圍之內。你進行一次力量（{@skill Athletics||運動}）檢定，並與對方的力量（{@skill Athletics||運動}）或敏捷（{@skill Acrobatics||體操}）檢定（由對方選擇）作對抗。若目標正處於{@condition incapacitated||失能}狀態則你直接檢定成功。若你勝出該檢定對抗，則你可以將目標撞至{@condition prone||倒地}，或將其從你身邊推開5尺。"
+			],
+			"seeAlsoAction": [
+				"Attack",
+				"Shove Aside|DMG"
+			],
+			"ENG_name": "Shove"
+		},
+		{
+			"name": "挪移",
+			"source": "DMG",
+			"page": 272,
+			"fromVariant": "Action Options",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"使用該選項時，生物可以使用一種特殊的{@action shove||推撞}動作以迫使目標挪移到旁邊而不是推開（參考{@book 玩家手冊|PHB|9|Shoving a Creature}）。攻擊者進行該力量（{@skill Athletics||運動}）檢定時具有劣勢。如果該檢定成功，攻擊者使目標移動5尺到另一個他可以觸及的空間位置。"
+			],
+			"ENG_name": "Shove Aside"
+		},
+		{
+			"name": "穩定傷勢",
+			"source": "PHB",
+			"page": 197,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Help|XPHB"
+			],
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"你可以用你的動作對一名{@condition unconscious||昏迷}的目標進行急救，並試圖讓其傷勢穩定。進行一次{@dc 10}的感知（{@skill Medicine||醫療}）檢定，以判定你的努力是否成功。",
+				"傷勢穩定的生物不需要再進行死亡豁免，但依然保持0生命值，以及持續{@condition unconscious||昏迷}狀態。如果再受到任何傷害，則其傷勢也會再次加重，從而需要繼續擲死亡豁免。如果傷勢穩定的生物一直沒有接受治療，則他在{@dice 1d4}小時後恢復1點生命值。"
+			],
+			"ENG_name": "Stabilize a Creature"
+		},
+		{
+			"name": "研究",
+			"source": "XPHB",
+			"page": 375,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"當你執行研究動作時，你進行一次智力檢定來研究你的記憶、一本書、一條線索或是其他來源的知識，並回憶起有關這一事物的重要資訊。",
+				"知識範圍表基於智力檢定相關的知識範圍，給予了適用何種技能的建議。",
+				{
+					"type": "table",
+					"caption": "知識範圍",
+					"colLabels": [
+						"技能",
+						"範圍"
+					],
+					"colStyles": [
+						"col-3",
+						"col-9"
+					],
+					"rows": [
+						[
+							"{@skill Arcana|XPHB|奧秘}",
+							"法術、魔法物品、魔能符號、魔法傳承、存在位面、特定生物（異怪、構裝、元素、妖精、怪獸）"
+						],
+						[
+							"{@skill History|XPHB|歷史}",
+							"歷史事件和歷史人物、古文明、戰爭、特定生物（巨人、類人）"
+						],
+						[
+							"{@skill Investigation|XPHB|調查}",
+							"陷阱、密文、謎語、裝置"
+						],
+						[
+							"{@skill Nature|XPHB|自然}",
+							"地形、植物、天氣、特定生物（野獸、龍類、泥怪、植物）"
+						],
+						[
+							"{@skill Religion|XPHB|宗教}",
+							"神祇、宗教層級和儀式、聖徽、教團、特定生物（天族、邪魔、亡靈）"
+						]
+					]
+				}
+			],
+			"ENG_name": "Study"
+		},
+		{
+			"name": "翻滾",
+			"source": "DMG",
+			"page": 272,
+			"fromVariant": "Action Options",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				},
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"entries": [
+				"生物可以嘗試翻滾穿過一名敵對生物所佔空間位置，左閃右避的到達另一邊。作為一個動作項或一個附贈動作項，翻滾者必須進行一次敏捷（{@skill Acrobatics||體操}）檢定，以對抗敵對生物的敏捷（{@skill Acrobatics||體操}）檢定。若翻滾者贏得對抗，則它可以在本回合內移動穿過該敵對生物所佔空間一次。"
+			],
+			"seeAlsoAction": [
+				"Overrun|DMG"
+			],
+			"ENG_name": "Tumble"
+		},
+		{
+			"name": "雙武器戰鬥",
+			"source": "PHB",
+			"page": 195,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Two-Weapon Fighting|XPHB"
+			],
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"entries": [
+				"當你執行{@action Attack||攻擊}動作並用單手持用一把輕型近戰武器攻擊時，你可以用另一隻手持用另外一把輕型近戰武器，並用一個附贈動作來進行攻擊。該附贈攻擊的傷害不獲得你的屬性調整值加成，除非該調整值為負數。",
+				"如果所持用武器帶投擲屬性，則你可以不用它發動近戰攻擊而改為投擲它。"
+			],
+			"seeAlsoAction": [
+				"Attack"
+			],
+			"ENG_name": "Two-Weapon Fighting"
+		},
+		{
+			"name": "雙武器戰鬥",
+			"source": "XPHB",
+			"page": 213,
+			"srd52": true,
+			"basicRules2024": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"entries": [
+				"當你在自己回合中執行{@action Attack|XPHB|攻擊}動作，並用一把輕型武器發動一次攻擊後，你可以在同一回合中用{@variantrule Bonus Action|XPHB|附贈動作}發動一次額外的攻擊。這次額外的攻擊你必須使用另一把輕型武器發動，並且這次攻擊的傷害無法加入你的屬性調整值（除非該調整值為負數）。例如，若你在你的回合中執行了{@action Attack|XPHB|攻擊}動作，一隻手手持{@item Shortsword|XPHB|短劍}，另一隻手手持{@item Dagger|XPHB|匕首}，而這兩把武器均有輕型詞條，則你可以使用你的動作和{@variantrule Bonus Action|XPHB|附贈動作}，來用這兩把武器各發動一次攻擊。但你不能將力量或敏捷調整值加入{@variantrule Bonus Action|XPHB|附贈動作}攻擊武器的造成的傷害中（除非該調整值為負數）。"
+			],
+			"seeAlsoAction": [
+				"Attack|XPHB"
+			],
+			"ENG_name": "Two-Weapon Fighting"
+		},
+		{
+			"name": "使用物件",
+			"source": "PHB",
+			"page": 193,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Utilize|XPHB"
+			],
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"你通常會在做某件事的同時順便跟一個物件進行互動（例如攻擊同時拔出劍）。而某些物件的互動則會需要用動作完成，此時則需要你執行使用物件動作。當你想在一回合內操作多於一個物件時，也可以用該動作使用第二個物件。"
+			],
+			"ENG_name": "Use an Object"
+		},
+		{
+			"name": "操作",
+			"source": "XPHB",
+			"page": 377,
+			"srd52": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"通常，你會在做其他事的同時與一件物品進行互動，例如作為{@action Attack|XPHB|攻擊}動作的一部分來拔出一把劍。當一個物件需要一個動作才能使用時，你需要為其執行操作動作。"
+			],
+			"ENG_name": "Utilize"
+		},
+		{
+			"name": "喚醒某人",
+			"source": "XGE",
+			"page": 77,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"當一個生物處於自然睡眠，而不是受魔法或藥劑影響的睡眠中，如果它受到任何傷害，或者其他人用一個動作搖晃或拍打這個生物，它就會醒來。一聲突如其來的巨響，如叫喊、雷鳴或鈴聲，也會喚醒自然睡眠中的某人。",
+				"耳語不會影響睡眠，除非睡眠者的被動感知（{@skill Perception||感知}）值為20或更高，並且耳語者就在睡眠者周圍10尺以內。當周圍環境比較安靜（沒有風聲、鳥鳴、蟋蟀、鬧市，或者類似的雜音）且睡眠者的被動感知（{@skill Perception||感知}）值為15或更高時，正常音量的談話便可以吵醒它。"
+			],
+			"ENG_name": "Waking Someone"
+		}
+	]
+}

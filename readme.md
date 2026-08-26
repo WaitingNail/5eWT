@@ -1,18 +1,19 @@
-# 5eWT — Class 臺灣繁中覆蓋層
+# 5eWT — 5etools 臺灣繁中覆蓋層
 
 這是固定對應 `5etools-mirror-3/5etools-src@v2.33.3` 的私人、自用繁中覆蓋層。
 
-## 已完成
+## 已完成範圍
 
-- 2014 與 2024 的 Class 資料及說明文字。
-- 奇械師、秘術師與協力者等非核心職業資料。
-- Class 頁面專用介面、側欄、表格、篩選、來源與再版提示。
-- 30 個職業、322 個子職業、677 個職業特性、1,441 個子職業特性。
-- 9,228 組可見字串檢查；未翻譯正文、canonical 錯誤、inline tag 錯誤及未解決數值差異皆為 0。
+- 全站共用介面與繁中 runtime：672 筆訊息，56／56 個產生式 HTML 頁面接入。
+- 2014、2024 與非核心 Class：30 個職業、322 個子職業、677 個職業特性、1,441 個子職業特性。
+- 核心規則資料：48 個動作、64 個狀態／疾病／狀態詞、36 個技能、8 種感官及 243 條核心／變體規則。
+- 2014 Quick Reference：5 章、46 個 canonical headers、395 個具名正文區塊。
+- 清單、篩選、書籍檢視、來源視窗與 Quick Reference 均可顯示繁中；名稱與正文同時支援繁中／英文搜尋。
+- 英文 `name`、source、UID、URL hash、篩選值與 inline tag lookup 保持 canonical。
 
 ## 一鍵套用
 
-需要 Node.js 24、Git 與 Python 3。
+套用預建翻譯只需要 Node.js 24 與 Git；重新匯入外部初稿時才需要 Python 3。
 
 ```bash
 npm run setup
@@ -21,9 +22,9 @@ npm run setup
 此命令會：
 
 1. 將固定版本的上游 clone 到 `vendor/5etools-src`。
-2. 複製預建的 zh-TW sidecar、翻譯工具與 QA 資料。
-3. 套用 Class runtime patch。
-4. 執行語法、runtime、canonical、inline tag 與數值檢查。
+2. 複製預建的 zh-TW sidecar、全站 locale、翻譯工具與 QA 資料。
+3. 套用共用介面、Class、核心規則與 Quick Reference runtime patch。
+4. 執行全站介面、Class、規則、Quick Reference、canonical、inline tag、骰式與數值檢查。
 
 之後可用：
 
@@ -41,11 +42,18 @@ npm run serve
 python -m pip install -r requirements-zh-tw.txt
 npm run import:classes
 npm run build:class-locale
+npm run import:rules
+npm run build:site-locale
 npm run verify
 ```
 
-詳細來源、人工校訂與剩餘刻意保留的英文，見 `translation/zh-TW/classes/README.md` 與 `translation/zh-TW/classes/final-qa-report.md`。
+詳細來源、授權、人工校訂與刻意保留的英文，見：
+
+- `translation/zh-TW/classes/README.md`
+- `translation/zh-TW/classes/final-qa-report.md`
+- `translation/zh-TW/rules/README.md`
+- `translation/zh-TW/rules/SOURCE-ATTRIBUTION.md`
 
 ## 私人使用限制
 
-初稿參考來源未找到清楚的再利用授權聲明；含非 SRD 書籍內容的譯文只應留在私人 repository 自用。請勿發布至公開 GitHub Pages、Release、公開 fork 或其他公開下載位置。
+Class 初稿參考來源未找到清楚的再利用授權聲明；規則初稿依 CC BY-NC-SA 4.0 使用並已附署名。兩者都含非 SRD 書籍內容，只應留在私人 repository 自用。請勿發布至公開 GitHub Pages、公開 Release、公開 fork 或其他公開下載位置。私人 repository 本身不會擴張你對原作內容的授權。
