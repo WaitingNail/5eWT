@@ -6,44 +6,48 @@ import {fileURLToPath} from "node:url";
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const upstreamRoot = path.join(projectRoot, "vendor", "5etools-src");
 const patchPath = path.join(projectRoot, "patches", "0001-zh-tw-classes-runtime.patch");
+const copyRoots = [
+  "requirements-zh-tw.txt",
+  "data/zh-TW",
+  "js/zh-tw",
+  "node/zh-tw",
+  "translation/zh-TW",
+  "docs/zh-tw",
+  "reports",
+];
 
 if (!fs.existsSync(path.join(upstreamRoot, ".git"))) {
   throw new Error("Missing vendor/5etools-src. Run npm run bootstrap first.");
 }
 
-for (const relativePath of [
-  "requirements-zh-tw.txt",
-  "data/zh-TW",
-  "js/zh-tw/class-i18n.js",
-  "js/zh-tw/class-body-i18n.js",
-  "node/zh-tw",
-  "translation/zh-TW",
-  "reports",
-]) {
-  const sourcePath = path.join(projectRoot, relativePath);
-  const targetPath = path.join(upstreamRoot, relativePath);
-  fs.mkdirSync(path.dirname(targetPath), {recursive: true});
-  if (fs.statSync(sourcePath).isDirectory()) {
-    fs.cpSync(sourcePath, targetPath, {recursive: true, force: true});
-  } else {
-    fs.copyFileSync(sourcePath, targetPath);
+function copyRecursive (sourcePath, targetPath) {
+  const stat = fs.statSync(sourcePath);
+  if (stat.isDirectory()) {
+    fs.mkdirSync(targetPath, {recursive: true});
+    for (const child of fs.readdirSync(sourcePath)) copyRecursive(path.join(sourcePath, child), path.join(targetPath, child));
+    return;
   }
+  fs.mkdirSync(path.dirname(targetPath), {recursive: true});
+  fs.copyFileSync(sourcePath, targetPath);
 }
 
-const runGitApply = (args, {stdio = "inherit"} = {}) => execFileSync("git", ["apply", ...args, patchPath], {
-  cwd: upstreamRoot,
-  stdio,
-});
+for (const relativePath of copyRoots) {
+  const sourcePath = path.join(projectRoot, relativePath);
+  if (!fs.existsSync(sourcePath)) throw new Error(`Missing overlay asset: ${relativePath}`);
+  copyRecursive(sourcePath, path.join(upstreamRoot, relativePath));
+}
+
+const runGitApply = args => execFileSync("git", ["apply", ...args, patchPath], {cwd: upstreamRoot, stdio: "inherit"});
 
 try {
-  runGitApply(["--check"], {stdio: "pipe"});
+  runGitApply(["--check"]);
   runGitApply([]);
-  console.log("Applied the complete zh-TW Classes overlay.");
+  console.log("Applied zh-TW Class overlay.");
 } catch {
   try {
-    runGitApply(["--reverse", "--check"], {stdio: "pipe"});
-    console.log("The zh-TW Classes runtime patch is already applied; sidecars were refreshed.");
+    runGitApply(["--reverse", "--check"]);
+    console.log("zh-TW Class overlay is already applied; assets were refreshed.");
   } catch {
-    throw new Error("Classes overlay does not apply cleanly to the pinned upstream tag.");
+    throw new Error("Class overlay does not apply cleanly to the pinned upstream tag.");
   }
 }

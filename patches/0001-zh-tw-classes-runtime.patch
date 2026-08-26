@@ -87,7 +87,7 @@ index 3f6cd87..e3ec802 100644
  			</table>
  		</div>
 diff --git a/js/classes.js b/js/classes.js
-index 622ebca..25362c0 100644
+index 622ebca..bf8c5b0 100644
 --- a/js/classes.js
 +++ b/js/classes.js
 @@ -2,6 +2,8 @@ import {VetoolsConfig} from "./utils-config/utils-config-config.js";
@@ -108,7 +108,7 @@ index 622ebca..25362c0 100644
  						}
  
  						stack += renderer.render(cpy);
-@@ -287,9 +289,24 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -287,9 +289,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  	}
  
  	static getBtnTitleSubclass (sc) {
@@ -116,27 +116,12 @@ index 622ebca..25362c0 100644
 -		const sourcePart = Renderer.utils.getSourceAndPageText(sc);
 -		return `${sc.name}; Source: ${sourcePart}${titlePartReprint}`;
 +		const titlePartReprint = sc.isReprinted ? "（此子職業已有較新來源的再版版本）" : "";
-+		const sourcePart = I18nZhTwClass
-+			.localizeSourceHtml(Renderer.utils.getSourceAndPageText(sc))
-+			.replaceAll("Available in ", "收錄於")
-+			.replaceAll("the SRD 5.2.1", "SRD 5.2.1")
-+			.replaceAll("the SRD 5.1", "SRD 5.1")
-+			.replaceAll(" and the Basic Rules (5.5e/2024)", "與《基礎規則》（5.5e／2024）")
-+			.replaceAll(" and the Basic Rules (5e/2014)", "與《基礎規則》（5e／2014）")
-+			.replaceAll("the Basic Rules (5.5e/2024)", "《基礎規則》（5.5e／2024）")
-+			.replaceAll("the Basic Rules (5e/2014)", "《基礎規則》（5e／2014）")
-+			.replace(/ \(as "(.+?)"\)/gu, "（名稱為「$1」）")
-+			.replace(/ in ([^;.\s]+)(?=;|\.|$)/gu, "，收錄於 $1");
++		const sourcePart = I18nZhTwClass.localizeSourceHtml(Renderer.utils.getSourceAndPageText(sc));
 +		return `${sc.name}${sc.ENG_name ? `（${sc.ENG_name}）` : ""}；來源：${sourcePart}${titlePartReprint}`;
-+	}
-+
-+	static _getPublishedDateStrZhTw (source) {
-+		const [year, month, day] = Parser.sourceJsonToDate(source).split("-").map(Number);
-+		return `${year}年${month}月${day}日`;
  	}
  
  	static getBaseShortName (sc) {
-@@ -373,7 +390,13 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -373,7 +375,13 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  		]);
  		await ExcludeUtil.pInitialise();
  		OmnisearchUtilsUi.addScrollTopFloat();
@@ -151,13 +136,7 @@ index 622ebca..25362c0 100644
  
  		const iptSearch = veE(document.getElementById("lst__search"));
  		const btnReset = veE(document.getElementById("reset"));
-@@ -405,12 +428,13 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
- 				ManageBrewUi.bindBtngroupManager(veE({id: "btngroup-manager"}));
- 			});
- 		this._renderListFeelingLucky({isCompact: true, btnReset, isScrollablePage: true});
-+		btnReset.previousElementSibling?.setAttribute("title", "隨機選擇");
- 
- 		window.onhashchange = this._pHandleHashChange.bind(this);
+@@ -410,7 +418,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  
  		this._list.init();
  
@@ -166,27 +145,7 @@ index 622ebca..25362c0 100644
  
  		// Silently prepare our initial state
  		await this._pSetClassFromHash(Hist.initialLoad);
-@@ -418,11 +442,17 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
- 
- 		await this._pInitAndRunRender();
- 
--		ListPage._checkShowAllExcluded(this._dataList, this._pgContent);
-+		if (ExcludeUtil.isAllContentExcluded(this._dataList)) {
-+			this._pgContent.vee.html(`<tr><th class="ve-tbl-border" colspan="6"></th></tr>
-+				<tr><td colspan="6"><div class="initial-message initial-message--med">（所有內容均已列入<a href="blocklist.html">封鎖清單</a>）</div></td></tr>
-+				<tr><th class="ve-tbl-border" colspan="6"></th></tr>`);
-+		}
- 		this._initLinkRedirectors();
- 		this._initLinkGrabbers();
- 		this._initScrollToSubclassSelection();
--		this._bindLinkExportButton({btn: veE(document.getElementById("btn-link-export"))});
-+		const btnLinkExport = veE(document.getElementById("btn-link-export"));
-+		this._bindLinkExportButton({btn: btnLinkExport});
-+		btnLinkExport.vee.tooltip("複製篩選連結（Shift：加入列表；Ctrl：複製 @filter 標籤）");
- 		this._doBindBtnSettingsSidebar();
- 
- 		Hist.initialLoad = false;
-@@ -442,6 +472,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -442,6 +450,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  	}
  
  	async _pAddPrereleaseBrewData ({prereleaseBrewData}) {
@@ -194,7 +153,7 @@ index 622ebca..25362c0 100644
  		const {isAddedAnyClass, isAddedAnySubclass} = this._addData(prereleaseBrewData);
  
  		if (isAddedAnySubclass && !Hist.initialLoad) await this._pDoRender();
-@@ -530,10 +561,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -530,10 +539,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  		data.subclass.forEach(sc => {
  			if (sc.className === VeCt.STR_GENERIC || sc.classSource === VeCt.STR_GENERIC) return;
  
@@ -207,7 +166,7 @@ index 622ebca..25362c0 100644
  					type: "danger",
  				});
  				return;
-@@ -617,7 +648,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -617,7 +626,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  			if (target._ !== ixToLoad) {
  				Hist.lastLoadedId = ixToLoad;
  				const cls = this._dataList[ixToLoad];
@@ -216,7 +175,7 @@ index 622ebca..25362c0 100644
  				this._updateSelected();
  				target._ = ixToLoad;
  			} else {
-@@ -626,7 +657,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -626,7 +635,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  		} else {
  			// This should never occur (failed loads should pick the first list item), but attempt to handle it semi-gracefully
  			this._pgContent.vee.empty().vee.appends(ClassesPage._render_getTrNoContent());
@@ -225,16 +184,7 @@ index 622ebca..25362c0 100644
  		}
  	}
  
-@@ -857,7 +888,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
- 
- 				if (evt.shiftKey) {
- 					await MiscUtil.pCopyTextToClipboard(eleTarget.vee.txt().replace(/\.$/, ""));
--					JqueryUtil.showCopiedEffect(eleTarget);
-+					JqueryUtil.showCopiedEffect(eleTarget, {text: "已複製！"});
- 					return;
- 				}
- 
-@@ -868,10 +899,31 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -868,7 +877,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  				const href = `${window.location.href.split("#")[0]}#${this._getHashState({state: curState})}`;
  
  				await MiscUtil.pCopyTextToClipboard(href);
@@ -243,31 +193,7 @@ index 622ebca..25362c0 100644
  			});
  	}
  
-+	async _pHandleClick_doCopyFilterLink (evt, {btn = null, isAllowNonExtension = false} = {}) {
-+		const url = new URL(window.location.href);
-+		url.hash ||= globalThis.HASH_BLANK;
-+
-+		if (EventUtil.isCtrlMetaKey(evt)) {
-+			await MiscUtil.pCopyTextToClipboard(this._filterBox.getFilterTag({isAddSearchTerm: true}));
-+			if (btn) JqueryUtil.showCopiedEffect(btn, {text: "已複製！"});
-+			else JqueryUtil.doToast("已複製！");
-+			return;
-+		}
-+
-+		const parts = this._filterBox.getSubHashes({isAddSearchTerm: true, isAllowNonExtension});
-+		parts.unshift(url.toString());
-+
-+		if (evt.shiftKey && this._sublistManager) parts.push(await this._sublistManager.pGetHashPartExport());
-+
-+		await MiscUtil.pCopyTextToClipboard(parts.join(HASH_PART_SEP));
-+		if (btn) JqueryUtil.showCopiedEffect(btn, {text: "已複製！"});
-+		else JqueryUtil.doToast("已複製！");
-+	}
-+
- 	_initScrollToSubclassSelection () {
- 		const wrp = veEs(`#subclasstabs`);
- 		veE(document.body)
-@@ -899,12 +951,12 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -899,12 +908,12 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  	_doBindBtnSettingsSidebar () {
  		const menu = ContextUtil.getMenu([
  			new ContextUtil.Action(
@@ -282,7 +208,7 @@ index 622ebca..25362c0 100644
  				() => {
  					this._stateGlobal.isUseSpellPoints = !this._stateGlobal.isUseSpellPoints;
  				},
-@@ -918,9 +970,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -918,9 +927,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  	getListItem (cls, clsI, isExcluded) {
  		const hash = UrlUtil.autoEncodeHash(cls);
  		const source = Parser.sourceJsonToAbv(cls.source);
@@ -294,7 +220,7 @@ index 622ebca..25362c0 100644
  			<span class="ve-col-4 ve-pl-0 ve-pr-1 ve-text-center ${Parser.sourceJsonToSourceClassname(cls.source)} ve-pr-0" title="${Parser.sourceJsonToFull(cls.source)}">${source}</span>
  		</a>`;
  
-@@ -929,7 +982,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -929,7 +939,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  		return new ListItem(
  			clsI,
  			ele,
@@ -303,7 +229,7 @@ index 622ebca..25362c0 100644
  			{
  				source,
  				...ListItem.getCommonValues(cls),
-@@ -1240,9 +1293,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -1240,9 +1250,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  				${elesTblGroupHeaders}
  			</tr>
  			<tr>
@@ -316,7 +242,7 @@ index 622ebca..25362c0 100644
  				${elesTblHeaders}
  			</tr>
  			${metasTblRows.map(meta => meta.eleRow)}
-@@ -1291,10 +1344,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -1291,10 +1301,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  			elesTblGroupHeaders.push(thGroupHeaderSpellPoints);
  
  			tblHeaderSpellPoints = veT`<th class="ve-cls-tbl__col-generic-center ve-cls-tbl__cell-spell-points"><div class="cls__squash_header"></div></th>`
@@ -329,7 +255,7 @@ index 622ebca..25362c0 100644
  			elesTblHeaders.push(tblHeaderSpellPointsMaxSpellLevel);
  
  			elesDefault = [thEleGroupHeader, ...tblHeadersGroup];
-@@ -1398,7 +1451,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -1398,7 +1408,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  
  			return {
  				eleRow: veT`<tr class="ve-cls-tbl__stripe-odd">
@@ -338,7 +264,7 @@ index 622ebca..25362c0 100644
  					<td class="ve-cls-tbl__col-prof-bonus">+${pb}</td>
  					<td>${metasFeatureLinks.length ? metasFeatureLinks.map(it => it.wrpLink) : `\u2014`}</td>
  					${ptsTableGroups}
-@@ -1540,10 +1593,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -1540,10 +1550,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  		const cls = this.activeClass;
  
  		// region features/fluff
@@ -352,7 +278,7 @@ index 622ebca..25362c0 100644
  			.vee.onn("click", () => {
  				const f = this.filterBox.getValues();
  				this._pageFilter.optionsFilter.setValue("isClassFeatureVariant", !f[this._pageFilter.optionsFilter.header].isClassFeatureVariant);
-@@ -1556,8 +1609,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -1556,8 +1566,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  		this.filterBox.on(FILTER_BOX_EVNT_VALCHANGE, () => hkUpdateBtnFeatureVariants());
  		hkUpdateBtnFeatureVariants();
  
@@ -363,7 +289,7 @@ index 622ebca..25362c0 100644
  
  		veT`<div class="ve-flex-v-center ve-m-1 ve-btn-group ve-mr-3 ve-no-shrink">${btnToggleFeatures}${btnToggleFeatureVariants}${btnToggleFluff}</div>`.vee.appendTo(wrp);
  		// endregion
-@@ -1586,14 +1639,14 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -1586,14 +1596,14 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  			if (this._listSubclass.visibleItems.length) {
  				const cntNotShown = this._listSubclass.items.length - this._listSubclass.visibleItems.length;
  				dispCount
@@ -380,7 +306,7 @@ index 622ebca..25362c0 100644
  					.vee.onn("click", () => this._doSelectAllSubclasses());
  				return;
  			}
-@@ -1684,7 +1737,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -1684,7 +1694,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  	async _render_pInitSubclassControls (wrp) {
  		const cls = this.activeClass;
  
@@ -389,7 +315,7 @@ index 622ebca..25362c0 100644
  			.vee.onn("click", evt => {
  				const allStateKeys = cls.subclasses.map(sc => UrlUtil.getStateKeySubclass(sc));
  				if (evt.shiftKey) {
-@@ -1709,11 +1762,11 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -1709,11 +1719,11 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  			});
  
  		const filterSets = [
@@ -406,7 +332,7 @@ index 622ebca..25362c0 100644
  		];
  		const setFilterSet = ix => {
  			const filterSet = filterSets[ix];
-@@ -1763,7 +1816,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -1763,7 +1773,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  			].filter(Boolean), {force: true});
  			selFilterPreset.vee.val("-1");
  		};
@@ -415,7 +341,7 @@ index 622ebca..25362c0 100644
  			.vee.onn("change", () => {
  				const val = Number(selFilterPreset.vee.val());
  				if (val == null) return;
-@@ -1772,7 +1825,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -1772,7 +1782,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  		filterSets.forEach((it, i) => selFilterPreset.vee.appends(`<option value="${i}">${it.name}</option>`));
  		selFilterPreset.vee.val("-1");
  
@@ -424,7 +350,7 @@ index 622ebca..25362c0 100644
  			.vee.onn("click", () => {
  				this._proxyAssign("state", "_state", "__state", cls.subclasses.mergeMap(sc => ({[UrlUtil.getStateKeySubclass(sc)]: false})));
  			});
-@@ -1782,11 +1835,11 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -1782,11 +1792,11 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  		// Remove the temporary "hidden" class used to prevent popping
  		this._listSubclass.items.forEach(it => it.ele.vee.show());
  
@@ -439,7 +365,7 @@ index 622ebca..25362c0 100644
  
  				const doDeselAll = () => this._listSubclass.items.filter(it => it.values.stateKey).forEach(it => this._state[it.values.stateKey] = false);
  
-@@ -1832,7 +1885,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -1832,7 +1842,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  		const dispName = veT`<div title="${ClassesPage.getBtnTitleSubclass(sc)}"></div>`;
  		const dispSource = veT`<div class="ve-ml-1" title="${Parser.sourceJsonToFull(sc.source)}">(${Parser.sourceJsonToAbv(sc.source)})</div>`;
  		const hkSourcesVisible = () => {
@@ -449,7 +375,7 @@ index 622ebca..25362c0 100644
  			dispSource.vee.toggle(!!this._state.isShowScSources);
  		};
  		this._addHookBase("isShowScSources", hkSourcesVisible);
-@@ -1870,7 +1924,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -1870,7 +1881,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  		return new ListItem(
  			ix,
  			btn,
@@ -458,7 +384,7 @@ index 622ebca..25362c0 100644
  			{
  				source: sc.source,
  				...ListItem.getCommonValues(sc),
-@@ -1907,7 +1961,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -1907,7 +1918,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  
  		const dispShowHide = veT`<div class="cls-nav__disp-toggle"></div>`;
  		const wrpHeadInner = veT`<div class="cls-nav__head-inner ve-split">
@@ -467,7 +393,7 @@ index 622ebca..25362c0 100644
  			${dispShowHide}
  		</div>`
  			.vee.onn("click", () => this._state.isHideOutline = !this._state.isHideOutline);
-@@ -2169,13 +2223,14 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -2169,13 +2180,14 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  
  	static _getFauxGainSubclassFeatureFeature (cls, level) {
  		return {
@@ -484,7 +410,7 @@ index 622ebca..25362c0 100644
  			],
  			gainSubclassFeature: true,
  			_isStandardSource: true,
-@@ -2202,7 +2257,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -2202,7 +2214,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  				if (this._state.isViewActiveScComp) await this._subclassComparisonView.pOpen();
  				else {
  					this._subclassComparisonView.teardown();
@@ -493,7 +419,7 @@ index 622ebca..25362c0 100644
  				}
  			} finally {
  				this._unlock("sc-comparison");
-@@ -2225,7 +2280,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -2225,7 +2237,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  				if (this._state.isViewActiveBook) await this._classBookView.pOpen();
  				else {
  					this._classBookView.teardown();
@@ -502,7 +428,7 @@ index 622ebca..25362c0 100644
  				}
  			} finally {
  				this._unlock("view-book");
-@@ -2244,6 +2299,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -2244,6 +2256,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  		wrpContent.vee.appends(Renderer.utils.getBorderTr());
  
  		const clsFluff = await Renderer.class.pGetFluff(cls);
@@ -510,7 +436,7 @@ index 622ebca..25362c0 100644
  		if (clsFluff) {
  			const depthArr = [];
  
-@@ -2297,9 +2353,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -2297,9 +2310,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  		});
  
  		if (cls.otherSources) {
@@ -522,7 +448,7 @@ index 622ebca..25362c0 100644
  				.vee.appendTo(wrpContent);
  		}
  
-@@ -2368,7 +2424,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -2368,7 +2381,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  
  		// Add a placeholder feature to display when no subclasses are active
  		const trSubclassFeature = veT`<tr class="cls-main__sc-feature" data-subclass-none-message="true"></tr>`
@@ -531,7 +457,7 @@ index 622ebca..25362c0 100644
  			.vee.appendTo(wrpContent);
  
  		await cls.subclasses.pSerialAwaitMap(async sc => {
-@@ -2378,6 +2434,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -2378,6 +2391,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  			if (!scLvlFeatures) return;
  
  			const scFluff = ptrsHasRenderedSubclass[stateKey] ? null : await Renderer.subclass.pGetFluff(sc);
@@ -539,7 +465,7 @@ index 622ebca..25362c0 100644
  			ptrsHasRenderedSubclass[stateKey] = true;
  
  			scLvlFeatures.forEach((scFeature, ixScFeature) => {
-@@ -2386,13 +2443,13 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -2386,13 +2400,13 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  
  				const isEditionMismatch = cls.edition && sc.edition && cls.edition !== sc.edition;
  				const ptMismatchedEdition = isFirstFeature && isEditionMismatch
@@ -548,7 +474,7 @@ index 622ebca..25362c0 100644
  					: "";
  				const ptDate = isFirstFeature && SourceUtil.isNonstandardSource(sc.source) && Parser.sourceJsonToDate(sc.source)
 -					? Renderer.get().render(`{@note This subclass was published on ${DatetimeUtil.getDateStr({date: new Date(Parser.sourceJsonToDate(sc.source))})}.}`)
-+					? Renderer.get().render(`{@note 此子職業發布於 ${this.constructor._getPublishedDateStrZhTw(sc.source)}。}`)
++					? Renderer.get().render(`{@note 此子職業發布於 ${DatetimeUtil.getDateStr({date: new Date(Parser.sourceJsonToDate(sc.source))})}。}`)
  					: "";
 -				const ptSources = isFirstFeature && sc.otherSources ? `{@note {@b Subclass source:} ${Renderer.utils.getSourceAndPageHtml(sc)}}` : "";
 -				const ptReprinted = isFirstFeature && sc.reprintedAs ? `{@note ${Renderer.utils.getReprintedAsHtml(sc)}.}` : "";
@@ -557,7 +483,7 @@ index 622ebca..25362c0 100644
  				const toRender = MiscUtil.copyFast(scFeature);
  
  				if (toRender.entries) {
-@@ -2461,7 +2518,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
+@@ -2461,7 +2475,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
  	}
  
  	static _render_getTrNoContent () {
@@ -566,7 +492,7 @@ index 622ebca..25362c0 100644
  	}
  
  	_getDefaultState () { return MiscUtil.copyFast(ClassesPage._DEFAULT_STATE); }
-@@ -2483,7 +2540,7 @@ ClassesPage._DEFAULT_STATE = {
+@@ -2483,7 +2497,7 @@ ClassesPage._DEFAULT_STATE = {
  
  ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
  	_stateKey = "isViewActiveScComp";
@@ -575,14 +501,7 @@ index 622ebca..25362c0 100644
  	_isColumns = false;
  
  	constructor ({classPage, pageFilter, listSubclass}) {
-@@ -2500,10 +2557,14 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
- 		this._fnsCleanup = [];
- 	}
- 
-+	_getBtnWindowClose () {
-+		return super._getBtnWindowClose().vee.tooltip("關閉");
-+	}
-+
+@@ -2503,7 +2517,7 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
  	_getWindowHeaderLhs () {
  		const out = super._getWindowHeaderLhs();
  
@@ -591,7 +510,7 @@ index 622ebca..25362c0 100644
  			.vee.onn("click", async () => {
  				const {eleModal, doClose} = UiUtil.getShowModal({
  					isEmpty: true,
-@@ -2533,12 +2594,12 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
+@@ -2533,12 +2547,12 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
  	_getSelectSubclassesMeta ({cbOnSave = null, isCloseButton = true} = {}) {
  		const wrpRows = veT`<div class="ve-flex-col ve-min-h-0"></div>`;
  
@@ -607,7 +526,7 @@ index 622ebca..25362c0 100644
  			${wrpRows}
  			${dispNoneAvailable}
  		</div>`;
-@@ -2570,12 +2631,12 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
+@@ -2570,12 +2584,12 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
  			});
  
  			const subclassStateItemsVisiblePrev = subclassStateItems.filter(li => this._parent.get(li.values.stateKey));
@@ -622,7 +541,7 @@ index 622ebca..25362c0 100644
  
  					rowMetas
  						.forEach(meta => {
-@@ -2597,7 +2658,7 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
+@@ -2597,7 +2611,7 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
  				});
  
  			const btnClose = isCloseButton
@@ -631,7 +550,7 @@ index 622ebca..25362c0 100644
  					.vee.onn("click", () => {
  						this.setStateClosed();
  					})
-@@ -2659,7 +2720,7 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
+@@ -2659,7 +2673,7 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
  
  			if (isAnyFeature) {
  				renderStack.push(`<div class="ve-flex-vh-center ve-sticky cls-bkmv__wrp-level ve-br-1p ve-bt-1p ve-bb-1p ve-btr-5p ve-bbr-5p ve-mr-2 ve-ml-n2">
@@ -640,7 +559,7 @@ index 622ebca..25362c0 100644
  				</div>`);
  			}
  
-@@ -2752,7 +2813,7 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
+@@ -2752,7 +2766,7 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
  
  ClassesPage.ClassBookView = class extends BookModeViewBase {
  	_stateKey = "isViewActiveBook";
@@ -649,18 +568,7 @@ index 622ebca..25362c0 100644
  	_isColumns = false;
  
  	constructor ({classPage, pageFilter}) {
-@@ -2768,6 +2829,10 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
- 		this._hooks = {};
- 	}
- 
-+	_getBtnWindowClose () {
-+		return super._getBtnWindowClose().vee.tooltip("關閉");
-+	}
-+
- 	teardown () {
- 		const out = super.teardown();
- 
-@@ -2796,6 +2861,7 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
+@@ -2796,6 +2810,7 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
  		renderStack.push(`</td></tr>`);
  
  		const clsFluff = await Renderer.class.pGetFluff(cls);
@@ -668,7 +576,7 @@ index 622ebca..25362c0 100644
  		if (clsFluff) {
  			const {hasEntries, rendered} = UtilClassesPage.getRenderedClassFluffHeader({cls, clsFluff, isRemoveRootName: true});
  
-@@ -2828,6 +2894,7 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
+@@ -2828,6 +2843,7 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
  			.filter(sc => !ClassesPage.isSubclassExcluded_(cls, sc))
  			.pSerialAwaitMap(async (sc, ixSubclass) => {
  				const scFluff = await Renderer.subclass.pGetFluff(sc);
@@ -676,7 +584,7 @@ index 622ebca..25362c0 100644
  
  				const isEditionMismatch = cls.edition && sc.edition && cls.edition !== sc.edition;
  
-@@ -2851,11 +2918,11 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
+@@ -2851,11 +2867,11 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
  		tblBook.vee.appends(renderStack.join(""));
  
  		// Menu panel
@@ -690,118 +598,8 @@ index 622ebca..25362c0 100644
  			.vee.onn("click", () => {
  				this._parent.set("isShowFluff", !this._parent.get("isShowFluff"));
  			});
-diff --git a/js/filter-classes.js b/js/filter-classes.js
-index 7e7602a..1d48d4d 100644
---- a/js/filter-classes.js
-+++ b/js/filter-classes.js
-@@ -2,10 +2,49 @@
- 
- class PageFilterClassesBase extends PageFilterBase {
- 	constructor () {
--		super();
-+		super({
-+			sourceFilterOpts: {
-+				headerDisplayName: "來源",
-+				displayFnMini: item => SourceFilter._getDisplayHtmlMini(item)
-+					.replace('title="(Other)"', 'title="（其他）"')
-+					.replace('title="(Partnered)"', 'title="（合作內容）"')
-+					.replace('title="(Prerelease)"', 'title="（預發佈內容）"')
-+					.replace('title="(Homebrew)"', 'title="（自製內容）"'),
-+				groupNameFn: group => ({
-+					[SourceUtil.FILTER_GROUP_NON_STANDARD]: "非標準來源",
-+					[SourceUtil.FILTER_GROUP_PARTNERED]: "合作內容來源",
-+					[SourceUtil.FILTER_GROUP_PRERELEASE]: "預發佈內容來源",
-+					[SourceUtil.FILTER_GROUP_HOMEBREW]: "自製內容來源",
-+				})[group] || SourceUtil.getFilterGroupName(group),
-+			},
-+		});
-+		const abilityDisplay = {
-+			str: "力量",
-+			dex: "敏捷",
-+			con: "體質",
-+			int: "智力",
-+			wis: "感知",
-+			cha: "魅力",
-+		};
-+		const miscDisplay = {
-+			Reprinted: "已再版",
-+			Sidekick: "協力者",
-+			Legacy: "舊版",
-+			"Basic Rules (5e/2014)": "基礎規則（5e／2014）",
-+			"Basic Rules (5.5e/2024)": "基礎規則（5.5e／2024）",
-+			"Modified Copy": "修改後副本",
-+			"Has Info": "有說明",
-+			"Has Images": "有圖片",
-+			"Has Pronunciation Audio": "有發音音訊",
-+			"Has Custom/Unofficial Token": "有自訂／非官方指示物",
-+			"Has Token Credit": "有指示物作者資訊",
-+			"Has Flavours": "有風格版本",
-+			"Is Flavour": "是風格版本",
-+		};
- 
- 		this._primaryAbilityFilter = new Filter({
- 			header: "Primary Ability",
-+			headerDisplayName: "主要屬性",
- 			items: [
- 				"str",
- 				"dex",
-@@ -14,36 +53,39 @@ class PageFilterClassesBase extends PageFilterBase {
- 				"wis",
- 				"cha",
- 			],
--			displayFn: Parser.attAbvToFull,
-+			displayFn: it => abilityDisplay[it] || Parser.attAbvToFull(it),
- 			itemSortFn: null,
- 		});
- 
- 		this._miscFilter = new Filter({
- 			header: "Miscellaneous",
-+			headerDisplayName: "其他",
- 			items: ["Reprinted", "Sidekick", "Legacy"],
- 			deselFn: (it) => { return it === "Reprinted" || it === "Sidekick"; },
--			displayFnMini: it => it === "Reprinted" ? "Repr." : it,
--			displayFnTitle: it => it === "Reprinted" ? it : "",
-+			displayFn: it => miscDisplay[it] || it,
-+			displayFnMini: it => miscDisplay[it] || it,
-+			displayFnTitle: it => it === "Reprinted" ? miscDisplay[it] : "",
- 			isMiscFilter: true,
- 		});
- 
- 		this._optionsFilter = new OptionsFilter({
- 			header: "Other/Text Options",
-+			headerDisplayName: "其他／文字選項",
- 			defaultState: {
- 				isDisplayClassIfSubclassActive: false,
- 				isClassFeatureVariant: true,
- 			},
- 			displayFn: k => {
- 				switch (k) {
--					case "isClassFeatureVariant": return "Class Feature Options/Variants";
--					case "isDisplayClassIfSubclassActive": return "Display Class if Any Subclass is Visible";
-+					case "isClassFeatureVariant": return "職業特性選項／變體";
-+					case "isDisplayClassIfSubclassActive": return "只要有任一子職業可見便顯示其職業";
- 					default: throw new Error(`Unhandled key "${k}"`);
- 				}
- 			},
- 			displayFnMini: k => {
- 				switch (k) {
--					case "isClassFeatureVariant": return "C.F.O/V.";
--					case "isDisplayClassIfSubclassActive": return "Sc>C";
-+					case "isClassFeatureVariant": return "特性選項／變體";
-+					case "isDisplayClassIfSubclassActive": return "子職業→職業";
- 					default: throw new Error(`Unhandled key "${k}"`);
- 				}
- 			},
-@@ -205,6 +247,7 @@ class PageFilterClasses extends PageFilterClassesBase {
- 
- 		this._levelFilter = new RangeFilter({
- 			header: "Feature Level",
-+			headerDisplayName: "特性等級",
- 			min: 1,
- 			max: 20,
- 		});
 diff --git a/js/render-class.js b/js/render-class.js
-index 0b682dd..1067047 100644
+index 0b682dd..7fbde63 100644
 --- a/js/render-class.js
 +++ b/js/render-class.js
 @@ -1,5 +1,6 @@
@@ -811,19 +609,7 @@ index 0b682dd..1067047 100644
  
  /** @abstract */
  class _RenderClassesSidebarImplBase {
-@@ -48,7 +49,10 @@ class _RenderClassesSidebarImplBase {
- 	_getCommonElements_name ({comp, cls}) {
- 		const dataPartSendToFoundry = `data-page="${UrlUtil.PG_CLASSES}" data-source="${cls.source.qq()}" data-hash="${UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES](cls).qq()}"`;
- 
--		const btnSendToFoundry = ExtensionUtil.ACTIVE ? Renderer.utils.getBtnSendToFoundryHtml({isMb: false}) : null;
-+		const btnSendToFoundry = ExtensionUtil.ACTIVE
-+			? Renderer.utils.getBtnSendToFoundryHtml({isMb: false})
-+				.replace('title="Send to Foundry (SHIFT for Temporary Import)"', 'title="傳送至 Foundry（按住 Shift 可暫時匯入）"')
-+			: null;
- 
- 		const btnToggleSidebar = veE({
- 			tag: "div",
-@@ -69,7 +73,7 @@ class _RenderClassesSidebarImplBase {
+@@ -69,7 +70,7 @@ class _RenderClassesSidebarImplBase {
  	}
  
  	_getCommonElements_authors ({comp, cls}) {
@@ -832,18 +618,16 @@ index 0b682dd..1067047 100644
  	}
  
  	/* ----- */
-@@ -80,8 +84,8 @@ class _RenderClassesSidebarImplBase {
+@@ -80,7 +81,7 @@ class _RenderClassesSidebarImplBase {
  		const ele = veE({
  			tag: "tr",
  			html: `<td colspan="6" class="cls-side__section">
 -				<h5 class="cls-side__section-head">Groups</h5>
--				<div>${cls.classGroup.map(it => it.toTitleCase()).join(", ")}</div>
 +				<h5 class="cls-side__section-head">職業分組</h5>
-+				<div>${cls.classGroup.map(it => it.toTitleCase()).join("、")}</div>
+ 				<div>${cls.classGroup.map(it => it.toTitleCase()).join(", ")}</div>
  			</td>`,
  		});
- 
-@@ -97,13 +101,13 @@ class _RenderClassesSidebarImplBase {
+@@ -97,13 +98,13 @@ class _RenderClassesSidebarImplBase {
  	_getPtRequirements ({renderer, requirements, intro = null}) {
  		if (!requirements) return "";
  
@@ -861,7 +645,7 @@ index 0b682dd..1067047 100644
  			...requirements.entries || [],
  		]
  			.filter(Boolean);
-@@ -120,7 +124,7 @@ class _RenderClassesSidebarImplBase {
+@@ -120,7 +121,7 @@ class _RenderClassesSidebarImplBase {
  		const ele = veE({
  			tag: "tr",
  			html: `<td colspan="6" class="cls-side__section">
@@ -870,7 +654,7 @@ index 0b682dd..1067047 100644
  				${this._getPtRequirements({renderer, requirements: cls.requirements})}
  			</td>`,
  		});
-@@ -140,38 +144,38 @@ class _RenderClassesSidebarImplBase {
+@@ -140,38 +141,38 @@ class _RenderClassesSidebarImplBase {
  		const {multiclassing: mc} = cls;
  
  		const htmlMCcPrereqPreText = mc.requirements || mc.requirementsSpecial
@@ -917,7 +701,7 @@ index 0b682dd..1067047 100644
  			: "";
  
  		const ptsProfs = this._style === SITE_STYLE__CLASSIC
-@@ -195,7 +199,7 @@ class _RenderClassesSidebarImplBase {
+@@ -195,7 +196,7 @@ class _RenderClassesSidebarImplBase {
  		const ele = veE({
  			tag: "tr",
  			html: `<td class="cls-side__section" colspan="6">
@@ -926,30 +710,16 @@ index 0b682dd..1067047 100644
  				${ptMcPrereq}
  				${ptMcPrereqSpecial}
  				${ptMcEntries}
-@@ -214,10 +218,21 @@ class _RenderClassesSidebarImplBase {
- 	/* ----- */
- 
- 	_getCommonElements_page ({comp, cls, renderer}) {
-+		const sourceHtml = I18nZhTwClass
-+			.localizeSourceHtml(Renderer.utils.getSourceAndPageTrHtml(cls))
-+			.replaceAll('the <span title="Systems Reference Document (5.2)">', '<span title="系統參考文件（5.2）">')
-+			.replaceAll('the <span title="Systems Reference Document (5.1)">', '<span title="系統參考文件（5.1）">')
-+			.replaceAll("Available in ", "收錄於")
-+			.replaceAll(" and the Basic Rules (5.5e/2024)", "與《基礎規則》（5.5e／2024）")
-+			.replaceAll(" and the Basic Rules (5e/2014)", "與《基礎規則》（5e／2014）")
-+			.replaceAll("the Basic Rules (5.5e/2024)", "《基礎規則》（5.5e／2024）")
-+			.replaceAll("the Basic Rules (5e/2014)", "《基礎規則》（5e／2014）")
-+			.replace(/ \(as &quot;(.+?)&quot;\)/gu, "（名稱為「$1」）");
-+
+@@ -217,7 +218,7 @@ class _RenderClassesSidebarImplBase {
  		const ele = veE({
  			tag: "tr",
  			html: `<td class="cls-side__section ve-pt-3" colspan="6">
 -				${Renderer.utils.getSourceAndPageTrHtml(cls)}
-+				${sourceHtml}
++				${I18nZhTwClass.localizeSourceHtml(Renderer.utils.getSourceAndPageTrHtml(cls))}
  			</td>`,
  		});
  
-@@ -258,10 +273,10 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
+@@ -258,10 +259,10 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
  		const ele = veE({
  			tag: "tr",
  			html: `<td colspan="6" class="cls-side__section">
@@ -964,7 +734,7 @@ index 0b682dd..1067047 100644
  			</td>`,
  		});
  
-@@ -285,7 +300,7 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
+@@ -285,7 +286,7 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
  
  		const ele = veT`<tr>
  			<td class="cls-side__section" colspan="6">
@@ -973,7 +743,7 @@ index 0b682dd..1067047 100644
  				<div>${disp}</div>
  			</td>
  		</tr>`;
-@@ -305,12 +320,12 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
+@@ -305,12 +306,12 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
  		const ele = veE({
  			tag: "tr",
  			html: `<td colspan="6" class="cls-side__section">
@@ -992,7 +762,7 @@ index 0b682dd..1067047 100644
  			</td>`,
  		});
  
-@@ -401,7 +416,7 @@ class _RenderClassesSidebarImplOne extends _RenderClassesSidebarImplBase {
+@@ -401,7 +402,7 @@ class _RenderClassesSidebarImplOne extends _RenderClassesSidebarImplBase {
  		const ele = veE({
  			tag: "tr",
  			html: `<td colspan="6" class="cls-side__section">
@@ -1002,7 +772,7 @@ index 0b682dd..1067047 100644
  			</td>`,
  		});
 diff --git a/js/render.js b/js/render.js
-index a561361..68852ec 100644
+index a561361..8564adb 100644
 --- a/js/render.js
 +++ b/js/render.js
 @@ -4001,7 +4001,7 @@ Renderer.utils = class {
@@ -1014,21 +784,7 @@ index a561361..68852ec 100644
  
  		return fluffEntrySkippableName.includes(entitySkippableName) || entitySkippableName.includes(fluffEntrySkippableName);
  	}
-@@ -7176,11 +7176,11 @@ class _RenderCompactClassesImplBase extends _RenderCompactImplBase {
- 			opts,
- 		},
- 	) {
--		return {
-+		return Renderer.class.getLocalizedCompactCommonHtmlParts({
- 			...super._getCommonHtmlParts({ent, renderer, opts}),
- 
- 			htmlPtEntries: this._getCommonHtmlParts_entries({ent, renderer}),
--		};
-+		});
- 	}
- 
- 	/* ----- */
-@@ -7296,6 +7296,54 @@ class _RenderCompactClassesImplOne extends _RenderCompactClassesImplBase {
+@@ -7296,6 +7296,38 @@ class _RenderCompactClassesImplOne extends _RenderCompactClassesImplBase {
  }
  
  Renderer.class = class {
@@ -1064,26 +820,10 @@ index a561361..68852ec 100644
 +
 +	static getAbilityNameZhTw (abv) { return this._ZH_TW_ABILITY[abv] || Parser.attAbvToFull(abv); }
 +
-+	static getLocalizedCompactCommonHtmlParts (parts) {
-+		return {
-+			...parts,
-+			htmlPtIsExcluded: parts.htmlPtIsExcluded
-+				.replace(
-+					'Warning: This content has been <a href="blocklist.html">blocklisted</a>.',
-+					'警告：此內容已列入<a href="blocklist.html">封鎖清單</a>。',
-+				),
-+			htmlPtName: parts.htmlPtName
-+				.replace(/title="Page ([^"]+)">p\1/gu, (match, page) => `title="第 ${page} 頁">第 ${page} 頁`)
-+				.replace('title="Send to Foundry (SHIFT for Temporary Import)"', 'title="傳送至 Foundry（按住 Shift 可暫時匯入）"')
-+				.replace('title="View Prerelease Content Source"', 'title="檢視預發佈內容來源"')
-+				.replace('title="View Homebrew Source"', 'title="檢視自製內容來源"'),
-+		};
-+	}
-+
  	static _RENDER_CLASSIC = new _RenderCompactClassesImplClassic();
  	static _RENDER_ONE = new _RenderCompactClassesImplOne();
  
-@@ -7328,8 +7376,8 @@ Renderer.class = class {
+@@ -7328,8 +7360,8 @@ Renderer.class = class {
  		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
  
  		return styleHint === "classic"
@@ -1094,7 +834,7 @@ index a561361..68852ec 100644
  	}
  
  	/**
-@@ -7342,8 +7390,8 @@ Renderer.class = class {
+@@ -7342,8 +7374,8 @@ Renderer.class = class {
  		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
  
  		return styleHint === "classic"
@@ -1105,7 +845,7 @@ index a561361..68852ec 100644
  	}
  
  	/**
-@@ -7357,8 +7405,8 @@ Renderer.class = class {
+@@ -7357,8 +7389,8 @@ Renderer.class = class {
  		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
  
  		return styleHint === "classic"
@@ -1116,7 +856,7 @@ index a561361..68852ec 100644
  	}
  
  	/* -------------------------------------------- */
-@@ -7374,14 +7422,13 @@ Renderer.class = class {
+@@ -7374,14 +7406,13 @@ Renderer.class = class {
  			.segregate(it => ["light", "medium", "heavy"].includes(it));
  
  		const ptsArmor = profsArmor
@@ -1133,7 +873,7 @@ index a561361..68852ec 100644
  				}
  				return Renderer.get().render(a);
  			});
-@@ -7391,15 +7438,15 @@ Renderer.class = class {
+@@ -7391,15 +7422,15 @@ Renderer.class = class {
  				...ptsArmor,
  				...ptsOther,
  			]
@@ -1152,7 +892,7 @@ index a561361..68852ec 100644
  	}
  
  	/**
-@@ -7413,11 +7460,11 @@ Renderer.class = class {
+@@ -7413,11 +7444,11 @@ Renderer.class = class {
  			.segregate(it => ["simple", "martial"].includes(it));
  
  		const ptsSimpleMartial = profsSimpleMartial
@@ -1166,7 +906,7 @@ index a561361..68852ec 100644
  				return Renderer.get().render(w);
  			});
  
-@@ -7426,7 +7473,7 @@ Renderer.class = class {
+@@ -7426,7 +7457,7 @@ Renderer.class = class {
  			...ptsOther,
  		];
  
@@ -1175,7 +915,7 @@ index a561361..68852ec 100644
  	}
  
  	/**
-@@ -7435,7 +7482,7 @@ Renderer.class = class {
+@@ -7435,7 +7466,7 @@ Renderer.class = class {
  	 */
  	static getRenderedToolProfs (toolProfs, {styleHint = null} = {}) {
  		const pts = toolProfs.map(it => Renderer.get().render(it));
@@ -1184,7 +924,7 @@ index a561361..68852ec 100644
  	}
  
  	/**
-@@ -7444,8 +7491,37 @@ Renderer.class = class {
+@@ -7444,8 +7475,37 @@ Renderer.class = class {
  	 */
  	static getRenderedSkillProfs (skills, {styleHint = null} = {}) {
  		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
@@ -1223,7 +963,7 @@ index a561361..68852ec 100644
  	}
  
  	/* -------------------------------------------- */
-@@ -7457,12 +7533,12 @@ Renderer.class = class {
+@@ -7457,12 +7517,12 @@ Renderer.class = class {
  			.map(abilObj => {
  				return Object.entries(abilObj)
  					.filter(([, v]) => v)
@@ -1240,7 +980,7 @@ index a561361..68852ec 100644
  	}
  
  	static getHtmlPtHitPoints (cls, {renderer = null, styleHint = null}) {
-@@ -7471,15 +7547,15 @@ Renderer.class = class {
+@@ -7471,15 +7531,15 @@ Renderer.class = class {
  		renderer ||= Renderer.get();
  		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
  
@@ -1260,7 +1000,7 @@ index a561361..68852ec 100644
  	}
  
  	static getHtmlPtSkills (cls, {styleHint = null}) {
-@@ -7487,7 +7563,7 @@ Renderer.class = class {
+@@ -7487,7 +7547,7 @@ Renderer.class = class {
  
  		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
  
@@ -1269,7 +1009,7 @@ index a561361..68852ec 100644
  	}
  
  	static getHtmlPtWeaponProficiencies (cls, {styleHint = null}) {
-@@ -7495,7 +7571,7 @@ Renderer.class = class {
+@@ -7495,7 +7555,7 @@ Renderer.class = class {
  
  		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
  
@@ -1278,7 +1018,7 @@ index a561361..68852ec 100644
  	}
  
  	static getHtmlPtToolProficiencies (cls, {styleHint = null}) {
-@@ -7503,7 +7579,7 @@ Renderer.class = class {
+@@ -7503,7 +7563,7 @@ Renderer.class = class {
  
  		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
  
@@ -1287,7 +1027,7 @@ index a561361..68852ec 100644
  	}
  
  	static getHtmlPtArmorProficiencies (cls, {styleHint = null}) {
-@@ -7511,7 +7587,7 @@ Renderer.class = class {
+@@ -7511,7 +7571,7 @@ Renderer.class = class {
  
  		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
  
@@ -1296,7 +1036,7 @@ index a561361..68852ec 100644
  	}
  
  	static getHtmlPtStartingEquipment (cls, {renderer = null, styleHint = null}) {
-@@ -7528,9 +7604,9 @@ Renderer.class = class {
+@@ -7528,9 +7588,9 @@ Renderer.class = class {
  
  	static _getHtmlPtStartingEquipment_default ({equip, renderer}) {
  		return [
@@ -1308,7 +1048,7 @@ index a561361..68852ec 100644
  		]
  			.filter(Boolean)
  			.join("");
-@@ -7549,7 +7625,7 @@ Renderer.class = class {
+@@ -7549,7 +7609,7 @@ Renderer.class = class {
  		return renderer.render({
  			type: "entries",
  			entries: [
@@ -1317,7 +1057,7 @@ index a561361..68852ec 100644
  				...otherEntries,
  			],
  		});
-@@ -7561,7 +7637,7 @@ Renderer.class = class {
+@@ -7561,7 +7621,7 @@ Renderer.class = class {
  		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
  
  		if (styleHint === "classic" || !ent.level || !ent.name) return ent;
@@ -1326,7 +1066,7 @@ index a561361..68852ec 100644
  	}
  
  	static getDisplayNamedSubclassFeatureEntry (ent, {styleHint = null, isEditionMismatch = false} = {}) {
-@@ -7578,7 +7654,7 @@ Renderer.class = class {
+@@ -7578,7 +7638,7 @@ Renderer.class = class {
  			.map(ent => {
  				if (ent.type !== "entries" || !ent.name) return ent;
  				if (!ent.level) return ent;
@@ -1335,20 +1075,6 @@ index a561361..68852ec 100644
  			});
  		return cpy;
  	}
-@@ -7728,11 +7804,11 @@ class _RenderCompactSubclassesImplBase extends _RenderCompactImplBase {
- 			opts,
- 		},
- 	) {
--		return {
-+		return Renderer.class.getLocalizedCompactCommonHtmlParts({
- 			...super._getCommonHtmlParts({ent, renderer, opts}),
- 
- 			htmlPtEntries: this._getCommonHtmlParts_entries({ent, renderer}),
--		};
-+		});
- 	}
- 
- 	/* ----- */
 diff --git a/js/utils.js b/js/utils.js
 index 90d5502..9d5b1ab 100644
 --- a/js/utils.js
@@ -1443,7 +1169,7 @@ index 5c1f088..60a59db 100644
  			</table>
  		</div>
 diff --git a/package.json b/package.json
-index 840a65d..0f12682 100644
+index 840a65d..9f2bd38 100644
 --- a/package.json
 +++ b/package.json
 @@ -40,6 +40,13 @@
@@ -1454,7 +1180,7 @@ index 840a65d..0f12682 100644
 +		"zh-tw:extract-classes": "node node/zh-tw/extract-class-terms.mjs",
 +		"zh-tw:import-classes": "python node/zh-tw/import-full-class-translations.py",
 +		"zh-tw:build-class-locale": "node node/zh-tw/build-class-locale.mjs",
-+		"zh-tw:test-class-body": "node node/zh-tw/test-class-body-i18n.mjs && node node/zh-tw/test-class-body-i18n-full.mjs",
++		"zh-tw:test-class-body": "node node/zh-tw/test-class-i18n.mjs && node node/zh-tw/test-class-body-i18n.mjs && node node/zh-tw/test-class-body-i18n-full.mjs",
 +		"zh-tw:validate-classes": "node node/zh-tw/validate-full-class-translations.mjs",
 +		"zh-tw:validate-glossary": "node node/zh-tw/validate-glossary.mjs",
  		"preversion": "npm test",

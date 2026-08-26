@@ -171,6 +171,136 @@ EXACT_VISIBLE_TRANSLATIONS = {
 	"None": "無",
 }
 
+# The translated source contains a small number of prose fragments where a
+# translated label is immediately followed by the original English label, or
+# where a translated 5etools filter leaks its query text into the display. Keep
+# these as exact, auditable substitutions rather than broad English-word
+# removal, since English canonical keys inside inline tags must remain intact.
+PROSE_CLEANUP_REPLACEMENTS = (
+	("魔契師", "契術師"),
+	("飛簷走壁", "疾步如風"),
+	("飛檐走壁", "疾步如風"),
+	("裡數", "英里數"),
+	("6裡", "6英里"),
+	("1裡", "1英里"),
+	("一里", "1英里"),
+	(" 偉力推動Mighty Impel 特性", "「偉力推動」特性"),
+	(" 元素戰刃元素戰刃（Elemental Cleaver） 特性", "「元素戰刃」特性"),
+	("鷹hawk或禿鷲vulture代替雕eagle", "鷹或禿鷲代替雕"),
+	(" 魯莽攻擊魯莽攻擊（Reckless Attack） ", "「魯莽攻擊」"),
+	(" 觸及Reach 屬性", "「觸及」屬性"),
+	("野獸之形Form of Beast 特性", "「野獸之形」特性"),
+	(" 精魂之盾精神之盾（Spirit Shield） ", "「精魂之盾」"),
+	(" 炎熱Extreme Heat 的效應", "極端炎熱的效應"),
+	(" 嚴寒Extreme Cold 的效應", "極端寒冷的效應"),
+	(" 風暴靈光Storm Aura 特性", "「風暴靈光」特性"),
+	(" 風暴靈光Storm Aura ", "「風暴靈光」"),
+	(" 風暴之魂 Storm Soul 特性", "「風暴之魂」特性"),
+	(" 坦帕斯Tempus ", "坦帕斯"),
+	(" 海克斯託Hextor ", "海克斯託"),
+	(" 厄瑞斯努Erythnul ", "厄瑞斯努"),
+	("（Tale of the Clever Animal）", ""),
+	("（Tale of the Renowned Duelist）", ""),
+	("（Tale of the Beloved Friends）", "。"),
+	("（Tale of the Runaway）", ""),
+	("（Tale of the Avenger）", ""),
+	("（Tale of theTraveler）", ""),
+	("（Tale of the Phantom）", "。"),
+	("（Tale of the Brute）", ""),
+	("（Tale of the Dragon）", ""),
+	("（Tale of the Mind-Bender）", ""),
+	(" 刃鋒blades ", "「刃鋒」"),
+	("（Beloved）", ""),
+	("（Sharpshooter）", ""),
+	("（Avenger）", ""),
+	("（Renegade）", ""),
+	("（Fortune Teller）", ""),
+	("（Wayfarer）", ""),
+	("（Trickster）", ""),
+	("（Shade）", ""),
+	("（Arsonist）", ""),
+	("（Coward）", ""),
+	("（Brute）", ""),
+	("（Priest）", ""),
+	("class=吟遊詩人中的法術", "{@filter 吟遊詩人法術列表|spells|class=Bard}中的法術"),
+	("匹裡麻斯Pyremius", "匹裡麻斯"),
+	("冥界underworld", "冥界"),
+	(" 夏之王庭Summer Court ", "「夏之王庭」"),
+	(" 暮之王庭Gloaming Court ", "「暮之王庭」"),
+	(" 精魂圖騰Spirit Totem ", "「精魂圖騰」"),
+	("type=簡易武器或type=軍用武器", "{@filter 簡易武器|items|type=simple weapon}或{@filter 軍用武器|items|type=martial weapon}"),
+	("type=簡易武器;軍用武器", "{@filter 武器|items|type=simple weapon;martial weapon}"),
+	("運用dunamis的技藝", "運用潛能的技藝"),
+	(" 迴音顯現 顯化回聲（Manifest Echo） 特性", "「迴音顯現」特性"),
+	(" 釋放化身 釋放化身（Unleash Incarnation） 特性", "「釋放化身」特性"),
+	(" 回氣Second Wind 特性", "「回氣」特性"),
+	(" 旗將Banneret", "「旗將」"),
+	(" 動作如潮Action Surge 特性", "「動作如潮」特性"),
+	(" 不屈Indomitable 特性", "「不屈」特性"),
+	("（kalashtar）", ""),
+	("（雙截棍nunchaku）", "（雙截棍）"),
+	("（單鐮kama）", "（單鐮）"),
+	(" 疾風連擊Flurry of Blows ", "「疾風連擊」"),
+	(" 武藝Martial Arts 一列", "「武藝」一欄"),
+	("\"吸血鬼伯爵施特拉德·馮·扎洛維奇吸血鬼伯爵斯特拉德·馮·扎洛維奇（Vampire Count Strahd von Zarovich）\"", "「吸血鬼伯爵斯特拉德·馮·扎洛維奇」"),
+	("聖騎兵cavaliers、白騎士white knights或是聖戰士holy warriors", "聖騎士、白騎士或聖戰士"),
+	("神聖誓言Sacred Oath 特性", "「神聖誓言」特性"),
+	(" 神聖誓言Sacred Oath 特性", "「神聖誓言」特性"),
+	("極地arctic、海岸coast、荒漠desert、叢林forest、草原grassland、山地mountain、沼澤swamp或幽暗地域Underdark", "極地、海岸、荒漠、森林、草原、山地、沼澤或幽暗地域"),
+	("\"多重攻擊Multiattack\"動作項", "「多重攻擊」動作"),
+	("塞爾Thay（被遺忘的國度）", "塞爾（被遺忘的國度）"),
+	("坎納斯Karrnath（艾伯倫）", "坎納斯（艾伯倫）"),
+	(" 偷襲偷襲（Sneak Attack）", "「偷襲」"),
+	("魔術師（mage），治療者（healer）或奇才（prodigy）", "法師、治療者或奇才"),
+	("克萊恩Krynn", "克萊恩"),
+	("託瑞爾Toril世界", "託瑞爾世界"),
+	("塞倫涅Selne", "塞倫涅"),
+	("艾伯倫Eberron", "艾伯倫"),
+	("巨龍預言Draconic Prophecy", "巨龍預言"),
+	("滿月Full Moon、朔月New Moon，或新月Crescent Moon", "滿月、朔月或新月"),
+	("綿羊sheep", "綿羊"),
+	("機械境Machanus", "機械境"),
+	(" 神聖魔法Divine Magic 特性", "「神聖魔法」特性"),
+	(" 大暴雨Great Rain", "「大暴雨」"),
+	("至高妖精Archfey、邪魔Fiend、舊日支配者Great Old One", "至高妖精、邪魔、舊日支配者"),
+	("霜凍親王霜之王子（Prince of Frost）", "霜之王子"),
+	("\"薄暮議會暮曦宮廷（Gloaming Court）\"的統治者空暗女王空氣與黑暗女王（Queen of Air and Darkness）", "「暮曦宮廷」的統治者「空氣與黑暗女王」"),
+	("\"仲夏議會夏日宮廷（Summer Court）\"的泰坦尼婭提塔尼亞（Titania）和她的丈夫\"蒼翠之王Green Lord\"奧伯龍Oberon", "「夏日宮廷」的提塔尼亞和她的丈夫「蒼翠之王」奧伯龍"),
+	("\"愚者親王Prince of Fools\"希爾薩姆赫爾薩姆（Hyrsam）", "「愚者親王」赫爾薩姆"),
+	("狄摩高根Demogorgon、奧喀斯Orcus、弗拉茲厄魯Fraz-Urb'luu和巴弗滅Baphomet", "狄摩高根、奧喀斯、弗拉茲厄魯和巴弗滅"),
+	("阿斯蒙蒂斯Asmodeus、迪斯帕特Dispater、墨菲斯托費利斯Mephistopheles和貝利亞Belial", "阿斯蒙蒂斯、迪斯帕特、墨菲斯托費利斯和貝利亞"),
+	("這類存在包括被稱作\"潛伏者潛伏者（That Which Lurks）\"的關納德高納達爾（Ghaunadar）、\"受縛之神鎖鏈之神（Chained God）\"薩瑞茲頓薩里茲頓（Tharizdun）、\"暗夜巨蛇夜蛇（Night Serpent）\"丹達爾登達爾（Dendar）、\"歸來者歸還者（Returner）\"扎貢扎爾貢（Zargon）、\"偉大克蘇魯偉大克蘇魯（Great Cthulhu）\"，以及其他一些不可名狀之存在。", "這類存在包括被稱作「潛伏者」的高納達爾、「鎖鏈之神」薩里茲頓、「夜蛇」登達爾、「歸還者」扎爾貢、偉大克蘇魯，以及其他不可名狀的存在。"),
+	("這類存在包括：維克那Vecna，手與眼之主Lord of the Hand and the Eye；恐懼者·埃烏茲the dread Iuz；巫妖女王·沃爾the lich-queen Vol；艾倫諾的不朽王庭the 不死宮廷（Undying Court） of 艾雷納爾（Aerenal）；維拉基斯Vlaakith，吉斯洋基人的巫妖女王lich-queen of the githyanki；以及不死法師·費斯坦但提勒斯the deathless wizard 非斯坦達那魯斯（Fistandantalus）。", "這類存在包括維克那，手與眼之主；恐懼者埃烏茲；巫妖女王沃爾；艾雷納爾的不死宮廷；吉斯洋基人的巫妖女王維拉基斯；以及不死法師費斯坦但提勒斯。"),
+	("在國度，不朽者宗主包括：陰影之王·拉洛克Larloch the 暗影之王（Shadow King），魔契師之墓的傳奇大師legendary master of 魔契師之穴（Warlock's Crypt），以及吉爾金Gilgeam，恩瑟的黃金王the God-King of 溫瑟（Unther）。", "在國度中，不朽者宗主包括陰影之王拉洛克——魔契師之墓的傳奇主人——以及恩瑟的神王吉爾金。"),
+	(" 不朽者Undying ", "「不朽者」"),
+	(" 艾伐黑觸手Evard's Black tentacles時", "此法術時"),
+	("土巨靈dao、氣巨靈djinni、火巨靈eferrti、或水巨靈marid", "土巨靈、氣巨靈、火巨靈或水巨靈"),
+	("瓶中小憩Bottled Respite特性", "「瓶中小憩」特性"),
+	(" 黑刃Blackrazor ", "「黑刃」"),
+	(" 鴉後Raven Queen ", "鴉后"),
+	(" 法師之筆Wizard Quill", "「法師之筆」"),
+	(" 奧術偏斜奧術偏斜（Arcane Deflection） ", "「奧術偏斜」"),
+	("迷斯卓諾神話之德拉諾（Myth Drannor）", "迷斯卓諾"),
+	("銀月聯邦銀色邊境（Silver Marches）", "銀月聯邦"),
+	("蘭檀島Lantan", "蘭檀島"),
+	("上古誓約Old Faith", "上古誓約"),
+	("古代盟約Old Faith", "古代盟約"),
+	("榿樹alder、白蠟樹ash、樺樹birch、接骨木elder、榛樹hazel、冬青樹holly、杜松juniper、槲寄生mistletoe、橡樹oak、花楸樹rowan、柳樹willow還有紫杉yew", "榿樹、白蠟樹、樺樹、接骨木、榛樹、冬青樹、杜松、槲寄生、橡樹、花楸樹、柳樹與紫杉"),
+	("絲蘭樹yucca甚至仙人掌cactus", "絲蘭甚至仙人掌"),
+	("\"奧斯母親Oerth Mother\"貝歐瑞Beory，以及歐拜?亥Obad-Hai、艾羅娜Ehlonna、尤拉Ulaa", "「奧斯母親」貝歐瑞，以及歐拜·亥、艾羅娜、尤拉"),
+	("西凡那斯Silvanus，梅麗凱Mielikki，埃達絲El-dath，裳緹亞Chauntea", "西凡那斯、梅麗凱、埃達絲、裳緹亞"),
+	("塔洛斯Talos，瑪拉Malar，歐呂爾Auril和安博裡Umberlee", "塔洛斯、瑪拉、歐呂爾和安博裡"),
+	("\"第一結社First Circle\"", "「第一結社」"),
+	("\"天命諸神Sovereign Host\"\"黑暗六邪神Dark Six\"", "「天命諸神」與「黑暗六邪神」"),
+	("\"灰燼誓約Ashbound\"", "「灰燼誓約」"),
+	("\"嚴冬之子Children of Winter\"", "「嚴冬之子」"),
+	("\"護門者Gatekeepers\"", "「護門者」"),
+	("託姆Torm，提爾Tyr，海若尼斯Heironeous，帕拉丁Paladine，奇力·裘理斯Kiri-Jolith，杜·哈拉Dol Arrah，銀焰the Silver Flame，巴哈姆特Bahamut，雅典娜Athena，拉赫拉克提Re-Horakhty，以及海姆達爾Heimdall", "託姆、提爾、海若尼斯、帕拉丁、奇力·裘理斯、杜·哈拉、銀焰、巴哈姆特、雅典娜、拉赫拉克提與海姆達爾"),
+	(" 斯爾嘉Sylgar ", "斯爾嘉"),
+	("Boom！", "砰！"),
+	("畢格比Bigby，塔莎Tasha，魔鄧肯Mordenkainen和悠蘭德Yolande", "畢格比、塔莎、魔鄧肯與悠蘭德"),
+)
+
 
 def parse_args() -> argparse.Namespace:
 	parser = argparse.ArgumentParser()
@@ -354,6 +484,8 @@ class Localizer:
 		if value in EXACT_VISIBLE_TRANSLATIONS:
 			return EXACT_VISIBLE_TRANSLATIONS[value]
 		value = self.converter.convert(value)
+		for source, replacement in PROSE_CLEANUP_REPLACEMENTS:
+			value = value.replace(source, replacement)
 		if ordinal_match := ORDINAL_RE.fullmatch(value.strip()):
 			return f"{ordinal_match.group(1)}級"
 		return value
@@ -630,13 +762,9 @@ def build_full_glossary(localizer: Localizer) -> None:
 		candidates = sorted(localizer.source_name_translations.get(row["english"], set()))
 		row["final_zh_tw"] = candidates[0] if candidates else ""
 		row["final_source"] = "shuaishuaidnd.cn + OpenCC s2twp" if candidates else ""
-	fieldnames = [
-		key
-		for key in rows[0]
-		if key not in {"final_zh_tw", "final_source"}
-	] + ["final_zh_tw", "final_source"]
+	fieldnames = list(rows[0]) + ["final_zh_tw", "final_source"]
 	with FULL_GLOSSARY_PATH.open("w", encoding="utf-8", newline="") as handle:
-		writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
+		writer = csv.DictWriter(handle, fieldnames=fieldnames)
 		writer.writeheader()
 		writer.writerows(rows)
 

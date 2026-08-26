@@ -1,19 +1,18 @@
 {
-  "name": "5ewt-zh-tw-overlay",
+  "name": "5ewt-class-zh-tw-overlay",
   "version": "2.33.3-zh-tw.1",
   "private": true,
   "type": "module",
   "scripts": {
     "bootstrap": "node scripts/bootstrap-upstream.mjs",
     "apply": "node scripts/apply-overlay.mjs",
-    "setup:python": "python -m pip install -r requirements-zh-tw.txt",
+    "verify": "node scripts/verify-overlay.mjs",
+    "setup": "npm run bootstrap && npm run apply && npm run verify",
     "extract:classes": "node scripts/run-extract-classes.mjs",
-    "import:classes": "node scripts/run-upstream.mjs python node/zh-tw/import-full-class-translations.py",
-    "build:class-locale": "node scripts/run-upstream.mjs node node/zh-tw/build-class-locale.mjs",
-    "test:class-body": "node scripts/run-upstream.mjs node node/zh-tw/test-class-body-i18n.mjs",
-    "test:class-body-full": "node scripts/run-upstream.mjs node node/zh-tw/test-class-body-i18n-full.mjs",
-    "validate:classes": "node scripts/run-upstream.mjs node node/zh-tw/validate-full-class-translations.mjs",
-    "verify": "node scripts/verify-overlay.mjs"
+    "import:classes": "python vendor/5etools-src/node/zh-tw/import-full-class-translations.py",
+    "build:class-locale": "node vendor/5etools-src/node/zh-tw/build-class-locale.mjs",
+    "test:classes": "node vendor/5etools-src/node/zh-tw/test-class-i18n.mjs && node vendor/5etools-src/node/zh-tw/test-class-body-i18n.mjs && node vendor/5etools-src/node/zh-tw/test-class-body-i18n-full.mjs",
+    "validate:classes": "node vendor/5etools-src/node/zh-tw/validate-full-class-translations.mjs",
+    "serve": "npm --prefix vendor/5etools-src run serve:dev"
   }
 }
-

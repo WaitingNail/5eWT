@@ -16,7 +16,7 @@ const CANONICAL_KEYS = new Set([
 	"defaultData", "featureType", "colStyles", "rowStyles", "style", "href", "path", "url",
 	"attributes", "tag", "proficiency", "optional", "equipmentType",
 ]);
-const RE_VISIBLE_NUMBER = /[-+]?\d+(?:[.,]\d+)*/gu;
+const RE_VISIBLE_NUMBER = /\d+(?:[.,]\d+)*/gu;
 const RE_ASCII_WORD = /[A-Za-z]{3,}/u;
 const RE_HAN = /[\u3400-\u9fff]/u;
 const UNTRANSLATED_SHORT_VISIBLE = new Set(["No", "Yes", "None", "Any", "Varies"]);
@@ -54,8 +54,85 @@ const stripInlineTags = value => {
 };
 
 const getNumberSignature = value => [...stripInlineTags(value).matchAll(RE_VISIBLE_NUMBER)]
-	.map(match => match[0])
+	.map(match => match[0].replaceAll(",", ""))
 	.sort((a, b) => a.localeCompare(b, "en", {numeric: true}));
+
+const getRawNumberSet = value => new Set([...value.matchAll(RE_VISIBLE_NUMBER)]
+	.map(match => match[0].replaceAll(",", "")));
+
+const ENGLISH_WRITTEN_NUMBERS = new Map([
+	["0", /\b(?:zero|none)\b/iu],
+	["1", /\b(?:a|an|one|once|first|single|next|past)\b/iu],
+	["2", /\b(?:two|twice|second|both|double|half)\b/iu],
+	["3", /\b(?:three|third|triple)\b/iu],
+	["4", /\b(?:four|fourth|quarter)\b/iu],
+	["5", /\b(?:five|fifth)\b/iu],
+	["6", /\b(?:six|sixth)\b/iu],
+	["7", /\b(?:seven|seventh)\b/iu],
+	["8", /\b(?:eight|eighth)\b/iu],
+	["9", /\b(?:nine|ninth)\b/iu],
+	["10", /\b(?:ten|tenth)\b/iu],
+	["11", /\b(?:eleven|eleventh)\b/iu],
+	["12", /\b(?:twelve|twelfth)\b/iu],
+	["13", /\b(?:thirteen|thirteenth)\b/iu],
+	["14", /\b(?:fourteen|fourteenth)\b/iu],
+	["15", /\b(?:fifteen|fifteenth)\b/iu],
+	["16", /\b(?:sixteen|sixteenth)\b/iu],
+	["17", /\b(?:seventeen|seventeenth)\b/iu],
+	["18", /\b(?:eighteen|eighteenth)\b/iu],
+	["19", /\b(?:nineteen|nineteenth)\b/iu],
+	["20", /\b(?:twenty|twentieth)\b/iu],
+	["100", /\b(?:hundred|hundredth|percentile)\b/iu],
+]);
+
+// These localized sentences repeat an entity's level or resource die from the
+// surrounding feature metadata. The extra number is contextual clarification,
+// not a changed rule value.
+const CONTEXTUAL_NUMBER_ALLOWLIST = new Set([
+	"class-druid.json:/subclassFeature/1/entries/0:2",
+	"class-druid.json:/subclassFeature/9/entries/0:2",
+	"class-druid.json:/subclassFeature/36/entries/1:6",
+	"class-sidekick.json:/classFeature/35/entries/1:6",
+]);
+
+const toChineseInteger = value => {
+	if (!Number.isSafeInteger(value) || value < 0 || value > 9999) return null;
+	if (value === 0) return "零";
+	const digits = "零一二三四五六七八九";
+	const units = [[1000, "千"], [100, "百"], [10, "十"]];
+	let remaining = value;
+	let out = "";
+	let needsZero = false;
+	for (const [unitValue, unitLabel] of units) {
+		const digit = Math.floor(remaining / unitValue);
+		remaining %= unitValue;
+		if (digit) {
+			if (needsZero) out += "零";
+			if (!(unitValue === 10 && digit === 1 && !out)) out += digits[digit];
+			out += unitLabel;
+			needsZero = remaining > 0 && remaining < unitValue / 10;
+		} else if (out && remaining) {
+			needsZero = true;
+		}
+	}
+	if (remaining) {
+		if (needsZero) out += "零";
+		out += digits[remaining];
+	}
+	return out;
+};
+
+const localizedHasWrittenNumber = (number, value) => {
+	if (!/^\d+$/u.test(number)) return false;
+	const integer = Number(number);
+	if (integer === 0 && value.includes("戲法")) return true;
+	const candidates = new Set([toChineseInteger(integer)]);
+	if (integer === 1) candidates.add("首");
+	if (integer === 2) ["兩", "雙"].forEach(candidate => candidates.add(candidate));
+	return [...candidates].filter(Boolean).some(candidate => value.includes(candidate));
+};
+
+const englishHasWrittenNumber = (number, value) => ENGLISH_WRITTEN_NUMBERS.get(number)?.test(value) || false;
 
 const getCanonicalTagSignature = match => {
 	const tagType = match[1];
@@ -197,6 +274,7 @@ const report = {
 	untranslatedProse: [],
 	inlineTagCanonicalFailures: [],
 	mixedAsciiWarnings: [],
+	rawVisibleNumberWarnings: [],
 	visibleNumberWarnings: [],
 	importWarnings: {},
 };
@@ -240,7 +318,30 @@ for (const item of visibleStrings) {
 	const englishNumbers = getNumberSignature(item.english);
 	const localizedNumbers = getNumberSignature(item.localized);
 	if (!jsonEqual(englishNumbers, localizedNumbers)) {
-		report.visibleNumberWarnings.push({...item, englishNumbers, localizedNumbers});
+		const rawWarning = {...item, englishNumbers, localizedNumbers};
+		report.rawVisibleNumberWarnings.push(rawWarning);
+		const englishSet = new Set(englishNumbers);
+		const localizedSet = new Set(localizedNumbers);
+		const rawEnglishNumbers = getRawNumberSet(item.english);
+		const rawLocalizedNumbers = getRawNumberSet(item.localized);
+		const unresolvedEnglishNumbers = [...englishSet].filter(number => (
+			!localizedSet.has(number)
+			&& !rawLocalizedNumbers.has(number)
+			&& !localizedHasWrittenNumber(number, strippedLocalized)
+		));
+		const unresolvedLocalizedNumbers = [...localizedSet].filter(number => (
+			!englishSet.has(number)
+			&& !rawEnglishNumbers.has(number)
+			&& !englishHasWrittenNumber(number, strippedEnglish)
+			&& !CONTEXTUAL_NUMBER_ALLOWLIST.has(`${item.file}:${item.path}:${number}`)
+		));
+		if (unresolvedEnglishNumbers.length || unresolvedLocalizedNumbers.length) {
+			report.visibleNumberWarnings.push({
+				...rawWarning,
+				unresolvedEnglishNumbers,
+				unresolvedLocalizedNumbers,
+			});
+		}
 	}
 	const englishTagSignatures = new Set(getCanonicalTagSignatures(item.english));
 	const approvedTagSignatures = approvedCorrectionTagSignatures.get(`${item.file}:${item.path}`) || new Set();
@@ -272,6 +373,7 @@ console.log(JSON.stringify({
 	visibleStringPairsChecked: report.visibleStringPairsChecked,
 	untranslatedProse: report.untranslatedProse.length,
 	mixedAsciiWarnings: report.mixedAsciiWarnings.length,
+	rawVisibleNumberWarnings: report.rawVisibleNumberWarnings.length,
 	visibleNumberWarnings: report.visibleNumberWarnings.length,
 	canonicalFailures: report.canonicalFailures.length,
 	inlineTagCanonicalFailures: report.inlineTagCanonicalFailures.length,

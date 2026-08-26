@@ -27,7 +27,13 @@ export class I18nZhTwClass {
 			.replaceAll("Referenced in", "引用於")
 			.replaceAll("External sources:", "外部來源：")
 			.replaceAll("Reprinted as", "再版為")
-			.replaceAll(" in <i", "，收錄於 <i");
+			.replaceAll("Available in ", "收錄於 ")
+			.replaceAll("the Basic Rules", "《基礎規則》")
+			.replaceAll("the <span", "<span")
+			.replaceAll(" and ", "及")
+			.replace(/\(as &quot;([^&]+)&quot;\)/gu, "（名稱為「$1」）")
+			.replaceAll(" in <i", "，收錄於 <i")
+			.replace(/ in ([A-Z][A-Z0-9]+)(?=;|\.|$)/gu, "，收錄於 $1");
 	}
 
 	static applyToData (data) {
