@@ -10,8 +10,9 @@
 - `generated/srd-entity-index.csv`：每個 `srd`／`srd52` 條目的檔案與 JSON Pointer。
 - `generated/srd-entity-terms.csv`：2,085 個不重複英文名稱，待後續補入譯名。
 - `classes/`：2014 與 2024 Classes 全量翻譯、人工修正與 QA 報告。
-- `site/`：624 筆全站共用介面訊息與 locale 建置說明。
+- `site/`：672 筆全站共用介面訊息與 locale 建置說明。
 - `rules/`：動作、狀態／疾病、技能、感官、核心／變體規則與 2014 Quick Reference 的匯入來源、署名與 QA 報告。
+- `spells/`：936 筆法術與 89 筆法術補充敘述的繁中 sidecar、來源署名、動態欄位中文化與機械值 QA 報告。
 
 ## 重新產生盤點
 
@@ -34,6 +35,6 @@ npm run zh-tw:validate-glossary
 npm run zh-tw:verify
 ```
 
-此命令會驗證術語、Class 全量 sidecar、共用介面、核心規則 runtime、canonical 欄位／inline tags，以及 Quick Reference 的英文 hash 與雙語搜尋。
+此命令會驗證術語、Class 與法術全量 sidecar、共用介面、核心規則 runtime、canonical 欄位／inline tags，以及 Quick Reference／法術的英文 hash 與雙語搜尋。
 
-`rules/` 與部分 `classes/` 資料包含非 SRD 書籍內容，只能用於私人、自用 repository；授權與署名界線見各子目錄說明。
+`rules/`、部分 `classes/` 與 `spells/` 資料包含非 SRD 書籍內容，只能用於私人、自用 repository；授權與署名界線見各子目錄說明。

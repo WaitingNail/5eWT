@@ -26,6 +26,8 @@ Translation data notice
 The MIT License above does not replace the licenses or usage restrictions of
 translated rules content. The rules translation derived from tjliqy/5etools-cn
 is licensed under CC BY-NC-SA 4.0; see
-`translation/zh-TW/rules/SOURCE-ATTRIBUTION.md`. SRD attribution is provided in
-`translation/zh-TW/CC-BY-ATTRIBUTION.md`. Class translation provenance and its
-private-use restriction are documented in `translation/zh-TW/classes/README.md`.
+`translation/zh-TW/rules/SOURCE-ATTRIBUTION.md` and
+`translation/zh-TW/spells/SOURCE-ATTRIBUTION.md`. SRD attribution is provided
+in `translation/zh-TW/CC-BY-ATTRIBUTION.md`. Class translation provenance and
+its private-use restriction are documented in
+`translation/zh-TW/classes/README.md`.

@@ -1,0 +1,107 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"spell": [
+		{
+			"name": "界門封鎖",
+			"source": "SatO",
+			"page": 12,
+			"level": 4,
+			"school": "A",
+			"time": [
+				{
+					"number": 1,
+					"unit": "minute"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "一把損壞的傳送門鑰匙，作為本法術的耗材",
+					"consume": true
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "hour",
+						"amount": 24
+					}
+				}
+			],
+			"entries": [
+				"選擇施法距離內的一處30尺立方區域，你加固這片區域的位面結構。這片區域內，的所有傳送門都將關閉且在法術持續時間內無法被再次開啟。任何能進行位面旅行或開啟傳送門的法術（例如{@spell gate||異界之門}或{@spell plane shift||位面轉移}）如果被用於進入這片區域或離開這片區域的話，都將自動失敗。這片立方區域是無法移動的。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"當你使用6環或更高環階的法術位施展本法術時，本法術將一直持續至被解除為止。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"ENG_name": "Gate Seal"
+		},
+		{
+			"name": "偵測扭曲",
+			"source": "SatO",
+			"page": 12,
+			"level": 2,
+			"school": "D",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "一片剃刀葉"
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"持續時間內，你能夠感知到你周圍30尺範圍內的傳送門，且不論那些傳送門是否開啟。",
+				"如果你以這種方式偵查到一個傳送門，你可以使用你的動作來研究它。進行一次{@dc 15}的施法屬性檢定。若檢定成功，你將得知傳送門的目的地位面及其所需的傳送門鑰匙，隨後法術結束。若檢定失敗，你將一無所獲且無法再次使用該法術探測該傳送門，除非你再次施放該法術。",
+				"本法術的偵測能力可以穿透大部分的障礙，但3尺厚的土木、1尺厚的岩石、1寸厚的常見金屬、或薄薄一層鉛都能阻擋本法術的偵測。"
+			],
+			"ENG_name": "Warp Sense"
+		}
+	]
+}

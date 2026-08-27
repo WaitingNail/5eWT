@@ -1,0 +1,176 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"spell": [
+		{
+			"name": "敵意術",
+			"source": "BMT",
+			"page": 50,
+			"level": 3,
+			"school": "E",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "一張描繪著 遊蕩者 的卡牌"
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你以魔法之詞低語，令施法距離內你選擇的一個生物產生敵意。目標必須進行一次感知豁免。若豁免失敗，目標會受到 {@damage 4d4} 點心靈傷害，且必須立即使用反應對你選擇的另一個你能看到的生物發動一次近戰攻擊。如果目標無法發動這次攻擊（例如它的觸及範圍內沒有生物，或者因為它的反應無法使用），那麼在你的下一回合開始前，目標的下一次攻擊檢定具有劣勢。若豁免成功，目標僅會受到一半的傷害。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"當你使用4環或更高法術位施放該法術時，傷害對3環以上的每個法術位環階增加{@scaledamage 4d4|3-9|1d4}。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"damageInflict": [
+				"psychic"
+			],
+			"savingThrow": [
+				"wisdom"
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"ENG_name": "Antagonize"
+		},
+		{
+			"name": "死神靈魄",
+			"source": "BMT",
+			"page": 50,
+			"level": 4,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "一張描繪著死神化身的鍍金紙牌，至少價值400gp",
+					"cost": 40000
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "hour",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"你喚來一個象徵死神的靈魄。其在施法距離內你可見的一個未佔據位置化為實體，並使用{@creature reaper spirit|BMT|收割者靈魄}的資料。當其生命值降至0或法術結束時，靈魄會消失。",
+				"該靈魄在法術持續時間內對你和你的同伴們友好。在戰鬥中，該生物與你共享先攻值，其回合緊跟在你的回合之後。它遵從於你的口頭指令（無需任何動作）。如果你不發令，它將執行{@action Dodge||閃避}動作並遠離危險。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"使用5環或更高法術位施放本法術時，該法術召喚的收割者靈魄資料中使用更高的法術環階。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"miscTags": [
+				"SGT",
+				"SMN"
+			],
+			"ENG_name": "Spirit of Death"
+		},
+		{
+			"name": "卡牌噴射",
+			"source": "BMT",
+			"page": 50,
+			"level": 2,
+			"school": "C",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "cone",
+				"distance": {
+					"type": "feet",
+					"amount": 15
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "一副牌組"
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你向一處15尺錐狀區域噴射卡牌，該區域內的生物必須進行一次敏捷豁免。豁免失敗的生物受到 {@damage 2d10} 點力場傷害傷害並陷入{@condition blinded||目盲}，持續直至其下一個回合結束。豁免成功則僅會受到一半傷害。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"使用三環或更高法術位施展該法術時，你使用的法術位每比 2 環高一環，其傷害就增加{@scaledamage 2d10|2-9|1d10}。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"damageInflict": [
+				"force"
+			],
+			"conditionInflict": [
+				"blinded"
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"ENG_name": "Spray of Cards"
+		}
+	]
+}

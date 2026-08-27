@@ -89,6 +89,7 @@ DIRECT_VISIBLE_KEYS = {
 }
 CONTENT_CONTAINER_KEYS = {
 	"entries",
+	"entriesHigherLevel",
 	"entry",
 	"items",
 	"footnotes",
@@ -101,6 +102,9 @@ CONTENT_CONTAINER_KEYS = {
 	"tables",
 	"default",
 	"columns",
+	"components",
+	"m",
+	"scalingLevelDice",
 }
 
 # These keys are rendered or interpreted as identifiers/mechanics.  They are

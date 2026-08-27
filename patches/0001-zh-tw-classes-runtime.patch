@@ -1,18 +1,19 @@
 diff --git a/.gitignore b/.gitignore
-index 7968227..b0d2521 100644
+index 7968227..ecfabad 100644
 --- a/.gitignore
 +++ b/.gitignore
-@@ -20,6 +20,8 @@ sitemap.xml
+@@ -20,6 +20,9 @@ sitemap.xml
  *.DS_Store
  Thumbs.db
  .rsync-filter
 +__pycache__/
++.venv-zh-tw/
 +*.pyc
  
  # Generated service worker files
  sw.js
 diff --git a/5etools.html b/5etools.html
-index 152855e..cbbf81b 100644
+index 152855e..26ca26e 100644
 --- a/5etools.html
 +++ b/5etools.html
 @@ -1,17 +1,17 @@
@@ -36,7 +37,7 @@ index 152855e..cbbf81b 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -46,10 +47,11 @@ index 152855e..cbbf81b 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  
-@@ -62,7 +64,7 @@
+@@ -62,7 +65,7 @@
  
  <main class="container ve-flex-vh-center ve-w-100w ve-h-100h">
  	<h3>
@@ -59,7 +61,7 @@ index 152855e..cbbf81b 100644
  </main>
  </body>
 diff --git a/actions.html b/actions.html
-index 497e03a..bb3a24e 100644
+index 497e03a..d99705a 100644
 --- a/actions.html
 +++ b/actions.html
 @@ -1,5 +1,5 @@
@@ -78,7 +80,7 @@ index 497e03a..bb3a24e 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -88,10 +90,11 @@ index 497e03a..bb3a24e 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -102,7 +105,7 @@ index 497e03a..bb3a24e 100644
  			</div>
  		</header>
  
-@@ -88,14 +90,14 @@
+@@ -88,14 +91,14 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -121,7 +124,7 @@ index 497e03a..bb3a24e 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -106,8 +108,8 @@
+@@ -106,8 +109,8 @@
  			<div id="contentwrapper" class="view-col">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -132,7 +135,7 @@ index 497e03a..bb3a24e 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -120,17 +122,17 @@
+@@ -120,17 +123,17 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -155,7 +158,7 @@ index 497e03a..bb3a24e 100644
  					</div>
  				</div>
  			</div>
-@@ -162,7 +164,7 @@
+@@ -162,7 +165,7 @@
  <script type="text/javascript" defer src="js/listpage.js"></script>
  <script type="text/javascript" defer src="js/filter-common.js"></script>
  <script type="text/javascript" defer src="js/filter-actions.js"></script>
@@ -165,7 +168,7 @@ index 497e03a..bb3a24e 100644
  <script type="text/javascript" defer src="lib/elasticlunr.js"></script>
  
 diff --git a/adventure.html b/adventure.html
-index db5822c..33b5289 100644
+index db5822c..14ee05f 100644
 --- a/adventure.html
 +++ b/adventure.html
 @@ -1,5 +1,5 @@
@@ -184,7 +187,7 @@ index db5822c..33b5289 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -194,10 +197,11 @@ index db5822c..33b5289 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -65,8 +67,8 @@
+@@ -65,8 +68,8 @@
  <div class="ve-flex-col" data-cancer-id="cancer-header">
  	<header class="ve-mobile-sm__hidden page__header">
  		<div class="container ve-flex-v-baseline">
@@ -208,7 +212,7 @@ index db5822c..33b5289 100644
  		</div>
  	</header>
  
-@@ -88,14 +90,14 @@
+@@ -88,14 +91,14 @@
  	<div class="view-col linked-titles book-view">
  		<table id="pagecontent" class="ve-w-100 ve-stats ve-stats--book ve-stats--book-large">
  			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -226,7 +230,7 @@ index db5822c..33b5289 100644
  
  		<div class="cancer__footer-pad ve-w-100"></div>
 diff --git a/adventures.html b/adventures.html
-index 7f38074..3405e10 100644
+index 7f38074..79e92bf 100644
 --- a/adventures.html
 +++ b/adventures.html
 @@ -1,5 +1,5 @@
@@ -245,7 +249,7 @@ index 7f38074..3405e10 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -255,10 +259,11 @@ index 7f38074..3405e10 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -65,8 +67,8 @@
+@@ -65,8 +68,8 @@
  <div class="ve-flex-col" data-cancer-id="cancer-header">
  	<header class="ve-mobile-sm__hidden page__header">
  		<div class="container ve-flex-v-baseline">
@@ -269,7 +274,7 @@ index 7f38074..3405e10 100644
  		</div>
  	</header>
  
-@@ -81,16 +83,16 @@
+@@ -81,16 +84,16 @@
  <div class="container view-col-wrapper" data-cancer-id="cancer-wrapper">
  	<div class="view-col" id="listcontainer">
  		<div class="ve-lst__form-top">
@@ -293,7 +298,7 @@ index 7f38074..3405e10 100644
  			<button class="ve-btn ve-btn-default ve-btn-xs ve-w-30p ve-mobile-sm__hidden" disabled></button>
  		</div>
  
-@@ -100,9 +102,9 @@
+@@ -100,9 +103,9 @@
  
  		<div class="ve-flex-vh-center ve-mt-3 no-print">
  			<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
@@ -307,7 +312,7 @@ index 7f38074..3405e10 100644
  		</div>
  
 diff --git a/backgrounds.html b/backgrounds.html
-index 84926c5..2a30125 100644
+index 84926c5..8128aac 100644
 --- a/backgrounds.html
 +++ b/backgrounds.html
 @@ -1,5 +1,5 @@
@@ -326,7 +331,7 @@ index 84926c5..2a30125 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -336,10 +341,11 @@ index 84926c5..2a30125 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -350,7 +356,7 @@ index 84926c5..2a30125 100644
  			</div>
  		</header>
  
-@@ -88,14 +90,14 @@
+@@ -88,14 +91,14 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -370,7 +376,7 @@ index 84926c5..2a30125 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -106,9 +108,9 @@
+@@ -106,9 +109,9 @@
  			<div id="contentwrapper" class="view-col">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -383,7 +389,7 @@ index 84926c5..2a30125 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -121,17 +123,17 @@
+@@ -121,17 +124,17 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -407,7 +413,7 @@ index 84926c5..2a30125 100644
  				</div>
  			</div>
 diff --git a/bastions.html b/bastions.html
-index 9a77c60..012a524 100644
+index 9a77c60..e3ef7cd 100644
 --- a/bastions.html
 +++ b/bastions.html
 @@ -1,5 +1,5 @@
@@ -426,7 +432,7 @@ index 9a77c60..012a524 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -436,10 +442,11 @@ index 9a77c60..012a524 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -450,7 +457,7 @@ index 9a77c60..012a524 100644
  			</div>
  		</header>
  
-@@ -88,15 +90,15 @@
+@@ -88,15 +91,15 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -472,7 +479,7 @@ index 9a77c60..012a524 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -107,10 +109,10 @@
+@@ -107,10 +110,10 @@
  			<div id="contentwrapper" class="view-col">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -487,7 +494,7 @@ index 9a77c60..012a524 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -123,20 +125,20 @@
+@@ -123,20 +126,20 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -515,7 +522,7 @@ index 9a77c60..012a524 100644
  				</div>
  			</div>
 diff --git a/bestiary.html b/bestiary.html
-index 0f63c98..abd0714 100644
+index 0f63c98..bcf2e40 100644
 --- a/bestiary.html
 +++ b/bestiary.html
 @@ -1,5 +1,5 @@
@@ -534,7 +541,7 @@ index 0f63c98..abd0714 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -49,9 +49,11 @@
+@@ -49,9 +49,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -544,10 +551,11 @@ index 0f63c98..abd0714 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -71,8 +73,8 @@
+@@ -71,8 +74,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -558,7 +566,7 @@ index 0f63c98..abd0714 100644
  			</div>
  		</header>
  
-@@ -90,14 +92,14 @@
+@@ -90,14 +93,14 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -578,7 +586,7 @@ index 0f63c98..abd0714 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -115,17 +117,17 @@
+@@ -115,17 +118,17 @@
  
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -601,7 +609,7 @@ index 0f63c98..abd0714 100644
  						<span class="ve-col-6 ve-no-wrap ve-pl-0" id="totalcr"></span>
  					</div>
  				</div>
-@@ -139,28 +141,28 @@
+@@ -139,28 +142,28 @@
  
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -639,7 +647,7 @@ index 0f63c98..abd0714 100644
  				</div>
  
 diff --git a/bestiary/index.html b/bestiary/index.html
-index 275cc3a..db632da 100644
+index 275cc3a..aa21327 100644
 --- a/bestiary/index.html
 +++ b/bestiary/index.html
 @@ -1,5 +1,5 @@
@@ -658,16 +666,17 @@ index 275cc3a..db632da 100644
  <link rel="stylesheet" href="/css/bootstrap.css">
  <link rel="stylesheet" href="/css/main.css">
  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-@@ -32,6 +32,8 @@
+@@ -32,6 +32,9 @@
  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
  <meta name="apple-mobile-web-app-title" content="5etools">
  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#006bc4">
 +<script type="text/javascript" src="/js/zh-tw/site-i18n-data.js"></script>
 +<script type="text/javascript" src="/js/zh-tw/site-i18n.js"></script>
++<script type="text/javascript" src="/js/zh-tw/content-i18n.js"></script>
  <script type="module" defer src="/js/styleswitch.js"></script>
  <script type="text/javascript" defer src="/js/navigation.js"></script>
  <script type="module" defer src="/js/browsercheck.js"></script>
-@@ -54,7 +56,7 @@
+@@ -54,7 +57,7 @@
  
  <header class="ve-mobile-sm__hidden page__header"><div class="container ve-flex-v-baseline"><h1 class="page__title ve-no-wrap ve-my-0"></h1></div></header><nav class="container page__nav" id="navigation"><ul class="nav nav-pills page__nav-inner" id="navbar"></ul></nav>
  
@@ -677,7 +686,7 @@ index 275cc3a..db632da 100644
  <script type="text/javascript" defer src="/lib/localforage.js"></script>
  <script type="text/javascript" defer src="/lib/elasticlunr.js"></script>
 diff --git a/blocklist.html b/blocklist.html
-index 08498e5..48bd8e2 100644
+index 08498e5..01147f3 100644
 --- a/blocklist.html
 +++ b/blocklist.html
 @@ -1,5 +1,5 @@
@@ -696,7 +705,7 @@ index 08498e5..48bd8e2 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -706,10 +715,11 @@ index 08498e5..48bd8e2 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -65,8 +67,8 @@
+@@ -65,8 +68,8 @@
  <div class="ve-flex-col" data-cancer-id="cancer-header">
  	<header class="ve-mobile-sm__hidden page__header">
  		<div class="container ve-flex-v-baseline">
@@ -720,7 +730,7 @@ index 08498e5..48bd8e2 100644
  		</div>
  	</header>
  
-@@ -96,7 +98,7 @@
+@@ -96,7 +99,7 @@
  	<hr>
  
  	<div class="ve-flex-col" id="blocklist-content">
@@ -730,7 +740,7 @@ index 08498e5..48bd8e2 100644
  </main>
  
 diff --git a/book.html b/book.html
-index dfcf7b7..9dd1232 100644
+index dfcf7b7..521fbb3 100644
 --- a/book.html
 +++ b/book.html
 @@ -1,5 +1,5 @@
@@ -749,7 +759,7 @@ index dfcf7b7..9dd1232 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -759,10 +769,11 @@ index dfcf7b7..9dd1232 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -65,8 +67,8 @@
+@@ -65,8 +68,8 @@
  <div class="ve-flex-col" data-cancer-id="cancer-header">
  	<header class="ve-mobile-sm__hidden page__header">
  		<div class="container ve-flex-v-baseline">
@@ -773,7 +784,7 @@ index dfcf7b7..9dd1232 100644
  		</div>
  	</header>
  
-@@ -88,14 +90,14 @@
+@@ -88,14 +91,14 @@
  	<div class="view-col linked-titles book-view">
  		<table id="pagecontent" class="ve-w-100 ve-stats ve-stats--book ve-stats--book-large">
  			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -791,7 +802,7 @@ index dfcf7b7..9dd1232 100644
  
  		<div class="cancer__footer-pad ve-w-100"></div>
 diff --git a/books.html b/books.html
-index 8e36aed..b8eead6 100644
+index 8e36aed..9a87770 100644
 --- a/books.html
 +++ b/books.html
 @@ -1,5 +1,5 @@
@@ -810,7 +821,7 @@ index 8e36aed..b8eead6 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -820,10 +831,11 @@ index 8e36aed..b8eead6 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -65,8 +67,8 @@
+@@ -65,8 +68,8 @@
  <div class="ve-flex-col" data-cancer-id="cancer-header">
  	<header class="ve-mobile-sm__hidden page__header">
  		<div class="container ve-flex-v-baseline">
@@ -834,7 +846,7 @@ index 8e36aed..b8eead6 100644
  		</div>
  	</header>
  
-@@ -81,14 +83,14 @@
+@@ -81,14 +84,14 @@
  <div class="container view-col-wrapper" data-cancer-id="cancer-wrapper">
  	<div class="view-col" id="listcontainer">
  		<div class="ve-lst__form-top">
@@ -854,7 +866,7 @@ index 8e36aed..b8eead6 100644
  			<button class="ve-btn ve-btn-default ve-btn-xs ve-w-30p ve-mobile-sm__hidden" disabled></button>
  		</div>
  
-@@ -98,9 +100,9 @@
+@@ -98,9 +101,9 @@
  
  		<div class="ve-flex-vh-center ve-mt-3 no-print">
  			<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
@@ -868,7 +880,7 @@ index 8e36aed..b8eead6 100644
  		</div>
  
 diff --git a/changelog.html b/changelog.html
-index 1a34d32..67c374e 100644
+index 1a34d32..0c233c5 100644
 --- a/changelog.html
 +++ b/changelog.html
 @@ -1,5 +1,5 @@
@@ -887,7 +899,7 @@ index 1a34d32..67c374e 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -897,10 +909,11 @@ index 1a34d32..67c374e 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -66,8 +68,8 @@
+@@ -66,8 +69,8 @@
  <div class="ve-flex-col" data-cancer-id="cancer-header">
  	<header class="ve-mobile-sm__hidden page__header">
  		<div class="container ve-flex-v-baseline">
@@ -911,7 +924,7 @@ index 1a34d32..67c374e 100644
  		</div>
  	</header>
  
-@@ -79,7 +81,7 @@
+@@ -79,7 +82,7 @@
  <div class="cancer__wrp-sidebar cancer__wrp-sidebar-lhs cancer__wrp-sidebar-lhs--scrolling-page cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-inner cancer__sidebar-inner--top cancer__wrp-interactive"><!--5ETOOLS_AD_LEFT_1--></div><div class="cancer__sidebar-inner cancer__sidebar-inner--bottom cancer__wrp-interactive"><!--5ETOOLS_AD_LEFT_2--></div></div>
  <div class="cancer__wrp-sidebar cancer__wrp-sidebar-rhs cancer__wrp-sidebar-rhs--scrolling-page cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-inner cancer__sidebar-inner--top cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_1--></div><div class="cancer__sidebar-inner cancer__sidebar-inner--bottom cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_2--></div></div>
  
@@ -921,7 +934,7 @@ index 1a34d32..67c374e 100644
  <!--5ETOOLS_SCRIPT_ANCHOR-->
  <!--5ETOOLS_AD_ADHESION-->
 diff --git a/charcreationoptions.html b/charcreationoptions.html
-index 235f285..5489166 100644
+index 235f285..b4a273a 100644
 --- a/charcreationoptions.html
 +++ b/charcreationoptions.html
 @@ -1,5 +1,5 @@
@@ -940,7 +953,7 @@ index 235f285..5489166 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -950,10 +963,11 @@ index 235f285..5489166 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -964,7 +978,7 @@ index 235f285..5489166 100644
  			</div>
  		</header>
  
-@@ -88,13 +90,13 @@
+@@ -88,13 +91,13 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -982,7 +996,7 @@ index 235f285..5489166 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -105,8 +107,8 @@
+@@ -105,8 +108,8 @@
  			<div id="contentwrapper" class="view-col">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -993,7 +1007,7 @@ index 235f285..5489166 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -119,17 +121,17 @@
+@@ -119,17 +122,17 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -1017,7 +1031,7 @@ index 235f285..5489166 100644
  				</div>
  			</div>
 diff --git a/classes.html b/classes.html
-index 3f6cd87..dbbb1ab 100644
+index 3f6cd87..e7ad28a 100644
 --- a/classes.html
 +++ b/classes.html
 @@ -1,5 +1,5 @@
@@ -1036,7 +1050,7 @@ index 3f6cd87..dbbb1ab 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -1046,10 +1060,11 @@ index 3f6cd87..dbbb1ab 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -66,8 +68,8 @@
+@@ -66,8 +69,8 @@
  <div class="ve-flex-col" data-cancer-id="cancer-header">
  	<header class="ve-mobile-sm__hidden page__header">
  		<div class="container ve-flex-v-baseline">
@@ -1060,7 +1075,7 @@ index 3f6cd87..dbbb1ab 100644
  		</div>
  	</header>
  
-@@ -92,8 +94,8 @@
+@@ -92,8 +95,8 @@
  					<button class="ve-btn ve-btn-default ve-px-2" id="reset"><span class="glyphicon glyphicon-refresh"></span></button>
  				</div>
  				<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
@@ -1071,7 +1086,7 @@ index 3f6cd87..dbbb1ab 100644
  				</div>
  
  				<div class="list list--stats classes cls__list" id="list"></div>
-@@ -101,9 +103,9 @@
+@@ -101,9 +104,9 @@
  
  			<div class="ve-flex-vh-center ve-my-3">
  				<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
@@ -1084,7 +1099,7 @@ index 3f6cd87..dbbb1ab 100644
  				</div>
  			</div>
  		</div>
-@@ -115,11 +117,11 @@
+@@ -115,11 +118,11 @@
  	<div class="row ve-flex ve-mobile-md__flex-col">
  		<div class="ve-col-3 ve-mobile-md__col-12 ve-px-4">
  			<div class="ve-flex-vh-center ve-text-center wrp-btn-readmode ve-mb-3">
@@ -1099,7 +1114,7 @@ index 3f6cd87..dbbb1ab 100644
  				</div>
  			</div>
  
-@@ -133,7 +135,7 @@
+@@ -133,7 +136,7 @@
  			<div id="subclasstabs" class="ve-w-100 ve-flex ve-mb-2 cls-tabs__wrp"></div>
  			<table id="pagecontent" class="ve-w-100 ve-stats shadow-big cls__stats">
  				<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -1109,7 +1124,7 @@ index 3f6cd87..dbbb1ab 100644
  			</table>
  		</div>
 diff --git a/conditionsdiseases.html b/conditionsdiseases.html
-index d48e7b3..eb36a24 100644
+index d48e7b3..14c0a85 100644
 --- a/conditionsdiseases.html
 +++ b/conditionsdiseases.html
 @@ -1,5 +1,5 @@
@@ -1128,7 +1143,7 @@ index d48e7b3..eb36a24 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -1138,10 +1153,11 @@ index d48e7b3..eb36a24 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -1152,7 +1168,7 @@ index d48e7b3..eb36a24 100644
  			</div>
  		</header>
  
-@@ -88,14 +90,14 @@
+@@ -88,14 +91,14 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -1171,7 +1187,7 @@ index d48e7b3..eb36a24 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -106,8 +108,8 @@
+@@ -106,8 +109,8 @@
  			<div id="contentwrapper" class="view-col">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -1182,7 +1198,7 @@ index d48e7b3..eb36a24 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -120,17 +122,17 @@
+@@ -120,17 +123,17 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -1206,7 +1222,7 @@ index d48e7b3..eb36a24 100644
  				</div>
  			</div>
 diff --git a/converter.html b/converter.html
-index 83de917..d1feb4f 100644
+index 83de917..70f5b89 100644
 --- a/converter.html
 +++ b/converter.html
 @@ -1,5 +1,5 @@
@@ -1225,7 +1241,7 @@ index 83de917..d1feb4f 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -1235,10 +1251,11 @@ index 83de917..d1feb4f 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -67,8 +69,8 @@
+@@ -67,8 +70,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -1249,7 +1266,7 @@ index 83de917..d1feb4f 100644
  			</div>
  		</header>
  
-@@ -80,10 +82,10 @@
+@@ -80,10 +83,10 @@
  	<div class="ve-h-100 ve-flex-col ve-min-h-0" data-cancer-id="cancer-wrapper">
  		<div class="ve-pt-2 ve-mb-1 ve-pl-7p ve-pr-7p ve-flex-v-center ve-mobile-md__flex-col ve-mobile-md__flex-ai-start">
  			<div class="ve-flex-v-stretch ve-mr-2 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
@@ -1263,7 +1280,7 @@ index 83de917..d1feb4f 100644
  						<span class="glyphicon glyphicon-cog"></span>
  					</button>
  				</div>
-@@ -95,11 +97,11 @@
+@@ -95,11 +98,11 @@
  		<div class="ve-flex ve-h-100 ve-min-h-0 ve-mobile-md__flex-col ve-mobile-md__h-initial ve-mobile-md__min-h-initial ve-mobile-md__flex-col">
  			<div class="view-col">
  				<div class="ve-mb-2 ve-split-v-center ve-w-100">
@@ -1278,7 +1295,7 @@ index 83de917..d1feb4f 100644
  					</div>
  				</div>
  
-@@ -109,20 +111,20 @@
+@@ -109,20 +112,20 @@
  			<div class="view-col">
  				<div class="ve-mb-2 ve-split-v-center ve-w-100">
  					<div class="ve-flex-v-center">
@@ -1306,7 +1323,7 @@ index 83de917..d1feb4f 100644
  					</div>
  				</div>
 diff --git a/crcalculator.html b/crcalculator.html
-index feea607..ad227e3 100644
+index feea607..5e1f420 100644
 --- a/crcalculator.html
 +++ b/crcalculator.html
 @@ -1,5 +1,5 @@
@@ -1325,7 +1342,7 @@ index feea607..ad227e3 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -1335,10 +1352,11 @@ index feea607..ad227e3 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -66,8 +68,8 @@
+@@ -66,8 +69,8 @@
  <div class="ve-flex-col" data-cancer-id="cancer-header">
  	<header class="ve-mobile-sm__hidden page__header">
  		<div class="container ve-flex-v-baseline">
@@ -1349,7 +1367,7 @@ index feea607..ad227e3 100644
  		</div>
  	</header>
  
-@@ -84,7 +86,7 @@
+@@ -84,7 +87,7 @@
  		<div class="row ve-flex">
  			<div class="ve-col-6">
  				<div id="croutput">Waiting for calculation...</div>
@@ -1358,7 +1376,7 @@ index feea607..ad227e3 100644
  				<h4>Instructions</h4>
  				<ol>
  					<li>Enter expected CR of the creature.</li>
-@@ -117,14 +119,14 @@
+@@ -117,14 +120,14 @@
  				<h4>Monster Statistics by Challenge Rating</h4>
  				<table id="msbcr">
  					<tr>
@@ -1375,7 +1393,7 @@ index feea607..ad227e3 100644
  					</tr>
  				</table>
  			</div>
-@@ -258,7 +260,7 @@
+@@ -258,7 +261,7 @@
  					</label>
  					<span class="ve-flex-v-center">
  						<select id="resistances" class="ve-form-control ve-input-xs">
@@ -1384,7 +1402,7 @@ index feea607..ad227e3 100644
  							<option value="res">Resistances</option>
  							<option value="imm">Immunities</option>
  						</select>
-@@ -299,7 +301,7 @@
+@@ -299,7 +302,7 @@
  			<h4>Monster Features</h4>
  			<div class="crc__hdr_mon_features ve-flex-v-center">
  				<div class="ve-col-1"></div>
@@ -1394,7 +1412,7 @@ index feea607..ad227e3 100644
  				<div class="ve-col-7">Feature Description</div>
  			</div>
 diff --git a/cultsboons.html b/cultsboons.html
-index 2d21e6a..5b7ca1f 100644
+index 2d21e6a..bba083a 100644
 --- a/cultsboons.html
 +++ b/cultsboons.html
 @@ -1,5 +1,5 @@
@@ -1413,7 +1431,7 @@ index 2d21e6a..5b7ca1f 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -1423,10 +1441,11 @@ index 2d21e6a..5b7ca1f 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -1437,7 +1456,7 @@ index 2d21e6a..5b7ca1f 100644
  			</div>
  		</header>
  
-@@ -88,14 +90,14 @@
+@@ -88,14 +91,14 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -1457,7 +1476,7 @@ index 2d21e6a..5b7ca1f 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -106,9 +108,9 @@
+@@ -106,9 +109,9 @@
  			<div id="contentwrapper" class="view-col">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -1470,7 +1489,7 @@ index 2d21e6a..5b7ca1f 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -121,17 +123,17 @@
+@@ -121,17 +124,17 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -1494,7 +1513,7 @@ index 2d21e6a..5b7ca1f 100644
  				</div>
  			</div>
 diff --git a/decks.html b/decks.html
-index d4b6bcf..0a5d642 100644
+index d4b6bcf..100ba61 100644
 --- a/decks.html
 +++ b/decks.html
 @@ -1,5 +1,5 @@
@@ -1513,7 +1532,7 @@ index d4b6bcf..0a5d642 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/fontawesome.css">
-@@ -49,9 +49,11 @@
+@@ -49,9 +49,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -1523,10 +1542,11 @@ index d4b6bcf..0a5d642 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -71,8 +73,8 @@
+@@ -71,8 +74,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -1537,7 +1557,7 @@ index d4b6bcf..0a5d642 100644
  			</div>
  		</header>
  
-@@ -90,12 +92,12 @@
+@@ -90,12 +93,12 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -1553,7 +1573,7 @@ index d4b6bcf..0a5d642 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -106,7 +108,7 @@
+@@ -106,7 +109,7 @@
  			<div id="contentwrapper" class="view-col ve-flex-7">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -1562,7 +1582,7 @@ index d4b6bcf..0a5d642 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -119,17 +121,17 @@
+@@ -119,17 +122,17 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table wrp-stats-table--book">
  					<table id="pagecontent" class="ve-w-100 ve-stats ve-stats--book">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -1586,7 +1606,7 @@ index d4b6bcf..0a5d642 100644
  				</div>
  			</div>
 diff --git a/deities.html b/deities.html
-index a28d6a8..f113c57 100644
+index a28d6a8..0c7c3dc 100644
 --- a/deities.html
 +++ b/deities.html
 @@ -1,5 +1,5 @@
@@ -1605,7 +1625,7 @@ index a28d6a8..f113c57 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -1615,10 +1635,11 @@ index a28d6a8..f113c57 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -1629,7 +1650,7 @@ index a28d6a8..f113c57 100644
  			</div>
  		</header>
  
-@@ -88,15 +90,15 @@
+@@ -88,15 +91,15 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -1651,7 +1672,7 @@ index a28d6a8..f113c57 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -107,10 +109,10 @@
+@@ -107,10 +110,10 @@
  			<div id="contentwrapper" class="view-col ve-flex-4">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -1666,7 +1687,7 @@ index a28d6a8..f113c57 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -123,17 +125,17 @@
+@@ -123,17 +126,17 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -1690,7 +1711,7 @@ index a28d6a8..f113c57 100644
  				</div>
  			</div>
 diff --git a/dmscreen.html b/dmscreen.html
-index 3e664ab..f724f09 100644
+index 3e664ab..2658e8b 100644
 --- a/dmscreen.html
 +++ b/dmscreen.html
 @@ -1,5 +1,5 @@
@@ -1709,7 +1730,7 @@ index 3e664ab..f724f09 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/fontawesome.css">
-@@ -49,9 +49,11 @@
+@@ -49,9 +49,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -1719,10 +1740,11 @@ index 3e664ab..f724f09 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -66,8 +68,8 @@
+@@ -66,8 +69,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -1734,7 +1756,7 @@ index 3e664ab..f724f09 100644
  		</header>
  
 diff --git a/encountergen.html b/encountergen.html
-index 5b35423..94fb321 100644
+index 5b35423..00a1991 100644
 --- a/encountergen.html
 +++ b/encountergen.html
 @@ -1,5 +1,5 @@
@@ -1753,7 +1775,7 @@ index 5b35423..94fb321 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -1763,10 +1785,11 @@ index 5b35423..94fb321 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -70,8 +72,8 @@
+@@ -70,8 +73,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -1777,7 +1800,7 @@ index 5b35423..94fb321 100644
  			</div>
  		</header>
  
-@@ -89,7 +91,7 @@
+@@ -89,7 +92,7 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -1786,7 +1809,7 @@ index 5b35423..94fb321 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -100,7 +102,7 @@
+@@ -100,7 +103,7 @@
  			<div id="contentwrapper" class="view-col ve-flex-7">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -1795,7 +1818,7 @@ index 5b35423..94fb321 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -113,13 +115,13 @@
+@@ -113,13 +116,13 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table wrp-stats-table--book">
  					<table id="pagecontent" class="ve-w-100 ve-stats ve-stats--book ve-stats--book-large">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -1812,7 +1835,7 @@ index 5b35423..94fb321 100644
  			</div>
  		</div>
 diff --git a/feats.html b/feats.html
-index 808757a..0db6ce7 100644
+index 808757a..1957d1a 100644
 --- a/feats.html
 +++ b/feats.html
 @@ -1,5 +1,5 @@
@@ -1831,7 +1854,7 @@ index 808757a..0db6ce7 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -1841,10 +1864,11 @@ index 808757a..0db6ce7 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -1855,7 +1879,7 @@ index 808757a..0db6ce7 100644
  			</div>
  		</header>
  
-@@ -88,16 +90,16 @@
+@@ -88,16 +91,16 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -1878,7 +1902,7 @@ index 808757a..0db6ce7 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -108,10 +110,10 @@
+@@ -108,10 +111,10 @@
  			<div id="contentwrapper" class="view-col ve-flex-5">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -1893,7 +1917,7 @@ index 808757a..0db6ce7 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -124,17 +126,17 @@
+@@ -124,17 +127,17 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -1917,7 +1941,7 @@ index 808757a..0db6ce7 100644
  				</div>
  			</div>
 diff --git a/homecrafts.html b/homecrafts.html
-index a52db62..8cbf52d 100644
+index a52db62..e1b854d 100644
 --- a/homecrafts.html
 +++ b/homecrafts.html
 @@ -1,5 +1,5 @@
@@ -1936,7 +1960,7 @@ index a52db62..8cbf52d 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -1946,10 +1970,11 @@ index a52db62..8cbf52d 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -70,8 +72,8 @@
+@@ -70,8 +73,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -1960,7 +1985,7 @@ index a52db62..8cbf52d 100644
  			</div>
  		</header>
  
-@@ -89,14 +91,14 @@
+@@ -89,14 +92,14 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -1980,7 +2005,7 @@ index a52db62..8cbf52d 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -107,9 +109,9 @@
+@@ -107,9 +110,9 @@
  			<div id="contentwrapper" class="view-col ve-flex-7">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -1993,7 +2018,7 @@ index a52db62..8cbf52d 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -122,17 +124,17 @@
+@@ -122,17 +125,17 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table wrp-stats-table--book">
  					<table id="pagecontent" class="ve-w-100 ve-stats ve-stats--book homecrafts__tbl-homecrafts">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -2017,7 +2042,7 @@ index a52db62..8cbf52d 100644
  				</div>
  			</div>
 diff --git a/index.html b/index.html
-index 05d54ff..82f143e 100644
+index 05d54ff..f45d3eb 100644
 --- a/index.html
 +++ b/index.html
 @@ -1,17 +1,17 @@
@@ -2041,7 +2066,7 @@ index 05d54ff..82f143e 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/fontawesome.css">
-@@ -49,9 +49,11 @@
+@@ -49,9 +49,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -2051,10 +2076,11 @@ index 05d54ff..82f143e 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -67,7 +69,7 @@
+@@ -67,7 +70,7 @@
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
  				<h1 class="page__title ve-no-wrap ve-my-0 page__title--home" id="page__title">5e<span>tools</span></h1>
@@ -2063,7 +2089,7 @@ index 05d54ff..82f143e 100644
  			</div>
  		</header>
  
-@@ -88,61 +90,60 @@
+@@ -88,61 +91,60 @@
  
  	<div class="home__stripe">
  		<div class="home__split ve-relative">
@@ -2140,7 +2166,7 @@ index 05d54ff..82f143e 100644
  				</a>
  			</div>
  		</div>
-@@ -153,44 +154,44 @@
+@@ -153,44 +155,44 @@
  
  		<div class="home__split">
  			<div class="ve-flex ve-flex-wrap ve-relative home__split-spaced home__split-spaced--gutter home__wrp-buttons">
@@ -2203,7 +2229,7 @@ index 05d54ff..82f143e 100644
  				</a>
  			</div>
  		</div>
-@@ -211,7 +212,7 @@
+@@ -211,7 +213,7 @@
  
  			<h3>Use <a href="https://foundryvtt.com/" rel="noopener">Foundry</a>?</h3>
  			<p>No? <span class="ve-help" title="Please note that Foundry Gaming, LLC. and The Norr Group Ltd. are in no way affiliated, and that Foundry Gaming, LLC. does not condone the use of their software in violation of your local laws.">Well, you should!</span> Foundry is a modernized, better-than replacement for Roll20, which prioritizes modding support. It is the 5etools platform of choice for VTT integrations.</p>
@@ -2212,7 +2238,7 @@ index 05d54ff..82f143e 100644
  			<p>You can also install the <a href="plutonium.html#rivet-browser-extension">Rivet</a> browser extension (<a rel="noopener noreferrer" href="https://chrome.google.com/webstore/detail/rivet/igmilfmbmkmpkjjgoabaagaoohhhbjde">Chrome</a>/<a rel="noopener noreferrer" href="https://addons.mozilla.org/en-GB/firefox/addon/rivet/">Firefox</a>) to import content from the site with a single click.</p>
  
  			<h3>Use Roll20?</h3>
-@@ -239,11 +240,11 @@
+@@ -239,11 +241,11 @@
  	<footer class="container">
  		<div class="ve-text-center">
  			<div>
@@ -2228,7 +2254,7 @@ index 05d54ff..82f143e 100644
  			</div>
  			<div class="ve-mt-2">
 diff --git a/inittrackerplayerview.html b/inittrackerplayerview.html
-index 6982518..729bc89 100644
+index 6982518..d9fa70c 100644
 --- a/inittrackerplayerview.html
 +++ b/inittrackerplayerview.html
 @@ -1,5 +1,5 @@
@@ -2247,7 +2273,7 @@ index 6982518..729bc89 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -2257,10 +2283,11 @@ index 6982518..729bc89 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -70,8 +72,8 @@
+@@ -70,8 +73,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -2271,7 +2298,7 @@ index 6982518..729bc89 100644
  			</div>
  		</header>
  
-@@ -81,7 +83,7 @@
+@@ -81,7 +84,7 @@
  	</div>
  
  	<main class="container ve-h-100 ve-min-h-0 ve-pb-0" id="page-content" data-cancer-id="cancer-wrapper">
@@ -2281,7 +2308,7 @@ index 6982518..729bc89 100644
  </div>
  
 diff --git a/items.html b/items.html
-index 8581448..2034014 100644
+index 8581448..cbd14c3 100644
 --- a/items.html
 +++ b/items.html
 @@ -1,5 +1,5 @@
@@ -2300,7 +2327,7 @@ index 8581448..2034014 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -2310,10 +2337,11 @@ index 8581448..2034014 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -70,8 +72,8 @@
+@@ -70,8 +73,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -2324,7 +2352,7 @@ index 8581448..2034014 100644
  			</div>
  		</header>
  
-@@ -90,15 +92,15 @@
+@@ -90,15 +93,15 @@
  							<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  							<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  						</div>
@@ -2346,7 +2374,7 @@ index 8581448..2034014 100644
  					</div>
  
  					<div class="list list--stats mundane ele-mundane" id="list-mundane"></div>
-@@ -109,12 +111,12 @@
+@@ -109,12 +112,12 @@
  					<div class="ve-no-shrink ve-itm__list-divider ele-mundane-and-magic"></div>
  
  					<div id="filtertools-magic" class="ele-magic ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
@@ -2365,7 +2393,7 @@ index 8581448..2034014 100644
  					</div>
  
  					<div class="list list--stats magic ele-magic" id="list-magic"></div>
-@@ -127,16 +129,16 @@
+@@ -127,16 +130,16 @@
  			<div id="contentwrapper" class="view-col ve-flex-4 ve-itm__wrp-stats">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -2387,7 +2415,7 @@ index 8581448..2034014 100644
  						<span class="ve-col-2 ve-text-center ve-no-wrap" id="totalweight"></span>
  						<span class="ve-col-2 ve-text-center ve-no-wrap ve-clickable" id="totalvalue"></span>
  						<span class="ve-col-2 ve-text-center ve-no-wrap ve-pr-0" id="totalitems"></span>
-@@ -150,20 +152,20 @@
+@@ -150,20 +153,20 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -2415,7 +2443,7 @@ index 8581448..2034014 100644
  				</div>
  			</div>
 diff --git a/items/index.html b/items/index.html
-index 275cc3a..db632da 100644
+index 275cc3a..aa21327 100644
 --- a/items/index.html
 +++ b/items/index.html
 @@ -1,5 +1,5 @@
@@ -2434,16 +2462,17 @@ index 275cc3a..db632da 100644
  <link rel="stylesheet" href="/css/bootstrap.css">
  <link rel="stylesheet" href="/css/main.css">
  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-@@ -32,6 +32,8 @@
+@@ -32,6 +32,9 @@
  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
  <meta name="apple-mobile-web-app-title" content="5etools">
  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#006bc4">
 +<script type="text/javascript" src="/js/zh-tw/site-i18n-data.js"></script>
 +<script type="text/javascript" src="/js/zh-tw/site-i18n.js"></script>
++<script type="text/javascript" src="/js/zh-tw/content-i18n.js"></script>
  <script type="module" defer src="/js/styleswitch.js"></script>
  <script type="text/javascript" defer src="/js/navigation.js"></script>
  <script type="module" defer src="/js/browsercheck.js"></script>
-@@ -54,7 +56,7 @@
+@@ -54,7 +57,7 @@
  
  <header class="ve-mobile-sm__hidden page__header"><div class="container ve-flex-v-baseline"><h1 class="page__title ve-no-wrap ve-my-0"></h1></div></header><nav class="container page__nav" id="navigation"><ul class="nav nav-pills page__nav-inner" id="navbar"></ul></nav>
  
@@ -3678,6 +3707,320 @@ index aa6c2b1..cff3827 100644
  	}
  	// endregion
  
+diff --git a/js/filter-spells.js b/js/filter-spells.js
+index cc11955..ee4e2fd 100644
+--- a/js/filter-spells.js
++++ b/js/filter-spells.js
+@@ -1,9 +1,11 @@
+ "use strict";
+ 
++const {I18nZhTwContent} = globalThis;
++
+ class VariantClassFilter extends Filter {
+ 	constructor (opts) {
+ 		super({
+-			header: "Optional/Variant Class",
++			header: "選用／變體職業",
+ 			nests: {},
+ 			groupFn: it => it.group,
+ 			...opts,
+@@ -21,7 +23,7 @@ class VariantClassFilter extends Filter {
+ 
+ class MultiFilterClasses extends MultiFilter {
+ 	constructor (opts) {
+-		super({header: "Classes", mode: "or", filters: [opts.classFilter, opts.subclassFilter, opts.variantClassFilter], ...opts});
++		super({header: "職業", mode: "or", filters: [opts.classFilter, opts.subclassFilter, opts.variantClassFilter], ...opts});
+ 
+ 		this._classFilter = opts.classFilter;
+ 		this._subclassFilter = opts.subclassFilter;
+@@ -48,11 +50,11 @@ class MultiFilterClasses extends MultiFilter {
+ 			this,
+ 			"isVariantSplit",
+ 			{
+-				ele: veE({tag: "button", clazz: "ve-btn ve-btn-default ve-btn-xs", txt: "Include Variants"}),
++				ele: veE({tag: "button", clazz: "ve-btn ve-btn-default ve-btn-xs", txt: "包含變體"}),
+ 				isInverted: true,
+ 				stateName: "meta",
+ 				stateProp: "_meta",
+-				title: `If "Optional/Variant Class" spell lists should be treated as part of the "Class" filter.`,
++				title: "是否將選用／變體職業法術列表視為職業篩選的一部分。",
+ 			},
+ 		);
+ 
+@@ -128,8 +130,8 @@ class PageFilterSpells extends PageFilterBase {
+ 		return SortUtil.ascSortLower(a, b);
+ 	}
+ 
+-	static getFilterAbilitySave (ability) { return `${ability.uppercaseFirst()} Save`; }
+-	static getFilterAbilityCheck (ability) { return `${ability.uppercaseFirst()} Check`; }
++	static getFilterAbilitySave (ability) { return `${I18nZhTwContent.getAbility(ability)}豁免`; }
++	static getFilterAbilityCheck (ability) { return `${I18nZhTwContent.getAbility(ability)}檢定`; }
+ 
+ 	static _mutMetaFilterObj (s) {
+ 		this._mutateForFilters_commonMisc(s);
+@@ -296,12 +298,10 @@ class PageFilterSpells extends PageFilterBase {
+ 	}
+ 
+ 	static getTblTimeStr (time) {
+-		return (time.number === 1 && Parser.SP_TIME_SINGLETONS.includes(time.unit))
+-			? `${time.unit.uppercaseFirst()}`
+-			: `${time.number ? `${time.number} ` : ""}${Parser.spTimeUnitToShort(time.unit).uppercaseFirst()}`;
++		return I18nZhTwContent.getSpellTime(time, {isShort: true, isPlainText: true});
+ 	}
+ 
+-	static getTblLevelStr (spell) { return `${Parser.spLevelToFull(spell.level)}${spell.meta && spell.meta.ritual ? " (rit.)" : ""}${spell.meta && spell.meta.technomagic ? " (tec.)" : ""}`; }
++	static getTblLevelStr (spell) { return `${I18nZhTwContent.getSpellLevel(spell.level)}${spell.meta?.ritual ? "（儀）" : ""}${spell.meta?.technomagic ? "（科）" : ""}`; }
+ 
+ 	static getRaceFilterItem (r) {
+ 		const addSuffix = (
+@@ -316,7 +316,7 @@ class PageFilterSpells extends PageFilterBase {
+ 			group: SourceUtil.getFilterGroup(r.source || Parser.SRC_PHB),
+ 		};
+ 		if (r.baseName) opts.nest = r.baseName;
+-		else opts.nest = "(No Subspecies)";
++		else opts.nest = "（無亞種）";
+ 		return new FilterItem(opts);
+ 	}
+ 	// endregion
+@@ -325,20 +325,20 @@ class PageFilterSpells extends PageFilterBase {
+ 		super(opts);
+ 
+ 		this._classFilter = new Filter({
+-			header: "Class",
++			header: "職業",
+ 			groupFn: it => it.group,
+ 		});
+ 		this._subclassFilter = new Filter({
+-			header: "Subclass",
++			header: "子職業",
+ 			nests: {},
+ 			groupFn: it => it.group,
+ 		});
+ 		this._levelFilter = new Filter({
+-			header: "Level",
++			header: "環階",
+ 			items: [
+ 				0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+ 			],
+-			displayFn: (lvl) => Parser.spLevelToFullLevelText(lvl, {isPluralCantrips: false}),
++			displayFn: (lvl) => I18nZhTwContent.getSpellLevel(lvl, {isIncludeWord: true}),
+ 		});
+ 		this._variantClassFilter = new VariantClassFilter();
+ 		this._classAndSubclassFilter = new MultiFilterClasses({
+@@ -347,64 +347,64 @@ class PageFilterSpells extends PageFilterBase {
+ 			variantClassFilter: this._variantClassFilter,
+ 		});
+ 		this._raceFilter = new Filter({
+-			header: "Species",
++			header: "物種／種族",
+ 			nests: {},
+ 			groupFn: it => it.group,
+ 		});
+-		this._backgroundFilter = new SearchableFilter({header: "Background"});
+-		this._featFilter = new SearchableFilter({header: "Feat"});
+-		this._optionalfeaturesFilter = new SearchableFilter({header: "Other Option/Feature"});
++		this._backgroundFilter = new SearchableFilter({header: "背景"});
++		this._featFilter = new SearchableFilter({header: "專長"});
++		this._optionalfeaturesFilter = new SearchableFilter({header: "其他選項／特性"});
+ 		this._miscFilter = new Filter({
+-			header: "Components & Miscellaneous",
++			header: "成分與其他",
+ 			items: [...PageFilterSpells._META_FILTER_BASE_ITEMS, "Ritual", "Legacy", "Reprinted", "Has Images", "Has Token"],
+ 			itemSortFn: PageFilterSpells.sortMetaFilter,
+ 			isMiscFilter: true,
+-			displayFn: it => Parser.spMiscTagToFull(it),
++			displayFn: it => I18nZhTwContent.getSpellMiscTag(it),
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+ 		});
+-		this._groupFilter = new Filter({header: "Group"});
++		this._groupFilter = new Filter({header: "群組"});
+ 		this._schoolFilter = new Filter({
+-			header: "School",
++			header: "學派",
+ 			items: [...Parser.SKL_ABVS],
+-			displayFn: Parser.spSchoolAbvToFull,
+-			itemSortFn: (a, b) => SortUtil.ascSortLower(Parser.spSchoolAbvToFull(a.item), Parser.spSchoolAbvToFull(b.item)),
++			displayFn: it => I18nZhTwContent.getSpellSchool(it),
++			itemSortFn: (a, b) => SortUtil.ascSortLower(I18nZhTwContent.getSpellSchool(a.item), I18nZhTwContent.getSpellSchool(b.item)),
+ 		});
+ 		this._subSchoolFilter = new Filter({
+-			header: "Subschool",
++			header: "次學派",
+ 			items: [],
+-			displayFn: it => Parser.spSchoolAbvToFull(it).toTitleCase(),
+-			itemSortFn: (a, b) => SortUtil.ascSortLower(Parser.spSchoolAbvToFull(a.item), Parser.spSchoolAbvToFull(b.item)),
++			displayFn: it => I18nZhTwContent.getSpellSchool(it),
++			itemSortFn: (a, b) => SortUtil.ascSortLower(I18nZhTwContent.getSpellSchool(a.item), I18nZhTwContent.getSpellSchool(b.item)),
+ 		});
+ 		this._damageFilter = new Filter({
+-			header: "Damage Type",
++			header: "傷害類型",
+ 			items: MiscUtil.copy(Parser.DMG_TYPES),
+-			displayFn: StrUtil.uppercaseFirst,
++			displayFn: it => I18nZhTwContent.getDamageType(it),
+ 		});
+ 		this._conditionFilter = new Filter({
+-			header: "Conditions Inflicted",
++			header: "造成的狀態",
+ 			items: [...Parser.CONDITIONS],
+-			displayFn: uid => uid.split("|")[0].toTitleCase(),
++			displayFn: uid => I18nZhTwContent.getCondition(uid),
+ 		});
+ 		this._spellAttackFilter = new Filter({
+-			header: "Spell Attack",
++			header: "法術攻擊",
+ 			items: ["M", "R", "O"],
+-			displayFn: Parser.spAttackTypeToFull,
++			displayFn: it => I18nZhTwContent.getSpellAttackType(it),
+ 			itemSortFn: null,
+ 		});
+ 		this._saveFilter = new Filter({
+-			header: "Saving Throw",
++			header: "豁免檢定",
+ 			items: ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"],
+ 			displayFn: PageFilterSpells.getFilterAbilitySave,
+ 			itemSortFn: null,
+ 		});
+ 		this._checkFilter = new Filter({
+-			header: "Ability Check",
++			header: "屬性檢定",
+ 			items: ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"],
+ 			displayFn: PageFilterSpells.getFilterAbilityCheck,
+ 			itemSortFn: null,
+ 		});
+ 		this._timeFilter = new Filter({
+-			header: "Cast Time",
++			header: "施法時間",
+ 			items: [
+ 				Parser.SP_TM_ACTION,
+ 				Parser.SP_TM_B_ACTION,
+@@ -414,17 +414,18 @@ class PageFilterSpells extends PageFilterBase {
+ 				Parser.SP_TM_HRS,
+ 				Parser.SP_TM_SPECIAL,
+ 			],
+-			displayFn: Parser.spTimeUnitToFull,
++			displayFn: it => I18nZhTwContent.getSpellTimeUnit(it),
+ 			itemSortFn: null,
+ 		});
+ 		this._durationFilter = new RangeFilter({
+-			header: "Duration",
++			header: "持續時間",
+ 			isLabelled: true,
+ 			labelSortFn: null,
+ 			labels: ["Instant", "1 Round", "1 Minute", "10 Minutes", "1 Hour", "8 Hours", "24+ Hours", "Permanent", "Special"],
++			labelDisplayFn: it => I18nZhTwContent.getSpellFilterLabel(it),
+ 		});
+ 		this._rangeFilter = new Filter({
+-			header: "Range",
++			header: "施法距離",
+ 			items: [
+ 				PageFilterSpells.F_RNG_SELF,
+ 				PageFilterSpells.F_RNG_TOUCH,
+@@ -432,18 +433,19 @@ class PageFilterSpells extends PageFilterBase {
+ 				PageFilterSpells.F_RNG_SELF_AREA,
+ 				PageFilterSpells.F_RNG_SPECIAL,
+ 			],
++			displayFn: it => I18nZhTwContent.getSpellFilterLabel(it),
+ 			itemSortFn: null,
+ 		});
+ 		this._areaTypeFilter = new Filter({
+-			header: "Area Style",
++			header: "範圍形狀",
+ 			items: ["ST", "MT", "R", "N", "C", "Y", "H", "E", "L", "S", "Q", "W"],
+-			displayFn: Parser.spAreaTypeToFull,
++			displayFn: it => I18nZhTwContent.getSpellAreaType(it),
+ 			itemSortFn: null,
+ 		});
+ 		this._affectsCreatureTypeFilter = new Filter({
+-			header: "Affects Creature Types",
++			header: "影響的生物類型",
+ 			items: [...Parser.MON_TYPES],
+-			displayFn: StrUtil.toTitleCase.bind(StrUtil),
++			displayFn: it => I18nZhTwContent.getCreatureType(it),
+ 		});
+ 	}
+ 
+@@ -620,7 +622,7 @@ class ModalFilterSpells extends ModalFilterBase {
+ 		opts = opts || {};
+ 		super({
+ 			...opts,
+-			modalTitle: `Spell${opts.isRadio ? "" : "s"}`,
++			modalTitle: opts.isRadio ? "法術" : "法術列表",
+ 			pageFilter: new PageFilterSpells(),
+ 			fnSort: PageFilterSpells.sortSpells,
+ 			previewButtonHandler: new ListUiPreviewButtonHandlerStatsFluff({page: UrlUtil.PG_SPELLS}),
+@@ -629,13 +631,13 @@ class ModalFilterSpells extends ModalFilterBase {
+ 
+ 	_getColumnHeaders () {
+ 		const btnMeta = [
+-			{sort: "name", text: "Name", width: "3"},
+-			{sort: "level", text: "Level", width: "1-5"},
+-			{sort: "time", text: "Time", width: "2"},
+-			{sort: "school", text: "School", width: "1"},
+-			{sort: "concentration", text: "C.", title: "Concentration", width: "0-5"},
+-			{sort: "range", text: "Range", width: "2"},
+-			{sort: "source", text: "Source", width: "1"},
++			{sort: "name", text: "名稱", width: "3"},
++			{sort: "level", text: "環階", width: "1-5"},
++			{sort: "time", text: "時間", width: "2"},
++			{sort: "school", text: "學派", width: "1"},
++			{sort: "concentration", text: "專", title: "專注", width: "0-5"},
++			{sort: "range", text: "距離", width: "2"},
++			{sort: "source", text: "來源", width: "1"},
+ 		];
+ 		return ModalFilterBase._getFilterColumnHeaders(btnMeta);
+ 	}
+@@ -659,25 +661,26 @@ class ModalFilterSpells extends ModalFilterBase {
+ 
+ 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_SPELLS](spell);
+ 		const source = Parser.sourceJsonToAbv(spell.source);
++		const displayName = I18nZhTwContent.getDisplayName(spell);
+ 		const levelText = PageFilterSpells.getTblLevelStr(spell);
+ 		const time = PageFilterSpells.getTblTimeStr(spell.time[0]);
+-		const school = Parser.spSchoolAndSubschoolsAbvsShort(spell.school, spell.subschools);
++		const school = I18nZhTwContent.getSpellSchoolAndSubschools(spell.school, spell.subschools);
+ 		const schoolClassName = Parser.spSchoolAbvToStyleClass(spell.school);
+ 		const concentration = spell._isConc ? "×" : "";
+-		const range = Parser.spRangeToFull(spell.range, {isDisplaySelfArea: true});
++		const range = I18nZhTwContent.getSpellRange(spell.range, {isDisplaySelfArea: true});
+ 
+ 		eleRow.innerHTML = `<div class="ve-w-100 ve-flex-vh-center ve-lst__row-border veapp__list-row ve-no-select ve-lst__wrp-cells">
+ 			<div class="ve-col-0-5 ve-pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="ve-no-events">` : `<input type="checkbox" class="ve-no-events">`}</div>
+ 
+ 			<div class="ve-col-0-5 ve-px-1 ve-flex-vh-center">
+-				<div class="ve-ui-list__btn-inline ve-px-2 ve-no-select" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
++				<div class="ve-ui-list__btn-inline ve-px-2 ve-no-select" title="切換預覽（按住 Shift 可切換資訊預覽）">[+]</div>
+ 			</div>
+ 
+-			<div class="ve-col-3 ve-px-1 ${spell._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${spell._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${spell.name}</div>
++			<div class="ve-col-3 ve-px-1 ${spell._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${spell._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${displayName}</div>
+ 			<div class="ve-col-1-5 ve-px-1 ve-text-center">${levelText}</div>
+ 			<div class="ve-col-2 ve-px-1 ve-text-center">${time}</div>
+-			<div class="ve-col-1 ve-px-1 ${schoolClassName} ve-text-center" title="${Parser.spSchoolAndSubschoolsAbvsToFull(spell.school, spell.subschools)}" ${Parser.spSchoolAbvToStyle(spell.school)}>${school}</div>
+-			<div class="ve-col-0-5 ve-px-1 ve-text-center" title="Concentration">${concentration}</div>
++			<div class="ve-col-1 ve-px-1 ${schoolClassName} ve-text-center" title="${I18nZhTwContent.getSpellSchoolAndSubschools(spell.school, spell.subschools)}" ${Parser.spSchoolAbvToStyle(spell.school)}>${school}</div>
++			<div class="ve-col-0-5 ve-px-1 ve-text-center" title="專注">${concentration}</div>
+ 			<div class="ve-col-2 ve-px-1 ve-text-right">${range}</div>
+ 			<div class="ve-col-1 ve-pl-1 ve-pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(spell.source)}" title="${Parser.sourceJsonToFull(spell.source)}">${source}${Parser.sourceJsonToMarkerHtml(spell.source, {isList: true})}</div>
+ 		</div>`;
+@@ -687,14 +690,15 @@ class ModalFilterSpells extends ModalFilterBase {
+ 		const listItem = new ListItem(
+ 			spI,
+ 			eleRow,
+-			spell.name,
++			displayName,
+ 			{
+ 				source,
+ 				sourceJson: spell.source,
+ 				...ListItem.getCommonValues(spell),
++				englishName: I18nZhTwContent.getCanonicalName(spell),
+ 				level: spell.level,
+ 				time,
+-				school: Parser.spSchoolAbvToFull(spell.school),
++				school: I18nZhTwContent.getSpellSchool(spell.school),
+ 				classes: Parser.spClassesToFull(spell, {isTextOnly: true}),
+ 				concentration,
+ 				normalisedTime: spell._normalisedTime,
 diff --git a/js/filter-variantrules.js b/js/filter-variantrules.js
 index 06c57fa..37d5180 100644
 --- a/js/filter-variantrules.js
@@ -5341,6 +5684,188 @@ index 09d8f80..3dd3ca0 100644
  				Renderer.dice.SYSTEM_USER,
  			);
  			return;
+diff --git a/js/render-spells.js b/js/render-spells.js
+index 78309ad..7bfebdc 100644
+--- a/js/render-spells.js
++++ b/js/render-spells.js
+@@ -6,75 +6,75 @@ export class RenderSpellsSettings {
+ 	static SETTINGS = {
+ 		isDisplayGroups: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Groups",
+-			help: `Whether or not "Groups" should be shown for a spell.`,
++			name: "法術來源：顯示群組",
++			help: "是否顯示法術所屬群組。",
+ 			defaultVal: true,
+ 		}),
+ 
+ 		isDisplayClasses: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Classes",
+-			help: `Whether or not "Classes" should be shown for a spell.`,
++			name: "法術來源：顯示職業",
++			help: "是否顯示可使用此法術的職業。",
+ 			defaultVal: true,
+ 		}),
+ 		isDisplayClassesLegacy: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Classes (Legacy)",
+-			help: `Whether or not "Classes (legacy)" should be shown for a spell.`,
++			name: "法術來源：顯示職業（舊版）",
++			help: "是否顯示舊版職業來源。",
+ 			defaultVal: false,
+ 		}),
+ 
+ 		isDisplaySubclasses: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Subclasses",
+-			help: `Whether or not "Subclasses" should be shown for a spell.`,
++			name: "法術來源：顯示子職業",
++			help: "是否顯示可使用此法術的子職業。",
+ 			defaultVal: true,
+ 		}),
+ 		isDisplaySubclassesLegacy: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Subclasses (Legacy)",
+-			help: `Whether or not "Subclasses (legacy)" should be shown for a spell.`,
++			name: "法術來源：顯示子職業（舊版）",
++			help: "是否顯示舊版子職業來源。",
+ 			defaultVal: false,
+ 		}),
+ 
+ 		isDisplayVariantClasses: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Optional/Variant Classes",
+-			help: `Whether or not "Optional/Variant Classes" should be shown for a spell.`,
++			name: "法術來源：顯示選用／變體職業",
++			help: "是否顯示選用／變體職業來源。",
+ 			defaultVal: true,
+ 		}),
+ 		isDisplayVariantClassesLegacy: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Optional/Variant Classes (Legacy)",
+-			help: `Whether or not "Optional/Variant Classes (legacy)" should be shown for a spell.`,
++			name: "法術來源：顯示選用／變體職業（舊版）",
++			help: "是否顯示舊版的選用／變體職業來源。",
+ 			defaultVal: false,
+ 		}),
+ 
+ 		isDisplayRaces: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Species",
+-			help: `Whether or not "Species" should be shown for a spell.`,
++			name: "法術來源：顯示物種／種族",
++			help: "是否顯示可使用此法術的物種／種族。",
+ 			defaultVal: true,
+ 		}),
+ 
+ 		isDisplayBackgrounds: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Backgrounds",
+-			help: `Whether or not "Backgrounds" should be shown for a spell.`,
++			name: "法術來源：顯示背景",
++			help: "是否顯示可使用此法術的背景。",
+ 			defaultVal: true,
+ 		}),
+ 
+ 		isDisplayFeats: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Feats",
+-			help: `Whether or not "Feats" should be shown for a spell.`,
++			name: "法術來源：顯示專長",
++			help: "是否顯示可使用此法術的專長。",
+ 			defaultVal: true,
+ 		}),
+ 
+ 		isDisplayOptionalfeatures: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Other Options/Features",
+-			help: `Whether or not "Other Options/Features" should be shown for a spell.`,
++			name: "法術來源：其他選項／特性",
++			help: "是否顯示可使用此法術的其他選項／特性。",
+ 			defaultVal: true,
+ 		}),
+ 	};
+@@ -161,16 +161,16 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
+ 
+ 		const stackFroms = [];
+ 
+-		if (settings.isDisplayGroups) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Groups", propSpell: "groups"});
++		if (settings.isDisplayGroups) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "群組", propSpell: "groups"});
+ 
+ 		const fromClassList = Renderer.spell.getCombinedClasses(ent, "fromClassList");
+ 		if (fromClassList.length) {
+ 			const [current, legacy] = Parser.spClassesToCurrentAndLegacy(fromClassList);
+ 			if (settings.isDisplayClasses) {
+-				stackFroms.push(`<div><span class="ve-bold">Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
++				stackFroms.push(`<div><span class="ve-bold">職業：</span>${Parser.spMainClassesToFull(current)}</div>`);
+ 			}
+ 			if (settings.isDisplayClassesLegacy && legacy.length) {
+-				stackFroms.push(`<div class="ve-muted"><span class="ve-bold">Classes (legacy): </span>${Parser.spMainClassesToFull(legacy)}</div>`);
++				stackFroms.push(`<div class="ve-muted"><span class="ve-bold">職業（舊版）：</span>${Parser.spMainClassesToFull(legacy)}</div>`);
+ 			}
+ 		}
+ 
+@@ -178,10 +178,10 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
+ 		if (fromSubclass.length) {
+ 			const [current, legacy] = Parser.spSubclassesToCurrentAndLegacyFull(ent, subclassLookup);
+ 			if (settings.isDisplaySubclasses) {
+-				stackFroms.push(`<div><span class="ve-bold">Subclasses: </span>${current}</div>`);
++				stackFroms.push(`<div><span class="ve-bold">子職業：</span>${current}</div>`);
+ 			}
+ 			if (settings.isDisplaySubclassesLegacy && legacy.length) {
+-				stackFroms.push(`<div class="ve-muted"><span class="ve-bold">Subclasses (legacy): </span>${legacy}</div>`);
++				stackFroms.push(`<div class="ve-muted"><span class="ve-bold">子職業（舊版）：</span>${legacy}</div>`);
+ 			}
+ 		}
+ 
+@@ -189,24 +189,24 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
+ 		if (fromClassListVariant.length) {
+ 			const [current, legacy] = Parser.spVariantClassesToCurrentAndLegacy(fromClassListVariant);
+ 			if (settings.isDisplayVariantClasses && current.length) {
+-				stackFroms.push(`<div><span class="ve-bold" title="&quot;Optional&quot; spells may be added to a campaign by the DM. &quot;Variant&quot; spells are generally available, but may be made available to a class by the DM.">Optional/Variant Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
++				stackFroms.push(`<div><span class="ve-bold" title="「選用」法術可由 DM 加入戰役；「變體」法術通常可用，但也可能須由 DM 開放給該職業。">選用／變體職業：</span>${Parser.spMainClassesToFull(current)}</div>`);
+ 			}
+ 			if (settings.isDisplayVariantClassesLegacy && legacy.length) {
+-				stackFroms.push(`<div class="ve-muted"><span class="ve-bold" title="&quot;Optional&quot; spells may be added to a campaign by the DM. &quot;Variant&quot; spells are generally available, but may be made available to a class by the DM.">Optional/Variant Classes (legacy): </span>${Parser.spMainClassesToFull(legacy)}</div>`);
++				stackFroms.push(`<div class="ve-muted"><span class="ve-bold" title="「選用」法術可由 DM 加入戰役；「變體」法術通常可用，但也可能須由 DM 開放給該職業。">選用／變體職業（舊版）：</span>${Parser.spMainClassesToFull(legacy)}</div>`);
+ 			}
+ 		}
+ 
+-		if (settings.isDisplayRaces) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Species", propSpell: "races", prop: "race", tag: "race"});
+-		if (settings.isDisplayBackgrounds) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Backgrounds", propSpell: "backgrounds", prop: "background", tag: "background"});
+-		if (settings.isDisplayFeats) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Feats", propSpell: "feats", prop: "feat", tag: "feat"});
+-		if (settings.isDisplayOptionalfeatures) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Other Options/Features", propSpell: "optionalfeatures", prop: "optionalfeature", tag: "optfeature"});
++		if (settings.isDisplayRaces) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "物種／種族", propSpell: "races", prop: "race", tag: "race"});
++		if (settings.isDisplayBackgrounds) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "背景", propSpell: "backgrounds", prop: "background", tag: "background"});
++		if (settings.isDisplayFeats) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "專長", propSpell: "feats", prop: "feat", tag: "feat"});
++		if (settings.isDisplayOptionalfeatures) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "其他選項／特性", propSpell: "optionalfeatures", prop: "optionalfeature", tag: "optfeature"});
+ 
+ 		if (
+ 			ent.level >= 5
+ 			&& fromClassList?.some(it => it.name === "Wizard" && it?.source === Parser.SRC_PHB)
+ 		) {
+ 			stackFroms.push(`<section class="ve-muted ve-mt-2">`);
+-			renderer.recursiveRender(`{@italic Note: Both the {@class fighter||Fighter (Eldritch Knight)|eldritch knight} and the {@class rogue||Rogue (Arcane Trickster)|arcane trickster} spell lists include all {@class Wizard} spells. Spells of 5th level or higher may be cast with the aid of a spell scroll or similar.}`, stackFroms, {depth: 2});
++			renderer.recursiveRender(`{@italic 註：{@class fighter||戰士（奧法騎士）|eldritch knight}與{@class rogue||遊蕩者（奧法詭術師）|arcane trickster}的法術列表均包含所有{@class Wizard||法師}法術。5環或更高環階的法術可藉助法術卷軸或類似物品施展。}`, stackFroms, {depth: 2});
+ 			stackFroms.push(`</section>`);
+ 		}
+ 
+@@ -219,12 +219,12 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
+ 
+ 		const ptFroms = froms
+ 			.map(it => {
+-				const pt = tag ? renderer.render(`{@${tag} ${it.name}|${it.source}}`) : `<span class="ve-help-subtle" title="Source: ${(Parser.sourceJsonToFull(it.source)).qq()}">${it.name}</span>`;
++				const pt = tag ? renderer.render(`{@${tag} ${it.name}|${it.source}}`) : `<span class="ve-help-subtle" title="來源：${(Parser.sourceJsonToFull(it.source)).qq()}">${it.name}</span>`;
+ 				return `${SourceUtil.isNonstandardSource(it.source) ? `<span class="ve-muted">` : ``}${pt}${SourceUtil.isNonstandardSource(it.source) ? `</span>` : ``}`;
+ 			})
+ 			.join(", ");
+ 
+-		stackFroms.push(`<div><span class="ve-bold">${title}: </span>${ptFroms}</div>`);
++		stackFroms.push(`<div><span class="ve-bold">${title}：</span>${ptFroms}</div>`);
+ 	}
+ }
+ 
 diff --git a/js/render-variantrules.js b/js/render-variantrules.js
 index 9ba6304..1968286 100644
 --- a/js/render-variantrules.js
@@ -5367,7 +5892,7 @@ index 9ba6304..1968286 100644
  	}
  }
 diff --git a/js/render.js b/js/render.js
-index a561361..9ecd473 100644
+index a561361..c951884 100644
 --- a/js/render.js
 +++ b/js/render.js
 @@ -4001,7 +4001,7 @@ Renderer.utils = class {
@@ -5679,7 +6204,61 @@ index a561361..9ecd473 100644
  			});
  		return cpy;
  	}
-@@ -8528,7 +8588,8 @@ Renderer.conditionDisease = class {
+@@ -7934,13 +7994,13 @@ class _RenderCompactSpellsImplBase extends _RenderCompactImplBase {
+ 		const fromClassList = Renderer.spell.getCombinedClasses(ent, "fromClassList");
+ 		if (fromClassList.length) {
+ 			const [current] = Parser.spClassesToCurrentAndLegacy(fromClassList);
+-			stack.push(`<div><span class="ve-bold">Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
++			stack.push(`<div><span class="ve-bold">職業：</span>${Parser.spMainClassesToFull(current)}</div>`);
+ 		}
+ 
+ 		const fromClassListVariant = Renderer.spell.getCombinedClasses(ent, "fromClassListVariant");
+ 		if (fromClassListVariant.length) {
+ 			const [current, legacy] = Parser.spVariantClassesToCurrentAndLegacy(fromClassListVariant);
+-			stack.push(`<div><span class="ve-bold" title="&quot;Optional&quot; spells may be added to a campaign by the DM. &quot;Variant&quot; spells are generally available, but may be made available to a class by the DM.">Optional/Variant Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
++			stack.push(`<div><span class="ve-bold" title="「選用」法術可由 DM 加入戰役；「變體」法術通常可用，但也可能須由 DM 開放給該職業。">選用／變體職業：</span>${Parser.spMainClassesToFull(current)}</div>`);
+ 		}
+ 
+ 		return stack.join("");
+@@ -7977,17 +8037,32 @@ Renderer.spell = class {
+ 
+ 	static getHtmlPtLevelSchoolRitual (spell, {styleHint = null} = {}) {
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+-		return `<i>${Parser.spLevelSchoolMetaToFull(spell.level, spell.school, spell.meta, spell.subschools, {styleHint})}</i>`;
++		const text = globalThis.I18nZhTwContent
++			? globalThis.I18nZhTwContent.getSpellLevelSchoolMeta(spell, {styleHint})
++			: Parser.spLevelSchoolMetaToFull(spell.level, spell.school, spell.meta, spell.subschools, {styleHint});
++		return `<i>${text}</i>`;
+ 	}
+ 
+ 	static getHtmlPtCastingTime (spell, {styleHint = null} = {}) {
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+-		return `<b>Casting Time:</b> ${Parser.spTimeListToFull(spell.time, spell.meta, {styleHint})}`;
++		if (!globalThis.I18nZhTwContent) return `<b>Casting Time:</b> ${Parser.spTimeListToFull(spell.time, spell.meta, {styleHint})}`;
++		return `<b>施法時間：</b>${globalThis.I18nZhTwContent.getSpellTimeList(spell.time, spell.meta, {styleHint})}`;
+ 	}
+ 
+-	static getHtmlPtRange (spell, {styleHint = null, isDisplaySelfArea = false} = {}) { return `<b>Range:</b> ${Parser.spRangeToFull(spell.range, {styleHint, isDisplaySelfArea})}`; }
+-	static getHtmlPtComponents (spell) { return `<b>Components:</b> ${Parser.spComponentsToFull(spell.components, spell.level)}`; }
+-	static getHtmlPtDuration (spell, {styleHint = null} = {}) { return `<b>Duration:</b> ${Parser.spDurationToFull(spell.duration, {styleHint})}`; }
++	static getHtmlPtRange (spell, {styleHint = null, isDisplaySelfArea = false} = {}) {
++		if (!globalThis.I18nZhTwContent) return `<b>Range:</b> ${Parser.spRangeToFull(spell.range, {styleHint, isDisplaySelfArea})}`;
++		return `<b>施法距離：</b>${globalThis.I18nZhTwContent.getSpellRange(spell.range, {styleHint, isDisplaySelfArea})}`;
++	}
++
++	static getHtmlPtComponents (spell) {
++		if (!globalThis.I18nZhTwContent) return `<b>Components:</b> ${Parser.spComponentsToFull(spell.components, spell.level)}`;
++		return `<b>成分：</b>${globalThis.I18nZhTwContent.getSpellComponents(spell.components, spell.level)}`;
++	}
++
++	static getHtmlPtDuration (spell, {styleHint = null} = {}) {
++		if (!globalThis.I18nZhTwContent) return `<b>Duration:</b> ${Parser.spDurationToFull(spell.duration, {styleHint})}`;
++		return `<b>持續時間：</b>${globalThis.I18nZhTwContent.getSpellDuration(spell.duration)}`;
++	}
+ 
+ 	/* -------------------------------------------- */
+ 
+@@ -8528,7 +8603,8 @@ Renderer.conditionDisease = class {
  	static getCompactRenderedString (ent) {
  		const renderer = Renderer.get();
  
@@ -5689,7 +6268,7 @@ index a561361..9ecd473 100644
  
  		return `${Renderer.utils.getExcludedTr({entity: ent, dataProp: ent.__prop || ent._type, page: UrlUtil.PG_CONDITIONS_DISEASES})}
  		${Renderer.utils.getNameTr(ent, {page: UrlUtil.PG_CONDITIONS_DISEASES})}
-@@ -13866,7 +13927,12 @@ Renderer.variantrule = class {
+@@ -13866,7 +13942,12 @@ Renderer.variantrule = class {
  	static getCompactRenderedString (rule) {
  		const cpy = MiscUtil.copyFast(rule);
  		delete cpy.name;
@@ -5703,7 +6282,7 @@ index a561361..9ecd473 100644
  		return `
  			${Renderer.utils.getExcludedTr({entity: rule, dataProp: "variantrule", page: UrlUtil.PG_VARIANTRULES})}
  			${Renderer.utils.getNameTr(rule, {page: UrlUtil.PG_VARIANTRULES})}
-@@ -15644,13 +15710,15 @@ Renderer.bastion = class {
+@@ -15644,13 +15725,15 @@ Renderer.bastion = class {
  
  Renderer.skill = class {
  	static getCompactRenderedString (ent) {
@@ -5721,7 +6300,7 @@ index a561361..9ecd473 100644
  		`;
  	}
  };
-@@ -16152,6 +16220,10 @@ Renderer.redirect = class {
+@@ -16152,6 +16235,10 @@ Renderer.redirect = class {
  };
  
  Renderer.hover = class {
@@ -5732,7 +6311,7 @@ index a561361..9ecd473 100644
  	static LinkMeta = class {
  		constructor () {
  			this.isHovered = false;
-@@ -17045,12 +17117,12 @@ Renderer.hover = class {
+@@ -17045,12 +17132,12 @@ Renderer.hover = class {
  		const brdEleTopRhs = veT`<div class="ve-flex ve-ml-auto ve-no-shrink"></div>`.vee.appendTo(brdrTop);
  
  		if (opts.pageUrl && !position.window._IS_POPOUT && !Renderer.get().isInternalLinksDisabled()) {
@@ -5747,7 +6326,7 @@ index a561361..9ecd473 100644
  				.vee.onn("click", evt => {
  					evt.stopPropagation();
  					return Renderer.hover._getShowWindow_pDoPopout({eleHov, position, fnsCleanup, hoverId, opts, hoverWindow, eleContent}, {evt});
-@@ -17062,7 +17134,7 @@ Renderer.hover = class {
+@@ -17062,7 +17149,7 @@ Renderer.hover = class {
  			const btnPopout = veE({
  				tag: "span",
  				clazz: `ve-hwin__top-border-icon ve-hwin__top-border-icon--text`,
@@ -5756,7 +6335,7 @@ index a561361..9ecd473 100644
  				txt: "{}",
  				click: evt => {
  					evt.stopPropagation();
-@@ -17072,7 +17144,7 @@ Renderer.hover = class {
+@@ -17072,7 +17159,7 @@ Renderer.hover = class {
  						Renderer.hover.getHoverContent_statsCode(opts.sourceData),
  						Renderer.hover.getWindowPositionFromEvent(evt),
  						{
@@ -5765,7 +6344,7 @@ index a561361..9ecd473 100644
  							isPermanent: true,
  							isBookContent: true,
  						},
-@@ -17082,7 +17154,7 @@ Renderer.hover = class {
+@@ -17082,7 +17169,7 @@ Renderer.hover = class {
  			brdEleTopRhs.vee.appends(btnPopout);
  		}
  
@@ -5774,7 +6353,7 @@ index a561361..9ecd473 100644
  			.vee.onn("click", (evt) => {
  				evt.stopPropagation();
  
-@@ -17705,7 +17777,7 @@ Renderer.hover = class {
+@@ -17705,7 +17792,7 @@ Renderer.hover = class {
  	static getHoverContent_statsCode (toRender, {isSkipClean = false, title = null} = {}) {
  		const cleanCopy = isSkipClean ? toRender : DataUtil.cleanJson(MiscUtil.copyFast(toRender));
  		return Renderer.hover.getHoverContent_miscCode(
@@ -5863,6 +6442,285 @@ index c0e113e..dc21c72 100644
  	}
  }
  
+diff --git a/js/spells.js b/js/spells.js
+index 7ecad63..c48e24b 100644
+--- a/js/spells.js
++++ b/js/spells.js
+@@ -1,35 +1,37 @@
+ import {RenderSpells, RenderSpellsSettings} from "./render-spells.js";
+ 
++const {I18nZhTwContent} = globalThis;
++
+ class SpellsSublistManager extends SublistManager {
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-3-2 ve-pl-0 ve-pr-1",
+ 				colStyle: "",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Level",
++				name: "環階",
+ 				css: "ve-capitalize ve-col-1-5 ve-px-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Time",
++				name: "時間",
+ 				css: "ve-col-1-8 ve-px-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "School",
++				name: "學派",
+ 				css: "ve-capitalize ve-col-1-6 ve-px-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "C.",
++				name: "專",
+ 				css: "concentration--sublist ve-col-0-7 ve-px-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Range",
++				name: "距離",
+ 				css: "range ve-col-3-2 ve-pl-1 ve-pr-0 ve-text-right",
+ 				colStyle: "text-right",
+ 			}),
+@@ -37,30 +39,31 @@ class SpellsSublistManager extends SublistManager {
+ 	}
+ 
+ 	pGetSublistItem (spell, hash) {
+-		const school = Parser.spSchoolAndSubschoolsAbvsShort(spell.school, spell.subschools);
++		const displayName = I18nZhTwContent.getDisplayName(spell);
++		const school = I18nZhTwContent.getSpellSchoolAndSubschools(spell.school, spell.subschools);
+ 		const time = PageFilterSpells.getTblTimeStr(spell.time[0]);
+ 		const concentration = spell._isConc ? "×" : "";
+-		const range = Parser.spRangeToFull(spell.range, {isDisplaySelfArea: true});
++		const range = I18nZhTwContent.getSpellRange(spell.range, {isDisplaySelfArea: true});
+ 
+ 		const cellsText = [
+-			spell.name,
++			displayName,
+ 			PageFilterSpells.getTblLevelStr(spell),
+ 			time,
+ 			new SublistCell({
+ 				text: school,
+-				title: Parser.spSchoolAndSubschoolsAbvsToFull(spell.school, spell.subschools),
++				title: I18nZhTwContent.getSpellSchoolAndSubschools(spell.school, spell.subschools),
+ 				css: Parser.spSchoolAbvToStyleClass(spell.school),
+ 				style: Parser.spSchoolAbvToStyle(spell.school),
+ 			}),
+ 			new SublistCell({
+ 				text: concentration,
+-				title: concentration ? "Concentration" : "",
++				title: concentration ? "專注" : "",
+ 			}),
+ 			range,
+ 		];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+-			<a href="#${UrlUtil.autoEncodeHash(spell)}" title="${spell.name}" class="ve-lst__row-border ve-lst__row-inner">
++			<a href="#${UrlUtil.autoEncodeHash(spell)}" title="${displayName}" class="ve-lst__row-border ve-lst__row-inner">
+ 				${this.constructor._getRowCellsHtml({values: cellsText})}
+ 			</a>
+ 		</div>`
+@@ -70,9 +73,10 @@ class SpellsSublistManager extends SublistManager {
+ 		const listItem = new ListItem(
+ 			hash,
+ 			ele,
+-			spell.name,
++			displayName,
+ 			{
+ 				...ListItem.getCommonValues(spell),
++				englishName: I18nZhTwContent.getCanonicalName(spell),
+ 				school,
+ 				level: spell.level,
+ 				time,
+@@ -103,10 +107,10 @@ class SpellPageBookView extends ListPageBookView {
+ 	static _BOOK_VIEW_MODE_K = "bookViewMode";
+ 
+ 	constructor (opts) {
+-		super({
+-			pageTitle: "Spells Book View",
+-			nameSingular: "spell",
+-			namePlural: "spells",
++		 super({
++			pageTitle: "法術書籍檢視",
++			nameSingular: "法術",
++			namePlural: "法術",
+ 			propMarkdown: "spell",
+ 			...opts,
+ 		});
+@@ -118,7 +122,9 @@ class SpellPageBookView extends ListPageBookView {
+ 	_getSorted (a, b) {
+ 		a = a.entity;
+ 		b = b.entity;
+-		return this._bookViewLastOrder === "0" ? SortUtil.ascSort(a.level, b.level) : SortUtil.ascSortLower(a.name, b.name);
++		return this._bookViewLastOrder === "0"
++			? SortUtil.ascSort(a.level, b.level)
++			: SortUtil.ascSortLower(I18nZhTwContent.getDisplayName(a), I18nZhTwContent.getDisplayName(b));
+ 	}
+ 
+ 	async _pGetWrpControls ({wrpContent}) {
+@@ -140,13 +146,13 @@ class SpellPageBookView extends ListPageBookView {
+ 		};
+ 
+ 		const selSortMode = veT`<select class="ve-form-control ve-input-sm">
+-			<option value="0">Spell Level</option>
+-			<option value="1">Alphabetical</option>
++			<option value="0">法術環階</option>
++			<option value="1">依名稱</option>
+ 		</select>`
+ 			.vee.onn("change", () => onChangeSortMode());
+ 
+ 		selSortMode.vee.val(`${this._bookViewLastOrder ?? 0}`);
+-		veT`<div class="ve-flex-vh-center ve-ml-3"><div class="ve-mr-2 ve-no-wrap">Sort order:</div>${selSortMode}</div>`.vee.appendTo(wrpPrint);
++		veT`<div class="ve-flex-vh-center ve-ml-3"><div class="ve-mr-2 ve-no-wrap">排序：</div>${selSortMode}</div>`.vee.appendTo(wrpPrint);
+ 
+ 		return out;
+ 	}
+@@ -164,7 +170,7 @@ class SpellPageBookView extends ListPageBookView {
+ 			const atLvl = this._bookViewToShow.filter(({entity}) => entity.level === i);
+ 			if (atLvl.length) {
+ 				stack.push(`<div class="bkmv__no-breaks">`);
+-				stack.push(`<div class="bkmv__spacer-name ve-flex-v-center ve-no-shrink no-print ve-pl-2">${Parser.spLevelToFullLevelText(i)}</div>`);
++				stack.push(`<div class="bkmv__spacer-name ve-flex-v-center ve-no-shrink no-print ve-pl-2">${I18nZhTwContent.getSpellLevel(i, {isIncludeWord: true})}</div>`);
+ 				atLvl.forEach(({entity}) => this._renderSpell({stack, sp: entity}));
+ 				isAnyEntityRendered = true;
+ 				stack.push(`</div>`);
+@@ -238,39 +244,39 @@ class SpellsPage extends ListPageMultiSource {
+ 			},
+ 
+ 			tableViewOptions: {
+-				title: "Spells",
++				title: "法術",
+ 				colTransforms: {
+ 					name: UtilsTableview.COL_TRANSFORM_NAME,
+ 					source: UtilsTableview.COL_TRANSFORM_SOURCE,
+ 					page: UtilsTableview.COL_TRANSFORM_PAGE,
+-					level: {name: "Level", transform: (it) => Parser.spLevelToFull(it)},
+-					time: {name: "Casting Time", transform: (it) => PageFilterSpells.getTblTimeStr(it[0])},
+-					duration: {name: "Duration", transform: (it) => Parser.spDurationToFull(it)},
++					level: {name: "環階", transform: (it) => I18nZhTwContent.getSpellLevel(it)},
++					time: {name: "施法時間", transform: (it) => PageFilterSpells.getTblTimeStr(it[0])},
++					duration: {name: "持續時間", transform: (it) => I18nZhTwContent.getSpellDuration(it)},
+ 					_school: {
+-						name: "School",
++						name: "學派",
+ 						transform: (sp) => {
+-							const ptMeta = Parser.spMetaToArr(sp.meta);
+-							return `<span class="${Parser.spSchoolAbvToStyleClass(sp.school)}" ${Parser.spSchoolAbvToStyle(sp.school)}>${Parser.spSchoolAndSubschoolsAbvsToFull(sp.school, sp.subschools)}</span>${ptMeta.length ? ` (${ptMeta.join(", ")})` : ""}`;
++							const ptMeta = Parser.spMetaToArr(sp.meta).map(it => ({ritual: "儀式", technomagic: "科技魔法"}[it] || it));
++							return `<span class="${Parser.spSchoolAbvToStyleClass(sp.school)}" ${Parser.spSchoolAbvToStyle(sp.school)}>${I18nZhTwContent.getSpellSchoolAndSubschools(sp.school, sp.subschools)}</span>${ptMeta.length ? `（${ptMeta.join("、")}）` : ""}`;
+ 						},
+ 					},
+-					range: {name: "Range", transform: (it) => Parser.spRangeToFull(it)},
+-					_components: {name: "Components", transform: (sp) => Parser.spComponentsToFull(sp.components, sp.level, {isPlainText: true})},
++					range: {name: "施法距離", transform: (it) => I18nZhTwContent.getSpellRange(it)},
++					_components: {name: "成分", transform: (sp) => I18nZhTwContent.getSpellComponents(sp.components, sp.level, {isPlainText: true})},
+ 					_classes: {
+-						name: "Classes",
++						name: "職業",
+ 						transform: (sp) => {
+ 							const [current] = Parser.spClassesToCurrentAndLegacy(Renderer.spell.getCombinedClasses(sp, "fromClassList"));
+ 							return Parser.spMainClassesToFull(current, {isIncludeSource: true});
+ 						},
+ 					},
+ 					_classesVariant: {
+-						name: "Optional/Variant Classes",
++						name: "選用／變體職業",
+ 						transform: (sp) => {
+ 							const [current] = Parser.spVariantClassesToCurrentAndLegacy(Renderer.spell.getCombinedClasses(sp, "fromClassListVariant"));
+ 							return Parser.spMainClassesToFull(current, {isIncludeSource: true});
+ 						},
+ 					},
+ 					_subclasses: {
+-						name: "Subclasses",
++						name: "子職業",
+ 						transform: (sp, additionalData) => {
+ 							const fromSubclass = Renderer.spell.getCombinedClasses(sp, "fromSubclass");
+ 							if (!fromSubclass.length) return "";
+@@ -278,8 +284,8 @@ class SpellsPage extends ListPageMultiSource {
+ 							return current;
+ 						},
+ 					},
+-					entries: {name: "Text", transform: (it) => Renderer.get().render({type: "entries", entries: it}, 1), flex: 3},
+-					entriesHigherLevel: {name: "At Higher Levels", transform: (it) => Renderer.get().render({type: "entries", entries: (it || [])}, 1), flex: 2},
++					entries: {name: "內文", transform: (it) => Renderer.get().render({type: "entries", entries: it}, 1), flex: 3},
++					entriesHigherLevel: {name: "升環施法", transform: (it) => Renderer.get().render({type: "entries", entries: (it || [])}, 1), flex: 2},
+ 				},
+ 			},
+ 
+@@ -326,15 +332,16 @@ class SpellsPage extends ListPageMultiSource {
+ 		this._seenHashes.add(hash);
+ 
+ 		const isExcluded = ExcludeUtil.isExcluded(hash, "spell", spell.source);
++		const displayName = I18nZhTwContent.getDisplayName(spell);
+ 
+ 		this._pageFilter.mutateAndAddToFilters(spell, isExcluded);
+ 
+ 		const source = Parser.sourceJsonToAbv(spell.source);
+ 		const time = PageFilterSpells.getTblTimeStr(spell.time[0]);
+-		const school = Parser.spSchoolAndSubschoolsAbvsShort(spell.school, spell.subschools);
++		const school = I18nZhTwContent.getSpellSchoolAndSubschools(spell.school, spell.subschools);
+ 		const schoolClassName = Parser.spSchoolAbvToStyleClass(spell.school);
+ 		const concentration = spell._isConc ? "×" : "";
+-		const range = Parser.spRangeToFull(spell.range, {isDisplaySelfArea: true});
++		const range = I18nZhTwContent.getSpellRange(spell.range, {isDisplaySelfArea: true});
+ 
+ 		const eleLi = veE({
+ 			tag: "div",
+@@ -347,17 +354,17 @@ class SpellsPage extends ListPageMultiSource {
+ 					href: `#${hash}`,
+ 					clazz: "ve-lst__row-border ve-lst__row-inner",
+ 					children: [
+-						veE({tag: "span", clazz: `ve-bold ve-col-2-9 ve-pl-0 ve-pr-1`, txt: spell.name}),
++						veE({tag: "span", clazz: `ve-bold ve-col-2-9 ve-pl-0 ve-pr-1`, txt: displayName}),
+ 						veE({tag: "span", clazz: `ve-col-1-5 ve-px-1 ve-text-center`, txt: PageFilterSpells.getTblLevelStr(spell)}),
+ 						veE({tag: "span", clazz: `ve-col-1-7 ve-px-1 ve-text-center`, txt: time}),
+ 						veE({
+ 							tag: "span",
+ 							clazz: `ve-col-1-2 ve-px-1 ${schoolClassName} ve-text-center`,
+-							title: Parser.spSchoolAndSubschoolsAbvsToFull(spell.school, spell.subschools),
++							title: I18nZhTwContent.getSpellSchoolAndSubschools(spell.school, spell.subschools),
+ 							style: Parser.spSchoolAbvToStylePart(spell.school),
+ 							txt: school,
+ 						}),
+-						veE({tag: "span", clazz: `ve-col-0-6 ve-px-1 ve-text-center`, title: "Concentration", txt: concentration}),
++						veE({tag: "span", clazz: `ve-col-0-6 ve-px-1 ve-text-center`, title: "專注", txt: concentration}),
+ 						veE({tag: "span", clazz: `ve-col-2-4 ve-px-1 ve-text-right`, txt: range}),
+ 						veE({
+ 							tag: "span",
+@@ -373,13 +380,14 @@ class SpellsPage extends ListPageMultiSource {
+ 		const listItem = new ListItem(
+ 			spI,
+ 			eleLi,
+-			spell.name,
++			displayName,
+ 			{
+ 				source,
+ 				...ListItem.getCommonValues(spell),
++				englishName: I18nZhTwContent.getCanonicalName(spell),
+ 				level: spell.level,
+ 				time,
+-				school: Parser.spSchoolAbvToFull(spell.school),
++				school: I18nZhTwContent.getSpellSchool(spell.school),
+ 				concentration,
+ 				normalisedTime: spell._normalisedTime,
+ 				normalisedRange: spell._normalisedRange,
+@@ -393,7 +401,7 @@ class SpellsPage extends ListPageMultiSource {
+ 		return listItem;
+ 	}
+ 
+-	_tabTitleStats = "Spell";
++	_tabTitleStats = "法術";
+ 
+ 	_renderStats_doBuildStatsTab ({ent}) {
+ 		this._pgContent.vee.empty().vee.appends(RenderSpells.getRenderedSpell(ent, {subclassLookup: this._subclassLookup, settings: this._compSettings.getValues()}));
 diff --git a/js/styleswitch.js b/js/styleswitch.js
 index 91d5dc0..97da3da 100644
 --- a/js/styleswitch.js
@@ -6865,7 +7723,7 @@ index fac8e88..b7bf9dd 100644
  				rowMetas.push({
  					cb: cb,
 diff --git a/js/utils.js b/js/utils.js
-index 90d5502..01f74c5 100644
+index 90d5502..a5589fe 100644
 --- a/js/utils.js
 +++ b/js/utils.js
 @@ -19,7 +19,7 @@ globalThis.HASH_SUB_NONE = "null";
@@ -7017,7 +7875,17 @@ index 90d5502..01f74c5 100644
  			}
  		}
  	});
-@@ -8914,6 +8921,13 @@ Map.prototype.getOrSet || Object.defineProperty(Map.prototype, "getOrSet", {
+@@ -4593,6 +4600,9 @@ class _DataUtilPropConfigMultiSource extends _DataUtilPropConfig {
+ 
+ 		let data = await fnLoad(`${Renderer.get().baseUrl}data/${this._DIR}/${file}`);
+ 		data = (data[this._PROP] || []).filter(MultiSourceUtil.isEntityIndexKeyMatch.bind(this, indexKey, this._PROP));
++		if (globalThis.I18nZhTwContent?.pApplyEntities) {
++			data = await globalThis.I18nZhTwContent.pApplyEntities({prop: this._PROP, file, entities: data});
++		}
+ 
+ 		if (!this._IS_MUT_ENTITIES) return data;
+ 
+@@ -8914,6 +8924,13 @@ Map.prototype.getOrSet || Object.defineProperty(Map.prototype, "getOrSet", {
  class BookModeViewBase {
  	static _BOOK_VIEW_COLUMNS_K = "bookViewColumns";
  
@@ -7031,7 +7899,7 @@ index 90d5502..01f74c5 100644
  	_hashKey;
  	_stateKey;
  	_pageTitle;
-@@ -8954,7 +8968,7 @@ class BookModeViewBase {
+@@ -8954,7 +8971,7 @@ class BookModeViewBase {
  	}
  
  	_getBtnWindowClose () {
@@ -7040,7 +7908,7 @@ index 90d5502..01f74c5 100644
  			.vee.onn("click", () => this.setStateClosed());
  	}
  
-@@ -8983,15 +8997,15 @@ class BookModeViewBase {
+@@ -8983,15 +9000,15 @@ class BookModeViewBase {
  		};
  
  		const selColumns = veT`<select class="ve-form-control ve-input-sm">
@@ -7059,7 +7927,7 @@ index 90d5502..01f74c5 100644
  		</div>`.vee.appendTo(wrp);
  
  		return {wrp, wrpPrint};
-@@ -9002,7 +9016,7 @@ class BookModeViewBase {
+@@ -9002,7 +9019,7 @@ class BookModeViewBase {
  	_getEleNoneVisible () { return null; }
  
  	_getBtnNoneVisibleClose () {
@@ -7068,7 +7936,7 @@ index 90d5502..01f74c5 100644
  			.vee.onn("click", () => this.setStateClosed());
  	}
  
-@@ -9023,7 +9037,7 @@ class BookModeViewBase {
+@@ -9023,7 +9040,7 @@ class BookModeViewBase {
  		if (this._isActive) return;
  		this._isActive = true;
  
@@ -7164,7 +8032,7 @@ index 8e7d749..3f958cb 100644
  				ruleType: rule.ruleType || "",
  			},
 diff --git a/langdemo.html b/langdemo.html
-index 3bc5b40..83f5f7c 100644
+index 3bc5b40..6715564 100644
 --- a/langdemo.html
 +++ b/langdemo.html
 @@ -1,5 +1,5 @@
@@ -7183,7 +8051,7 @@ index 3bc5b40..83f5f7c 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -7193,10 +8061,11 @@ index 3bc5b40..83f5f7c 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -70,8 +72,8 @@
+@@ -70,8 +73,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -7207,7 +8076,7 @@ index 3bc5b40..83f5f7c 100644
  			</div>
  		</header>
  
-@@ -82,32 +84,32 @@
+@@ -82,32 +85,32 @@
  
  	<div class="view-col-wrapper ve-flex-col ve-px-4">
  		<div class="ve-flex-v-center ve-mb-3">
@@ -7251,7 +8120,7 @@ index 3bc5b40..83f5f7c 100644
  			</div>
  		</div>
 diff --git a/languages.html b/languages.html
-index 690fb3d..7061a63 100644
+index 690fb3d..12c88ea 100644
 --- a/languages.html
 +++ b/languages.html
 @@ -1,5 +1,5 @@
@@ -7270,7 +8139,7 @@ index 690fb3d..7061a63 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -7280,10 +8149,11 @@ index 690fb3d..7061a63 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -70,8 +72,8 @@
+@@ -70,8 +73,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -7294,7 +8164,7 @@ index 690fb3d..7061a63 100644
  			</div>
  		</header>
  
-@@ -89,14 +91,14 @@
+@@ -89,14 +92,14 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -7314,7 +8184,7 @@ index 690fb3d..7061a63 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -107,9 +109,9 @@
+@@ -107,9 +110,9 @@
  			<div id="contentwrapper" class="view-col">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -7327,7 +8197,7 @@ index 690fb3d..7061a63 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -122,17 +124,17 @@
+@@ -122,17 +125,17 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -7351,7 +8221,7 @@ index 690fb3d..7061a63 100644
  				</div>
  			</div>
 diff --git a/lifegen.html b/lifegen.html
-index c72e461..e4188bf 100644
+index c72e461..5c322ea 100644
 --- a/lifegen.html
 +++ b/lifegen.html
 @@ -1,5 +1,5 @@
@@ -7370,7 +8240,7 @@ index c72e461..e4188bf 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -7380,10 +8250,11 @@ index c72e461..e4188bf 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -66,8 +68,8 @@
+@@ -66,8 +69,8 @@
  <div class="ve-flex-col" data-cancer-id="cancer-header">
  	<header class="ve-mobile-sm__hidden page__header">
  		<div class="container ve-flex-v-baseline">
@@ -7394,7 +8265,7 @@ index c72e461..e4188bf 100644
  		</div>
  	</header>
  
-@@ -82,33 +84,33 @@
+@@ -82,33 +85,33 @@
  <main class="container" data-cancer-id="cancer-wrapper">
  	<div class="ve-flex no-print">
  		<div class="form-group ve-col-2-4 ve-mr-2">
@@ -7435,7 +8306,7 @@ index c72e461..e4188bf 100644
  		</div>
  	</div>
  
-@@ -119,31 +121,31 @@
+@@ -119,31 +122,31 @@
  
  	<hr class="life__output" style="display: none; background: transparent">
  	<div class="ve-flex-col life__output night__shadow-big ve-hidden">
@@ -7475,7 +8346,7 @@ index c72e461..e4188bf 100644
  	</div>
  </main>
 diff --git a/lootgen.html b/lootgen.html
-index 1bfc1af..aee2b28 100644
+index 1bfc1af..eefb255 100644
 --- a/lootgen.html
 +++ b/lootgen.html
 @@ -1,5 +1,5 @@
@@ -7494,7 +8365,7 @@ index 1bfc1af..aee2b28 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -7504,10 +8375,11 @@ index 1bfc1af..aee2b28 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -70,8 +72,8 @@
+@@ -70,8 +73,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -7518,7 +8390,7 @@ index 1bfc1af..aee2b28 100644
  			</div>
  		</header>
  
-@@ -81,7 +83,7 @@
+@@ -81,7 +84,7 @@
  	</div>
  
  	<div class="container view-col-group--cancer ve-h-100 mh-0" data-cancer-id="cancer-wrapper">
@@ -7528,7 +8400,7 @@ index 1bfc1af..aee2b28 100644
  		<div class="view-col-wrapper view-col-wrapper--cancer ve-hidden" id="wrp-content">
  			<div class="view-col ve-flex-4 ve-mb-0" id="lootgen-lhs"></div>
 diff --git a/makebrew.html b/makebrew.html
-index d97eb35..7678e81 100644
+index d97eb35..a2f445a 100644
 --- a/makebrew.html
 +++ b/makebrew.html
 @@ -1,5 +1,5 @@
@@ -7547,7 +8419,7 @@ index d97eb35..7678e81 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -7557,10 +8429,11 @@ index d97eb35..7678e81 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -70,8 +72,8 @@
+@@ -70,8 +73,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -7571,7 +8444,7 @@ index d97eb35..7678e81 100644
  			</div>
  		</header>
  
-@@ -81,7 +83,7 @@
+@@ -81,7 +84,7 @@
  	</div>
  
  	<div id="page_loading" class="container view-col-wrapper">
@@ -7581,7 +8454,7 @@ index d97eb35..7678e81 100644
  
  	<div id="page_source" class="container view-col-wrapper ve-hidden"></div>
 diff --git a/makecards.html b/makecards.html
-index e30275b..091b133 100644
+index e30275b..86ed24d 100644
 --- a/makecards.html
 +++ b/makecards.html
 @@ -1,5 +1,5 @@
@@ -7600,7 +8473,7 @@ index e30275b..091b133 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -7610,10 +8483,11 @@ index e30275b..091b133 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -70,8 +72,8 @@
+@@ -70,8 +73,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -7624,7 +8498,7 @@ index e30275b..091b133 100644
  			</div>
  		</header>
  
-@@ -85,7 +87,7 @@
+@@ -85,7 +88,7 @@
  			<p>This tool can be used to create data compatible with the <a href="https://rpg-cards.vercel.app" rel="noopener noreferrer">RPG Cards</a> app.</p>
  			<p>Icons are taken from the open-source <i>RPG Cards</i> code, which is in turn sources icons from <a href="https://game-icons.net/" rel="noopener noreferrer">Game-icons.net</a>. Most of the icons available there should be available here.</p>
  			<hr class="ve-hr-0">
@@ -7634,7 +8508,7 @@ index e30275b..091b133 100644
  		</div>
  
 diff --git a/managebrew.html b/managebrew.html
-index d1d6188..282c893 100644
+index d1d6188..f3d297b 100644
 --- a/managebrew.html
 +++ b/managebrew.html
 @@ -1,5 +1,5 @@
@@ -7653,7 +8527,7 @@ index d1d6188..282c893 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -7663,10 +8537,11 @@ index d1d6188..282c893 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -65,8 +67,8 @@
+@@ -65,8 +68,8 @@
  <div class="ve-flex-col" data-cancer-id="cancer-header">
  	<header class="ve-mobile-sm__hidden page__header">
  		<div class="container ve-flex-v-baseline">
@@ -7677,7 +8552,7 @@ index d1d6188..282c893 100644
  		</div>
  	</header>
  
-@@ -79,7 +81,7 @@
+@@ -79,7 +82,7 @@
  <div class="cancer__wrp-sidebar cancer__wrp-sidebar-rhs cancer__wrp-sidebar-rhs--scrolling-page cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-inner cancer__sidebar-inner--top cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_1--></div><div class="cancer__sidebar-inner cancer__sidebar-inner--bottom cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_2--></div></div>
  
  <main class="container" data-cancer-id="cancer-wrapper">
@@ -7687,7 +8562,7 @@ index d1d6188..282c893 100644
  
  <!--5ETOOLS_SCRIPT_ANCHOR-->
 diff --git a/manageprerelease.html b/manageprerelease.html
-index 8703447..04d5464 100644
+index 8703447..04cc440 100644
 --- a/manageprerelease.html
 +++ b/manageprerelease.html
 @@ -1,5 +1,5 @@
@@ -7706,7 +8581,7 @@ index 8703447..04d5464 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -7716,10 +8591,11 @@ index 8703447..04d5464 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -65,8 +67,8 @@
+@@ -65,8 +68,8 @@
  <div class="ve-flex-col" data-cancer-id="cancer-header">
  	<header class="ve-mobile-sm__hidden page__header">
  		<div class="container ve-flex-v-baseline">
@@ -7730,7 +8606,7 @@ index 8703447..04d5464 100644
  		</div>
  	</header>
  
-@@ -79,7 +81,7 @@
+@@ -79,7 +82,7 @@
  <div class="cancer__wrp-sidebar cancer__wrp-sidebar-rhs cancer__wrp-sidebar-rhs--scrolling-page cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-inner cancer__sidebar-inner--top cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_1--></div><div class="cancer__sidebar-inner cancer__sidebar-inner--bottom cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_2--></div></div>
  
  <main class="container" data-cancer-id="cancer-wrapper">
@@ -7790,7 +8666,7 @@ index 7d2f7b4..a2aa920 100644
  		}
  	],
 diff --git a/maps.html b/maps.html
-index 179372f..e5bb814 100644
+index 179372f..51c8cf3 100644
 --- a/maps.html
 +++ b/maps.html
 @@ -1,5 +1,5 @@
@@ -7809,7 +8685,7 @@ index 179372f..e5bb814 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -7819,10 +8695,11 @@ index 179372f..e5bb814 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -67,8 +69,8 @@
+@@ -67,8 +70,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -7833,7 +8710,7 @@ index 179372f..e5bb814 100644
  			</div>
  		</header>
  
-@@ -79,7 +81,7 @@
+@@ -79,7 +82,7 @@
  
  	<div id="content" class="maps ve-flex ve-h-100 ve-mobile-sm__h-initial ve-mobile-sm__flex-col ve-min-h-0">
  		<div class="ve-flex-vh-center ve-h-100 ve-w-100">
@@ -7843,7 +8720,7 @@ index 179372f..e5bb814 100644
  	</div>
  </div>
 diff --git a/names.html b/names.html
-index 175c4e4..0e864e0 100644
+index 175c4e4..a91ed75 100644
 --- a/names.html
 +++ b/names.html
 @@ -1,5 +1,5 @@
@@ -7862,7 +8739,7 @@ index 175c4e4..0e864e0 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -7872,10 +8749,11 @@ index 175c4e4..0e864e0 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -70,8 +72,8 @@
+@@ -70,8 +73,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -7886,7 +8764,7 @@ index 175c4e4..0e864e0 100644
  			</div>
  		</header>
  
-@@ -89,7 +91,7 @@
+@@ -89,7 +92,7 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -7895,7 +8773,7 @@ index 175c4e4..0e864e0 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -100,7 +102,7 @@
+@@ -100,7 +103,7 @@
  			<div id="contentwrapper" class="view-col ve-flex-7">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -7904,7 +8782,7 @@ index 175c4e4..0e864e0 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -113,13 +115,13 @@
+@@ -113,13 +116,13 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table wrp-stats-table--book">
  					<table id="pagecontent" class="ve-w-100 ve-stats ve-stats--book ve-stats--book-large">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -9165,7 +10043,7 @@ index 1652de9..6c381a5 100644
  		/**
  		 * Usage: ```
 diff --git a/objects.html b/objects.html
-index 7e4df7f..e08e4e8 100644
+index 7e4df7f..763b7ef 100644
 --- a/objects.html
 +++ b/objects.html
 @@ -1,5 +1,5 @@
@@ -9184,7 +10062,7 @@ index 7e4df7f..e08e4e8 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -9194,10 +10072,11 @@ index 7e4df7f..e08e4e8 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -9208,7 +10087,7 @@ index 7e4df7f..e08e4e8 100644
  			</div>
  		</header>
  
-@@ -88,13 +90,13 @@
+@@ -88,13 +91,13 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -9226,7 +10105,7 @@ index 7e4df7f..e08e4e8 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -105,8 +107,8 @@
+@@ -105,8 +108,8 @@
  			<div id="contentwrapper" class="view-col">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -9237,7 +10116,7 @@ index 7e4df7f..e08e4e8 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -121,17 +123,17 @@
+@@ -121,17 +124,17 @@
  
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -9275,7 +10154,7 @@ index 0231728..bc8c675 100644
  	<Image width="64" height="64" type="image/png">https://5e.tools/favicon-64x64.png</Image>
  	<Url type="text/html" template="https://5e.tools/search.html?{searchTerms}"/>
 diff --git a/optionalfeatures.html b/optionalfeatures.html
-index a6a5b08..d5bd0a8 100644
+index a6a5b08..e6b2cb4 100644
 --- a/optionalfeatures.html
 +++ b/optionalfeatures.html
 @@ -1,5 +1,5 @@
@@ -9294,7 +10173,7 @@ index a6a5b08..d5bd0a8 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -9304,10 +10183,11 @@ index a6a5b08..d5bd0a8 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -9318,7 +10198,7 @@ index a6a5b08..d5bd0a8 100644
  			</div>
  		</header>
  
-@@ -88,16 +90,16 @@
+@@ -88,16 +91,16 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -9341,7 +10221,7 @@ index a6a5b08..d5bd0a8 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -108,10 +110,10 @@
+@@ -108,10 +111,10 @@
  			<div id="contentwrapper" class="view-col ve-flex-4">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -9356,7 +10236,7 @@ index a6a5b08..d5bd0a8 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -124,17 +126,17 @@
+@@ -124,17 +127,17 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -9380,10 +10260,10 @@ index a6a5b08..d5bd0a8 100644
  				</div>
  			</div>
 diff --git a/package.json b/package.json
-index 840a65d..0f5fd1c 100644
+index 840a65d..f22f215 100644
 --- a/package.json
 +++ b/package.json
-@@ -40,6 +40,20 @@
+@@ -40,6 +40,23 @@
  		"build:sw": "node node/build-sw.mjs",
  		"build:sw:prod": "node node/build-sw.mjs prod",
  		"build": "npm run clean-jsons && npm run gen && npm run build:css && npm run build:sw:prod",
@@ -9400,12 +10280,15 @@ index 840a65d..0f5fd1c 100644
 +		"zh-tw:import-rules": "python node/zh-tw/import-core-rules.py",
 +		"zh-tw:test-rules": "node node/zh-tw/test-rules-i18n.mjs && node node/zh-tw/test-quick-reference-i18n.mjs",
 +		"zh-tw:validate-rules": "node node/zh-tw/validate-core-rules.mjs",
-+		"zh-tw:verify": "npm run zh-tw:validate-glossary && npm run zh-tw:validate-classes && npm run zh-tw:test-class-body && npm run zh-tw:test-site && npm run zh-tw:validate-rules && npm run zh-tw:test-rules",
++		"zh-tw:import-spells": ".venv-zh-tw/bin/python node/zh-tw/import-content-translations.py spells --source-dir ../5etools-cn-source",
++		"zh-tw:test-content": "node node/zh-tw/test-content-i18n.mjs",
++		"zh-tw:validate-content": "node node/zh-tw/validate-content-translations.mjs",
++		"zh-tw:verify": "npm run zh-tw:validate-glossary && npm run zh-tw:validate-classes && npm run zh-tw:test-class-body && npm run zh-tw:test-site && npm run zh-tw:validate-rules && npm run zh-tw:test-rules && npm run zh-tw:validate-content && npm run zh-tw:test-content",
  		"preversion": "npm test",
  		"version": "node node/version-bump.js",
  		"serve:dev": "http-server -c-1 --cors --port 5050",
 diff --git a/plutonium.html b/plutonium.html
-index b8a0f00..fd2a588 100644
+index b8a0f00..22049ab 100644
 --- a/plutonium.html
 +++ b/plutonium.html
 @@ -1,5 +1,5 @@
@@ -9424,7 +10307,7 @@ index b8a0f00..fd2a588 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -9434,10 +10317,11 @@ index b8a0f00..fd2a588 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -66,8 +68,8 @@
+@@ -66,8 +69,8 @@
  <div class="ve-flex-col" data-cancer-id="cancer-header">
  	<header class="ve-mobile-sm__hidden page__header">
  		<div class="container ve-flex-v-baseline">
@@ -9448,7 +10332,7 @@ index b8a0f00..fd2a588 100644
  		</div>
  	</header>
  
-@@ -107,7 +109,7 @@
+@@ -107,7 +110,7 @@
  
  			<h3 id="rivet-browser-extension">Rivet Browser Extension</h3>
  			<p>With Rivet installed, and provided you have 5etools and Foundry open in the same browser, you can send content and rolls from 5etools straight to your Foundry game with the click of a button.</p>
@@ -9458,7 +10342,7 @@ index b8a0f00..fd2a588 100644
  
  			<hr>
 diff --git a/privacy-policy.html b/privacy-policy.html
-index 34e500a..3671276 100644
+index 34e500a..2e2a01a 100644
 --- a/privacy-policy.html
 +++ b/privacy-policy.html
 @@ -1,5 +1,5 @@
@@ -9477,7 +10361,7 @@ index 34e500a..3671276 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -9487,10 +10371,11 @@ index 34e500a..3671276 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -65,8 +67,8 @@
+@@ -65,8 +68,8 @@
  <div class="ve-flex-col" data-cancer-id="cancer-header">
  	<header class="ve-mobile-sm__hidden page__header">
  		<div class="container ve-flex-v-baseline">
@@ -9501,7 +10386,7 @@ index 34e500a..3671276 100644
  		</div>
  	</header>
  
-@@ -88,7 +90,7 @@
+@@ -88,7 +91,7 @@
  			<p>The Site contains links to web sites of third parties. Norr Group is not responsible for the actions of these third parties, including their privacy practices and any content posted on their web sites. We encourage you to review their privacy policies to learn more about what, why and how they collect and use personal information. Norr Group adheres to industry recognized standards to secure any personal information in our possession, and to secure it from unauthorized access and tampering. However, as is true with all online actions, it is possible that third parties may unlawfully intercept transmissions of personal information, or other users of the Site may misuse or abuse your personal information that they may collect from the Site.</p>
  			<p>We uses third-party advertising companies to serve our ads and collect information when users visit the Site. These third-party advertising companies employ cookie and 1x1 pixel .gifs or web beacons to measure and improve the effectiveness of ads for their clients. These companies may use information (not including your name, address, email address or telephone number) about your visits to our website and other websites in order to provide advertisements on our site, other websites and other forms of media about goods and services of interest to you. If you would like more information about this practice and to know your choices about not having this information used by these companies, check out <a href="https://www.networkadvertising.org/managing/opt_out.asp">https://www.networkadvertising.org/managing/opt_out.asp</a>.</p>
  
@@ -9511,7 +10396,7 @@ index 34e500a..3671276 100644
  		</div>
  	</div>
 diff --git a/psionics.html b/psionics.html
-index 77b07b3..b8b93e0 100644
+index 77b07b3..4d6af06 100644
 --- a/psionics.html
 +++ b/psionics.html
 @@ -1,5 +1,5 @@
@@ -9530,7 +10415,7 @@ index 77b07b3..b8b93e0 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -9540,10 +10425,11 @@ index 77b07b3..b8b93e0 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -9554,7 +10440,7 @@ index 77b07b3..b8b93e0 100644
  			</div>
  		</header>
  
-@@ -88,14 +90,14 @@
+@@ -88,14 +91,14 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -9574,7 +10460,7 @@ index 77b07b3..b8b93e0 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -106,9 +108,9 @@
+@@ -106,9 +109,9 @@
  			<div id="contentwrapper" class="view-col">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -9587,7 +10473,7 @@ index 77b07b3..b8b93e0 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -121,20 +123,20 @@
+@@ -121,20 +124,20 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -9615,7 +10501,7 @@ index 77b07b3..b8b93e0 100644
  				</div>
  			</div>
 diff --git a/quickreference.html b/quickreference.html
-index 1432960..20a27d6 100644
+index 1432960..442ed34 100644
 --- a/quickreference.html
 +++ b/quickreference.html
 @@ -1,5 +1,5 @@
@@ -9634,7 +10520,7 @@ index 1432960..20a27d6 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -9644,10 +10530,11 @@ index 1432960..20a27d6 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -65,8 +67,8 @@
+@@ -65,8 +68,8 @@
  <div class="ve-flex-col" data-cancer-id="cancer-header">
  	<header class="ve-mobile-sm__hidden page__header">
  		<div class="container ve-flex-v-baseline">
@@ -9658,7 +10545,7 @@ index 1432960..20a27d6 100644
  		</div>
  	</header>
  
-@@ -88,14 +90,14 @@
+@@ -88,14 +91,14 @@
  	<div class="view-col linked-titles book-view">
  		<table id="pagecontent" class="ve-w-100 ve-stats ve-stats--book ve-stats--book-large">
  			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -9676,7 +10563,7 @@ index 1432960..20a27d6 100644
  
  		<div class="cancer__footer-pad ve-w-100"></div>
 diff --git a/races.html b/races.html
-index 61f8f67..35dab18 100644
+index 61f8f67..58c3394 100644
 --- a/races.html
 +++ b/races.html
 @@ -1,5 +1,5 @@
@@ -9695,7 +10582,7 @@ index 61f8f67..35dab18 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -9705,10 +10592,11 @@ index 61f8f67..35dab18 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -9719,7 +10607,7 @@ index 61f8f67..35dab18 100644
  			</div>
  		</header>
  
-@@ -88,15 +90,15 @@
+@@ -88,15 +91,15 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -9740,7 +10628,7 @@ index 61f8f67..35dab18 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -107,9 +109,9 @@
+@@ -107,9 +110,9 @@
  			<div id="contentwrapper" class="view-col">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -9753,7 +10641,7 @@ index 61f8f67..35dab18 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -122,17 +124,17 @@
+@@ -122,17 +125,17 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -9777,7 +10665,7 @@ index 61f8f67..35dab18 100644
  				</div>
  			</div>
 diff --git a/recipes.html b/recipes.html
-index 67a042b..130ba21 100644
+index 67a042b..9eaf3ee 100644
 --- a/recipes.html
 +++ b/recipes.html
 @@ -1,5 +1,5 @@
@@ -9796,7 +10684,7 @@ index 67a042b..130ba21 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -9806,10 +10694,11 @@ index 67a042b..130ba21 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -70,8 +72,8 @@
+@@ -70,8 +73,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -9820,7 +10709,7 @@ index 67a042b..130ba21 100644
  			</div>
  		</header>
  
-@@ -89,13 +91,13 @@
+@@ -89,13 +92,13 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -9838,7 +10727,7 @@ index 67a042b..130ba21 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -106,8 +108,8 @@
+@@ -106,8 +109,8 @@
  			<div id="contentwrapper" class="view-col ve-flex-7">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -9849,7 +10738,7 @@ index 67a042b..130ba21 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -120,20 +122,20 @@
+@@ -120,20 +123,20 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table wrp-stats-table--book">
  					<table id="pagecontent" class="ve-w-100 ve-stats ve-stats--book recipes__tbl-recipes">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -9877,7 +10766,7 @@ index 67a042b..130ba21 100644
  					</div>
  				</div>
 diff --git a/renderdemo.html b/renderdemo.html
-index e5eda98..52b9920 100644
+index e5eda98..09eb35a 100644
 --- a/renderdemo.html
 +++ b/renderdemo.html
 @@ -1,5 +1,5 @@
@@ -9896,7 +10785,7 @@ index e5eda98..52b9920 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -9906,10 +10795,11 @@ index e5eda98..52b9920 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -70,8 +72,8 @@
+@@ -70,8 +73,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -9920,7 +10810,7 @@ index e5eda98..52b9920 100644
  			</div>
  		</header>
  
-@@ -86,7 +88,7 @@
+@@ -86,7 +89,7 @@
  
  			<div class="ve-split-v-center">
  				<div>
@@ -9929,7 +10819,7 @@ index e5eda98..52b9920 100644
  				</div>
  
  				<div class="ve-flex-v-center">
-@@ -95,8 +97,8 @@
+@@ -95,8 +98,8 @@
  						<option value="md">Markdown</option>
  						<option value="cards">RPG Cards</option>
  					</select>
@@ -9941,7 +10831,7 @@ index e5eda98..52b9920 100644
  			</div>
  		</div>
 diff --git a/rewards.html b/rewards.html
-index fdce755..f784158 100644
+index fdce755..54cb5f4 100644
 --- a/rewards.html
 +++ b/rewards.html
 @@ -1,5 +1,5 @@
@@ -9960,7 +10850,7 @@ index fdce755..f784158 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -9970,10 +10860,11 @@ index fdce755..f784158 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -9984,7 +10875,7 @@ index fdce755..f784158 100644
  			</div>
  		</header>
  
-@@ -88,14 +90,14 @@
+@@ -88,14 +91,14 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -10003,7 +10894,7 @@ index fdce755..f784158 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -106,8 +108,8 @@
+@@ -106,8 +109,8 @@
  			<div id="contentwrapper" class="view-col">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -10014,7 +10905,7 @@ index fdce755..f784158 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -120,17 +122,17 @@
+@@ -120,17 +123,17 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -10038,7 +10929,7 @@ index fdce755..f784158 100644
  				</div>
  			</div>
 diff --git a/search.html b/search.html
-index fbae48a..0ca1c42 100644
+index fbae48a..e7151b8 100644
 --- a/search.html
 +++ b/search.html
 @@ -1,5 +1,5 @@
@@ -10057,7 +10948,7 @@ index fbae48a..0ca1c42 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -10067,10 +10958,11 @@ index fbae48a..0ca1c42 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -66,8 +68,8 @@
+@@ -66,8 +69,8 @@
  <div class="ve-flex-col" data-cancer-id="cancer-header">
  	<header class="ve-mobile-sm__hidden page__header">
  		<div class="container ve-flex-v-baseline">
@@ -10081,7 +10973,7 @@ index fbae48a..0ca1c42 100644
  		</div>
  	</header>
  
-@@ -79,7 +81,7 @@
+@@ -79,7 +82,7 @@
  <div class="cancer__wrp-sidebar cancer__wrp-sidebar-lhs cancer__wrp-sidebar-lhs--scrolling-page cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-inner cancer__sidebar-inner--top cancer__wrp-interactive"><!--5ETOOLS_AD_LEFT_1--></div><div class="cancer__sidebar-inner cancer__sidebar-inner--bottom cancer__wrp-interactive"><!--5ETOOLS_AD_LEFT_2--></div></div>
  <div class="cancer__wrp-sidebar cancer__wrp-sidebar-rhs cancer__wrp-sidebar-rhs--scrolling-page cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-inner cancer__sidebar-inner--top cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_1--></div><div class="cancer__sidebar-inner cancer__sidebar-inner--bottom cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_2--></div></div>
  
@@ -10091,7 +10983,7 @@ index fbae48a..0ca1c42 100644
  <!--5ETOOLS_SCRIPT_ANCHOR-->
  <!--5ETOOLS_AD_ADHESION-->
 diff --git a/spells.html b/spells.html
-index e1bd28a..b234b6c 100644
+index e1bd28a..62f624e 100644
 --- a/spells.html
 +++ b/spells.html
 @@ -1,5 +1,5 @@
@@ -10110,7 +11002,7 @@ index e1bd28a..b234b6c 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -48,9 +48,11 @@
+@@ -48,9 +48,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -10120,10 +11012,11 @@ index e1bd28a..b234b6c 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -70,8 +72,8 @@
+@@ -70,8 +73,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -10134,7 +11027,7 @@ index e1bd28a..b234b6c 100644
  			</div>
  		</header>
  
-@@ -89,17 +91,17 @@
+@@ -89,17 +92,17 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -10160,7 +11053,7 @@ index e1bd28a..b234b6c 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -110,12 +112,12 @@
+@@ -110,12 +113,12 @@
  			<div id="contentwrapper" class="view-col ve-flex-5">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -10179,7 +11072,7 @@ index e1bd28a..b234b6c 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -128,25 +130,25 @@
+@@ -128,25 +131,25 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -10213,7 +11106,7 @@ index e1bd28a..b234b6c 100644
  				</div>
  			</div>
 diff --git a/spells/index.html b/spells/index.html
-index 275cc3a..db632da 100644
+index 275cc3a..aa21327 100644
 --- a/spells/index.html
 +++ b/spells/index.html
 @@ -1,5 +1,5 @@
@@ -10232,16 +11125,17 @@ index 275cc3a..db632da 100644
  <link rel="stylesheet" href="/css/bootstrap.css">
  <link rel="stylesheet" href="/css/main.css">
  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-@@ -32,6 +32,8 @@
+@@ -32,6 +32,9 @@
  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
  <meta name="apple-mobile-web-app-title" content="5etools">
  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#006bc4">
 +<script type="text/javascript" src="/js/zh-tw/site-i18n-data.js"></script>
 +<script type="text/javascript" src="/js/zh-tw/site-i18n.js"></script>
++<script type="text/javascript" src="/js/zh-tw/content-i18n.js"></script>
  <script type="module" defer src="/js/styleswitch.js"></script>
  <script type="text/javascript" defer src="/js/navigation.js"></script>
  <script type="module" defer src="/js/browsercheck.js"></script>
-@@ -54,7 +56,7 @@
+@@ -54,7 +57,7 @@
  
  <header class="ve-mobile-sm__hidden page__header"><div class="container ve-flex-v-baseline"><h1 class="page__title ve-no-wrap ve-my-0"></h1></div></header><nav class="container page__nav" id="navigation"><ul class="nav nav-pills page__nav-inner" id="navbar"></ul></nav>
  
@@ -10251,7 +11145,7 @@ index 275cc3a..db632da 100644
  <script type="text/javascript" defer src="/lib/localforage.js"></script>
  <script type="text/javascript" defer src="/lib/elasticlunr.js"></script>
 diff --git a/statgen.html b/statgen.html
-index 86c71b1..0213eaf 100644
+index 86c71b1..ed9a787 100644
 --- a/statgen.html
 +++ b/statgen.html
 @@ -1,5 +1,5 @@
@@ -10270,7 +11164,7 @@ index 86c71b1..0213eaf 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/fontawesome.css">
-@@ -49,9 +49,11 @@
+@@ -49,9 +49,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -10280,10 +11174,11 @@ index 86c71b1..0213eaf 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -71,8 +73,8 @@
+@@ -71,8 +74,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -10294,7 +11189,7 @@ index 86c71b1..0213eaf 100644
  			</div>
  		</header>
  
-@@ -83,7 +85,7 @@
+@@ -83,7 +86,7 @@
  
  	<div class="container container--main ve-h-100 ve-min-h-0" data-cancer-id="cancer-wrapper">
  		<div class="ve-flex-col ve-w-100 ve-h-100 ve-pt-2" id="statgen-main">
@@ -10408,7 +11303,7 @@ index 10d664f..21aaff6 100644
  
  wb.addEventListener("message", event => {
 diff --git a/tables.html b/tables.html
-index ceb61f4..225b65d 100644
+index ceb61f4..1f3a9e2 100644
 --- a/tables.html
 +++ b/tables.html
 @@ -1,5 +1,5 @@
@@ -10427,7 +11322,7 @@ index ceb61f4..225b65d 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -10437,10 +11332,11 @@ index ceb61f4..225b65d 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -10451,7 +11347,7 @@ index ceb61f4..225b65d 100644
  			</div>
  		</header>
  
-@@ -88,13 +90,13 @@
+@@ -88,13 +91,13 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -10468,7 +11364,7 @@ index ceb61f4..225b65d 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -105,7 +107,7 @@
+@@ -105,7 +108,7 @@
  			<div id="contentwrapper" class="view-col ve-flex-6">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -10477,7 +11373,7 @@ index ceb61f4..225b65d 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -118,17 +120,17 @@
+@@ -118,17 +121,17 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -10501,7 +11397,7 @@ index ceb61f4..225b65d 100644
  				</div>
  			</div>
 diff --git a/trapshazards.html b/trapshazards.html
-index fd6c1df..19582c2 100644
+index fd6c1df..4f071fe 100644
 --- a/trapshazards.html
 +++ b/trapshazards.html
 @@ -1,5 +1,5 @@
@@ -10520,7 +11416,7 @@ index fd6c1df..19582c2 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -10530,10 +11426,11 @@ index fd6c1df..19582c2 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -10544,7 +11441,7 @@ index fd6c1df..19582c2 100644
  			</div>
  		</header>
  
-@@ -88,13 +90,13 @@
+@@ -88,13 +91,13 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -10562,7 +11459,7 @@ index fd6c1df..19582c2 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -105,8 +107,8 @@
+@@ -105,8 +108,8 @@
  			<div id="contentwrapper" class="view-col">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -10573,7 +11470,7 @@ index fd6c1df..19582c2 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -119,17 +121,17 @@
+@@ -119,17 +122,17 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -10597,7 +11494,7 @@ index fd6c1df..19582c2 100644
  				</div>
  			</div>
 diff --git a/variantrules.html b/variantrules.html
-index ccad33c..dd39bed 100644
+index ccad33c..ce0e78d 100644
 --- a/variantrules.html
 +++ b/variantrules.html
 @@ -1,5 +1,5 @@
@@ -10616,7 +11513,7 @@ index ccad33c..dd39bed 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -10626,10 +11523,11 @@ index ccad33c..dd39bed 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -10640,7 +11538,7 @@ index ccad33c..dd39bed 100644
  			</div>
  		</header>
  
-@@ -88,13 +90,13 @@
+@@ -88,13 +91,13 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -10658,7 +11556,7 @@ index ccad33c..dd39bed 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -105,8 +107,8 @@
+@@ -105,8 +108,8 @@
  			<div id="contentwrapper" class="view-col">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -10669,7 +11567,7 @@ index ccad33c..dd39bed 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -119,17 +121,17 @@
+@@ -119,17 +122,17 @@
  				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -10692,7 +11590,7 @@ index ccad33c..dd39bed 100644
  					</div>
  				</div>
  			</div>
-@@ -161,7 +163,7 @@
+@@ -161,7 +164,7 @@
  <script type="text/javascript" defer src="js/listpage.js"></script>
  <script type="text/javascript" defer src="js/filter-common.js"></script>
  <script type="text/javascript" defer src="js/filter-variantrules.js"></script>
@@ -10702,7 +11600,7 @@ index ccad33c..dd39bed 100644
  <script type="text/javascript" defer src="lib/elasticlunr.js"></script>
  
 diff --git a/vehicles.html b/vehicles.html
-index d7f9cef..e53888b 100644
+index d7f9cef..a6f954f 100644
 --- a/vehicles.html
 +++ b/vehicles.html
 @@ -1,5 +1,5 @@
@@ -10721,7 +11619,7 @@ index d7f9cef..e53888b 100644
  
  	<link rel="stylesheet" href="css/bootstrap.css">
  	<link rel="stylesheet" href="css/main.css">
-@@ -47,9 +47,11 @@
+@@ -47,9 +47,12 @@
  	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
  
  	<!-- OpenSearch -->
@@ -10731,10 +11629,11 @@ index d7f9cef..e53888b 100644
  	<script type="text/javascript" src="sw-injector.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n-data.js"></script>
 +	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js"></script>
  
  	<script blocking="render" type="module" src="js/styleswitch.js"></script>
  	<script type="text/javascript" src="js/navigation.js"></script>
-@@ -69,8 +71,8 @@
+@@ -69,8 +72,8 @@
  	<div class="ve-flex-col" data-cancer-id="cancer-header">
  		<header class="ve-mobile-sm__hidden page__header">
  			<div class="container ve-flex-v-baseline">
@@ -10745,7 +11644,7 @@ index d7f9cef..e53888b 100644
  			</div>
  		</header>
  
-@@ -88,13 +90,13 @@
+@@ -88,13 +91,13 @@
  						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
  						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
  					</div>
@@ -10763,7 +11662,7 @@ index d7f9cef..e53888b 100644
  				</div>
  
  				<div id="list" class="list list--stats"></div>
-@@ -105,8 +107,8 @@
+@@ -105,8 +108,8 @@
  			<div id="contentwrapper" class="view-col">
  				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
  					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
@@ -10774,7 +11673,7 @@ index d7f9cef..e53888b 100644
  					</div>
  
  					<div id="sublist" class="list"></div>
-@@ -121,17 +123,17 @@
+@@ -121,17 +124,17 @@
  
  					<table id="pagecontent" class="ve-w-100 ve-stats">
  						<tr><th class="ve-tbl-border" colspan="6"></th></tr>

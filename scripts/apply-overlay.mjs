@@ -48,10 +48,10 @@ const canGitApply = args => {
 const runGitApply = args => execFileSync("git", ["apply", ...args, patchPath], {cwd: upstreamRoot, stdio: "inherit"});
 
 if (canGitApply([])) {
-  runGitApply([]);
-  console.log("Applied zh-TW interface, Class, core-rules, and Quick Reference overlay.");
+	runGitApply([]);
+	console.log("Applied zh-TW interface, Class, core-rules, Quick Reference, and spells overlay.");
 } else if (canGitApply(["--reverse"])) {
-  console.log("zh-TW overlay is already applied; assets were refreshed.");
+	console.log("zh-TW overlay is already applied; assets were refreshed.");
 } else {
   throw new Error("zh-TW overlay does not apply cleanly to the pinned upstream tag.");
 }

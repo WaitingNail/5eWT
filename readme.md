@@ -8,6 +8,8 @@
 - 2014、2024 與非核心 Class：30 個職業、322 個子職業、677 個職業特性、1,441 個子職業特性。
 - 核心規則資料：48 個動作、64 個狀態／疾病／狀態詞、36 個技能、8 種感官及 243 條核心／變體規則。
 - 2014 Quick Reference：5 章、46 個 canonical headers、395 個具名正文區塊。
+- 法術：936 筆法術與 89 筆補充敘述，涵蓋 2014、2024 與此版本收錄的其他來源。
+- 法術清單、篩選器、搜尋、表格欄位與法術卡均顯示繁中，並保留英文名稱供搜尋。
 - 清單、篩選、書籍檢視、來源視窗與 Quick Reference 均可顯示繁中；名稱與正文同時支援繁中／英文搜尋。
 - 英文 `name`、source、UID、URL hash、篩選值與 inline tag lookup 保持 canonical。
 
@@ -23,8 +25,8 @@ npm run setup
 
 1. 將固定版本的上游 clone 到 `vendor/5etools-src`。
 2. 複製預建的 zh-TW sidecar、全站 locale、翻譯工具與 QA 資料。
-3. 套用共用介面、Class、核心規則與 Quick Reference runtime patch。
-4. 執行全站介面、Class、規則、Quick Reference、canonical、inline tag、骰式與數值檢查。
+3. 套用共用介面、Class、核心規則、Quick Reference 與法術 runtime patch。
+4. 執行全站介面、Class、規則、Quick Reference、法術、canonical、inline tag、骰式與數值檢查。
 
 之後可用：
 
@@ -53,7 +55,9 @@ npm run verify
 - `translation/zh-TW/classes/final-qa-report.md`
 - `translation/zh-TW/rules/README.md`
 - `translation/zh-TW/rules/SOURCE-ATTRIBUTION.md`
+- `translation/zh-TW/spells/README.md`
+- `translation/zh-TW/spells/SOURCE-ATTRIBUTION.md`
 
 ## 私人使用限制
 
-Class 初稿參考來源未找到清楚的再利用授權聲明；規則初稿依 CC BY-NC-SA 4.0 使用並已附署名。兩者都含非 SRD 書籍內容，只應留在私人 repository 自用。請勿發布至公開 GitHub Pages、公開 Release、公開 fork 或其他公開下載位置。私人 repository 本身不會擴張你對原作內容的授權。
+Class 初稿參考來源未找到清楚的再利用授權聲明；規則與法術初稿依 CC BY-NC-SA 4.0 使用並已附署名。內容包含非 SRD 書籍資料，只應留在私人 repository 自用。請勿發布至公開 GitHub Pages、公開 Release、公開 fork 或其他公開下載位置。私人 repository 本身不會擴張你對原作內容的授權。

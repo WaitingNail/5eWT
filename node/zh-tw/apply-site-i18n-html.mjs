@@ -23,7 +23,7 @@ const CANONICAL_ATTRIBUTES = [
 ];
 const SKIP_TEXT_TAGS = new Set(["code", "pre", "script", "style", "template", "textarea"]);
 
-const RE_SITE_I18N_SCRIPT = /^[\t ]*<script\b[^>]*\bsrc=(['"])\/?js\/zh-tw\/site-i18n(?:-data)?\.js\1[^>]*><\/script>[\t ]*(?:\r?\n)?/gimu;
+const RE_SITE_I18N_SCRIPT = /^[\t ]*<script\b[^>]*\bsrc=(['"])\/?js\/zh-tw\/(?:site-i18n(?:-data)?|content-i18n)\.js\1[^>]*><\/script>[\t ]*(?:\r?\n)?/gimu;
 
 function escapeRegexp (value) {
 	return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -210,6 +210,7 @@ function injectLocaleScripts ({html, isSeo, page}) {
 	const scriptBlock = [
 		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/site-i18n-data.js"></script>`,
 		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/site-i18n.js"></script>`,
+		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/content-i18n.js"></script>`,
 	].join("\n");
 
 	const anchor = isSeo
@@ -259,9 +260,12 @@ function validatePage ({html, page, isSeo}) {
 	const srcPrefix = isSeo ? "/" : "";
 	const dataSrc = `${srcPrefix}js/zh-tw/site-i18n-data.js`;
 	const runtimeSrc = `${srcPrefix}js/zh-tw/site-i18n.js`;
+	const contentRuntimeSrc = `${srcPrefix}js/zh-tw/content-i18n.js`;
 	if (countOccurrences(html, `src="${dataSrc}"`) !== 1) throw new Error(`${page}: expected exactly one ${dataSrc} script.`);
 	if (countOccurrences(html, `src="${runtimeSrc}"`) !== 1) throw new Error(`${page}: expected exactly one ${runtimeSrc} script.`);
+	if (countOccurrences(html, `src="${contentRuntimeSrc}"`) !== 1) throw new Error(`${page}: expected exactly one ${contentRuntimeSrc} script.`);
 	if (html.indexOf(`src="${dataSrc}"`) > html.indexOf(`src="${runtimeSrc}"`)) throw new Error(`${page}: locale runtime loads before locale data.`);
+	if (html.indexOf(`src="${runtimeSrc}"`) > html.indexOf(`src="${contentRuntimeSrc}"`)) throw new Error(`${page}: content runtime loads before shared locale runtime.`);
 
 	const navigationSrc = `${srcPrefix}js/navigation.js`;
 	const ixNavigation = html.indexOf(`src="${navigationSrc}"`);
