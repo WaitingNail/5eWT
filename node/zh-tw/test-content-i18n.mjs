@@ -26,6 +26,20 @@ assert.equal(I18n.getAbility("wisdom"), "感知");
 assert.equal(I18n.getDamageType("necrotic"), "暗蝕");
 assert.equal(I18n.getCondition("prone|XPHB"), "伏地");
 assert.equal(I18n.getSpellAreaType("E"), "光環");
+assert.equal(I18n.getSizeFull("M"), "中型");
+assert.equal(I18n.getSizeShort("S"), "小");
+assert.equal(I18n.getFeatCategory("EB"), "傳奇恩賜");
+assert.equal(I18n.getOptionalFeatureType("EI"), "魔能祈喚");
+assert.equal(I18n.getSkill("Animal Handling"), "馴獸");
+assert.equal(I18n.getLanguage("Undercommon"), "地底通用語");
+assert.equal(I18n.localizeAbilityText("Str +2; Any +1"), "力量 +2; 任一屬性 +1");
+assert.equal(I18n.localizeSkillText("Choose two: Arcana, History"), "自選二項：奧秘, 歷史");
+assert.equal(I18n.localizeSpeedText("walk 30 ft., fly 60 ft. (hover)"), "步行 30 尺, 飛行 60 尺 (懸浮)");
+assert.equal(
+	I18n.localizeRulesText(`<a href="#strength">Strength</a> Level 4+`),
+	`<a href="#strength">力量</a> 4級以上`,
+	"visible-text localization must not alter canonical link targets",
+);
 
 const canonicalPhb = readJson("data/spells/spells-phb.json");
 const localizedPhb = readJson("data/zh-TW/spells/spells-phb.json");
@@ -113,4 +127,115 @@ for (const file of index.files) {
 
 assert.equal(spellCount, 936);
 assert.equal(fluffCount, 89);
-console.log(`Content localization runtime tests passed (${spellCount} spells; ${fluffCount} spell fluff entries).`);
+
+const characterOptionSpecs = [
+	["races.json", ["race", "subrace"]],
+	["fluff-races.json", ["raceFluff"]],
+	["backgrounds.json", ["background"]],
+	["fluff-backgrounds.json", ["backgroundFluff"]],
+	["feats.json", ["feat"]],
+	["fluff-feats.json", ["featFluff"]],
+	["optionalfeatures.json", ["optionalfeature"]],
+	["fluff-optionalfeatures.json", ["optionalfeatureFluff"]],
+];
+const expectedCharacterOptionCounts = {
+	race: 160,
+	subrace: 98,
+	raceFluff: 221,
+	background: 161,
+	backgroundFluff: 160,
+	feat: 276,
+	featFluff: 41,
+	optionalfeature: 213,
+	optionalfeatureFluff: 1,
+};
+const actualCharacterOptionCounts = {};
+let localizedCharacterOptionNames = 0;
+
+for (const [file, props] of characterOptionSpecs) {
+	const canonicalFile = readJson(`data/${file}`);
+	const localizedFile = readJson(`data/zh-TW/character-options/${file}`);
+	const canonicalSnapshot = structuredClone(canonicalFile);
+	const appliedFile = await I18n.pApplyDataFile({
+		file,
+		data: canonicalFile,
+		fnLoad: async () => localizedFile,
+	});
+
+	assert.deepEqual(canonicalFile, canonicalSnapshot, `${file} runtime mutated canonical data`);
+	for (const prop of props) {
+		assert.equal(appliedFile[prop].length, canonicalFile[prop].length, `${file}/${prop} entity count changed`);
+		actualCharacterOptionCounts[prop] = appliedFile[prop].length;
+		appliedFile[prop].forEach((entity, ix) => {
+			const canonical = canonicalFile[prop][ix];
+			assert.equal(entity.name, canonical.name, `${file}/${prop}/${ix} canonical name changed`);
+			assert.equal(entity.source, canonical.source, `${file}/${prop}/${ix} source changed`);
+			assert.strictEqual(I18n.getCanonicalEntity(entity), canonical, `${file}/${prop}/${ix} canonical entity link changed`);
+			if (canonical.name == null) return;
+			assert.ok(entity._displayName, `${file}/${prop}/${ix} missing localized display name`);
+			assert.notEqual(entity._displayName, canonical.name, `${file}/${prop}/${ix} display name remained English`);
+			localizedCharacterOptionNames++;
+		});
+	}
+
+	if (file === "fluff-races.json") {
+		assert.equal(appliedFile.raceFluffMeta.uncommon.name, "罕見種族");
+		assert.match(appliedFile.raceFluffMeta.monstrous.entries[0], /戰役/u);
+		assert.equal(canonicalFile.raceFluffMeta.uncommon.name, "Uncommon Races");
+	}
+}
+
+assert.deepEqual(actualCharacterOptionCounts, expectedCharacterOptionCounts);
+assert.equal(localizedCharacterOptionNames, 1326);
+
+const duplicateCanonicalSubraces = [
+	{name: "Ixalan", source: "PSX", raceName: "Goblin", raceSource: "PSZ", entries: ["Goblin prose."]},
+	{name: "Ixalan", source: "PSX", raceName: "Vampire", raceSource: "PSZ", entries: ["Vampire prose."]},
+];
+const duplicateLocalizedSubraces = {
+	subrace: [
+		{ENG_name: "Ixalan", name: "地精依夏蘭", source: "PSX", raceName: "Goblin", raceSource: "PSZ", entries: ["地精正文。"]},
+		{ENG_name: "Ixalan", name: "吸血鬼依夏蘭", source: "PSX", raceName: "Vampire", raceSource: "PSZ", entries: ["吸血鬼正文。"]},
+	],
+};
+const duplicateApplied = await I18n.pApplyEntities({
+	prop: "subrace",
+	file: "races.json",
+	entities: duplicateCanonicalSubraces,
+	fnLoad: async () => duplicateLocalizedSubraces,
+});
+assert.deepEqual(duplicateApplied.map(it => it._displayName), ["地精依夏蘭", "吸血鬼依夏蘭"]);
+assert.deepEqual(duplicateApplied.map(it => it.entries[0]), ["地精正文。", "吸血鬼正文。"]);
+
+const canonicalBackgrounds = readJson("data/backgrounds.json");
+const missingCharacterOptionFallback = await I18n.pApplyDataFile({
+	file: "backgrounds.json",
+	data: canonicalBackgrounds,
+	fnLoad: async () => null,
+});
+assert.deepEqual(missingCharacterOptionFallback, canonicalBackgrounds, "missing character-option locale data must safely fall back to English");
+assert.notStrictEqual(missingCharacterOptionFallback, canonicalBackgrounds, "fallback should isolate callers from accidental mutation");
+
+await import("../../js/parser.js");
+await import("../../js/utils.js");
+await import("../../js/render.js");
+const canonicalRaceData = readJson("data/races.json");
+const localizedRaceSidecar = readJson("data/zh-TW/character-options/races.json");
+const localizedRawRaceData = await I18n.pApplyDataFile({
+	file: "races.json",
+	data: canonicalRaceData,
+	fnLoad: async () => localizedRaceSidecar,
+});
+const processedRaceData = DataUtil.race.getPostProcessedSiteJson(localizedRawRaceData, {isAddBaseRaces: true});
+const highElf = processedRaceData.race.find(it => it.name === "Elf (High)" && it.source === "PHB");
+assert.ok(highElf, "expected merged PHB High Elf");
+assert.equal(highElf._displayName, "精靈 (高等)", "merged race must compose localized base and subrace names");
+assert.equal(highElf._baseDisplayName, "精靈");
+assert.equal(I18n.getCanonicalName(highElf), "Elf (High)", "merged race must preserve its canonical English name");
+
+const baseDragonborn = processedRaceData.race.find(it => it.name === "Dragonborn (Base)" && it.source === "PHB");
+assert.ok(baseDragonborn, "expected synthetic PHB Dragonborn base race");
+assert.equal(baseDragonborn._displayName, "龍裔（基礎）");
+assert.equal(baseDragonborn._baseRaceEntries[0].entries[0], "此種族有多個亞種，如下所列：");
+
+console.log(`Content localization runtime tests passed (${spellCount} spells; ${fluffCount} spell fluff entries; 1,331 character-option entities).`);

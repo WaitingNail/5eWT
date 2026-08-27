@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Build guarded zh-TW sidecars for translated 5etools entity data.
 
-The first supported content group is ``spells``.  Every localized entity is
-paired to the pinned v2.33.3 English entity by canonical name and source.  The
-output retains all mechanical and identity fields from English, while replacing
-only renderer-visible prose.  Inline-reference targets are reconciled back to
-their canonical English values before the sidecar is written.
+Supported groups are ``spells`` and ``character-options``. Every localized
+entity is paired to the pinned v2.33.3 English entity by canonical name and
+source. The output retains all mechanical and identity fields from English,
+while replacing only renderer-visible prose. Inline-reference targets are
+reconciled back to their canonical English values before the sidecar is written.
 """
 
 from __future__ import annotations
@@ -190,11 +190,86 @@ SPELL_EXACT_REPAIRS: dict[str, tuple[tuple[str, str], ...]] = {
 }
 
 
+CHARACTER_OPTION_EXACT_REPAIRS: dict[str, tuple[tuple[str, str], ...]] = {
+	"races.json/race/48/entries/0/entries/0": (
+		("在 20 歲左右進入成年", "在十幾歲後期成年"),
+	),
+	"races.json/race/65/entries/1/entries/0": (
+		("超過2萬尺", "超過20,000尺"),
+	),
+	"races.json/race/73/entries/0/entries/0": (
+		("一般能活到150歲", "一般能活到第二個世紀中期"),
+	),
+	"races.json/race/83/entries/0/entries/0": (
+		("人類不到20歲成年，而很少活過100 歲", "人類在十幾歲後期成年，且壽命不滿一個世紀"),
+	),
+	"races.json/race/85/entries/0/entries/0": (
+		("人類不到20歲成年，而很少活過100 歲", "人類在十幾歲後期成年，且壽命不滿一個世紀"),
+	),
+	"races.json/race/126/entries/6/entries/0": (
+		("一個頭、12隻手臂、12條腿", "一個頭、一至兩隻手臂、一至兩條腿"),
+	),
+	"races.json/race/152/entries/2/entries/0": (
+		("維多肯個頭比人類高挑且更為苗條，體重通常小於200磅。", "維多肯高挑而苗條，平均身高6至6½尺，體重通常小於200磅。"),
+	),
+	"fluff-races.json/raceFluff/28/entries/0/entries/0/entries/1/entries/0": (
+		("身高常接近6.5英尺（約1.98米），體重達300磅（約136公斤）或更重", "身高常接近6½尺，體重達300磅或更重"),
+	),
+	"fluff-races.json/raceFluff/37/entries/0/entries/0/entries/2/entries/0": (
+		("300多年前", "三個多世紀前"),
+		("人類和半精靈", "人類和半身人"),
+	),
+	"fluff-races.json/raceFluff/173/entries/0/entries/4/entries/2/rows/5/1": (
+		("4   我發誓絕不讓活人看到我臉上面具之後的樣子。", "我想像自己的衣著是在向全世界展示我榮耀的靈魂，並據此打扮。"),
+	),
+	"backgrounds.json/background/8/entries/1/entries/1": (
+		(
+			"在冒險之餘，你可能會參加體育比賽，以保持舒適的生活方式，如同{@book 玩家手冊|PHB}修整期活動中的\"{@book 專業實踐|PHB|8|專業實踐}\"。",
+			"在冒險之餘，你可能會參加體育比賽，以維持舒適的生活方式，如同\"{@book 專業實踐|PHB|8|專業實踐}\"，即{@book 玩家手冊|PHB}第8章所述的修整期活動。",
+		),
+	),
+	"backgrounds.json/background/10/entries/4/entries/2/rows/1/1": (("2 我", "我"),),
+	"backgrounds.json/background/10/entries/4/entries/2/rows/2/1": (("3 我", "我"),),
+	"backgrounds.json/background/10/entries/4/entries/2/rows/3/1": (("4 我", "我"),),
+	"backgrounds.json/background/10/entries/4/entries/2/rows/4/1": (("5 我", "我"),),
+	"backgrounds.json/background/10/entries/4/entries/2/rows/5/1": (("6 我", "我"),),
+	"backgrounds.json/background/10/entries/4/entries/2/rows/6/1": (("7 我", "我"),),
+	"backgrounds.json/background/10/entries/4/entries/2/rows/7/1": (("8 我", "我"),),
+	"backgrounds.json/background/58/entries/1/entries/0": (
+		("任何人口過萬的城市", "任何人口超過10,000人的城市"),
+	),
+	"backgrounds.json/background/62/entries/1/entries/2": (
+		(
+			"公會常常掌握著龐大的政治資源。當你被指控某項罪名時，公會可以為你提供全面的支援，前提是你必須為自己的清白做出舉證，或是你的罪名必須仍可接受辯護。倘若你身處公會高層，甚至可以藉由公會獲取有力的政治地位。而這些人脈資源都需要你為公會捐贈金錢或魔法物品來維持。",
+			"你每月必須向公會繳交5 gp會費。若你漏繳，必須補齊欠款，才能維持公會對你的好感。",
+		),
+	),
+	"backgrounds.json/background/91/entries/2/entries/4": (
+		("在第5章中描述的{@item 米捷裝置|GGR} {@book 第五章|GGR|4|米捷裝置}是這種裝置的魔法物品版本。", "{@item 米捷裝置|GGR}（見{@book 第五章|GGR|4|米捷裝置}）是這種裝置的魔法版本。"),
+	),
+	"backgrounds.json/background/113/entries/2/entries/1": (
+		("印記城中的12個主要派系", "印記城中的主要派系"),
+	),
+	"feats.json/feat/151/entries/2": (
+		("然後由你決定攻擊者該使用哪粒d20。若不止一個生物決定花費幸運點影響同一個骰值，則幸運點互相抵消，即並不會有額外的d20擲骰行為。", "然後由你決定該攻擊使用攻擊者的擲骰結果還是你的擲骰結果。若不只一個生物花費幸運點影響同一次擲骰結果，這些點數會相互抵消，且不會擲額外的骰子。"),
+	),
+	"feats.json/feat/245/entries/1/entries/0": (
+		("重新投擲D20", "重新投擲該骰"),
+	),
+	"optionalfeatures.json/optionalfeature/182/entries/0": (
+		("你獲得一個d6的卓越骰（或在你以任何其他方式獲得的卓越骰池中增加一顆卓越骰）。此卓越骰可用於啟動你的戰技。卓越骰一經使用即消耗，並在完成一次短休或長休後恢復。", ""),
+	),
+}
+
+
 class ContentLocalizer(CORE.Localizer):
 	_SLOT_ABOVE_RE = re.compile(r"for each slot level above (\d+)(?:st|nd|rd|th)", re.IGNORECASE)
+	_FULLWIDTH_NUMBER_TRANSLATION = str.maketrans("０１２３４５６７８９", "0123456789")
 
 	def localize_string(self, english: str, translated: str, context: str) -> str:
 		translated = self.normalize_text(translated)
+		if not context.startswith("spells/"):
+			translated = translated.translate(self._FULLWIDTH_NUMBER_TRANSLATION)
 		if match := self._SLOT_ABOVE_RE.search(english):
 			base_level = match.group(1)
 			translated, count = re.subn(
@@ -211,7 +286,10 @@ class ContentLocalizer(CORE.Localizer):
 					count=1,
 				)
 
-		for source, replacement in SPELL_EXACT_REPAIRS.get(context, ()):
+		for source, replacement in (
+			*SPELL_EXACT_REPAIRS.get(context, ()),
+			*CHARACTER_OPTION_EXACT_REPAIRS.get(context, ()),
+		):
 			if source not in translated:
 				raise ValueError(f"Stale spell source repair at {context}: {source!r} not found")
 			translated = translated.replace(source, replacement)
@@ -226,7 +304,7 @@ class ContentLocalizer(CORE.Localizer):
 
 def parse_args() -> argparse.Namespace:
 	parser = argparse.ArgumentParser()
-	parser.add_argument("group", choices=("spells",))
+	parser.add_argument("group", choices=("spells", "character-options"))
 	parser.add_argument(
 		"--source-dir",
 		type=Path,
@@ -263,6 +341,33 @@ def get_spell_specs() -> list[tuple[str, tuple[str, ...]]]:
 	]
 
 
+def get_group_config(group: str) -> dict:
+	if group == "spells":
+		return {
+			"folder": "spells",
+			"specs": get_spell_specs(),
+			"sharedProps": {},
+			"reportName": "spell-import-report.json",
+		}
+	if group == "character-options":
+		return {
+			"folder": "character-options",
+			"specs": [
+				("races.json", ("race", "subrace")),
+				("fluff-races.json", ("raceFluff",)),
+				("backgrounds.json", ("background",)),
+				("fluff-backgrounds.json", ("backgroundFluff",)),
+				("feats.json", ("feat",)),
+				("fluff-feats.json", ("featFluff",)),
+				("optionalfeatures.json", ("optionalfeature",)),
+				("fluff-optionalfeatures.json", ("optionalfeatureFluff",)),
+			],
+			"sharedProps": {"fluff-races.json": ("raceFluffMeta",)},
+			"reportName": "character-options-import-report.json",
+		}
+	raise ValueError(f"Unsupported content group: {group}")
+
+
 def localize_spell_time(localizer, english: dict, translated: dict, localized: dict, context: str) -> None:
 	"""Translate only renderer-facing condition/note strings inside spell time."""
 	english_times = english.get("time")
@@ -290,7 +395,15 @@ def localize_spell_time(localizer, english: dict, translated: dict, localized: d
 			)
 
 
-def build_file(localizer, english_data: dict, translated_data: dict, props: tuple[str, ...], relative: str):
+def build_file(
+	localizer,
+	english_data: dict,
+	translated_data: dict,
+	props: tuple[str, ...],
+	relative: str,
+	*,
+	shared_props: tuple[str, ...] = (),
+):
 	output = {
 		"_meta": {
 			"locale": "zh-TW",
@@ -320,13 +433,41 @@ def build_file(localizer, english_data: dict, translated_data: dict, props: tupl
 					localize_spell_time(localizer, english, translated, localized, context)
 			output[prop].append(localized)
 		counts[prop] = len(output[prop])
+	for prop in shared_props:
+		if prop not in english_data or prop not in translated_data:
+			continue
+		if isinstance(english_data[prop], dict) and isinstance(translated_data[prop], dict):
+			output[prop] = {
+				key: localizer.localize_node(
+					value,
+					translated_data[prop].get(key),
+					f"{relative}/{prop}/{key}",
+					prop,
+				)
+				for key, value in english_data[prop].items()
+			}
+		else:
+			output[prop] = localizer.localize_node(
+				english_data[prop],
+				translated_data[prop],
+				f"{relative}/{prop}",
+				prop,
+			)
 	return output, counts
 
 
 _VISIBLE_DIRECT_KEYS = CORE.DIRECT_VISIBLE_KEYS | {"m", "condition", "note", "label"}
 
 
-def validate_content_shape(english, localized, context: str, failures: list[dict], *, parent_key: str | None = None) -> None:
+def validate_content_shape(
+	english,
+	localized,
+	context: str,
+	failures: list[dict],
+	*,
+	parent_key: str | None = None,
+	is_top_entity: bool = False,
+) -> None:
 	"""Require every non-visible leaf to remain byte-for-byte equivalent."""
 	if isinstance(english, list):
 		if not isinstance(localized, list) or len(english) != len(localized):
@@ -340,7 +481,7 @@ def validate_content_shape(english, localized, context: str, failures: list[dict
 		if not isinstance(localized, dict):
 			failures.append({"context": context, "reason": "object-shape"})
 			return
-		if isinstance(english.get("name"), str) and localized.get("ENG_name") != english["name"]:
+		if is_top_entity and isinstance(english.get("name"), str) and localized.get("ENG_name") != english["name"]:
 			failures.append({"context": f"{context}/name", "reason": "missing-english-name-backup"})
 		allowed_extra = {"ENG_name", "ENG_shortName"}
 		for key in localized.keys() - english.keys() - allowed_extra:
@@ -377,16 +518,26 @@ def finalize_qa(localizer) -> dict:
 	report["numericUnresolved"] = numeric_unresolved
 
 	untranslated_raw = report.pop("untranslatedVisibleStrings")
+	def is_proper_name_list(item: dict) -> bool:
+		parts = [part.strip() for part in item.get("english", "").split(",")]
+		return len(parts) >= 5 and all(re.fullmatch(r"[A-Z][A-Za-z'’ -]*", part) for part in parts)
+
+	def is_intentional_untranslated(item: dict) -> bool:
+		return CORE.is_intentional_untranslated(item) or is_proper_name_list(item)
+
 	intentional = [
-		{**item, "reason": "mechanical/numeric text retained"}
+		{
+			**item,
+			"reason": "proper-name list retained" if is_proper_name_list(item) else "mechanical/numeric text retained",
+		}
 		for item in untranslated_raw
-		if CORE.is_intentional_untranslated(item)
+		if is_intentional_untranslated(item)
 	]
 	report["untranslatedVisibleStringsRawCount"] = len(untranslated_raw)
 	report["intentionalUntranslatedStrings"] = intentional
 	report["untranslatedVisibleStrings"] = [
 		item for item in untranslated_raw
-		if not CORE.is_intentional_untranslated(item)
+		if not is_intentional_untranslated(item)
 	]
 
 	tag_shape_raw = report.pop("tagShapeMismatches")
@@ -406,7 +557,8 @@ def finalize_qa(localizer) -> dict:
 def main() -> None:
 	args = parse_args()
 	source_root = args.source_dir.resolve()
-	specs = get_spell_specs()
+	config = get_group_config(args.group)
+	specs = config["specs"]
 	localizer = ContentLocalizer()
 
 	guards = {}
@@ -443,17 +595,39 @@ def main() -> None:
 			read_json(source_root / "data" / relative),
 			props,
 			relative,
+			shared_props=config["sharedProps"].get(relative, ()),
 		)
 		outputs[relative] = output
 		counts.update(file_counts)
-		write_json(OUTPUT_ROOT / relative, output)
+		write_json(OUTPUT_ROOT / config["folder"] / Path(relative).name, output)
 
 	canonical_failures = []
-	for relative, _ in specs:
+	for relative, props in specs:
 		english = read_json(UPSTREAM_ROOT / relative)
 		localized = outputs[relative]
-		for key, value in english.items():
-			validate_content_shape(value, localized.get(key), f"{relative}/{key}", canonical_failures, parent_key=key)
+		for prop in props:
+			english_entities = english.get(prop, [])
+			localized_entities = localized.get(prop, [])
+			if len(english_entities) != len(localized_entities):
+				canonical_failures.append({"context": f"{relative}/{prop}", "reason": "array-shape"})
+				continue
+			for ix, (english_entity, localized_entity) in enumerate(zip(english_entities, localized_entities)):
+				validate_content_shape(
+					english_entity,
+					localized_entity,
+					f"{relative}/{prop}/{ix}",
+					canonical_failures,
+					parent_key=prop,
+					is_top_entity=True,
+				)
+		for prop in config["sharedProps"].get(relative, ()):
+			validate_content_shape(
+				english.get(prop),
+				localized.get(prop),
+				f"{relative}/{prop}",
+				canonical_failures,
+				parent_key=prop,
+			)
 
 	qa = finalize_qa(localizer)
 	blocking_qa_keys = (
@@ -479,10 +653,10 @@ def main() -> None:
 			"translationSourceCommit": SOURCE_COMMIT,
 			"license": "CC BY-NC-SA 4.0",
 		},
-		"files": [relative.removeprefix("spells/") for relative, _ in specs],
+		"files": [Path(relative).name for relative, _ in specs],
 		"entityCounts": dict(counts),
 	}
-	write_json(OUTPUT_ROOT / "spells" / "index.json", index)
+	write_json(OUTPUT_ROOT / config["folder"] / "index.json", index)
 
 	report = {
 		"status": status,
@@ -498,7 +672,7 @@ def main() -> None:
 		"canonicalFailures": canonical_failures,
 		"qa": qa,
 	}
-	write_json(TRANSLATION_ROOT / "spells" / "generated" / "spell-import-report.json", report)
+	write_json(TRANSLATION_ROOT / config["folder"] / "generated" / config["reportName"], report)
 
 	print(json.dumps({
 		"status": status,

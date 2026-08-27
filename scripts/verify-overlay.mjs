@@ -12,6 +12,10 @@ const required = [
 	"variantrules.html",
 	"quickreference.html",
 	"spells.html",
+	"races.html",
+	"backgrounds.html",
+	"feats.html",
+	"optionalfeatures.html",
 	"data/zh-TW/class.json",
 	"data/zh-TW/class/index.json",
 	"data/zh-TW/site.json",
@@ -22,6 +26,11 @@ const required = [
 	"data/zh-TW/spells/spells-phb.json",
 	"data/zh-TW/spells/spells-xphb.json",
 	"data/zh-TW/spells/fluff-spells-xphb.json",
+	"data/zh-TW/character-options/index.json",
+	"data/zh-TW/character-options/races.json",
+	"data/zh-TW/character-options/backgrounds.json",
+	"data/zh-TW/character-options/feats.json",
+	"data/zh-TW/character-options/optionalfeatures.json",
 	"js/zh-tw/class-i18n.js",
 	"js/zh-tw/class-body-i18n.js",
 	"js/zh-tw/site-i18n.js",
@@ -37,6 +46,7 @@ const required = [
 	"node/zh-tw/validate-full-class-translations.mjs",
 	"node/zh-tw/validate-core-rules.mjs",
 	"node/zh-tw/validate-content-translations.mjs",
+	"node/zh-tw/validate-character-options-translations.mjs",
 ];
 
 for (const relativePath of required) {
@@ -60,6 +70,17 @@ for (const script of [
 	"js/filter-spells.js",
 	"js/render-spells.js",
 	"js/spells.js",
+	"js/backgrounds.js",
+	"js/feats.js",
+	"js/filter-backgrounds.js",
+	"js/filter-common.js",
+	"js/filter-feats.js",
+	"js/filter-optionalfeatures.js",
+	"js/filter-races.js",
+	"js/filter/filter/filter-filter-ability-score.js",
+	"js/optionalfeatures.js",
+	"js/races.js",
+	"js/render-races.js",
 	"js/utils.js",
 	"js/utils-list.js",
 	"js/utils-dataloader/utils-dataloader-dataloader.js",
@@ -82,6 +103,7 @@ runNode("node/zh-tw/validate-core-rules.mjs");
 runNode("node/zh-tw/test-rules-i18n.mjs");
 runNode("node/zh-tw/test-quick-reference-i18n.mjs");
 runNode("node/zh-tw/validate-content-translations.mjs");
+runNode("node/zh-tw/validate-character-options-translations.mjs");
 runNode("node/zh-tw/test-content-i18n.mjs");
 execFileSync("git", ["diff", "--check"], {cwd: upstreamRoot, stdio: "inherit"});
-console.log("zh-TW interface, Class, core-rules, Quick Reference, and spells overlay verification passed.");
+console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, and character-options overlay verification passed.");

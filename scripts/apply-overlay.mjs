@@ -49,7 +49,7 @@ const runGitApply = args => execFileSync("git", ["apply", ...args, patchPath], {
 
 if (canGitApply([])) {
 	runGitApply([]);
-	console.log("Applied zh-TW interface, Class, core-rules, Quick Reference, and spells overlay.");
+	console.log("Applied zh-TW interface, Class, core-rules, Quick Reference, spells, and character-options overlay.");
 } else if (canGitApply(["--reverse"])) {
 	console.log("zh-TW overlay is already applied; assets were refreshed.");
 } else {

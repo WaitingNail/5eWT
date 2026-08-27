@@ -65,12 +65,212 @@
 		};
 
 		static _ABILITIES = {
+			str: "力量",
+			dex: "敏捷",
+			con: "體質",
+			int: "智力",
+			wis: "感知",
+			cha: "魅力",
 			strength: "力量",
 			dexterity: "敏捷",
 			constitution: "體質",
 			intelligence: "智力",
 			wisdom: "感知",
 			charisma: "魅力",
+		};
+
+		static _SKILLS = {
+			acrobatics: "特技",
+			"animal handling": "馴獸",
+			arcana: "奧秘",
+			athletics: "運動",
+			deception: "欺瞞",
+			history: "歷史",
+			insight: "洞悉",
+			intimidation: "威嚇",
+			investigation: "調查",
+			medicine: "醫藥",
+			nature: "自然",
+			perception: "察覺",
+			performance: "表演",
+			persuasion: "遊說",
+			religion: "宗教",
+			"sleight of hand": "巧手",
+			stealth: "隱匿",
+			survival: "求生",
+		};
+
+		static _LANGUAGES = {
+			abyssal: "深淵語",
+			celestial: "天界語",
+			choose: "自選",
+			common: "通用語",
+			"deep speech": "地底深語",
+			draconic: "龍語",
+			dwarvish: "矮人語",
+			elvish: "精靈語",
+			giant: "巨人語",
+			gnomish: "侏儒語",
+			goblin: "地精語",
+			halfling: "半身人語",
+			infernal: "煉獄語",
+			orc: "獸人語",
+			other: "其他",
+			primordial: "原初語",
+			sylvan: "木族語",
+			undercommon: "地底通用語",
+			anystandard: "任一標準語言",
+			anyexotic: "任一奇異語言",
+			anyrare: "任一稀有語言",
+			anylanguage: "任一語言",
+		};
+
+		static _SIZES_FULL = {
+			F: "極微型",
+			D: "微型",
+			T: "微型",
+			S: "小型",
+			M: "中型",
+			L: "大型",
+			H: "巨型",
+			G: "超巨型",
+			C: "超巨型",
+			V: "不定",
+		};
+
+		static _SIZES_SHORT = {
+			F: "極微",
+			D: "微",
+			T: "微",
+			S: "小",
+			M: "中",
+			L: "大",
+			H: "巨",
+			G: "超巨",
+			C: "超巨",
+			V: "不定",
+		};
+
+		static _FEAT_CATEGORIES = {
+			D: "龍紋",
+			DG: "黑暗恩賜",
+			G: "一般",
+			O: "起源",
+			FS: "戰鬥風格",
+			"FS:P": "戰鬥風格替換（聖武士）",
+			"FS:R": "戰鬥風格替換（遊俠）",
+			EB: "傳奇恩賜",
+			Other: "其他",
+		};
+
+		static _OPTIONAL_FEATURE_TYPES = {
+			AI: "奇械師注法",
+			ED: "元素宗派",
+			EI: "魔能祈喚",
+			MM: "超魔法",
+			MV: "戰技",
+			"MV:B": "戰技（戰鬥大師）",
+			"MV:C2-UA": "戰技（騎士 V2，UA）",
+			"AS:V1-UA": "奧術射擊 V1（UA）",
+			"AS:V2-UA": "奧術射擊 V2（UA）",
+			AS: "奧術射擊",
+			OTH: "其他",
+			"FS:F": "戰鬥風格（戰士）",
+			"FS:B": "戰鬥風格（吟遊詩人）",
+			"FS:P": "戰鬥風格（聖武士）",
+			"FS:R": "戰鬥風格（遊俠）",
+			PB: "契約恩賜",
+			OR: "命名術共鳴",
+			RN: "符文騎士符文",
+			AF: "煉金配方",
+			TT: "旅者訣竅",
+			RP: "聲望福利",
+		};
+
+		static _FILTER_LABELS = {
+			"Ability": "屬性",
+			"Ability Bonus": "屬性加值",
+			"Ability Scores": "屬性值",
+			"Ability Scores (Including Subspecies)": "屬性值（含亞種）",
+			"Additional Spells": "額外法術",
+			"Adult Age": "成年年齡",
+			"Amphibious": "兩棲",
+			"Any": "任意",
+			"Any From Category": "該類別任一項",
+			"Armor Proficiencies": "護甲熟練",
+			"Armor Proficiency": "護甲訓練",
+			"Base Species": "基礎種族",
+			"Benefits": "增益",
+			"Blindsight": "盲視",
+			"Category": "類別",
+			"Choose": "自選",
+			"Climb": "攀爬",
+			"Condition Immunity": "狀態免疫",
+			"Creature Type": "生物類型",
+			"Damage": "傷害",
+			"Damage Immunity": "傷害免疫",
+			"Damage Resistance": "傷害抗性",
+			"Darkvision": "黑暗視覺",
+			"Dragonmark": "龍紋",
+			"Feat": "專長",
+			"Feats": "專長",
+			"Feature": "特性",
+			"Feature Type": "特性類型",
+			"Fly": "飛行",
+			"Grants Additional Spells": "賦予額外法術",
+			"Has Images": "有圖片",
+			"Has Info": "有資訊",
+			"Improved Resting": "強化休息",
+			"Key Species": "主要種族",
+			"Language Proficiency": "語言熟練",
+			"Language Proficiencies": "語言熟練項",
+			"Languages": "語言",
+			"Legacy": "舊版",
+			"Level": "等級",
+			"Lineage": "血統",
+			"Miscellaneous": "雜項",
+			"Modified Copy": "修改版複本",
+			"Monstrous Race": "怪物種族",
+			"Monstrous Species": "怪物種族",
+			"Natural Armor": "天生護甲",
+			"Natural Weapon": "天生武器",
+			"None": "無",
+			"Not Repeatable": "不可重複選擇",
+			"NPC Race": "NPC 種族",
+			"NPC Species": "NPC 種族",
+			"Other": "其他",
+			"Other Benefits": "其他增益",
+			"Otherworldly Patron": "異界宗主",
+			"Pact Boon": "契約恩賜",
+			"Powerful Build": "強力體格",
+			"Prerequisite": "先決條件",
+			"Proficiency": "熟練",
+			"Psionics": "靈能",
+			"Reprinted": "已重印",
+			"Repeatable": "可重複選擇",
+			"Size": "體型",
+			"Skill Proficiencies": "技能熟練項",
+			"Skill Proficiency": "技能熟練",
+			"Special": "特殊",
+			"Speed": "速度",
+			"Spell": "法術",
+			"Spellcasting": "施法",
+			"Superior Darkvision": "高等黑暗視覺",
+			"Sunlight Sensitivity": "陽光敏感",
+			"Swim": "游泳",
+			"Tool Proficiencies": "工具熟練項",
+			"Tool Proficiency": "工具熟練",
+			"Traits": "特質",
+			"Uncommon Race": "罕見種族",
+			"Uncommon Species": "罕見種族",
+			"Vulnerability": "易傷",
+			"Resistance": "抗性",
+			"Immunity": "免疫",
+			"Walk": "步行",
+			"Walk (Fast)": "步行（快速）",
+			"Walk (Slow)": "步行（緩慢）",
+			"Weapon Proficiencies": "武器熟練",
+			"Weapon Proficiency": "武器熟練",
 		};
 
 		static _DAMAGE_TYPES = {
@@ -195,6 +395,26 @@
 		static _PROP_TO_FOLDER = new Map([
 			["spell", "spells"],
 			["spellFluff", "spells"],
+			["race", "character-options"],
+			["subrace", "character-options"],
+			["raceFluff", "character-options"],
+			["background", "character-options"],
+			["backgroundFluff", "character-options"],
+			["feat", "character-options"],
+			["featFluff", "character-options"],
+			["optionalfeature", "character-options"],
+			["optionalfeatureFluff", "character-options"],
+		]);
+
+		static _FILE_TO_PROPS = new Map([
+			["races.json", ["race", "subrace"]],
+			["fluff-races.json", ["raceFluff"]],
+			["backgrounds.json", ["background"]],
+			["fluff-backgrounds.json", ["backgroundFluff"]],
+			["feats.json", ["feat"]],
+			["fluff-feats.json", ["featFluff"]],
+			["optionalfeatures.json", ["optionalfeature"]],
+			["fluff-optionalfeatures.json", ["optionalfeatureFluff"]],
 		]);
 
 		static _CONTENT_KEYS = new Set([
@@ -233,9 +453,13 @@
 			return root.Renderer?.get?.().baseUrl || "";
 		}
 
-		static _getEntityKey ({prop, name, source}) {
-			if (!prop || typeof name !== "string" || typeof source !== "string") return null;
-			return `${prop}\u0000${name.trim().toLowerCase()}\u0000${source.trim().toLowerCase()}`;
+		static _getEntityKey ({prop, entity}) {
+			if (!prop || !entity || typeof entity !== "object" || typeof entity.source !== "string") return null;
+			const name = entity.ENG_name ?? entity.name ?? "";
+			if (typeof name !== "string") return null;
+			const parts = [prop, name, entity.source];
+			if (prop === "subrace") parts.push(entity.raceName || "", entity.raceSource || "");
+			return parts.map(it => `${it}`.trim().toLowerCase()).join("\u0000");
 		}
 
 		static async _pLoadFile ({folder, file, fnLoad = null}) {
@@ -261,7 +485,7 @@
 		static _getLocalizedIndex ({prop, sidecar}) {
 			const out = new Map();
 			for (const entity of sidecar?.[prop] || []) {
-				const key = this._getEntityKey({prop, name: entity?.ENG_name, source: entity?.source});
+				const key = this._getEntityKey({prop, entity});
 				if (!key || out.has(key)) continue;
 				out.set(key, entity);
 			}
@@ -370,10 +594,40 @@
 
 			return entities.map(entity => {
 				const canonical = this.getCanonicalEntity(entity);
-				const key = this._getEntityKey({prop, name: canonical?.name, source: canonical?.source});
+				const key = this._getEntityKey({prop, entity: canonical});
 				const localized = key ? localizedIndex.get(key) : null;
 				return localized ? this._getLocalizedEntity({canonical, localized}) : this._copy(canonical);
 			});
+		}
+
+		static async pApplyDataFile ({file, data, fnLoad = null}) {
+			const props = this._FILE_TO_PROPS.get(file);
+			if (!props || !data || typeof data !== "object") return data;
+
+			const folder = "character-options";
+			const sidecar = await this._pLoadFile({folder, file, fnLoad});
+			if (!sidecar) return this._copy(data);
+
+			const out = this._copy(data);
+			for (const prop of props) {
+				if (!Array.isArray(data[prop])) continue;
+				out[prop] = await this.pApplyEntities({
+					prop,
+					file,
+					entities: data[prop],
+					fnLoad: async () => sidecar,
+				});
+			}
+
+			if (file === "fluff-races.json" && data.raceFluffMeta && sidecar.raceFluffMeta) {
+				out.raceFluffMeta = this._copy(data.raceFluffMeta);
+				for (const [key, canonical] of Object.entries(data.raceFluffMeta)) {
+					if (!(key in sidecar.raceFluffMeta)) continue;
+					out.raceFluffMeta[key] = this._overlayContentValue({canonical, localized: sidecar.raceFluffMeta[key]});
+				}
+			}
+
+			return out;
 		}
 
 		static getCanonicalEntity (entity) {
@@ -520,7 +774,136 @@
 		}
 
 		static getAbility (ability) {
-			return this._ABILITIES[ability] || ability || "";
+			return this._ABILITIES[`${ability || ""}`.toLowerCase()] || ability || "";
+		}
+
+		static getSkill (skill) {
+			return this._SKILLS[`${skill || ""}`.split("|")[0].toLowerCase()] || `${skill || ""}`.split("|")[0];
+		}
+
+		static getLanguage (language) {
+			return this._LANGUAGES[`${language || ""}`.split("|")[0].replaceAll(" ", "").toLowerCase()]
+				|| this._LANGUAGES[`${language || ""}`.split("|")[0].toLowerCase()]
+				|| `${language || ""}`.split("|")[0];
+		}
+
+		static getSizeFull (size) {
+			return this._SIZES_FULL[size] || size || "";
+		}
+
+		static getSizeShort (size) {
+			return this._SIZES_SHORT[size] || size || "";
+		}
+
+		static getFeatCategory (category) {
+			return this._FEAT_CATEGORIES[category] || category || "其他";
+		}
+
+		static getOptionalFeatureType (type) {
+			return this._OPTIONAL_FEATURE_TYPES[type] || type || "其他";
+		}
+
+		static getFilterLabel (label) {
+			return this._FILTER_LABELS[label] || label || "";
+		}
+
+		static _replaceVisibleText (text, replacements) {
+			const replacePart = part => replacements.reduce((out, [pattern, replacement]) => out.replace(pattern, replacement), part);
+			if (!text.includes("<")) return replacePart(text);
+			return text
+				.split(/(<[^>]*>)/g)
+				.map(part => part.startsWith("<") ? part : replacePart(part))
+				.join("");
+		}
+
+		static localizeAbilityText (text) {
+			if (typeof text !== "string") return text;
+			const replacements = [
+				[/Ability Scores?/gi, "屬性值"],
+				[/Choose one of:/gi, "選擇其一："],
+				[/Any Other/gi, "任一其他屬性"],
+				[/Origin\s*\(Any\)/gi, "出身（任意）"],
+				[/Any(?=\s*[+−-]\s*\d)/gi, "任一屬性"],
+				[/Origin/gi, "出身"],
+				[/Lineage/gi, "血統"],
+				[/None/gi, "無"],
+				[/Strength|\bStr\b/gi, "力量"],
+				[/Dexterity|\bDex\b/gi, "敏捷"],
+				[/Constitution|\bCon\b/gi, "體質"],
+				[/Intelligence|\bInt\b/gi, "智力"],
+				[/Wisdom|\bWis\b/gi, "感知"],
+				[/Charisma|\bCha\b/gi, "魅力"],
+			];
+			return this._replaceVisibleText(text, replacements);
+		}
+
+		static localizeSkillText (text) {
+			if (typeof text !== "string") return text;
+			const replacements = Object.entries(this._SKILLS)
+				.sort(([a], [b]) => b.length - a.length)
+				.map(([english, translated]) => [new RegExp(`\\b${english.replaceAll(" ", "\\s+")}\\b`, "gi"), translated]);
+			replacements.unshift(
+				[/Choose\s+(one|two|three|four)\s*:\s*/gi, (_, count) => `自選${({one: "一", two: "二", three: "三", four: "四"})[count.toLowerCase()] || count}項：`],
+				[/Any Skill/gi, "任一技能"],
+				[/Any/gi, "任意"],
+				[/None/gi, "無"],
+			);
+			return this._replaceVisibleText(text, replacements);
+		}
+
+		static localizeSpeedText (text) {
+			if (typeof text !== "string") return text;
+			return this._replaceVisibleText(text, [
+				[/\bwalk(?:ing)?\b/gi, "步行"],
+				[/\bclimb(?:ing)?\b/gi, "攀爬"],
+				[/\bfly(?:ing)?\b/gi, "飛行"],
+				[/\bswim(?:ming)?\b/gi, "游泳"],
+				[/\bburrow(?:ing)?\b/gi, "掘穴"],
+				[/\bhover\b/gi, "懸浮"],
+				[/\bft\.?/gi, "尺"],
+				[/\bfeet\b/gi, "尺"],
+			]);
+		}
+
+		static localizeCreatureTypeText (text) {
+			if (typeof text !== "string") return text;
+			const replacements = Object.entries(this._CREATURE_TYPES)
+				.sort(([a], [b]) => b.length - a.length)
+				.map(([english, translated]) => [new RegExp(`\\b${english}s?\\b`, "gi"), translated]);
+			replacements.push([/\bor\b/gi, "或"]);
+			return this._replaceVisibleText(text, replacements);
+		}
+
+		static localizeRulesText (text) {
+			if (typeof text !== "string") return text;
+			const replacements = [
+				[/Prerequisites?:/gi, "先決條件："],
+				[/\bLvl\s+(\d+)/gi, "$1級"],
+				[/\bLevel\s+(\d+)\+/gi, "$1級以上"],
+				[/\bLevel\s+(\d+)/gi, "$1級"],
+				[/\(No Class\)/gi, "（無職業）"],
+				[/Pact of the Blade/gi, "魔刃魔契"],
+				[/Pact of the Chain/gi, "鎖鏈魔契"],
+				[/Pact of the Talisman/gi, "護符魔契"],
+				[/Pact of the Tome/gi, "魔典魔契"],
+				[/Any Dragonmark Feat/gi, "任一龍紋專長"],
+				[/Any Dark Gift Feat/gi, "任一黑暗恩賜專長"],
+				[/Any General Feat/gi, "任一一般專長"],
+				[/Any Origin Feat/gi, "任一起源專長"],
+				[/Any Fighting Style Feat/gi, "任一戰鬥風格專長"],
+				[/Any Epic Boon Feat/gi, "任一傳奇恩賜專長"],
+				[/The ability to cast at least one spell/gi, "能夠施展至少一個法術"],
+				[/Spellcasting or Pact Magic Feature/gi, "施法或契約魔法特性"],
+				[/Spellcasting Feature/gi, "施法特性"],
+				[/Psionic Talent feature or Wild Talent feat/gi, "靈能天賦特性或荒野天賦專長"],
+				[/ or higher/gi, "以上"],
+				[/Spellcasting Focus/gi, "施法法器"],
+				[/Spellcasting/gi, "施法"],
+				[/Psionics/gi, "靈能"],
+				[/Proficiency/gi, "熟練"],
+				[/Special/gi, "特殊"],
+			];
+			return this.localizeAbilityText(this._replaceVisibleText(text, replacements));
 		}
 
 		static getDamageType (type) {
