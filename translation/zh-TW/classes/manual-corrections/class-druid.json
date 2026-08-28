@@ -1,0 +1,117 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"scope": "2014/classSource PHB rule-accuracy audit"
+	},
+	"corrections": [
+		{
+			"path": "/classFeature/4/entries/3",
+			"expected": "你可以在數個小時裡保持著野獸形態，其持續時間具體數值等於你的德魯伊職業等級的一半（向下取整）。你可以在持續時間過後恢復原形，或者你也可以再次使用此特性來維持變形。另外，你也可以在你的回合內用一個附贈動作來恢復原形。在你陷入{@condition unconscious||昏迷}、生命值為0或者死亡的時候，變形將自動解除。",
+			"value": "你可以維持野獸形態若干小時，時數等於你德魯伊等級的一半（向下取整）。此後你會變回原形，除非再消耗一次此特性的使用次數。你也可以在自己的回合中用附贈動作提前變回原形。若你陷入{@condition unconscious||昏迷}、生命值降至0或死亡，則會自動變回原形。",
+			"reason": "原文在持續時間結束時必定變回原形；譯文的「可以」誤寫成可選。"
+		},
+		{
+			"path": "/subclassFeature/15/entries/0",
+			"expected": "從2級開始，你被無形的、死靈的孢子環繞著。它們是無害的，除非你把它們釋放到附近的生物上。當一個生物進入你周圍10尺範圍內的一處空間時、或在其中開始其回合時，你可以使用反應來激發孢子環繞特性。迫使對方進行一次對抗你法術豁免DC的體質豁免，豁免失敗將受到{@damage 1d4}點暗蝕傷害。這一暗蝕傷害在6級時將提高到{@damage 1d6}，在10級時將提高到{@damage 1d8}，在14級時提高到 {@damage 1d10}。",
+			"value": "第2級起，你周圍環繞著無形的暗蝕孢子；除非你將它們釋放到附近生物身上，否則孢子無害。當一個你能看見的生物移入距你10尺內的一處空間，或在該處開始其回合時，你可以用反應對其造成{@damage 1d4}點暗蝕傷害，除非它成功通過一次對抗你法術豁免DC的體質豁免。此暗蝕傷害在第6級提高為{@damage 1d6}、第10級提高為{@damage 1d8}，並在第14級提高為{@damage 1d10}。",
+			"reason": "補回觸發生物必須是你能看見的目標條件。"
+		},
+		{
+			"path": "/classFeature/20/entries/0",
+			"expected": "你學會一個額外的{@filter 德魯伊法術列表|spells|class=Druid}中的戲法。此外，你和自然的神秘連線讓你在智力（{@skill Arcana|XPHB|奧秘}或{@skill Nature|XPHB|自然}）檢定上獲得加值。加值等於你的感知調整值（最小為1）。",
+			"value": "你從{@filter 德魯伊法術列表|spells|class=Druid}中額外學會一道戲法。此外，你與自然的神秘連結使你的智力（{@skill Arcana|XPHB|奧秘}或{@skill Nature|XPHB|自然}）檢定獲得加值。該加值等於你的感知調整值（至少為+1）。",
+			"reason": "補回 minimum bonus of +1 的正號，明確表示這是檢定加值。"
+		},
+		{
+			"path": "/classFeature/22/entries/1/entries/2/entries/0",
+			"expected": "你準備可供你以此特性施展的一環及更高環階的{@filter 德魯伊法術列表|spells|class=Druid}。為此，選擇4道德魯伊法術。推薦選擇{@spell Animal Friendship|XPHB|化獸為友}、{@spell Cure Wounds|XPHB|療傷術}、{@spell Faerie Fire|XPHB|妖火}和{@spell Thunderwave|XPHB|雷鳴波}。",
+			"value": "你準備一份可供此特性施展的1環及更高環階法術列表。起始時，從{@filter 德魯伊法術列表|spells|class=Druid}中選擇四道1環法術。推薦選擇{@spell Animal Friendship|XPHB|化獸為友}、{@spell Cure Wounds|XPHB|療傷術}、{@spell Faerie Fire|XPHB|妖火}和{@spell Thunderwave|XPHB|雷鳴波}。",
+			"reason": "補回起始四道法術必須全為 1 環的限制。"
+		},
+		{
+			"path": "/classFeature/23/entries/0",
+			"expected": "你受到了戰鬥的訓練，獲得{@filter 軍用武器|items|type=martial weapon}熟練和{@filter 中甲|items|type=Medium Armor}熟練。",
+			"value": "你受過戰鬥訓練，獲得{@filter 軍用武器|items|type=martial weapon}熟練以及{@filter 中甲|items|type=Medium Armor}受訓。",
+			"reason": "2024 規則區分武器熟練與護甲受訓，修正中甲欄位用語。"
+		},
+		{
+			"path": "/classFeature/25/entries/1/entries/1/entries/1",
+			"expected": "當你達到特定的德魯伊等級後，你可以掌握新的形態，形態的最大{@variantrule Challenge Rating|XPHB|挑戰等級}也會隨之提升，如野獸形態表格所示。此外，在 8 級時，你可以使用具有{@variantrule Fly Speed|XPHB|飛行速度}的形態。",
+			"value": "當你達到特定德魯伊等級時，你的已知形態數量與這些形態的最高{@variantrule Challenge Rating|XPHB|挑戰等級}會提高，如野獸形態表所示。此外，自第8級起，你可以採用具有{@variantrule Fly Speed|XPHB|飛行速度}的形態。",
+			"reason": "補回已知形態「數量」提高，並明確飛行形態自第 8 級起持續可用。"
+		},
+		{
+			"path": "/classFeature/25/entries/1/entries/2/rows/0/3",
+			"expected": "否",
+			"value": "否",
+			"reason": "翻譯野獸形態表中第 2 級的飛行速度可用性。"
+		},
+		{
+			"path": "/classFeature/25/entries/1/entries/2/rows/1/3",
+			"expected": "否",
+			"value": "否",
+			"reason": "翻譯野獸形態表中第 4 級的飛行速度可用性。"
+		},
+		{
+			"path": "/classFeature/25/entries/1/entries/3/entries/1/items/1/entries/0",
+			"expected": "你的遊戲資料被野獸的資料卡所替換，但你保留你的生物型別；{@variantrule Hit Points|XPHB|生命值}；{@variantrule Hit Point Dice|XPHB|生命值骰}；智力，感知和魅力值；職業特性；語言；專長。你同樣保留你的技能和豁免熟練，並且在這些專案中使用你自己的{@variantrule Proficiency|XPHB|熟練加值}。如果變形的野獸在資料卡上的技能或豁免檢定的調整值高於你的，使用資料卡的調整值。",
+			"value": "你的遊戲資料由野獸的資料卡取代，但你保留自己的生物類型、{@variantrule Hit Points|XPHB|生命值}、{@variantrule Hit Point Dice|XPHB|生命骰}、智力／感知／魅力值、職業特性、語言與專長。你也保留自己的技能與豁免熟練，並以你自己的{@variantrule Proficiency|XPHB|熟練加值}計算；此外，你也獲得該生物的熟練。若野獸資料卡上的技能或豁免調整值高於你的數值，則使用資料卡上的數值。",
+			"reason": "補回原譯遺漏的「同時獲得該生物的熟練」規則。"
+		},
+		{
+			"path": "/subclassFeature/56/entries/1",
+			"expected": "此外，當你結束一次{@variantrule Short Rest|XPHB|短休}時，你可以選擇恢復消耗的法術位。法術環階的總和等於你德魯伊職業等級的一半（向上取整），且不能是六環或更高環階的法術位。比如說，作為一位 6 級德魯伊，你可以恢復環階總和最多為 3 的法術位。你可以恢復一個三環法術位，或者一個二環和一個一環法術位，或者三個一環法術位。一旦你以此特性恢復過法術位，直到完成一次{@variantrule Long Rest|XPHB|長休}為止，你無法再次這麼做。",
+			"value": "此外，當你完成一次{@variantrule Short Rest|XPHB|短休}時，可以選擇恢復已消耗的法術位。這些法術位的環階總和不得超過你德魯伊等級的一半（向上取整），且其中任何法術位都不能是6環或更高環階。例如，若你是6級德魯伊，可以恢復環階總和至多為3的法術位：一個3環法術位、一個2環與一個1環法術位，或三個1環法術位。以此特性恢復法術位後，直到完成一次{@variantrule Long Rest|XPHB|長休}前都無法再次如此做。",
+			"reason": "原文為 equal to or less than；譯文只寫等於，可能誤示不能少量恢復。"
+		},
+		{
+			"path": "/subclassFeature/68/entries/1",
+			"expected": "此外，你獲得等於你{@variantrule Swim Speed|XPHB|速度}的{@variantrule Speed|XPHB|游泳速度}。",
+			"value": "此外，你獲得等於你{@variantrule Speed|XPHB|速度}的{@variantrule Swim Speed|XPHB|游泳速度}。",
+			"reason": "修正速度與游泳速度交叉引用標籤互換。"
+		},
+		{
+			"path": "/subclassFeature/69/entries/1/entries/0",
+			"expected": "你獲得等於你的{@variantrule Fly Speed|XPHB|速度}的{@variantrule Speed|XPHB|飛行速度}。",
+			"value": "你獲得等於你{@variantrule Speed|XPHB|速度}的{@variantrule Fly Speed|XPHB|飛行速度}。",
+			"reason": "修正速度與飛行速度交叉引用標籤互換。"
+		},
+		{
+			"path": "/subclassFeature/72/entries/3/rows/4/1",
+			"expected": "一塊遇光會投射出星辰軌跡的水晶",
+			"value": "一塊刻有星辰圖案的水晶",
+			"reason": "原文只說 engraved with starry patterns；移除無依據的投影魔法效果。"
+		},
+		{
+			"path": "/subclassFeature/73/entries/1",
+			"expected": "處於星耀形態期間，你保留你的遊戲資料，但你的身體變得明亮；你的關節星光熠熠並有如星圖一般由亮線連線。這一形態散發出 10 尺半徑的{@variantrule Bright Light|XPHB|明亮光照}以及其外 10 尺的{@variantrule Dim Light|XPHB|微光光照}。這一形態持續 10 分鐘。如果你解除它（無需動作）、{@condition Incapacitated|XPHB|失能}、死亡、或再次使用此特性，它就會提前結束。",
+			"value": "處於星耀形態期間，你保留自己的遊戲資料，但身體變得明亮，關節如星辰般閃爍，並由如同星圖的發光線條相連。此形態散發半徑10尺的{@variantrule Bright Light|XPHB|明亮光照}，並在其外額外10尺散發{@variantrule Dim Light|XPHB|微光光照}。此形態持續10分鐘；若你解除它（無需動作）、陷入{@condition Incapacitated|XPHB|失能}狀態或再次使用此特性，便會提前結束。",
+			"reason": "移除 v2.33.3 英文資料沒有的「死亡時結束」條件。"
+		},
+		{
+			"path": "/subclassFeature/76/entries/0",
+			"expected": "一個智慧巨龍的星座於你身上浮現。當你進行一次智力或感知檢定，或是進行一次體質豁免來維持法術{@status Concentration|XPHB|專注}時，你可以將{@dice d20}中 9 或以下的骰值視為 10。",
+			"value": "智慧巨龍的星座在你身上浮現。當你進行智力或感知檢定，或進行體質豁免以維持{@status Concentration|XPHB|專注}時，可以將{@dice d20}擲出9或更低的結果視為10。",
+			"reason": "修正重複字「巨巨龍座」，並保留 9 或更低視為 10 的規則。"
+		},
+		{
+			"path": "/subclassFeature/78/entries/0",
+			"expected": "你的星耀形態星座增強了。射手座和聖盃座中的{@damage 1d8}都變成了{@damage 2d8}，而在巨龍座啟用期間，你將獲得 20 尺的{@variantrule Fly Speed|XPHB|飛行速度}，並且可以懸浮。",
+			"value": "你星耀形態的星座得到強化。射手座與聖盃座的{@damage 1d8}都變為{@damage 2d8}；巨龍座啟用期間，你具有20尺的{@variantrule Fly Speed|XPHB|飛行速度}，並且可以懸浮。",
+			"reason": "修正「巨巨龍座座」重複字，保留骰值與飛行速度。"
+		},
+		{
+			"path": "/classFeature/1/entries/2/entries/0",
+			"expected": "\"德魯伊職業表\"裡記錄了你用以施展{@filter 德魯伊法術|spells|class=druid}的1環及更高環階法術位數量。施展某德魯伊法術時，你必須同時消耗其對應環階法術位。已消耗的法術位可在完成長休後恢復。",
+			"value": "「德魯伊」表顯示你擁有多少法術位，可用來施展一環及更高環階的{@filter 德魯伊法術|spells|class=druid}。施展其中一道法術時，你必須消耗一道環階等於或高於該法術環階的法術位。完成一次長休後，你重獲所有已消耗的法術位。",
+			"reason": "原文允許消耗等環或更高環法術位；譯文只寫對應環階，錯誤限縮升環施法。"
+		},
+		{
+			"path": "/subclassFeature/3/entries/0",
+			"expected": "第2級起，你可以透過靜坐冥想與自然建立交流，並以此恢復部分魔法能量。完成一次短休後，你可以選擇恢復部分已使用的法術位。所恢復法術位環階的總和等於你德魯伊職業等級的一半（向上取整），且不能是6環或更高環階。你在完成一次長休後才能再次使用該特性。",
+			"value": "第2級起，你可以藉由靜坐冥想、與自然交流來恢復部分魔法能量。短休期間，你選擇要恢復的已消耗法術位；其環階總和必須小於或等於你德魯伊等級的一半（向上取整），且其中任何法術位都不得為6環或更高環。你必須完成一次長休，才能再次使用此特性。",
+			"reason": "原文為 equal to or less than half；譯文誤寫成必須恰好等於一半。"
+		}
+	]
+}

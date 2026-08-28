@@ -1,0 +1,123 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"scope": "2014/classSource PHB rule-accuracy audit"
+	},
+	"corrections": [
+		{
+			"path": "/classFeature/6/entries/1",
+			"expected": "第11級後，你在自己回合內執行攻擊動作的次數增加到三次。",
+			"value": "你在本職業達到第11級時，攻擊次數提高為三次；達到第20級時，攻擊次數提高為四次。",
+			"reason": "原譯漏掉第20級提高為四次的規則。"
+		},
+		{
+			"path": "/classFeature/22/entries/0",
+			"expected": "第11級後，你在自己回合內執行 {@action Attack||攻擊}動作的次數增加到四次。",
+			"value": "第20級時，每當你在自己回合中執行{@action Attack||攻擊}動作，便可以攻擊四次。",
+			"reason": "原文為 20th level，譯文誤植為第11級。"
+		},
+		{
+			"path": "/subclassFeature/28/entries/3/entries/0/name",
+			"expected": "已知法術",
+			"value": "已知一環及以上法術",
+			"reason": "補回標題的 1st-Level and Higher 範圍。"
+		},
+		{
+			"path": "/subclassFeature/28/entries/3/entries/0/entries/1",
+			"expected": "表格\"奧法騎士施法能力\"中\"已知法術\"一欄記錄了你獲得更多已知法術時的相應等級。你只能選擇防護系或塑能系法術，且所獲得法術的環階不能超過你所擁有的最高法術位環階。例如，如果你在本職業達到第7級，則可以學習一個新的1環法術或2環法術。",
+			"value": "「奧法騎士施法」表的「已知法術」欄顯示你何時學會更多一環或以上的法師法術。每個法術都必須是你所選擇的防護系或塑能系法術，且其環階必須是你擁有對應法術位的環階。例如，當你在本職業達到第7級時，可以學會一個新的一環或二環法術。",
+			"reason": "原文要求法術環階必須是你擁有法術位的環階；改回精確條件而非僅寫不超過最高環階。"
+		},
+		{
+			"path": "/subclassFeature/29/entries/0",
+			"expected": "第3級時，你習得一種讓你和你的武器建立魔法聯結的儀式。儀式耗時1小時，且可在短休時進行。儀式過程中武器必須在你的觸及範圍內，直至儀式結束前，你都要碰觸該武器以完成聯結。",
+			"value": "第3級時，你學會一種在自己與一把武器之間建立魔法聯結的儀式。儀式耗時1小時，並可在短休期間進行。整個儀式過程中，該武器都必須在你的觸及範圍內；儀式結束時，你觸碰該武器並建立聯結。",
+			"reason": "原文只要求武器全程在觸及範圍內，並在結束時觸碰；譯文誤示為全程必須觸碰。"
+		},
+		{
+			"path": "/subclassFeature/37/entries/2",
+			"expected": "你可以在進行魅力（{@skill Persuasion||遊說}）檢定時中將加入雙倍的熟練加值。不論你是否從這個能力中得到了對於說服技能的熟練，你都能獲得這個好處。",
+			"value": "你進行任何使用{@skill Persuasion||遊說}的屬性檢定時，熟練加值都會加倍。不論你從此特性獲得哪一項技能熟練，都能得到此增益。",
+			"reason": "原文為 any ability check using Persuasion，不限魅力檢定。"
+		},
+		{
+			"path": "/subclassFeature/77/entries/0",
+			"expected": "從3級起，你能恐嚇你的敵人，將他們的攻擊抑制下來並反以懲戒之。當你以一次近戰武器攻擊命中一名敵人時，你為其賦予印記。印記會持續存在到你的下一個回合結束時，而如果你陷入{@condition incapacitated||失能} 、死亡、或有其他人賦予該敵人印記時，這個效果會提前結束。",
+			"value": "第3級起，你可以威嚇對手、阻撓其攻擊，並懲罰它傷害他人的行為。當你以近戰武器攻擊命中一個生物時，可以標記該生物直到你的下回合結束。若你陷入{@condition incapacitated||失能}、死亡，或其他人標記了該生物，此效應會提前結束。",
+			"reason": "規則目標為 creature，不限敵人。"
+		},
+		{
+			"path": "/subclassFeature/77/entries/1",
+			"expected": "如果一個具有你印記的敵人身處你周圍5尺範圍內，他們以除你以外的生物為目標的攻擊檢定將具有劣勢。",
+			"value": "由你標記的生物位於距你5尺內時，其任何不以你為目標的攻擊檢定都具有劣勢。",
+			"reason": "規則對象為被標記的 creature，不限敵人。"
+		},
+		{
+			"path": "/subclassFeature/77/entries/2",
+			"expected": "此外，如果具有你印記的敵人對除你之外的任何其他人造成了傷害，則在下一個你的回合中，你可以以附贈動作對該敵人進行一次特殊的近戰武器攻擊。你的本次攻擊檢定具有優勢，若擊中，攻擊用的武器還會對目標額外造成等同於你戰士等級一半的傷害。",
+			"value": "此外，若由你標記的生物對你以外的任何人造成傷害，你可以在自己的下回合中用附贈動作，對該受標記生物發動一次特殊近戰武器攻擊。該攻擊檢定具有優勢；若命中，攻擊所用武器對目標額外造成等同於你戰士等級一半的傷害。",
+			"reason": "規則對象為被標記的 creature，不限敵人。"
+		},
+		{
+			"path": "/subclassFeature/77/entries/3",
+			"expected": "無論你為多少名角色賦予了印記，你能夠發動特殊攻擊的次數等同於你的力量調整值次（至少1次），當你完成一次長休時，你重獲全部已被消耗的次數。",
+			"value": "無論你標記了多少生物，此特殊攻擊的使用次數都等於你的力量調整值（至少一次）；完成一次長休後，你重獲所有已消耗的使用次數。",
+			"reason": "原文為 creatures，修正為可涵蓋所有生物的規則用語。"
+		},
+		{
+			"path": "/classFeature/36/entries/0",
+			"expected": "每當你用武器發動攻擊，且你可以使用此武器的精通詞條時，你可以將此次攻擊的精通詞條改為{@itemMastery Push|XPHB|推離}，{@itemMastery Sap|XPHB|削弱}或{@itemMastery Slow|XPHB|緩速}中的一種。",
+			"value": "當你以一把能使用其精通屬性的武器發動攻擊時，可以在該次攻擊中將該屬性替換為{@itemMastery Push|XPHB|推離}、{@itemMastery Sap|XPHB|削弱}或{@itemMastery Slow|XPHB|緩速}屬性。",
+			"reason": "恢復三個武器精通屬性的英文 canonical key，避免中文名稱被當成資料鍵。"
+		},
+		{
+			"path": "/subclassFeature/105/entries/0",
+			"expected": "你使用武器或{@variantrule Critical Hit|XPHB|重擊}進行的攻擊檢定在{@dice d20}中擲出 19 或 20 時即可造成重擊。",
+			"value": "你使用武器或{@variantrule Unarmed Strike|XPHB|徒手打擊}進行的攻擊檢定，在{@dice d20}擲出19或20時便能造成{@variantrule Critical Hit|XPHB|重擊}。",
+			"reason": "原譯把 Unarmed Strikes 錯換成重擊標籤，導致可用攻擊類型失真。"
+		},
+		{
+			"path": "/subclassFeature/110/entries/1/entries/0",
+			"expected": "你進行{@variantrule Advantage|XPHB|死亡豁免檢定}時具有{@variantrule Death Saving Throw|XPHB|優勢}。此外，若內你在{@variantrule Death Saving Throw|XPHB|死亡豁免檢定}上投出了 18~20 時，都會獲得相當於投出 20 的好處。",
+			"value": "你進行{@variantrule Death Saving Throw|XPHB|死亡豁免檢定}時具有{@variantrule Advantage|XPHB|優勢}。此外，當你在{@variantrule Death Saving Throw|XPHB|死亡豁免檢定}擲出18–20時，會獲得如同擲出20的好處。",
+			"reason": "修正死亡豁免與優勢交叉引用標籤互換，並移除「若內你」錯字。"
+		},
+		{
+			"path": "/subclassFeature/112/entries/3/entries/0/entries/0",
+			"expected": "你準備可供你以此特性施展的一環及更高環階的{@filter 法師法術列表|spells|class=Wizard}。為此，選擇三道來自法師法術列表的法術。推薦選擇{@spell Burning Hands|XPHB|燃燒之手}、{@spell Jump|XPHB|跳躍術}和{@spell Shield|XPHB|護盾術}。",
+			"value": "你準備一份可供此特性施展的1環及更高環階法術列表。起始時，從{@filter 法師法術列表|spells|class=Wizard}中選擇三道1環法術。推薦選擇{@spell Burning Hands|XPHB|燃燒之手}、{@spell Jump|XPHB|跳躍術}和{@spell Shield|XPHB|護盾術}。",
+			"reason": "補回起始三道法術必須全為 1 環的限制。"
+		},
+		{
+			"path": "/subclassFeature/112/entries/3/entries/0/entries/1",
+			"expected": "已準備法術數量會隨你戰士等級的提升而增加，如奧法騎士施法表中的準備法術一列所示。每當這一列的數字增加時，從{@filter 法師法術列表|spells|class=Wizard}中選擇額外法術準備，直至已準備法術的數量與表格中的數字一致。你所選擇法術的環階必須是你所擁有法術位對應的環階。",
+			"value": "你列表中的法術數量會隨戰士等級提高，如奧法騎士施法表的準備法術欄所示。每當該數量增加時，從{@filter 法師法術列表|spells|class=Wizard}中選擇額外法術，直到列表中的法術數量等於表中數量；所選法術必須是你擁有相應環階法術位的法術。例如，若你是7級戰士，準備列表可以任意組合五道1環或2環法師法術。",
+			"reason": "補回原譯整段遺漏的第 7 級、五道 1／2 環法術範例。"
+		},
+		{
+			"path": "/subclassFeature/117/entries/0",
+			"expected": "當你在自己回合執行{@action Attack|XPHB|攻擊}動作時，你可以該動作攻擊中的兩次攻擊替換為施展一道施法時間為動作，環階為一環或二環的你的法師法術。",
+			"value": "當你在自己的回合執行{@action Attack|XPHB|攻擊}動作時，可以將其中兩次攻擊替換為施展你的一道1環或2環法師法術；該法術的施法時間必須為一個動作。",
+			"reason": "補回遺漏的「將」，並清楚保留替換兩次攻擊、法術環階與施法時間三項限制。"
+		},
+		{
+			"path": "/subclassFeature/122/entries/0",
+			"expected": "你可以用意念移動一個物體或生物。以一個{@action Magic|XPHB|魔法}動作，你選中一個除你以外的自願生物或一個至多大型的未固定物件。如果你可以看見目標且目標在你 30 尺範圍內，你就可以將其移動至多 30 尺至另一個對你可見的未佔據空間內。另外，如果目標是一個微型物件，你可以自由給出或收回手中。",
+			"value": "你可以用意念移動物件或生物。以一個{@action Magic|XPHB|魔法}動作，選擇距你30尺內一個你能看見的目標；該目標必須是大型或更小的未固定物件，或你以外的一個自願生物。你將目標移動至多30尺，到一處你能看見的未佔據空間。或者，若目標是微型物件，你可以將它傳送到手中，或從手中傳送出去。",
+			"reason": "原譯「自由給出或收回」未清楚翻出 Tiny object 可傳送到手中或從手中傳出的規則。"
+		},
+		{
+			"path": "/subclassFeature/125/entries/0",
+			"expected": "當你使用靈能打擊對一個目標造成傷害時，你可以迫使目標進行一次力量豁免（{@dc 8|= 8} + 你的智力調整值 + 你的{@variantrule Proficiency|XPHB|熟練加值}）。如果豁免失敗，你可以使目標陷入{@condition Prone|XPHB|倒地}狀態或者將其在任意方向水平移動至多 10 尺。",
+			"value": "當你以靈能打擊對目標造成傷害時，可以迫使目標進行一次力量豁免（DC為{@dc 8}＋你的智力調整值＋你的{@variantrule Proficiency|XPHB|熟練加值}）。豁免失敗時，你可以使目標陷入{@condition Prone|XPHB|倒地}狀態，或將其水平移動至多10尺。",
+			"reason": "修正 malformed DC 標籤，並保留 DC 公式與水平移動限制。"
+		},
+		{
+			"path": "/subclassFeature/26/entries/0",
+			"expected": "第18級時，你持續戰鬥的能力達到巔峰。你每回合開始時如果生命值不到上限的一半，則你恢復一部分生命值，其數值等於5＋你的體質調整值。你生命值為0時不能以此獲益。",
+			"value": "第18級時，你在戰鬥中的韌性達到巔峰。你的每個回合開始時，若目前生命值不超過生命值上限的一半，便恢復等於5＋你的體質調整值的生命值。若你的生命值為0，則不會獲得此增益。",
+			"reason": "原文 no more than half 包含恰好一半；譯文「不到一半」誤改為嚴格小於。"
+		}
+	]
+}

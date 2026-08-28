@@ -1,0 +1,245 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"spell": [
+		{
+			"name": "借鑑才學",
+			"source": "SCC",
+			"page": 37,
+			"level": 2,
+			"school": "D",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "一本價值至少25gp的書",
+					"cost": 2500
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "hour",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"你從往昔的魂靈中獲取知識。選擇一項你沒有熟練的技能。在法術的持續時間裡，你擁有所選技能的熟練項。如果你再次釋放該法術，該法術會提前結束。"
+			],
+			"ENG_name": "Borrowed Knowledge"
+		},
+		{
+			"name": "動力短行",
+			"source": "SCC",
+			"page": 37,
+			"level": 2,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"你用舞蹈般的步姿魔法地增強你的移動，在持續時間內你獲得以下增益：",
+				{
+					"type": "list",
+					"items": [
+						"你的步行速度增加10尺。",
+						"你不會觸發藉機攻擊。",
+						"你能穿過另一個生物的空間，而且對你言不算是{@quickref difficult terrain||3||困難地形}。如果你在另一個生物的空間裡結束回合，你會被推擠到你最後所經過的未被佔據空間裡，並受到{@damage 1d8}力場傷害。"
+					]
+				}
+			],
+			"damageInflict": [
+				"force"
+			],
+			"ENG_name": "Kinetic Jaunt"
+		},
+		{
+			"name": "銀光銳語",
+			"source": "SCC",
+			"page": 38,
+			"level": 1,
+			"school": "E",
+			"time": [
+				{
+					"number": 1,
+					"unit": "reaction",
+					"condition": "當一個於你60尺內且可見的生物成功進行一次攻擊檢定，屬性檢定，或是豁免檢定時"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你魔法地讓觸發生物分心，將其短暫的遲疑轉變為另一個生物的鼓勵。觸發生物必須重新投擲該{@dice d20}並選用較低的結果。",
+				"之後你能選擇範圍內的一個不同生物（可以是你自己）。選擇的生物在接下來的一分鐘裡的第一次攻擊檢定，屬性檢定，或豁免檢定中具有優勢。一個生物在同一時間裡只會擁有一次來自該法術的增益。"
+			],
+			"miscTags": [
+				"ADV",
+				"SGT"
+			],
+			"areaTags": [
+				"ST"
+			],
+			"ENG_name": "Silvery Barbs"
+		},
+		{
+			"name": "渦旋翹曲",
+			"source": "SCC",
+			"page": 38,
+			"level": 2,
+			"school": "C",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 90
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你魔法地扭曲範圍裡另一個你可見生物周邊的空間。目標需透過一次體質豁免（目標可主動選擇失敗），否則目標將被傳送至範圍內一處你可見，由你選擇的未被佔據的空間。選擇的空間必須是地表之上或液體之中，並且能讓目標在無需躋身的情況下支撐目標。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"當你使用3環或更高的法術位釋放該法術時，法術位每比2環高1環，施法距離增加30尺。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"SGT",
+				"TP"
+			],
+			"ENG_name": "Vortex Warp"
+		},
+		{
+			"name": "靡葉生華",
+			"source": "SCC",
+			"page": 38,
+			"level": 2,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "彎折成環形的枯萎藤蔓"
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"選擇範圍裡的一點，以該點為中心的 10尺半徑球形區域裡，你喚起死氣與生機。該區域裡每個由你選擇的生物需進行一次體質豁免，失敗時受到{@damage 2d6}暗蝕傷害，成功時傷害減半。區域裡的非魔法植物都會枯萎。",
+				"此外，區域裡一個你所選的生物能使用並投擲一枚未使用的生命骰。恢復投擲結果加上你的施法屬性調整值點生命值。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"當你使用3環或更高的法術位釋放該法術時，法術位每比2環高1環，法術多造成{@scaledamage 2d6|2-9|1d6}傷害，選擇生物能投擲的生命骰數也多1個。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"damageInflict": [
+				"necrotic"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"HL"
+			],
+			"ENG_name": "Wither and Bloom"
+		}
+	]
+}

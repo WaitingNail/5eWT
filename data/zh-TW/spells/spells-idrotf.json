@@ -1,0 +1,111 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"spell": [
+		{
+			"name": "創造魔衛",
+			"source": "IDRotF",
+			"page": 318,
+			"level": 7,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "hour"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "touch"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "一小瓶價值500gp的水銀和一個真人大小的人偶，作為法術的耗材，以及一支複雜的水晶權杖，價值至少1500gp，法術不會消耗該材料",
+					"cost": 50000,
+					"consume": true
+				}
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"施展該法術時，你將一小瓶水銀放置在一個填充著灰燼和塵土的真人大小的人偶的胸口裡。然後你縫合好人偶，將你的血滴在上面。在施法結束時，你用一支水晶權杖在人偶上輕輕一點，將它轉化為一個穿著人偶所穿著的衣服的{@filter 魔衛|bestiary|search=magen|source=IDRotF}。魔衛的型別由你在施法時選擇，查閱{@adventure 附錄C|IDRotF|21}以找到不同型別的魔衛以及它們的資料。",
+				"當魔衛出現時，你的最大生命值減少一定值，其數值等同於該魔衛的挑戰等級（至少減少1點）。只有一道{@spell wish||祈願術}才能撤銷此減值。",
+				"任何你用該法術創造的魔衛會毫無異議地執行你的命令。"
+			],
+			"miscTags": [
+				"PRM"
+			],
+			"areaTags": [
+				"ST"
+			],
+			"ENG_name": "Create Magen"
+		},
+		{
+			"name": "冰冷一指",
+			"source": "IDRotF",
+			"page": 318,
+			"level": 1,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "cone",
+				"distance": {
+					"type": "feet",
+					"amount": 15
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"徹骨之寒從你的指尖爆發而出，覆蓋15尺錐形的範圍。每個處於該區域內的生物都必須進行一次體質豁免，豁免失敗者將受到{@damage 2d8}點寒冷傷害，豁免成功則傷害減半。",
+				"此等寒冷將凍結法術範圍內任何未被著裝或攜帶的非魔法液體。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"當你使用2環或更高法術位施放該法術時，傷害對每個高於1環的法術位環階增加{@damage 1d8}。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"damageInflict": [
+				"cold"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"areaTags": [
+				"N"
+			],
+			"ENG_name": "Frost Fingers"
+		}
+	]
+}

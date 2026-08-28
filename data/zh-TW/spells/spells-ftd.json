@@ -1,0 +1,475 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"spell": [
+		{
+			"name": "阿莎德隆奔行",
+			"source": "FTD",
+			"page": 19,
+			"level": 3,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"龍類翻滾咆哮的火焰環繞你的足部，使你獲得爆發性的速度。法術持續時間內，你的速度提升20尺，並且移動不會觸發藉機攻擊。",
+				"當你移動至一個生物或未被著裝或攜帶的物件5尺內時，其被你的灼熱尾跡灼燒，受到{@damage 1d6}火焰傷害。一個生物或物件每回合只會承受一次此傷害。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"當你用4環或更高的法術位施展此法術時，你使用的法術位每比 3 環高一環，你的移動速度額外增加5尺，法術造成的傷害增加{@scaledamage 1d6|3-9|1d6}。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"damageInflict": [
+				"fire"
+			],
+			"miscTags": [
+				"OBJ"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ashardalon's Stride"
+		},
+		{
+			"name": "龍類變形",
+			"source": "FTD",
+			"page": 19,
+			"level": 7,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "一個龍形小雕像，價值至少500gp",
+					"cost": 50000
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"伴隨著一聲怒吼，你用龍族的魔法變化自身，獲得多種龍族特徵。直至法術結束，你獲得以下好處：",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "盲視",
+							"entries": [
+								"你獲得30尺範圍的{@sense blindsight||盲視}在此範圍內，你可以有效看到任何不在{@quickref Cover||3||掩護}後的東西，即使你處於{@condition blinded||目盲}狀態或在黑暗中。此外，你可以看到{@condition invisible||隱形}的生物，除非該生物成功躲藏。"
+							],
+							"ENG_name": "Blindsight"
+						},
+						{
+							"type": "item",
+							"name": "吐息武器",
+							"entries": [
+								"當你施展此法術時，以及在持續時間內隨後的回合以一個附贈動作，你可以在60尺錐形內撥出一道閃著光的能量。範圍內的每個生物都必須成功透過一次敏捷豁免，否則受到{@damage 6d8}點力場傷害，成功則傷害減半。"
+							],
+							"ENG_name": "Breath Weapon"
+						},
+						{
+							"type": "item",
+							"name": "飛翼",
+							"entries": [
+								"無形之翼從你背後長出，使你獲得60尺飛行速度。"
+							],
+							"ENG_name": "Wings"
+						}
+					]
+				}
+			],
+			"damageInflict": [
+				"force"
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"miscTags": [
+				"SGT",
+				"UBA"
+			],
+			"ENG_name": "Draconic Transformation"
+		},
+		{
+			"name": "費資本鉑金盾",
+			"source": "FTD",
+			"page": 20,
+			"level": 6,
+			"school": "A",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "一枚鍍上鉑金的龍鱗，價值至少500gp",
+					"cost": 50000
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"你創造一道閃著銀光的力場，環繞在施法距離內你所選擇的一個生物周圍（你可以選擇你自己）。該力場散發5尺微光光照。被力場保護的生物獲得以下好處：",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "掩護",
+							"entries": [
+								"該生物獲得{@quickref Cover||3||掩護}。"
+							],
+							"ENG_name": "Cover"
+						},
+						{
+							"type": "item",
+							"name": "傷害抗性",
+							"entries": [
+								"該生物獲得對強酸，冷凍，火焰，閃電以及毒素傷害的抗性。"
+							],
+							"ENG_name": "Damage Resistance"
+						},
+						{
+							"type": "item",
+							"name": "反射閃避",
+							"entries": [
+								"如果該生物受到可以由成功透過敏捷豁免來使傷害減半的效應影響，該生物在成功透過豁免時改為不受任何傷害，失敗則受到一半傷害。"
+							],
+							"ENG_name": "Evasion"
+						}
+					]
+				},
+				"在之後的回合內以一個附贈動作，你可以將該力場移動至力場周圍60尺內的另一個生物身上。"
+			],
+			"miscTags": [
+				"UBA"
+			],
+			"ENG_name": "Fizban's Platinum Shield"
+		},
+		{
+			"name": "納撒爾惡作劇",
+			"source": "FTD",
+			"page": 20,
+			"level": 2,
+			"school": "I",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"s": true,
+				"m": "一塊麵包皮，來自一個蘋果派"
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"你選擇一個以施法範圍內一點為原點，20尺矩形的範圍。你在該範圍內填滿精類與龍族的魔法。在惡作劇之湧表格裡擲骰以決定產生的魔法效應。法術持續時間內、在你的每個回合開始時，你都重骰這個表格。在你重骰之前，你可以把這個矩形範圍移動最多10尺。",
+				{
+					"type": "table",
+					"caption": "惡作劇之湧",
+					"colLabels": [
+						"d4",
+						"效應"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"空氣中瀰漫著蘋果派的味道，範圍內的生物必須成功透過一次感知豁免，否則將被你{@condition charmed||魅惑}，直至你的下回合開始。"
+						],
+						[
+							"2",
+							"一束束鮮花出現在四周，範圍內的生物必須成功透過一次敏捷豁免，否則鮮花將往他們臉上噴水，使他們陷入{@condition blinded||目盲}，直至你的下回合開始。"
+						],
+						[
+							"3",
+							"範圍內的每個生物必須成功透過一次感知豁免，否則將開始咯咯笑，直至你的下回合開始。一個正在咯咯笑的生物陷入{@condition incapacitated||失能}，並使用他的所有移動力向一個隨機方向移動。"
+						],
+						[
+							"4",
+							"一滴滴蜜糖出現並在矩形內懸停，將其內變成{@quickref difficult terrain||3||困難地形}，直至你的下回合開始。"
+						]
+					]
+				}
+			],
+			"savingThrow": [
+				"dexterity",
+				"wisdom"
+			],
+			"miscTags": [
+				"RO",
+				"SGT"
+			],
+			"ENG_name": "Nathair's Mischief"
+		},
+		{
+			"name": "勞洛希姆心靈長槍",
+			"source": "FTD",
+			"page": 21,
+			"level": 4,
+			"school": "E",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你從你的額頭處釋放一道閃閃發光的靈能長矛，瞄準法術範圍內你可見的一個生物。或者，你可以說出一個生物的名字。如果被喚名的生物身處法術範圍內，即使你無法看見它，它也會成為法術的目標。如果被喚名的生物不處於法術範圍內，長矛會消失並且沒有任何效果。",
+				"目標必須成功透過一次智力豁免，否則將受到{@damage 7d6}點心靈傷害並陷入{@condition incapacitated||失能}，直至你的下回合開始。如果豁免成功，它只承受一半傷害並且不會{@condition incapacitated||失能}。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"當你用5環或更高的法術位施展此法術時，你使用的法術位每比 4 環高一環，法術的傷害增加{@scaledamage 7d6|4-9|1d6}。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"damageInflict": [
+				"psychic"
+			],
+			"conditionInflict": [
+				"incapacitated"
+			],
+			"savingThrow": [
+				"intelligence"
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"areaTags": [
+				"ST"
+			],
+			"ENG_name": "Raulothim's Psychic Lance"
+		},
+		{
+			"name": "霧凇霜縛",
+			"source": "FTD",
+			"page": 21,
+			"level": 2,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "cone",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"s": true,
+				"m": "一瓶冰雪融化而成的水"
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你向30尺錐形範圍內放出一股冰冷的能量。範圍內的每個生物都必須成功透過一體質豁免，否則將受到{@damage 3d8}寒冷傷害並且被冰霜包裹，持續一分鐘或直至一個生物用動作為自己或觸及範圍內的其他生物破冰。被冰霜包裹的生物其速度降至0。豁免成功則傷害減半，並且不會受到其他效應影響。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"當你用3環或更高的法術位施展此法術時，你使用的法術位每比 2 環高一環，法術的傷害增加{@scaledamage 3d8|2-9|1d8}。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"damageInflict": [
+				"cold"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"areaTags": [
+				"N"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Rime's Binding Ice"
+		},
+		{
+			"name": "龍類靈魄召喚術",
+			"source": "FTD",
+			"page": 21,
+			"reprintedAs": [
+				"Summon Dragon|XPHB"
+			],
+			"level": 5,
+			"school": "C",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "一件帶有巨龍圖案的物品，價值至少500gp",
+					"cost": 50000
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "hour",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"你喚出一隻{@creature draconic spirit|FTD|龍類靈魄}。它將顯現於施法範圍內的一處未被佔據的空間。該肉體形態使用龍類靈魄的資料。當你施展此法術時，選擇一個龍種科目：色彩龍，寶石龍，或金屬龍。該生物的長相與你所選擇的龍種相似，這會決定其資料中的某些特性。該生物在法術結束或其生命值降至0時消失。",
+				"該生物對你和你的同伴友善。在戰鬥中，該生物與你共享先攻，它在你的回合結束後行動。它聽從你的口頭命令（無需動作）。如果你不發出指令，該生物執行{@action Dodge||閃避}動作，並用自己的移動力來迴避危險。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"當你用6環或更高的法術位施展此法術時，用對應的環數決定資料欄中與法術環數有關的資料。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"miscTags": [
+				"SGT",
+				"SMN"
+			],
+			"ENG_name": "Summon Draconic Spirit"
+		}
+	]
+}

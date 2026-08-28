@@ -1,0 +1,99 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"spell": [
+		{
+			"name": "連結符文",
+			"source": "AitFR-AVT",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "AitFR-FCD",
+					"page": 11
+				}
+			],
+			"referenceSources": [
+				"AitFR-FCD"
+			],
+			"level": 3,
+			"school": "A",
+			"time": [
+				{
+					"number": 1,
+					"unit": "hour"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "touch"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "香和價值至少300gp的鑽石粉，在施法時消耗",
+					"cost": 30000,
+					"consume": true
+				}
+			},
+			"duration": [
+				{
+					"type": "permanent",
+					"ends": [
+						"dispel",
+						"trigger"
+					]
+				}
+			],
+			"entries": [
+				"當你施展這個法術時，你刻下一個偵測符文。該符文可以之後在一個與之分開但存在魔法連結的符文處觸發一個魔法效應。你可以在某個表面（諸如桌面、地板、牆等）或某個能被關閉以隱藏符文的物件裡（諸如書本、卷軸、寶箱等）刻畫這個偵測符文。該符文可以覆蓋內徑不超過 10 尺直徑的區域。如果受術的物件或表面從被施法位置被移開超過 10 尺，則偵測符文被破壞且法術不被觸發即告終止。",
+				"這兩個符文都近乎隱形，他們需要以法術的豁免 DC 進行一次智力（{@skill Investigation||調查}）檢定才能被發現。",
+				"你在施法時設定偵測符文的觸發條件。刻畫於表面的符文其最典型的觸發條件包括：觸碰或站立在符文上；拿掉覆蓋在符文上的物件；進入符文一定範圍；運運算元文所在的物件等。刻畫在物件內的符文其最典型的觸發條件包括：開啟物件；靠近物件一定的距離；看到或閱讀該符文等。符文一旦被觸發，則該法術終止。",
+				"你可以進一步細化觸發條件，比如設定法術觸發時符合特定的條件，或設定其觸發者必須具備特定身體特徵（身高體重等），特定生物種類（例如設定為隻影響異怪或卓爾）或特定陣營。你還可以將特定條件者排除在符紋觸發者之外，諸如某說出特定口令的人。",
+				"當你刻畫偵測刻紋時，你可以從警報刻紋和法術刻紋兩者中選擇其一與其連線：",
+				{
+					"type": "entries",
+					"name": "警報刻文",
+					"entries": [
+						"你刻畫並魔法連結一個偵測符紋和一個效果符紋。這兩個符紋必須相距不超過100裡，否則法術將立即結束。當探測符紋被觸發時，如果你在效果符紋 1 裡之內，則其會如同警報術一樣在你的意識中產生精神警報。如果你在睡覺，則警報將使你驚醒。"
+					],
+					"ENG_name": "Alarm Glyph"
+				},
+				{
+					"type": "entries",
+					"name": "法術刻文",
+					"entries": [
+						"你刻畫並魔法連結一個偵測符紋和一個效果符紋。這兩個符紋必須相距不超過100尺。你可以施展一個準備好的四環或更低環階法術，並將其儲備在所創造的符紋中。所儲備法術必須以一個生物或一個區域為目標，而其以該方式施展時並不會立即生效。偵測符文被觸發時，效果符文將隨即施展所儲備的法術。如果法術指向一個目標，則以觸發符文的生物為目標；如果法術影響一個區域，則該區域以效果符文為中心；如果法術召喚敵對生物或創造傷害性質的物件或陷井，則這些造物將顯現在儘可能靠近效果符文的地方。如果法術需要{@status concentration||專注}，則其效應將在其最大持續時間內維持。"
+					],
+					"ENG_name": "Spell Glyph"
+				}
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"當你使用五環或更高法術位施展該法術以創造一個法術刻文，則其儲備法術的環階可以與你施放該法術時使用的法術位相同。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"conditionInflict": [
+				"invisible"
+			],
+			"miscTags": [
+				"PRM"
+			],
+			"ENG_name": "Linked Glyphs"
+		}
+	]
+}

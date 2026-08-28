@@ -1,0 +1,63 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"scope": "2014 PHB and 2024 XPHB/current rule-accuracy audit"
+	},
+	"corrections": [
+		{
+			"path": "/classFeature/11/entries/0",
+			"expected": "第11級時，你的宗主賦予你一種稱為秘法的魔法奧秘。你可以選擇一個{@filter 契術師法術列表中的7環法術|spells|level=7|class=Warlock}作為你的玄奧秘法。",
+			"value": "第13級時，你的宗主賦予你一種稱為秘法的魔法奧秘。你可以選擇一個{@filter 契術師法術列表中的7環法術|spells|level=7|class=Warlock}作為你的玄奧秘法。",
+			"reason": "原文為13級，舊譯誤植為11級。"
+		},
+		{
+			"path": "/classFeature/13/entries/0",
+			"expected": "第11級時，你的宗主賦予你一種稱為秘法的魔法奧秘。你可以選擇一個{@filter 契術師法術列表中的8環法術|spells|level=8|class=Warlock}作為你的玄奧秘法。",
+			"value": "第15級時，你的宗主賦予你一種稱為秘法的魔法奧秘。你可以選擇一個{@filter 契術師法術列表中的8環法術|spells|level=8|class=Warlock}作為你的玄奧秘法。",
+			"reason": "原文為15級，舊譯誤植為11級。"
+		},
+		{
+			"path": "/classFeature/15/entries/0",
+			"expected": "第11級時，你的宗主賦予你一種稱為秘法的魔法奧秘。你可以選擇一個{@filter 契術師法術列表中的9環法術|spells|level=9|class=Warlock}作為你的玄奧秘法。",
+			"value": "第17級時，你的宗主賦予你一種稱為秘法的魔法奧秘。你可以選擇一個{@filter 契術師法術列表中的9環法術|spells|level=9|class=Warlock}作為你的玄奧秘法。",
+			"reason": "原文為17級，舊譯誤植為11級。"
+		},
+		{
+			"path": "/classFeature/1/entries/5/entries/0",
+			"expected": "你可以使用{@item arcane focus|phb|奧術法器}（詳見第5章）作為你施展契術師法術的法器。",
+			"value": "你可以使用{@item arcane focus|phb|奧術法器}作為你施展契術師法術的法器。",
+			"reason": "v2.33.3 原文沒有「詳見第5章」，刪除不屬於來源的交叉引用。"
+		},
+		{
+			"path": "/classFeature/20/entries/1/entries/2/entries/0",
+			"expected": "你準備可供你以此特性施展的一環及更高環階的法術列表。最初，選擇兩道契術師法術。推薦選擇{@spell Charm Person|XPHB|魅惑類人}和{@spell Hex|XPHB|脆弱詛咒}。",
+			"value": "你準備可供你以此特性施展的1環及更高環階法術列表。最初，選擇兩道1環契術師法術。推薦選擇{@spell Charm Person|XPHB|魅惑類人}和{@spell Hex|XPHB|脆弱詛咒}。",
+			"reason": "補回初始選擇的兩道契術師法術必須都是1環法術。"
+		},
+		{
+			"path": "/classFeature/21/entries/0",
+			"expected": "你可以舉行一道耗時1分鐘的秘傳儀式，並在儀式結束後重獲一半已消耗的契術師法術位（向上取整）。此特性一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。",
+			"value": "你可以舉行一道耗時1分鐘的秘傳儀式。儀式結束時，你恢復已消耗的契約魔法法術位，但恢復數量不得超過你法術位最大數量的一半（向上取整）。此特性一經使用，直至完成一次{@variantrule Long Rest|XPHB|長休}你都無法再次使用。",
+			"reason": "恢復上限是法術位最大數量的一半，不是已消耗法術位的一半；保留1分鐘儀式與長休重置。"
+		},
+		{
+			"path": "/subclassFeature/59/entries/2/entries/0",
+			"expected": "你具有等於你速度的飛行速度，並且可以懸浮。你可以如同穿過{@variantrule Difficult Terrain|XPHB|困難地形}一般移動穿過生物或物件；但若你在你的回合結束時仍處於生物或物件內部，你受到{@damage 1d10}力場傷害。",
+			"value": "你具有等同於你{@variantrule Speed|XPHB|速度}的{@variantrule Fly Speed|XPHB|飛行速度}，並且可以懸浮。你可以如同穿過{@variantrule Difficult Terrain|XPHB|困難地形}一般移動穿過生物或物件；但若你在你的回合結束時仍處於生物或物件內部，你受到{@damage 1d10}點力場傷害。",
+			"reason": "補回飛行速度與速度的規則標記，並保留穿越生物／物件視為困難地形及回合結束仍在內部時承受1d10力場傷害。"
+		},
+		{
+			"path": "/subclassFeature/76/entries/0",
+			"expected": "每當你使用秘法迴流，或是完成一次{@variantrule Temporary Hit Points|XPHB|短}或{@variantrule Short Rest|XPHB|長休}後，你都會獲得一定的{@variantrule Long Rest|XPHB|臨時生命值}。其數值等於你的契術師等級 + 你的魅力調整值。此外，在你獲得該{@variantrule Temporary Hit Points|XPHB|臨時生命值}時，你還可以選擇至多五個你可見的生物。這些生物也會獲得等同於你契術師等級的一半 + 你的魅力調整值的{@variantrule Temporary Hit Points|XPHB|臨時生命值}。",
+			"value": "每當你使用秘法迴流，或是完成一次{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}後，你都會獲得一定的{@variantrule Temporary Hit Points|XPHB|臨時生命值}。其數值等於你的契術師等級 + 你的魅力調整值。此外，在你獲得該{@variantrule Temporary Hit Points|XPHB|臨時生命值}時，你還可以選擇至多五個你可見的生物。這些生物也會獲得等同於你契術師等級的一半 + 你的魅力調整值的{@variantrule Temporary Hit Points|XPHB|臨時生命值}。",
+			"reason": "修正短休、長休與臨時生命值三個錯置的規則標記；使用時機、至多五個可見生物及生命值公式維持原文。"
+		},
+		{
+			"path": "/subclassFeature/84/entries/1",
+			"expected": "當你選擇此子職時，你可能縛身遙遠國度中的不可名狀之存在，或是隻在傳說中出現過的失落古神——諸如潛伏者關納德；受縛之神薩瑞茲頓；歸來者扎貢；暗夜巨蛇丹德爾；或是偉大的克蘇魯。或者，你靠著駭異的學識祈喚眾多此等存在之名，並擇取一位，與之結合。此等存在行為無法讓凡人理解，這些舊日支配者甚至可能對你的存在也漠不關心——但你所學的神秘知識讓你得以從其身上獲取魔法。",
+			"value": "當你選擇此子職時，你可能讓自己受縛於遙遠國度中的不可名狀存在，或一位古老神祇——例如受縛之神薩瑞茲頓、歸來者扎貢、暗黑飢渴者哈達，或偉大的克蘇魯。或者，你也可以祈喚多個存在，而不讓自己受縛於其中任何一位。這些存在的動機不可理解，而你的舊日支配者可能對你的存在漠不關心。儘管如此，你學得的祕密仍使你能從它身上汲取奇異魔法。",
+			"reason": "刪除原文未列出的關納德與丹德爾、補回哈達，並修正「祈喚多個存在且不受縛於任何一位」被反譯成必須選一位結合的關鍵語意。"
+		}
+	]
+}

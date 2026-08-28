@@ -1,0 +1,117 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"scope": "2014 PHB and 2024 XPHB/current rule-accuracy audit"
+	},
+	"corrections": [
+		{
+			"path": "/class/0/startingEquipment/default/3",
+			"expected": "{@item Leather armor|phb|匕首}, 兩把{@item dagger|phb|皮甲}，以及{@item thieves' tools|phb|盜賊工具}",
+			"value": "{@item Leather armor|phb|皮甲}、兩把{@item dagger|phb|匕首}，以及{@item thieves' tools|phb|盜賊工具}",
+			"reason": "皮甲與匕首的顯示名稱互相錯置。"
+		},
+		{
+			"path": "/subclassFeature/2/entries/2/entries/0/entries/0",
+			"expected": "\"詭術師施法能力\"表中列出了你用以施展你{@filter 法師法術|spells|class=wizard}的1環及更高環階法術位數量。施展這些法術時，你必須同時消耗一個不低於該法術環階的法術位。而已消耗的法術位可以透過完成以此長休進行恢復。",
+			"value": "「詭術師施法」表列出你用來施展1環與更高環階{@filter 法師法術|spells|class=wizard}的法術位數量。施展其中一道法術時，你必須消耗一個環階不低於該法術的法術位。完成一次長休後，你恢復所有已消耗的法術位。",
+			"reason": "修正「完成以此長休」錯字，並精確保留法術位必須等於或高於法術環階。"
+		},
+		{
+			"path": "/subclassFeature/2/entries/3/entries/0/name",
+			"expected": "已知法術",
+			"value": "已知1環與更高環階法術",
+			"reason": "補回標題的 1st-Level and Higher 範圍。"
+		},
+		{
+			"path": "/subclassFeature/2/entries/3/entries/0/entries/3",
+			"expected": "你每次提升本職業等級時，可以將一個已知法術替換為另一個法師法術。這個新法術的環階不能超過你所擁有的最高法術位達到環階，且必須從惑控系或幻術系中選擇（除非你替換的是第8，第14或第20級習得的法術）。",
+			"value": "每當你在本職業中提升一個等級時，可以將一個你已知的法師法術替換為另一個你從法師法術列表中選擇的法術。新法術的環階必須是你具有相應法術位的環階，且必須是惑控系或幻術系法術；但若你替換的是在3級、8級、14級或20級從任一魔法學派取得的法術，則不受學派限制。",
+			"reason": "補回3級取得法術也屬學派限制的例外，並保留新法術環階須有相應法術位的條件。"
+		},
+		{
+			"path": "/subclassFeature/32/entries/1",
+			"expected": "你可以編織一層靈能面紗來掩蓋你。以一個動作，你連同你所穿或攜帶的任何東西可以魔法性地{@condition invisible||隱形}至多1小時。若你主動解除隱形（無需動作）、發動攻擊、或迫使一個生物進行豁免檢定，此隱形狀態將會提前結束。",
+			"value": "你可以編織一層靈能雜訊面紗來掩蔽自身。以一個動作，你與身上穿戴或攜帶的一切物品會魔法性地陷入{@condition invisible||隱形}，持續1小時，或直到你解除此效應為止（無需動作）。在你對一個生物造成傷害，或迫使一個生物進行豁免檢定後，此隱形會立即結束。",
+			"reason": "原文終止條件是造成傷害，不限於發動攻擊；並補回解除效應與1小時之間的擇一持續條件。"
+		},
+		{
+			"path": "/subclassFeature/42/entries/1",
+			"expected": "此外，如果你曾聽過一個生物講話1分鐘，且你懂得它說的那門語言，你就可以準確無誤地模仿出他的語氣與口音。這允許你模仿成某個有特殊地區的特別口音的人。",
+			"value": "此外，只要你曾聽一個生物說話至少1分鐘，便能準確模仿其說話模式與口音；若你知道該語言，就能讓自己聽起來像某地的母語使用者。",
+			"reason": "補回至少1分鐘的下限，並保留懂得該語言才可冒充母語使用者的條件。"
+		},
+		{
+			"path": "/subclassFeature/49/entries/0",
+			"expected": "當你在3級時選擇此範型時，你獲得{@skill Nature||自然}與{@skill Survival||求生}技能的熟練項。且當使用上述熟練項進行的任何屬性檢定時加入你的雙倍熟練加值。",
+			"value": "當你在3級選擇此範型時，若你尚未具備{@skill Nature||自然}或{@skill Survival||求生}其中任一項技能的熟練，便取得該項技能的熟練。你以其中任一技能熟練進行屬性檢定時，熟練加值加倍。",
+			"reason": "補回只有尚未具有該技能熟練時才取得熟練的條件。"
+		},
+		{
+			"path": "/classFeature/22/entries/0",
+			"expected": "第20級時，你掌握了一手非凡技巧，讓你可以隨時把握自己的成功之時。當你的攻擊未命中時，可以直接更改判定為命中。或者，當你的屬性檢定失敗時，可以直接將{@dice d20}骰的結果視為20。",
+			"value": "第20級時，你在最需要成功之際有著不可思議的本領。若你對攻擊範圍內目標的攻擊未命中，可以將這次未命中改為命中。或者，若你的屬性檢定失敗，可以將{@dice d20}擲骰視為20。",
+			"reason": "補回只能將對攻擊範圍內目標的未命中改為命中的限制。"
+		},
+		{
+			"path": "/subclassFeature/51/entries/1",
+			"expected": "你進行的先攻檢定具有優勢。此外，在戰鬥中的第一輪被你擊中的生物將更容易遭受攻擊；直到你的下個回合開始前，任何以這些生物為目標的攻擊都將具有優勢。",
+			"value": "你的先攻擲骰具有優勢。此外，在一場戰鬥的第一輪中，你首先命中的生物會變得更容易遭到你與其他人攻擊；直到你下一回合開始前，對該目標進行的攻擊檢定具有優勢。",
+			"reason": "原文只影響第一輪中首先被你命中的一個生物，舊譯錯誤擴大為所有被命中的生物。"
+		},
+		{
+			"path": "/classFeature/26/entries/1",
+			"expected": "每當你完成一次{@variantrule Long Rest|XPHB|長休}時，你可以改變你所選擇的{@variantrule weapon mastery properties|XPHB|精通詞條}。比如你可以改為{@item Scimitar|XPHB|彎刀}和{@item Shortsword|XPHB|短劍}。",
+			"value": "每當你完成一次{@variantrule Long Rest|XPHB|長休}時，你可以更換所選的武器種類。例如，你可以改選{@item Scimitar|XPHB|彎刀}和{@item Shortsword|XPHB|短劍}，並使用它們的{@variantrule weapon mastery properties|XPHB|精通詞條}。",
+			"reason": "原文允許更換所選武器種類，而不是任意更換精通詞條。"
+		},
+		{
+			"path": "/classFeature/32/entries/0",
+			"expected": "你為你的打擊附上毒素，強迫目標進行一次體質豁免。若失敗，目標將陷入一分鐘的{@condition Poisoned|XPHB|中毒}狀態。目標可以在每次自己的回合結束時重新進行豁免，若成功，{@condition Poisoned|XPHB|中毒}狀態終止。",
+			"value": "你在打擊中加入毒素，迫使目標進行一次體質豁免。豁免失敗時，目標陷入{@condition Poisoned|XPHB|中毒}狀態1分鐘。中毒目標在其每回合結束時再次進行此豁免，成功時終止自身所受效應。",
+			"reason": "原文規定中毒目標每回合結束時再次豁免，並非可選擇是否豁免。"
+		},
+		{
+			"path": "/classFeature/42/entries/0",
+			"expected": "你在造成偷襲傷害時可以一次性選用兩種詭詐打擊效果，每種效果都需要獨立扣除對應的偷襲傷害骰。",
+			"value": "你造成偷襲傷害時，可以使用至多兩種詭詐打擊效果，並分別支付每種效果的傷害骰費用。",
+			"reason": "原文為 up to two，舊譯容易被讀成必須或只能恰好選兩種。"
+		},
+		{
+			"path": "/classFeature/47/entries/0",
+			"expected": "目標必須成功透過一次體質豁免，否則將陷入{@condition Unconscious|XPHB|昏迷}狀態，持續一分鐘或受到任何傷害。{@condition Unconscious|XPHB|昏迷}的目標每在自己的回合結束時都可以重新進行豁免，若透過，則狀態結束。",
+			"value": "目標必須成功通過一次體質豁免，否則陷入{@condition Unconscious|XPHB|昏迷}狀態1分鐘，或直到受到任何傷害為止。昏迷目標在其每回合結束時再次進行此豁免，成功時終止自身所受效應。",
+			"reason": "補回受到傷害會提前結束狀態的 until 條件，並把原文強制的重複豁免由可選改回必須進行。"
+		},
+		{
+			"path": "/subclassFeature/59/entries/0",
+			"expected": "當一個你可見的敵人在距離你30尺內受到傷害，並因此傷害而陷入{@status Bloodied|XPHB|浴血}狀態並且未被直接殺死時，你可以使用一個{@variantrule Reaction|XPHB|反應}來{@variantrule Teleportation|XPHB|傳送術}至該敵人5尺內的、你可見的未佔據空間。接著你可以進行一次近戰攻擊。你可以使用此特性的次數等於你的智力調整值（至少1次）。完成一次{@variantrule Long Rest|XPHB|長休}後，你恢復所有已消耗的使用次數。",
+			"value": "當自身30尺內一個你能看見的敵人受到傷害，並在受傷後處於{@status Bloodied|XPHB|浴血}狀態且未被直接殺死時，你可以執行一個{@variantrule Reaction|XPHB|反應}，{@variantrule Teleportation|XPHB|傳送}到該敵人5尺內一處你能看見的未佔據空間，然後進行一次近戰攻擊。此特性的使用次數等於你的智力調整值（至少一次）；完成一次{@variantrule Long Rest|XPHB|長休}後，你恢復所有已消耗的使用次數。",
+			"reason": "修正 Teleportation 規則標籤顯示為法術名稱「傳送術」，並整理觸發條件而不改變距離或次數。"
+		},
+		{
+			"path": "/subclassFeature/62/entries/1/entries/1",
+			"expected": "被{@condition Frightened|XPHB|恐慌}的目標每個自己的回合結束時都可以重新進行該豁免，成功則其身上的該效應提前結束。",
+			"value": "陷入{@condition Frightened|XPHB|恐慌}的目標在其每回合結束時再次進行此豁免，成功時終止自身所受效應。",
+			"reason": "原文規定目標每回合結束時再次進行豁免，並非可選擇是否豁免。"
+		},
+		{
+			"path": "/subclassFeature/74/entries/3/entries/1",
+			"expected": "已準備法術數量會隨你遊蕩者等級的提升而增加，如詭術師施法表中的準備法術一列所示。每當這一列的數字增加時，從法師法術列表中選擇額外法術準備，直至已準備法術的數量與表格中的數字一致。你所選擇法術的環階必須是你所擁有法術位對應的環階。例如，如果你是一名7級遊蕩者，則你的準備法術列表能包括五道一環或二環的遊蕩者法術，隨意組合。",
+			"value": "已準備法術數量會隨遊蕩者等級提升而增加，如詭術師施法表的已準備法術欄所示。每當該數字增加時，從法師法術列表選擇額外法術，直到列表中的法術數量與表格一致；所選法術的環階必須是你擁有相應法術位的環階。例如，7級遊蕩者的準備法術列表可以任意組合五道一環或二環法師法術。",
+			"reason": "範例中的五道法術是 Wizard spells，舊譯誤作遊蕩者法術。"
+		},
+		{
+			"path": "/subclassFeature/77/entries/1",
+			"expected": "當一個生物施展了一個目標是你或是其效應範圍會影響你的法術後，你可以立刻使用你的{@variantrule Reaction|XPHB|反應}來迫使該生物進行一次智力豁免。其豁免DC等同於你的施法DC。若豁免失敗，你消除這個法術對你的影響，並且你將偷走使用這個法術的知識，但這個法術最低必須是一環並且你可以施展的更高等級的法術（不需要是法師法術）。接下來的八小時內，你準備了這個法術。同時該生物在此期間無法施展這個法術，直到八小時結束以後。",
+			"value": "一個生物施展以你為目標、或將你包含在效應區域內的法術後，你可以立即執行一個{@variantrule Reaction|XPHB|反應}，迫使該生物進行一次智力豁免；DC等於你的法術豁免DC。豁免失敗時，你對自己抵銷該法術的效應；若該法術至少為一環，且其環階不高於你能施展的法術環階，你也竊取該法術的知識（不必是法師法術）。接下來8小時內，你準備著該法術，且原施法者在這8小時結束前無法施展它。",
+			"reason": "明確保留可竊取法術須至少一環且環階不得高於你能施展之環階的限制；舊譯語序會誤讀成必須是更高環階法術。"
+		},
+		{
+			"path": "/subclassFeature/93/entries/0",
+			"expected": "你能讓你的念刃直接切削一個生物的心智。當你使用念刃對一個生物造成偷襲攻擊傷害時，你能迫使其進行一次感知豁免（{@dc 8} + 你的{@variantrule Proficiency|XPHB|熟練加值} + 你的敏捷調整值）。若豁免失敗，目標將在陷入長達 1 分鐘的{@condition Stunned|XPHB|震懾}。被{@condition Stunned|XPHB|震懾}的目標可以在他的回合結束時重複豁免，如果成功這一效應將結束。",
+			"value": "你可以讓念刃掃過生物的心智。當你以念刃對一個生物造成偷襲傷害時，可以迫使目標進行一次感知豁免（{@dc 8}加上你的敏捷調整值與{@variantrule Proficiency|XPHB|熟練加值}）。豁免失敗時，目標陷入{@condition Stunned|XPHB|震懾}狀態1分鐘。震懾目標在其每回合結束時再次進行此豁免，成功時終止自身所受效應。",
+			"reason": "把原文強制的回合結束重複豁免由可選改回必須進行，並保留感知豁免、DC公式與1分鐘時限。"
+		}
+	]
+}

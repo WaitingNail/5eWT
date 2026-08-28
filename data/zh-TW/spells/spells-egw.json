@@ -1,0 +1,877 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"spell": [
+		{
+			"name": "暗黑星辰",
+			"source": "EGW",
+			"page": 186,
+			"level": 8,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 150
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "一小塊碎瑪瑙與一滴施法者的血液，作為本法術的耗材",
+					"consume": true
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"該法術在施法距離內以你選擇的一點為圓心創造一個球形範圍。該圓形半徑至多為40尺。區域內充斥著魔法黑暗與毀滅性的重力能量。",
+				"法術持續時間內，球形區域內視為{@quickref difficult terrain||3||困難地形}。一個擁有{@sense darkvision||黑暗視覺}的生物沒法看透這片魔法黑暗，非魔法的光源無法點亮這片區域。該區域內沒法發出聲音，聲音也沒辦法穿過該區域。任何完全處於該球形區域內的生物或物件免疫雷鳴傷害，並且生物完全處於該區域內時處於{@condition deafened||耳聾}狀態。在該法術的影響範圍內沒有辦法施展包含言語成分的法術。",
+				"任何在自己回合中第一次進入該區域的生物或在該區域內開始其回合的生物需要進行一次體質豁免。若豁免失敗，該生物受到{@damage 8d10}點力場傷害，成功則只受到一半傷害。當一個生物的HP被這個法術降低到0時，該生物被解離。被解離的生物與其身上穿著的，攜帶著的一切，除了魔法物品外，都會化為一縷灰色的煙塵。"
+			],
+			"damageInflict": [
+				"force"
+			],
+			"conditionInflict": [
+				"deafened"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"DFT",
+				"OBJ",
+				"OBS"
+			],
+			"areaTags": [
+				"S"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Dark Star"
+		},
+		{
+			"name": "命運寵兒",
+			"source": "EGW",
+			"page": 186,
+			"level": 2,
+			"school": "D",
+			"time": [
+				{
+					"number": 1,
+					"unit": "minute"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "一顆至少價值100GP的白色珍珠，作為本法術的耗材",
+					"cost": 10000,
+					"consume": true
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "hour",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"你給予你自己或施法距離內你可見的一個自願生物以潛藏的幸運。在法術結束之前，當被選中的生物進行一次攻擊檢定，屬性檢定或者豁免檢定時，他能夠使這個法術結束並扔一顆額外的{@dice d20}骰，並決定使用哪一顆{@dice d20}。或者，當這個生物成為一個攻擊檢定的目標時，他能夠使這個法術結束並扔一顆額外的{@dice d20}骰，並決定使用哪一顆{@dice d20}：攻擊者所擲骰的或透過該法術所擲骰。",
+				"若原{@dice d20}骰有優勢或劣勢，那麼透過該法術擲出的骰子在原{@dice d20}的優勢或劣勢生效後生效。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"使用三環或更高法術位施展該法術時，你使用的法術位每比 2 環高一環，就可以多指定一個目標。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"miscTags": [
+				"SCT",
+				"SGT"
+			],
+			"areaTags": [
+				"ST"
+			],
+			"ENG_name": "Fortune's Favor"
+		},
+		{
+			"name": "靈敏之賜",
+			"source": "EGW",
+			"page": 186,
+			"level": 1,
+			"school": "D",
+			"time": [
+				{
+					"number": 1,
+					"unit": "minute"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "touch"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "hour",
+						"amount": 8
+					}
+				}
+			],
+			"entries": [
+				"你觸碰一個自願生物。法術持續時間內，該生物進行的先攻檢定可以額外加入一枚{@dice 1d8}。"
+			],
+			"areaTags": [
+				"ST"
+			],
+			"ENG_name": "Gift of Alacrity"
+		},
+		{
+			"name": "重力分裂",
+			"source": "EGW",
+			"page": 187,
+			"level": 6,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "line",
+				"distance": {
+					"type": "feet",
+					"amount": 100
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "一把鐵料"
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你以自身為原點咒現出一條長100尺，寬5尺的重力能量。.所有線上上的生物需要進行一個體質豁免，若失敗，則受到{@damage 8d8}點力場傷害，若豁免成功則受到一半傷害。",
+				"所有距離這條線10尺或以內但不線上當中的生物需要透過一個體質豁免，若失敗則受到{@damage 8d8}點力場傷害並且會被拉向線的區域中。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"當你使用七環或更高環位的法術位施展該法術時，每比六環高出一環的法術位能使該法術的傷害增加{@scaledamage 8d8|6-9|1d8}。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"damageInflict": [
+				"force"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"areaTags": [
+				"L"
+			],
+			"ENG_name": "Gravity Fissure"
+		},
+		{
+			"name": "引力裂溝",
+			"source": "EGW",
+			"page": 187,
+			"level": 4,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "一塊黑色的大理石"
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"一道半徑20尺球形範圍的破壞效能量在施法距離內你能看見的一點為源點形成，並開始拖拽範圍內的生物。所有在範圍內的生物必須進行一次體質豁免檢定。若豁免失敗，該生物受到{@damage 5d10}點力場傷害並且會被直直拉向能量的中心，並在離中心儘可能近的未被佔據的空間停止（哪怕這會讓他飛到天上）。若豁免成功，則其受到一半傷害並且不會被拉走。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"當你使用五環或者更高環位的法術位施展該法術時， 每比四環高出一環的法術位可以使該法術的傷害增加{@scaledamage 5d10|4-9|1d10}。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"damageInflict": [
+				"force"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"areaTags": [
+				"S"
+			],
+			"ENG_name": "Gravity Sinkhole"
+		},
+		{
+			"name": "不動物件",
+			"source": "EGW",
+			"page": 187,
+			"level": 2,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "touch"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "至少價值 25gp 的金粉，作為該法術的耗材",
+					"cost": 2500,
+					"consume": true
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "hour",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"你觸控一個至多不超過10磅的物件，使其魔法般地固定住。你與你施法時指定的生物能夠如常移動它。你也可以設定一串密碼，當密碼在該物件5尺內被念出時，使這個法術暫時被壓制1分鐘。",
+				"若該物件被固定在空中，那麼它可以至多承載4000磅的重量。更重的負載會使其墜落。另外，一個生物能以其動作進行一個對抗你的法術豁免DC的力量檢定。若其成功，則該物件能被他移動10尺。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"若你使用四環或五環法術位施展該法術，使該物件移動的檢定DC增加5，並且它能夠承載8000磅重的負載並持續24小時。如果你用六環或者更高環的法術位施展該法術，那麼使該物件移動的檢定DC增加10，並且它能夠承載20000磅重的負載並一直持續到法術被解除。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"abilityCheck": [
+				"strength"
+			],
+			"miscTags": [
+				"OBJ",
+				"PRM"
+			],
+			"areaTags": [
+				"ST"
+			],
+			"ENG_name": "Immovable Object"
+		},
+		{
+			"name": "擴大重力",
+			"source": "EGW",
+			"page": 188,
+			"level": 1,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "round",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"施法距離內你可見的一點的10尺半徑球形範圍內的重力暫時性地增加了。在你施法時，所有處於該範圍內的生物必須透過一個體質豁免。若豁免失敗，該生物受到{@damage 2d8}點力場傷害且其移動速度在他的下個回合結束前減半。若豁免成功，該生物受到一半的傷害且在移動速度上沒有減值。",
+				"直到你的下個回合開始，任何想要把該範圍內未被著裝或攜帶的物品移動或撿起都需要進行一次對抗你的法術豁免DC的成功的力量檢定，若成功才可行。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"使用二環或更高法術位施展該法術時，你使用的法術位每比 1 環高一環，傷害就增加 {@scaledamage 2d8|1-9|1d8}。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"damageInflict": [
+				"force"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"OBJ",
+				"SGT"
+			],
+			"areaTags": [
+				"S"
+			],
+			"ENG_name": "Magnify Gravity"
+		},
+		{
+			"name": "脈衝波動",
+			"source": "EGW",
+			"page": 188,
+			"level": 3,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "cone",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你創造出一股強烈的衝壓，將其釋放向30尺錐形範圍，並決定該衝壓會推開還是拉近範圍內的物品與生物。在錐形範圍內的每個生物必須要透過一個體質豁免，若豁免失敗則會受到{@damage 6d6}點力場傷害，豁免成功則受到一半傷害。豁免失敗的生物會向你被拉進15尺，或從你處被推開15尺，取決於你施展法術時的選擇。",
+				"另外，完全處於錐形範圍內未被著裝的物件也會被向你被拉進或者被推開15尺。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"當你使用四環或更高環的法術位施展該法術時，每比三環高出一環的法術位就能使法術的傷害增加{@scaledamage 6d6|3-9|1d6}，並使推拉的距離增加5尺。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"damageInflict": [
+				"force"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"FMV",
+				"OBJ"
+			],
+			"areaTags": [
+				"N"
+			],
+			"ENG_name": "Pulse Wave"
+		},
+		{
+			"name": "饕餮虛空",
+			"source": "EGW",
+			"page": 188,
+			"level": 9,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 1000
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "一隻鐵製的小九芒星"
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"你以施法距離內你可見的一點為源點創造一個半徑20尺的毀滅性球形力場。在法術持續時間內，球形力場與其100尺範圍內的空間視為{@quickref difficult terrain||3||困難地形}，且完全處於力場內的未被著裝與攜帶的非魔法物件會被摧毀。",
+				"當力場出現時或者在你的每回合開始時，力場的100尺範圍內未被著裝的物件將被直直拉向力場的中心，並在距離力場中心最近的未被佔據的空間停止。",
+				"當一個生物在力場的100尺範圍內開始其回合時，其必須進行一個力量豁免，若失敗則將被直直拉向力場的中心，並在距離力場中心最近的未被佔據的空間停止。一個在當前回合內第一次進入力場的生物或在力場內開始其回合的生物會受到{@damage 5d10}點力場傷害並且被{@condition restrained||束縛}，直到其離開力場範圍。若力場位於空中，那麼被{@condition restrained||束縛}的生物將會在力場中懸浮。一個生物能以其動作進行一個對抗你的法術豁免DC的力量檢定，若成功則能解除其自己或者另一個在其觸及範圍內的力場內的生物的{@condition restrained||束縛}狀態。若一個生物的HP被該法術降低至0，他與他身上攜帶的所有非魔法物件都會被湮滅。"
+			],
+			"damageInflict": [
+				"force"
+			],
+			"conditionInflict": [
+				"restrained"
+			],
+			"savingThrow": [
+				"strength"
+			],
+			"abilityCheck": [
+				"strength"
+			],
+			"miscTags": [
+				"OBJ",
+				"SGT"
+			],
+			"areaTags": [
+				"S"
+			],
+			"ENG_name": "Ravenous Void"
+		},
+		{
+			"name": "崩壞現實",
+			"source": "EGW",
+			"page": 189,
+			"level": 8,
+			"school": "C",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "一個水晶稜鏡"
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"你將現實與時間線之間的壁壘粉碎，使一個生物陷入混沌與瘋狂。目標必須透過一個感知豁免，否則將無法執行任何反應直到法術結束。被影響的生物必須在其回合開始時擲一個{@dice d10}，其結果決定目標身上發生了什麼。參照下方表格\"崩壞現實效果\"。",
+				"在其回合結束時，受影響的生物能重複其感知豁免，若成功，則法術結束。",
+				{
+					"type": "table",
+					"caption": "崩壞現實效果",
+					"colLabels": [
+						"d10",
+						"效應"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1-2",
+							"{@b 遙遠國度之瞥。} 目標受到{@damage 6d12}點心靈傷害並且陷入{@condition stunned||震懾}到本輪結束。"
+						],
+						[
+							"3-5",
+							"{@b 崩碎裂縫。} 目標必須透過一個敏捷豁免，若失敗則受到{@damage 8d12}點力場傷害，若豁免成功則受到一半傷害。"
+						],
+						[
+							"6-8",
+							"{@b 蟲洞。} 該目標與其身上所著裝、攜帶的一切東西被傳送到他30尺內你能看到的未被佔據的空間。目標受到{@damage 10d12}點力場傷害並{@condition prone||倒地}。"
+						],
+						[
+							"9-10",
+							"{@b 暗虛之凍。} 目標受到{@damage 10d12}點寒冷傷害並且{@condition blinded||目盲}到本回合結束。"
+						]
+					]
+				}
+			],
+			"damageInflict": [
+				"psychic",
+				"force",
+				"cold"
+			],
+			"conditionInflict": [
+				"stunned",
+				"prone",
+				"blinded"
+			],
+			"savingThrow": [
+				"wisdom",
+				"dexterity"
+			],
+			"miscTags": [
+				"RO",
+				"SGT"
+			],
+			"areaTags": [
+				"ST"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Reality Break"
+		},
+		{
+			"name": "削弱芒刺",
+			"source": "EGW",
+			"page": 189,
+			"level": 0,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你削弱施法距離內一個你看得見的生物的生命活力。目標必須透過一個體質豁免，否則就會受到{@damage 1d4}點暗蝕傷害並且{@condition prone||倒地}。",
+				"當你達到5級時，這個法術的傷害增加{@damage 1d4}（{@damage 2d4}），11級時（{@damage 3d4}），17級時（{@damage 4d4}）。"
+			],
+			"scalingLevelDice": {
+				"label": "暗蝕傷害",
+				"scaling": {
+					"1": "1d4",
+					"5": "2d4",
+					"11": "3d4",
+					"17": "4d4"
+				}
+			},
+			"damageInflict": [
+				"necrotic"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"SCL",
+				"SGT"
+			],
+			"areaTags": [
+				"ST"
+			],
+			"ENG_name": "Sapping Sting"
+		},
+		{
+			"name": "時流剎轉",
+			"source": "EGW",
+			"page": 189,
+			"level": 5,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "reaction",
+					"condition": "當你看到一個生物進行一次攻擊擲骰或開始施展一個法術時使用"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "round",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"你以觸發法術的生物為目標, 其必須透過一個成功的感知豁免，否則就會消失，被驅逐到時間流的另一個時間點上並導致攻擊失手或法術浪費。在目標生物的下個回合開始時，目標重新出現在他剛剛的位置或最近一處未被佔據的空間。目標不記得你施放了這個法術或自己被這個法術影響。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法效應",
+					"entries": [
+						"當你使用六環或更高環位的法術位施展該法術時，每比五環高出一環的法術位可以使你多指定一個目標。 所有的目標都需要在互相的30尺內。"
+					],
+					"ENG_name": "At Higher Levels"
+				}
+			],
+			"savingThrow": [
+				"wisdom"
+			],
+			"miscTags": [
+				"SCT"
+			],
+			"areaTags": [
+				"ST"
+			],
+			"ENG_name": "Temporal Shunt"
+		},
+		{
+			"name": "繫結本源",
+			"source": "EGW",
+			"page": 189,
+			"level": 7,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "一卷至少價值250金幣的鉑金絲線，作為本法術的耗材",
+					"cost": 25000,
+					"consume": true
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "hour",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"兩個施法距離內的你能看見的生物必須進行一次體質豁免，若兩者在30尺內，則他們的豁免檢定具有劣勢。每個生物都能自願放棄豁免。若兩者中有一個豁免成功了，那麼法術沒有效果。若兩人豁免均失敗了，那麼他們便會在法術持續時間內魔法般地被連線在一起，無論兩人間距多少。 若其中一人受到傷害 ，另外一人也會受到等額的傷害。若其中一人恢復了生命值，另外一人也會恢復等額的生命值。如果被繫結的雙方中任意一方的HP減少到了0，那麼該法術結束。該法術在任意一方身上結束時，另外一方的法術也結束。"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"areaTags": [
+				"MT"
+			],
+			"ENG_name": "Tether Essence"
+		},
+		{
+			"name": "時光蹂躪",
+			"source": "EGW",
+			"page": 189,
+			"level": 9,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 90
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "一個裝滿了鑽石粉塵的沙漏，其合計價值至少為5000金幣，作為本法術的耗材",
+					"cost": 500000,
+					"consume": true
+				}
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你選定一個施法距離內的目標，使他的身體形態受到飛速衰老的破壞。目標必須進行一個體質豁免並在豁免失敗時受到{@damage 10d12}點暗蝕傷害, 或在豁免成功時只受到一半的傷害。 若其豁免失敗，目標還會快速老化至離老死只有三十天的時間點。 在這個年齡段, 目標在攻擊擲骰上, 屬性檢定上與豁免檢定上承受劣勢，其步行速度也減少一半.。只有{@spell wish||祈願術}或以九環法術位施展的{@spell greater restoration||高等復原術}才能使這些效果消除並使其恢復原先的年齡。"
+			],
+			"damageInflict": [
+				"necrotic"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"areaTags": [
+				"ST"
+			],
+			"ENG_name": "Time Ravage"
+		},
+		{
+			"name": "魔袋術",
+			"source": "EGW",
+			"page": 190,
+			"level": 2,
+			"school": "C",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "hour",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"meta": {
+				"ritual": true
+			},
+			"entries": [
+				"你輕彈手腕, 讓你手中的一件物品消失。這件只有你能持握的，重量不超過五磅物件會被傳送到一個異次元空間，它會在法術持續時間內一直停留在那裡。",
+				"到法術結束為止, 你可以用你的動作將物件召喚到你空餘的手中, 你也可以用一個動作將該物件返還至異次元空間處。 到法術結束時仍然存在在異次元空間的物品會出現在你的位置中，你的腳下。"
+			],
+			"areaTags": [
+				"ST"
+			],
+			"ENG_name": "Wristpocket"
+		}
+	]
+}

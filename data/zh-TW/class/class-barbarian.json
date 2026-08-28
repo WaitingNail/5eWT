@@ -1,0 +1,3969 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"translationSource": "https://shuaishuaidnd.cn/data/class",
+		"conversion": "OpenCC s2twp plus locked project terminology"
+	},
+	"class": [
+		{
+			"name": "野蠻人",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"reprintedAs": [
+				"Barbarian|XPHB"
+			],
+			"edition": "classic",
+			"hd": {
+				"number": 1,
+				"faces": 12
+			},
+			"proficiency": [
+				"str",
+				"con"
+			],
+			"startingProficiencies": {
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"animal handling",
+								"athletics",
+								"intimidation",
+								"nature",
+								"perception",
+								"survival"
+							],
+							"count": 2
+						}
+					}
+				],
+				"weapons": [
+					"simple",
+					"martial"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"shield": true
+					}
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"default": [
+					"(a) 一把{@item greataxe|phb|巨斧} 或 (b) 任意{@filter 軍用近戰武器|items|source=phb|category=basic|type=martial weapon;melee weapon=sand}",
+					"(a) 兩把{@item handaxe|phb|手斧}或 (b) 任意一把 {@filter 簡易武器|items|source=phb|category=basic|type=simple weapon}",
+					"一個 {@item explorer's pack|phb|探索套組}和四支 {@item javelin|phb|標槍}"
+				],
+				"goldAlternative": "{@dice 2d4 × 10|2d4 × 10|起始金幣}",
+				"defaultData": [
+					{
+						"a": [
+							"greataxe|phb"
+						],
+						"b": [
+							{
+								"equipmentType": "weaponMartialMelee"
+							}
+						]
+					},
+					{
+						"a": [
+							{
+								"item": "handaxe|phb",
+								"quantity": 2
+							}
+						],
+						"b": [
+							{
+								"equipmentType": "weaponSimple"
+							}
+						]
+					},
+					{
+						"_": [
+							"explorer's pack|phb",
+							{
+								"item": "javelin|phb",
+								"quantity": 4
+							}
+						]
+					}
+				]
+			},
+			"multiclassing": {
+				"requirements": {
+					"str": 13
+				},
+				"proficienciesGained": {
+					"weapons": [
+						"simple",
+						"martial"
+					],
+					"armor": [
+						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"shield": true
+						}
+					]
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"狂暴次數",
+						"狂暴傷害"
+					],
+					"rows": [
+						[
+							"2",
+							{
+								"type": "bonus",
+								"value": 2
+							}
+						],
+						[
+							"2",
+							{
+								"type": "bonus",
+								"value": 2
+							}
+						],
+						[
+							"3",
+							{
+								"type": "bonus",
+								"value": 2
+							}
+						],
+						[
+							"3",
+							{
+								"type": "bonus",
+								"value": 2
+							}
+						],
+						[
+							"3",
+							{
+								"type": "bonus",
+								"value": 2
+							}
+						],
+						[
+							"4",
+							{
+								"type": "bonus",
+								"value": 2
+							}
+						],
+						[
+							"4",
+							{
+								"type": "bonus",
+								"value": 2
+							}
+						],
+						[
+							"4",
+							{
+								"type": "bonus",
+								"value": 2
+							}
+						],
+						[
+							"4",
+							{
+								"type": "bonus",
+								"value": 3
+							}
+						],
+						[
+							"4",
+							{
+								"type": "bonus",
+								"value": 3
+							}
+						],
+						[
+							"4",
+							{
+								"type": "bonus",
+								"value": 3
+							}
+						],
+						[
+							"5",
+							{
+								"type": "bonus",
+								"value": 3
+							}
+						],
+						[
+							"5",
+							{
+								"type": "bonus",
+								"value": 3
+							}
+						],
+						[
+							"5",
+							{
+								"type": "bonus",
+								"value": 3
+							}
+						],
+						[
+							"5",
+							{
+								"type": "bonus",
+								"value": 3
+							}
+						],
+						[
+							"5",
+							{
+								"type": "bonus",
+								"value": 4
+							}
+						],
+						[
+							"6",
+							{
+								"type": "bonus",
+								"value": 4
+							}
+						],
+						[
+							"6",
+							{
+								"type": "bonus",
+								"value": 4
+							}
+						],
+						[
+							"6",
+							{
+								"type": "bonus",
+								"value": 4
+							}
+						],
+						[
+							"無限制",
+							{
+								"type": "bonus",
+								"value": 4
+							}
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Rage|Barbarian||1",
+				"Unarmored Defense|Barbarian||1",
+				"Danger Sense|Barbarian||2",
+				"Reckless Attack|Barbarian||2",
+				{
+					"classFeature": "Primal Path|Barbarian||3",
+					"gainSubclassFeature": true
+				},
+				"Primal Knowledge|Barbarian||3|TCE",
+				"Ability Score Improvement|Barbarian||4",
+				"Extra Attack|Barbarian||5",
+				"Fast Movement|Barbarian||5",
+				{
+					"classFeature": "Path Feature|Barbarian||6",
+					"gainSubclassFeature": true
+				},
+				"Feral Instinct|Barbarian||7",
+				"Instinctive Pounce|Barbarian||7|TCE",
+				"Ability Score Improvement|Barbarian||8",
+				"Brutal Critical (1 die)|Barbarian||9",
+				{
+					"classFeature": "Path feature|Barbarian||10",
+					"gainSubclassFeature": true
+				},
+				"Relentless Rage|Barbarian||11",
+				"Ability Score Improvement|Barbarian||12",
+				"Brutal Critical (2 dice)|Barbarian||13",
+				{
+					"classFeature": "Path feature|Barbarian||14",
+					"gainSubclassFeature": true
+				},
+				"Persistent Rage|Barbarian||15",
+				"Ability Score Improvement|Barbarian||16",
+				"Brutal Critical (3 dice)|Barbarian||17",
+				"Indomitable Might|Barbarian||18",
+				"Ability Score Improvement|Barbarian||19",
+				"Primal Champion|Barbarian||20"
+			],
+			"subclassTitle": "原初道途",
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Barbarian"
+		},
+		{
+			"name": "野蠻人",
+			"source": "XPHB",
+			"page": 50,
+			"srd52": true,
+			"basicRules2024": true,
+			"edition": "one",
+			"primaryAbility": [
+				{
+					"str": true
+				}
+			],
+			"hd": {
+				"number": 1,
+				"faces": 12
+			},
+			"proficiency": [
+				"str",
+				"con"
+			],
+			"featProgression": [
+				{
+					"name": "傳奇恩惠",
+					"category": [
+						"EB"
+					],
+					"progression": {
+						"19": 1
+					},
+					"ENG_name": "Epic Boon"
+				}
+			],
+			"startingProficiencies": {
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"animal handling",
+								"athletics",
+								"intimidation",
+								"nature",
+								"perception",
+								"survival"
+							],
+							"count": 2
+						}
+					}
+				],
+				"weapons": [
+					"simple",
+					"martial"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"shield": true
+					}
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"defaultData": [
+					{
+						"A": [
+							{
+								"item": "greataxe|xphb"
+							},
+							{
+								"item": "handaxe|xphb",
+								"quantity": 4
+							},
+							{
+								"item": "explorer's pack|xphb"
+							},
+							{
+								"value": 1500
+							}
+						],
+						"B": [
+							{
+								"value": 7500
+							}
+						]
+					}
+				],
+				"entries": [
+					"{@i 選擇A或B：} (A) {@item Greataxe|XPHB|巨斧}，4 {@item Handaxe|XPHB|手斧}，{@item Explorer's Pack|XPHB|探索套組}以及15GP；或 (B) 75GP"
+				]
+			},
+			"multiclassing": {
+				"proficienciesGained": {
+					"weapons": [
+						"martial"
+					],
+					"armor": [
+						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"shield": true
+						}
+					]
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"狂暴次數",
+						"狂暴傷害",
+						"武器精通"
+					],
+					"rows": [
+						[
+							"2",
+							{
+								"type": "bonus",
+								"value": 2
+							},
+							"2"
+						],
+						[
+							"2",
+							{
+								"type": "bonus",
+								"value": 2
+							},
+							"2"
+						],
+						[
+							"3",
+							{
+								"type": "bonus",
+								"value": 2
+							},
+							"2"
+						],
+						[
+							"3",
+							{
+								"type": "bonus",
+								"value": 2
+							},
+							"3"
+						],
+						[
+							"3",
+							{
+								"type": "bonus",
+								"value": 2
+							},
+							"3"
+						],
+						[
+							"4",
+							{
+								"type": "bonus",
+								"value": 2
+							},
+							"3"
+						],
+						[
+							"4",
+							{
+								"type": "bonus",
+								"value": 2
+							},
+							"3"
+						],
+						[
+							"4",
+							{
+								"type": "bonus",
+								"value": 2
+							},
+							"3"
+						],
+						[
+							"4",
+							{
+								"type": "bonus",
+								"value": 3
+							},
+							"3"
+						],
+						[
+							"4",
+							{
+								"type": "bonus",
+								"value": 3
+							},
+							"4"
+						],
+						[
+							"4",
+							{
+								"type": "bonus",
+								"value": 3
+							},
+							"4"
+						],
+						[
+							"5",
+							{
+								"type": "bonus",
+								"value": 3
+							},
+							"4"
+						],
+						[
+							"5",
+							{
+								"type": "bonus",
+								"value": 3
+							},
+							"4"
+						],
+						[
+							"5",
+							{
+								"type": "bonus",
+								"value": 3
+							},
+							"4"
+						],
+						[
+							"5",
+							{
+								"type": "bonus",
+								"value": 3
+							},
+							"4"
+						],
+						[
+							"5",
+							{
+								"type": "bonus",
+								"value": 4
+							},
+							"4"
+						],
+						[
+							"6",
+							{
+								"type": "bonus",
+								"value": 4
+							},
+							"4"
+						],
+						[
+							"6",
+							{
+								"type": "bonus",
+								"value": 4
+							},
+							"4"
+						],
+						[
+							"6",
+							{
+								"type": "bonus",
+								"value": 4
+							},
+							"4"
+						],
+						[
+							"6",
+							{
+								"type": "bonus",
+								"value": 4
+							},
+							"4"
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Rage|Barbarian|XPHB|1",
+				"Unarmored Defense|Barbarian|XPHB|1",
+				"Weapon Mastery|Barbarian|XPHB|1",
+				"Danger Sense|Barbarian|XPHB|2",
+				"Reckless Attack|Barbarian|XPHB|2",
+				{
+					"classFeature": "Barbarian Subclass|Barbarian|XPHB|3",
+					"gainSubclassFeature": true
+				},
+				"Primal Knowledge|Barbarian|XPHB|3",
+				"Ability Score Improvement|Barbarian|XPHB|4",
+				"Extra Attack|Barbarian|XPHB|5",
+				"Fast Movement|Barbarian|XPHB|5",
+				{
+					"classFeature": "Subclass Feature|Barbarian|XPHB|6",
+					"gainSubclassFeature": true
+				},
+				"Feral Instinct|Barbarian|XPHB|7",
+				"Instinctive Pounce|Barbarian|XPHB|7",
+				"Ability Score Improvement|Barbarian|XPHB|8",
+				"Brutal Strike|Barbarian|XPHB|9",
+				{
+					"classFeature": "Subclass Feature|Barbarian|XPHB|10",
+					"gainSubclassFeature": true
+				},
+				"Relentless Rage|Barbarian|XPHB|11",
+				"Ability Score Improvement|Barbarian|XPHB|12",
+				"Improved Brutal Strike|Barbarian|XPHB|13",
+				{
+					"classFeature": "Subclass Feature|Barbarian|XPHB|14",
+					"gainSubclassFeature": true
+				},
+				"Persistent Rage|Barbarian|XPHB|15",
+				"Ability Score Improvement|Barbarian|XPHB|16",
+				"Improved Brutal Strike|Barbarian|XPHB|17",
+				"Indomitable Might|Barbarian|XPHB|18",
+				"Epic Boon|Barbarian|XPHB|19",
+				"Primal Champion|Barbarian|XPHB|20"
+			],
+			"subclassTitle": "野蠻人子職",
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Barbarian"
+		}
+	],
+	"subclass": [
+		{
+			"name": "狂戰士道途",
+			"shortName": "狂戰士",
+			"source": "PHB",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"page": 49,
+			"srd": true,
+			"reprintedAs": [
+				"Berserker|Barbarian|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"subclassFeatures": [
+				"Path of the Berserker|Barbarian||Berserker||3",
+				"Mindless Rage|Barbarian||Berserker||6",
+				"Intimidating Presence|Barbarian||Berserker||10",
+				"Retaliation|Barbarian||Berserker||14"
+			],
+			"ENG_name": "Path of the Berserker",
+			"ENG_shortName": "Berserker"
+		},
+		{
+			"name": "狂戰士道途",
+			"shortName": "狂戰士",
+			"source": "PHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Path of the Berserker",
+				"source": "PHB",
+				"shortName": "Berserker",
+				"className": "Barbarian",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Path of the Berserker",
+			"ENG_shortName": "Berserker"
+		},
+		{
+			"name": "圖騰勇士道途",
+			"shortName": "圖騰武者",
+			"source": "PHB",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"page": 50,
+			"reprintedAs": [
+				"Wild Heart|Barbarian|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"innate": {
+						"3": {
+							"ritual": [
+								"beast sense",
+								"speak with animals"
+							]
+						},
+						"10": {
+							"ritual": [
+								"commune with nature"
+							]
+						}
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Path of the Totem Warrior|Barbarian||Totem Warrior||3",
+				"Aspect of the Beast|Barbarian||Totem Warrior||6",
+				"Spirit Walker|Barbarian||Totem Warrior||10",
+				"Totemic Attunement|Barbarian||Totem Warrior||14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Path of the Totem Warrior",
+			"ENG_shortName": "Totem Warrior"
+		},
+		{
+			"name": "圖騰勇士道途",
+			"shortName": "圖騰武者",
+			"source": "PHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Path of the Totem Warrior",
+				"source": "PHB",
+				"shortName": "Totem Warrior",
+				"className": "Barbarian",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "圖騰勇士道途",
+					"source": "PHB",
+					"shortName": "圖騰武者",
+					"className": "Barbarian",
+					"classSource": "PHB",
+					"ENG_name": "Path of the Totem Warrior"
+				}
+			},
+			"ENG_name": "Path of the Totem Warrior",
+			"ENG_shortName": "Totem Warrior"
+		},
+		{
+			"name": "戰狂道途",
+			"shortName": "戰狂",
+			"source": "SCAG",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"page": 121,
+			"edition": "classic",
+			"subclassFeatures": [
+				"Path of the Battlerager|Barbarian||Battlerager|SCAG|3",
+				"Reckless Abandon|Barbarian||Battlerager|SCAG|6",
+				"Battlerager Charge|Barbarian||Battlerager|SCAG|10",
+				"Spiked Retribution|Barbarian||Battlerager|SCAG|14"
+			],
+			"ENG_name": "Path of the Battlerager",
+			"ENG_shortName": "Battlerager"
+		},
+		{
+			"name": "戰狂道途",
+			"shortName": "戰狂",
+			"source": "SCAG",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Path of the Battlerager",
+				"source": "SCAG",
+				"shortName": "Battlerager",
+				"className": "Barbarian",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Path of the Battlerager",
+			"ENG_shortName": "Battlerager"
+		},
+		{
+			"name": "先祖守衛道途",
+			"shortName": "先祖守衛",
+			"source": "XGE",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"page": 9,
+			"edition": "classic",
+			"spellcastingAbility": "wis",
+			"additionalSpells": [
+				{
+					"innate": {
+						"10": [
+							"augury",
+							"clairvoyance"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Path of the Ancestral Guardian|Barbarian||Ancestral Guardian|XGE|3",
+				"Spirit Shield|Barbarian||Ancestral Guardian|XGE|6",
+				"Consult the Spirits|Barbarian||Ancestral Guardian|XGE|10",
+				"Vengeful Ancestors|Barbarian||Ancestral Guardian|XGE|14"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Path of the Ancestral Guardian",
+			"ENG_shortName": "Ancestral Guardian"
+		},
+		{
+			"name": "先祖守衛道途",
+			"shortName": "先祖守衛",
+			"source": "XGE",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Path of the Ancestral Guardian",
+				"source": "XGE",
+				"shortName": "Ancestral Guardian",
+				"className": "Barbarian",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Path of the Ancestral Guardian",
+			"ENG_shortName": "Ancestral Guardian"
+		},
+		{
+			"name": "風暴先驅道途",
+			"shortName": "風暴先聲",
+			"source": "XGE",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"page": 10,
+			"edition": "classic",
+			"subclassFeatures": [
+				"Path of the Storm Herald|Barbarian||Storm Herald|XGE|3",
+				"Storm Soul|Barbarian||Storm Herald|XGE|6",
+				"Shielding Storm|Barbarian||Storm Herald|XGE|10",
+				"Raging Storm|Barbarian||Storm Herald|XGE|14"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Path of the Storm Herald",
+			"ENG_shortName": "Storm Herald"
+		},
+		{
+			"name": "風暴先驅道途",
+			"shortName": "風暴先聲",
+			"source": "XGE",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Path of the Storm Herald",
+				"source": "XGE",
+				"shortName": "Storm Herald",
+				"className": "Barbarian",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "風暴先驅道途",
+					"source": "XGE",
+					"shortName": "風暴先聲",
+					"className": "Barbarian",
+					"classSource": "PHB",
+					"ENG_name": "Path of the Storm Herald"
+				}
+			},
+			"ENG_name": "Path of the Storm Herald",
+			"ENG_shortName": "Storm Herald"
+		},
+		{
+			"name": "狂熱者道途",
+			"shortName": "狂熱者",
+			"source": "XGE",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"page": 11,
+			"reprintedAs": [
+				"Zealot|Barbarian|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"subclassFeatures": [
+				"Path of the Zealot|Barbarian||Zealot|XGE|3",
+				"Fanatical Focus|Barbarian||Zealot|XGE|6",
+				"Zealous Presence|Barbarian||Zealot|XGE|10",
+				"Rage beyond Death|Barbarian||Zealot|XGE|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Path of the Zealot",
+			"ENG_shortName": "Zealot"
+		},
+		{
+			"name": "狂熱者道途",
+			"shortName": "狂熱者",
+			"source": "XGE",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Path of the Zealot",
+				"source": "XGE",
+				"shortName": "Zealot",
+				"className": "Barbarian",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Path of the Zealot",
+			"ENG_shortName": "Zealot"
+		},
+		{
+			"name": "野獸道途",
+			"shortName": "野獸",
+			"source": "TCE",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"page": 24,
+			"edition": "classic",
+			"subclassFeatures": [
+				"Path of the Beast|Barbarian||Beast|TCE|3",
+				"Bestial Soul|Barbarian||Beast|TCE|6",
+				"Infectious Fury|Barbarian||Beast|TCE|10",
+				"Call the Hunt|Barbarian||Beast|TCE|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Path of the Beast",
+			"ENG_shortName": "Beast"
+		},
+		{
+			"name": "野獸道途",
+			"shortName": "野獸",
+			"source": "TCE",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Path of the Beast",
+				"source": "TCE",
+				"shortName": "Beast",
+				"className": "Barbarian",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "野獸道途",
+					"source": "TCE",
+					"shortName": "野獸",
+					"className": "Barbarian",
+					"classSource": "PHB",
+					"ENG_name": "Path of the Beast"
+				}
+			},
+			"ENG_name": "Path of the Beast",
+			"ENG_shortName": "Beast"
+		},
+		{
+			"name": "狂野魔法道途",
+			"shortName": "狂野魔法",
+			"source": "TCE",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"page": 25,
+			"edition": "classic",
+			"subclassFeatures": [
+				"Path of Wild Magic|Barbarian||Wild Magic|TCE|3",
+				"Bolstering Magic|Barbarian||Wild Magic|TCE|6",
+				"Unstable Backlash|Barbarian||Wild Magic|TCE|10",
+				"Controlled Surge|Barbarian||Wild Magic|TCE|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Path of Wild Magic",
+			"ENG_shortName": "Wild Magic"
+		},
+		{
+			"name": "狂野魔法道途",
+			"shortName": "狂野魔法",
+			"source": "TCE",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Path of Wild Magic",
+				"source": "TCE",
+				"shortName": "Wild Magic",
+				"className": "Barbarian",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "狂野魔法道途",
+					"source": "TCE",
+					"shortName": "狂野魔法",
+					"className": "Barbarian",
+					"classSource": "PHB",
+					"ENG_name": "Path of Wild Magic"
+				}
+			},
+			"ENG_name": "Path of Wild Magic",
+			"ENG_shortName": "Wild Magic"
+		},
+		{
+			"name": "巨人道途",
+			"shortName": "巨人",
+			"source": "BGG",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"page": 11,
+			"edition": "classic",
+			"spellcastingAbility": "wis",
+			"additionalSpells": [
+				{
+					"innate": {
+						"3": [
+							"druidcraft#c"
+						]
+					}
+				},
+				{
+					"innate": {
+						"3": [
+							"thaumaturgy#c"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Path of the Giant|Barbarian||Giant|BGG|3",
+				"Elemental Cleaver|Barbarian||Giant|BGG|6",
+				"Mighty Impel|Barbarian||Giant|BGG|10",
+				"Demiurgic Colossus|Barbarian||Giant|BGG|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Path of the Giant",
+			"ENG_shortName": "Giant"
+		},
+		{
+			"name": "巨人道途",
+			"shortName": "巨人",
+			"source": "BGG",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Path of the Giant",
+				"source": "BGG",
+				"shortName": "Giant",
+				"className": "Barbarian",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "巨人道途",
+					"source": "BGG",
+					"shortName": "巨人",
+					"className": "Barbarian",
+					"classSource": "PHB",
+					"ENG_name": "Path of the Giant"
+				}
+			},
+			"ENG_name": "Path of the Giant",
+			"ENG_shortName": "Giant"
+		},
+		{
+			"name": "狂戰士道途",
+			"shortName": "狂戰士",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"page": 54,
+			"srd52": true,
+			"edition": "one",
+			"subclassFeatures": [
+				"Path of the Berserker|Barbarian|XPHB|Berserker|XPHB|3",
+				"Mindless Rage|Barbarian|XPHB|Berserker|XPHB|6",
+				"Retaliation|Barbarian|XPHB|Berserker|XPHB|10",
+				"Intimidating Presence|Barbarian|XPHB|Berserker|XPHB|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Path of the Berserker",
+			"ENG_shortName": "Berserker"
+		},
+		{
+			"name": "獸心道途",
+			"shortName": "獸心",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"page": 55,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"innate": {
+						"3": {
+							"ritual": [
+								"beast sense|xphb",
+								"speak with animals|xphb"
+							]
+						},
+						"10": {
+							"ritual": [
+								"commune with nature|xphb"
+							]
+						}
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Path of the Wild Heart|Barbarian|XPHB|Wild Heart|XPHB|3",
+				"Aspect of the Wilds|Barbarian|XPHB|Wild Heart|XPHB|6",
+				"Nature Speaker|Barbarian|XPHB|Wild Heart|XPHB|10",
+				"Power of the Wilds|Barbarian|XPHB|Wild Heart|XPHB|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Path of the Wild Heart",
+			"ENG_shortName": "Wild Heart"
+		},
+		{
+			"name": "世界樹道途",
+			"shortName": "世界樹",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"page": 56,
+			"edition": "one",
+			"subclassFeatures": [
+				"Path of the World Tree|Barbarian|XPHB|World Tree|XPHB|3",
+				"Branches of the Tree|Barbarian|XPHB|World Tree|XPHB|6",
+				"Battering Roots|Barbarian|XPHB|World Tree|XPHB|10",
+				"Travel Along the Tree|Barbarian|XPHB|World Tree|XPHB|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Path of the World Tree",
+			"ENG_shortName": "World Tree"
+		},
+		{
+			"name": "狂熱者道途",
+			"shortName": "狂熱者",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"page": 57,
+			"edition": "one",
+			"subclassFeatures": [
+				"Path of the Zealot|Barbarian|XPHB|Zealot|XPHB|3",
+				"Fanatical Focus|Barbarian|XPHB|Zealot|XPHB|6",
+				"Zealous Presence|Barbarian|XPHB|Zealot|XPHB|10",
+				"Rage of the Gods|Barbarian|XPHB|Zealot|XPHB|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Path of the Zealot",
+			"ENG_shortName": "Zealot"
+		}
+	],
+	"classFeature": [
+		{
+			"name": "狂暴",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 1,
+			"entries": [
+				"你帶著原初的狂怒作戰。你可以在自己回合內以一個附贈動作進入狂暴。",
+				"狂暴持續期間，只要你未著裝重甲就獲得以下增益：",
+				{
+					"type": "list",
+					"items": [
+						"你進行力量檢定和力量豁免時具有優勢。",
+						"你用力量值發動近戰武器攻擊時，你的傷害骰獲得+2的加值。這個加值隨著你的等級提升而增加。",
+						"你擁有鈍擊，穿刺和揮砍傷害的抗性。"
+					]
+				},
+				"擁有施法能力的角色無法在狂暴持續期間施展法術或進行法術專注。",
+				"你的狂暴狀態維持1分鐘。如果你在狂暴其間陷入{@condition unconscious||昏迷} ，或者，如果你從自己上回合結束開始到本回合結束時都未攻擊任何敵對生物也未受到傷害，則狂暴提前結束。你也可以在自己回合裡以一個附贈動作主動結束狂暴狀態。",
+				"一旦你使用狂暴的次數達到了你的野蠻人等級所允許的最大次數，你必須完成一次長休才能再次使用狂暴。你在1級時可以狂暴2次，3級時3次，6級時4次，12級時5次，17級時6次。"
+			],
+			"ENG_name": "Rage"
+		},
+		{
+			"name": "無甲防禦",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 1,
+			"entries": [
+				"未著裝任何護甲時，你的AC等於10＋你的敏捷調整值＋你的體質調整值。使用盾牌不會影響你從此特性獲益。"
+			],
+			"ENG_name": "Unarmored Defense"
+		},
+		{
+			"name": "險境感知",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 2,
+			"entries": [
+				"第2級時，你獲得對周遭異常情況超乎尋常的感測力，讓你能先一步脫離危險。在受到你能看見的效應（諸如陷阱和法術）影響時，你對其進行的敏捷豁免具有優勢。你無法在{@condition blinded||目盲}、{@condition deafened||耳聾}或是{@condition incapacitated||失能}的狀態下從此特性獲益。"
+			],
+			"ENG_name": "Danger Sense"
+		},
+		{
+			"name": "魯莽攻擊",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 2,
+			"entries": [
+				"第2級起，你可以拋棄一切防禦的執念進行狂亂的攻擊。你在自己回合內發動第一次攻擊時，可以選擇發動魯莽攻擊。使用此特性後，你本回合內所有使用力量值發動的近戰武器攻擊具有優勢。此後，所有對你發動的攻擊檢定也將具有優勢，且該優勢持續存在至你的下個回合。"
+			],
+			"ENG_name": "Reckless Attack"
+		},
+		{
+			"name": "原初見聞",
+			"source": "TCE",
+			"page": 24,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 3,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"{@i 3級野蠻人{@variantrule optional class features|tce|可選特性}}",
+				"當你的野蠻人職業等級達到3級和10級時，你可以從野蠻人1級所提供的技能熟練項列表中選擇一個技能，獲得該技能的熟練。"
+			],
+			"ENG_name": "Primal Knowledge"
+		},
+		{
+			"name": "原初道途",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 3,
+			"entries": [
+				"第3級時，你選擇一種道途來塑造你狂怒時的特質。隨後，你將在第3、第6、第10、第14級時獲得所選道途的相應特性。"
+			],
+			"ENG_name": "Primal Path"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 4,
+			"entries": [
+				"當你達到4級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 5,
+			"entries": [
+				"第5級起，你在自己回合內執行{@action Attack||攻擊}動作時可以攻擊兩次而非一次。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "快速移動",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 5,
+			"entries": [
+				"第5級起，你在未著裝重甲時速度提升10尺。"
+			],
+			"ENG_name": "Fast Movement"
+		},
+		{
+			"name": "道途能力",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 6,
+			"entries": [
+				"第6級時，你獲得所選道途的一項特性。"
+			],
+			"ENG_name": "Path Feature"
+		},
+		{
+			"name": "野性直覺",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 7,
+			"entries": [
+				"第7級時，你的直覺變的異常敏銳，從而使你骰先攻時具有優勢。",
+				"此外，如果你在戰鬥開始時{@status surprised||突襲}但並未陷入{@condition incapacitated||失能}，則你仍可以在你的第一回合正常行動。不過你必須在那一回合進行其它任何行動前先進入狂暴。"
+			],
+			"ENG_name": "Feral Instinct"
+		},
+		{
+			"name": "直覺猛撲",
+			"source": "TCE",
+			"page": 24,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 7,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"{@i 7級野蠻人 {@variantrule optional class features|tce|可選特性}}",
+				"作為你進入狂暴狀態的附贈動作的一部分，你可以至多移動一段等同於你速度的一半的距離。"
+			],
+			"ENG_name": "Instinctive Pounce"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 8,
+			"entries": [
+				"當你達到第8級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過該特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "兇蠻重擊(1顆骰)",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 9,
+			"entries": [
+				"第9級起，計算近戰攻擊的重擊傷害時，你可以額外骰一枚所用武器的傷害骰。",
+				"第13級時，你可以額外骰兩枚；第17級時，你可以額外骰三枚。"
+			],
+			"ENG_name": "Brutal Critical (1 die)"
+		},
+		{
+			"name": "道途特性",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 10,
+			"entries": [
+				"第10級時，你獲得所選道途的一項特性。"
+			],
+			"ENG_name": "Path feature"
+		},
+		{
+			"name": "頑強狂暴",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 11,
+			"entries": [
+				"從11級開始，你的狂暴能讓你在遭受重創時繼續戰鬥。當你在狂暴狀態下生命值降至0但未直接死亡時，你可以進行一次{@dc 10}的體質豁免檢定。若成功，則改為生命值降至1。",
+				"第一次使用此特性後，每當你再次使用此特性時其體質豁免DC提高5。在你完成一次短休或長休後其DC重置為10。"
+			],
+			"ENG_name": "Relentless Rage"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 12,
+			"entries": [
+				"當你達到第12級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過該特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "兇蠻重擊(2顆骰)",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 13,
+			"entries": [
+				"在13級時，計算近戰攻擊的重擊傷害時，你可以額外骰兩枚所用武器的傷害骰。",
+				"第17級時，你可以額外骰三枚。"
+			],
+			"ENG_name": "Brutal Critical (2 dice)"
+		},
+		{
+			"name": "道途特性",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 14,
+			"entries": [
+				"第14級時，你獲得所選道途的一項特性。"
+			],
+			"ENG_name": "Path feature"
+		},
+		{
+			"name": "持久狂暴",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 15,
+			"entries": [
+				"第15級起，你狂暴期間的情緒高漲得難以抑制，以至於只有當你陷入{@condition unconscious||昏迷}或是主動終止才能使你的狂暴提前結束。"
+			],
+			"ENG_name": "Persistent Rage"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 16,
+			"entries": [
+				"當你達到16級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "兇蠻重擊(3顆骰)",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 17,
+			"entries": [
+				"第17級時，當你決定近戰攻擊重擊所造成的額外傷害時，可以額外擲三枚武器傷害骰。"
+			],
+			"ENG_name": "Brutal Critical (3 dice)"
+		},
+		{
+			"name": "不屈勇武",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 18,
+			"entries": [
+				"第18級起，你進行力量檢定的結果低於你的力量值時，可以直接使用力量值作為檢定結果。"
+			],
+			"ENG_name": "Indomitable Might"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 19,
+			"entries": [
+				"當你達到19級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "原初勇士",
+			"source": "PHB",
+			"page": 46,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 20,
+			"entries": [
+				"第20級時，你的存在即是野性之力的具現。你的力量和體質各提升4。並且你這兩項屬性的上限變為24。"
+			],
+			"ENG_name": "Primal Champion"
+		},
+		{
+			"name": "狂暴",
+			"source": "XPHB",
+			"page": 51,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你可以將名為狂暴的原初之力賦予己身，為你帶來超越常規的偉力和韌性。未著裝重甲時，你可以以一個{@variantrule Bonus Action|XPHB|附贈動作}進入狂暴。",
+				"你可以進入狂暴的次數見野蠻人特性表中\"狂暴次數\"一欄。當你完成一次{@variantrule Short Rest|XPHB|短休}時，你重獲一次已使用的狂暴次數；當你完成一次{@variantrule Long Rest|XPHB|長休}時，你重獲所有已使用的狂暴次數。",
+				"你的狂暴啟用期間，你將遵循以下這些規則：",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "傷害抗性",
+							"entries": [
+								"你具有鈍擊，穿刺和揮砍傷害的{@variantrule Resistance|XPHB|抗性}。"
+							],
+							"ENG_name": "Damage Resistance"
+						},
+						{
+							"type": "entries",
+							"name": "狂暴傷害",
+							"entries": [
+								"當你使用力量發動一次攻擊並對目標造成傷害時（無論這是一次武器攻擊還是一次{@variantrule Unarmed Strike|XPHB|徒手打擊}），你的傷害擲骰獲得額外加值，這個加值隨著你的野蠻人等級提升，見野蠻人特性表中\"狂暴傷害\"一欄。"
+							],
+							"ENG_name": "Rage Damage"
+						},
+						{
+							"type": "entries",
+							"name": "力量優勢",
+							"entries": [
+								"你的力量檢定和力量豁免具有{@variantrule Advantage|XPHB|優勢}。"
+							],
+							"ENG_name": "Strength Advantage"
+						},
+						{
+							"type": "entries",
+							"name": "無法專注或施法",
+							"entries": [
+								"你無法保持{@status Concentration|XPHB|專注}，也不能施展法術。"
+							],
+							"ENG_name": "No Concentration or Spells"
+						},
+						{
+							"type": "entries",
+							"name": "持續時間",
+							"entries": [
+								"狂暴持續到你的下一個回合結束，如果你穿戴重甲或陷入{@condition Incapacitated|XPHB|失能}狀態，狂暴提前結束。如果在你的下一回合你的狂暴仍處於啟用狀態，你可以執行以下選項之一令你的狂暴延長一輪：",
+								{
+									"type": "list",
+									"items": [
+										"對敵人進行一次攻擊檢定。",
+										"迫使一名敵人進行一次豁免檢定。",
+										"以一個{@variantrule Bonus Action|XPHB|附贈動作}延長你的狂暴。"
+									]
+								}
+							],
+							"ENG_name": "Duration"
+						}
+					]
+				},
+				"每當狂暴被延長，都會持續至你的下個回合結束。你至多可以維持狂暴 10 分鐘。"
+			],
+			"ENG_name": "Rage"
+		},
+		{
+			"name": "無甲防禦",
+			"source": "XPHB",
+			"page": 51,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你未著裝任何護甲期間，你的基礎{@variantrule Armor Class|XPHB|護甲等級}等於10+你的敏捷調整值+你的體質調整值。你可以使用{@item Shield|XPHB|盾牌}而仍然從此特性獲益。"
+			],
+			"ENG_name": "Unarmored Defense"
+		},
+		{
+			"name": "武器精通",
+			"source": "XPHB",
+			"page": 52,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你對武器的訓練使你獲得{@variantrule weapon mastery properties|XPHB|精通詞條}：包括兩種自選的{@filter 簡易|items|type=simple weapon;melee weapon=sand}或{@filter 軍用近戰武器|items|type=martial weapon;melee weapon=sand}的精通屬性，例如{@item Greataxe|XPHB|巨斧}和{@item Handaxe|XPHB|手斧}。當你完成一次{@variantrule Long Rest|XPHB|長休}後，你可以重新演練武器技巧，來改變你所選擇的其中一個武器型別。",
+				"當你獲得特定的野蠻人等級時，你還可以使用更多種類武器的{@variantrule weapon mastery properties|XPHB|精通詞條}，具體資料見野蠻人特性表中\"武器精通\"一欄。"
+			],
+			"ENG_name": "Weapon Mastery"
+		},
+		{
+			"name": "險境感知",
+			"source": "XPHB",
+			"page": 52,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"當非常事態發生時，一種不可思議的感覺降臨你的心頭，指引你更好的躲避危機。只要你未陷入{@condition Incapacitated|XPHB|失能}狀態，你的敏捷豁免檢定就具有{@variantrule Advantage|XPHB|優勢}。"
+			],
+			"ENG_name": "Danger Sense"
+		},
+		{
+			"name": "魯莽攻擊",
+			"source": "XPHB",
+			"page": 52,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"你可以拋棄一切對防禦的顧慮來發起更加狂亂的攻擊。你在自己回合中進行第一次攻擊檢定時，可以不顧一切地發起攻擊。若如此做，直到你的下個回合開始時，你使用力量進行的攻擊檢定具有{@variantrule Advantage|XPHB|優勢}，但在此期間所有以你為目標的攻擊檢定也具有{@variantrule Advantage|XPHB|優勢}。"
+			],
+			"ENG_name": "Reckless Attack"
+		},
+		{
+			"name": "野蠻人子職",
+			"source": "XPHB",
+			"page": 52,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你選擇獲得一項野蠻人子職。子職是一種特化，在特定的野蠻人等級給予你對應的獨特能力。此後你將獲得你所選的子職所有能力......只要其所需等級等於或低於你的野蠻人等級。"
+			],
+			"ENG_name": "Barbarian Subclass"
+		},
+		{
+			"name": "原初見聞",
+			"source": "XPHB",
+			"page": 52,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"除了 1 級選擇的技能以外，你可以從野蠻人技能表中額外獲得一個技能的熟練。",
+				"此外，你的狂暴啟用期間，你可以在嘗試完成特定的事項時與原初之力相連。每當你使用以下技能進行一次屬性檢定時，你可以使用力量進行檢定而非通常使用的其他屬性：{@skill Acrobatics|XPHB|特技}，{@skill Intimidation|XPHB|威嚇}，{@skill Perception|XPHB|察覺}，{@skill Stealth|XPHB|隱匿}或{@skill Survival|XPHB|求生}。當你使用這項能力時，你的力量值代表著一種環繞你身的原初之力，強化了你的靈敏度、氣質和感知力。"
+			],
+			"ENG_name": "Primal Knowledge"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 4,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。如野蠻人特性表所示，你還會在第8，第12，第16級時再次獲得本特性。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"當你在自己的回合執行{@action Attack|XPHB|攻擊}動作時，你可以發動兩次攻擊而非一次。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "快速移動",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"當你未著裝重甲時，你的速度增加 10 尺。"
+			],
+			"ENG_name": "Fast Movement"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 6,
+			"entries": [
+				"你獲得了來自你野蠻人子職的特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "野性直覺",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 7,
+			"entries": [
+				"你的直覺變得格外敏銳。你獲得{@variantrule Advantage|XPHB|優勢}（僅限{@variantrule Initiative|XPHB|先攻}檢定）。"
+			],
+			"ENG_name": "Feral Instinct"
+		},
+		{
+			"name": "直覺猛撲",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 7,
+			"entries": [
+				"作為你進入狂暴的{@variantrule Bonus Action|XPHB|附贈動作}的一部分，你可以移動至多等於你{@variantrule Speed|XPHB|速度}一半的距離。"
+			],
+			"ENG_name": "Instinctive Pounce"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 8,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "兇蠻打擊",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 9,
+			"entries": [
+				"如果你使用魯莽攻擊，可以放棄本回合一次由你選擇、以力量進行的攻擊檢定所具有的所有{@variantrule Advantage|XPHB|優勢}；所選攻擊檢定不能具有{@variantrule Disadvantage|XPHB|劣勢}。若所選攻擊檢定命中，目標額外受到{@damage 1d10}點傷害，其傷害類型與該武器或{@variantrule Unarmed Strike|XPHB|徒手打擊}所造成的傷害類型相同；你還可以造成一項由你選擇的兇蠻打擊效應。可選效應如下：",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "巨力猛擊",
+							"entries": [
+								"目標被你直線推離 15 尺距離。隨後你可以立刻向該目標移動至多等於你{@variantrule Speed|XPHB|速度}一半的距離，並且不會引發{@action Opportunity Attack|XPHB|藉機攻擊}。"
+							],
+							"ENG_name": "Forceful Blow"
+						},
+						{
+							"type": "entries",
+							"name": "斷筋猛擊",
+							"entries": [
+								"直至你的下個回合開始，目標的{@variantrule Speed|XPHB|速度}降低 15 尺。一個生物同一時間只會受到最近一次斷筋猛擊的影響。"
+							],
+							"ENG_name": "Hamstring Blow"
+						}
+					]
+				}
+			],
+			"ENG_name": "Brutal Strike"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 10,
+			"entries": [
+				"你獲得了來自你野蠻人子職的特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "頑強狂暴",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 11,
+			"entries": [
+				"你狂暴的力量讓你即使身受重傷也能持續戰鬥。你的狂暴啟用期間，如果你的{@variantrule Hit Points|XPHB|生命值}降至 0 且並未立即死亡，則你可以進行一次{@dc 10}的體質豁免。成功則你的{@variantrule Hit Points|XPHB|生命值}將變為你野蠻人等級的兩倍。",
+				"第一次使用此特性後，每當你再次使用此特性時其體質豁免DC提高 5。當你完成一次{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}後其DC重置為 10。"
+			],
+			"ENG_name": "Relentless Rage"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 12,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "強化兇蠻打擊",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 13,
+			"entries": [
+				"你訓練出了更多種殘暴的攻擊方式。將以下效應加到你的兇蠻打擊選項中：",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "震撼猛擊",
+							"entries": [
+								"目標進行的下一次豁免檢定具有{@variantrule Disadvantage|XPHB|劣勢}，並且目標直到你的下個回合開始時都不能發動{@action Opportunity Attack|XPHB|藉機攻擊}。"
+							],
+							"ENG_name": "Staggering Blow"
+						},
+						{
+							"type": "entries",
+							"name": "破勢猛擊",
+							"entries": [
+								"直到你的下個回合開始時，下一次由其他生物對目標進行的攻擊檢定獲得+5加值。一次攻擊檢定只能從一次破勢猛擊中獲得加值。"
+							],
+							"ENG_name": "Sundering Blow"
+						}
+					]
+				}
+			],
+			"ENG_name": "Improved Brutal Strike"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 14,
+			"entries": [
+				"你獲得了來自你野蠻人子職的特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "持久狂暴",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 15,
+			"entries": [
+				"當你投擲{@variantrule Initiative|XPHB|先攻}時，你可以重獲所有已使用的狂暴次數。你以此法重獲狂暴次數後，直到完成一次{@variantrule Long Rest|XPHB|長休}時，你都不能再這麼做。",
+				"此外，你的狂暴變得極其猛烈，現在無須逐輪延長也能持續10分鐘。如果你陷入{@condition Unconscious|XPHB|昏迷}狀態（而不只是{@condition Incapacitated|XPHB|失能}狀態）或穿上重甲，狂暴便會提前結束。"
+			],
+			"ENG_name": "Persistent Rage"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 16,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "強化兇蠻打擊",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 17,
+			"entries": [
+				"你兇蠻打擊的額外傷害提升至{@damage 2d10}。此外，每當你使用兇蠻打擊特性時，你可以同時使用兩種不同的兇蠻打擊效應。"
+			],
+			"ENG_name": "Improved Brutal Strike"
+		},
+		{
+			"name": "不屈勇武",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 18,
+			"entries": [
+				"如果你進行的力量檢定或力量豁免檢定的總值低於你的力量屬性值，你可以使用你的力量屬性值替代檢定總值。"
+			],
+			"ENG_name": "Indomitable Might"
+		},
+		{
+			"name": "傳奇恩惠",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 19,
+			"entries": [
+				"你獲得了一個{@filter 傳奇恩惠專長|feats|category=EB}，或者你選擇另一個符合條件的{@5etools 專長|feats.html}。推薦選擇{@feat Boon of Irresistible Offense|XPHB|無敵攻勢之恩惠}。"
+			],
+			"ENG_name": "Epic Boon"
+		},
+		{
+			"name": "原初勇士",
+			"source": "XPHB",
+			"page": 53,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 20,
+			"entries": [
+				"你本身便是原初之力的象徵。你的力量和體質各提升 4，你這兩項屬性的上限變為 25。"
+			],
+			"ENG_name": "Primal Champion"
+		}
+	],
+	"subclassFeature": [
+		{
+			"name": "巨人之力",
+			"source": "BGG",
+			"page": 11,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Giant",
+			"subclassSource": "BGG",
+			"level": 3,
+			"entries": [
+				"{@i 3級巨人道途特性}",
+				"選擇此道途後，你獲得說、讀、寫巨人語的能力。若你已經習得巨人語，則可以改為自選另一種語言。此外，你選擇並習得以下戲法之一： {@spell druidcraft||德魯伊伎倆}、{@spell thaumaturgy||奇術}。這個法術的施法屬性為感知。"
+			],
+			"ENG_name": "Giant Power"
+		},
+		{
+			"name": "巨人之災",
+			"source": "BGG",
+			"page": 11,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Giant",
+			"subclassSource": "BGG",
+			"level": 3,
+			"entries": [
+				"{@i 3級巨人道途特性}",
+				"你的狂暴從巨人的原初之力中汲取力量，使你成為強大破壞力的化身。狂暴期間，你獲得以下的增益：",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "粉碎投擲",
+							"entry": "當你用力量且用投擲武器發動遠端武器攻擊，併成功命中時，你可以將你的狂暴傷害加值加到這次攻擊的傷害擲骰中。",
+							"ENG_name": "Crushing Throw"
+						},
+						{
+							"type": "item",
+							"name": "巨人體型",
+							"entry": "你的觸及範圍擴大5尺。且，如果你的體型小於大型，你的體型變為大型，你穿戴的所有裝備也會一同變大。如果沒有足夠的空間供你增大體型，你的體型保持不變。",
+							"ENG_name": "Giant Stature"
+						}
+					]
+				}
+			],
+			"ENG_name": "Giant's Havoc"
+		},
+		{
+			"name": "巨人道途",
+			"source": "BGG",
+			"page": 11,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Giant",
+			"subclassSource": "BGG",
+			"level": 3,
+			"entries": [
+				"選擇踏上巨人道途的野蠻人從巨人和他們的元素同族中汲取力量。他們的狂暴浸潤在元素能量下，讓這些野蠻人的體型變大，讓他們展現出巨人之榮耀。一些野蠻人看上去就像是大一號版本的它們自己，也許元素能量的印記會從他們的眼睛放出的光芒，同時環繞在它們的武器上。另一些變化看上去就比較戲劇性了，他們會採取一個實際存在的巨人的外形，或是一個酷似元素生物的，籠罩在火焰、冰霜、或閃電之下的形態。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Giant Power|Barbarian||Giant|BGG|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Giant's Havoc|Barbarian||Giant|BGG|3"
+				}
+			],
+			"ENG_name": "Path of the Giant"
+		},
+		{
+			"name": "元素戰刃",
+			"source": "BGG",
+			"page": 11,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Giant",
+			"subclassSource": "BGG",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 6級巨人道途特性}",
+				"你和巨人的元素力量的連結成長了，並且，你習得了將原初能量注入武器之中的方式。",
+				"當你進入狂暴時，你可以選擇一件你正持握的武器中，併為它選擇並注入以下傷害型別之一：強酸、寒冷、火焰、雷鳴、或閃電。當你在狂暴中揮舞注能的武器時，武器的傷害型別將轉變為你選擇的傷害型別，並在命中時額外造成{@damage 1d6}點所選型別的傷害。此外它還將獲得 投擲 屬性，具有通常射程20尺與最大射程60尺。如果你投擲這把武器，它不論是否擊中目標，它都將在那之後立刻重新出現在你的手中。注能武器的增益將在除你以外的其他生物持握它時將被暫時壓制。",
+				"在狂暴期間，若你持握著注能武器，你就可以用一個附贈動作改變其傷害型別為另一項，從前文提到的傷害型別中選擇。"
+			],
+			"ENG_name": "Elemental Cleaver"
+		},
+		{
+			"name": "偉力推動",
+			"source": "BGG",
+			"page": 12,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Giant",
+			"subclassSource": "BGG",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10級巨人道途特性}",
+				"藉由你與巨人之力量的連結，你可以猛投戰場上的盟友與敵人。狂暴期間，以一個附贈動作，你可以選擇觸及範圍內的一個不超過中型體型的生物，將其移動到你周圍30尺內的一處你可見的、未被佔據的空間。非自願的生物必須成功透過一次力量豁免（DC=8+你的熟練加值+你的力量調整值）才能避免遭受這一效應。",
+				"若在這次移動結束時，被投擲的生物並未站在一個可以支撐他的固體表面或液體中，該生物將墜落，正常承受摔落傷害並在落地時陷入{@condition prone||倒地}。"
+			],
+			"ENG_name": "Mighty Impel"
+		},
+		{
+			"name": "創世巨像",
+			"source": "BGG",
+			"page": 12,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Giant",
+			"subclassSource": "BGG",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"{@i 14級巨人道途特性}",
+				"你狂暴中的原初力量增強了。當你狂暴時，你的觸及範圍再次提升10尺，而你的體型可以增大為大型或巨型（由你選擇），且你還可以用「偉力推動」特性投擲不超過大型體型的生物。",
+				"此外，你的「元素戰刃」特性造成的額外傷害提升至{@dice 2d6}。"
+			],
+			"ENG_name": "Demiurgic Colossus"
+		},
+		{
+			"name": "狂戰士道途",
+			"source": "PHB",
+			"page": 49,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Berserker",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"某些野蠻人認為狂暴即是其歸宿，而這種歸宿形式無比殘暴。狂戰士之道追求鮮血與無拘的狂怒。當你進入狂戰士式狂暴時，你在戰鬥的混沌快感中興奮，捨生忘死的投入廝殺。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Frenzy|Barbarian||Berserker||3"
+				}
+			],
+			"ENG_name": "Path of the Berserker"
+		},
+		{
+			"name": "狂怒",
+			"source": "PHB",
+			"page": 49,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Berserker",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"從你第3級選擇此道途起，你可以在進入狂暴的同時進入狂怒。使用此特性時，你可以在本回合之後狂暴持續時間內的每個回合裡，以一個附贈動作發動一次近戰武器攻擊。而當本次狂暴終止時，你將提升一級{@condition exhaustion||力竭}。"
+			],
+			"ENG_name": "Frenzy"
+		},
+		{
+			"name": "無我狂暴",
+			"source": "PHB",
+			"page": 49,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Berserker",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級起，你在狂暴期間無法被{@condition charmed||魅惑}或{@condition frightened||恐慌}。如果你開始狂暴時已經陷入{@condition charmed||魅惑}或{@condition frightened||恐慌}，則該效應在你狂暴期間被壓制。"
+			],
+			"ENG_name": "Mindless Rage"
+		},
+		{
+			"name": "威懾之姿",
+			"source": "PHB",
+			"page": 49,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Berserker",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級起，你可以用一個動作展示自己的可怖姿態來恐嚇他人。指定30尺內一個你能看見的生物。如果該生物能看見你或聽見你的聲音，則其必須進行一次感知豁免（DC為8＋你的熟練加值＋你的魅力調整值），豁免失敗者將因此而陷入{@condition frightened||恐慌}，並持續至你的下回合結束。在接下來的回合裡，你可以透過使用動作來延長此效應的持續時間，使之持續至你此後一回合結束。如果{@condition frightened||恐慌}的生物在結束其回合時離開你的視線範圍，或是離開你60尺外，則此效應提前終止。",
+				"如果此生物成功透過此豁免，則你在隨後的24小時內無法對該生物使用此特性。"
+			],
+			"ENG_name": "Intimidating Presence"
+		},
+		{
+			"name": "復仇",
+			"source": "PHB",
+			"page": 49,
+			"srd": true,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Berserker",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"第14級起，當你受到距你5尺內的一個生物所造成的傷害時，可以用反應對該生物發動一次近戰武器攻擊。"
+			],
+			"ENG_name": "Retaliation"
+		},
+		{
+			"name": "熊",
+			"source": "PHB",
+			"page": 50,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"狂暴期間，你獲得對心靈傷害之外所有傷害型別的抗性。熊之精魄令你堅韌無匹，無懼於任何打擊。"
+			],
+			"ENG_name": "Bear"
+		},
+		{
+			"name": "鷹",
+			"source": "PHB",
+			"page": 50,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"狂暴期間，如果你未著裝重甲，則其他生物在對你進行藉機攻擊時進行的攻擊檢定具有劣勢。另外，你在自己回合內可以用附贈動作執行{@action Dash||疾走}動作。雕之精魄讓你成為在戰場中自由穿梭的獵殺者。"
+			],
+			"ENG_name": "Eagle"
+		},
+		{
+			"name": "鹿",
+			"source": "SCAG",
+			"page": 122,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"狂暴期間，若你未著重甲，你的步行速度增加15尺。鹿之精魂的庇佑使你格外迅捷。"
+			],
+			"ENG_name": "Elk"
+		},
+		{
+			"name": "圖騰勇士道途",
+			"source": "PHB",
+			"page": 50,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"圖騰武者道途是靈魂修煉的旅途。走上此道的野蠻人以一種獸魂作為其嚮導、保護者和力量源泉。在戰鬥中，你的圖騰精魄將超自然的力量灌輸於你，為你的狂暴注入魔法力量。",
+				"大多數野蠻人部族將圖騰獸視為氏族的一員，因此很少有人同時擁有兩種或更多圖騰精魄，但這樣的特例依然存在。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Spirit Seeker|Barbarian||Totem Warrior||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Totem Spirit|Barbarian||Totem Warrior||3"
+				}
+			],
+			"ENG_name": "Path of the Totem Warrior"
+		},
+		{
+			"name": "虎",
+			"source": "SCAG",
+			"page": 122,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"狂暴期間，你增加10尺的跳躍距離和3尺的跳高距離。虎之精魂賦予你飛躍的能力。"
+			],
+			"ENG_name": "Tiger"
+		},
+		{
+			"name": "狼",
+			"source": "PHB",
+			"page": 50,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"狂暴期間，如果你周圍5尺範圍內有任何敵對生物，則你的盟友對這些生物發動近戰攻擊時的攻擊檢定具有優勢。狼之精魄讓你成為獵手中的領袖。"
+			],
+			"ENG_name": "Wolf"
+		},
+		{
+			"name": "精魂尋訪者",
+			"source": "PHB",
+			"page": 50,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你追求融入自然之道，與動物為友。在你選擇此道途的第3級時，你獲得施展法術{@spell beast sense||野獸感官}與{@spell speak with animals||動物交談}的能力，但你只能以儀式的方式施展它們，相關法術描述見PHB{@book 第十章|PHB|10|rituals}。"
+			],
+			"ENG_name": "Spirit Seeker"
+		},
+		{
+			"name": "圖騰精魂",
+			"source": "PHB",
+			"page": 50,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"在你選擇此道途的第3級時，選擇一項圖騰精魄並獲得其能力。你必須製造或獲取一個象徵圖騰獸其毛，羽，爪，牙或骨的圖騰物件，可以是項鍊，也可以是其他類似的物件。如果你願意，你的外貌也會發生些細微的改變，讓人看到時不由得聯想起你的圖騰精魄。例如，如果選擇熊的圖騰精魄，你可能變得毛髮旺盛，皮膚粗厚；如果選擇雕的圖騰精魄，你的眼睛可能變成明亮的黃色。",
+				"你可選擇這裡列出的動物，或是其他更適合你故鄉環境的類似動物。例如，你可以用鷹或禿鷲代替雕。",
+				{
+					"type": "options",
+					"count": 1,
+					"entries": [
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Bear|Barbarian||Totem Warrior||3"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Eagle|Barbarian||Totem Warrior||3"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Elk|Barbarian|PHB|Totem Warrior||3|SCAG"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Tiger|Barbarian|PHB|Totem Warrior||3|SCAG"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Wolf|Barbarian||Totem Warrior||3"
+						}
+					]
+				}
+			],
+			"ENG_name": "Totem Spirit"
+		},
+		{
+			"name": "熊",
+			"source": "PHB",
+			"page": 50,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 6,
+			"entries": [
+				"你擁有熊之巨力。你的載重（包括最大負重和最大舉重）翻倍，並且你在推、拉、舉和破壞物件時進行的力量檢定具有優勢。"
+			],
+			"ENG_name": "Bear"
+		},
+		{
+			"name": "鷹",
+			"source": "PHB",
+			"page": 50,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 6,
+			"entries": [
+				"你獲得鷹的銳利視力。你可以毫不費力地看清1英里內的事物，甚至能辨別細節，如同觀察距你不超過100尺的事物。此外，微光不會使你的感知（{@skill Perception||察覺}）檢定具有劣勢。"
+			],
+			"ENG_name": "Eagle"
+		},
+		{
+			"name": "鹿",
+			"source": "SCAG",
+			"page": 122,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 6,
+			"entries": [
+				"無論你是騎乘還是徒步，你的旅行速度變為雙倍。只要你未{@condition incapacitated||失能}，在你周圍60尺內的最多十個同伴也能得到這個好處。鹿的精魂祝福你行得更遠更快。"
+			],
+			"ENG_name": "Elk"
+		},
+		{
+			"name": "虎",
+			"source": "SCAG",
+			"page": 122,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 6,
+			"entries": [
+				"你從下列技能中選擇兩個技能，你得到它們的熟練：{@skill Athletics||運動}、{@skill Acrobatics||特技}、{@skill Stealth||隱匿}和{@skill Survival||求生}。虎之精魂磨練了你的生存本能。"
+			],
+			"ENG_name": "Tiger"
+		},
+		{
+			"name": "狼",
+			"source": "PHB",
+			"page": 50,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 6,
+			"entries": [
+				"你擁有狼之敏銳。你可以在用快速步調旅行的同時追蹤其他生物，也可以在用正常步調旅行時保持隱匿。"
+			],
+			"ENG_name": "Wolf"
+		},
+		{
+			"name": "獸之形",
+			"source": "PHB",
+			"page": 50,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級時，你根據所選的圖騰獸獲得一項魔法能力。你可以選擇和第3級時相同的圖騰，也可以另做選擇。",
+				{
+					"type": "options",
+					"count": 1,
+					"entries": [
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Bear|Barbarian||Totem Warrior||6"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Eagle|Barbarian||Totem Warrior||6"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Elk|Barbarian|PHB|Totem Warrior||6|SCAG"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Tiger|Barbarian|PHB|Totem Warrior||6|SCAG"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Wolf|Barbarian||Totem Warrior||6"
+						}
+					]
+				}
+			],
+			"ENG_name": "Aspect of the Beast"
+		},
+		{
+			"name": "精魂行者",
+			"source": "PHB",
+			"page": 50,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"第10級時，你獲得施展法術{@spell commune with nature||問道自然}的能力，但你只能以儀式的方式施展它。施展此法術時，你所選的圖騰獸會以精魄形態現身並提供你想要得到的那些資訊。"
+			],
+			"ENG_name": "Spirit Walker"
+		},
+		{
+			"name": "熊",
+			"source": "PHB",
+			"page": 50,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 14,
+			"entries": [
+				"狂暴期間，如果身處你周邊5尺內的任何敵對生物發動攻擊，而其目標不是你或另一個具有此特性的生物，則該攻擊的攻擊檢定具有劣勢。無法看到你或聽到你聲音的生物，以及無法陷入{@condition frightened||恐慌}的生物對該特性免疫。"
+			],
+			"ENG_name": "Bear"
+		},
+		{
+			"name": "鷹",
+			"source": "PHB",
+			"page": 50,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 14,
+			"entries": [
+				"狂暴期間，你獲得等同於你移動速度的飛行速度。此特性只能用於短途衝刺。如果回合結束時你仍在空中且毫無憑依，則你將墜落。"
+			],
+			"ENG_name": "Eagle"
+		},
+		{
+			"name": "鹿",
+			"source": "SCAG",
+			"page": 122,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 14,
+			"entries": [
+				"狂暴期間，你可以在移動時使用一個附贈動作穿過一個大型或更小生物的佔據空間。該生物必須成功透過一次力量豁免（{@dc 8} + 你的力量調整值 + 你的熟練加值）否則被擊倒{@condition prone||倒地}並受到等於{@damage 1d12} + 你的力量調整值的鈍擊傷害。"
+			],
+			"ENG_name": "Elk"
+		},
+		{
+			"name": "虎",
+			"source": "SCAG",
+			"page": 122,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 14,
+			"entries": [
+				"狂暴期間，如果你在對一個大型或更小的目標發動近戰武器攻擊之前，朝該目標直線移動了至少20尺，便可以用附贈動作對其額外發動一次近戰武器攻擊。"
+			],
+			"ENG_name": "Tiger"
+		},
+		{
+			"name": "狼",
+			"source": "PHB",
+			"page": 50,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 14,
+			"entries": [
+				"狂暴期間，如果你在自己回合內以近戰武器攻擊命中一名大型或更小體型的生物，則你可以用一個附贈動作順勢將其打擊至{@condition prone||倒地}。"
+			],
+			"ENG_name": "Wolf"
+		},
+		{
+			"name": "圖騰調律",
+			"source": "PHB",
+			"page": 50,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Totem Warrior",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"第14級時，你根據所選的圖騰獸獲得一項魔法能力。你可以選擇和之前相同的圖騰，也可以另做選擇。",
+				{
+					"type": "options",
+					"count": 1,
+					"entries": [
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Bear|Barbarian||Totem Warrior||14"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Eagle|Barbarian||Totem Warrior||14"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Elk|Barbarian|PHB|Totem Warrior||14|SCAG"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Tiger|Barbarian|PHB|Totem Warrior||14|SCAG"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Wolf|Barbarian||Totem Warrior||14"
+						}
+					]
+				}
+			],
+			"ENG_name": "Totemic Attunement"
+		},
+		{
+			"name": "戰狂道途",
+			"source": "SCAG",
+			"page": 121,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Battlerager",
+			"subclassSource": "SCAG",
+			"level": 3,
+			"entries": [
+				"戰狂道途通常被那些選擇追隨戰爭之神的矮人選擇，在矮人語中他們被稱作為\"庫扎爾夫\"（意為\"斧頭笨蛋\"）。他們常穿著厚重的、{@item spiked armor|scag|釘刺甲}衝入戰場，用他們自己的身體在戰鬥中揮灑怒火。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Restriction—Dwarves Only|Barbarian||Battlerager|SCAG|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Battlerager Armor|Barbarian||Battlerager|SCAG|3"
+				}
+			],
+			"ENG_name": "Path of the Battlerager"
+		},
+		{
+			"name": "戰狂護甲",
+			"source": "SCAG",
+			"page": 121,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Battlerager",
+			"subclassSource": "SCAG",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"從3級選擇此道途起，你得到將{@item spiked armor|scag|釘刺甲}作為武器使用的能力。",
+				"若你穿著{@item spiked armor|scag|釘刺甲}，在狂暴期間，你便可以以附贈動作，用甲上釘刺對5尺內的目標進行一次近戰武器攻擊。若攻擊命中，釘刺將造成{@damage 1d4}點穿刺傷害。這次攻擊檢定與傷害擲骰使用你的力量調整值。",
+				"此外，當你使用{@action Attack||攻擊}動作去擒抱一個生物時，擒抱成功時，那個生物將受到3點穿刺傷害。"
+			],
+			"ENG_name": "Battlerager Armor"
+		},
+		{
+			"name": "限制——限定矮人",
+			"source": "SCAG",
+			"page": 121,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Battlerager",
+			"subclassSource": "SCAG",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"只有矮人才可以選擇戰狂道途。在矮人的社會和文化中戰狂佔據了一個特殊的位置。",
+				"你的DM可以調整這一規則使之更符合戰役。這個限制存在於被遺忘的國度中。能否選擇此道途請於您的DM商量。"
+			],
+			"ENG_name": "Restriction—Dwarves Only"
+		},
+		{
+			"name": "魯莽放蕩",
+			"source": "SCAG",
+			"page": 121,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Battlerager",
+			"subclassSource": "SCAG",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"從6級起，當你在狂暴期間使用「魯莽攻擊」時，你還可以得到等同於你的 體質調整值（最少1點） 點的臨時生命。這一臨時生命值在你狂暴結束後還剩餘一部分時，剩餘部分會消失。"
+			],
+			"ENG_name": "Reckless Abandon"
+		},
+		{
+			"name": "戰狂衝鋒",
+			"source": "SCAG",
+			"page": 121,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Battlerager",
+			"subclassSource": "SCAG",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"從10級起，你在狂暴期間可以以附贈動作執行{@action Dash||疾走}動作。"
+			],
+			"ENG_name": "Battlerager Charge"
+		},
+		{
+			"name": "尖刺反擊",
+			"source": "SCAG",
+			"page": 121,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Battlerager",
+			"subclassSource": "SCAG",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"從14級起，狂暴期間，若你未處於{@condition incapacitated||失能}狀態、且穿著{@item spiked armor|scag|釘刺甲}，當你周圍5尺範圍內有生物用近戰攻擊命中你時，攻擊者將受到3點穿刺傷害。"
+			],
+			"ENG_name": "Spiked Retribution"
+		},
+		{
+			"name": "野獸道途",
+			"source": "TCE",
+			"page": 24,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Beast",
+			"subclassSource": "TCE",
+			"level": 3,
+			"entries": [
+				"踏上野獸道途的野蠻人點燃其靈魂深處熊熊燃燒的獸性火花以啟用狂暴。其內心的野獸在嗥叫中被釋放，在狂怒中爆發，並改變野蠻人的形態。",
+				"這些野蠻人可能體內住著一隻原初精魂，又或是某個化獸者的後人。請你為自己的野性之力選擇一種起源，或在下方的\"野獸起源表\"隨機選擇。",
+				{
+					"type": "table",
+					"caption": "野獸起源",
+					"colLabels": [
+						"d4",
+						"起源"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"你的生父或生母是一個獸化人，你也遺傳了這方面的一些詛咒。"
+						],
+						[
+							"2",
+							"你是一位大德魯伊的後人，並且繼承了變形部分軀體的能力。"
+						],
+						[
+							"3",
+							"一隻精類的精魂賜予你變換不同野獸形態的能力。"
+						],
+						[
+							"4",
+							"一隻上古野獸的精魂住在你的體內，為你開啟走上此道途的大門。"
+						]
+					]
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Form of the Beast|Barbarian||Beast|TCE|3"
+				}
+			],
+			"ENG_name": "Path of the Beast"
+		},
+		{
+			"name": "野獸之形",
+			"source": "TCE",
+			"page": 24,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Beast",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級野獸道途特性}",
+				"你能在進入狂暴時變形，展現潛在的野獸之力。你將長出一種天生武器，直至狂暴結束。它對你來說被視為一件簡易近戰武器，並正常使用你的力量調整值進行攻擊檢定與傷害擲骰。",
+				"你在每次進入狂暴時，可以選擇如下的天生武器之一：",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "啃咬",
+							"entry": "你的嘴變成一張野獸的血盆大口或雙顎長得巨大（由你選擇）。它在擊中時造成{@damage 1d8}穿刺傷害。每個你的回合一次，當你用這一啃咬攻擊命中一個生物， 並且你的生命值數值小於一半時，你能恢復等於你的熟練加值點的生命值。",
+							"ENG_name": "Bite"
+						},
+						{
+							"type": "item",
+							"name": "爪擊",
+							"entry": "你的雙手變成利爪，它們在你手空閒時可以作為武器使用。它在擊中時造成{@damage 1d6}揮砍傷害。此外，當你在自己的回合使用{@action Attack||攻擊}動作進行了爪擊，你可以追加執行一次爪擊作為該攻擊動作的一部分（一回合一次）。",
+							"ENG_name": "Claws"
+						},
+						{
+							"type": "item",
+							"name": "尾擊",
+							"entry": "你長出一條如長鞭般帶刺的尾巴，其造成{@damage 1d8}穿刺傷害，具有「觸及」屬性。如果一個你可見的、距離你10尺以內的生物發動的攻擊擊中了你，你可以用反應揮起你的尾巴，骰一個{@dice d8}並將骰值加在你的AC上，可能導致這次攻擊打失。",
+							"ENG_name": "Tail"
+						}
+					]
+				}
+			],
+			"ENG_name": "Form of the Beast"
+		},
+		{
+			"name": "獸性之魂",
+			"source": "TCE",
+			"page": 24,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Beast",
+			"subclassSource": "TCE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 6級野獸道途特性}",
+				"你體內的野性精魂的力量不斷成長，這使得你用「野獸之形」特性的天生武器攻擊對非魔法攻擊或傷害具有抗性或免疫的目標時視為魔法武器的攻擊。",
+				"你還能改變你的形態來適應周遭環境，當你完成一次短休或長休後，你選擇以下增益之一，獲得之。這一增益將一直持續直至你再次完成短休或長休為止：",
+				{
+					"type": "list",
+					"items": [
+						"你獲得等於步行速度的游泳速度，並且能夠在水中呼吸。",
+						"你獲得等於步行速度的攀爬速度。你無需進行屬性檢定也可攀爬於困難表面，包括倒掛天花板。",
+						"每回合一次，你能在跳躍時進行一次力量（{@skill Athletics||運動}）檢定，使你的跳躍距離延長等於檢定結果的尺數。"
+					]
+				}
+			],
+			"ENG_name": "Bestial Soul"
+		},
+		{
+			"name": "怒火侵蝕",
+			"source": "TCE",
+			"page": 24,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Beast",
+			"subclassSource": "TCE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10級野獸道途特性}",
+				"狂暴期間，當你以天生武器命中一個生物時，你體內的野獸可以用瘋狂怒火詛咒該目標。目標必須成功通過一次感知豁免（DC等於8＋你的體質調整值＋你的熟練加值），否則承受下列一項由你選擇的效應：",
+				{
+					"type": "list",
+					"items": [
+						"目標用反應對一個由你選擇且你能看見的生物發動一次近戰攻擊。",
+						"目標受到{@damage 2d12}心靈傷害。"
+					]
+				},
+				"你可以使用此能力的次數等同於你的熟練加值。當你完成一次長休後，你重獲全部已消耗的使用次數。"
+			],
+			"ENG_name": "Infectious Fury"
+		},
+		{
+			"name": "狩獵呼喚",
+			"source": "TCE",
+			"page": 24,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Beast",
+			"subclassSource": "TCE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"{@i 14級野獸道途特性}",
+				"你體內的野獸變得無比強大，使你能將其兇性傳給他人，並因他們加入狩獵而獲得韌性。當你進入狂暴時，可以選擇距你30尺內、你能看見的其他自願生物；其數量等於你的體質調整值（至少一個生物）。",
+				"你獲得等同於接受狩獵之喚特性的生物數量五倍點的臨時生命值。直至你的狂暴結束前，被選擇的這些生物可以分別在每個自己的回合中使用一次以下能力：當攻擊檢定命中一個目標並造成傷害時，可以骰一個{@dice d6}，並在傷害中獲得骰出結果的加值。",
+				"你可以使用此能力的次數等同於你的熟練加值。當你完成一次長休後，你重獲全部已消耗的使用次數。"
+			],
+			"ENG_name": "Call the Hunt"
+		},
+		{
+			"name": "狂野魔法道途",
+			"source": "TCE",
+			"page": 25,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Wild Magic",
+			"subclassSource": "TCE",
+			"level": 3,
+			"entries": [
+				"這個多元宇宙的許多地方充滿了美麗，強烈的情感，以及狂野而難以控制的魔力。妖精荒野，上層位面，以及其他輻射著超自然力量的領域都以這股力量深深的影響著人們。我們情感豐富而激烈的老夥計們——野蠻人尤其容易受這些狂野的擾動影響。其中又一些人接受了狂野魔法的浸洗而轉變，變形。這些被魔力染上一抹亮色的野蠻人所走的，便是狂野魔法道途。精類，提夫林，阿斯莫和元素裔的野蠻人中不乏選擇狂野魔法道途的，希求顯耀他們先祖的那不屬於這個世界的魔力。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Magic Awareness|Barbarian||Wild Magic|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Wild Surge|Barbarian||Wild Magic|TCE|3"
+				}
+			],
+			"ENG_name": "Path of Wild Magic"
+		},
+		{
+			"name": "察覺魔法",
+			"source": "TCE",
+			"page": 25,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Wild Magic",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級狂野魔法道途特性}",
+				"以一個動作，你讓你的感官對聚集的魔力的存在保持警覺。直到你的下一個回合結束前，你可以知曉60尺內任何對你來說不處於{@quickref Cover||3||全身掩護}的任何法術或者魔法物品的位置。當你察覺到一個法術的存在時，你還能知曉這個法術屬於哪一個學派。",
+				"你可以使用此能力的次數等同於你的熟練加值。當你完成一次長休後，你重獲全部已消耗的使用次數。"
+			],
+			"ENG_name": "Magic Awareness"
+		},
+		{
+			"name": "狂野浪潮",
+			"source": "TCE",
+			"page": 25,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Wild Magic",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級狂野魔法道途特性}",
+				"你體內那翻滾不息的魔法能量有時會從你身上爆發出來。當你進入狂暴時，投擲下方的狂野魔法列表中決定它所產生的魔法效應。",
+				"如果這個效果需要進行豁免檢定，則其DC等於8+你的熟練加值+你的體質調整值。",
+				{
+					"type": "table",
+					"caption": "狂野魔法",
+					"colLabels": [
+						"d8",
+						"魔法效應"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"陰暗的卷鬚在你身邊瘋狂揮舞。在你能看到的30尺內由你選擇的生物都必須進行一次體質豁免，如果失敗，則將受到{@damage 1d12}的暗蝕傷害。此外。你還會立刻獲得{@dice 1d12}點臨時生命值。"
+						],
+						[
+							"2",
+							"你可以傳送至多30尺到一個未被佔據的、你可以看見的空間。直至你的狂暴結束為止，你的每個回合都可以再用一個附贈動作，再次發動這個效果。"
+						],
+						[
+							"3",
+							"一個看起來像{@creature flumph||呋嚕}或者{@creature pixie||皮克精}（由你決定）的不定形精魂，出現在一個你30尺內可以看到的生物的5尺以內。並且在當前回合結束時，這個精魂會爆炸，所有它周圍5尺範圍內的生物都必須透過一次敏捷豁免，若失敗將承受{@damage 1d6}的力場傷害。直至你的狂暴結束為止，你的每個回合都可以再用一個附贈動作，再次發動這個效果。"
+						],
+						[
+							"4",
+							"魔力與你正持握著的一件武器（由你選擇）緊緊相融在一起。直至你的狂暴結束為止，這把武器的傷害型別轉變為力場傷害，並且獲得 輕型 和 投擲 的屬性，其投擲射程為常規20尺與最大60尺。如果這把武器脫離了你的手，它將會在脫離的同一回合結束時重新出現在你的手中。"
+						],
+						[
+							"5",
+							"直至你的狂暴結束為止，每當一個生物以攻擊檢定擊中了你，你身上的魔力將抽打反擊它，對其造成{@damage 1d6}的力場傷害。"
+						],
+						[
+							"6",
+							"直至你的狂暴結束為止，你將被彩色的防護光芒環繞，使你的AC獲得+1加值。在你10尺內的盟友也可以享受到相同的AC加值。"
+						],
+						[
+							"7",
+							"你身邊將不斷臨時生長出花朵與藤蔓。直至你的狂暴結束為止，你周圍15尺的地面對你的敵人來說變為{@quickref difficult terrain||3||困難地形}。"
+						],
+						[
+							"8",
+							"一束光從你胸膛射出。你所選擇的30尺內的你可以看到的另一個生物必須進行一次體質豁免，如果失敗，將會受到{@damage 1d6}的光耀傷害，並陷入 {@condition blinded||目盲} ，直到你的下一個回合開始前。直至你的狂暴結束為止，你的每個回合都可以再用一個附贈動作，再次發動這個效果。"
+						]
+					],
+					"data": {
+						"genTables": {
+							"tableInclude": true
+						}
+					}
+				}
+			],
+			"ENG_name": "Wild Surge"
+		},
+		{
+			"name": "振奮魔法",
+			"source": "TCE",
+			"page": 25,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Wild Magic",
+			"subclassSource": "TCE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 6級狂野魔法道途特性}",
+				"你可以控制你的狂野魔法並用于振奮自己或者一個同伴。以一個動作，你觸碰一個生物（可以是你自己）並且為該生物提供以下增益中你所選擇的一種：",
+				{
+					"type": "list",
+					"items": [
+						"10分鐘內，該生物在投擲攻擊檢定或者屬性檢定時可以額外擲一枚{@dice d3}，將其加到所扔的{@dice d20}中。",
+						"擲一枚{@dice d3}。這個生物將恢復一個環數小於等於所擲出骰子的結果的法術位（由這個生物決定具體的環階）。當一個生物享受了這一增益後，直到下一次長休結束前那個生物都不能再次從此特性中獲益。"
+					]
+				},
+				"你可以使用此能力的次數等同於你的熟練加值次，完成一次長休後，你重獲全部已消耗的使用次數。"
+			],
+			"ENG_name": "Bolstering Magic"
+		},
+		{
+			"name": "無常反衝",
+			"source": "TCE",
+			"page": 25,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Wild Magic",
+			"subclassSource": "TCE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10級狂野魔法道途特性}",
+				"在你狂暴期間，如果你受到危險，你體內的魔法會猛烈爆發。每當你在狂暴時受到傷害或者沒能透過豁免檢定後，你都可以立刻用反應再次重骰你的狂野魔法表，並立刻產生一次骰出的新的魔法效應。這個魔法效應將會替代你當前有的狂野魔法效應。"
+			],
+			"ENG_name": "Unstable Backlash"
+		},
+		{
+			"name": "掌控浪潮",
+			"source": "TCE",
+			"page": 25,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Wild Magic",
+			"subclassSource": "TCE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"{@i 14級狂野魔法道途特性}",
+				"每當你投擲狂野魔法表時，你可以擲兩次骰子並且選擇其中之一作為生效的狂野魔法效應。如果你擲出的兩個骰子數值相同，那麼你可以無視這個數字，任選表中的一個效應生效。"
+			],
+			"ENG_name": "Controlled Surge"
+		},
+		{
+			"name": "先祖守衛道途",
+			"source": "XGE",
+			"page": 9,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Ancestral Guardian",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"一些野蠻人尊重他們先祖的文化。這些部落教導那些戰士們，那些古老的先驅者乃存在於世的全知全能者，它們會引導生者，保衛生者。當一個踏上這條道途的野蠻人狂暴時，它們得以接觸到精魂世界，並互換這些守衛之魂施以援助。",
+				"這些藉助先祖守衛之力的野蠻人能夠更好的為守護部族與盟友而戰。為了鞏固與先祖守衛的聯絡，踏上這條道途的野蠻人都會在身上紋上特製的紋身，以頌揚先祖的功績。這些紋身講述了他們戰勝可怕怪物 和其他可怕對手的傳奇故事。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Ancestral Protectors|Barbarian||Ancestral Guardian|XGE|3"
+				}
+			],
+			"ENG_name": "Path of the Ancestral Guardian"
+		},
+		{
+			"name": "先祖守護",
+			"source": "XGE",
+			"page": 9,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Ancestral Guardian",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"從你在3級時選擇此道途開始，你進入狂暴時一名精魂戰士將出現在你身旁。狂暴期間，在每個你的回合中你攻擊命中的第一個生物將成為這名精魂戰士的目標，戰士將阻撓目標對它人的攻擊。直到你的下一個回合開始前，戰士的目標對你以外的目標發動的攻擊檢定具有劣勢，而若其在一次攻擊中擊中了除你以外的生物，該生物對那次攻擊的傷害具有抗性。你的狂暴結束時，此效果也隨之提前結束。"
+			],
+			"ENG_name": "Ancestral Protectors"
+		},
+		{
+			"name": "精魂之盾",
+			"source": "XGE",
+			"page": 9,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Ancestral Guardian",
+			"subclassSource": "XGE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"從6級開始，衛士之魂會幫助你為你的盟友提供超自然保護。狂暴期間，若一個處於你周圍30尺內的、你能看到的其他生物受到傷害時，你可以用反應來為其降低{@dice 2d6}點的傷害。",
+				"當你此職業上達到特定等級後，你將可以減免更多的傷害：10級後{@dice 3d6}，14級後{@dice 4d6}。"
+			],
+			"ENG_name": "Spirit Shield"
+		},
+		{
+			"name": "問道精魂",
+			"source": "XGE",
+			"page": 9,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Ancestral Guardian",
+			"subclassSource": "XGE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"在10級時，你去了和你的先祖之魂進行交流的能力。當你想這麼做時，你可以施展 {@spell augury||卜筮術} 或{@spell clairvoyance||鷹眼術} ，且無需法術位與材料成分。這兩個法術的施法屬性為感知。以此施展的 {@spell clairvoyance||鷹眼術}中，作為法術描述中提及的球形探測器的代替，這個法術會在指定位置創造一個無形的先祖之魂。",
+				"一旦你使用這個特性施展了任一法術，直到你完成一次短休或長休為止你都不能再次使用這一特性。"
+			],
+			"ENG_name": "Consult the Spirits"
+		},
+		{
+			"name": "復仇先祖",
+			"source": "XGE",
+			"page": 9,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Ancestral Guardian",
+			"subclassSource": "XGE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"在14級時，你的先祖之魂變得強大到足以打擊傷害你所保護之人的敵人。當你使用「精魂之盾」保護生物、降低一次攻擊的傷害時，攻擊者還將受到精魂之盾所降低傷害等量的力場傷害。"
+			],
+			"ENG_name": "Vengeful Ancestors"
+		},
+		{
+			"name": "沙漠",
+			"source": "XGE",
+			"page": 10,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Storm Herald",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"此效應啟用時，你的靈光中所有其他生物都會受到2點火焰傷害。當你在這個職業達到特定等級後，這一靈光的傷害將增加：在5級後變為3點，10級後4點，15級後5點，20級後6點。"
+			],
+			"ENG_name": "Desert"
+		},
+		{
+			"name": "風暴先驅道途",
+			"source": "XGE",
+			"page": 10,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Storm Herald",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"所有野蠻人都內含憤怒。他們的狂暴讓他們得到了強大的力量、耐力、與速度。而那些追隨風暴先驅道途的野蠻人則學會了將他們的狂暴轉化為環繞著自身的原初魔法靈光。當處於狂暴之下，這條道途的野蠻人深入自然，創造出強大的魔法效果。",
+				"典型的精英風暴先驅，會和德魯伊、遊俠以及其他發誓保護自然的人一起受訓。但也有一些會在被暴風摧毀的房屋中，在極寒的世界冰原上，又或者灼熱的沙漠最深處磨礪自己。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Storm Aura|Barbarian||Storm Herald|XGE|3"
+				}
+			],
+			"ENG_name": "Path of the Storm Herald"
+		},
+		{
+			"name": "海洋",
+			"source": "XGE",
+			"page": 10,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Storm Herald",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"當此效果被啟用時，你可以選擇靈光範圍內一個你能看見的其他生物。目標必須進行一次敏捷豁免檢定。若豁免失敗，目標受到{@damage 1d6}閃電傷害，豁免成功則傷害減半。當你在此職業達到特定等級時傷害提升：10級時提升至{@damage 2d6}，15級時{@damage 3d6}，20級時{@damage 4d6}。"
+			],
+			"ENG_name": "Sea"
+		},
+		{
+			"name": "凍原",
+			"source": "XGE",
+			"page": 10,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Storm Herald",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"當這個效果被啟用時，寒冰精魂加護於靈光中每個你選擇的生物，令他們得以忍受傷害。它們獲得2點臨時生命值。當你在這個職業達到特定等級後，這一靈光給予的臨時生命值將增加：在5級後變為3點，10級後變為4點，15級後變為5點，20級後變為6點。"
+			],
+			"ENG_name": "Tundra"
+		},
+		{
+			"name": "風暴靈光",
+			"source": "XGE",
+			"page": 10,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Storm Herald",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"自3級起，在你狂暴期間，你會散發出一陣魔法性的靈光。它以你為中心向四周延展10尺，靈光無法穿透被{@quickref Cover||3||全身掩護}或覆蓋的地方。",
+				"這一靈光在你進入狂暴時會啟用一種效應，而你在後續的每個自己的回合中也可以用一個附贈動作再次來啟用該效應。從以下三種環境中選擇其一，你選擇的環境型別將決定你靈光啟用時會產生的效應。每當你此職業的等級獲得提升時，你可以更換你選擇的環境。",
+				"如果你靈光的效應需要生物進行豁免，其豁免DC等同於 8+你的熟練加值+你的體質調整值。",
+				{
+					"type": "options",
+					"entries": [
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Desert|Barbarian|PHB|Storm Herald|XGE|3"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Sea|Barbarian|PHB|Storm Herald|XGE|3"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Tundra|Barbarian|PHB|Storm Herald|XGE|3"
+						}
+					]
+				}
+			],
+			"ENG_name": "Storm Aura"
+		},
+		{
+			"name": "沙漠",
+			"source": "XGE",
+			"page": 10,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Storm Herald",
+			"subclassSource": "XGE",
+			"level": 6,
+			"entries": [
+				"你獲得火焰傷害的抗性，且不會受到極端炎熱的效應影響（其記載於《城主手冊》中）。此外，你可以以一個動作，觸碰一個未被他人穿戴或攜帶的易燃物體來點燃它。"
+			],
+			"ENG_name": "Desert"
+		},
+		{
+			"name": "海洋",
+			"source": "XGE",
+			"page": 10,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Storm Herald",
+			"subclassSource": "XGE",
+			"level": 6,
+			"entries": [
+				"你獲得閃電傷害的抗性，與在水下呼吸的能力。你還將獲得30尺的游泳速度。"
+			],
+			"ENG_name": "Sea"
+		},
+		{
+			"name": "凍原",
+			"source": "XGE",
+			"page": 10,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Storm Herald",
+			"subclassSource": "XGE",
+			"level": 6,
+			"entries": [
+				"你獲得寒冷傷害的抗性，且不會受到極端寒冷的效應影響（其記載於《城主手冊》中）。此外，你可以以一個動作，觸碰水體並將5尺立方的水凍結成冰，這種冰將會在1分鐘後融化。如果該立方空間中有任何生物，這一動作將會失敗。"
+			],
+			"ENG_name": "Tundra"
+		},
+		{
+			"name": "風暴之魂",
+			"source": "XGE",
+			"page": 10,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Storm Herald",
+			"subclassSource": "XGE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"在6級時，不論你是否散發著靈光，風暴都能為你帶來增益。這一增益效果基於你在「風暴靈光」特性中所選擇的環境型別。",
+				{
+					"type": "options",
+					"entries": [
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Desert|Barbarian|PHB|Storm Herald|XGE|6"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Sea|Barbarian|PHB|Storm Herald|XGE|6"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Tundra|Barbarian|PHB|Storm Herald|XGE|6"
+						}
+					]
+				}
+			],
+			"ENG_name": "Storm Soul"
+		},
+		{
+			"name": "護盾風暴",
+			"source": "XGE",
+			"page": 10,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Storm Herald",
+			"subclassSource": "XGE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"在10級時，你學會了運用你對風暴的掌控力來保護你的盟友。處於你靈光內的、由你選擇的生物也將同樣受益於你「風暴之魂」特性所帶來的傷害抗性。"
+			],
+			"ENG_name": "Shielding Storm"
+		},
+		{
+			"name": "沙漠",
+			"source": "XGE",
+			"page": 10,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Storm Herald",
+			"subclassSource": "XGE",
+			"level": 14,
+			"entries": [
+				"當處於你靈光中的生物在一次攻擊命中你後，你可以立刻用你的反應迫使該生物進行一次敏捷豁免。豁免失敗則受到等同於你野蠻人等級半數點火焰傷害。"
+			],
+			"ENG_name": "Desert"
+		},
+		{
+			"name": "海洋",
+			"source": "XGE",
+			"page": 10,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Storm Herald",
+			"subclassSource": "XGE",
+			"level": 14,
+			"entries": [
+				"任何處於你靈光中的生物若被你以一次攻擊擊中，你可以用你的反應迫使該生物進行一次力量豁免。豁免失敗時，它將如同被波浪拍打般應擊{@condition prone||倒地}。"
+			],
+			"ENG_name": "Sea"
+		},
+		{
+			"name": "凍原",
+			"source": "XGE",
+			"page": 10,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Storm Herald",
+			"subclassSource": "XGE",
+			"level": 14,
+			"entries": [
+				"每當你啟用你的「風暴靈光」時，你可以選擇一個處於靈光裡的你可見的生物。該生物必須透過一次力量豁免。豁免失敗時，魔法的冰霜將它覆蓋，使其速度降為0，持續直至你的下一個回合開始。"
+			],
+			"ENG_name": "Tundra"
+		},
+		{
+			"name": "狂怒風暴",
+			"source": "XGE",
+			"page": 10,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Storm Herald",
+			"subclassSource": "XGE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"在14級時，你能引導的風暴之力變得更加強大，足以打擊你的敵人。你獲得基於你在「風暴靈光」特性中所選擇的環境型別的增益。",
+				{
+					"type": "options",
+					"entries": [
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Desert|Barbarian|PHB|Storm Herald|XGE|14"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Sea|Barbarian|PHB|Storm Herald|XGE|14"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Tundra|Barbarian|PHB|Storm Herald|XGE|14"
+						}
+					]
+				}
+			],
+			"ENG_name": "Raging Storm"
+		},
+		{
+			"name": "狂熱者道途",
+			"source": "XGE",
+			"page": 11,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Zealot",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"一些神靈鼓勵的追隨者們投身於殘酷的戰鬥狂怒中。這些野蠻人是狂熱的戰士，他們引導自己的憤怒轉化為強大的神賜力量。",
+				"在D&D世界中有許多神都會鼓勵自己的追隨者尋求狂熱者道途。最著名的是費倫的坦帕斯，以及灰鷹的海克斯託和厄瑞斯努。一般來說，那些培養狂熱者的神往往是偏向於戰鬥、破壞和暴力等神職。當然，它們不一定全是邪惡的，還是有少數例外是善良的。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Divine Fury|Barbarian||Zealot|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Warrior of the Gods|Barbarian||Zealot|XGE|3"
+				}
+			],
+			"ENG_name": "Path of the Zealot"
+		},
+		{
+			"name": "神性狂怒",
+			"source": "XGE",
+			"page": 11,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Zealot",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"從3級選擇此道途時開始，你可以將神性之怒引導至武器攻擊中。當你處於狂暴狀態時，每回合你的第一次武器攻擊命中的生物將受到額外傷害，數值為{@damage 1d6} + 你野蠻人等級的一半。額外傷害型別為暗蝕或光耀；你獲得此特性時選擇傷害型別。"
+			],
+			"ENG_name": "Divine Fury"
+		},
+		{
+			"name": "諸神勇士",
+			"source": "XGE",
+			"page": 11,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Zealot",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"在3級時，你的靈魂被無盡的戰鬥所烙印。若一個法術只具有讓你起死回生（而非令你變為不死生物）的效果，例如法術 {@spell raise dead||死者復活}，則施法者在對你施展這一法術時不需要材料成分。"
+			],
+			"ENG_name": "Warrior of the Gods"
+		},
+		{
+			"name": "狂熱專注",
+			"source": "XGE",
+			"page": 11,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Zealot",
+			"subclassSource": "XGE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"在6級時，驅使你憤怒的神力也能庇護你免遭干擾。狂暴期間，若你豁免檢定失敗，你可以重新投擲該豁免檢定，但你必須接受重骰後的結果。你每次狂暴中只能使用此能力一次。"
+			],
+			"ENG_name": "Fanatical Focus"
+		},
+		{
+			"name": "狂熱之姿",
+			"source": "XGE",
+			"page": 11,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Zealot",
+			"subclassSource": "XGE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"在10級時，你學會了引導神力，讓其他人也被你的狂熱所感染。以一個附贈動作，你憤怒的怒吼並釋放出一道蘊含神聖能量的戰吼。選擇你周圍60尺範圍內至多10個能聽到你吼叫聲的其他生物，直到你的下個回合開始前，他們進行的攻擊檢定與豁免檢定獲得優勢。",
+				"必須完成一次長休才能再次使用該特性。"
+			],
+			"ENG_name": "Zealous Presence"
+		},
+		{
+			"name": "怒不畏死",
+			"source": "XGE",
+			"page": 11,
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Zealot",
+			"subclassSource": "XGE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"從14級開始，驅使你狂暴的神力允許你忽視致命的打擊。",
+				"狂暴期間，具有0點生命值並不會使你陷入{@condition unconscious||昏迷} 。不過你仍然需要進行死亡豁免，你在0生命值下受到傷害時依舊計算豁免失敗次數。然而，若你因為未透過死亡豁免檢定而即將死去時，只要你仍處於狂暴狀態，你將拒絕死亡。而如果你的狂暴結束後你仍保持0點生命值，那麼你將死亡。"
+			],
+			"ENG_name": "Rage beyond Death"
+		},
+		{
+			"name": "狂戰士道途",
+			"source": "XPHB",
+			"page": 54,
+			"srd52": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Berserker",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 以心頭強烈的憤怒進入狂暴}",
+				"那些踏上狂戰士道途的野蠻人以暴力的方式直接詮釋狂暴。狂戰士之道代表著不受約束的狂怒，他們於混亂的戰鬥中興奮忘我，將自身完全交託於狂暴操控。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Frenzy|Barbarian|XPHB|Berserker|XPHB|3"
+				}
+			],
+			"ENG_name": "Path of the Berserker"
+		},
+		{
+			"name": "狂怒",
+			"source": "XPHB",
+			"page": 54,
+			"srd52": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Berserker",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"狂暴啟用期間，在你使用魯莽攻擊的回合中，你基於力量的攻擊首次命中時，對目標造成額外傷害。投擲等於你狂暴傷害加值數量的d6，將它們相加，即是你造成的額外傷害。額外傷害型別與此次攻擊所使用的武器或{@variantrule Unarmed Strike|XPHB|徒手打擊}造成的傷害型別相同。"
+			],
+			"ENG_name": "Frenzy"
+		},
+		{
+			"name": "無我狂暴",
+			"source": "XPHB",
+			"page": 54,
+			"srd52": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Berserker",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"狂暴啟用期間，你具有{@condition Charmed|XPHB|魅惑}與{@condition Frightened|XPHB|恐慌}狀態的{@variantrule Immunity|XPHB|免疫}。當你進入狂暴時，若你已陷入{@condition Charmed|XPHB|魅惑}或{@condition Frightened|XPHB|恐慌}，你陷入的這些狀態立即結束。"
+			],
+			"ENG_name": "Mindless Rage"
+		},
+		{
+			"name": "復仇",
+			"source": "XPHB",
+			"page": 54,
+			"srd52": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Berserker",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"當一名位於你 5 尺內的生物對你造成傷害時，你能夠以{@variantrule Reaction|XPHB|反應}使用武器或{@variantrule Unarmed Strike|XPHB|徒手打擊}對其發動一次近戰攻擊。"
+			],
+			"ENG_name": "Retaliation"
+		},
+		{
+			"name": "威懾之姿",
+			"source": "XPHB",
+			"page": 54,
+			"srd52": true,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Berserker",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以用你那令人魂消膽喪的面相，在原初之力的輔助下將恐懼打入他者內心。當你如此做時，每個位於以你為源點的 30 尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內你所選擇的生物必須進行一次感知豁免檢定（{@dc 8} + 你的力量調整值 + 你的{@variantrule Proficiency|XPHB|熟練加值}）。豁免失敗則陷入{@condition Frightened|XPHB|恐慌}狀態，持續 1 分鐘。陷入{@condition Frightened|XPHB|恐慌}的生物在其每個回合結束時重複豁免，成功則終止其身上的該效應。",
+				"此特性一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。你也可以消耗一次狂暴使用次數（無需動作）來重置此特性的使用權。"
+			],
+			"ENG_name": "Intimidating Presence"
+		},
+		{
+			"name": "獸心道途",
+			"source": "XPHB",
+			"page": 55,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Wild Heart",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 與動物世界一同漫步}",
+				"跟隨獸心道途的野蠻人將自身視作動物們的家人。他們學習與動物交流的魔法手段，他們的狂暴賦予他們超自然的力量來增強與動物們的聯絡。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Animal Speaker|Barbarian|XPHB|Wild Heart|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Rage of the Wilds|Barbarian|XPHB|Wild Heart|XPHB|3"
+				}
+			],
+			"ENG_name": "Path of the Wild Heart"
+		},
+		{
+			"name": "動物交談",
+			"source": "XPHB",
+			"page": 55,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Wild Heart",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"你可以施展法術{@spell Beast Sense|XPHB|野獸感官}與{@spell Speak with Animals|XPHB|動物交談}，僅限儀式施展。感知是你這些法術的施法屬性。"
+			],
+			"ENG_name": "Animal Speaker"
+		},
+		{
+			"name": "獸性狂暴",
+			"source": "XPHB",
+			"page": 55,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Wild Heart",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"你的狂暴解放來自動物的原初之力。每當你啟用狂暴時，你從下列選項中選擇一項。",
+				{
+					"type": "entries",
+					"name": "熊",
+					"entries": [
+						"狂暴啟用期間，你具有除力場、心靈、暗蝕、光耀外所有傷害型別的{@variantrule Resistance|XPHB|抗性}。"
+					],
+					"ENG_name": "Bear"
+				},
+				{
+					"type": "entries",
+					"name": "鷹",
+					"entries": [
+						"當你啟用狂暴時，作為你進入狂暴的{@variantrule Bonus Action|XPHB|附贈動作}的一部分，你可以同時執行{@action Disengage|XPHB|撤離}與{@action Dash|XPHB|疾走}動作。狂暴啟用期間，你也能夠以一個{@variantrule Bonus Action|XPHB|附贈動作}同時執行這兩個動作。"
+					],
+					"ENG_name": "Eagle"
+				},
+				{
+					"type": "entries",
+					"name": "狼",
+					"entries": [
+						"狂暴啟用期間，你的盟友對位於你 5 尺內的敵人進行的攻擊檢定具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Wolf"
+				}
+			],
+			"ENG_name": "Rage of the Wilds"
+		},
+		{
+			"name": "獸之形貌",
+			"source": "XPHB",
+			"page": 55,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Wild Heart",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"你從下列選項中自選一項能力獲得。當你完成一次{@variantrule Long Rest|XPHB|長休}時，你可以改變你的選擇。",
+				{
+					"type": "entries",
+					"name": "梟",
+					"entries": [
+						"你具有 60 尺黑暗視覺。如果你已經具有{@sense Darkvision|XPHB|黑暗視覺}，你的{@sense Darkvision|XPHB|黑暗視覺}範圍增加 60 尺。 "
+					],
+					"ENG_name": "Owl"
+				},
+				{
+					"type": "entries",
+					"name": "豹",
+					"entries": [
+						"你具有等於你{@variantrule Speed|XPHB|速度}的{@variantrule Climb Speed|XPHB|攀爬速度}。"
+					],
+					"ENG_name": "Panther"
+				},
+				{
+					"type": "entries",
+					"name": "鮭",
+					"entries": [
+						"你具有等於你{@variantrule Speed|XPHB|速度}的{@variantrule Swim Speed|XPHB|游泳速度}。"
+					],
+					"ENG_name": "Salmon"
+				}
+			],
+			"ENG_name": "Aspect of the Wilds"
+		},
+		{
+			"name": "自然語者",
+			"source": "XPHB",
+			"page": 55,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Wild Heart",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"你可以施展法術{@spell Commune with Nature|XPHB|問道自然}，僅限{@variantrule Ritual|XPHB|儀式}施展。感知是你該法術的施法屬性。"
+			],
+			"ENG_name": "Nature Speaker"
+		},
+		{
+			"name": "獸力威能",
+			"source": "XPHB",
+			"page": 55,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Wild Heart",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"每當你啟用狂暴時，你從下列選項中選擇一項。",
+				{
+					"type": "entries",
+					"name": "獵鷹",
+					"entries": [
+						"狂暴啟用期間，只要你未穿著任何護甲，你便具有等於你{@variantrule Speed|XPHB|速度}的{@variantrule Fly Speed|XPHB|飛行速度}。"
+					],
+					"ENG_name": "Falcon"
+				},
+				{
+					"type": "entries",
+					"name": "雄獅",
+					"entries": [
+						"狂暴啟用期間，任何位於你 5 尺內的敵人不以你（或另一個選擇該項能力的野蠻人）為目標的攻擊檢定具有{@variantrule Disadvantage|XPHB|劣勢}。 "
+					],
+					"ENG_name": "Lion"
+				},
+				{
+					"type": "entries",
+					"name": "角羊",
+					"entries": [
+						"狂暴啟用期間，當你的近戰攻擊命中一名體型不超過大型的生物時，你可以令其陷入{@condition Prone|XPHB|倒地}狀態。"
+					],
+					"ENG_name": "Ram"
+				}
+			],
+			"ENG_name": "Power of the Wilds"
+		},
+		{
+			"name": "世界樹道途",
+			"source": "XPHB",
+			"page": 56,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "World Tree",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 追尋多元宇宙的根系和枝杈}",
+				"追隨世界樹道途的野蠻人以狂暴的力量與宇宙之樹尤格德拉希爾連線。尤格德拉希爾在外層位面中生長，將每個外層位面與物質位面一一相連。世界樹道途的野蠻人利用樹的魔力來保持活力，並將其作為次元旅行的手段。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Vitality of the Tree|Barbarian|XPHB|World Tree|XPHB|3"
+				}
+			],
+			"ENG_name": "Path of the World Tree"
+		},
+		{
+			"name": "聖樹活力",
+			"source": "XPHB",
+			"page": 56,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "World Tree",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"你的狂暴浸潤著世界樹的生命力。你獲得以下增益：",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "活力之湧",
+							"entries": [
+								"當你啟用狂暴時，你獲得等於你野蠻人等級的{@variantrule Temporary Hit Points|XPHB|臨時生命值}。"
+							],
+							"ENG_name": "Vitality Surge"
+						},
+						{
+							"type": "entries",
+							"name": "賜命之源",
+							"entries": [
+								"你的狂暴啟用期間，在你的每個回合開始時，你可以賦予位於你 10 尺內的另一名生物{@variantrule Temporary Hit Points|XPHB|臨時生命值}。投擲等於你狂暴傷害加值數量的d6，將它們相加，即是該生物獲得的{@variantrule Temporary Hit Points|XPHB|臨時生命值}。當你的狂暴結束時，剩餘的{@variantrule Temporary Hit Points|XPHB|臨時生命值}將會消失。"
+							],
+							"ENG_name": "Life-Giving Force"
+						}
+					]
+				}
+			],
+			"ENG_name": "Vitality of the Tree"
+		},
+		{
+			"name": "靈樹枝杈",
+			"source": "XPHB",
+			"page": 56,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "World Tree",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"你的狂暴啟用期間，每當你可見的位於你 30 尺內的生物的回合開始時，你能夠以{@variantrule Reaction|XPHB|反應}在其周圍召喚世界樹的靈體枝條。目標必須成功透過一次力量豁免（{@dc 8} + 你的力量調整值 + 你的{@variantrule Proficiency|XPHB|熟練加值}），否則將被傳送到位於你5尺內的你可見的未佔據空間內或距離你最近的你可見的未佔據空間內。目標被你傳送後，你可以令其{@variantrule Speed|XPHB|速度}降為 0，持續至當前回合結束。"
+			],
+			"ENG_name": "Branches of the Tree"
+		},
+		{
+			"name": "根擊千鈞",
+			"source": "XPHB",
+			"page": 56,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "World Tree",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"世界樹的卷鬚將你的武器延長。你的回合內，你持用的任何{@filter 具有重型或多用詞條的近戰武器|items|type=melee weapon|property=heavy;versatile}的觸及增加 10 尺。當你在你的回合內以該武器命中時，除了啟用這把武器本身具有的其他精通詞條外，你還可以啟用{@itemMastery Push|XPHB|推離}或{@itemMastery Topple|XPHB|失衡}精通詞條。"
+			],
+			"ENG_name": "Battering Roots"
+		},
+		{
+			"name": "世界樹之奇旅",
+			"source": "XPHB",
+			"page": 56,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "World Tree",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"當你啟用狂暴時，你可以傳送至多 60 尺的距離，到一處你可見的未佔據空間中。在你的狂暴啟用期間，你也能夠以一個{@variantrule Bonus Action|XPHB|附贈動作}來進行傳送。",
+				"此外，每次狂暴期間僅一次，你可以使傳送的距離提升至 150 尺，並可以選擇帶上至多 6 個位於你 10 尺內的自願生物同你一起傳送。每個其他生物都將被傳送至位於你目的地 10 尺內的你選擇的未佔據空間中。"
+			],
+			"ENG_name": "Travel Along the Tree"
+		},
+		{
+			"name": "狂熱者道途",
+			"source": "XPHB",
+			"page": 57,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Zealot",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 與神結合的至高愉悅狂暴體驗}",
+				"走上狂熱者道途的野蠻人會得到某個神明或某個神系的恩惠。這些野蠻人將他們的狂暴視為神聖結合的至高愉悅，並藉此獲得力量。狂熱者野蠻人常是他們的神明或神系座下牧師或信者的盟友。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Divine Fury|Barbarian|XPHB|Zealot|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Warrior of the Gods|Barbarian|XPHB|Zealot|XPHB|3"
+				}
+			],
+			"ENG_name": "Path of the Zealot"
+		},
+		{
+			"name": "神性狂怒",
+			"source": "XPHB",
+			"page": 57,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Zealot",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你可以引導神性的怒火，將其注入打擊之中。你的狂暴啟用期間，你的每個回合中你首次以武器或{@variantrule Unarmed Strike|XPHB|徒手打擊}命中的生物將受到等於{@dice 1d6} + 你野蠻人等級的一半（向下取整）的額外傷害。額外傷害的傷害型別為光耀或暗蝕，在每次造成傷害時由你選擇傷害型別。"
+			],
+			"ENG_name": "Divine Fury"
+		},
+		{
+			"name": "諸神勇士",
+			"source": "XPHB",
+			"page": 57,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Zealot",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"某個神聖實體對你施以援手以確保你總能繼續戰鬥。你獲得一個有著 4 枚d12的治療池，你可以用其中的骰子治癒自身。以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以消耗治療池中任意枚骰子來恢復你的{@variantrule Hit Points|XPHB|生命值}。投擲所有你消耗的骰子，將它們相加，即是你以此恢復的生命值。",
+				"當你完成一次{@variantrule Long Rest|XPHB|長休}時，你的治療池重獲所有已消耗的骰子。",
+				"治療池中骰子的最大數量將會在你到達特定野蠻人等級時增加，分別為 6 級時增加至 5 枚，12 級時增加至 6 枚，17 級時增加至 7 枚。"
+			],
+			"ENG_name": "Warrior of the Gods"
+		},
+		{
+			"name": "狂熱專注",
+			"source": "XPHB",
+			"page": 57,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Zealot",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"每次狂暴期間僅一次，若你失敗於某次豁免檢定，你可以重骰這次檢定並在檢定中獲得等於你的狂暴傷害加值的加值，你必須使用重骰後的結果。"
+			],
+			"ENG_name": "Fanatical Focus"
+		},
+		{
+			"name": "狂熱之姿",
+			"source": "XPHB",
+			"page": 57,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Zealot",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你發出充滿神聖能量的戰吼。選擇距你60尺內至多十名其他生物；直到你的下一回合開始，這些生物的攻擊檢定與豁免檢定具有{@variantrule Advantage|XPHB|優勢}。",
+				"此特性一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。你也可以消耗一次狂暴使用次數（無需動作）來重置此特性的使用權。"
+			],
+			"ENG_name": "Zealous Presence"
+		},
+		{
+			"name": "神之狂暴",
+			"source": "XPHB",
+			"page": 57,
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Zealot",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"當你啟用狂暴時，你可以呈現出聖鬥士姿態。聖鬥士姿態持續1分鐘，且在你{@variantrule Hit Points|XPHB|生命值}降至0時提前結束。此特性一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。",
+				"處於聖鬥士姿態期間，你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "飛翔",
+					"entries": [
+						"你具有等於你{@variantrule Speed|XPHB|速度}的{@variantrule Fly Speed|XPHB|飛行速度}，並且可以懸浮。"
+					],
+					"ENG_name": "Flight"
+				},
+				{
+					"type": "entries",
+					"name": "抗性",
+					"entries": [
+						"你具有對暗蝕、心靈和光耀傷害的{@variantrule Resistance|XPHB|抗性}。"
+					],
+					"ENG_name": "Resistance"
+				},
+				{
+					"type": "entries",
+					"name": "回春",
+					"entries": [
+						"當位於你30尺內的一名生物的{@variantrule Hit Points|XPHB|生命值}將要降至0時，你能夠以{@variantrule Reaction|XPHB|反應}消耗一次狂暴使用次數，令目標的{@variantrule Hit Points|XPHB|生命值}變為等於你野蠻人等級的值。"
+					],
+					"ENG_name": "Revivification"
+				}
+			],
+			"ENG_name": "Rage of the Gods"
+		}
+	]
+}

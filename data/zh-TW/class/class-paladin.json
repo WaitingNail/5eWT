@@ -1,0 +1,5771 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"translationSource": "https://shuaishuaidnd.cn/data/class",
+		"conversion": "OpenCC s2twp plus locked project terminology"
+	},
+	"class": [
+		{
+			"name": "聖武士",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"reprintedAs": [
+				"Paladin|XPHB"
+			],
+			"edition": "classic",
+			"hd": {
+				"number": 1,
+				"faces": 10
+			},
+			"proficiency": [
+				"wis",
+				"cha"
+			],
+			"spellcastingAbility": "cha",
+			"casterProgression": "1/2",
+			"preparedSpells": "<$level$> / 2 + <$cha_mod$>",
+			"preparedSpellsChange": "restLong",
+			"optionalfeatureProgression": [
+				{
+					"name": "戰鬥風格",
+					"featureType": [
+						"FS:P"
+					],
+					"progression": {
+						"2": 1
+					},
+					"ENG_name": "Fighting Style"
+				}
+			],
+			"startingProficiencies": {
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"athletics",
+								"insight",
+								"intimidation",
+								"medicine",
+								"persuasion",
+								"religion"
+							],
+							"count": 2
+						}
+					}
+				],
+				"weapons": [
+					"simple",
+					"martial"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"heavy",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"heavy": true,
+						"shield": true
+					}
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"default": [
+					"(a) 一把{@filter 軍用武器|items|source=phb|category=basic|type=martial weapon}和一面{@item shield|phb|盾牌} ，或 (b) 兩把{@filter 軍用武器|items|source=phb|category=basic|type=martial weapon}",
+					"(a) 五把{@item javelin|phb|標槍}或 (b) 任意{@filter 簡易近戰武器|items|source=phb|category=basic|type=simple weapon;melee weapon=sand}",
+					"(a) 一個{@item priest's pack|phb|祭司套組}或 (b) 一個{@item explorer's pack|phb|探索套組}",
+					"{@item Chain mail|phb|鍊甲} 和一個 {@item holy symbol|phb|聖徽}"
+				],
+				"goldAlternative": "{@dice 5d4 × 10|5d4 × 10|起始金幣}",
+				"defaultData": [
+					{
+						"a": [
+							{
+								"equipmentType": "weaponMartial"
+							},
+							"shield|phb"
+						],
+						"b": [
+							{
+								"equipmentType": "weaponMartial",
+								"quantity": 2
+							}
+						]
+					},
+					{
+						"a": [
+							{
+								"item": "javelin|phb",
+								"quantity": 5
+							}
+						],
+						"b": [
+							{
+								"equipmentType": "weaponSimpleMelee"
+							}
+						]
+					},
+					{
+						"a": [
+							"priest's pack|phb"
+						],
+						"b": [
+							"explorer's pack|phb"
+						]
+					},
+					{
+						"_": [
+							"chain mail|phb",
+							{
+								"equipmentType": "focusSpellcastingHoly"
+							}
+						]
+					}
+				]
+			},
+			"multiclassing": {
+				"requirements": {
+					"str": 13,
+					"cha": 13
+				},
+				"proficienciesGained": {
+					"weapons": [
+						"simple",
+						"martial"
+					],
+					"armor": [
+						"light",
+						"medium",
+						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
+					]
+				}
+			},
+			"classTableGroups": [
+				{
+					"title": "每環法術位",
+					"colLabels": [
+						"{@filter 1環|spells|level=1|class=Paladin}",
+						"{@filter 2環|spells|level=2|class=Paladin}",
+						"{@filter 3環|spells|level=3|class=Paladin}",
+						"{@filter 4環|spells|level=4|class=Paladin}",
+						"{@filter 5環|spells|level=5|class=Paladin}"
+					],
+					"rowsSpellProgression": [
+						[
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Divine Sense|Paladin||1",
+				"Lay on Hands|Paladin||1",
+				"Divine Smite|Paladin||2",
+				"Fighting Style|Paladin||2",
+				"Spellcasting|Paladin||2",
+				"Divine Health|Paladin||3",
+				{
+					"classFeature": "Sacred Oath|Paladin||3",
+					"gainSubclassFeature": true,
+					"gainSubclassFeatureHasContent": true
+				},
+				"Ability Score Improvement|Paladin||4",
+				"Martial Versatility|Paladin||4|TCE",
+				"Extra Attack|Paladin||5",
+				"Aura of Protection|Paladin||6",
+				{
+					"classFeature": "Sacred Oath feature|Paladin||7",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Paladin||8",
+				"Aura of Courage|Paladin||10",
+				"Improved Divine Smite|Paladin||11",
+				"Ability Score Improvement|Paladin||12",
+				"Cleansing Touch|Paladin||14",
+				{
+					"classFeature": "Sacred Oath feature|Paladin||15",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Paladin||16",
+				"Aura improvements|Paladin||18",
+				"Ability Score Improvement|Paladin||19",
+				{
+					"classFeature": "Sacred Oath feature|Paladin||20",
+					"gainSubclassFeature": true
+				}
+			],
+			"subclassTitle": "神聖誓言",
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Paladin"
+		},
+		{
+			"name": "聖武士",
+			"source": "XPHB",
+			"page": 108,
+			"srd52": true,
+			"basicRules2024": true,
+			"edition": "one",
+			"primaryAbility": [
+				{
+					"str": true,
+					"cha": true
+				}
+			],
+			"hd": {
+				"number": 1,
+				"faces": 10
+			},
+			"proficiency": [
+				"wis",
+				"cha"
+			],
+			"spellcastingAbility": "cha",
+			"casterProgression": "artificer",
+			"preparedSpellsProgression": [
+				2,
+				3,
+				4,
+				5,
+				6,
+				6,
+				7,
+				7,
+				9,
+				9,
+				10,
+				10,
+				11,
+				11,
+				12,
+				12,
+				14,
+				14,
+				15,
+				15
+			],
+			"preparedSpellsChange": "restLong",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"2": [
+							"divine smite|xphb"
+						],
+						"5": [
+							"find steed|xphb"
+						]
+					}
+				}
+			],
+			"featProgression": [
+				{
+					"name": "戰鬥風格",
+					"category": [
+						"FS",
+						"FS:P"
+					],
+					"progression": {
+						"2": 1
+					},
+					"ENG_name": "Fighting Style"
+				},
+				{
+					"name": "傳奇恩惠",
+					"category": [
+						"EB"
+					],
+					"progression": {
+						"19": 1
+					},
+					"ENG_name": "Epic Boon"
+				}
+			],
+			"startingProficiencies": {
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"athletics",
+								"insight",
+								"intimidation",
+								"medicine",
+								"persuasion",
+								"religion"
+							],
+							"count": 2
+						}
+					}
+				],
+				"weapons": [
+					"simple",
+					"martial"
+				],
+				"armor": [
+					"light",
+					"medium",
+					"heavy",
+					"shield"
+				],
+				"armorProficiencies": [
+					{
+						"light": true,
+						"medium": true,
+						"heavy": true,
+						"shield": true
+					}
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"defaultData": [
+					{
+						"A": [
+							{
+								"item": "chain mail|xphb"
+							},
+							{
+								"item": "shield|xphb"
+							},
+							{
+								"item": "longsword|xphb"
+							},
+							{
+								"item": "javelin|xphb",
+								"quantity": 6
+							},
+							{
+								"item": "holy symbol|xphb"
+							},
+							{
+								"item": "priest's pack|xphb"
+							},
+							{
+								"value": 900
+							}
+						],
+						"B": [
+							{
+								"value": 15000
+							}
+						]
+					}
+				],
+				"entries": [
+					"{@i 選擇A或B：} (A) {@item Chain Mail|XPHB|鍊甲}、{@item Shield|XPHB|盾牌}、{@item Longsword|XPHB|長劍}、6支{@item Javelin|XPHB|標槍}、{@item Holy Symbol|XPHB|聖徽}、{@item Priest's Pack|XPHB|祭司套組}和9 GP；或 (B) 150 GP"
+				]
+			},
+			"multiclassing": {
+				"proficienciesGained": {
+					"weapons": [
+						"martial"
+					],
+					"armor": [
+						"light",
+						"medium",
+						"shield"
+					],
+					"armorProficiencies": [
+						{
+							"light": true,
+							"medium": true,
+							"shield": true
+						}
+					]
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"引導神力",
+						"{@filter 準備法術|spells|level=!0|class=Paladin}"
+					],
+					"rows": [
+						[
+							0,
+							2
+						],
+						[
+							0,
+							3
+						],
+						[
+							2,
+							4
+						],
+						[
+							2,
+							5
+						],
+						[
+							2,
+							6
+						],
+						[
+							2,
+							6
+						],
+						[
+							2,
+							7
+						],
+						[
+							2,
+							7
+						],
+						[
+							2,
+							9
+						],
+						[
+							2,
+							9
+						],
+						[
+							3,
+							10
+						],
+						[
+							3,
+							10
+						],
+						[
+							3,
+							11
+						],
+						[
+							3,
+							11
+						],
+						[
+							3,
+							12
+						],
+						[
+							3,
+							12
+						],
+						[
+							3,
+							14
+						],
+						[
+							3,
+							14
+						],
+						[
+							3,
+							15
+						],
+						[
+							3,
+							15
+						]
+					]
+				},
+				{
+					"title": "每環法術位",
+					"colLabels": [
+						"{@filter 1環|spells|level=1|class=Paladin}",
+						"{@filter 2環|spells|level=2|class=Paladin}",
+						"{@filter 3環|spells|level=3|class=Paladin}",
+						"{@filter 4環|spells|level=4|class=Paladin}",
+						"{@filter 5環|spells|level=5|class=Paladin}"
+					],
+					"rowsSpellProgression": [
+						[
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Lay on Hands|Paladin|XPHB|1",
+				"Spellcasting|Paladin|XPHB|1",
+				"Weapon Mastery|Paladin|XPHB|1",
+				"Fighting Style|Paladin|XPHB|2",
+				"Paladin's Smite|Paladin|XPHB|2",
+				"Channel Divinity|Paladin|XPHB|3",
+				{
+					"classFeature": "Paladin Subclass|Paladin|XPHB|3",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Paladin|XPHB|4",
+				"Extra Attack|Paladin|XPHB|5",
+				"Faithful Steed|Paladin|XPHB|5",
+				"Aura of Protection|Paladin|XPHB|6",
+				{
+					"classFeature": "Subclass Feature|Paladin|XPHB|7",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Paladin|XPHB|8",
+				"Abjure Foes|Paladin|XPHB|9",
+				"Aura of Courage|Paladin|XPHB|10",
+				"Radiant Strikes|Paladin|XPHB|11",
+				"Ability Score Improvement|Paladin|XPHB|12",
+				"Restoring Touch|Paladin|XPHB|14",
+				{
+					"classFeature": "Subclass Feature|Paladin|XPHB|15",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Paladin|XPHB|16",
+				"Aura Expansion|Paladin|XPHB|18",
+				"Epic Boon|Paladin|XPHB|19",
+				{
+					"classFeature": "Subclass Feature|Paladin|XPHB|20",
+					"gainSubclassFeature": true
+				}
+			],
+			"subclassTitle": "聖武士子職",
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Paladin"
+		}
+	],
+	"subclass": [
+		{
+			"name": "奉獻之誓",
+			"shortName": "奉獻",
+			"source": "PHB",
+			"className": "Paladin",
+			"classSource": "PHB",
+			"page": 85,
+			"srd": true,
+			"reprintedAs": [
+				"Devotion|Paladin|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"protection from evil and good",
+							"sanctuary"
+						],
+						"5": [
+							"lesser restoration",
+							"zone of truth"
+						],
+						"9": [
+							"beacon of hope",
+							"dispel magic"
+						],
+						"13": [
+							"freedom of movement",
+							"guardian of faith"
+						],
+						"17": [
+							"commune",
+							"flame strike"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of Devotion|Paladin||Devotion||3",
+				"Aura of Devotion|Paladin||Devotion||7",
+				"Purity of Spirit|Paladin||Devotion||15",
+				"Holy Nimbus|Paladin||Devotion||20"
+			],
+			"ENG_name": "Oath of Devotion",
+			"ENG_shortName": "Devotion"
+		},
+		{
+			"name": "奉獻之誓",
+			"shortName": "奉獻",
+			"source": "PHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Oath of Devotion",
+				"source": "PHB",
+				"shortName": "Devotion",
+				"className": "Paladin",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Oath of Devotion",
+			"ENG_shortName": "Devotion"
+		},
+		{
+			"name": "遠古之誓",
+			"shortName": "古賢",
+			"source": "PHB",
+			"className": "Paladin",
+			"classSource": "PHB",
+			"page": 86,
+			"reprintedAs": [
+				"Ancients|Paladin|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"ensnaring strike",
+							"speak with animals"
+						],
+						"5": [
+							"moonbeam",
+							"misty step"
+						],
+						"9": [
+							"plant growth",
+							"protection from energy"
+						],
+						"13": [
+							"ice storm",
+							"stoneskin"
+						],
+						"17": [
+							"commune with nature",
+							"tree stride"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of the Ancients|Paladin||Ancients||3",
+				"Aura of Warding|Paladin||Ancients||7",
+				"Undying Sentinel|Paladin||Ancients||15",
+				"Elder Champion|Paladin||Ancients||20"
+			],
+			"ENG_name": "Oath of the Ancients",
+			"ENG_shortName": "Ancients"
+		},
+		{
+			"name": "遠古之誓",
+			"shortName": "古賢",
+			"source": "PHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Oath of the Ancients",
+				"source": "PHB",
+				"shortName": "Ancients",
+				"className": "Paladin",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Oath of the Ancients",
+			"ENG_shortName": "Ancients"
+		},
+		{
+			"name": "復仇之誓",
+			"shortName": "復仇",
+			"source": "PHB",
+			"className": "Paladin",
+			"classSource": "PHB",
+			"page": 87,
+			"reprintedAs": [
+				"Vengeance|Paladin|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"bane",
+							"hunter's mark"
+						],
+						"5": [
+							"hold person",
+							"misty step"
+						],
+						"9": [
+							"haste",
+							"protection from energy"
+						],
+						"13": [
+							"banishment",
+							"dimension door"
+						],
+						"17": [
+							"hold monster",
+							"scrying"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of Vengeance|Paladin||Vengeance||3",
+				"Relentless Avenger|Paladin||Vengeance||7",
+				"Soul of Vengeance|Paladin||Vengeance||15",
+				"Avenging Angel|Paladin||Vengeance||20"
+			],
+			"ENG_name": "Oath of Vengeance",
+			"ENG_shortName": "Vengeance"
+		},
+		{
+			"name": "復仇之誓",
+			"shortName": "復仇",
+			"source": "PHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Oath of Vengeance",
+				"source": "PHB",
+				"shortName": "Vengeance",
+				"className": "Paladin",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Oath of Vengeance",
+			"ENG_shortName": "Vengeance"
+		},
+		{
+			"name": "破誓者",
+			"shortName": "破誓者",
+			"source": "DMG",
+			"className": "Paladin",
+			"classSource": "PHB",
+			"page": 97,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"hellish rebuke",
+							"inflict wounds"
+						],
+						"5": [
+							"crown of madness",
+							"darkness"
+						],
+						"9": [
+							"animate dead",
+							"bestow curse"
+						],
+						"13": [
+							"blight",
+							"confusion"
+						],
+						"17": [
+							"contagion",
+							"dominate person"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oathbreaker|Paladin||Oathbreaker|DMG|3",
+				"Aura of Hate|Paladin||Oathbreaker|DMG|7",
+				"Supernatural Resistance|Paladin||Oathbreaker|DMG|15",
+				"Dread Lord|Paladin||Oathbreaker|DMG|20"
+			],
+			"ENG_name": "Oathbreaker",
+			"ENG_shortName": "Oathbreaker"
+		},
+		{
+			"name": "破誓者",
+			"shortName": "破誓者",
+			"source": "DMG",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Oathbreaker",
+				"source": "DMG",
+				"shortName": "Oathbreaker",
+				"className": "Paladin",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Oathbreaker",
+			"ENG_shortName": "Oathbreaker"
+		},
+		{
+			"name": "王冠之誓",
+			"shortName": "王冠",
+			"source": "SCAG",
+			"className": "Paladin",
+			"classSource": "PHB",
+			"page": 132,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"command",
+							"compelled duel"
+						],
+						"5": [
+							"warding bond",
+							"zone of truth"
+						],
+						"9": [
+							"aura of vitality",
+							"spirit guardians"
+						],
+						"13": [
+							"banishment",
+							"guardian of faith"
+						],
+						"17": [
+							"circle of power",
+							"geas"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of the Crown|Paladin||Crown|SCAG|3",
+				"Divine Allegiance|Paladin||Crown|SCAG|7",
+				"Unyielding Spirit|Paladin||Crown|SCAG|15",
+				"Exalted Champion|Paladin||Crown|SCAG|20"
+			],
+			"ENG_name": "Oath of the Crown",
+			"ENG_shortName": "Crown"
+		},
+		{
+			"name": "王冠之誓",
+			"shortName": "王冠",
+			"source": "SCAG",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Oath of the Crown",
+				"source": "SCAG",
+				"shortName": "Crown",
+				"className": "Paladin",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "Oath of the Crown",
+			"ENG_shortName": "Crown"
+		},
+		{
+			"name": "征服之誓",
+			"shortName": "征服",
+			"source": "XGE",
+			"className": "Paladin",
+			"classSource": "PHB",
+			"page": 37,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"armor of Agathys",
+							"command"
+						],
+						"5": [
+							"hold person",
+							"spiritual weapon"
+						],
+						"9": [
+							"bestow curse",
+							"fear"
+						],
+						"13": [
+							"dominate beast",
+							"stoneskin"
+						],
+						"17": [
+							"cloudkill",
+							"dominate person"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of Conquest|Paladin||Conquest|XGE|3",
+				"Aura of Conquest|Paladin||Conquest|XGE|7",
+				"Scornful Rebuke|Paladin||Conquest|XGE|15",
+				"Invincible Conqueror|Paladin||Conquest|XGE|20"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Oath of Conquest",
+			"ENG_shortName": "Conquest"
+		},
+		{
+			"name": "征服之誓",
+			"shortName": "征服",
+			"source": "XGE",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Oath of Conquest",
+				"source": "XGE",
+				"shortName": "Conquest",
+				"className": "Paladin",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "征服之誓",
+					"source": "XGE",
+					"shortName": "征服",
+					"className": "Paladin",
+					"classSource": "PHB",
+					"ENG_name": "Oath of Conquest"
+				}
+			},
+			"ENG_name": "Oath of Conquest",
+			"ENG_shortName": "Conquest"
+		},
+		{
+			"name": "救贖之誓",
+			"shortName": "救贖",
+			"source": "XGE",
+			"className": "Paladin",
+			"classSource": "PHB",
+			"page": 38,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"sanctuary",
+							"sleep"
+						],
+						"5": [
+							"calm emotions",
+							"hold person"
+						],
+						"9": [
+							"counterspell",
+							"hypnotic pattern"
+						],
+						"13": [
+							"Otiluke's Resilient Sphere",
+							"stoneskin"
+						],
+						"17": [
+							"hold monster",
+							"wall of force"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of Redemption|Paladin||Redemption|XGE|3",
+				"Aura of the Guardian|Paladin||Redemption|XGE|7",
+				"Protective Spirit|Paladin||Redemption|XGE|15",
+				"Emissary of Redemption|Paladin||Redemption|XGE|20"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Oath of Redemption",
+			"ENG_shortName": "Redemption"
+		},
+		{
+			"name": "救贖之誓",
+			"shortName": "救贖",
+			"source": "XGE",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Oath of Redemption",
+				"source": "XGE",
+				"shortName": "Redemption",
+				"className": "Paladin",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "救贖之誓",
+					"source": "XGE",
+					"shortName": "救贖",
+					"className": "Paladin",
+					"classSource": "PHB",
+					"ENG_name": "Oath of Redemption"
+				}
+			},
+			"ENG_name": "Oath of Redemption",
+			"ENG_shortName": "Redemption"
+		},
+		{
+			"name": "榮耀之誓",
+			"shortName": "榮耀",
+			"source": "TCE",
+			"className": "Paladin",
+			"classSource": "PHB",
+			"page": 53,
+			"otherSources": [
+				{
+					"source": "MOT",
+					"page": 29
+				}
+			],
+			"reprintedAs": [
+				"Glory|Paladin|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"guiding bolt",
+							"heroism"
+						],
+						"5": [
+							"enhance ability",
+							"magic weapon"
+						],
+						"9": [
+							"haste",
+							"protection from energy"
+						],
+						"13": [
+							"compulsion",
+							"freedom of movement"
+						],
+						"17": [
+							"commune",
+							"flame strike"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of Glory|Paladin||Glory|TCE|3",
+				"Aura of Alacrity|Paladin||Glory|TCE|7",
+				"Glorious Defense|Paladin||Glory|TCE|15",
+				"Living Legend|Paladin||Glory|TCE|20"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Oath of Glory",
+			"ENG_shortName": "Glory"
+		},
+		{
+			"name": "榮耀之誓",
+			"shortName": "榮耀",
+			"source": "TCE",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Oath of Glory",
+				"source": "TCE",
+				"shortName": "Glory",
+				"className": "Paladin",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "榮耀之誓",
+					"source": "TCE",
+					"shortName": "榮耀",
+					"className": "Paladin",
+					"classSource": "PHB",
+					"ENG_name": "Oath of Glory"
+				}
+			},
+			"ENG_name": "Oath of Glory",
+			"ENG_shortName": "Glory"
+		},
+		{
+			"name": "守望之誓",
+			"shortName": "守望",
+			"source": "TCE",
+			"className": "Paladin",
+			"classSource": "PHB",
+			"page": 54,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"alarm",
+							"detect magic"
+						],
+						"5": [
+							"moonbeam",
+							"see invisibility"
+						],
+						"9": [
+							"counterspell",
+							"nondetection"
+						],
+						"13": [
+							"aura of purity",
+							"banishment"
+						],
+						"17": [
+							"hold monster",
+							"scrying"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of the Watchers|Paladin||Watchers|TCE|3",
+				"Aura of the Sentinel|Paladin||Watchers|TCE|7",
+				"Vigilant Rebuke|Paladin||Watchers|TCE|15",
+				"Mortal Bulwark|Paladin||Watchers|TCE|20"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Oath of the Watchers",
+			"ENG_shortName": "Watchers"
+		},
+		{
+			"name": "守望之誓",
+			"shortName": "守望",
+			"source": "TCE",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "Oath of the Watchers",
+				"source": "TCE",
+				"shortName": "Watchers",
+				"className": "Paladin",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "守望之誓",
+					"source": "TCE",
+					"shortName": "守望",
+					"className": "Paladin",
+					"classSource": "PHB",
+					"ENG_name": "Oath of the Watchers"
+				}
+			},
+			"ENG_name": "Oath of the Watchers",
+			"ENG_shortName": "Watchers"
+		},
+		{
+			"name": "奉獻之誓",
+			"shortName": "奉獻",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"page": 113,
+			"srd52": true,
+			"basicRules2024": true,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"protection from evil and good|xphb",
+							"shield of faith|xphb"
+						],
+						"5": [
+							"aid|xphb",
+							"zone of truth|xphb"
+						],
+						"9": [
+							"beacon of hope|xphb",
+							"dispel magic|xphb"
+						],
+						"13": [
+							"freedom of movement|xphb",
+							"guardian of faith|xphb"
+						],
+						"17": [
+							"commune|xphb",
+							"flame strike|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of Devotion|Paladin|XPHB|Devotion|XPHB|3",
+				"Aura of Devotion|Paladin|XPHB|Devotion|XPHB|7",
+				"Smite of Protection|Paladin|XPHB|Devotion|XPHB|15",
+				"Holy Nimbus|Paladin|XPHB|Devotion|XPHB|20"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Oath of Devotion",
+			"ENG_shortName": "Devotion"
+		},
+		{
+			"name": "榮耀之誓",
+			"shortName": "榮耀",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"page": 114,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"guiding bolt|xphb",
+							"heroism|xphb"
+						],
+						"5": [
+							"enhance ability|xphb",
+							"magic weapon|xphb"
+						],
+						"9": [
+							"haste|xphb",
+							"protection from energy|xphb"
+						],
+						"13": [
+							"compulsion|xphb",
+							"freedom of movement|xphb"
+						],
+						"17": [
+							"legend lore|xphb",
+							"yolande's regal presence|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of Glory|Paladin|XPHB|Glory|XPHB|3",
+				"Aura of Alacrity|Paladin|XPHB|Glory|XPHB|7",
+				"Glorious Defense|Paladin|XPHB|Glory|XPHB|15",
+				"Living Legend|Paladin|XPHB|Glory|XPHB|20"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Oath of Glory",
+			"ENG_shortName": "Glory"
+		},
+		{
+			"name": "遠古之誓",
+			"shortName": "古賢",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"page": 115,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"ensnaring strike|xphb",
+							"speak with animals|xphb"
+						],
+						"5": [
+							"misty step|xphb",
+							"moonbeam|xphb"
+						],
+						"9": [
+							"plant growth|xphb",
+							"protection from energy|xphb"
+						],
+						"13": [
+							"ice storm|xphb",
+							"stoneskin|xphb"
+						],
+						"17": [
+							"commune with nature|xphb",
+							"tree stride|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of the Ancients|Paladin|XPHB|Ancients|XPHB|3",
+				"Aura of Warding|Paladin|XPHB|Ancients|XPHB|7",
+				"Undying Sentinel|Paladin|XPHB|Ancients|XPHB|15",
+				"Elder Champion|Paladin|XPHB|Ancients|XPHB|20"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Oath of the Ancients",
+			"ENG_shortName": "Ancients"
+		},
+		{
+			"name": "復仇之誓",
+			"shortName": "復仇",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"page": 116,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"bane|xphb",
+							"hunter's mark|xphb"
+						],
+						"5": [
+							"hold person|xphb",
+							"misty step|xphb"
+						],
+						"9": [
+							"haste|xphb",
+							"protection from energy|xphb"
+						],
+						"13": [
+							"banishment|xphb",
+							"dimension door|xphb"
+						],
+						"17": [
+							"hold monster|xphb",
+							"scrying|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of Vengeance|Paladin|XPHB|Vengeance|XPHB|3",
+				"Relentless Avenger|Paladin|XPHB|Vengeance|XPHB|7",
+				"Soul of Vengeance|Paladin|XPHB|Vengeance|XPHB|15",
+				"Avenging Angel|Paladin|XPHB|Vengeance|XPHB|20"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Oath of Vengeance",
+			"ENG_shortName": "Vengeance"
+		},
+		{
+			"name": "巨靈貴族之誓",
+			"shortName": "巨靈貴族",
+			"source": "FRHoF",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"page": 20,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"chromatic orb|xphb",
+							"elementalism|xphb#c",
+							"thunderous smite|xphb"
+						],
+						"5": [
+							"mirror image|xphb",
+							"phantasmal force|xphb"
+						],
+						"9": [
+							"fly|xphb",
+							"gaseous form|xphb"
+						],
+						"13": [
+							"conjure minor elementals|xphb",
+							"summon elemental|xphb"
+						],
+						"17": [
+							"banishing smite|xphb",
+							"contact other plane|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of the Noble Genies|Paladin|XPHB|Noble Genies|FRHoF|3|FRHoF",
+				"Aura of Elemental Shielding|Paladin|XPHB|Noble Genies|FRHoF|7|FRHoF",
+				"Elemental Rebuke|Paladin|XPHB|Noble Genies|FRHoF|15|FRHoF",
+				"Noble Scion|Paladin|XPHB|Noble Genies|FRHoF|20|FRHoF"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Oath of the Noble Genies",
+			"ENG_shortName": "Noble Genies"
+		}
+	],
+	"classFeature": [
+		{
+			"name": "神聖感知",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 1,
+			"entries": [
+				"強大的邪惡存在於你有如帶毒的香氣，而強大的善良光環於你則如仙樂般悠揚。你可以使用一個動作擴充套件你的意識，以偵測此類勢力。直到你下回合結束前，你可以對身邊60尺範圍內進行感測，任何未對你處在{@quickref Cover||3||全身掩護}狀態的天界生物、邪魔或不死生物都將被你定位。你感應到範圍內生物的種類（天界生物、邪魔、不死生物），不過並不能精確指明（比如「吸血鬼伯爵斯特拉德·馮·扎洛維奇」）。在同樣的範圍內，你也可以偵測任何受到{@spell hallow||聖居}一類的法術祝福或褻瀆的地點或物件。",
+				"該特性的可用次數等於1＋你的魅力調整值。而已消耗的特性使用次數，則可以透過完成一次長休進行恢復。"
+			],
+			"ENG_name": "Divine Sense"
+		},
+		{
+			"name": "聖療",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 1,
+			"entries": [
+				"你的觸碰溢滿祝福，可以醫治傷口。你獲得一個治療能量池，其內的治療能量在每次完成長休後自動補滿。治療能量池儲備的可恢復生命值總值等於你的聖武士職業等級×5。",
+				"你可以用一個動作觸碰一個生物，並抽取治療能量池中的能量恢復該生物的生命值，其恢復量最多等於你治療能量池中剩餘的治療量。",
+				"此外，你也可以使用5點治療量治癒目標生物身上的一種疾病，或者祛除一種中毒效應。你可以在一次聖療中治癒複數的疾病並祛除複數的毒素，但你需要為每一種疾病和毒素分別支付治療量。",
+				"該職業特性對不死生物和構裝生物無效。"
+			],
+			"ENG_name": "Lay on Hands"
+		},
+		{
+			"name": "至聖斬",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 2,
+			"entries": [
+				"第2級起，你使用近戰武器攻擊命中一個生物時，可以消耗一枚法術位，並對目標造成除武器傷害外附加的光耀傷害。1環法術位時，額外傷害的數值為{@damage 2d8}；更高法術位時，每比1環高一環就額外增加{@damage 1d8}，其最高值為{@damage 5d8}。如果目標是不死生物或邪魔，則該傷害將再額外增加{@damage 1d8}，至高提升到{@damage 6d8}。"
+			],
+			"ENG_name": "Divine Smite"
+		},
+		{
+			"name": "戰鬥風格",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 2,
+			"entries": [
+				"第2級起，你將精進於一種戰鬥風格，從下列選項中選擇其一。另外，即使你有多次選擇戰鬥風格的機會，也不能重複選擇同一個戰鬥風格。",
+				{
+					"type": "options",
+					"count": 1,
+					"entries": [
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Defense"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Dueling"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Great Weapon Fighting"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Protection"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Blessed Warrior|TCE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Blind Fighting|TCE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Interception|TCE"
+						}
+					]
+				}
+			],
+			"ENG_name": "Fighting Style"
+		},
+		{
+			"name": "施法",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 2,
+			"entries": [
+				"第2級起，你學會透過冥想與祈禱引導神聖魔法，其原理與牧師相仿。參考 {@book 第十章|PHB|10}的施法規則，以及 {@book 第十一章|PHB|11}的 {@filter 聖武士法術列表|spells|class=paladin}。",
+				{
+					"type": "entries",
+					"name": "法術的準備和施展",
+					"entries": [
+						"\"聖武士職業表\"裡記錄了你用以施展{@filter 聖武士法術|spells|class=paladin}的1環及更高環階法術位數量。施展某個聖武士法術時，你必須同時消耗其對應環階的法術位。而已消耗的法術位則可以透過完成一次長休進行恢復。",
+						"你可以準備聖武士法術列表中所有符合當前施展條件的法術。準備法術時，你所準備法術的總數等於你的魅力調整值＋你聖武士職業等級的一半（最少可準備一個）。另外，你只能準備已獲得相應環階法術位的法術。",
+						"例如，作為一名5級聖武士時，你擁有四枚1環法術位和兩枚2環法術位。假如你的魅力為14，則你的準備法術列表可以囊括四個1環或者2環法術的組合。如果你已經準備了1環法術{@spell cure wounds||療傷術}，則你可以使用1環或2環的法術位來施展它。另外，已施展的法術並不會從你的準備列表中移除。",
+						"你可以在完成長休後改變你的準備法術列表。準備新的聖武士法術列表時，你要再花時間進行祈禱和冥想。準備時，你要為你列表上每個法術的每個環階都花費至少1分鐘時間。"
+					],
+					"ENG_name": "Preparing and Casting Spells"
+				},
+				{
+					"type": "entries",
+					"name": "施法關鍵屬性",
+					"entries": [
+						"你的法術源自你堅定信念產生的力量，因此魅力是你施展聖武士法術的關鍵屬性。每當你的聖武士法術需要施法屬性是均指向你的魅力值。而你聖武士法術的豁免DC和攻擊檢定，則使用你的魅力調整值。",
+						{
+							"type": "abilityDc",
+							"name": "法術",
+							"attributes": [
+								"cha"
+							],
+							"ENG_name": "Spell"
+						},
+						{
+							"type": "abilityAttackMod",
+							"name": "法術",
+							"attributes": [
+								"cha"
+							],
+							"ENG_name": "Spell"
+						}
+					],
+					"ENG_name": "Spellcasting Ability"
+				},
+				{
+					"type": "entries",
+					"name": "施法法器",
+					"entries": [
+						"你可用{@item holy symbol|phb|聖徽}作為施展你聖武士法術的法器。"
+					],
+					"ENG_name": "Spellcasting Focus"
+				}
+			],
+			"ENG_name": "Spellcasting"
+		},
+		{
+			"name": "引導神力",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 3,
+			"entries": [
+				"你的誓言使你獲得引導神所授神聖能量的能力，引導的能量將用以實現各種魔法效應。誓言賦予的相應效應，可以參考相關誓言的描述內容。",
+				"引導神力時，神力最終產生的效應由你自行選擇。引導神力後，你必須完成一次短休或長休才能再次使用該特性。",
+				"某些引導神力的效應需要豁免，其豁免DC等於你的聖武士法術豁免DC。"
+			],
+			"ENG_name": "Channel Divinity"
+		},
+		{
+			"name": "引導神力：神力掌控",
+			"source": "TCE",
+			"page": 52,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 3,
+			"isClassFeatureVariant": true,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"{@i 3級聖武士{@variantrule optional class features|tce|可選特性}}",
+				"你可以消耗一次引導神力的使用次數，為法術補充力量。以一個附贈動作，你觸碰聖徽並吟誦禱文，恢復一個已消耗的法術位；該法術位的環階不得高於你熟練加值的一半（向上取整）。你可使用此特性的次數取決於你在本職業中的等級：3級時一次、7級時兩次、15級時三次。完成一次長休後，你恢復所有已消耗的使用次數。"
+			],
+			"ENG_name": "Channel Divinity: Harness Divine Power"
+		},
+		{
+			"name": "神性體魄",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 3,
+			"entries": [
+				"第3級起，你體內湧動的神聖魔法使你免疫疾病。"
+			],
+			"ENG_name": "Divine Health"
+		},
+		{
+			"name": "神聖誓言",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 3,
+			"entries": [
+				"當你達到3級時，你立下誓言，從此永遠受其約束，成為真正的聖武士。在此之前，你一直處於準備階段：雖已投入這條道路，卻尚未正式立誓。現在，請從可用的誓言列表中選擇一項。",
+				"你的選擇會在3級賦予你特性，並在7級、15級與20級再次賦予特性；這些特性包括聖誓法術與引導神力。",
+				{
+					"name": "聖誓法術",
+					"type": "entries",
+					"entries": [
+						"每種誓言都有其相應的聖誓法術列表。當你達到表中所示的聖武士等級時，你將同時獲得其對應的聖誓法術。聖誓法術一旦獲得，將會一直在你的準備法術列表中，且不計入你的每日準備法術上限。",
+						"任何聖誓法術對你而言都是聖武士法術，而不論其是否在聖武士法術列表之上。"
+					],
+					"ENG_name": "Oath Spells"
+				},
+				{
+					"type": "refClassFeature",
+					"classFeature": "Channel Divinity|Paladin||3"
+				},
+				{
+					"type": "refClassFeature",
+					"classFeature": "Channel Divinity: Harness Divine Power|Paladin||3|TCE"
+				},
+				{
+					"name": "背棄誓言",
+					"type": "inset",
+					"entries": [
+						"聖武士試圖使自己符合最高的道德標準。但即使是最具美德的聖武士也會犯錯。有時正確的道路太過高不可攀；有時你被迫在兩害之間取其輕；有時狂熱的激情讓聖武士的作為越過了合理的界限。",
+						"背棄誓言的聖武士一般都理所當然地會向同一信仰的牧師或同一兄弟會的聖武士尋求幫助。聖武士可能必須花上一整晚守夜祈禱，以表現他的懺悔；或者齋戒禁食以表示自我否定，或者做一些類似的舉動。在認罪和寬恕的儀式之後，聖武士就將重獲純潔。",
+						"如果聖武士自願打破誓言，又沒有任何悔過的跡象，後果可能就嚴重了。根據DM的不同考量，一個不知悔過的聖武士可能會被迫放棄聖武士等級並選擇其他職業，或者也可以選用《城主指南》中關於破誓聖武士的選項。"
+					],
+					"ENG_name": "Breaking Your Oath"
+				}
+			],
+			"ENG_name": "Sacred Oath"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 4,
+			"entries": [
+				"當你達到4級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "替換武術",
+			"source": "TCE",
+			"page": 52,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 4,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"{@i 4級聖武士{@variantrule optional class features|tce|可選特性}}",
+				"每當你透過提升聖武士等級獲得屬性值提升時，你可以用另一個聖武士能夠選擇的戰鬥風格替換你當前的{@filter 戰鬥風格|optionalfeatures|feature type=FS:P}。這一變化代表著你在戰鬥訓練上重心的轉移。"
+			],
+			"ENG_name": "Martial Versatility"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 5,
+			"entries": [
+				"第5級起，你在自己回合內執行{@action Attack||攻擊}動作時可以攻擊兩次而非一次。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "守護靈光",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 6,
+			"entries": [
+				"第6級起，你與友方生物在你身邊10尺內進行豁免檢定時，可以將你的魅力調整值作為加值加在其豁免結果上（至少為 +1）。提供該加值時你必須保持意識清醒。",
+				"第18級起，該靈光的作用範圍擴充套件至30尺。"
+			],
+			"ENG_name": "Aura of Protection"
+		},
+		{
+			"name": "神聖誓言能力",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 7,
+			"entries": [
+				"你將在第7級時獲得所選聖誓的相應特性。"
+			],
+			"ENG_name": "Sacred Oath feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 8,
+			"entries": [
+				"當你達到第8級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過該特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "勇氣靈光",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 10,
+			"entries": [
+				"第10級起，你和10尺範圍內的友方生物不會陷入{@condition frightened||恐慌}。提供該增益時你必須保持意識清醒。",
+				"第18級起，該靈光的作用範圍擴充套件至30尺。"
+			],
+			"ENG_name": "Aura of Courage"
+		},
+		{
+			"name": "強化至聖斬",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 11,
+			"entries": [
+				"第11級起，你體內充盈的公正之力使你的近戰武器打擊中攜帶著神聖的力量。當你使用近戰武器命中一個生物時，該生物將額外受到{@damage 1d8}光耀傷害。"
+			],
+			"ENG_name": "Improved Divine Smite"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 12,
+			"entries": [
+				"當你達到第12級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過該特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "淨化之觸",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 14,
+			"entries": [
+				"第14級起，你可以用動作觸碰你自身或一個自願生物，以中止該目標身上的一個法術效應。",
+				"該特性的可用次數等於你的魅力調整值（至少一次）。而已消耗的特性使用次數則可以透過完成一次長休進行恢復。"
+			],
+			"ENG_name": "Cleansing Touch"
+		},
+		{
+			"name": "神聖誓言能力",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 15,
+			"entries": [
+				"在15級時獲得所選聖誓的相應特性。"
+			],
+			"ENG_name": "Sacred Oath feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 16,
+			"entries": [
+				"當你達到16級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "靈光強化",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 18,
+			"entries": [
+				"第18級起，守護靈光的作用範圍擴充套件至30尺。"
+			],
+			"ENG_name": "Aura improvements"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 19,
+			"entries": [
+				"當你達到19級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "神聖誓言能力",
+			"source": "PHB",
+			"page": 82,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"level": 20,
+			"entries": [
+				"在20級時獲得所選聖誓的相應特性。"
+			],
+			"ENG_name": "Sacred Oath feature"
+		},
+		{
+			"name": "聖療",
+			"source": "XPHB",
+			"page": 109,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你的觸碰溢滿祝福，可以醫治傷口。你獲得一個治療能量池，其內的治療能量在每次完成{@variantrule Long Rest|XPHB|長休}後自動補滿。治療能量池儲備的可恢復{@variantrule Hit Points|XPHB|生命值}總值等於你的聖武士職業等級 ×5。",
+				"你能夠以一個{@variantrule Bonus Action|XPHB|附贈動作}觸碰一個生物（可以是你自己），並抽取治療能量池中的能量恢復該生物的{@variantrule Hit Points|XPHB|生命值}，其恢復量最多等於你治療能量池中剩餘的治療量。",
+				"此外，你也可以使用 5 點{@variantrule Hit Points|XPHB|生命值}治療量來移除目標身上的{@condition Poisoned|XPHB|中毒}狀態，而非恢復{@variantrule Hit Points|XPHB|生命值}。"
+			],
+			"ENG_name": "Lay on Hands"
+		},
+		{
+			"name": "施法",
+			"source": "XPHB",
+			"page": 109,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你已經學會了如何透過祈禱與冥想來施展法術。施法規則見{@book 第七章|XPHB|7}。下文將詳述如何將這些規則應用於聖武士法術，聖武士法術詳見本章後文職業描述中的{@filter 聖武士法術列表|spells|class=Paladin}。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "法術位",
+							"entries": [
+								"聖武士特性表顯示了你可用於施展一環及以上法術的法術位數量。當你完成{@variantrule Long Rest|XPHB|長休}時，你重獲所有已消耗的法術位。"
+							],
+							"ENG_name": "Spell Slots"
+						},
+						{
+							"type": "entries",
+							"name": "1環及以上的準備法術",
+							"entries": [
+								"你準備可供你以此特性施展的一環及更高環階的法術列表。最初，選擇兩道{@filter 1環聖武士法術|spells|class=Paladin|level=1}，推薦選擇{@spell Heroism|XPHB|英雄氣概}和{@spell Searing Smite|XPHB|熾焰斬}。",
+								"已準備法術數量會隨你聖武士等級的提升而增加，如聖武士特性表中的準備法術一列所示。每當這一列的數字增加時，法術列表中選擇額外法術準備，直至已準備法術的數量與表格中的數字一致。你所選擇法術的環階必須是你所擁有法術位對應的環階。例如，如果你是一名5級的聖武士，則你的準備法術列表能包括六道一環或二環的聖武士法術，隨意組合。",
+								"如果聖武士的其他特性給了你始終準備著的法術，這些法術不計入你以此法準備的法術數量，但這些法術對你而言都視為聖武士法術。"
+							],
+							"ENG_name": "Prepared Spells of Level 1+"
+						},
+						{
+							"type": "entries",
+							"name": "改變你的準備法術",
+							"entries": [
+								"每當你完成一次{@variantrule Long Rest|XPHB|長休}時，你可以將你準備列表上的一道法術替換為其他聖武士法術，新替換的法術必須是你擁有法術位的法術。"
+							],
+							"ENG_name": "Changing Your Prepared Spells"
+						},
+						{
+							"type": "entries",
+							"name": "施法關鍵屬性",
+							"entries": [
+								"魅力是你施放聖武士法術的施法屬性。"
+							],
+							"ENG_name": "Spellcasting Ability"
+						},
+						{
+							"type": "entries",
+							"name": "施法法器",
+							"entries": [
+								"你可以使用{@item Holy Symbol|XPHB|聖徽}作為你聖武士法術的{@variantrule Spellcasting Focus|XPHB|法器}"
+							],
+							"ENG_name": "Spellcasting Focus"
+						}
+					]
+				}
+			],
+			"ENG_name": "Spellcasting"
+		},
+		{
+			"name": "武器精通",
+			"source": "XPHB",
+			"page": 110,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你對武器的訓練使你能夠運用兩種自選的你具有熟練的{@filter 武器|items|type=simple weapon;martial weapon}的{@variantrule weapon mastery properties|XPHB|精通詞條}，例如{@item Longsword|XPHB|長劍}和{@item Javelin|XPHB|標槍}。",
+				"每當你完成一次{@variantrule Long Rest|XPHB|長休}時，你可以更換所選的武器種類。例如，你可以改選{@item Halberd|XPHB|長戟}和{@item Flail|XPHB|鏈枷}，並使用它們的{@variantrule weapon mastery properties|XPHB|精通詞條}。"
+			],
+			"ENG_name": "Weapon Mastery"
+		},
+		{
+			"name": "戰鬥風格",
+			"source": "XPHB",
+			"page": 110,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"你獲得一項{@filter 戰鬥風格專長|feats|category=FS}專長。你也可以選擇下列選項作為替代。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "refFeat",
+							"feat": "Blessed Warrior|XPHB"
+						}
+					]
+				}
+			],
+			"ENG_name": "Fighting Style"
+		},
+		{
+			"name": "聖武斬",
+			"source": "XPHB",
+			"page": 110,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"你始終準備著法術{@spell Divine Smite|XPHB|至聖斬} 。此外，你可以不消耗法術位地施展該法術一次，而後你必須完成一次{@variantrule Long Rest|XPHB|長休}才能再次這麼做。"
+			],
+			"ENG_name": "Paladin's Smite"
+		},
+		{
+			"name": "引導神力",
+			"source": "XPHB",
+			"page": 110,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你能從外層位面引導神聖能量，並用其引動魔法效應。你起始時具有一種效應選項：神聖感知，其效果如下所示。其他聖武士特性會給予更多引導神力選項。每當你使用本職業的引導神力時，你選擇要創造哪種來自本職業的效應。",
+				"你可以使用本職業的引導神力兩次，你在完成{@variantrule Short Rest|XPHB|短休}時重獲一次已消耗的使用次數，並在完成{@variantrule Long Rest|XPHB|長休}時重獲所有已消耗的使用次數。你在聖武士等級到達 11 級時獲得額外的使用次數。",
+				"如果某個引導神力效應需要目標進行豁免，則其豁免DC等於本職業的施法特性中的法術豁免DC。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "refClassFeature",
+							"classFeature": "Divine Sense|Paladin|XPHB|3|XPHB"
+						}
+					]
+				}
+			],
+			"ENG_name": "Channel Divinity"
+		},
+		{
+			"name": "神聖感知",
+			"source": "XPHB",
+			"page": 110,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以敞開感知，偵測天族、邪魔與亡靈。接下來10分鐘內，或直到你陷入{@condition Incapacitated|XPHB|失能}狀態為止，你知道自身60尺內任何上述類型生物的位置及其生物類型。在相同範圍內，你也能偵測任何已被祝聖或褻瀆的地點或物件，如同{@spell Hallow|XPHB|聖居}法術。"
+			],
+			"ENG_name": "Divine Sense"
+		},
+		{
+			"name": "聖武士子職",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你選擇獲得一項聖武士子職子職是一種特化，在特定的聖武士等級給予你對應的獨特能力。此後你將獲得你所選的子職所有能力——只要其所需等級不超過你的聖武士等級。",
+				{
+					"type": "inset",
+					"name": "背棄誓言",
+					"entries": [
+						"聖武士試圖使自己符合最高的道德標準。但即使是最具美德的聖武士也會犯錯。有時正確的道路太過高不可攀；有時你被迫在兩害之間取其輕；有時狂熱的激情讓聖武士的作為越過了合理的界限。",
+						"背棄誓言的聖武士往往會尋求寬恕。聖武士可能必須花上一整晚守夜祈禱，以表現他的懺悔；或者齋戒禁食以表示自我否定，或者做一些類似的舉動。在認罪和寬恕的儀式之後，聖武士就將重獲純潔。",
+						"如果你的聖武士主動打破了誓言且不願悔改，請和DM溝通。你可能需要更換一個更合適的聖武士子職，甚至改換為其他職業。"
+					],
+					"ENG_name": "Breaking Your Oath"
+				}
+			],
+			"ENG_name": "Paladin Subclass"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 4,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其他你滿足條件的{@5etools 專長|feats.html}。如聖武士特性表所示，你還會在第8，第12，第16級時再次獲得本特性。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"當你在自己的回合執行{@action Attack|XPHB|攻擊}動作時，你可以發動兩次攻擊而非一次。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "信實坐騎",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"你能喚來異界坐騎的協助。你始終準備著法術{@spell Find Steed|XPHB|尋獲坐騎}。",
+				"此外，你可以不消耗法術位地施展該法術一次，而後你必須完成一次{@variantrule Long Rest|XPHB|長休}才能再次這麼做。"
+			],
+			"ENG_name": "Faithful Steed"
+		},
+		{
+			"name": "守護靈光",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 6,
+			"entries": [
+				"你散發出無形的保護性的靈光 ，覆蓋源自你的 10 尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域。在你陷入{@condition Incapacitated|XPHB|失能}狀態期間，此靈光失效。",
+				"你與靈光內盟友的豁免結果獲得相當於你魅力調整值的加值（最少為 +1）。",
+				"如果同時存在有其他聖武士，一個生物同時也只能從一個守護靈光中獲得增益。這個生物自己選擇享受誰的靈光。"
+			],
+			"ENG_name": "Aura of Protection"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 7,
+			"entries": [
+				"你獲得一個來自聖武士子職的特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 8,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "棄絕眾敵",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 9,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"以一個{@action Magic|XPHB|魔法}動作，你消耗一次引導神力使用次數讓敵人被恐懼吞沒。你高舉{@item Holy Symbol|XPHB|聖徽}或武器，選擇位於你 60 尺內，數量至多等於你魅力調整值（最少為 1）的可見生物作為目標。每個目標必須成功透過一次感知豁免，否則陷入{@condition Frightened|XPHB|恐慌}狀態，持續 1 分鐘或直到其受到任何傷害為止。因此陷入{@condition Frightened|XPHB|恐慌}的生物每回合只能執行下列選項之一：移動、執行一個動作或執行一個{@variantrule Bonus Action|XPHB|附贈動作}。"
+			],
+			"ENG_name": "Abjure Foes"
+		},
+		{
+			"name": "勇氣靈光",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 10,
+			"entries": [
+				"你與守護靈光內盟友獲得對{@condition Frightened|XPHB|恐慌}狀態的{@variantrule Immunity|XPHB|免疫}。陷入{@condition Frightened|XPHB|恐慌}的盟友進入靈光時，該狀態在靈光內會暫時無效。"
+			],
+			"ENG_name": "Aura of Courage"
+		},
+		{
+			"name": "光耀打擊",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 11,
+			"entries": [
+				"神聖之力充盈你身，連帶你的武器也承載著超自然力量。當你使用近戰武器或{@variantrule Unarmed Strike|XPHB|徒手打擊}進行攻擊檢定並命中目標時，目標額外受到{@damage 1d8}點光耀傷害。"
+			],
+			"ENG_name": "Radiant Strikes"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 12,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "復原之觸",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 14,
+			"entries": [
+				"當你對一個生物使用聖療時，你可以終止該生物身上以下一種或更多種類的狀態：{@condition Blinded|XPHB|目盲}、{@condition Charmed|XPHB|魅惑}、{@condition Deafened|XPHB|耳聾}、{@condition Frightened|XPHB|恐慌}、{@condition Paralyzed|XPHB|麻痺}或{@condition Stunned|XPHB|震懾}。你每終止一個效應，都需要花費聖療的 5 點{@variantrule Hit Points|XPHB|生命值}治療能量；這些治療能量不會恢復該生物的{@variantrule Hit Points|XPHB|生命值}。"
+			],
+			"ENG_name": "Restoring Touch"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 15,
+			"entries": [
+				"你獲得一個來自聖武士子職的特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 16,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "靈光增效",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 18,
+			"entries": [
+				"你的守護靈光的{@variantrule Emanation [Area of Effect]|XPHB|光環}區域現在提升至 30 尺。"
+			],
+			"ENG_name": "Aura Expansion"
+		},
+		{
+			"name": "傳奇恩惠",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 19,
+			"entries": [
+				"你獲得一項{@filter 傳奇恩惠專長|feats|category=EB}專長或其他一項你選擇的適用的{@5etools 專長|feats.html}。推薦選擇{@feat Boon of Truesight|XPHB|真實視覺之恩惠} 。"
+			],
+			"ENG_name": "Epic Boon"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 111,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 20,
+			"entries": [
+				"你獲得一個來自聖武士子職的特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		}
+	],
+	"subclassFeature": [
+		{
+			"name": "破誓者",
+			"source": "DMG",
+			"page": 97,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Oathbreaker",
+			"subclassSource": "DMG",
+			"level": 3,
+			"entries": [
+				"成為破誓者的聖武士打破了自己的神聖誓言，而去追求黑暗的野心或為邪惡力量服務。聖武士心中燃燒的光耀已經熄滅，只剩下一片黑暗。",
+				"只有至少達到3級的邪惡聖武士才能成為一名破誓者。該聖武士將用破誓者特性替換其所有對應神聖誓言的特性。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oathbreaker Spells|Paladin||Oathbreaker|DMG|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Channel Divinity|Paladin||Oathbreaker|DMG|3"
+				}
+			],
+			"ENG_name": "Oathbreaker"
+		},
+		{
+			"name": "引導神力",
+			"source": "DMG",
+			"page": 97,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Oathbreaker",
+			"subclassSource": "DMG",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"第3級或更高等級的破誓者聖武士可以獲得以下兩個引導神力選項。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Control Undead|Paladin||Oathbreaker|DMG|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Dreadful Aspect|Paladin||Oathbreaker|DMG|3"
+				}
+			],
+			"ENG_name": "Channel Divinity"
+		},
+		{
+			"name": "控制亡靈",
+			"source": "DMG",
+			"page": 97,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Oathbreaker",
+			"subclassSource": "DMG",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"作為一個動作項，該聖武士指定其身邊30尺內一個他能看見的不死生物。該目標必須進行一次感知豁免。豁免失敗時，該目標必須在隨後的24小時裡遵從該聖武士的命令，或者直至該聖武士再次使用該引導神力選項為止。挑戰等級等於或高於該聖武士等級的不死生物免疫該效應。"
+			],
+			"ENG_name": "Control Undead"
+		},
+		{
+			"name": "恐怖顯現",
+			"source": "DMG",
+			"page": 97,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Oathbreaker",
+			"subclassSource": "DMG",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"作為一個動作項，該聖武士引導最黑暗的情感並將其凝聚爆發為一場魔法的脅迫之息。該聖武士周邊30尺內，其指定的每個能看到該聖武士的生物必須進行一次感知豁免。豁免失敗的目標將陷入1分鐘對該聖武士 {@condition frightened||恐慌}的狀態。因該效應陷入{@condition frightened||恐慌}的生物如果在距離該聖武士30尺外的位置結束其自己回合，則其可以嘗試再進行一次該感知豁免，豁免成功則終止其自己身上的該效應。"
+			],
+			"ENG_name": "Dreadful Aspect"
+		},
+		{
+			"name": "破誓者法術",
+			"source": "DMG",
+			"page": 97,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Oathbreaker",
+			"subclassSource": "DMG",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你會在達到相應聖武士等級時獲得破誓者法術。",
+				{
+					"type": "table",
+					"caption": "破誓者法術",
+					"colLabels": [
+						"聖武士等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell hellish rebuke||煉獄叱喝}, {@spell inflict wounds||致傷術}"
+						],
+						[
+							"5級",
+							"{@spell crown of madness||瘋狂冠冕}, {@spell darkness||黑暗術}"
+						],
+						[
+							"9級",
+							"{@spell animate dead||活化死屍}, {@spell bestow curse||降咒}"
+						],
+						[
+							"13級",
+							"{@spell blight||枯萎術}, {@spell confusion||困惑術}"
+						],
+						[
+							"17級",
+							"{@spell contagion||疫病術}, {@spell dominate person||支配類人}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Oathbreaker Spells"
+		},
+		{
+			"name": "憎恨靈光",
+			"source": "DMG",
+			"page": 97,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Oathbreaker",
+			"subclassSource": "DMG",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"第7級起，該聖武士本身，以及其身邊10尺內的所有邪魔和不死生物，都將獲得與該聖武士魅力調整值相同（至少為+1）的近戰武器傷害擲骰加值。一個生物一次只能從一名聖武士的該特性中獲益。",
+				"第18級起，該靈光的作用範圍擴充套件至30尺。"
+			],
+			"ENG_name": "Aura of Hate"
+		},
+		{
+			"name": "超然抗性",
+			"source": "DMG",
+			"page": 97,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Oathbreaker",
+			"subclassSource": "DMG",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"第15級時，該聖武士獲得對非魔法武器的鈍擊、穿刺、揮砍傷害的抗性。"
+			],
+			"ENG_name": "Supernatural Resistance"
+		},
+		{
+			"name": "恐懼之王",
+			"source": "DMG",
+			"page": 97,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Oathbreaker",
+			"subclassSource": "DMG",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"第20級時，作為一個動作項，該聖武士可以使自己在1分鐘內環繞於陰鬱的靈光中。該靈光可以將該聖武士周邊30尺半徑的明亮光照減弱為微光光照。任何受該聖武士{@condition frightened||恐慌}的敵人在該靈光內開始其自己回合時將受到{@damage 4d10}點心靈傷害。此外，該聖武士以及由其指定的身處靈光中的生物都將籠罩於更深的幽影中。依賴視覺的生物對籠罩於該幽影中的生物發動攻擊檢定時具有劣勢。",
+				"靈光持續時，該聖武士可以在其自己回合內用一個附贈動作令該靈光內的幽影攻擊一個生物。該聖武士對該目標發動一次近戰法術攻擊。若攻擊命中，則該目標受到點暗蝕傷害等於{@damage 3d10}＋該聖武士的魅力調整值。",
+				"啟用該靈光後，該聖武士必須完成一次長休才能再次使用該特性。"
+			],
+			"ENG_name": "Dread Lord"
+		},
+		{
+			"name": "遠古之誓",
+			"source": "PHB",
+			"page": 86,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Ancients",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"古賢之誓與精靈種族及德魯伊儀式一樣古老。立下此誓言的聖武士有時被稱為妖精騎士、綠騎士或角騎士。他們在宇宙光明與黑暗的鬥爭中選擇光明一方，是因為熱愛世間美麗而充滿生命力的事物，而不一定是因為相信榮譽、勇氣與正義的原則。他們以樹葉、鹿角或花朵等生長之物的圖案裝飾盔甲與服飾，象徵自己守護世間生命與光明的承諾。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tenets of the Ancients|Paladin||Ancients||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oath Spells|Paladin||Ancients||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Channel Divinity|Paladin||Ancients||3"
+				}
+			],
+			"ENG_name": "Oath of the Ancients"
+		},
+		{
+			"name": "引導神力",
+			"source": "PHB",
+			"page": 86,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Ancients",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"在第3級選擇本誓言時，你會獲得以下兩種引導神力選項。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Nature's Wrath|Paladin||Ancients||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Turn the Faithless|Paladin||Ancients||3"
+				}
+			],
+			"ENG_name": "Channel Divinity"
+		},
+		{
+			"name": "自然之怒",
+			"source": "PHB",
+			"page": 86,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Ancients",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"你可以用引導神力特性喚起原初之力來誘捕敵人。作為一個動作，你可以讓特殊的藤蔓生長並纏繞一個距離你10尺內，你能看見的生物。該生物必須進行一次力量或敏捷豁免（由其選擇），豁免失敗者將陷入{@condition restrained||束縛}狀態。此後，每當該生物結束其回合時，都可以再進行一次該豁免。一旦豁免成功，則該生物掙脫 {@condition restrained||束縛}，藤蔓也就此消失。"
+			],
+			"ENG_name": "Nature's Wrath"
+		},
+		{
+			"name": "聖誓法術",
+			"source": "PHB",
+			"page": 86,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Ancients",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你會獲得以下對應級別的聖誓法術。",
+				{
+					"type": "table",
+					"caption": "古賢聖誓法術",
+					"colLabels": [
+						"聖武士等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell ensnaring strike||誘捕打擊}, {@spell speak with animals||動物交談}"
+						],
+						[
+							"5級",
+							"{@spell moonbeam||月華之光}, {@spell misty step||迷蹤步}"
+						],
+						[
+							"9級",
+							"{@spell plant growth||植物滋長}, {@spell protection from energy||防護能量}"
+						],
+						[
+							"13級",
+							"{@spell ice storm||冰風暴}, {@spell stoneskin||石膚術}"
+						],
+						[
+							"17級",
+							"{@spell commune with nature||問道自然}, {@spell tree stride||樹躍術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Oath Spells"
+		},
+		{
+			"name": "遠古之信條",
+			"source": "PHB",
+			"page": 86,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Ancients",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"古賢之誓的信條，已經傳承了無數個世紀。這遠古誓言強調善良的準則較所謂的守序和混亂更為重要。古賢之誓包括四個簡練的核心準則。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "點燃光明",
+							"entries": [
+								"廣傳你的慈善與寬懷，點亮希望，驅散絕望。"
+							],
+							"ENG_name": "Kindle the Light"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "守護明光",
+							"entries": [
+								"守護世間的善美與愛樂，抵擋穢惡的侵噬。守護生命的成長與收穫，抵抗凋零的蔓延。"
+							],
+							"ENG_name": "Shelter the Light"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "維持己身光輝",
+							"entries": [
+								"在歌聲與歡笑、美與藝術之中尋得喜悅。若你任由自己心中的光芒熄滅，就無法守護世上的光芒。"
+							],
+							"ENG_name": "Preserve Your Own Light"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "成爲真光",
+							"entries": [
+								"歡樂與勇氣照耀你的善行。你即為光，成為絕望者前行的信標。"
+							],
+							"ENG_name": "Be the Light"
+						}
+					]
+				}
+			],
+			"ENG_name": "Tenets of the Ancients"
+		},
+		{
+			"name": "驅散無信者",
+			"source": "PHB",
+			"page": 86,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Ancients",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"你可以用引導神力特性發出遠古的聖言，使聽到聖言的精類生物和邪魔感到痛苦。作為一個動作，你亮出聖徽，迫使身邊30尺範圍內能夠聽到你聲音的所有精類生物或邪魔都進行一次感知豁免，豁免失敗者將受到驅散，其效應持續1分鐘或直至其受到任何傷害。",
+				"以該方式被驅散的生物必須花費其回合內的所有移動力盡量遠離你，且無法主動靠近你30尺內。被驅散的生物無法執行反應，只能使用既有的{@action Dash||疾走}動作或從任何妨礙其移動的效應中掙脫。該生物無路可走時將執行{@action Dodge||迴避}動作。",
+				"如果被驅散生物的真實外形被幻術、變形、或其他效應掩蓋，那麼在被驅散後，它將顯露出原形。"
+			],
+			"ENG_name": "Turn the Faithless"
+		},
+		{
+			"name": "防護靈光",
+			"source": "PHB",
+			"page": 86,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Ancients",
+			"subclassSource": "PHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"第7級起，強大的遠古魔法眷顧著你，以至於在你身邊形成了一道神秘的結界。你和距離你10尺以內的友善生物獲得對法術傷害的抗性。",
+				"第18級起，該靈光的作用範圍擴充套件至30尺。"
+			],
+			"ENG_name": "Aura of Warding"
+		},
+		{
+			"name": "不朽衛士",
+			"source": "PHB",
+			"page": 86,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Ancients",
+			"subclassSource": "PHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"第15級起，你生命值降至0點，但尚未被直接殺死時，可以選擇讓你的生命值降到1點而不是0點。你必須完成一次長休後才能再次使用該能力。",
+				"此外，你不受任何衰老減益。也不會因為魔法效應而衰老。"
+			],
+			"ENG_name": "Undying Sentinel"
+		},
+		{
+			"name": "遠古鬥士",
+			"source": "PHB",
+			"page": 86,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Ancients",
+			"subclassSource": "PHB",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"第20級起，你可以化作遠古自然力量的化身，並獲得一項你自己決定的外貌特徵。例如，你的皮膚可能變成綠色，或者長出樹皮般的紋理。你的頭髮也許會變得像樹葉或青苔一般，又或者你長出了鹿角或者獅鬃。",
+				"你使用一個動作以經歷該變化，並在接下來一分鐘內獲得以下增益：",
+				{
+					"type": "list",
+					"items": [
+						"你在每個自己的回合開始時，恢復10點生命值。",
+						"你施展施法時間為1動作的聖武士法術時，可以用一個附贈動作而不是一個動作來施展它。",
+						"距離你10尺以內的敵人對抗你聖武士法術和引導神力特性進行豁免檢定時具有劣勢。"
+					]
+				},
+				"必須完成一次長休才能再次使用該特性。"
+			],
+			"ENG_name": "Elder Champion"
+		},
+		{
+			"name": "奉獻之誓",
+			"source": "PHB",
+			"page": 85,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Devotion",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"奉獻之誓，意味著公正、美德、秩序的理念中最為崇高的一部分。這些聖武士通常被稱為聖騎士、白騎士或聖戰士，他們是身披閃亮的盔甲的正派騎士形象代表，躬行著公正的教條，追尋崇高的目標。他們嚴於律己，某些成員甚至會過於嚴苛的對待他人。追隨該誓言的許多聖武士都獻身於守序和善良的神，並將其的信條視作奉獻的標準。他們將善良陣營的完美侍從天使視作其典範，並在頭盔或盾徽上飾以天使羽翼的形象。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tenets of Devotion|Paladin||Devotion||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oath Spells|Paladin||Devotion||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Channel Divinity|Paladin||Devotion||3"
+				}
+			],
+			"ENG_name": "Oath of Devotion"
+		},
+		{
+			"name": "引導神力",
+			"source": "PHB",
+			"page": 85,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Devotion",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"在第3級選擇本誓言時，你會獲得以下兩種引導神力選項。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Sacred Weapon|Paladin||Devotion||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Turn the Unholy|Paladin||Devotion||3"
+				}
+			],
+			"ENG_name": "Channel Divinity"
+		},
+		{
+			"name": "聖誓法術",
+			"source": "PHB",
+			"page": 85,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Devotion",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你會獲得以下對應級別的聖誓法術。",
+				{
+					"type": "table",
+					"caption": "奉獻聖誓法術",
+					"colLabels": [
+						"聖武士等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell protection from evil and good||防護善惡}, {@spell sanctuary||庇護術}"
+						],
+						[
+							"5級",
+							"{@spell lesser restoration||次等復原術}, {@spell zone of truth||誠實之域}"
+						],
+						[
+							"9級",
+							"{@spell beacon of hope||希望信標}, {@spell dispel magic||解除魔法}"
+						],
+						[
+							"13級",
+							"{@spell freedom of movement||行動自如}, {@spell guardian of faith||信仰守衛}"
+						],
+						[
+							"17級",
+							"{@spell commune||通神術}, {@spell flame strike||焰擊術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Oath Spells"
+		},
+		{
+			"name": "神聖武器",
+			"source": "PHB",
+			"page": 85,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Devotion",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"作為一個動作，你可以用引導神力特性向你正持握的一把武器注入正能量。隨後1分鐘內，你使用該武器進行攻擊檢定時可以加上你的魅力調整值（至少為+1）。該武器同時提供20尺半徑的明亮光照，該範圍外再延伸出20尺微光光照。如果該武器之前不是魔法武器，則在效應持續期間該武器將視為魔法武器。",
+				"你可以在你的回合中作為其他任何動作的一部分結束此效果。如果你不再持有或攜帶此武器，或如果你陷入{@condition unconscious||昏迷}狀態，此效果結束。"
+			],
+			"ENG_name": "Sacred Weapon"
+		},
+		{
+			"name": "奉獻之信條",
+			"source": "PHB",
+			"page": 85,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Devotion",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"儘管對奉獻之誓的精確定義和要求有許多不同的說法，但立下此誓言的聖武士都贊成以下信條。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "誠實",
+							"entries": [
+								"不誑語不欺騙，言出必行。"
+							],
+							"ENG_name": "Honesty"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "勇氣",
+							"entries": [
+								"謹慎深思，並無畏躬行。"
+							],
+							"ENG_name": "Courage"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "憐憫",
+							"entries": [
+								"援助他人，鋤強扶弱。寬恕敵人，用心感化。"
+							],
+							"ENG_name": "Compassion"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "榮譽",
+							"entries": [
+								"公平待人，躬行榮譽為世人樹立典範。力行善舉，避免造成不必要的傷害。"
+							],
+							"ENG_name": "Honor"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "盡責",
+							"entries": [
+								"對自己的行為和結果負責，為所護衛之人盡責，服從上級。"
+							],
+							"ENG_name": "Duty"
+						}
+					]
+				}
+			],
+			"ENG_name": "Tenets of Devotion"
+		},
+		{
+			"name": "驅散不潔",
+			"source": "PHB",
+			"page": 85,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Devotion",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"作為一個動作，你可以用引導神力特性亮出聖徽高喊禱言，以逐退不死生物和邪魔。你身邊30尺範圍內能夠看見聖徽或能聽到你禱言的不死生物或邪魔都必須進行一次感知豁免，豁免失敗者將受到驅散，其效應持續1分鐘或直至其受到任何傷害。",
+				"以該方式被驅散的生物必須花費其回合內的所有移動力盡量遠離你，且無法主動靠近你30尺內。被驅散的生物無法執行反應，只能使用既有的{@action Dash||疾走}動作或從任何妨礙其移動的效應中掙脫。該生物無路可走時將執行{@action Dodge||迴避}動作。"
+			],
+			"ENG_name": "Turn the Unholy"
+		},
+		{
+			"name": "奉獻靈光",
+			"source": "PHB",
+			"page": 85,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Devotion",
+			"subclassSource": "PHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"第7級起，你與友方生物在你身邊10尺內不會被{@condition charmed||魅惑}。你必須保持意識清醒才能提供該增益。",
+				"第18級起，該靈光的作用範圍擴充套件至30尺。"
+			],
+			"ENG_name": "Aura of Devotion"
+		},
+		{
+			"name": "純淨之魂",
+			"source": "PHB",
+			"page": 85,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Devotion",
+			"subclassSource": "PHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"第15級起，你會永遠處於{@spell protection from evil and good||防護善惡}的法術效應之下。"
+			],
+			"ENG_name": "Purity of Spirit"
+		},
+		{
+			"name": "神聖光輪",
+			"source": "PHB",
+			"page": 85,
+			"srd": true,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Devotion",
+			"subclassSource": "PHB",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"第20級時，你可以用一個動作生成一個散發陽光的靈光。在隨後的1分鐘內，明亮光照從你身邊往外輻射半徑30尺的球狀區域，並在該範圍外額外輻射30尺範圍的微光光照。",
+				"在該明亮光照範圍內開始其回合的每個敵對生物都將受到10點光耀傷害。",
+				"此外，在該特性持續時間內，你對抗不死生物或邪魔的法術時進行的豁免檢定具有優勢。",
+				"必須完成一次長休才能再次使用該特性。"
+			],
+			"ENG_name": "Holy Nimbus"
+		},
+		{
+			"name": "復仇之誓",
+			"source": "PHB",
+			"page": 87,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Vengeance",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"復仇之誓，是立誓懲戒那些嚴重罪行的莊嚴承諾。當邪惡勢力屠殺無助居民，當所有民眾背離神意志，當某個盜賊行會過於強橫霸道，當恐怖巨龍橫行鄉野——每當這種時刻，復仇之誓的聖武士就會出現來撥亂反正。這些聖武士（有時也稱作復仇者或黑騎士）即使犧牲自己的純潔，也一定要伸張正義。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tenets of Vengeance|Paladin||Vengeance||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oath Spells|Paladin||Vengeance||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Channel Divinity|Paladin||Vengeance||3"
+				}
+			],
+			"ENG_name": "Oath of Vengeance"
+		},
+		{
+			"name": "破膽叱喝",
+			"source": "PHB",
+			"page": 87,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Vengeance",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"作為一個動作，你亮出聖徽，高喊一句斥責敵人的禱言，並使用引導神力特性。指定一個你能看見，且距離你60尺以內的生物。目標生物必須進行一次感知豁免，除非其免疫{@condition frightened||恐慌}。邪魔和不死生物進行該豁免時具有劣勢。",
+				"豁免失敗者將在接下來的一分鐘內陷入{@condition frightened||恐慌}，直至其受到傷害。在{@condition frightened||恐慌}狀態下，目標生物的速度降至0，且不能從任何增加移動速度的效應中上獲益。",
+				"豁免成功，則目標生物的速度在接下來的1分鐘內減半，直至其受到傷害。"
+			],
+			"ENG_name": "Abjure Enemy"
+		},
+		{
+			"name": "引導神力",
+			"source": "PHB",
+			"page": 87,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Vengeance",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"在第3級選擇本誓言時，你會獲得以下兩種引導神力選項。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Abjure Enemy|Paladin||Vengeance||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Vow of Enmity|Paladin||Vengeance||3"
+				}
+			],
+			"ENG_name": "Channel Divinity"
+		},
+		{
+			"name": "聖誓法術",
+			"source": "PHB",
+			"page": 87,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Vengeance",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你會獲得以下對應級別的聖誓法術。",
+				{
+					"type": "table",
+					"caption": "復仇聖誓法術",
+					"colLabels": [
+						"聖武士等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell bane||災禍術}, {@spell hunter's mark||獵人印記}"
+						],
+						[
+							"5級",
+							"{@spell hold person||定身類人}, {@spell misty step||迷蹤步}"
+						],
+						[
+							"9級",
+							"{@spell haste||加速術}, {@spell protection from energy||防護能量}"
+						],
+						[
+							"13級",
+							"{@spell banishment||放逐術}, {@spell dimension door||任意門}"
+						],
+						[
+							"17級",
+							"{@spell hold monster||定身怪物}, {@spell scrying||探知術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Oath Spells"
+		},
+		{
+			"name": "復仇之信條",
+			"source": "PHB",
+			"page": 87,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Vengeance",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"每個聖武士的復仇誓言都會有所不同，但這些信條都包括了要以一切必要的手段懲戒過錯者。這些聖武士甚至寧可犧牲自己的公義，也一定要將邪惡罪行的犯人繩之以法。所以，這些聖武士常常是絕對中立或者守序中立陣營。復仇的核心準則，也是簡單而殘酷無情。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "追尋以迎戰大惡",
+							"entries": [
+								"抉擇於追獵誓敵或驅逐妄小時，我必以決戰更強之惡者為準繩。"
+							],
+							"ENG_name": "Fight the Greater Evil"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "對惡徒不留慈悲",
+							"entries": [
+								"或可施恩於常敵，但誓敵無可憐憫。"
+							],
+							"ENG_name": "No Mercy for the Wicked"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "爲目的不擇手段",
+							"entries": [
+								"道德之思辨無助於殄滅大敵。"
+							],
+							"ENG_name": "By Any Means Necessary"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "爲惡行盡力補償",
+							"entries": [
+								"敵人造就的損害仍是我過失，既沒能及時阻止理應盡力補救。"
+							],
+							"ENG_name": "Restitution"
+						}
+					]
+				}
+			],
+			"ENG_name": "Tenets of Vengeance"
+		},
+		{
+			"name": "仇敵誓言",
+			"source": "PHB",
+			"page": 87,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Vengeance",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"作為一個附贈動作，你可以立下一個仇敵誓言，宣誓殲滅一個你可以看到，且距離你10尺以內的生物，同時使用你的引導神力。在接下來的1分鐘內，你對該生物發動攻擊時進行的攻擊檢定具有優勢，直至該生物的生命值降至0或者陷入{@condition unconscious||昏迷}狀態。"
+			],
+			"ENG_name": "Vow of Enmity"
+		},
+		{
+			"name": "無盡復仇",
+			"source": "PHB",
+			"page": 87,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Vengeance",
+			"subclassSource": "PHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"第7級起，你超自然的專注力使你可以攔截敵人撤退。你以藉機攻擊中命中一個生物時，可以在該攻擊後立刻移動至多相當於你速度一半的距離，本次移動是原反應的一部分。且本次移動不引起藉機攻擊。"
+			],
+			"ENG_name": "Relentless Avenger"
+		},
+		{
+			"name": "報復之魂",
+			"source": "PHB",
+			"page": 87,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Vengeance",
+			"subclassSource": "PHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"第15級起，你立下仇敵誓言時所宣誓之存在賜予你更大的力量以擊倒敵人。一個受你仇敵誓言影響的生物發動攻擊時，如果其身處你的近戰武器攻擊範圍內，則你就可以用你的反應對其發動一次近戰武器攻擊。"
+			],
+			"ENG_name": "Soul of Vengeance"
+		},
+		{
+			"name": "復仇天使",
+			"source": "PHB",
+			"page": 87,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Vengeance",
+			"subclassSource": "PHB",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"第20級起，你可以化身為復仇的天使。你可以使用動作實行這種轉變，並在接下來的1小時內獲得以下增益：",
+				{
+					"type": "list",
+					"items": [
+						"你背生雙翼，獲得60尺飛行速度。",
+						"你散發出一個30尺半徑範圍的威脅靈光。在一次戰鬥中，任何敵對生物第一次進入靈光範圍，或者在靈光範圍內開始其回合時，都必須進行一次感知豁免。豁免失敗者將在接下來的1分鐘陷入對你的{@condition frightened||恐慌}狀態，直至受到傷害。對因此陷入 {@condition frightened||恐慌}的生物所進行的任何{@action Attack||攻擊} 檢定都具有優勢。"
+					]
+				},
+				"必須完成一次長休才能再次使用該特性。"
+			],
+			"ENG_name": "Avenging Angel"
+		},
+		{
+			"name": "王冠之誓",
+			"source": "SCAG",
+			"page": 132,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Crown",
+			"subclassSource": "SCAG",
+			"level": 3,
+			"entries": [
+				"王冠之誓，是一種對於文明的崇高理想。它通常體現為一種對民族精神的認同，一種對君王的效忠，或者是一種對於律法和規則的維護。遵循王冠之誓的聖武士們獻身於整個社會，致力使社會整體遵循於法律。他們是秩序社會最後的守護者，時刻提防著混亂和野蠻的浪潮將文明摧毀；一般人們會稱呼他們為守護者，典範或者是哨兵。通常，會立下這個誓言的聖武士是一個效忠於國家或者君王的騎士，並且遵守這個誓言也是他們進入這個社會等級的一部分條件。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tenets of the Crown|Paladin||Crown|SCAG|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oath Spells|Paladin||Crown|SCAG|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Channel Divinity|Paladin||Crown|SCAG|3"
+				}
+			],
+			"ENG_name": "Oath of the Crown"
+		},
+		{
+			"name": "捍衛挑戰",
+			"source": "SCAG",
+			"page": 132,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Crown",
+			"subclassSource": "SCAG",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"以一個附贈動作，你發出挑戰逼迫其他生物與你戰鬥。你可以選擇30尺內任意數量你可以看見的生物，他們每一個都必須要透過一次感知豁免。如果豁免失敗，那個生物將不能自願的從你周圍30尺範圍離開。此效果會在你陷入{@condition incapacitated||失能}或死亡，或生物與你之間的距離超過30尺結束。"
+			],
+			"ENG_name": "Champion Challenge"
+		},
+		{
+			"name": "引導神力",
+			"source": "SCAG",
+			"page": 132,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Crown",
+			"subclassSource": "SCAG",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"在第3級選擇本誓言時，你會獲得以下兩種引導神力選項。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Champion Challenge|Paladin||Crown|SCAG|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Turn the Tide|Paladin||Crown|SCAG|3"
+				}
+			],
+			"ENG_name": "Channel Divinity"
+		},
+		{
+			"name": "聖誓法術",
+			"source": "SCAG",
+			"page": 132,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Crown",
+			"subclassSource": "SCAG",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你會獲得以下對應級別的聖誓法術。",
+				{
+					"type": "table",
+					"caption": "王冠聖誓法術",
+					"colLabels": [
+						"聖武士等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell command||命令術}, {@spell compelled duel||強令對決}"
+						],
+						[
+							"5級",
+							"{@spell warding bond||守護之鏈}, {@spell zone of truth||誠實之域}"
+						],
+						[
+							"9級",
+							"{@spell aura of vitality||活力靈光}, {@spell spirit guardians||靈體衛士}"
+						],
+						[
+							"13級",
+							"{@spell banishment||放逐術}, {@spell guardian of faith||信仰守衛}"
+						],
+						[
+							"17級",
+							"{@spell circle of power||原力法陣}, {@spell geas||指使術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Oath Spells"
+		},
+		{
+			"name": "王冠之信條",
+			"source": "SCAG",
+			"page": 132,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Crown",
+			"subclassSource": "SCAG",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"王冠的信條通常由聖武士們所效忠的物件制定。不過，通常這些信條會強調如下幾項。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "律法",
+							"entries": [
+								"律法至上。它是文明的基石並且必須被莊重對待。"
+							],
+							"ENG_name": "Law"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "忠誠",
+							"entries": [
+								"言出必行。失去了忠誠，誓言和律法將毫無意義。"
+							],
+							"ENG_name": "Loyalty"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "勇氣",
+							"entries": [
+								"無所畏懼。你必須願意在秩序被動搖時挺身而出，即使勝算渺茫。如果你不行動，那麼誰會？"
+							],
+							"ENG_name": "Courage"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "責任",
+							"entries": [
+								"恪盡職守。你必須認識到你行動的重要性併為之承擔後果，你要盡你最大努力完成你的責任和義務。"
+							],
+							"ENG_name": "Responsibility"
+						}
+					]
+				}
+			],
+			"ENG_name": "Tenets of the Crown"
+		},
+		{
+			"name": "扭轉局勢",
+			"source": "SCAG",
+			"page": 132,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Crown",
+			"subclassSource": "SCAG",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"以一個附贈動作，你可以引導神力支撐受傷的生物繼續戰鬥。每個你周圍30尺內的、由你選擇的、可以聽見你說話的、且生命值在一半以下的生物將立即恢復{@dice 1d6}+ 你的魅力調整值（最少1點）的生命值。"
+			],
+			"ENG_name": "Turn the Tide"
+		},
+		{
+			"name": "神聖忠誠",
+			"source": "SCAG",
+			"page": 132,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Crown",
+			"subclassSource": "SCAG",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"從7級起，如果一個在你周圍5尺內的生物受到傷害，你可以使用你的反應魔法性地用你自己的軀體代替目標生物。目標不再受傷，但作為代替，你將承受這一次傷害，你不能用任何方式減少或者阻止這個傷害。"
+			],
+			"ENG_name": "Divine Allegiance"
+		},
+		{
+			"name": "不屈之魂",
+			"source": "SCAG",
+			"page": 132,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Crown",
+			"subclassSource": "SCAG",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"從15級起，你在避免陷入{@condition paralyzed||麻痺}或{@condition stunned||震懾}狀態所作的豁免檢定中得到優勢。"
+			],
+			"ENG_name": "Unyielding Spirit"
+		},
+		{
+			"name": "崇高衛士",
+			"source": "SCAG",
+			"page": 132,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Crown",
+			"subclassSource": "SCAG",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"從20級起，對於那些獻身於你所遵從的事業的人而言，你已經成為了一個鼓舞人心的完美典範。你可以用一個動作在接下來1個小時裡得到如下好處：",
+				{
+					"type": "list",
+					"items": [
+						"你獲得非魔法武器造成的鈍擊、穿刺和揮砍傷害的抗性。",
+						"你周圍30尺範圍內的盟友在進行死亡豁免時具有優勢。",
+						"你與你周圍30尺範圍內的盟友在感知豁免上具有優勢。"
+					]
+				},
+				"這個效果將在你陷入{@condition incapacitated||失能}狀態或死亡時提前結束。一旦你使用了這個能力，在你完成一次長休之前你不能再次使用。"
+			],
+			"ENG_name": "Exalted Champion"
+		},
+		{
+			"name": "榮耀之誓",
+			"source": "TCE",
+			"page": 53,
+			"otherSources": [
+				{
+					"source": "MOT",
+					"page": 29
+				}
+			],
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "TCE",
+			"level": 3,
+			"entries": [
+				"對榮耀宣誓的聖武士堅信他們將與同伴一起達成英勇的偉業，並命中註定以此取得榮耀。他們將刻苦訓練，砥礪前行，從而確保當命運決定的時刻到來之際，他們都已有所準備。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tenets of Glory|Paladin||Glory|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oath Spells|Paladin||Glory|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Channel Divinity|Paladin||Glory|TCE|3"
+				}
+			],
+			"ENG_name": "Oath of Glory"
+		},
+		{
+			"name": "引導神力",
+			"source": "TCE",
+			"page": 53,
+			"otherSources": [
+				{
+					"source": "MOT",
+					"page": 29
+				}
+			],
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級榮耀之誓特性}",
+				"你獲得以下兩項引導神力選項。引導神力的運作方式請參見神聖誓言職業特性。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Peerless Athlete|Paladin||Glory|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Inspiring Smite|Paladin||Glory|TCE|3"
+				}
+			],
+			"ENG_name": "Channel Divinity"
+		},
+		{
+			"name": "聖誓法術",
+			"source": "TCE",
+			"page": 53,
+			"otherSources": [
+				{
+					"source": "MOT",
+					"page": 29
+				}
+			],
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級榮耀之誓特性}",
+				"當你的聖武士達到特定等級時，你將獲得以下的聖誓法術，如榮耀之誓法術表所示。有關聖誓法術的規則請查閱聖武士「神聖誓言」特性中記載的文字。",
+				{
+					"type": "table",
+					"caption": "榮耀之誓法術",
+					"colLabels": [
+						"聖武士等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell guiding bolt||光導箭}, {@spell heroism||英雄氣概}"
+						],
+						[
+							"5級",
+							"{@spell enhance ability||強化屬性}, {@spell magic weapon||魔化武器}"
+						],
+						[
+							"9級",
+							"{@spell haste||加速術}, {@spell protection from energy||防護能量}"
+						],
+						[
+							"13級",
+							"{@spell compulsion||強迫術}, {@spell freedom of movement||行動自如}"
+						],
+						[
+							"17級",
+							"{@spell commune||通神術}, {@spell flame strike||焰擊術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Oath Spells"
+		},
+		{
+			"name": "榮耀之信條",
+			"source": "TCE",
+			"page": 53,
+			"otherSources": [
+				{
+					"source": "MOT",
+					"page": 29
+				}
+			],
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"榮耀之誓的信條驅使著聖武士英勇地追求終將閃耀的傳奇之道。",
+				{
+					"type": "entries",
+					"name": "行勝於言",
+					"entries": [
+						"力爭以輝煌的功績成名，而非只憑空談。"
+					],
+					"ENG_name": "Actions over Words"
+				},
+				{
+					"type": "entries",
+					"name": "無懼挑戰",
+					"entries": [
+						"面對困難的鞭撻，也鼓勵你的夥伴和你共同面對。"
+					],
+					"ENG_name": "Challenges Are but Tests"
+				},
+				{
+					"type": "entries",
+					"name": "磨練其身",
+					"entries": [
+						"猶如原石荒料，潛能只在你的身體得到磨鍊時展現。"
+					],
+					"ENG_name": "Hone the Body"
+				},
+				{
+					"type": "entries",
+					"name": "堅毅其魂",
+					"entries": [
+						"整頓紀律，克服弱點，若非如此，有損榮耀。"
+					],
+					"ENG_name": "Discipline the Soul"
+				}
+			],
+			"ENG_name": "Tenets of Glory"
+		},
+		{
+			"name": "鼓舞一擊",
+			"source": "TCE",
+			"page": 53,
+			"otherSources": [
+				{
+					"source": "MOT",
+					"page": 29
+				}
+			],
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"當你以至聖斬特性造成一次傷害時，你可以立即用附贈動作使用你的引導神力，使30尺內由你選擇的生物或你自身獲得臨時生命值。這些生物獲得的臨時生命值合計等同於{@dice 2d8}+你的聖武士等級點，你可以為這些生物隨意分配這些臨時生命值。"
+			],
+			"ENG_name": "Inspiring Smite"
+		},
+		{
+			"name": "絕倫健將",
+			"source": "TCE",
+			"page": 53,
+			"otherSources": [
+				{
+					"source": "MOT",
+					"page": 29
+				}
+			],
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"以一個附贈動作，你可以使用你的引導神力以增強運動能力。接下來的10分鐘內，你在力量（{@skill Athletics||運動}）檢定和敏捷（({@skill Acrobatics||特技}）檢定上獲得優勢；你的負重及能夠拖、拉、拽的重量翻倍；你跳遠和跳高的距離增加10尺（你依然為此正常消耗移動力）。"
+			],
+			"ENG_name": "Peerless Athlete"
+		},
+		{
+			"name": "迅捷靈光",
+			"source": "TCE",
+			"page": 53,
+			"otherSources": [
+				{
+					"source": "MOT",
+					"page": 29
+				}
+			],
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "TCE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"{@i 7級榮耀之誓特性}",
+				"你散發出一道能使你和你的盟友獲得超自然速度的靈光，從而能夠列隊穿越戰場。你的步行速度獲得10尺加值。此外，只要你未 {@condition incapacitated||失能}，任何在你周圍5尺範圍內開始其回合的盟友的步行速度也會獲得10尺加值，直至那一回合結束。",
+				"當你聖武士等級達到18級後，靈光的範圍增長至10尺。"
+			],
+			"ENG_name": "Aura of Alacrity"
+		},
+		{
+			"name": "輝煌防禦",
+			"source": "TCE",
+			"page": 53,
+			"otherSources": [
+				{
+					"source": "MOT",
+					"page": 29
+				}
+			],
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "TCE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"{@i 15級榮耀之誓特性}",
+				"能將防禦轉化為突然的反擊。當你或周圍10尺內你可見的其他生物被一次攻擊檢定擊中時，你可以用反應使受擊生物獲得AC加值，此舉可能使該次攻擊失手。此加值等同於你的魅力調整值（至少為+1）。若該次攻擊因此失手，且攻擊者在你武器的觸及範圍內，你可以對那個攻擊者進行一次武器攻擊（作為此反應的一部分）。",
+				"你可以使用此能力的次數等同於你的魅力調整值次（至少1次）。當你完成一次長休後，你重獲全部已消耗的使用次數。"
+			],
+			"ENG_name": "Glorious Defense"
+		},
+		{
+			"name": "現世傳說",
+			"source": "TCE",
+			"page": 53,
+			"otherSources": [
+				{
+					"source": "MOT",
+					"page": 29
+				}
+			],
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "TCE",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"{@i 20級榮耀之誓特性}",
+				"你能以傳奇增幅使自己完成壯舉偉業的能力無論是確有此事，抑或誇大其詞。以一個附贈動作，你獲得以下增益，持續1分鐘：",
+				{
+					"type": "list",
+					"items": [
+						"一個超凡脫俗的存在賜福於你，你在與魅力相關的全部屬性檢定上獲得優勢。",
+						"每個你自己的回合一次，當你發動武器攻擊但失手，你可以使其改為擊中。",
+						"當你進行一次豁免檢定並失敗時，你可以用你的反應重骰之。你必須使用重骰之後的結果。"
+					]
+				},
+				"一旦你使用了此能力，你在完成一次長休之前你都不能再次使用它。你也可以消耗一個5環法術位以再次使用此能力。"
+			],
+			"ENG_name": "Living Legend"
+		},
+		{
+			"name": "守望之誓",
+			"source": "TCE",
+			"page": 54,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Watchers",
+			"subclassSource": "TCE",
+			"level": 3,
+			"entries": [
+				"守望之誓使聖武士們承擔著保護凡人國度免受異界生物掠奪與捕食的責任，而這之中有許多是凡俗的兵卒所難以匹敵的。因此，守望者們磨鍊自己的心智、靈魂和肉體，以成為對抗此類威脅的終極武器。",
+				"遵循著守望之誓的聖武士們總是警戒著異界力量的影響，他們時常會透過建立間諜和線人的情報網路來收集可疑邪教的資訊。對於一個守望者來說，對周圍環境保持一種積極態度的懷疑和警戒就像在戰鬥中穿著盔甲一樣自然。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tenets of the Watchers|Paladin||Watchers|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oath Spells|Paladin||Watchers|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Channel Divinity|Paladin||Watchers|TCE|3"
+				}
+			],
+			"ENG_name": "Oath of the Watchers"
+		},
+		{
+			"name": "引導神力",
+			"source": "TCE",
+			"page": 54,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Watchers",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級守望之誓特性}",
+				"你獲得以下這些引導神力選項。有關引導神力的規則請查閱聖武士 「神聖誓言」特性中記載的文字。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Watcher's Will|Paladin||Watchers|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Abjure the Extraplanar|Paladin||Watchers|TCE|3"
+				}
+			],
+			"ENG_name": "Channel Divinity"
+		},
+		{
+			"name": "聖誓法術",
+			"source": "TCE",
+			"page": 54,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Watchers",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級守望之誓特性}",
+				"當你的聖武士達到特定等級時，你將獲得以下的聖誓法術，如守望之誓法術表所示。有關聖誓法術的規則請查閱聖武士 「神聖誓言」特性中記載的文字。",
+				{
+					"type": "table",
+					"caption": "守望者誓言法術",
+					"colLabels": [
+						"聖武士等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell alarm||警報術}, {@spell detect magic||偵測魔法}"
+						],
+						[
+							"5級",
+							"{@spell moonbeam||月華之光}, {@spell see invisibility||識破隱形}"
+						],
+						[
+							"9級",
+							"{@spell counterspell||法術反制}, {@spell nondetection||迴避偵測}"
+						],
+						[
+							"13級",
+							"{@spell aura of purity||淨化靈光}, {@spell banishment||放逐術}"
+						],
+						[
+							"17級",
+							"{@spell hold monster||定身怪物}, {@spell scrying||探知術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Oath Spells"
+		},
+		{
+			"name": "守望之信條",
+			"source": "TCE",
+			"page": 54,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Watchers",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"接受守望之誓的聖武士發誓要保護凡人國度不受來自其他位面的威脅。",
+				{
+					"type": "entries",
+					"name": "警惕",
+					"entries": [
+						"你所面臨的威脅狡猾、強大而又超乎常理。時刻警惕他們的腐化。"
+					],
+					"ENG_name": "Vigilance"
+				},
+				{
+					"type": "entries",
+					"name": "忠誠",
+					"entries": [
+						"永遠不要接受來自邪魔或其同夥的禮物或恩惠。忠於你的使命，忠於你的同伴，忠於你的職責。"
+					],
+					"ENG_name": "Loyalty"
+				},
+				{
+					"type": "entries",
+					"name": "紀律",
+					"entries": [
+						"你是抵禦星辰之外無盡恐怖的盾牌。你的劍刃必須永遠鋒利，你的頭腦必須永遠清晰。"
+					],
+					"ENG_name": "Discipline"
+				}
+			],
+			"ENG_name": "Tenets of the Watchers"
+		},
+		{
+			"name": "驅散異域",
+			"source": "TCE",
+			"page": 54,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Watchers",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"你可以使用你的引導神力懲罰來自異界的存在。以一個動作，你展示你的聖徽，你30尺範圍內能夠聽到你禱言的異怪、天界生物、元素、精類、或邪魔都必須進行一次感知豁免，豁免失敗將受到驅散，持續1分鐘。被驅散的生物若受到任何傷害，驅散也將提前結束。",
+				"以此方式被驅散的生物必須花費其回合內的所有移動裡儘可能的遠離你，且無法在距離你不超過30尺的空間中主動結束行動。在其行動中，只能執行{@action Dash||疾走}動作，或花費動作從妨礙其移動的效應中掙脫。當該生物無路可走時，它將執行{@action Dodge||迴避}動作。"
+			],
+			"ENG_name": "Abjure the Extraplanar"
+		},
+		{
+			"name": "守望意志",
+			"source": "TCE",
+			"page": 54,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Watchers",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"你可以用引導神力，將信仰的守護力量融入你的存在之中。以一個動作，你可以選擇周圍30尺範圍內數個你可見的生物，其數量至多等同於你的魅力調整值（至少1個生物）。接下來1分鐘內，你與所有被你選擇的生物在智力、感知、與魅力豁免上都將具有優勢。"
+			],
+			"ENG_name": "Watcher's Will"
+		},
+		{
+			"name": "哨衛靈光",
+			"source": "TCE",
+			"page": 54,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Watchers",
+			"subclassSource": "TCE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"{@i 7級守望之誓特性}",
+				"你散發出一道令人保持警覺的靈光。當你和你周圍10尺範圍內任何你選擇的生物進行先攻檢定時，都將獲得等同於你熟練加值的加值。這一靈光只有在你未處於{@condition incapacitated||失能}的情況下才能生效。",
+				"第18級起，該靈光的作用範圍擴充套件至30尺。"
+			],
+			"ENG_name": "Aura of the Sentinel"
+		},
+		{
+			"name": "警戒呵斥",
+			"source": "TCE",
+			"page": 54,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Watchers",
+			"subclassSource": "TCE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"{@i 15級守望之誓特性}",
+				"你學會了如何懲罰那些對你與受你守護之人施行欺瞞的傢伙。當你或你30尺內一個你可見的生物在一次智力、感知、或魅力豁免上成功時，你可以用反應對迫使你們進行豁免檢定的那個生物造成{@damage 2d8}+你的魅力調整值點的力場傷害。"
+			],
+			"ENG_name": "Vigilant Rebuke"
+		},
+		{
+			"name": "塵世壁壘",
+			"source": "TCE",
+			"page": 54,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Watchers",
+			"subclassSource": "TCE",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"{@i 20級守望之誓特性}",
+				"你展現出神聖力量的火花，以捍衛凡人的世界。以一個附贈動作，你獲得以下增益，持續1分鐘：",
+				{
+					"type": "list",
+					"items": [
+						"你獲得120尺的{@sense truesight||真實視覺}。",
+						"你對異怪、天界生物、元素、精類、或邪魔發動的攻擊檢定具有優勢。",
+						"當你對一個生物進行攻擊、命中、並對其造成傷害時，你可以迫使其進行一次魅力豁免，豁免DC等同於你的法術豁免DC。豁免失敗時，若該生物不屬於此位面，則它將被魔法性地放逐回它原本的位面。豁免成功後，目標生物在24小時內免疫於此能力的放逐。"
+					]
+				},
+				"一旦你使用了這個附贈動作，你在完成一次長休之前你都不能再次使用它。你也可以消耗一個5環法術位以再次使用它。"
+			],
+			"ENG_name": "Mortal Bulwark"
+		},
+		{
+			"name": "征服之誓",
+			"source": "XGE",
+			"page": 37,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Conquest",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"征服的誓言吸引著在戰鬥中尋求榮耀與征服的聖武士。對他們來說，簡單地建立秩序是不夠的，混亂的勢力必須被粉碎。有些征服聖武士會被稱為暴君騎士或戰爭販子，他們聚整合嚴酷的軍隊或組織，來為秩序與戰爭的神明或哲學服務。",
+				"有些這樣的聖武士走得太遠，甚至會與九獄合流，他們的眼中法治凌駕於仁慈。大魔鬼 拜爾Bel ，阿弗納斯的戰爭領主，統領著許多這樣的騎士——他們被稱為地獄騎士--視為他最熱誠的追隨者。地獄騎士用倒下的敵人身上的戰利品來裝飾他們的盔甲，警告著任何敢於反抗他們乃至他們領主的法令的人的可怕下場。這些騎士往往會受到其他征服聖武士的抵制——他們認為地獄騎士在黑暗中走得太遠了。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tenets of Conquest|Paladin||Conquest|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oath Spells|Paladin||Conquest|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Channel Divinity|Paladin||Conquest|XGE|3"
+				}
+			],
+			"ENG_name": "Oath of Conquest"
+		},
+		{
+			"name": "引導神力",
+			"source": "XGE",
+			"page": 37,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Conquest",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"在第3級選擇本誓言時，你會獲得以下兩種引導神力選項。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Conquering Presence|Paladin||Conquest|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Guided Strike|Paladin||Conquest|XGE|3"
+				}
+			],
+			"ENG_name": "Channel Divinity"
+		},
+		{
+			"name": "征服威壓",
+			"source": "XGE",
+			"page": 37,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Conquest",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"你可以使用你的引導神力來發出一陣可怕的威壓。以一個動作，你強迫每個處於你周圍30尺範圍內、你可見的、由你選擇的生物各進行一次感知豁免。若豁免失敗，目標將陷入對你的{@condition frightened||恐慌}，持續1分鐘。因此{@condition frightened||恐慌}的生物可以在其每個回合的結束時重複此豁免，成功則結束其身上的效應。"
+			],
+			"ENG_name": "Conquering Presence"
+		},
+		{
+			"name": "導引打擊",
+			"source": "XGE",
+			"page": 37,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Conquest",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"你在進行攻擊檢定時，可以使用引導神力令該次檢定獲得+10加值。你可以在看到擲骰結果後DM公佈是否命中前，決定是否使用該特性。"
+			],
+			"ENG_name": "Guided Strike"
+		},
+		{
+			"name": "聖誓法術",
+			"source": "XGE",
+			"page": 37,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Conquest",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你會獲得以下對應級別的聖誓法術。",
+				{
+					"type": "table",
+					"caption": "征服之誓法術",
+					"colLabels": [
+						"聖武士等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell armor of Agathys||黯冰獄鎧}, {@spell command||命令術}"
+						],
+						[
+							"5級",
+							"{@spell hold person||定身類人}, {@spell spiritual weapon||靈體武器}"
+						],
+						[
+							"9級",
+							"{@spell bestow curse||降咒}, {@spell fear||恐懼術}"
+						],
+						[
+							"13級",
+							"{@spell dominate beast||支配野獸}, {@spell stoneskin||石膚術}"
+						],
+						[
+							"17級",
+							"{@spell cloudkill||死雲術}, {@spell dominate person||支配類人}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Oath Spells"
+		},
+		{
+			"name": "征服之信條",
+			"source": "XGE",
+			"page": 37,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Conquest",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"選擇征服之誓的聖武士會將征服信條烙印在他們的上臂上。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "熄滅希望之火",
+							"entries": [
+								"僅僅在戰鬥中擊敗敵人是不夠的。你的勝利必須顯著到徹底擊碎敵人的戰鬥意志。刀劍只能結束生命。恐懼卻能終結國家。"
+							],
+							"ENG_name": "Douse the Flame of Hope"
+						},
+						{
+							"type": "entries",
+							"name": "以鐵腕統治",
+							"entries": [
+								"一旦你完成了征服，不要容忍任何異議。你說出的話就是法律。遵循的人會被偏愛。不服從的人則會受到懲罰，以儆效尤。"
+							],
+							"ENG_name": "Rule with an Iron Fist"
+						},
+						{
+							"type": "entries",
+							"name": "力量高於一切",
+							"entries": [
+								"你會一直統治下去，直到更強的勢力興起。到那時，你必須變得更強並面對挑戰，否則就迎來自己的毀滅。"
+							],
+							"ENG_name": "Strength Above All"
+						}
+					]
+				}
+			],
+			"ENG_name": "Tenets of Conquest"
+		},
+		{
+			"name": "征服靈光",
+			"source": "XGE",
+			"page": 37,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Conquest",
+			"subclassSource": "XGE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"從7級起，只要你未處於{@condition incapacitated||失能}，你會瀰漫出一陣浩蕩的靈光。靈光以你為中心的向周圍擴散10尺，但無法穿透{@quickref Cover||3||全身掩護}。",
+				"若一個生物對你感到{@condition frightened||恐慌}，且其處於此靈光內時，其速度降為0。若它在靈光內開始其回合，它還將受到等同於你聖武士等級一半的心靈傷害。",
+				"第18級起，該靈光的作用範圍擴充套件至30尺。"
+			],
+			"ENG_name": "Aura of Conquest"
+		},
+		{
+			"name": "輕蔑斥喝",
+			"source": "XGE",
+			"page": 37,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Conquest",
+			"subclassSource": "XGE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"從15級起，那些膽敢擊中你的人，將在心靈上因無禮而受懲。只要你未處於{@condition incapacitated||失能}，當一個生物以一次攻擊擊中你時，該生物將受到等同於你魅力調整值點的心靈傷害（至少1點）。"
+			],
+			"ENG_name": "Scornful Rebuke"
+		},
+		{
+			"name": "無敵征服者",
+			"source": "XGE",
+			"page": 37,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Conquest",
+			"subclassSource": "XGE",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"第20級時，你得到駕馭特異武藝的能力。以一個動作，你可以魔法性的變成征服的化身，獲得下述的增益，持續1分鐘：",
+				{
+					"type": "list",
+					"items": [
+						"你具有所有傷害的抗性。",
+						"當你在你的回合進行{@action Attack||攻擊}動作時，你可以進行一次額外的攻擊，作為該動作的一部分。",
+						"你的近戰武器攻擊在{@dice d20}擲出19或20時即可形成一次重擊。"
+					]
+				},
+				"必須完成一次長休才能再次使用該特性。"
+			],
+			"ENG_name": "Invincible Conqueror"
+		},
+		{
+			"name": "救贖之誓",
+			"source": "XGE",
+			"page": 38,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Redemption",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"救贖的誓言為聖武士提供了一條艱難的限制：不到最後關頭就不能動用暴力。獻身於救贖之誓的聖武士相信，任何人都可以得到救贖，仁慈與正義的路應當是所有人都可以走的。這些聖武士直面邪惡的生物，希望使他們棄暗投明，除非是為了在緊要關頭救人，否則他們絕不會殺死自己的敵人。循此道者，便被稱為救贖者。",
+				"救贖聖武士雖然可以說是理想主義者，但他們不是傻瓜。他們也明白不死生物、惡魔、魔鬼、以及其他一些超自然的威脅從本質上就是邪惡的。對於這些堅定不移的邪惡，遵循救贖之誓的聖武士隨時準備用武器和法術來擊垮他們。然而儘管如此，救贖聖武士也在心底祈禱著，總有一天，即使是如此的邪惡也能夠自我救贖。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tenets of Redemption|Paladin||Redemption|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oath Spells|Paladin||Redemption|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Channel Divinity|Paladin||Redemption|XGE|3"
+				}
+			],
+			"ENG_name": "Oath of Redemption"
+		},
+		{
+			"name": "引導神力",
+			"source": "XGE",
+			"page": 38,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Redemption",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"在第3級選擇本誓言時，你會獲得以下兩種引導神力選項。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Emissary of Peace|Paladin||Redemption|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Rebuke the Violent|Paladin||Redemption|XGE|3"
+				}
+			],
+			"ENG_name": "Channel Divinity"
+		},
+		{
+			"name": "和平使節",
+			"source": "XGE",
+			"page": 38,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Redemption",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"你可以使用引導神力，以神聖力量強化你的儀態。以一個附贈動作，你在接下來10分鐘內進行的魅力（{@skill Persuasion||遊說}）檢定獲得+5加值。"
+			],
+			"ENG_name": "Emissary of Peace"
+		},
+		{
+			"name": "聖誓法術",
+			"source": "XGE",
+			"page": 38,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Redemption",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你會獲得以下對應級別的聖誓法術。",
+				{
+					"type": "table",
+					"caption": "救贖之誓法術",
+					"colLabels": [
+						"聖武士等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3級",
+							"{@spell sanctuary||庇護術}, {@spell sleep||睡眠術}"
+						],
+						[
+							"5級",
+							"{@spell calm emotions||安定心神}, {@spell hold person||定身類人}"
+						],
+						[
+							"9級",
+							"{@spell counterspell||法術反制}, {@spell hypnotic pattern||催眠圖紋}"
+						],
+						[
+							"13級",
+							"{@spell Otiluke's Resilient Sphere||歐提路克彈力法球}, {@spell stoneskin||石膚術}"
+						],
+						[
+							"17級",
+							"{@spell hold monster||定身怪物}, {@spell wall of force||力場牆}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Oath Spells"
+		},
+		{
+			"name": "叱喝暴力",
+			"source": "XGE",
+			"page": 38,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Redemption",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"你可以使用你的引導神力來呵斥那些使用暴力的人。當一個處於你周圍30尺內的敵人以一次攻擊對一個你之外的生物造成傷害後，以一個反應，你迫使攻擊者進行一次感知豁免。豁免失敗時，攻擊者將要承受與其剛剛造成的傷害等額的光耀傷害。成功時只受到前述傷害的半數。"
+			],
+			"ENG_name": "Rebuke the Violent"
+		},
+		{
+			"name": "救贖之信條",
+			"source": "XGE",
+			"page": 38,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Redemption",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"救贖之誓的信條要求聖武士高標準地保持和平與正義。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "和平",
+							"entries": [
+								"暴力是最後的手段，交流和理解才是持久和平的正解。"
+							],
+							"ENG_name": "Peace"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "無辜",
+							"entries": [
+								"所有人生來都是無辜的，他們走向邪惡往往是環境或某些黑暗力量的影響。透過樹立正確的榜樣，治癒這個殘缺世界的創傷，你可以令任何人走上正確的道路。"
+							],
+							"ENG_name": "Innocence"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "耐心",
+							"entries": [
+								"改變需要時間。犯下罪行的人必須被誠實與正義時刻提醒。一旦你播下正義的種子，你就必須日復一日地為其努力，直到最終開花結果。"
+							],
+							"ENG_name": "Patience"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "感知",
+							"entries": [
+								"你的心靈必須時刻保持清醒，而你最終也許會被迫承認失敗。既然所有人都可以得到救贖，那麼自然也會有人選擇步入邪惡之巔。你別無選擇，為了大義只能將其剿滅。任何這樣的行動都應當經過仔細權衡並考慮清楚其後果，但你一旦做出決定，那麼就做到最後。"
+							],
+							"ENG_name": "Wisdom"
+						}
+					]
+				}
+			],
+			"ENG_name": "Tenets of Redemption"
+		},
+		{
+			"name": "護衛靈光",
+			"source": "XGE",
+			"page": 38,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Redemption",
+			"subclassSource": "XGE",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"從7級起，你可以以自己的健康為代價保護盟友免受傷害。當一個處於你周圍10尺內的生物受到傷害時，你可以用一個反應，魔法性地使你代替該生物承受此傷害。此特性不會傳遞任何該傷害可能附帶的效果，該傷害也無法被任何方式減免。",
+				"第18級起，該靈光的作用範圍擴充套件至30尺。"
+			],
+			"ENG_name": "Aura of the Guardian"
+		},
+		{
+			"name": "守護之魂",
+			"source": "XGE",
+			"page": 38,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Redemption",
+			"subclassSource": "XGE",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"從15級起，神聖之儀將在你的戰鬥中為你補愈傷痕。只要你未處於{@condition incapacitated||失能}狀態，若你在戰鬥中結束你的回合時，若剩餘的生命值少於最大生命值的一半，則你恢復{@dice 1d6}+你聖武士等級一半 點的生命值。"
+			],
+			"ENG_name": "Protective Spirit"
+		},
+		{
+			"name": "救贖使者",
+			"source": "XGE",
+			"page": 38,
+			"className": "Paladin",
+			"classSource": "PHB",
+			"subclassShortName": "Redemption",
+			"subclassSource": "XGE",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"在20級時，你成為了和平的化身，使你獲得下述兩條增益：",
+				{
+					"type": "list",
+					"items": [
+						"你具有其他生物造成的所有傷害的抗性（包括它們的攻擊、法術、及其他效果）。",
+						"當一個生物以一次攻擊對你造成傷害時，它受到等同於其對你造成傷害數額一半的光耀傷害。"
+					]
+				},
+				"當你對某一生物發動了攻擊、施展了法術、或以此特性以外的方式對其造成了傷害，那麼此特性將對該生物無效。這一無效將持續到你完成一次長休前，完成長休後，此特性將能再次對那些生物生效"
+			],
+			"ENG_name": "Emissary of Redemption"
+		},
+		{
+			"name": "土巨靈之碾壓",
+			"source": "FRHoF",
+			"page": 20,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Noble Genies",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity",
+				"amount": 1
+			},
+			"entries": [
+				"大地在你的目標周圍隆起，目標陷入{@condition Grappled|XPHB|受擒}狀態（逃脫DC等於你的法術豁免DC）。在{@condition Grappled|XPHB|受擒}期間，該目標處於{@condition Restrained|XPHB|束縛}狀態。"
+			],
+			"ENG_name": "Dao's Crush"
+		},
+		{
+			"name": "氣巨靈之遁形",
+			"source": "FRHoF",
+			"page": 20,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Noble Genies",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity",
+				"amount": 1
+			},
+			"entries": [
+				"你可以{@variantrule Teleportation|XPHB|傳送術}至30尺範圍內的一處你可見的、未被佔據的空間，並化為半虛體的形態，這一形態持續至你的下個回合結束。在此形態期間，你具有鈍擊、穿刺、揮砍傷害的{@variantrule Resistance|XPHB|抗性}，並且{@variantrule Immunity|XPHB|免疫}{@condition Grappled|XPHB|受擒}、{@condition Prone|XPHB|倒地}和{@condition Restrained|XPHB|束縛}狀態。"
+			],
+			"ENG_name": "Djinni's Escape"
+		},
+		{
+			"name": "火巨靈之狂怒",
+			"source": "FRHoF",
+			"page": 21,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Noble Genies",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity",
+				"amount": 1
+			},
+			"entries": [
+				"你的目標額外受到{@damage 2d4}點火焰傷害，火焰也會彈射到你自身30尺範圍內可見的另一生物，該生物也受到{@damage 2d4}火焰傷害。"
+			],
+			"ENG_name": "Efreeti's Fury"
+		},
+		{
+			"name": "元素斬",
+			"source": "FRHoF",
+			"page": 20,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Noble Genies",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"在你對目標施展{@spell Divine Smite|XPHB|至聖斬}法術之後，你可以立即消耗一次{@classFeature Channel Divinity|Paladin|XPHB|3|XPHB|引導神力}的使用次數並觸發以下效應之一：",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Dao's Crush|Paladin|XPHB|Noble Genies|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Djinni's Escape|Paladin|XPHB|Noble Genies|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Efreeti's Fury|Paladin|XPHB|Noble Genies|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Marid's Surge|Paladin|XPHB|Noble Genies|FRHoF|3|FRHoF"
+				}
+			],
+			"ENG_name": "Elemental Smite"
+		},
+		{
+			"name": "巨靈法術",
+			"source": "FRHoF",
+			"page": 21,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Noble Genies",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"當你到達巨靈法術表中特定的聖武士等級時，你就始終準備了表中對應的法術。",
+				{
+					"type": "table",
+					"colLabels": [
+						"聖武士等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Chromatic Orb|XPHB|繁綵球}, {@spell Elementalism|XPHB|四象法門}, {@spell Thunderous Smite|XPHB|雷鳴斬}"
+						],
+						[
+							"5",
+							"{@spell Mirror Image|XPHB|鏡影術}, {@spell Phantasmal Force|XPHB|魅影之力}"
+						],
+						[
+							"9",
+							"{@spell Fly|XPHB|飛行術}, {@spell Gaseous Form|XPHB|氣化形體}"
+						],
+						[
+							"13",
+							"{@spell Conjure Minor Elementals|XPHB|咒喚微元素群}, {@spell Summon Elemental|XPHB|元素召喚術}"
+						],
+						[
+							"17",
+							"{@spell Banishing Smite|XPHB|放逐斬}, {@spell Contact Other Plane|XPHB|異界探知}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Genie Spells"
+		},
+		{
+			"name": "巨靈流光",
+			"source": "FRHoF",
+			"page": 21,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Noble Genies",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"未著裝護甲時，你的基礎{@variantrule Armor Class|XPHB|護甲等級}等於10+你的敏捷調整值＋你的魅力調整值，你可以持有盾牌並從中受益。",
+				"你還可以從以下技能中選擇一個獲得熟練項：{@skill Acrobatics|XPHB|特技}、{@skill Intimidation|XPHB|威嚇}、{@skill Performance|XPHB|表演}或{@skill Persuasion|XPHB|遊說}。"
+			],
+			"ENG_name": "Genie's Splendor"
+		},
+		{
+			"name": "水巨靈之激流",
+			"source": "FRHoF",
+			"page": 21,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Noble Genies",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity",
+				"amount": 1
+			},
+			"entries": [
+				"目標和源自你的10尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內你指定的每個生物進行一次對抗你法術豁免DC的力量豁免。豁免失敗的生物被直線推開15尺並陷入{@condition Prone|XPHB|倒地}狀態。"
+			],
+			"ENG_name": "Marid's Surge"
+		},
+		{
+			"name": "巨靈貴族之誓",
+			"source": "FRHoF",
+			"page": 20,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Noble Genies",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"{@i 駕馭來自巨靈的元素流光}",
+				"立下巨靈貴族之誓的聖武士，尊崇著元素位面的偉力。透過締結此誓言，聖武士自四種型別不同的巨靈處獲得力量——土巨靈，大地之主；氣巨靈，大氣之主；火巨靈，火焰之主；水巨靈，流水之主。在費倫，立下此誓言的聖武士大多來自卡林珊，一片巨靈眾多的土地。",
+				"立下這一誓言的聖武士經常要執行穿越諸國度、橫跨多元宇宙——甚至包括元素位面在內的任務。這些聖武士秉持著如下信條：",
+				{
+					"type": "list",
+					"page": 5,
+					"items": [
+						"大破大立，曉喻新生。",
+						"輝煌為旌，優雅為引。",
+						"尊重元素，敬畏怒火。"
+					]
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Elemental Smite|Paladin|XPHB|Noble Genies|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Genie Spells|Paladin|XPHB|Noble Genies|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Genie's Splendor|Paladin|XPHB|Noble Genies|FRHoF|3|FRHoF"
+				}
+			],
+			"ENG_name": "Oath of the Noble Genies"
+		},
+		{
+			"name": "元素守禦靈光",
+			"source": "FRHoF",
+			"page": 21,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Noble Genies",
+			"subclassSource": "FRHoF",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"選擇以下傷害型別之一：強酸、寒冷、火焰、閃電或雷鳴。你和位於你守護靈光內的盟友具有該傷害型別的{@variantrule Resistance|XPHB|抗性}。",
+				"在你每個回合開始時，你可以將此特性影響的傷害型別更改為其他列出的選項之一（無需動作）。"
+			],
+			"ENG_name": "Aura of Elemental Shielding"
+		},
+		{
+			"name": "元素叱喝",
+			"source": "FRHoF",
+			"page": 21,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Noble Genies",
+			"subclassSource": "FRHoF",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"當你被一次攻擊檢定命中時，你可以使用{@variantrule Reaction|XPHB|反應}使該攻擊對你造成的傷害減半（向下取整）並且迫使攻擊者進行一次對抗你的法術豁免DC的敏捷檢定。豁免失敗，攻擊者受到等同於{@dice 2d10}+你魅力調整值的傷害。該傷害是以下型別之一（由你選擇）：強酸、寒冷、火焰、閃電或雷鳴。豁免成功，則攻擊者受到一半傷害。",
+				"你能使用此特性的次數等同於你的魅力調整值（最少 1 次），你在完成一次{@variantrule Long Rest|XPHB|長休}後重獲所有消耗的次數。"
+			],
+			"ENG_name": "Elemental Rebuke"
+		},
+		{
+			"name": "巨靈貴胄",
+			"source": "FRHoF",
+			"page": 21,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Noble Genies",
+			"subclassSource": "FRHoF",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可獲得下列的增益。持續 10 分鐘，你也可以令其提前終止（無需動作）。此特性一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。你也可以消耗一個五環法術位（無需動作）重置此特性的使用權。",
+				{
+					"type": "entries",
+					"name": "飛翔",
+					"page": 5,
+					"entries": [
+						"你獲得60尺的{@variantrule Fly Speed|XPHB|飛行速度}，並且可以懸浮。"
+					],
+					"ENG_name": "Flight"
+				},
+				{
+					"type": "entries",
+					"name": "次級祈願術",
+					"page": 5,
+					"entries": [
+						"當你或處於你{@classFeature Aura of Protection|Paladin|XPHB|6|XPHB|守護靈光}範圍內的盟友在一次{@variantrule D20 Test|XPHB|D20 檢定}中失敗時，你可以使用{@variantrule Reaction|XPHB|反應}將該次{@variantrule D20 Test|XPHB|D20 檢定}改為成功。"
+					],
+					"ENG_name": "Minor Wish"
+				}
+			],
+			"ENG_name": "Noble Scion"
+		},
+		{
+			"name": "自然之怒",
+			"source": "XPHB",
+			"page": 115,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Ancients",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"以一個{@action Magic|XPHB|魔法}動作，你可以消耗一次引導神力使用次數，在附近生物周圍喚出靈體藤蔓。你選擇自身15尺內任意數量你能看見的生物；每個目標都必須成功通過一次力量豁免，否則陷入{@condition Restrained|XPHB|束縛}狀態1分鐘。受束縛的生物在其每回合結束時再次進行此豁免，成功時終止自身所受效應。"
+			],
+			"ENG_name": "Nature's Wrath"
+		},
+		{
+			"name": "遠古之誓",
+			"source": "XPHB",
+			"page": 115,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Ancients",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 護生驅暗濟世界}",
+				"古賢之誓存在的時間與最初的精靈一族的歷史相仿。他們發誓捍衛光明的存在。他們熱愛世界上的美與帶來生命的事物，更甚於榮耀、勇氣和正義。他們在盔甲和服飾上飾以樹葉、鹿角、花朵等等生機勃勃的紋樣，以象徵自己立下承諾保護世上的生命與光明。",
+				"立下此誓言的聖武士都遵循以下信條。",
+				{
+					"type": "list",
+					"items": [
+						"點亮希望。",
+						"庇護生命。",
+						"樂人之樂。"
+					]
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oath of the Ancients Spells|Paladin|XPHB|Ancients|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Nature's Wrath|Paladin|XPHB|Ancients|XPHB|3"
+				}
+			],
+			"ENG_name": "Oath of the Ancients"
+		},
+		{
+			"name": "古賢聖誓法術",
+			"source": "XPHB",
+			"page": 115,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Ancients",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你誓言具有的魔法使你始終準備著特定的法術。當你到達古賢之誓法術表中特定的聖武士等級時，你就始終準備著表中對應的法術。",
+				{
+					"type": "table",
+					"caption": "古賢聖誓法術",
+					"colLabels": [
+						"聖武士等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Ensnaring Strike|XPHB|誘捕打擊}， {@spell Speak with Animals|XPHB|動物交談}"
+						],
+						[
+							"5",
+							"{@spell Misty Step|XPHB|迷蹤步}，{@spell Moonbeam|XPHB|月華之光}"
+						],
+						[
+							"9",
+							"{@spell Plant Growth|XPHB|植物滋長}，{@spell Protection from Energy|XPHB|防護能量}"
+						],
+						[
+							"13",
+							"{@spell Ice Storm|XPHB|冰風暴}，{@spell Stoneskin|XPHB|石膚術}"
+						],
+						[
+							"17",
+							"{@spell Commune with Nature|XPHB|問道自然}，{@spell Tree Stride|XPHB|樹躍術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Oath of the Ancients Spells"
+		},
+		{
+			"name": "防護靈光",
+			"source": "XPHB",
+			"page": 116,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Ancients",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"強大的遠古魔法眷顧著你，以至於在你身邊形成了一道神秘的結界，阻擋著來自物質位面外的能量；你和位於你守護靈光內的盟友獲得對暗蝕，心靈以及光耀傷害的{@variantrule Resistance|XPHB|抗性}。"
+			],
+			"ENG_name": "Aura of Warding"
+		},
+		{
+			"name": "不朽衛士",
+			"source": "XPHB",
+			"page": 116,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Ancients",
+			"subclassSource": "XPHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"當你{@variantrule Hit Points|XPHB|生命值}降至 0，但尚未被直接殺死時，可以選擇讓你的{@variantrule Hit Points|XPHB|生命值}降到 1 而不是 0，然後你再恢復相當於你聖武士等級三倍的{@variantrule Hit Points|XPHB|生命值}。該能力一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。",
+				"此外，你不會因為魔法效應而衰老，你的外表也會停止老去。"
+			],
+			"ENG_name": "Undying Sentinel"
+		},
+		{
+			"name": "遠古鬥士",
+			"source": "XPHB",
+			"page": 116,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Ancients",
+			"subclassSource": "XPHB",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以用原初力量強化守護靈光，獲得下列增益，持續1分鐘或直到你終止它們為止（無需動作）。此特性一經使用，直到完成{@variantrule Long Rest|XPHB|長休}前都無法再次使用；你也可以消耗一個五環法術位恢復此特性的使用次數（無需動作）。",
+				{
+					"type": "entries",
+					"name": "瓦解反抗",
+					"entries": [
+						"位於你靈光範圍內的敵人在對抗你法術或引導神力的豁免上具有{@variantrule Disadvantage|XPHB|劣勢}。"
+					],
+					"ENG_name": "Diminish Defiance"
+				},
+				{
+					"type": "entries",
+					"name": "復生",
+					"entries": [
+						"你在每個自己的回合開始時，恢復 10 點{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Regeneration"
+				},
+				{
+					"type": "entries",
+					"name": "迅捷法術",
+					"entries": [
+						"每當你施展一道施法時間為動作的法術時，你可以將其改為一個{@variantrule Bonus Action|XPHB|附贈動作}施展。"
+					],
+					"ENG_name": "Swift Spells"
+				}
+			],
+			"ENG_name": "Elder Champion"
+		},
+		{
+			"name": "奉獻之誓",
+			"source": "XPHB",
+			"page": 113,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Devotion",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 當仁不讓知行正}",
+				"奉獻之誓讓聖武士和正義與秩序的崇高理念連為一體。他們是身披閃亮的盔甲的正派騎士形象代表。他們嚴於律己，某些成員甚至會過於嚴苛的對待他人。",
+				"追隨該誓言的許多聖武士都獻身於守序和善良的神祇，並將其的信條視作奉獻的標準。他們將天使視作其典範，並在頭盔或罩袍上飾以天使羽翼的形象。",
+				"立下此誓言的聖武士都遵循以下信條。",
+				{
+					"type": "list",
+					"items": [
+						"言出必行",
+						"保護弱者，且絕不因恐懼而裹足不前。",
+						"以身作則"
+					]
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oath of Devotion Spells|Paladin|XPHB|Devotion|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Sacred Weapon|Paladin|XPHB|Devotion|XPHB|3"
+				}
+			],
+			"ENG_name": "Oath of Devotion"
+		},
+		{
+			"name": "奉獻聖誓法術",
+			"source": "XPHB",
+			"page": 113,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Devotion",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你誓言具有的魔法使你始終準備著特定的法術。當你到達奉獻之誓法術表中特定的聖武士等級時，你就始終準備著表中對應的法術。",
+				{
+					"type": "table",
+					"caption": "奉獻聖誓法術",
+					"colLabels": [
+						"聖武士等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Protection from Evil and Good|XPHB|防護善惡}，{@spell Shield of Faith|XPHB|虔誠護盾}"
+						],
+						[
+							"5",
+							"{@spell Aid|XPHB|援助術}，{@spell Zone of Truth|XPHB|誠實之域}"
+						],
+						[
+							"9",
+							"{@spell Beacon of Hope|XPHB|希望信標}，{@spell Dispel Magic|XPHB|解除魔法}"
+						],
+						[
+							"13",
+							"{@spell Freedom of Movement|XPHB|行動自如}，{@spell Guardian of Faith|XPHB|信仰守衛}"
+						],
+						[
+							"17",
+							"{@spell Commune|XPHB|通神術}，{@spell Flame Strike|XPHB|焰擊術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Oath of Devotion Spells"
+		},
+		{
+			"name": "神聖武器",
+			"source": "XPHB",
+			"page": 113,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Devotion",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"當你執行{@action Attack|XPHB|攻擊}動作時，你可以消耗一次你的引導神力次數，為你持握的一把近戰武器注入正能量。隨後 10 分鐘或你再次使用此特性為止，你使用該武器進行的攻擊檢定可以加上你的魅力調整值（至少為 +1），且每次命中時可以選擇是造成正常傷害或者是光耀傷害。",
+				"該武器同時提供半徑 20 尺的{@variantrule Bright Light|XPHB|明亮光照}以及額外 20 尺{@variantrule Dim Light|XPHB|微光光照}。",
+				"你可以提前終止此效應（無需動作）。當你不再攜帶這把武器，此效應同樣終止。"
+			],
+			"ENG_name": "Sacred Weapon"
+		},
+		{
+			"name": "奉獻靈光",
+			"source": "XPHB",
+			"page": 114,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Devotion",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"你與位於你守護靈光內的盟友具有{@condition Charmed|XPHB|魅惑}{@variantrule Immunity|XPHB|免疫}。陷入{@condition Charmed|XPHB|魅惑}的盟友進入靈光時，該狀態在靈光內會暫時無效。"
+			],
+			"ENG_name": "Aura of Devotion"
+		},
+		{
+			"name": "衛護斬",
+			"source": "XPHB",
+			"page": 114,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Devotion",
+			"subclassSource": "XPHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"你現在能讓魔法斬擊散發出保護性的能量。每當你施展{@spell Divine Smite|XPHB|至聖斬}時，直到你的下個回合開始為止，你的靈光獲得以下增益：身處你的守護靈光期間，你和你的盟友具有{@variantrule Cover|XPHB|半身掩護}。"
+			],
+			"ENG_name": "Smite of Protection"
+		},
+		{
+			"name": "神聖光輪",
+			"source": "XPHB",
+			"page": 114,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Devotion",
+			"subclassSource": "XPHB",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以用聖力盈滿你的守護靈光，靈光獲得下列的增益，持續 10 分鐘或直到你將之提前結束（無需動作）。此特性一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。你也可以消耗一個五環法術位（無需動作）重置此特性的使用權。",
+				{
+					"type": "entries",
+					"name": "至聖守護",
+					"entries": [
+						"你被邪魔或亡靈迫使進行的豁免檢定具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Holy Ward"
+				},
+				{
+					"type": "entries",
+					"name": "光耀傷害",
+					"entries": [
+						"每當敵人在靈光範圍內開始回合時，該生物受到等同於你的魅力調整值 + 你的{@variantrule Proficiency|XPHB|熟練加值}的光耀傷害。"
+					],
+					"ENG_name": "Radiant Damage"
+				},
+				{
+					"type": "entries",
+					"name": "陽光",
+					"entries": [
+						"你的靈光內變為{@variantrule Bright Light|XPHB|明亮光照}，視為陽光。"
+					],
+					"ENG_name": "Sunlight"
+				}
+			],
+			"ENG_name": "Holy Nimbus"
+		},
+		{
+			"name": "鼓舞一擊",
+			"source": "XPHB",
+			"page": 115,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"施展{@spell Divine Smite|XPHB|至聖斬}後，你可以立即消耗一次引導神力使用次數，把{@variantrule Temporary Hit Points|XPHB|臨時生命值}分配給自身30尺內由你選擇的生物，其中可以包括你自己。可分配的臨時生命值總數等於{@dice 2d8}加上你的聖武士等級，並可由你任意分配。"
+			],
+			"ENG_name": "Inspiring Smite"
+		},
+		{
+			"name": "榮耀之誓",
+			"source": "XPHB",
+			"page": 114,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 砥身勵行蜚聲英}",
+				"對榮耀宣誓的聖武士堅信他們將與同伴命中註定將一起達成英勇的偉業。他們將刻苦訓練，砥礪前行，從而確保當命運決定的時刻到來之際，他們都已有所準備。",
+				"立下此誓言的聖武士都遵循以下信條。",
+				{
+					"type": "list",
+					"items": [
+						"力爭上游",
+						"勇往直前。",
+						"振奮人心"
+					]
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oath of Glory Spells|Paladin|XPHB|Glory|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Inspiring Smite|Paladin|XPHB|Glory|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Peerless Athlete|Paladin|XPHB|Glory|XPHB|3"
+				}
+			],
+			"ENG_name": "Oath of Glory"
+		},
+		{
+			"name": "榮耀之誓法術",
+			"source": "XPHB",
+			"page": 115,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你誓言具有的魔法使你始終準備著特定的法術。當你到達榮耀之誓法術表中特定的聖武士等級時，你就始終準備著表中對應的法術。",
+				{
+					"type": "table",
+					"caption": "榮耀之誓法術",
+					"colLabels": [
+						"聖武士等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Guiding Bolt|XPHB|光導箭}，{@spell Heroism|XPHB|英雄氣概}"
+						],
+						[
+							"5",
+							"{@spell Enhance Ability|XPHB|強化屬性}，{@spell Magic Weapon|XPHB|魔化武器}"
+						],
+						[
+							"9",
+							"{@spell Haste|XPHB|加速術}，{@spell Protection from Energy|XPHB|防護能量}"
+						],
+						[
+							"13",
+							"{@spell Compulsion|XPHB|強迫術}，{@spell Freedom of Movement|XPHB|行動自如}"
+						],
+						[
+							"17",
+							"{@spell Legend Lore|XPHB|通曉傳奇}，{@spell Yolande's Regal Presence|XPHB|悠蘭德王者威儀}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Oath of Glory Spells"
+		},
+		{
+			"name": "絕倫健將",
+			"source": "XPHB",
+			"page": 115,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以消耗一次引導神力次數以增強運動能力。1 小時內，你在力量（{@skill Athletics|XPHB|運動}）檢定和敏捷（{@skill Acrobatics|XPHB|特技}）檢定上獲得{@variantrule Advantage|XPHB|優勢}，且你跳遠和跳高的距離增加 10 尺（你依然為此正常消耗移動力）。"
+			],
+			"ENG_name": "Peerless Athlete"
+		},
+		{
+			"name": "迅捷靈光",
+			"source": "XPHB",
+			"page": 115,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"你的速度增加 10 尺。",
+				"此外，每個在自己回合第一次進入你守護靈光內的盟友，或在其內開始回合的盟友，{@variantrule Speed|XPHB|速度}提升 10 尺，直到其下個回合結束為止。"
+			],
+			"ENG_name": "Aura of Alacrity"
+		},
+		{
+			"name": "輝煌防禦",
+			"source": "XPHB",
+			"page": 115,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "XPHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"你能在防禦中轉守為攻，對敵人發起突然襲擊。當你或位於你 10 尺內一個你可見的生物成為一次攻擊的目標並被擊中時，你可以用{@variantrule Reaction|XPHB|反應}使其獲得一定的AC加值，此舉可能使該次攻擊改為失手。此加值等同於你的魅力調整值（至少為 +1）。若該次攻擊失手，且攻擊者在你的武器觸及範圍內，你可以用武器對其進行一次攻擊，這次攻擊視為{@variantrule Reaction|XPHB|反應}的一部分。",
+				"你能使用此特性的次數等同於你的魅力調整值（最少 1 次），你在完成一次{@variantrule Long Rest|XPHB|長休}後重獲所有消耗的次數。"
+			],
+			"ENG_name": "Glorious Defense"
+		},
+		{
+			"name": "現世傳說",
+			"source": "XPHB",
+			"page": 115,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "XPHB",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"你可以藉由自己偉大事蹟的傳說——無論真實或誇大——來強化自身。以一個{@variantrule Bonus Action|XPHB|附贈動作}，你獲得下列增益，持續10分鐘。此特性一經使用，直到完成{@variantrule Long Rest|XPHB|長休}前都無法再次使用；你也可以消耗一個五環法術位恢復此特性的使用次數（無需動作）。",
+				{
+					"type": "entries",
+					"name": "神眷天恩",
+					"entries": [
+						"一個異界存在賜福於你，你在與魅力相關的檢定上獲得{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Charismatic"
+				},
+				{
+					"type": "entries",
+					"name": "重擲豁免",
+					"entries": [
+						"當你進行一次豁免檢定並失敗時，你可以用{@variantrule Reaction|XPHB|反應}重投之。你必須使用重投的結果。"
+					],
+					"ENG_name": "Saving Throw Reroll"
+				},
+				{
+					"type": "entries",
+					"name": "無誤打擊",
+					"entries": [
+						"每自己回合一次，當你進行一次武器攻擊但失手，你可以使其改為命中。"
+					],
+					"ENG_name": "Unerring Strike"
+				}
+			],
+			"ENG_name": "Living Legend"
+		},
+		{
+			"name": "復仇之誓",
+			"source": "XPHB",
+			"page": 116,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Vengeance",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 鐵面無情伏妖魔}",
+				"復仇之誓，是立誓懲戒那些嚴重罪行的莊嚴承諾。當邪惡勢力屠殺無助居民，當暴君背離諸神意志，當某個盜賊行會過於強橫霸道，當恐怖巨龍橫行鄉野——每當這種時刻，復仇之誓的聖武士就會出現來撥亂反正。",
+				"立下此誓言的聖武士都遵循以下信條。",
+				{
+					"type": "list",
+					"items": [
+						"除惡務盡",
+						"直面不義",
+						"亡羊補牢"
+					]
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oath of Vengeance Spells|Paladin|XPHB|Vengeance|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Vow of Enmity|Paladin|XPHB|Vengeance|XPHB|3"
+				}
+			],
+			"ENG_name": "Oath of Vengeance"
+		},
+		{
+			"name": "復仇聖誓法術",
+			"source": "XPHB",
+			"page": 116,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Vengeance",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你誓言具有的魔法使你始終準備著特定的法術。當你到達復仇之誓法術表中特定的聖武士等級時，你就始終準備著表中對應的法術。",
+				{
+					"type": "table",
+					"caption": "復仇聖誓法術",
+					"colLabels": [
+						"聖武士等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Bane|XPHB|災禍術}，{@spell Hunter's Mark|XPHB|獵人印記}"
+						],
+						[
+							"5",
+							"{@spell Hold Person|XPHB|定身類人}，{@spell Misty Step|XPHB|迷蹤步}"
+						],
+						[
+							"9",
+							"{@spell Haste|XPHB|加速術}，{@spell Protection from Energy|XPHB|防護能量}"
+						],
+						[
+							"13",
+							"{@spell Banishment|XPHB|放逐術}，{@spell Dimension Door|XPHB|任意門}"
+						],
+						[
+							"17",
+							"{@spell Hold Monster|XPHB|定身怪物}，{@spell Scrying|XPHB|探知術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Oath of Vengeance Spells"
+		},
+		{
+			"name": "仇敵誓言",
+			"source": "XPHB",
+			"page": 117,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Vengeance",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"當你執行{@action Attack|XPHB|攻擊}動作時，你可以消耗一次引導神力使用次數，對自身30尺內一個你能看見的生物立下仇敵誓言。接下來1分鐘內，或直到你再次使用此特性為止，你對該生物進行的攻擊檢定具有{@variantrule Advantage|XPHB|優勢}。",
+				"如果該生物在誓言結束前降至0{@variantrule Hit Points|XPHB|生命值}，你可以把誓言轉移給自身30尺內另一個生物（無需動作）。"
+			],
+			"ENG_name": "Vow of Enmity"
+		},
+		{
+			"name": "無盡復仇",
+			"source": "XPHB",
+			"page": 117,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Vengeance",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"你超自然的專注力使你可以攔截敵人撤退。你以{@action Opportunity Attack|XPHB|藉機攻擊}中命中一個生物時，可以將其{@variantrule Speed|XPHB|速度}降為 0，直到當前回合結束為止。且你在該攻擊後立刻移動至多相當於你{@variantrule Speed|XPHB|速度}一半的距離，本次移動是原{@variantrule Reaction|XPHB|反應}的一部分，且不引發{@action Opportunity Attack|XPHB|藉機攻擊}。"
+			],
+			"ENG_name": "Relentless Avenger"
+		},
+		{
+			"name": "報復之魂",
+			"source": "XPHB",
+			"page": 117,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Vengeance",
+			"subclassSource": "XPHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"受你仇敵誓言影響的生物在發動一次攻擊以後，無論是否命中，只要其位於你的觸及內，你就能夠立即以{@variantrule Reaction|XPHB|反應}對其進行一次近戰攻擊。"
+			],
+			"ENG_name": "Soul of Vengeance"
+		},
+		{
+			"name": "復仇天使",
+			"source": "XPHB",
+			"page": 117,
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Vengeance",
+			"subclassSource": "XPHB",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可獲得下列的增益。持續 10 分鐘，你也可以令其提前終止（無需動作）。此特性一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。你也可以消耗一個五環法術位（無需動作）重置此特性的使用權。",
+				{
+					"type": "entries",
+					"name": "飛翔",
+					"entries": [
+						"你的背後生出靈體雙翼，獲得 60 尺的{@variantrule Fly Speed|XPHB|飛行速度}，並且可以懸浮。"
+					],
+					"ENG_name": "Flight"
+				},
+				{
+					"type": "entries",
+					"name": "恐懼靈光",
+					"entries": [
+						"每個在靈光範圍內開始其回合的敵人，必須成功透過一個感知豁免，否則將陷入{@condition Frightened|XPHB|恐慌}狀態 1 分鐘，或直到其受到傷害。此外，對被{@condition Frightened|XPHB|恐慌}生物發動的{@action Attack|XPHB|攻擊}檢定具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Frightful Aura"
+				}
+			],
+			"ENG_name": "Avenging Angel"
+		}
+	]
+}

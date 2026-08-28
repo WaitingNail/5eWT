@@ -1,0 +1,75 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"scope": "2014/classSource PHB rule-accuracy audit"
+	},
+	"corrections": [
+		{
+			"path": "/classFeature/4/entries/0",
+			"expected": "第2級起，你可以在短休時用輕柔的音樂或話語幫助夥伴們恢復傷勢。如果你或任何友方生物可以在其短休時聽到你的演奏聲，且決定在此時使用生命骰恢復生命值，則其恢復量可以額外增加{@dice 1d6}。",
+			"value": "第2級起，你可以在短休期間以舒緩的音樂或演說幫助受傷的盟友恢復活力。短休結束時，如果你或任何能聽見你表演的友方生物花費生命骰恢復生命值，每個這類生物都額外恢復{@dice 1d6}點生命值。",
+			"reason": "補回花費生命骰與額外恢復皆發生於短休結束時的規則時點。"
+		},
+		{
+			"path": "/subclassFeature/2/entries/0",
+			"expected": "第3級起，你學會運用你的妙語連珠來打斷敵人，迷惑對方或影響他人的信心。當你身邊60尺內一個你能看見的生物進行攻擊檢定，屬性檢定或傷害擲骰時，你可以用反應消耗一次詩人激勵次數來擲一次激勵骰。並在目標的擲骰結果中減去你的激勵骰結果。你可以在目標擲出骰子後，DM宣佈結果之前決定是否使用該特性。若目標無法聽見你的話語或免疫{@condition charmed||魅惑}狀態，則目標同樣也會免疫該特性。",
+			"value": "同樣從第3級起，你學會以機鋒干擾、迷惑他人，削弱其信心與能力。當距你60尺內、你能看見的一個生物進行攻擊檢定、屬性檢定或傷害擲骰時，你可以用反應消耗一次詩人激勵，擲一枚詩人激勵骰，並從該生物的擲骰結果中減去骰值。你可以在該生物擲骰後，但在DM判定攻擊檢定或屬性檢定是否成功之前，或在該生物造成傷害之前，決定是否使用此特性。無法聽見你或免疫{@condition charmed||魅惑}狀態的生物免疫此特性。",
+			"reason": "補回傷害擲骰必須在實際造成傷害前決定的獨立觸發時點。"
+		},
+		{
+			"path": "/subclassFeature/19/entries/1",
+			"expected": "你掌握了一種一讓你的話語被任何有智慧的生物理解的方法。以一個動作，你可以選擇至多為你魅力調整數量的生物（至少為一個），他們必須在你六十尺內。在接下來的一個小時內，被選中的生物可以魔法性的理解你，不論你所說的話是用何種語言說的。",
+			"value": "你獲得使任何生物都能理解你話語的能力。以一個動作，選擇距你60尺內的一個或多個生物，數量至多等於你的魅力調整值（至少一個生物）。在接下來1小時內，無論你使用何種語言，所選生物都能以魔法理解你。",
+			"reason": "原文為 any creature，譯文無依據地加上「有智慧」限制。"
+		},
+		{
+			"path": "/subclassFeature/28/entries/0",
+			"expected": "當你在3級加入迷惑學院時，你獲得將妖精的魔法浸入歌曲的力量，為你的盟友們帶來活力與速度。",
+			"value": "第3級起，你可以在表演中注入魅惑人心的精類魔法。",
+			"reason": "譯文誤複製下一項 Mantle of Inspiration 的敘述，未翻出本段原文。"
+		},
+		{
+			"path": "/classFeature/28/entries/0",
+			"expected": "你可以用語言，音樂或舞蹈的形式對他人進行超自然的激勵。這種激勵的表現形式為數顆{@dice d6}骰，這些骰子被稱為詩人激勵骰。",
+			"value": "你可以透過言語、音樂或舞蹈，以超自然力量激勵他人。這份激勵由一枚詩人激勵骰代表；該骰為{@dice d6}。",
+			"reason": "原文以單數 Bardic Inspiration die 定義骰型；譯文誤寫成數顆骰子。"
+		},
+		{
+			"path": "/classFeature/28/entries/1/entries/2/name",
+			"expected": "升環施法效應",
+			"value": "高等級時",
+			"reason": "At Higher Levels 指職業等級提升，不是法術升環。"
+		},
+		{
+			"path": "/classFeature/29/entries/1/entries/2/entries/0",
+			"expected": "你準備可供你以此特性施展的1環及更高環階的法術列表。最初，選擇四道{@filter 吟遊詩人法術列表|spells|class=Bard}中的法術。推薦選擇{@spell Charm Person|XPHB|魅惑類人}，{@spell Color Spray|XPHB|七彩噴射}，{@spell Dissonant Whispers|XPHB|不諧低語}和{@spell Healing Word|XPHB|治癒真言}。",
+			"value": "你準備一份可供此特性施展的1環及更高環階法術列表。起始時，從{@filter 吟遊詩人法術列表|spells|class=Bard}中選擇四道1環法術。推薦選擇{@spell Charm Person|XPHB|魅惑類人}、{@spell Color Spray|XPHB|七彩噴射}、{@spell Dissonant Whispers|XPHB|不諧低語}和{@spell Healing Word|XPHB|治癒真言}。",
+			"reason": "補回起始四道法術必須全為 1 環的限制。"
+		},
+		{
+			"path": "/subclassFeature/57/entries/0",
+			"expected": "當你在一次動作、{@variantrule Bonus Action|XPHB|附贈動作}或{@variantrule Reaction|XPHB|反應}中消耗了詩人激勵使用次數時，作為該動作、{@variantrule Unarmed Strike|XPHB|附贈動作}或{@variantrule Bonus Action|XPHB|反應}的一部分，你可以發動一次{@variantrule Reaction|XPHB|徒手打擊}。",
+			"value": "當你在一次動作、{@variantrule Bonus Action|XPHB|附贈動作}或{@variantrule Reaction|XPHB|反應}中消耗一次詩人激勵時，作為該動作、{@variantrule Bonus Action|XPHB|附贈動作}或{@variantrule Reaction|XPHB|反應}的一部分，你可以發動一次{@variantrule Unarmed Strike|XPHB|徒手打擊}。",
+			"reason": "修正徒手打擊、附贈動作與反應三個交叉引用標籤錯置。"
+		},
+		{
+			"path": "/subclassFeature/62/entries/0",
+			"expected": "當一名你可見的敵人位於你 5 尺內結束它的回合時，你能夠以{@variantrule Reaction|XPHB|反應}消耗一次詩人激勵使用次數，移動至多等於你{@variantrule Speed|XPHB|速度}一半的距離。此時，位於你 30 尺內的一名盟友（由你選擇）也可以使用他的{@variantrule Speed|XPHB|反應}來移動至多等於他{@variantrule Reaction|XPHB|速度}一半的距離。",
+			"value": "當一名你能看見的敵人在距你5尺內結束其回合時，你可以用{@variantrule Reaction|XPHB|反應}消耗一次詩人激勵，移動至多等於你{@variantrule Speed|XPHB|速度}一半的距離。然後，距你30尺內一名由你選擇的盟友也可以使用其{@variantrule Reaction|XPHB|反應}，移動至多等於其{@variantrule Speed|XPHB|速度}一半的距離。",
+			"reason": "修正盟友反應與速度兩個交叉引用標籤互換。"
+		},
+		{
+			"path": "/subclassFeature/20/entries/1",
+			"expected": "當你成功激勵了他人之後，你那雄辯言辭的力量會散播開去。當一個距離你60尺內的生物使用了你的詩人激勵骰增益了一次攻擊檢定、屬性檢定、或豁免檢定並且成功之後，你可以用你的反應去借此鼓勵另一個能夠聽見你的生物（除了你）。那個生物會獲得一個詩人激勵骰，而你並不會因此消耗你的詩人激勵次數。",
+			"value": "當你成功激勵一個生物時，你的雄辯之力可以傳遞給另一個生物。當距你60尺內的一個生物將你的一枚詩人激勵骰加到屬性檢定、攻擊檢定或豁免，且該擲骰成功時，你可以用反應鼓勵距你60尺內、能聽見你的一個不同生物（不能是你自己），使其獲得一枚詩人激勵骰，且不消耗你的詩人激勵使用次數。",
+			"reason": "原文要求第二個受激勵生物也必須位於60尺內；譯文漏掉該距離限制。"
+		},
+		{
+			"path": "/classFeature/1/entries/2/entries/0",
+			"expected": "\"吟遊詩人職業表\"中記錄了你可用以施展{@filter 吟遊詩人法術|spells|class=bard}的1環及更高環階法術位數量。施展詩人法術時，你必須同時消耗其對應環階的法術位。已消耗的法術位可在完成長休後恢復。",
+			"value": "「吟遊詩人」表顯示你擁有多少法術位，可用來施展一環及更高環階的{@filter 吟遊詩人法術|spells|class=bard}。施展其中一道法術時，你必須消耗一道環階等於或高於該法術環階的法術位。完成一次長休後，你重獲所有已消耗的法術位。",
+			"reason": "原文允許消耗等環或更高環法術位；譯文只寫對應環階，錯誤限縮升環施法。"
+		}
+	]
+}

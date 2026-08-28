@@ -1,0 +1,4507 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"translationSource": "https://shuaishuaidnd.cn/data/class",
+		"conversion": "OpenCC s2twp plus locked project terminology"
+	},
+	"class": [
+		{
+			"name": "吟遊詩人",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"reprintedAs": [
+				"Bard|XPHB"
+			],
+			"edition": "classic",
+			"hd": {
+				"number": 1,
+				"faces": 8
+			},
+			"proficiency": [
+				"dex",
+				"cha"
+			],
+			"spellcastingAbility": "cha",
+			"casterProgression": "full",
+			"cantripProgression": [
+				2,
+				2,
+				2,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4
+			],
+			"spellsKnownProgression": [
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				14,
+				15,
+				15,
+				16,
+				18,
+				19,
+				19,
+				20,
+				22,
+				22,
+				22
+			],
+			"additionalSpells": [
+				{
+					"name": "魔法祕密",
+					"known": {
+						"10": [
+							{
+								"choose": "level=0;1;2;3;4;5"
+							},
+							{
+								"choose": "level=0;1;2;3;4;5"
+							}
+						],
+						"14": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7"
+							},
+							{
+								"choose": "level=0;1;2;3;4;5;6;7"
+							}
+						],
+						"18": [
+							{
+								"choose": ""
+							},
+							{
+								"choose": ""
+							}
+						]
+					},
+					"ENG_name": "Magical Secrets"
+				}
+			],
+			"startingProficiencies": {
+				"skills": [
+					{
+						"any": 3
+					}
+				],
+				"weapons": [
+					"simple",
+					"{@item hand crossbow|phb|手弩}",
+					"{@item longsword|phb|長劍}",
+					"{@item rapier|phb|刺劍}",
+					"{@item shortsword|phb|短劍}"
+				],
+				"tools": [
+					"自選三種{@item musical instrument|PHB|樂器}"
+				],
+				"toolProficiencies": [
+					{
+						"anyMusicalInstrument": 3
+					}
+				],
+				"armor": [
+					"light"
+				],
+				"armorProficiencies": [
+					{
+						"light": true
+					}
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"default": [
+					"(a) 一把{@item rapier|phb|刺劍}，(b) 一把{@item longsword|phb|長劍}，或 (c) 任一把 {@filter 簡易武器|items|source=phb|category=basic|type=simple weapon}",
+					"(a) 一個{@item diplomat's pack|phb|外交套組} 或者 (b) 一個{@item entertainer's pack|phb|藝人套組}",
+					"(a) 一把{@item lute|phb|魯特琴}或(b)其他{@filter 樂器|items|miscellaneous=mundane|type=instrument}",
+					"{@item Leather armor|phb|皮甲}和一把 {@item dagger|phb|匕首}"
+				],
+				"goldAlternative": "{@dice 5d4 × 10|5d4 × 10|起始金幣}",
+				"defaultData": [
+					{
+						"a": [
+							"rapier|phb"
+						],
+						"b": [
+							"longsword|phb"
+						],
+						"c": [
+							{
+								"equipmentType": "weaponSimple"
+							}
+						]
+					},
+					{
+						"a": [
+							"diplomat's pack|phb"
+						],
+						"b": [
+							"entertainer's pack|phb"
+						]
+					},
+					{
+						"a": [
+							"lute|phb"
+						],
+						"b": [
+							{
+								"equipmentType": "instrumentMusical"
+							}
+						]
+					},
+					{
+						"_": [
+							"leather armor|phb",
+							"dagger|phb"
+						]
+					}
+				]
+			},
+			"multiclassing": {
+				"requirements": {
+					"cha": 13
+				},
+				"proficienciesGained": {
+					"skills": [
+						{
+							"choose": {
+								"from": [
+									"athletics",
+									"acrobatics",
+									"sleight of hand",
+									"stealth",
+									"arcana",
+									"history",
+									"investigation",
+									"nature",
+									"religion",
+									"animal handling",
+									"insight",
+									"medicine",
+									"perception",
+									"survival",
+									"deception",
+									"intimidation",
+									"performance",
+									"persuasion"
+								],
+								"count": 1
+							}
+						}
+					],
+					"tools": [
+						"一件你自己選擇的{@item musical instrument|PHB|樂器}"
+					],
+					"toolProficiencies": [
+						{
+							"anyMusicalInstrument": 1
+						}
+					],
+					"armor": [
+						"light"
+					],
+					"armorProficiencies": [
+						{
+							"light": true
+						}
+					]
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"{@filter 已知戲法|spells|level=0|class=bard}",
+						"{@filter 已知法術|spells|class=bard}"
+					],
+					"rows": [
+						[
+							2,
+							4
+						],
+						[
+							2,
+							5
+						],
+						[
+							2,
+							6
+						],
+						[
+							3,
+							7
+						],
+						[
+							3,
+							8
+						],
+						[
+							3,
+							9
+						],
+						[
+							3,
+							10
+						],
+						[
+							3,
+							11
+						],
+						[
+							3,
+							12
+						],
+						[
+							4,
+							14
+						],
+						[
+							4,
+							15
+						],
+						[
+							4,
+							15
+						],
+						[
+							4,
+							16
+						],
+						[
+							4,
+							18
+						],
+						[
+							4,
+							19
+						],
+						[
+							4,
+							19
+						],
+						[
+							4,
+							20
+						],
+						[
+							4,
+							22
+						],
+						[
+							4,
+							22
+						],
+						[
+							4,
+							22
+						]
+					]
+				},
+				{
+					"title": "每環法術位",
+					"colLabels": [
+						"{@filter 1環|spells|level=1|class=bard}",
+						"{@filter 2環|spells|level=2|class=bard}",
+						"{@filter 3環|spells|level=3|class=bard}",
+						"{@filter 4環|spells|level=4|class=bard}",
+						"{@filter 5環|spells|level=5|class=bard}",
+						"{@filter 6環|spells|level=6|class=bard}",
+						"{@filter 7環|spells|level=7|class=bard}",
+						"{@filter 8環|spells|level=8|class=bard}",
+						"{@filter 9環|spells|level=9|class=bard}"
+					],
+					"rowsSpellProgression": [
+						[
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							1,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							2,
+							2,
+							1,
+							1
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Bardic Inspiration|Bard||1",
+				"Spellcasting|Bard||1",
+				"Jack of All Trades|Bard||2",
+				"Song of Rest (d6)|Bard||2",
+				"Magical Inspiration|Bard||2|TCE",
+				{
+					"classFeature": "Bard College|Bard||3",
+					"gainSubclassFeature": true
+				},
+				"Expertise|Bard||3",
+				"Ability Score Improvement|Bard||4",
+				"Bardic Versatility|Bard||4|TCE",
+				"Bardic Inspiration (d8)|Bard||5",
+				"Font of Inspiration|Bard||5",
+				"Countercharm|Bard||6",
+				{
+					"classFeature": "Bard College feature|Bard||6",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Bard||8",
+				"Song of Rest (d8)|Bard||9",
+				"Bardic Inspiration (d10)|Bard||10",
+				"Expertise|Bard||10",
+				"Magical Secrets|Bard||10",
+				"Ability Score Improvement|Bard||12",
+				"Song of Rest (d10)|Bard||13",
+				"Magical Secrets|Bard||14",
+				{
+					"classFeature": "Bard College feature|Bard||14",
+					"gainSubclassFeature": true
+				},
+				"Bardic Inspiration (d12)|Bard||15",
+				"Ability Score Improvement|Bard||16",
+				"Song of Rest (d12)|Bard||17",
+				"Magical Secrets|Bard||18",
+				"Ability Score Improvement|Bard||19",
+				"Superior Inspiration|Bard||20"
+			],
+			"subclassTitle": "吟遊詩人學院",
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Bard"
+		},
+		{
+			"name": "吟遊詩人",
+			"source": "XPHB",
+			"page": 58,
+			"srd52": true,
+			"basicRules2024": true,
+			"edition": "one",
+			"primaryAbility": [
+				{
+					"cha": true
+				}
+			],
+			"hd": {
+				"number": 1,
+				"faces": 8
+			},
+			"proficiency": [
+				"dex",
+				"cha"
+			],
+			"spellcastingAbility": "cha",
+			"casterProgression": "full",
+			"preparedSpellsProgression": [
+				4,
+				5,
+				6,
+				7,
+				9,
+				10,
+				11,
+				12,
+				14,
+				15,
+				16,
+				16,
+				17,
+				17,
+				18,
+				18,
+				19,
+				20,
+				21,
+				22
+			],
+			"preparedSpellsChange": "level",
+			"cantripProgression": [
+				2,
+				2,
+				2,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4
+			],
+			"additionalSpells": [
+				{
+					"expanded": {
+						"10": [
+							{
+								"all": "level=1;2;3;4;5|class=Cleric;Druid;Wizard"
+							}
+						],
+						"s6": [
+							{
+								"all": "level=6|class=Cleric;Druid;Wizard"
+							}
+						],
+						"s7": [
+							{
+								"all": "level=7|class=Cleric;Druid;Wizard"
+							}
+						],
+						"s8": [
+							{
+								"all": "level=8|class=Cleric;Druid;Wizard"
+							}
+						],
+						"s9": [
+							{
+								"all": "level=9|class=Cleric;Druid;Wizard"
+							}
+						]
+					},
+					"prepared": {
+						"20": [
+							"power word heal|xphb",
+							"power word kill|xphb"
+						]
+					}
+				}
+			],
+			"featProgression": [
+				{
+					"name": "傳奇恩惠",
+					"category": [
+						"EB"
+					],
+					"progression": {
+						"19": 1
+					},
+					"ENG_name": "Epic Boon"
+				}
+			],
+			"startingProficiencies": {
+				"skills": [
+					{
+						"any": 3
+					}
+				],
+				"weapons": [
+					"simple"
+				],
+				"tools": [
+					"任選3件{@item Musical Instrument|XPHB|樂器}"
+				],
+				"toolProficiencies": [
+					{
+						"anyMusicalInstrument": 3
+					}
+				],
+				"armor": [
+					"light"
+				],
+				"armorProficiencies": [
+					{
+						"light": true
+					}
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"defaultData": [
+					{
+						"A": [
+							{
+								"item": "leather armor|xphb"
+							},
+							{
+								"item": "dagger|xphb",
+								"quantity": 2
+							},
+							{
+								"equipmentType": "instrumentMusical"
+							},
+							{
+								"item": "entertainer's pack|xphb"
+							},
+							{
+								"value": 1900
+							}
+						],
+						"B": [
+							{
+								"value": 9000
+							}
+						]
+					}
+				],
+				"entries": [
+					"{@i 選擇A或B：}(A){@item Leather Armor|XPHB|皮甲}，2 {@item Dagger|XPHB|匕首}，你選擇的{@item Musical Instrument|XPHB|樂器}，{@item Entertainer's Pack|XPHB|藝人套組}及19 GP；或 (B) 90 GP"
+				]
+			},
+			"multiclassing": {
+				"proficienciesGained": {
+					"skills": [
+						{
+							"choose": {
+								"from": [
+									"athletics",
+									"acrobatics",
+									"sleight of hand",
+									"stealth",
+									"arcana",
+									"history",
+									"investigation",
+									"nature",
+									"religion",
+									"animal handling",
+									"insight",
+									"medicine",
+									"perception",
+									"survival",
+									"deception",
+									"intimidation",
+									"performance",
+									"persuasion"
+								],
+								"count": 1
+							}
+						}
+					],
+					"tools": [
+						"選擇一件{@item Musical Instrument|XPHB|樂器}"
+					],
+					"toolProficiencies": [
+						{
+							"anyMusicalInstrument": 1
+						}
+					],
+					"armor": [
+						"light"
+					],
+					"armorProficiencies": [
+						{
+							"light": true
+						}
+					]
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"詩人骰",
+						"{@filter 戲法|spells|level=0|class=bard}",
+						"{@filter 準備法術|spells|level=!0|class=bard}"
+					],
+					"rows": [
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							},
+							2,
+							4
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							},
+							2,
+							5
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							},
+							2,
+							6
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							},
+							3,
+							7
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 8
+									}
+								],
+								"rollable": true
+							},
+							3,
+							9
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 8
+									}
+								],
+								"rollable": true
+							},
+							3,
+							10
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 8
+									}
+								],
+								"rollable": true
+							},
+							3,
+							11
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 8
+									}
+								],
+								"rollable": true
+							},
+							3,
+							12
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 8
+									}
+								],
+								"rollable": true
+							},
+							3,
+							14
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 10
+									}
+								],
+								"rollable": true
+							},
+							4,
+							15
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 10
+									}
+								],
+								"rollable": true
+							},
+							4,
+							16
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 10
+									}
+								],
+								"rollable": true
+							},
+							4,
+							16
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 10
+									}
+								],
+								"rollable": true
+							},
+							4,
+							17
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 10
+									}
+								],
+								"rollable": true
+							},
+							4,
+							17
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 12
+									}
+								],
+								"rollable": true
+							},
+							4,
+							18
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 12
+									}
+								],
+								"rollable": true
+							},
+							4,
+							18
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 12
+									}
+								],
+								"rollable": true
+							},
+							4,
+							19
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 12
+									}
+								],
+								"rollable": true
+							},
+							4,
+							20
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 12
+									}
+								],
+								"rollable": true
+							},
+							4,
+							21
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 12
+									}
+								],
+								"rollable": true
+							},
+							4,
+							22
+						]
+					]
+				},
+				{
+					"title": "每環法術位",
+					"colLabels": [
+						"{@filter 1環|spells|level=1|class=bard}",
+						"{@filter 2環|spells|level=2|class=bard}",
+						"{@filter 3環|spells|level=3|class=bard}",
+						"{@filter 4環|spells|level=4|class=bard}",
+						"{@filter 5環|spells|level=5|class=bard}",
+						"{@filter 6環|spells|level=6|class=bard}",
+						"{@filter 7環|spells|level=7|class=bard}",
+						"{@filter 8環|spells|level=8|class=bard}",
+						"{@filter 9環|spells|level=9|class=bard}"
+					],
+					"rowsSpellProgression": [
+						[
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							1,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							2,
+							2,
+							1,
+							1
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Bardic Inspiration|Bard|XPHB|1",
+				"Spellcasting|Bard|XPHB|1",
+				"Expertise|Bard|XPHB|2",
+				"Jack of All Trades|Bard|XPHB|2",
+				{
+					"classFeature": "Bard Subclass|Bard|XPHB|3",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Bard|XPHB|4",
+				"Font of Inspiration|Bard|XPHB|5",
+				{
+					"classFeature": "Subclass Feature|Bard|XPHB|6",
+					"gainSubclassFeature": true
+				},
+				"Countercharm|Bard|XPHB|7",
+				"Ability Score Improvement|Bard|XPHB|8",
+				"Expertise|Bard|XPHB|9",
+				"Magical Secrets|Bard|XPHB|10",
+				"Ability Score Improvement|Bard|XPHB|12",
+				{
+					"classFeature": "Subclass Feature|Bard|XPHB|14",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Bard|XPHB|16",
+				"Superior Inspiration|Bard|XPHB|18",
+				"Epic Boon|Bard|XPHB|19",
+				"Words of Creation|Bard|XPHB|20"
+			],
+			"subclassTitle": "吟遊詩人子職",
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Bard"
+		}
+	],
+	"subclass": [
+		{
+			"name": "軼聞學院",
+			"shortName": "逸聞",
+			"source": "PHB",
+			"className": "Bard",
+			"classSource": "PHB",
+			"page": 54,
+			"srd": true,
+			"reprintedAs": [
+				"Lore|Bard|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"name": "額外魔法祕密",
+					"known": {
+						"6": [
+							{
+								"choose": "level=0;1;2;3"
+							},
+							{
+								"choose": "level=0;1;2;3"
+							}
+						]
+					},
+					"ENG_name": "Additional Magical Secrets"
+				}
+			],
+			"subclassFeatures": [
+				"College of Lore|Bard||Lore||3",
+				"Additional Magical Secrets|Bard||Lore||6",
+				"Peerless Skill|Bard||Lore||14"
+			],
+			"ENG_name": "College of Lore",
+			"ENG_shortName": "Lore"
+		},
+		{
+			"name": "軼聞學院",
+			"shortName": "逸聞",
+			"source": "PHB",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "College of Lore",
+				"source": "PHB",
+				"shortName": "Lore",
+				"className": "Bard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "College of Lore",
+			"ENG_shortName": "Lore"
+		},
+		{
+			"name": "勇氣學院",
+			"shortName": "勇氣",
+			"source": "PHB",
+			"className": "Bard",
+			"classSource": "PHB",
+			"page": 55,
+			"reprintedAs": [
+				"Valor|Bard|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"subclassFeatures": [
+				"College of Valor|Bard||Valor||3",
+				"Extra Attack|Bard||Valor||6",
+				"Battle Magic|Bard||Valor||14"
+			],
+			"ENG_name": "College of Valor",
+			"ENG_shortName": "Valor"
+		},
+		{
+			"name": "勇氣學院",
+			"shortName": "勇氣",
+			"source": "PHB",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "College of Valor",
+				"source": "PHB",
+				"shortName": "Valor",
+				"className": "Bard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "College of Valor",
+			"ENG_shortName": "Valor"
+		},
+		{
+			"name": "迷惑學院",
+			"shortName": "迷惑",
+			"source": "XGE",
+			"className": "Bard",
+			"classSource": "PHB",
+			"page": 14,
+			"reprintedAs": [
+				"Glamour|Bard|XPHB|XPHB"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"innate": {
+						"6": [
+							"command"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"College of Glamour|Bard||Glamour|XGE|3",
+				"Mantle of Majesty|Bard||Glamour|XGE|6",
+				"Unbreakable Majesty|Bard||Glamour|XGE|14"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "College of Glamour",
+			"ENG_shortName": "Glamour"
+		},
+		{
+			"name": "迷惑學院",
+			"shortName": "迷惑",
+			"source": "XGE",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "College of Glamour",
+				"source": "XGE",
+				"shortName": "Glamour",
+				"className": "Bard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"ENG_name": "College of Glamour",
+			"ENG_shortName": "Glamour"
+		},
+		{
+			"name": "劍舞學院",
+			"shortName": "劍舞",
+			"source": "XGE",
+			"className": "Bard",
+			"classSource": "PHB",
+			"page": 15,
+			"edition": "classic",
+			"optionalfeatureProgression": [
+				{
+					"name": "戰鬥風格",
+					"featureType": [
+						"FS:B"
+					],
+					"progression": {
+						"3": 1
+					},
+					"ENG_name": "Fighting Style"
+				}
+			],
+			"subclassFeatures": [
+				"College of Swords|Bard||Swords|XGE|3",
+				"Extra Attack|Bard||Swords|XGE|6",
+				"Master's Flourish|Bard||Swords|XGE|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "College of Swords",
+			"ENG_shortName": "Swords"
+		},
+		{
+			"name": "劍舞學院",
+			"shortName": "劍舞",
+			"source": "XGE",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "College of Swords",
+				"source": "XGE",
+				"shortName": "Swords",
+				"className": "Bard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "劍舞學院",
+					"source": "XGE",
+					"shortName": "劍舞",
+					"className": "Bard",
+					"classSource": "PHB",
+					"ENG_name": "College of Swords"
+				}
+			},
+			"ENG_name": "College of Swords",
+			"ENG_shortName": "Swords"
+		},
+		{
+			"name": "低語學院",
+			"shortName": "低語",
+			"source": "XGE",
+			"className": "Bard",
+			"classSource": "PHB",
+			"page": 16,
+			"edition": "classic",
+			"subclassFeatures": [
+				"College of Whispers|Bard||Whispers|XGE|3",
+				"Mantle of Whispers|Bard||Whispers|XGE|6",
+				"Shadow Lore|Bard||Whispers|XGE|14"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "College of Whispers",
+			"ENG_shortName": "Whispers"
+		},
+		{
+			"name": "低語學院",
+			"shortName": "低語",
+			"source": "XGE",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "College of Whispers",
+				"source": "XGE",
+				"shortName": "Whispers",
+				"className": "Bard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "低語學院",
+					"source": "XGE",
+					"shortName": "低語",
+					"className": "Bard",
+					"classSource": "PHB",
+					"ENG_name": "College of Whispers"
+				}
+			},
+			"ENG_name": "College of Whispers",
+			"ENG_shortName": "Whispers"
+		},
+		{
+			"name": "創造學院",
+			"shortName": "造物術",
+			"source": "TCE",
+			"className": "Bard",
+			"classSource": "PHB",
+			"page": 28,
+			"edition": "classic",
+			"subclassFeatures": [
+				"College of Creation|Bard||Creation|TCE|3",
+				"Animating Performance|Bard||Creation|TCE|6",
+				"Creative Crescendo|Bard||Creation|TCE|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "College of Creation",
+			"ENG_shortName": "Creation"
+		},
+		{
+			"name": "創造學院",
+			"shortName": "造物術",
+			"source": "TCE",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "College of Creation",
+				"source": "TCE",
+				"shortName": "Creation",
+				"className": "Bard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "創造學院",
+					"source": "TCE",
+					"shortName": "造物術",
+					"className": "Bard",
+					"classSource": "PHB",
+					"ENG_name": "College of Creation"
+				}
+			},
+			"ENG_name": "College of Creation",
+			"ENG_shortName": "Creation"
+		},
+		{
+			"name": "雄辯學院",
+			"shortName": "雄辯",
+			"source": "TCE",
+			"className": "Bard",
+			"classSource": "PHB",
+			"page": 29,
+			"otherSources": [
+				{
+					"source": "MOT",
+					"page": 28
+				}
+			],
+			"edition": "classic",
+			"subclassFeatures": [
+				"College of Eloquence|Bard||Eloquence|TCE|3",
+				"Unfailing Inspiration|Bard||Eloquence|TCE|6",
+				"Universal Speech|Bard||Eloquence|TCE|6",
+				"Infectious Inspiration|Bard||Eloquence|TCE|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "College of Eloquence",
+			"ENG_shortName": "Eloquence"
+		},
+		{
+			"name": "雄辯學院",
+			"shortName": "雄辯",
+			"source": "TCE",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"_copy": {
+				"name": "College of Eloquence",
+				"source": "TCE",
+				"shortName": "Eloquence",
+				"className": "Bard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "雄辯學院",
+					"source": "TCE",
+					"shortName": "雄辯",
+					"className": "Bard",
+					"classSource": "PHB",
+					"ENG_name": "College of Eloquence"
+				}
+			},
+			"ENG_name": "College of Eloquence",
+			"ENG_shortName": "Eloquence"
+		},
+		{
+			"name": "靈魂學院",
+			"shortName": "精魂",
+			"source": "VRGR",
+			"className": "Bard",
+			"classSource": "PHB",
+			"page": 28,
+			"reprintedAs": [
+				"Spirits|Bard|XPHB|RHW"
+			],
+			"edition": "classic",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							"guidance#c"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"College of Spirits|Bard||Spirits|VRGR|3",
+				"Spirit Session|Bard||Spirits|VRGR|6",
+				"Mystical Connection|Bard||Spirits|VRGR|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "College of Spirits",
+			"ENG_shortName": "Spirits"
+		},
+		{
+			"name": "靈魂學院",
+			"shortName": "精魂",
+			"source": "VRGR",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"reprintedAs": [
+				"Spirits|Bard|XPHB|RHW"
+			],
+			"_copy": {
+				"name": "College of Spirits",
+				"source": "VRGR",
+				"shortName": "Spirits",
+				"className": "Bard",
+				"classSource": "PHB",
+				"_preserve": {
+					"page": true,
+					"otherSources": true,
+					"referenceSources": true,
+					"srd": true,
+					"basicRules": true,
+					"reprintedAs": true
+				}
+			},
+			"fluff": {
+				"_subclassFluff": {
+					"name": "靈魂學院",
+					"source": "VRGR",
+					"shortName": "精魂",
+					"className": "Bard",
+					"classSource": "PHB",
+					"ENG_name": "College of Spirits"
+				}
+			},
+			"ENG_name": "College of Spirits",
+			"ENG_shortName": "Spirits"
+		},
+		{
+			"name": "舞蹈學院",
+			"shortName": "舞蹈",
+			"source": "XPHB",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"page": 64,
+			"edition": "one",
+			"subclassFeatures": [
+				"College of Dance|Bard|XPHB|Dance|XPHB|3",
+				"Inspiring Movement|Bard|XPHB|Dance|XPHB|6",
+				"Tandem Footwork|Bard|XPHB|Dance|XPHB|6",
+				"Leading Evasion|Bard|XPHB|Dance|XPHB|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "College of Dance",
+			"ENG_shortName": "Dance"
+		},
+		{
+			"name": "迷惑學院",
+			"shortName": "迷惑",
+			"source": "XPHB",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"page": 65,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"charm person|xphb",
+							"mirror image|xphb"
+						],
+						"6": [
+							"command|xphb"
+						]
+					},
+					"innate": {
+						"6": [
+							"command|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"College of Glamour|Bard|XPHB|Glamour|XPHB|3",
+				"Mantle of Majesty|Bard|XPHB|Glamour|XPHB|6",
+				"Unbreakable Majesty|Bard|XPHB|Glamour|XPHB|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "College of Glamour",
+			"ENG_shortName": "Glamour"
+		},
+		{
+			"name": "軼聞學院",
+			"shortName": "逸聞",
+			"source": "XPHB",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"page": 66,
+			"srd52": true,
+			"basicRules2024": true,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"6": [
+							{
+								"choose": "level=0;1;2;3|class=Cleric;Druid;Wizard"
+							},
+							{
+								"choose": "level=0;1;2;3|class=Cleric;Druid;Wizard"
+							}
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"College of Lore|Bard|XPHB|Lore|XPHB|3",
+				"Magical Discoveries|Bard|XPHB|Lore|XPHB|6",
+				"Peerless Skill|Bard|XPHB|Lore|XPHB|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "College of Lore",
+			"ENG_shortName": "Lore"
+		},
+		{
+			"name": "勇氣學院",
+			"shortName": "勇氣",
+			"source": "XPHB",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"page": 67,
+			"edition": "one",
+			"subclassFeatures": [
+				"College of Valor|Bard|XPHB|Valor|XPHB|3",
+				"Extra Attack|Bard|XPHB|Valor|XPHB|6",
+				"Battle Magic|Bard|XPHB|Valor|XPHB|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "College of Valor",
+			"ENG_shortName": "Valor"
+		},
+		{
+			"name": "皓月學院",
+			"shortName": "月亮",
+			"source": "FRHoF",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"page": 16,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"innate": {
+						"3": [
+							{
+								"choose": "level=0|class=druid",
+								"count": 1
+							}
+						]
+					},
+					"prepared": {
+						"6": {
+							"daily": {
+								"1e": [
+									"moonbeam|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"subclassFeatures": [
+				"College of the Moon|Bard|XPHB|Moon|FRHoF|3|FRHoF",
+				"Blessing of Moonlight|Bard|XPHB|Moon|FRHoF|6|FRHoF",
+				"Eventide's Splendor|Bard|XPHB|Moon|FRHoF|14|FRHoF"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "College of the Moon",
+			"ENG_shortName": "Moon"
+		},
+		{
+			"name": "靈魂學院",
+			"shortName": "精魂",
+			"source": "RHW",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"6": {
+							"daily": {
+								"1e": [
+									"spirit guardians|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"subclassFeatures": [
+				"College of Spirits|Bard|XPHB|Spirits|RHW|3|RHW",
+				"Empowered Channeling|Bard|XPHB|Spirits|RHW|6|RHW",
+				"Mystical Connection|Bard|XPHB|Spirits|RHW|14|RHW"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "College of Spirits",
+			"ENG_shortName": "Spirits"
+		}
+	],
+	"classFeature": [
+		{
+			"name": "吟遊激勵",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 1,
+			"entries": [
+				"你可以透過激動人心的話語或音樂激勵他人。為此，你可以在自己回合內用一個附贈動作指定身邊60尺內一個能聽到你聲音的生物（不能指定你自身），並使該生物獲得一個詩人激勵，即一個{@dice d6}的激勵骰。",
+				"在接下來的10分鐘內，該生物可以擲一次骰子，並將擲出的數字加到一次屬性檢定、攻擊檢定或豁免檢定上。該生物可以等到擲出{@dice d20}後再決定是否使用吟遊詩人的激勵骰，但必須在DM宣佈該擲骰成功或失敗之前做出決定。一旦擲出吟遊詩人的激勵骰，該骰子就會消失。一個生物同時只能擁有一個吟遊詩人的激勵骰。",
+				"你能夠使用該特性的次數等於你的魅力調整值（最低一次）。完成一次長休後，你將重獲所有消耗掉的使用次數。",
+				"你產生的激勵骰大小可以在達到本職業的特定等級時增大。第5級時為{@dice d8}，第10級時為{@dice d10}，而第15級時為{@dice d12}。"
+			],
+			"ENG_name": "Bardic Inspiration"
+		},
+		{
+			"name": "施法",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 1,
+			"entries": [
+				"你習得以音樂為媒介隨意解構、分解，再重新構造現實的方法。你的法術是融入你紛繁奏樂中的音符，也是你以各種形式譜奏的魔法樂章。參考{@book 第十章|PHB|10}的施法規則，以及{@book 第十一章|PHB|11}的{@filter 吟遊詩人法術列表|spells|class=bard}。",
+				{
+					"type": "entries",
+					"name": "戲法",
+					"entries": [
+						"第1級時，你從詩人法術列表中選擇兩個戲法作為已知法術。在獲得更高詩人等級後你還可以習得其它的戲法，4級時學習第3個戲法，10級時學習第4個。"
+					],
+					"ENG_name": "Cantrips"
+				},
+				{
+					"type": "entries",
+					"name": "法術位",
+					"entries": [
+						"「吟遊詩人」表顯示你擁有多少法術位，可用來施展一環及更高環階的{@filter 吟遊詩人法術|spells|class=bard}。施展其中一道法術時，你必須消耗一道環階等於或高於該法術環階的法術位。完成一次長休後，你重獲所有已消耗的法術位。",
+						"例如，如果你已經習得1環法術{@spell cure wounds||療傷術}並且有一個1環和一個2環法術位可用，你可以使用任一法術位施放{@spell cure wounds||療傷術}。"
+					],
+					"ENG_name": "Spell Slots"
+				},
+				{
+					"type": "entries",
+					"name": "1環及更高等級已知法術",
+					"entries": [
+						"第1級時，你從詩人法術列表中選擇四個1環法術作為已知法術。",
+						"除了12級、16級、19級和20級之外，你在每次升級時都可以額外選擇學習一個吟遊詩人法術。但是，你只能獲取已有相應環階法術位的法術。例如，當達到第3級時，你可以學習一個新的1環或2環法術。",
+						"另外，你每提升一個詩人等級，可以從詩人法術列表中選擇一個新法術來代替一個已知法術列表中的舊法術，不過你必須已有新法術的相應環階法術位。"
+					],
+					"ENG_name": "Spells Known of 1st Level and Higher"
+				},
+				{
+					"type": "entries",
+					"name": "施法關鍵屬性",
+					"entries": [
+						"你的魔力源於你注入音樂或演說中的心靈力量，因此魅力是你施展吟遊詩人法術的關鍵屬性。每當你的詩人法術需要施法屬性時均指向你的魅力值。而你詩人法術的豁免DC和攻擊檢定，則使用你的魅力調整值。",
+						{
+							"type": "abilityDc",
+							"name": "法術",
+							"attributes": [
+								"cha"
+							],
+							"ENG_name": "Spell"
+						},
+						{
+							"type": "abilityAttackMod",
+							"name": "法術",
+							"attributes": [
+								"cha"
+							],
+							"ENG_name": "Spell"
+						}
+					],
+					"ENG_name": "Spellcasting Ability"
+				},
+				{
+					"type": "entries",
+					"name": "儀式施法",
+					"entries": [
+						"如果你已知法術列表中的某法術帶有儀式標籤，則你可以用這些法術進行儀式施法。"
+					],
+					"ENG_name": "Ritual Casting"
+				},
+				{
+					"type": "entries",
+					"name": "施法法器",
+					"entries": [
+						"你可以使用{@item musical instrument|PHB|樂器}作為施展詩人法術的法器。"
+					],
+					"ENG_name": "Spellcasting Focus"
+				}
+			],
+			"ENG_name": "Spellcasting"
+		},
+		{
+			"name": "全能高手",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 2,
+			"entries": [
+				"第2級起，在你進行屬性檢定時，如果檢定結果不包含你的熟練加值，則你可以將自身熟練加值的一半（向下取整）加入到檢定結果中。"
+			],
+			"ENG_name": "Jack of All Trades"
+		},
+		{
+			"name": "魔法激勵",
+			"source": "TCE",
+			"page": 27,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 2,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"{@i 2級吟遊詩人{@variantrule optional class features|tce|可選特性}}",
+				"如果一個生物擁有來自你的詩人激勵骰子，在他釋放一個恢復生命值或者造成傷害的法術時，他可以擲出激勵骰子並選擇法術的其中一個被法術影響的目標，在對該目標的恢復或者傷害數值上加上詩人激勵骰的擲骰結果。這個詩人激勵骰子隨即被消耗。"
+			],
+			"ENG_name": "Magical Inspiration"
+		},
+		{
+			"name": "休憩曲(d6)",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 2,
+			"entries": [
+				"第2級起，你可以在短休期間以舒緩的音樂或演說幫助受傷的盟友恢復活力。短休結束時，如果你或任何能聽見你表演的友方生物花費生命骰恢復生命值，每個這類生物都額外恢復{@dice 1d6}點生命值。",
+				"該額外恢復的數值在達到特定職業等級時可以再增加。在9級時增加到{@dice 1d8}，在13級時增加到{@dice 1d10}，在17級時增加到{@dice 1d12}。"
+			],
+			"ENG_name": "Song of Rest (d6)"
+		},
+		{
+			"name": "吟遊學院",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 3,
+			"entries": [
+				"第3級時，你將選擇加入一個吟遊詩人的學院協會，以探尋更精深的技藝。隨後，你將在第3、第6和第14級時獲得相應的職業特性。"
+			],
+			"ENG_name": "Bard College"
+		},
+		{
+			"name": "專精",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 3,
+			"entries": [
+				"第3級起，你選擇兩個已有的技能熟練項。此後你進行所選技能的屬性檢定時，可以使用雙倍的熟練加值。",
+				"第10級時，你可以再選擇另外兩個已有的技能熟練項從該特性中獲益。"
+			],
+			"ENG_name": "Expertise"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 4,
+			"entries": [
+				"當你達到4級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "多才詩人",
+			"source": "TCE",
+			"page": 27,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 4,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"{@i 4級吟遊詩人{@variantrule optional class features|tce|可選特性}}",
+				"當你的吟遊詩人職業等級抵達能讓你獲得屬性值提升職業特性時，你能進行以下一項改變。這種變化代表著你改變了使用法術和技能的重點：",
+				{
+					"type": "list",
+					"items": [
+						"替換一個你已經選擇專精的技能，你可以選擇專精於另一個你已經有熟練但還沒有專精的技能。之後，你原先專精於的技能變回熟練而非專精。",
+						"將你從該職業的施法特性中學到的一個戲法替換為{@filter 吟遊詩人法術列表|spells|level=0|class=bard}中的另一個戲法。"
+					]
+				}
+			],
+			"ENG_name": "Bardic Versatility"
+		},
+		{
+			"name": "詩人激勵(d8)",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 5,
+			"entries": [
+				"當你達到5級時，你的詩人激勵骰變為一個{@dice d8}。"
+			],
+			"ENG_name": "Bardic Inspiration (d8)"
+		},
+		{
+			"name": "激勵涌泉",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 5,
+			"entries": [
+				"第5級起，你可以在完成短休或長休後恢復你已消耗的詩人激勵次數。"
+			],
+			"ENG_name": "Font of Inspiration"
+		},
+		{
+			"name": "吟遊學院能力",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 6,
+			"entries": [
+				"第6級時，你從你的吟遊詩人學院獲得一個相應的職業特性。"
+			],
+			"ENG_name": "Bard College feature"
+		},
+		{
+			"name": "反制迷惑",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 6,
+			"entries": [
+				"第6級起，你獲得用音樂或話語來打斷心控效應的能力。你可以使用一個動作開始一場持續至你的下一回合結束的演出。在這段時間內，你與你身邊30尺內的友方生物進行對抗{@condition frightened||恐慌}或{@condition charmed||魅惑}效應的豁免檢定具有優勢。該生物必須能聽到你的聲音才能獲得此增益。這場表演在你陷入{@condition incapacitated||失能}狀態、被沉默、或主動終止（無需動作）時會提前結束。"
+			],
+			"ENG_name": "Countercharm"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 8,
+			"entries": [
+				"當你達到第8級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過該特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "紓壓曲(d8)",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 9,
+			"entries": [
+				"第9級時，從休憩曲獲得的額外生命值增加到{@dice 1d8}。"
+			],
+			"ENG_name": "Song of Rest (d8)"
+		},
+		{
+			"name": "吟遊激勵(d10)",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 10,
+			"entries": [
+				"第10級時，你的詩人激勵骰變為{@dice d10}。"
+			],
+			"ENG_name": "Bardic Inspiration (d10)"
+		},
+		{
+			"name": "專精",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 10,
+			"entries": [
+				"第10級時，你可以再選擇另外兩個已有的技能熟練項。此後你進行所選技能的屬性檢定時，可以使用雙倍的熟練加值。"
+			],
+			"ENG_name": "Expertise"
+		},
+		{
+			"name": "魔法祕密",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 10,
+			"entries": [
+				"第10級起，你從旋律中瞭解了大量的魔法知識，使你可以從所有職業的法術列表裡選擇兩個法術（包括詩人列表）加入已知法術中。你所選擇的法術必須是你當前等級可以施展的環階法術或戲法。",
+				"所選法術對你而言視為吟遊詩人法術，且包含在\"詩人職業表\"上\"已知法術\"一欄所記錄的數量之內。",
+				"第14和第18級時，你可以分別使用此特性再習得兩個任選法術。"
+			],
+			"ENG_name": "Magical Secrets"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 12,
+			"entries": [
+				"當你達到第12級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過該特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "紓壓曲(d10)",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 13,
+			"entries": [
+				"第13級時，由休憩曲獲得的額外生命值增加到{@dice 1d10}。"
+			],
+			"ENG_name": "Song of Rest (d10)"
+		},
+		{
+			"name": "吟遊學院能力",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 14,
+			"entries": [
+				"第14級時，你從你的吟遊詩人學院獲得一個相應的職業特性。"
+			],
+			"ENG_name": "Bard College feature"
+		},
+		{
+			"name": "魔法祕密",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 14,
+			"entries": [
+				"在14級時，你可以從所有職業的法術列表裡選擇兩個法術（包括詩人列表）加入已知法術中。你所選擇的法術必須是你當前等級可以施展的環階法術或戲法。",
+				"所選法術對你而言視為吟遊詩人法術，且包含在\"詩人職業表\"上\"已知法術\"一欄所記錄的數量之內。"
+			],
+			"ENG_name": "Magical Secrets"
+		},
+		{
+			"name": "吟遊激勵(d12)",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 15,
+			"entries": [
+				"在15級時，你的詩人激勵骰變為{@dice d12}。"
+			],
+			"ENG_name": "Bardic Inspiration (d12)"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 16,
+			"entries": [
+				"當你達到16級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "紓壓曲(d12)",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 17,
+			"entries": [
+				"在17級時，透過休憩曲獲得的額外生命值增加到{@dice 1d12}。"
+			],
+			"ENG_name": "Song of Rest (d12)"
+		},
+		{
+			"name": "魔法祕密",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 18,
+			"entries": [
+				"在18級時，你可以從所有職業的法術列表裡選擇兩個法術（包括詩人列表）加入已知法術中。你所選擇的法術必須是你當前等級可以施展的環階法術或戲法。",
+				"所選法術對你而言視為吟遊詩人法術，且包含在\"詩人職業表\"上\"已知法術\"一欄所記錄的數量之內。"
+			],
+			"ENG_name": "Magical Secrets"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 19,
+			"entries": [
+				"當你達到19級時，你可以選擇一項屬性值提升2點，或選擇兩項屬性各提升1點。不過你不能透過此特性讓屬性超過20。",
+				"如果你的DM允許使用專長，你也可以選擇一個{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "卓越激勵",
+			"source": "PHB",
+			"page": 51,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"level": 20,
+			"entries": [
+				"第20級起，你骰先攻時若沒有可用的詩人激勵次數，則你獲得一次使用次數。"
+			],
+			"ENG_name": "Superior Inspiration"
+		},
+		{
+			"name": "吟遊激勵",
+			"source": "XPHB",
+			"page": 59,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你可以透過言語、音樂或舞蹈，以超自然力量激勵他人。這份激勵由一枚詩人激勵骰代表；該骰為{@dice d6}。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "使用詩人激勵",
+							"entries": [
+								"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以激勵位於你 60 尺內的另一名能聽見或看見你的生物。那名生物獲得一枚你的詩人激勵骰。一個生物同時只能擁有一枚詩人激勵骰。",
+								"在接下來的 1 小時內，當那名生物在一次{@variantrule D20 Test|XPHB|D20 檢定}中失敗時，那名生物可以投擲詩人激勵骰並將擲骰結果附加到該次{@dice d20}中，這可能將失敗變為成功。詩人激勵骰將在投擲時被消耗。"
+							],
+							"ENG_name": "Using Bardic Inspiration"
+						},
+						{
+							"type": "entries",
+							"name": "使用次數",
+							"entries": [
+								"你可以授予詩人激勵骰的次數等於你的魅力調整值（最低為 1），當你完成一次{@variantrule Long Rest|XPHB|長休}時，你重獲所有被消耗的使用次數。"
+							],
+							"ENG_name": "Number of Uses"
+						},
+						{
+							"type": "entries",
+							"name": "高等級時",
+							"entries": [
+								"你的詩人激勵骰會在你到達特定吟遊詩人等級時改變，如吟遊詩人特性表中的詩人骰所示。詩人骰將在 5 級時變為{@dice d8}，在10級時變為{@dice d10}，在 15 級時變為{@dice d12}。"
+							],
+							"ENG_name": "At Higher Levels"
+						}
+					]
+				}
+			],
+			"ENG_name": "Bardic Inspiration"
+		},
+		{
+			"name": "施法",
+			"source": "XPHB",
+			"page": 59,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"你在你的吟遊藝術中學會了如何施展法術。參見{@book 第七章|XPHB|7}有關施法的規則。下述資訊將詳述如何將這些規則應用於吟遊詩人法術，吟遊詩人法術詳見本章後文職業描述中的{@filter 吟遊詩人法術列表|spells|class=Bard}。",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "戲法",
+							"entries": [
+								"你已知2個你在{@filter 吟遊詩人法術列表|spells|class=Bard}中選擇的吟遊詩人戲法。推薦選擇{@spell Dancing Lights|XPHB|舞光術}和{@spell Vicious Mockery|XPHB|惡言相加}。",
+								"每當你獲得一個吟遊詩人等級時，你都能將透過此特性已知的其中一個戲法替換為另一個你從{@filter 吟遊詩人法術列表|spells|class=Bard}中選擇的吟遊詩人戲法。",
+								"當你的吟遊詩人等級達到4級和10級時，你都能習得另一個你從{@filter 吟遊詩人法術列表|spells|class=Bard}中選擇的吟遊詩人戲法，如吟遊詩人特性表中戲法一列所示。"
+							],
+							"ENG_name": "Cantrips"
+						},
+						{
+							"type": "entries",
+							"name": "法術位",
+							"entries": [
+								"吟遊詩人特性表顯示了你可用於施放1環及以上法術的法術位數量。你在完成一次{@variantrule Long Rest|XPHB|長休}時恢復所有已消耗的法術位。"
+							],
+							"ENG_name": "Spell Slots"
+						},
+						{
+							"type": "entries",
+							"name": "1環及以上的準備法術",
+							"entries": [
+								"你準備一份可供此特性施展的1環及更高環階法術列表。起始時，從{@filter 吟遊詩人法術列表|spells|class=Bard}中選擇四道1環法術。推薦選擇{@spell Charm Person|XPHB|魅惑類人}、{@spell Color Spray|XPHB|七彩噴射}、{@spell Dissonant Whispers|XPHB|不諧低語}和{@spell Healing Word|XPHB|治癒真言}。",
+								"已準備法術數量會隨你吟遊詩人等級的提升而增加，如吟遊詩人特性表中的準備法術一列所示。每當這一列的數字增加時，從{@filter 吟遊詩人法術列表|spells|class=Bard}中選擇額外法術準備，直至已準備法術的數量與表格中的數字一致。你必須擁有與準備法術的環階相對應環階的法術位。例如，如果你是一位3級吟遊詩人，則你的準備法術列表能包括六道一環或二環的吟遊詩人法術，隨意組合。",
+								"如果其他吟遊詩人特性給了你永遠已準備的法術，這些法術不計入你以此法準備的法術數量，但這些法術對你而言都視為吟遊詩人法術。"
+							],
+							"ENG_name": "Prepared Spells of Level 1+"
+						},
+						{
+							"type": "entries",
+							"name": "改變你的準備法術",
+							"entries": [
+								"每當你獲得一個吟遊詩人等級時，你就可以將你準備列表上的一道法術替換為你擁有對應環階法術位的另一道吟遊詩人法術。"
+							],
+							"ENG_name": "Changing Your Prepared Spells"
+						},
+						{
+							"type": "entries",
+							"name": "施法關鍵屬性",
+							"entries": [
+								"你吟遊詩人法術的施法屬性是魅力。"
+							],
+							"ENG_name": "Spellcasting Ability"
+						},
+						{
+							"type": "entries",
+							"name": "施法法器",
+							"entries": [
+								"你可以使用{@item Musical Instrument|XPHB|樂器}作為你吟遊詩人法術的{@variantrule Spellcasting Focus|XPHB|法器}。"
+							],
+							"ENG_name": "Spellcasting Focus"
+						}
+					]
+				}
+			],
+			"ENG_name": "Spellcasting"
+		},
+		{
+			"name": "專精",
+			"source": "XPHB",
+			"page": 60,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"你獲得兩項由你選擇的你已熟練的技能的{@variantrule Expertise|XPHB|專精}。推薦選擇{@skill Performance|XPHB|表演}和{@skill Persuasion|XPHB|遊說}，如果你具有這兩項技能的熟練。",
+				"當你的吟遊詩人等級為9級時，你額外再獲得兩項由你選擇的你已熟練的技能的{@variantrule Expertise|XPHB|專精}。"
+			],
+			"ENG_name": "Expertise"
+		},
+		{
+			"name": "全能高手",
+			"source": "XPHB",
+			"page": 60,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"你可以將你{@variantrule Proficiency|XPHB|熟練加值}的一半（向下取整）新增到任何你不具備其技能熟練並無法透過其他方式應用{@variantrule Proficiency|XPHB|熟練加值}的屬性檢定中。",
+				"例如，如果你要進行力量（{@skill Athletics|XPHB|運動}）檢定，且不具有{@skill Athletics|XPHB|運動}熟練，則你可以將{@variantrule Proficiency|XPHB|熟練加值}的一半新增到檢定中。",
+				{
+					"type": "inset",
+					"name": "吟遊詩人的曲目",
+					"entries": [
+						"你扮演的吟遊詩人在吟誦古代英雄壯舉時敲{@item drum|XPHB|鼓}相伴嗎？他是撥動{@item lute|XPHB|魯特琴}伴著低唱浪漫的旋律？還是演繹激昂的詠歎調？是朗誦經典悲劇中最震撼人心的獨白？還是說他會在戰鬥中以民俗舞蹈的節奏協調戰友的移動？又或者他會創作俏皮的打油詩？",
+						"當你扮演吟遊詩人時，你需要考慮你鐘意的藝術表演風格、你可能喚起的情緒以及能激發你創作靈感的主題。你的詩歌被大自然的美好瞬間啟發，亦或是對傷感失去的不散回想？你更偏好恢弘盛大的讚美詩，還是鬧騰喧囂的酒館小曲兒？你是被逝者的哀悼還是慶祝時的喜悅所吸引？你跳起的是歡快的快步舞曲又或者是你精心編排、充滿深意的舞步？你是專注於其中之一，還是以掌握所有風格為目標努力？"
+					],
+					"ENG_name": "A Bard's Repertoire"
+				}
+			],
+			"ENG_name": "Jack of All Trades"
+		},
+		{
+			"name": "吟遊詩人子職",
+			"source": "XPHB",
+			"page": 60,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"你選擇獲得一項吟遊詩人子職。子職是一種特化，在特定的吟遊詩人等級給予你對應的獨特能力。此後你將獲得你所選的子職所有能力——只要其所需等級等於或低於你的吟遊詩人等級。"
+			],
+			"ENG_name": "Bard Subclass"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 61,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 4,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其他你滿足條件的{@5etools 專長|feats.html}。如吟遊詩人特性表所示，你還會在第8，第12，第16級時再次獲得本特性。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "激勵涌泉",
+			"source": "XPHB",
+			"page": 61,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"現在，當你完成一次{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}時，你重獲所有被消耗的詩人激勵使用次數。",
+				"此外，你可以消耗一個法術位（無需動作）來重獲一次被消耗的詩人激勵使用次數。"
+			],
+			"ENG_name": "Font of Inspiration"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 61,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 6,
+			"entries": [
+				"你從你的吟遊詩人子職中獲得一個特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "反制迷惑",
+			"source": "XPHB",
+			"page": 61,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 7,
+			"entries": [
+				"你可以用帶有力量的音符或話語來破壞影響心靈的效應。若你或位於你30尺內的一名生物在對抗施加{@condition Charmed|XPHB|魅惑}或{@condition Frightened|XPHB|恐慌}狀態的效應的豁免檢定中失敗，你能以一個{@variantrule Reaction|XPHB|反應}重骰這次豁免，這次重骰具有{@variantrule Advantage|XPHB|優勢}。"
+			],
+			"ENG_name": "Countercharm"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 61,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 8,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "專精",
+			"source": "XPHB",
+			"page": 61,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 9,
+			"entries": [
+				"你獲得兩項由你選擇的你已熟練的技能的{@variantrule Expertise|XPHB|專精}。"
+			],
+			"ENG_name": "Expertise"
+		},
+		{
+			"name": "魔法祕密",
+			"source": "XPHB",
+			"page": 61,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 10,
+			"entries": [
+				"你從各種魔法傳統中學到了奧秘。每當你達到吟遊詩人等級（包括此等級）且吟遊詩人特性表格中的準備法術數值增加時，你可以從{@filter 吟遊詩人|spells|class=Bard}、{@filter 牧師|spells|class=Cleric}、{@filter 德魯伊|spells|class=Druid}和{@filter 法師|spells|class=Wizard}的{@filter 法術列表|spells|class=Bard;Cleric;Druid;Wizard}中選擇任何新的準備法術，且所選法術對你而言視為吟遊詩人法術（參見職業章節中的法術列表）。此外，每當你替換為此職業準備的法術時，你可以從這些列表中選擇一個法術進行替換。"
+			],
+			"ENG_name": "Magical Secrets"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 61,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 12,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "子職業能力",
+			"source": "XPHB",
+			"page": 61,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 14,
+			"entries": [
+				"你從你的吟遊詩人子職中獲得一個特性。"
+			],
+			"ENG_name": "Subclass Feature"
+		},
+		{
+			"name": "屬性值提升",
+			"source": "XPHB",
+			"page": 61,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 16,
+			"entries": [
+				"你獲得{@feat Ability Score Improvement|XPHB|屬性值提升}專長或其它你滿足條件的{@5etools 專長|feats.html}。"
+			],
+			"ENG_name": "Ability Score Improvement"
+		},
+		{
+			"name": "卓越激勵",
+			"source": "XPHB",
+			"page": 61,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 18,
+			"entries": [
+				"當你投擲{@variantrule Initiative|XPHB|先攻}時，若你的詩人激勵使用次數不足兩次，你重獲被消耗的詩人激勵使用次數到兩次為止。"
+			],
+			"ENG_name": "Superior Inspiration"
+		},
+		{
+			"name": "傳奇恩惠",
+			"source": "XPHB",
+			"page": 61,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 19,
+			"entries": [
+				"你獲得一項{@filter 傳奇恩惠專長|feats|category=EB}或其他一項你選擇的適用的{@5etools 專長|feats.html}。推薦選擇法術{@feat Boon of Spell Recall|XPHB|法術溯回之恩惠}。"
+			],
+			"ENG_name": "Epic Boon"
+		},
+		{
+			"name": "創生聖言",
+			"source": "XPHB",
+			"page": 61,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 20,
+			"entries": [
+				"你掌握了創生聖言的其中兩字：\"生\"與\"死\"。因此，你總是準備了法術{@spell Power Word Heal|XPHB|律令醫療}和{@spell Power Word Kill|XPHB|律令死亡}。當你施展這兩道法術時，你可以選擇第二個生物作為目標，那名生物必須位於第一個目標 10 尺內。"
+			],
+			"ENG_name": "Words of Creation"
+		}
+	],
+	"subclassFeature": [
+		{
+			"name": "軼聞學院",
+			"source": "PHB",
+			"page": 54,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Lore",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"逸聞學院的詩人們無所不知。他們從日常點滴中搜集資訊，從名家古墓到鄉野傳言無孔不入。無論是小酒館的歌唱家還是大宮廷裡的大作家，都會運用自己詩人的天賦來聚集更多的聽眾。掌聲響畢後，聚攏的聽眾將會發現相互之間最真實的一面：忠貞的信徒向牧師坦誠自己的信仰；仁義的民眾也向國王表達內心的忠誠。",
+				"詩人們只忠於其追求的真與美，而不向任何君王或神奉承盡忠。那些供養吟遊詩人的貴族基本都理解他們的使者或顧問更趨向於誠實而非利益。",
+				"該學院的成員會在圖書館甚至大學院校裡蒐集知識，與會友交流分享所見所聞。在節日或公眾事件期間他們也會見面，然後痛快的暢所欲言。他們通常喜歡揭發腐敗與謊言，並嘲弄那些高高在上的要人與權威。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bonus Proficiencies|Bard||Lore||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Cutting Words|Bard||Lore||3"
+				}
+			],
+			"ENG_name": "College of Lore"
+		},
+		{
+			"name": "額外熟練",
+			"source": "PHB",
+			"page": 54,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Lore",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"第3級選擇逸聞學院時，你獲得三個自選技能的熟練項。"
+			],
+			"ENG_name": "Bonus Proficiencies"
+		},
+		{
+			"name": "語出驚人",
+			"source": "PHB",
+			"page": 54,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Lore",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"同樣從第3級起，你學會以機鋒干擾、迷惑他人，削弱其信心與能力。當距你60尺內、你能看見的一個生物進行攻擊檢定、屬性檢定或傷害擲骰時，你可以用反應消耗一次詩人激勵，擲一枚詩人激勵骰，並從該生物的擲骰結果中減去骰值。你可以在該生物擲骰後，但在DM判定攻擊檢定或屬性檢定是否成功之前，或在該生物造成傷害之前，決定是否使用此特性。無法聽見你或免疫{@condition charmed||魅惑}狀態的生物免疫此特性。"
+			],
+			"ENG_name": "Cutting Words"
+		},
+		{
+			"name": "額外魔法祕密",
+			"source": "PHB",
+			"page": 54,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Lore",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級時，你從任意職業的法術列表裡選擇兩個法術加入已知法術中。你選擇的法術必須是你當前等級可以施展的環階或戲法。所選法術對你而言視為吟遊詩人法術，但不包含在\"詩人職業表\"上\"已知法術\"一欄的所記錄的數量之內。"
+			],
+			"ENG_name": "Additional Magical Secrets"
+		},
+		{
+			"name": "絕代技能",
+			"source": "PHB",
+			"page": 54,
+			"srd": true,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Lore",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"第14級起，你進行屬性檢定時，可以花費一次詩人激勵次數並擲一次激勵骰，然後將結果加到你的屬性檢定上。你可以在擲完屬性檢定後，DM宣佈結果前決定是否使用此特性。"
+			],
+			"ENG_name": "Peerless Skill"
+		},
+		{
+			"name": "勇氣學院",
+			"source": "PHB",
+			"page": 55,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Valor",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entries": [
+				"勇氣學院是那些懷念逝去英雄的歌者聚集之地，也是新英雄詩篇的誕生地。詩人們或匯聚在金色大廳裡，或圍坐在熊熊篝火旁，頌唱著古往今來那些英勇事蹟。他們行走大陸親身見識體驗那些偉大的事件，確保那些值得記憶的事不會被世界所遺忘。他們以激昂的詩歌激勵旁人，向著英雄們的道路不倦的前進。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bonus Proficiencies|Bard||Valor||3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Combat Inspiration|Bard||Valor||3"
+				}
+			],
+			"ENG_name": "College of Valor"
+		},
+		{
+			"name": "額外熟練",
+			"source": "PHB",
+			"page": 55,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Valor",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"在第3級選擇勇氣學院時，你獲得中甲、盾牌和軍用武器的熟練項。"
+			],
+			"ENG_name": "Bonus Proficiencies"
+		},
+		{
+			"name": "戰鬥激勵",
+			"source": "PHB",
+			"page": 55,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Valor",
+			"subclassSource": "PHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"第3級起，你學會里如何激勵他人作戰。從你身上獲得詩人激勵的生物投擲武器傷害擲骰時，可以使用該激勵骰並將其骰值加入本次傷害擲骰中。另外，從你身上獲得詩人激勵的生物被攻擊時，該生物可以用它的反應使用該激勵骰，並將擲骰結果加入到它對抗該次攻擊的AC中，該特性可以使用於攻擊檢定揭示後，但必須在命中與否宣佈之前使用。"
+			],
+			"ENG_name": "Combat Inspiration"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "PHB",
+			"page": 55,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Valor",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級起，你在自己回合內執行{@action Attack||攻擊}動作時可以攻擊兩次而非一次。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "戰鬥魔法",
+			"source": "PHB",
+			"page": 55,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Valor",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"第14級起，你可以自如地同時使用音樂魔法和武器。每當用動作施展一個詩人法術時，你同時還可以用附贈動作發動一次武器攻擊。"
+			],
+			"ENG_name": "Battle Magic"
+		},
+		{
+			"name": "創造學院",
+			"source": "TCE",
+			"page": 27,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Creation",
+			"subclassSource": "TCE",
+			"level": 3,
+			"entries": [
+				"吟遊詩人相信這個宇宙是一個藝術作品是第一群的巨龍和神的造物。這種創造工作包含了韻律，並且一直到今天，透過我們處在的現實，都能聽到其嫋嫋不絕的迴音。這種有魔力的韻律被稱作造物之歌。創造學院的吟遊詩人引用這原始的歌曲，以此為基礎創作舞蹈，音樂和詩篇。他們的師長們大多如此教誨：\"在日月週轉出現之前，那一曲頌歌就已經存在於這世上，它喚醒了這個世界的第一次黎明破曉。它的旋律是如此的歡快，就連樹木和石頭聽了也會開口歌唱。世間萬物，包括樹木和石頭，都無時不吟唱著這曲子。學習這造物之歌吧，我的學生們，你也能讓群山與你合唱，與你共舞。\"",
+				"\"在日月週轉出現之前，那一曲頌歌就已經存在於這世上，它喚醒了這個世界的第一次黎明破曉。它的旋律是如此的歡快，就連樹木和石頭聽了也會開口歌唱。世間萬物，包括樹木和石頭，都無時不吟唱著這曲子。學習這造物之歌吧，我的學生們，你也能讓群山與你合唱，與你共舞。\"",
+				"矮人和侏儒們經常鼓勵他們之中的吟遊詩人去學習造物之歌，以之為師。而在龍裔之間，造物之歌有著崇高的地位，因為傳說中所描繪的巴哈姆特和提亞馬特巨龍中的最傑出者是造物之歌最早的兩位歌者。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Mote of Potential|Bard||Creation|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Performance of Creation|Bard||Creation|TCE|3"
+				}
+			],
+			"ENG_name": "College of Creation"
+		},
+		{
+			"name": "潛能微塵",
+			"source": "TCE",
+			"page": 27,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Creation",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 第3級創造學院特性}",
+				"每當你給予一個生物詩人激勵骰時，你可以唱出造物之歌的一個音符，創造一團微小的潛能微塵，在那個生物五尺以內的軌道上環繞。這個微塵是無形且不可被摧毀的，它將在這個詩人激勵骰被消耗掉前一直存在。這團微塵看起來像一個音符，或是一顆星星，一朵花，抑或其他任何一種藝術或者生命的符號，這將由你來決定。",
+				"當這個生物使用那個詩人激勵骰時，這團微塵將會根據這個詩人激勵骰被使用的方式即用於屬性檢定、攻擊檢定還是豁免檢定產生不同的額外效果。具體細節如下所示：",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "屬性檢定",
+							"entry": "當該生物將詩人激勵骰用於增益屬性檢定時，他可以重新擲一次詩人激勵骰並且選擇使用其中一個激勵骰結果以使用。這團微塵會炸開，放射出多彩而無害的閃光。",
+							"ENG_name": "Ability Check"
+						},
+						{
+							"type": "item",
+							"name": "攻擊檢定",
+							"entry": "當該生物將詩人激勵骰用於增益攻擊檢定時，擲出詩人激勵骰後，這團微塵會立刻如雷霆般破碎。該生物這次攻擊的目標以及目標周圍5尺範圍內的、你能看見的、由你選擇的所有生物必須透過一次對抗你法術豁免DC的體質豁免，若豁免失敗，將會承受等同於該詩人激勵骰所擲結果的雷鳴傷害。",
+							"ENG_name": "Attack Roll"
+						},
+						{
+							"type": "item",
+							"name": "豁免檢定",
+							"entry": "當該生物將詩人激勵骰用於增益豁免檢定時，擲出詩人激勵骰後，這團微塵會立刻伴隨著一段舒緩的音樂消失不見，給予這個生物等同於該詩人激勵骰所擲結果加上你的魅力調整值的臨時生命值（至少1點臨時生命值）。",
+							"ENG_name": "Saving Throw"
+						}
+					]
+				}
+			],
+			"ENG_name": "Mote of Potential"
+		},
+		{
+			"name": "造物表演",
+			"source": "TCE",
+			"page": 27,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Creation",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 第3級創造學院特性}",
+				"以一個動作，你可以引導造物之歌的魔力來創造一個你選擇的非魔法物品，它會在你選擇的距離你10尺內的一處未被佔據的空間裡生成。它必須要生成在液體中或是表面上的一個可以支撐它的地方。這件物品的價值不能超過你吟遊詩人等級的20倍gp，而且必須是中型或者更小的物品。這件物品會閃爍著柔和的微光。當一個生物觸碰它的時候，可以隱約聽到音樂。在被創造出等同於你的熟練加值數的小時之後，這件物品會消失。你可以透過此方法創造的各種物品，{@book 玩家手冊|PHB|5}中的裝備章節裡的物品大多數物品就是很好的例子。",
+				"每當你用這一特性創造出一件物品後，直到下一次長休結束前你都不能再次使用這個能力。你也可以消耗一個2環或者更高階的法術位去再次使用這個能力。你同時只能保持一件以此法被創造出的物品。如果在你使用這個能力創造物品時已經有一件被創造出來的物品了，那麼那個舊的物品會立刻消失不見。",
+				"你創造的物品都大小限制會隨著你的吟遊詩人等級提高而增長。6級時你可以創造出大型物品，14級時你可以創造出巨型物品。"
+			],
+			"ENG_name": "Performance of Creation"
+		},
+		{
+			"name": "活化表演",
+			"source": "TCE",
+			"page": 27,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Creation",
+			"subclassSource": "TCE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 第6級創造學院特性}",
+				"以一個動作，你可以活化你周圍30尺內的一個你可以看見的、未被裝著或攜帶的大型或者更小的非魔法物品。這件活化的物品將會使用如下{@creature Dancing Item|TCE|舞空物品}的屬性，並且使用你的熟練加值（PB）。這件物品將會對你以及你的夥伴保持友好，而且會聽從你的命令。它將持續保持活性一個小時，如果它生命值降低為0、或你死亡，它也會提前失去活性。",
+				"在戰鬥中，該物品將會與你共用先攻，並會在你的回合後立刻行動。它可以自行移動並執行自己的反應，不過除非你在你的回合中使用附贈動作命令其執行其他動作，否則它在它的回合只會進行{@action Dodge||迴避}動作。它可以執行其動作列表中的動作或是其他動作。如果你{@condition incapacitated||失能}，那麼這件活化物品會執行它選擇的任意動作，而不僅僅是{@action Dodge||迴避}。",
+				"當你使用詩人激勵特性時，你也可以將為這個活化物品的指令作為你發出詩人激勵的附贈動作的一部分發出。",
+				"每當你用這一特性活化一件物品後，直到下一次長休結束前你都不能再次使用這個能力。你可以消耗一個3環或者更高的法術位去重製這個能力的使用次數。你同時只能保持一件以此法被活化的物品。如果在你使用這個能力時，已經有一件受到此特性影響的{@creature dancing item|TCE|舞空物品}，那麼那個舊的物品會立刻停止不動，變為無生命。"
+			],
+			"ENG_name": "Animating Performance"
+		},
+		{
+			"name": "高潮樂章",
+			"source": "TCE",
+			"page": 27,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Creation",
+			"subclassSource": "TCE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"{@i 第14級創造學院特性}",
+				"當你使用造物表演特性創造物品時，你可以一次性創造多件物品，其數量等於你的魅力調整值（最低為兩件物品）。如果你創造新的物品後，物品的總數超過了這個上限，那麼你可以選擇你先前創造的物品中的哪幾件將會消失不見。你所創造的物品中只有一件可以達到你創造物品的最大尺寸，其他的必須是小型或者微型。",
+				"當使用造物表演創造物品時，你不再受到gp價值的限制。"
+			],
+			"ENG_name": "Creative Crescendo"
+		},
+		{
+			"name": "雄辯學院",
+			"source": "TCE",
+			"page": 29,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Eloquence",
+			"subclassSource": "TCE",
+			"level": 3,
+			"entries": [
+				"雄辯學院的學徒們熟練的掌握了演說的藝術。這些吟遊詩人舞動著牢不可破的邏輯與誇張的文字遊戲二重奏，用邏輯的論斷與叩擊心絃的感染力，順著觀眾的情感不斷出擊，贏取懷疑者的堅信和貶低者的叫好。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Silver Tongue|Bard||Eloquence|TCE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Unsettling Words|Bard||Eloquence|TCE|3"
+				}
+			],
+			"ENG_name": "College of Eloquence"
+		},
+		{
+			"name": "巧舌如簧",
+			"source": "TCE",
+			"page": 29,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Eloquence",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級雄辯學院特性}",
+				"你是語言的大師，懂得在合適的時刻說出正確的話語。當你在進行一次魅力（{@skill Persuasion||遊說}）檢定或魅力（{@skill Deception||欺瞞}）檢定時，如果你可以將9或更低的{@dice d20}骰值全部視為10。"
+			],
+			"ENG_name": "Silver Tongue"
+		},
+		{
+			"name": "擾神之詞",
+			"source": "TCE",
+			"page": 29,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Eloquence",
+			"subclassSource": "TCE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級雄辯學院特性}",
+				"你可以編造一些帶有魔力的話語，擾亂一個生物的心神，使其自我懷疑。消耗一個附贈動作，你可以消耗一個詩人激勵骰，選擇一個你可見的距你60尺以內的生物。擲出詩人激勵骰，在你的下一個回合開始前，該生物的下一次豁免檢定將會減去這個激勵骰所投出的值。"
+			],
+			"ENG_name": "Unsettling Words"
+		},
+		{
+			"name": "不竭鼓舞",
+			"source": "TCE",
+			"page": 29,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Eloquence",
+			"subclassSource": "TCE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 第6級雄辯學院特性}",
+				"你的激勵言語是如此的具有感染力，以至於被鼓舞的人感受到他們必須行，不行也得行的做到成功。當一個生物使用了你的詩人激勵骰子，將結果加入到攻擊檢定、屬性檢定、或豁免檢定中，但仍然失敗了，他可以保留這個詩人激勵骰而不消耗。"
+			],
+			"ENG_name": "Unfailing Inspiration"
+		},
+		{
+			"name": "統一言說",
+			"source": "TCE",
+			"page": 29,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Eloquence",
+			"subclassSource": "TCE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 第6級雄辯學院特性}",
+				"你獲得使任何生物都能理解你話語的能力。以一個動作，選擇距你60尺內的一個或多個生物，數量至多等於你的魅力調整值（至少一個生物）。在接下來1小時內，無論你使用何種語言，所選生物都能以魔法理解你。",
+				"每當你用這一能力，直到下一次長休結束前你都不能再次使用這個能力。你也可以消耗任意一個的法術位去再次使用這個能力。"
+			],
+			"ENG_name": "Universal Speech"
+		},
+		{
+			"name": "啓悟傳播",
+			"source": "TCE",
+			"page": 29,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Eloquence",
+			"subclassSource": "TCE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"{@i 第14級雄辯學院特性}",
+				"當你成功激勵一個生物時，你的雄辯之力可以傳遞給另一個生物。當距你60尺內的一個生物將你的一枚詩人激勵骰加到屬性檢定、攻擊檢定或豁免，且該擲骰成功時，你可以用反應鼓勵距你60尺內、能聽見你的一個不同生物（不能是你自己），使其獲得一枚詩人激勵骰，且不消耗你的詩人激勵使用次數。",
+				"你可以使用這個能力的次數等於你的魅力調整值（最低為一次）次，完成一次長休後你重獲該能力所有被消耗的使用次數。"
+			],
+			"ENG_name": "Infectious Inspiration"
+		},
+		{
+			"name": "靈魂學院",
+			"source": "VRGR",
+			"page": 28,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "VRGR",
+			"level": 3,
+			"entries": [
+				"精魂學院的吟遊詩人們尋找那具有內在力量的故事無論是傳說、歷史還是虛構的故事並且賦予其生命。這些吟遊詩人使用玄秘的道具，召喚出強大力量的精神化身，再次改變世界。不過，這樣的精魂往往變化多端，吟遊詩人們所召喚的力量並不總在自己的控制之下。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Guiding Whispers|Bard||Spirits|VRGR|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Spiritual Focus|Bard||Spirits|VRGR|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tales from Beyond|Bard||Spirits|VRGR|3"
+				}
+			],
+			"ENG_name": "College of Spirits"
+		},
+		{
+			"name": "指引低語",
+			"source": "VRGR",
+			"page": 28,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "VRGR",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級精魂學院特性}",
+				"你可以透過與精魂溝通來引導你和其他人。你習得戲法{@spell guidance||神導術}，且不計入你已習得的吟遊詩人戲法數量。對你來說，當你施展神導術時，其施法距離為60尺。"
+			],
+			"ENG_name": "Guiding Whispers"
+		},
+		{
+			"name": "靈魂法器",
+			"source": "VRGR",
+			"page": 28,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "VRGR",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級精魂學院特性}",
+				"你使用工具來與精魂溝通，無論這些精魂是歷史上的人物，還是虛構的原型。以下物品可作為你施展吟遊詩人法術的法器：一根蠟燭、一個水晶球、一個頭骨、一個通靈板或者一副{@deck tarokka deck|CoS|塔羅卡牌組}。",
+				"從6級開始，當你透過精魂法器施放一個造成傷害或恢復生命的吟遊詩人法術時，投一枚{@dice d6}，你在該法術的一次傷害或治療擲骰中獲得等同於該d6擲骰結果的加值。"
+			],
+			"ENG_name": "Spiritual Focus"
+		},
+		{
+			"name": "先世傳說",
+			"source": "VRGR",
+			"page": 28,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "VRGR",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"{@i 3級精魂學院特性}",
+				"你與那些藉由你來講述自己故事的精魂溝通。當你持握你的精魂法器時，你可以使用一個附贈動作，消耗一次你的詩人激勵來投擲一次精魂故事表。詩人激勵骰的擲骰結果將決定精魂們引導你說出何種故事。這個故事將儲存在你腦海中，直到你用掉該故事的效果，或者完成一次短休或長休。",
+				"你可以使用一個動作選擇30尺內一個你能夠看到的生物（可以是你自身）作為故事效果所影響的目標。一旦這樣做之後，在下一次投擲故事表以前，你都無法再次使用此故事的效果。",
+				"你的腦海中一次只能儲存一種故事，再次投擲精魂故事表將立刻結束之前一個故事的效果。",
+				"如果故事的效果需要進行豁免，其DC為你的法術豁免DC。",
+				{
+					"type": "table",
+					"caption": "邊欄",
+					"colLabels": [
+						"詩人激勵骰結果",
+						"透過你講述的故事"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"聰慧的動物的故事。接下來的10分鐘內，每當目標進行一次智力、感知或魅力檢定時，目標可以在投擲{@dice d20}後額外立刻投擲一個額外的骰子，並將數值加到檢定結果之中。額外骰的面數和你的詩人激勵骰相同。"
+						],
+						[
+							"2",
+							"著名決鬥家的故事。你對目標進行一次近戰法術攻擊。若命中，則目標受到等同於2個你的詩人激勵骰的擲骰結果+你的魅力調整值的力場傷害。"
+						],
+						[
+							"3",
+							"摯友們的故事。目標和其所選的另一個在其5尺內且其可見的生物獲得臨時生命值，數值等於1個你的詩人激勵骰的擲骰結果+你的魅力調整值。"
+						],
+						[
+							"4",
+							"逃亡的故事。目標可以立即使用其反應來傳送至多30尺，到一處其可見且未被佔據的空間。當目標傳送時，其能選擇至多相當於你的魅力調整值（最少為0）數量的、在其30尺內的可見生物立即執行相同的反應。"
+						],
+						[
+							"5",
+							"復仇者的故事。在1分鐘裡，任何使用近戰攻擊命中目標的生物會受到相當於1個你的詩人激勵骰的擲骰結果的力場傷害。"
+						],
+						[
+							"6",
+							"旅行者的故事。目標獲得臨時生命值，數值為一個你的詩人激勵骰的擲骰結果+你的詩人等級。當其擁有這些臨時生命值時，其移動速度增加10尺，並在其AC上獲得+1加值。"
+						],
+						[
+							"7",
+							"魅惑者之語。目標必須進行一次感知豁免，豁免失敗則受到等於你詩人激勵骰兩次擲骰結果的心靈傷害，並且目標直到其下一回合結束處於{@condition incapacitated||失能}狀態。"
+						],
+						[
+							"8",
+							"鬼魅的故事。目標變為{@condition invisible||隱形}，直到其下一個回合結束，或以攻擊命中一個生物。如果目標在這次隱形期間攻擊命中了一個生物，被攻擊的生物受到暗蝕傷害，數值等同於1個你的詩人激勵骰的擲骰結果，並陷入對目標的{@condition frightened||恐慌}之中，{@condition frightened||恐慌}效果持續到該生物的下一個回合結束。"
+						],
+						[
+							"9",
+							"兇蠻惡漢的故事。目標所選擇的30尺內其可見的每個生物都必須進行一次力量豁免。若豁免失敗，該生物受到3個你的詩人激勵骰的擲骰結果的雷鳴傷害，並{@condition prone||倒地}。若豁免成功，該生物受到的傷害減半，並且不會{@condition prone||倒地}。"
+						],
+						[
+							"10",
+							"巨龍的故事。目標從口中噴出30尺錐形的火焰。在範圍內的每個生物都必須進行一次敏捷豁免，若豁免失敗則受到4個你的詩人激勵骰的擲骰結果的火焰傷害，若豁免則成功傷害減半。"
+						],
+						[
+							"11",
+							"天使的故事。目標恢復等同於你兩次詩人靈感骰的擲骰結果 + 你的魅力調整值的生命值，並且你解除目標所受的以下一個狀態：{@condition blinded||目盲}, {@condition deafened||耳聾}, {@condition paralyzed||麻痺}, {@condition petrified||石化}, 或 {@condition poisoned||中毒}。"
+						],
+						[
+							"12",
+							"奪魂故事。你從某個超凡的存在那裡喚起了一則超越人的理解能力的寓言。目標必須成功透過一次智力豁免，否則受到相當於3個你的詩人激勵骰的擲骰結果的心靈傷害，並被{@condition stunned||震懾}直到其下一個回合結束。"
+						]
+					],
+					"data": {
+						"genTables": {
+							"tableInclude": true
+						}
+					}
+				}
+			],
+			"ENG_name": "Tales from Beyond"
+		},
+		{
+			"name": "精魂集會",
+			"source": "VRGR",
+			"page": 28,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "VRGR",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 6級精魂學院特性}",
+				"精魂賜予你超自然的洞悉能力。你可以進行一個小時的儀式，使用精魂法器來與精魂們溝通（這可以在短休或長休中進行）。你可以召集等同於你熟練加值數目的自願生物來參與儀式（可以包括你自己）。儀式結束時，你可以選擇{@filter 任意職業的一個自選法術|spells|school=d;n|level=0;1;2;3;4;5;6}，你暫時性地習得該法術。",
+				"你習得的法術的環級需等於參加儀式的生物數目，該法術必須為預言或死靈學派，並且必須是你可以施放的環級的法術。該法術對你而言是詩人法術，但不計入你已知的詩人法術數量中。",
+				"一旦你舉行了儀式，直到開始一次長休前都不能再次這樣做，你臨時習得的法術持續直到你開始一次長休。"
+			],
+			"ENG_name": "Spirit Session"
+		},
+		{
+			"name": "神秘連線",
+			"source": "VRGR",
+			"page": 28,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "VRGR",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"{@i 14級精魂學院特性}",
+				"現在，在使用彼岸故事特性時，你能稍微推動精魂們傾向特定的故事。當你投擲精魂故事表時，你可以擲骰兩次，自選其中一個效果使用。如果兩次擲骰結果相同，則你此次可以忽略擲骰結果，並從表中任選一個效果使用。",
+				{
+					"type": "inset",
+					"name": "靈魂傳說",
+					"entries": [
+						"講故事的人，就像靈界學院的吟遊詩人一樣，經常為受到更廣泛主題或作品啟發的故事發聲。在決定你要講述什麼故事時，考慮它們之間的聯絡。它們是否都以特定群體的角色為特色，比如來自{@deck tarokka deck|CoS|塔羅卡牌組}的原型，星座中的人物，童年想象中的朋友，或者特定故事書中的角色？還是你的靈感更普遍，包括歷史英雄、神話英雄或都市傳說？利用你講述的故事來定義你作為一個講故事冒險家的專長。"
+					],
+					"ENG_name": "Spirit Tales"
+				}
+			],
+			"ENG_name": "Mystical Connection"
+		},
+		{
+			"name": "迷惑學院",
+			"source": "XGE",
+			"page": 14,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Glamour",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"魅心學院向那些在充滿生機卻處處致命的妖精荒野裡學習技藝的吟遊詩人們敞開了大門。在半羊人，雅靈、與其他精類生物指導，這些吟遊詩人學會了使用魔法來取悅並吸引他人。",
+				"此學院的吟遊詩人通常會帶來敬畏與恐懼。他們的表演近乎傳奇。此學院的吟遊詩人風情萬種，只是一場表演便足以讓綁架者乖乖離開，讓憤怒的巨龍歸於平靜。同樣的魔法讓他們在操弄他人心智的同時，也能掌控野獸。惡劣的迷惑學院詩人可以混入一個社群幾周，用魔法讓主人變成奴隸；英勇的迷惑學院詩人反而利用這種力量打擊壓迫者，為被壓迫的人們帶來快樂。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Mantle of Inspiration|Bard||Glamour|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Enthralling Performance|Bard||Glamour|XGE|3"
+				}
+			],
+			"ENG_name": "College of Glamour"
+		},
+		{
+			"name": "醉人表演",
+			"source": "XGE",
+			"page": 14,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Glamour",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"第3級起，你可以在表演中注入魅惑人心的精類魔法。",
+				"若你進行了至少1分鐘的表演，你就可以藉由歌唱、吟詩、或舞蹈的方式來讓你的觀眾們感受到奇妙的力量。在這次表演的結束時，選擇你周圍60尺範圍內一定數量的、完整觀看並聆聽了你的表演的類人生物，可以選擇的數量至多等同於你的魅力調整值個（至少1個）。每個目標必須透過一次對抗你的法術豁免DC的感知豁免，若豁免失敗則其將被你{@condition charmed||魅惑}。當被你以此法{@condition charmed||魅惑}時，目標視你為偶像，他會對任何和它交談的人讚頌你，反對任何對抗你的人，它會避免使用暴力，除非他本來就傾向於為你而戰。每個目標身上的效應都將持續1小時。當受影響生物受到任何傷害、你攻擊了它、或它目睹你對任何它的盟友進行攻擊或造成傷害時會提前結束。",
+				"若一個目標對抗此效應的豁免成功，該目標不會察覺到你曾試圖魅惑他的行為。",
+				"你必須完成一次長休或短休後才能再次使用該特性。"
+			],
+			"ENG_name": "Enthralling Performance"
+		},
+		{
+			"name": "激勵光環",
+			"source": "XGE",
+			"page": 14,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Glamour",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"當你在3級加入魅心學院時，你獲得將妖精的魔法浸入歌曲的力量，為你的盟友們帶來活力與速度。",
+				"以一個附贈動作，你可以消耗一次吟遊激勵的次數，讓自己得到華美而出塵的外貌。此時，選擇你周圍60尺內的一定數量能看見你且你也能看見的生物，其數量至多等同於你的魅力調整值個（至少1個）。每個生物都會獲得5點臨時生命值。而當一個生物獲得這些臨時生命值時，它可以用其反應移動至多等同於其速度的距離，此次移動不會引發藉機攻擊。",
+				"在你達到此職業的特定等級後，你能給予它們更多的臨時生命值，在5級後提高到8點，10級後11點，15級後14點。"
+			],
+			"ENG_name": "Mantle of Inspiration"
+		},
+		{
+			"name": "威嚴光環",
+			"source": "XGE",
+			"page": 14,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Glamour",
+			"subclassSource": "XGE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"從6級起，你得到了用精類魔法覆蓋自己的能力，令他人化為服從你指令的傀儡。以一個附贈動作，你施展法術 {@spell command||命令術}，無需消耗法術位。且同時你獲得無上的美貌，持續1分鐘，如果你的{@status concentration||專注}結束（如同你 {@status concentration||專注於} 於一個法術），它也會提前結束。在這段時間內，你在每個你的回合中都能再用一個附贈動作施展法術{@spell command||命令術} ，且同樣無需消耗法術位。",
+				"任何被你{@condition charmed||魅惑}的生物在對抗你使用此特性施放的法術{@spell command||命令術}時自動豁免失敗。",
+				"必須完成一次長休才能再次使用該特性。"
+			],
+			"ENG_name": "Mantle of Majesty"
+		},
+		{
+			"name": "無敵威嚴",
+			"source": "XGE",
+			"page": 14,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Glamour",
+			"subclassSource": "XGE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"從14級起，你的外貌變得超凡脫俗，這讓你看上去更加漂亮與駭人。",
+				"此外，以一個附贈動作，你展現出一種魔法性的威嚴存在，持續1分鐘，如果你陷入{@condition incapacitated||失能}，它也將提前結束。持續時間內，任何生物在每回閤中首次試圖對你進行攻擊時都必須透過一次對抗你的法術豁免DC的魅力豁免。豁免失敗時，該生物在這個回合內將無法攻擊你，且必須要為本次攻擊選定一個新的目標，或放棄攻擊。豁免檢定成功時，該生物能夠正常攻擊你，但它在下個你的回合中，對抗你的法術所做的任何豁免檢定都將具有劣勢。",
+				"一旦你展現出這種威嚴的存在，直到你完成一次短休或長休前你都不能再次使用它。"
+			],
+			"ENG_name": "Unbreakable Majesty"
+		},
+		{
+			"name": "劍舞學院",
+			"source": "XGE",
+			"page": 15,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Swords",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"舞學院的詩人又被稱作「刃鋒」，他們透過雜耍武器以取樂。刃鋒表演諸如吞劍，雜耍，飛刀和模擬格鬥之類的特技。儘管他們用他們的武器來娛樂，他們同時也是自身有著高度訓練和熟練技巧的戰士。",
+				"他們武器上的才能使得許多刃鋒過著雙重身份的生活。一個刃鋒可能使用馬戲團來掩蓋他們的邪惡行為，比如暗殺，搶劫和勒索。其他刃鋒則打擊邪惡，伸張正義，反對強權和殘暴。大多數劇團樂於接受刃鋒把他們娛樂的才能加入到他們的表演上去，但是很少有藝人完全相信他們。",
+				"放棄了藝人生活的刃鋒通常都遇到了使其不能再維持秘密活動的麻煩。盜竊被抓或者從事義務警員的刃鋒對大多數劇團來說都是個太大的負擔。使用他們武器的技巧和魔法。這些刃鋒開始成為盜賊公會的執行者或是像個冒險者一樣開闢自己的道路。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bonus Proficiencies|Bard||Swords|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Fighting Style|Bard||Swords|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Blade Flourish|Bard||Swords|XGE|3"
+				}
+			],
+			"ENG_name": "College of Swords"
+		},
+		{
+			"name": "防禦劍舞",
+			"source": "XGE",
+			"page": 15,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Swords",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"你可以消耗一次詩人激勵的次數，並使該武器對你命中的目標造成額外的傷害。額外傷害等於你的激勵骰擲骰結果。你的AC也會獲得激勵骰擲骰結果相等的加值，持續直至你的下回合開始。"
+			],
+			"ENG_name": "Defensive Flourish"
+		},
+		{
+			"name": "靈活劍舞",
+			"source": "XGE",
+			"page": 15,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Swords",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"你可以消耗一次詩人激勵的次數，並使該武器對你命中的目標造成額外的傷害，傷害等於你的激勵骰投擲結果。你還能將目標向遠離你的方向推動至多 5＋你的激勵骰擲骰結果（單位為尺）。推動之後，你能立即使用你的反應移動至多等於你步行速度的距離，來到目標周圍5尺範圍內的一處未被佔據的空間內。"
+			],
+			"ENG_name": "Mobile Flourish"
+		},
+		{
+			"name": "順劈劍舞",
+			"source": "XGE",
+			"page": 15,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Swords",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"你可以消耗一次詩人激勵的次數，並使該武器對你命中的目標造成額外傷害，傷害等於你的激勵骰投擲結果。你周圍5尺範圍內由你選擇的其他可見生物也將受到這一額外傷害。"
+			],
+			"ENG_name": "Slashing Flourish"
+		},
+		{
+			"name": "鋒刃劍舞",
+			"source": "XGE",
+			"page": 15,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Swords",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"從3級起，你學會使用你的戰鬥技巧和速度來進行一場令人讚歎的表演。",
+				"當你在自己回合執行{@action Attack||攻擊}動作時，你的步行速度提升10尺直到該回合結束。當你在該攻擊動作中發動的武器攻擊命中生物時，你能選擇並應用以下劍舞選項之一。每回合你只能使用一種劍舞選項。",
+				{
+					"type": "options",
+					"entries": [
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Defensive Flourish|Bard|PHB|Swords|XGE|3"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Slashing Flourish|Bard|PHB|Swords|XGE|3"
+						},
+						{
+							"type": "refSubclassFeature",
+							"subclassFeature": "Mobile Flourish|Bard|PHB|Swords|XGE|3"
+						}
+					]
+				}
+			],
+			"ENG_name": "Blade Flourish"
+		},
+		{
+			"name": "額外熟練",
+			"source": "XGE",
+			"page": 15,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Swords",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"當你在3級加入劍舞學院時，你得到中甲和{@item scimitar|phb|彎刀}的熟練項。",
+				"若你熟練於一把簡易近戰武器或者軍用近戰武器，你就可以將其作為你詩人法術的法器使用。"
+			],
+			"ENG_name": "Bonus Proficiencies"
+		},
+		{
+			"name": "戰鬥風格",
+			"source": "XGE",
+			"page": 15,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Swords",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"從3級起，你可以選擇一種戰鬥風格作為你的專精。選擇下述戰鬥風格之一。即使你今後仍可有選擇戰鬥風格的機會，你也不能多次選擇同一種戰鬥風格。",
+				{
+					"type": "options",
+					"count": 1,
+					"entries": [
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Dueling"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Two-Weapon Fighting"
+						}
+					]
+				}
+			],
+			"ENG_name": "Fighting Style"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "XGE",
+			"page": 15,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Swords",
+			"subclassSource": "XGE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"第6級起，你在自己回合內執行{@action Attack||攻擊}動作時可以攻擊兩次而非一次。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "劍舞大師",
+			"source": "XGE",
+			"page": 15,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Swords",
+			"subclassSource": "XGE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"從14級起，當你使用劍舞選項時，你可以不消耗詩人激勵次數，並投擲{@dice d6}以代替選項中詩人激勵骰使用。"
+			],
+			"ENG_name": "Master's Flourish"
+		},
+		{
+			"name": "低語學院",
+			"source": "XGE",
+			"page": 16,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Whispers",
+			"subclassSource": "XGE",
+			"level": 3,
+			"entries": [
+				"大多數村民都樂於招待吟遊詩人。而來自低語學院的詩人們正是利用了這一點。他們看起來就像是其他的吟遊詩人那樣，分享新聞，一展歌喉，向觀眾們講述蒐羅來的軼事。但實際上，低語學院教會學生們的是：他們應該是披著羊皮的狼。這些詩人用他們的知識和魔法來揭露秘密，並用這些秘密來恐嚇或是勒索他人。",
+				"許多其他的吟遊詩人痛恨低語學院，認定他們是利用吟遊詩人之名來為自己贏取金錢與權力的害群之馬。因此，這些詩人很少會揭露出自己的真實面目，除非確有必要。他們通常聲稱來自其他學院，或謹慎的隱藏自己，好混入皇室或其他權力中心。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Psychic Blades|Bard||Whispers|XGE|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Words of Terror|Bard||Whispers|XGE|3"
+				}
+			],
+			"ENG_name": "College of Whispers"
+		},
+		{
+			"name": "念刃",
+			"source": "XGE",
+			"page": 16,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Whispers",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"當你在3級時加入低語學院，你獲得了使你的武器攻擊對生物心智產生魔法毒性的能力。",
+				"以一次武器攻擊命中一個生物時，你可以消耗一次吟遊激勵的次數並對目標造成額外的{@damage 2d6}點心靈傷害。你每輪在你的回合中只能這麼做一次。",
+				"在你達到此職業的特定等級後，額外心靈傷害的值將提高，5級時增加到{@damage 3d6}，10級時增加到{@damage 5d6}，15級時增加到{@damage 8d6}。"
+			],
+			"ENG_name": "Psychic Blades"
+		},
+		{
+			"name": "駭人言詞",
+			"source": "XGE",
+			"page": 16,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Whispers",
+			"subclassSource": "XGE",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"從3級起，你學會了將險惡的魔法混入看似無害的語言中。一個聽到你說話的生物可能會因此陷入恐懼或妄想。",
+				"如果你單獨與一個人形生物交談至少1分鐘，你可以嘗試在其心中播下偏執的種子。交談結束時，目標必須成功透過一個對抗你法術豁免DC的感知豁免，否則會對你或你選擇的另一個生物產生{@condition frightened||恐慌}狀態。目標以這種方式{@condition frightened||恐慌}1小時，直到它被攻擊或受到傷害，或者目睹其盟友被攻擊或受到傷害。",
+				"若一個目標對抗此效應的豁免成功，該目標不會察覺到你曾試圖驚嚇他的行為。",
+				"你必須完成一次長休或短休後才能再次使用該特性。"
+			],
+			"ENG_name": "Words of Terror"
+		},
+		{
+			"name": "低語斗篷",
+			"source": "XGE",
+			"page": 16,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Whispers",
+			"subclassSource": "XGE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"從6級時，你得到了吸取類人生物的人格的能力。當一個類人生物在你周圍30尺內死去時，你可以使用你的反應，魔法性的捕獲其影。直到你完成了一次長休或你使用掉它為止，你能一直抓住這道影子。",
+				"你可以以一個動作使用這道影子。當你這麼做時，影子將消散，並化作一具完美的偽裝覆蓋在你的身上。現在，你看起來就像是那個死去的人物生前健康活著的狀態一樣。偽裝效應將持續1小時。你可以以一個附贈動作提前結束此效應。",
+				"當你處於偽裝中，你會獲得所有該生物會與他人分享的資訊。這包括了其背景和人生的一般細節，但不包括秘密。這些資訊足夠你借用它的記憶來偽裝成該生物。",
+				"其他生物可以透過進行一次感知（{@skill Insight||洞悉}）檢定對抗你的魅力（{@skill Deception||欺瞞}）檢定，以此來看穿此偽裝。不過你在你的這一檢定中具有+5加值。",
+				"一旦你使用此特性捕獲了一道影子，直到你完成一次短休或長休前你都不能再捕獲另一道影子。"
+			],
+			"ENG_name": "Mantle of Whispers"
+		},
+		{
+			"name": "陰影學識",
+			"source": "XGE",
+			"page": 16,
+			"className": "Bard",
+			"classSource": "PHB",
+			"subclassShortName": "Whispers",
+			"subclassSource": "XGE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"從14級起，你學會了在言語中織入黑暗魔法激發一個生物內心最深處的恐懼。",
+				"以一個動作，你對一個30尺內，能聽見你的聲音的生物發出一段魔法低語。目標必須進行一次對抗你的法術豁免DC的感知豁免。若它與你沒有共通的語言、或是它不能聽見你的聲音，它的豁免將自動成功。豁免成功時，你的低語聲聽起來就像是一段不知所云的呢喃，且沒有任何效果。",
+				"豁免失敗時，他將被你{@condition charmed||魅惑} ，持續8小時。如果你或你的盟友攻擊了它、傷害了它、或是迫使它進行一次豁免檢定這一狀態也將提前結束。他認為這段低語描述了他最為困窘的秘密。儘管你並不會因此瞭解到這個秘密是什麼，但是目標會堅信你已經知道了。",
+				"當被以此法{@condition charmed||魅惑}時，該生物因為畏懼你會公開他的秘密而遵循你的命令。不過它不會為了你而進行危及自身性命的事，也不會為你戰鬥（除非他已經傾向於這麼做了）。它會視你為摯友，並會像密友那樣提供關愛和恩惠。",
+				"當此效應結束時，該生物將無法明白為何他會對你如此恐懼。",
+				"必須完成一次長休才能再次使用該特性。"
+			],
+			"ENG_name": "Shadow Lore"
+		},
+		{
+			"name": "皓月學院",
+			"source": "FRHoF",
+			"page": 16,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Moon",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"{@i 用古老的民謠振奮盟友}",
+				"皓月學院可追溯其起源至月影群島的古代德魯伊結社，他們託付皓月學院的首批詩人記錄群島及其人民的故事。此學院的詩人從島嶼的妖精魔法和月井的原初偉力之中汲取力量，以此來激勵他們的盟友，保護自然世界，併為他們的創作帶來靈感。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Moon's Inspiration|Bard|XPHB|Moon|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Primal Lore|Bard|XPHB|Moon|FRHoF|3|FRHoF"
+				}
+			],
+			"ENG_name": "College of the Moon"
+		},
+		{
+			"name": "明月激勵",
+			"source": "FRHoF",
+			"page": 17,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Moon",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"源於明月，瞬息萬變的原初力量在你體內流動，使你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "月隱啟迪",
+					"entries": [
+						"當你以一個{@variantrule Bonus Action|XPHB|附贈動作}給予一名生物吟遊詩人激勵骰時，作為此{@variantrule Bonus Action|XPHB|附贈動作}的一部分，你能夠獲得{@condition Invisible|XPHB|隱形}狀態並傳送至30尺內你能夠看見的未被佔據的空間。隱形狀態會持續至你的下回合開始，或在你進行一次攻擊檢定、造成傷害或施展法術時立即終止。"
+					],
+					"ENG_name": "Inspired Eclipse"
+				},
+				{
+					"type": "entries",
+					"name": "月輝活力",
+					"entries": [
+						"每回合一次，當你使用法術恢復一個生物的{@variantrule Hit Points|XPHB|生命值}時，你可以消耗一枚吟遊詩人激勵骰，並使本次恢復的{@variantrule Hit Points|XPHB|生命值}增加等同於此吟遊詩人激勵骰的出目。且該生物的{@variantrule Speed|XPHB|速度}直到你下回合結束前都會提升10尺。"
+					],
+					"ENG_name": "Lunar Vitality"
+				}
+			],
+			"ENG_name": "Moon's Inspiration"
+		},
+		{
+			"name": "原初學識",
+			"source": "FRHoF",
+			"page": 17,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Moon",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"你習得德魯伊語和一個位於德魯伊法術列表中的戲法。它對你而言視為詩人法術，但是不計入你的已知戲法數量。每當你獲得一個吟遊詩人等級時，你都可以將此戲法更換為德魯伊法術列表中的另一個戲法。",
+				"此外，從以下技能中選擇一項：{@skill Animal Handling|XPHB|馴獸}、{@skill Insight|XPHB|洞悉}、{@skill Medicine|XPHB|醫藥}、{@skill Nature|XPHB|自然}、{@skill Perception|XPHB|察覺}或{@skill Survival|XPHB|求生}。你擁有你所選技能的熟練項。"
+			],
+			"ENG_name": "Primal Lore"
+		},
+		{
+			"name": "月光祝福",
+			"source": "FRHoF",
+			"page": 17,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Moon",
+			"subclassSource": "FRHoF",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"你總是準備著法術{@spell Moonbeam|XPHB|月華之光}。",
+				"當你施展法術{@spell Moonbeam|XPHB|月華之光}時，你可以調整該法術，使其月輝也在你身上浮現。你的身體散發出光芒，在此期間，你5尺範圍內視為{@variantrule Dim Light|XPHB|微光光照}，並且每當有生物失敗於你月華之光效應的豁免，你都可以選擇一名你60尺內的可見生物，令其恢復{@dice 2d4}點{@variantrule Hit Points|XPHB|生命值}。",
+				"一旦你使用了此特性調整月華之光法術，你必須完成一次{@variantrule Long Rest|XPHB|長休}後才能再次使用此特性。"
+			],
+			"ENG_name": "Blessing of Moonlight"
+		},
+		{
+			"name": "暮色輝光",
+			"source": "FRHoF",
+			"page": 17,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Moon",
+			"subclassSource": "FRHoF",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"你的身體中流轉著月亮的力量，這使你以如下方式提升了你的明月激勵特性：",
+				{
+					"type": "entries",
+					"name": "新月之影",
+					"entries": [
+						"當你使用詩人激勵時，獲得你的吟遊詩人激勵骰的生物也可以獲得{@condition Invisible|XPHB|隱形}狀態，並且立刻以一個{@variantrule Reaction|XPHB|反應}傳送至30尺內它可以看見的一處未被佔據的空間。該生物的{@condition Invisible|XPHB|隱形}狀態持續至其下回合開始。"
+					],
+					"ENG_name": "Shadow of the New Moon"
+				},
+				{
+					"type": "entries",
+					"name": "滿月之輝",
+					"entries": [
+						"當你使用月輝活力特性時，你可以不消耗你的吟遊詩人激勵骰，而是擲{@dice 1d6}並使用結果作為代替。"
+					],
+					"ENG_name": "Vibrance of the Full Moon"
+				}
+			],
+			"ENG_name": "Eventide's Splendor"
+		},
+		{
+			"name": "通靈師",
+			"source": "RHW",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"你習得如何同死去的精魂交流，感知它們的知識與力量。你獲得如下增益：",
+				{
+					"type": "entries",
+					"name": "指引低語",
+					"entries": [
+						"你習得戲法{@spell Guidance|XPHB|神導術}。當你施展該戲法時，其施法距離為60尺。"
+					],
+					"ENG_name": "Guiding Whispers"
+				},
+				{
+					"type": "entries",
+					"name": "靈魂法器",
+					"entries": [
+						"你使用工具幫助你與精魂溝通。你獲得一副賭具（紙牌）。你擁有此賭具的熟練，並且你可以使用這副牌或以下列舉物品中的任意一個作為你吟遊詩人法術的施法法器來使用：奧術法器（{@item crystal|XPHB|水晶}或{@item orb|XPHB|法球}），{@item Candle|XPHB|蠟燭}，或者墨水筆。"
+					],
+					"ENG_name": "Spiritual Focus"
+				}
+			],
+			"ENG_name": "Channeler"
+		},
+		{
+			"name": "靈魂學院",
+			"source": "RHW",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"{@i 呼喚死去的靈魂}",
+				"精魂學院的吟遊詩人透過召喚傳說中的精魂來改變世界。精魂們變幻莫測，即便是由吟遊詩人召喚的精魂也並不總處於控制之中。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Channeler|Bard|XPHB|Spirits|RHW|3|RHW"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Spirits from Beyond|Bard|XPHB|Spirits|RHW|3|RHW"
+				}
+			],
+			"ENG_name": "College of Spirits"
+		},
+		{
+			"name": "彼岸之魂",
+			"source": "RHW",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "RHW",
+			"level": 3,
+			"entries": [
+				"你可以呼喚亡者的精魂，以此增強你和你的盟友。當你使用附贈動作給予一個生物吟遊詩人激勵骰時，你可以喚起一種隨機精魂的力量。擲出該吟遊詩人激勵骰並參照彼岸之魂表以決定是什麼精魂與你通靈。直至你釋放精魂，或完成了一次短休或長休前，該精魂會持續與你通靈。",
+				{
+					"type": "entries",
+					"name": "可控通靈",
+					"entries": [
+						"你可以使用附贈動作並消耗一次吟遊詩人激勵的使用次數，以此通靈一位特定的精魂。當你如此做時，你直接從彼岸之魂表上選擇精魂，而無需擲骰。所選精魂的對應序號必須等於或小於你當前吟遊詩人激勵骰的最大面值；例如，如果你的吟遊詩人激勵骰是{@dice d8}，你可以選擇通靈直至幽靈（序號8）在內的任何精魂。"
+					],
+					"ENG_name": "Controlled Channeling"
+				},
+				{
+					"type": "entries",
+					"name": "釋放精魂",
+					"entries": [
+						"你可以使用{@action Magic|XPHB|魔法}動作釋放其中一個與你通靈的精魂。選擇你30尺範圍內一個你可見的生物作為精魂的目標。精魂立刻產生效應；如果某個精魂的效應需要進行豁免檢定，則其DC等同於你的吟遊詩人法術豁免DC。",
+						{
+							"type": "table",
+							"caption": "彼岸之魂",
+							"colLabels": [
+								"詩人激勵骰結果",
+								"精魂與釋放效果"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"1",
+									"心上人。目標恢復等於你的一個吟遊詩人激勵骰骰值外加你的魅力調整值的生命值。"
+								],
+								[
+									"2",
+									"神射手。目標受到等於你的一個吟遊詩人激勵骰骰值外加你的魅力調整值的力場傷害。"
+								],
+								[
+									"3",
+									"復仇者。直到你的下一回合結束，任何以近戰攻擊檢定命中目標的生物，都會受到等同於你的一個吟遊詩人激勵骰骰值的力場傷害。"
+								],
+								[
+									"4",
+									"叛逆者。目標立即執行其反應傳送至30尺範圍內一處其可見的未佔據空間。"
+								],
+								[
+									"5",
+									"算命師。直到你的下一回合結束，目標進行的{@variantrule D20 Test|XPHB|D20 檢定}都具有{@variantrule Advantage|XPHB|優勢}。"
+								],
+								[
+									"6",
+									"尋路人。目標獲得等同於你的一個吟遊詩人激勵骰骰值外加你的吟遊詩人等級的{@variantrule Temporary Hit Points|XPHB|臨時生命值}，當目標擁有這些臨時生命值時，它的速度增加10尺。"
+								],
+								[
+									"7",
+									"魔術師。目標進行一次感知豁免。豁免失敗受到等同於你的兩個吟遊詩人激勵骰骰值之和的心靈傷害並陷入{@condition Charmed|XPHB|魅惑}，直至你的下一回合開始。豁免成功則僅受一半傷害且不受狀態影響。"
+								],
+								[
+									"8",
+									"幽靈。目標獲得{@condition Invisible|XPHB|隱形}狀態，直至其下一回合結束，或直至目標進行攻擊檢定、造成傷害或施展法術。該隱形結束時，源自目標的5尺{@variantrule Emanation [Area of Effect]|XPHB|光環}內的所有生物都必須成功進行一次體質豁免，否則受到等同於你的兩個吟遊詩人激勵骰骰值之和的暗蝕傷害。"
+								],
+								[
+									"9",
+									"縱火犯。目標進行一次敏捷豁免。若豁免失敗，其受到等同於你的四個吟遊詩人激勵骰骰值之和的火焰傷害，豁免成功則僅受半傷。"
+								],
+								[
+									"10",
+									"懦夫。目標和源自目標的30尺{@variantrule Emanation [Area of Effect]|XPHB|光環}內你所選擇的每個生物都必須進行一次感知豁免，豁免失敗則陷入{@condition Frightened|XPHB|恐慌}狀態，直至你的下一回合開始。恐慌期間，該生物的速度減半（向下取整），且只能執行一個動作，或是一個附贈動作，而不能同時執行兩者。"
+								],
+								[
+									"11",
+									"暴徒。目標和源自目標的30尺{@variantrule Emanation [Area of Effect]|XPHB|光環}內你所選擇的每個生物進行一次力量豁免，豁免失敗則該生物受到等同於你的三個吟遊詩人激勵骰骰值之和的雷鳴傷害並陷入{@condition Prone|XPHB|倒地}狀態。豁免成功則僅受半傷且不倒地。"
+								],
+								[
+									"12",
+									"祭司。目標恢復等同於兩次吟遊詩人激勵骰骰值的生命值，並且你可以選擇解除目標的以下一種狀態：{@condition Blinded|XPHB|目盲}、{@condition Charmed|XPHB|魅惑}、{@condition Deafened|XPHB|耳聾}、{@condition Paralyzed|XPHB|麻痺}、{@condition Poisoned|XPHB|中毒}或{@condition Stunned|XPHB|震懾}。"
+								]
+							]
+						}
+					],
+					"ENG_name": "Unleashing a Spirit"
+				}
+			],
+			"ENG_name": "Spirits from Beyond"
+		},
+		{
+			"name": "超能通靈",
+			"source": "RHW",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "RHW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"你與精魂溝通的能力日益進步。你獲得如下增益：",
+				{
+					"type": "entries",
+					"name": "彼界之力",
+					"entries": [
+						"每回合一次，當你使用法術位施展一道造成傷害或恢復生命值的吟遊詩人法術時，擲一個{@dice 1d6}。該次法術的其中一次傷害擲骰，或是該法術恢復的生命值總和，將獲得等同於你擲骰結果的數值加值。"
+					],
+					"ENG_name": "Power from Beyond"
+				},
+				{
+					"type": "entries",
+					"name": "靈體顯現",
+					"entries": [
+						"你總是準備著法術{@spell Spirit Guardians|XPHB|靈體衛士}。你可以不消耗法術位地施展此法術一次，並且在你一次長休結束後才可重新如此施展該法術。",
+						"每當你施展該法術時，你可以修改它，使得靈體能夠抵禦世間的威脅。以此種方式施展該法術時，在靈體的{@variantrule Emanation [Area of Effect]|XPHB|光環}內，你和你的盟友獲得半身掩護。一旦你以此種方式修改了該法術，直至你進行一次短休或長休前你都無法再這麼做。"
+					],
+					"ENG_name": "Spiritual Manifestation"
+				}
+			],
+			"ENG_name": "Empowered Channeling"
+		},
+		{
+			"name": "神秘連線",
+			"source": "RHW",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Spirits",
+			"subclassSource": "RHW",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"你熟練掌控了你所召喚出來的精魂。每當你在{@book 彼岸之魂表格|RHW|1|Spirits from Beyond}中擲骰時，你都可以投擲兩次，並選擇使用兩次中的其中一種效應。若你兩次擲骰投出了相同的數字，你可以直接選擇表格上的任意一個效應。"
+			],
+			"ENG_name": "Mystical Connection"
+		},
+		{
+			"name": "舞蹈學院",
+			"source": "XPHB",
+			"page": 64,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Dance",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 舞步節律諧宇宙}",
+				"舞蹈學院的吟遊詩人們明白，創生聖言不在演講或歌唱之中，聖言自天體運動中發出，經芥子蟲蠕而流淌。舞蹈學院的詩人們練習同旋轉的宇宙諧頻共振的手段，他們注重靈巧、速度卻又不失優雅。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Dazzling Footwork|Bard|XPHB|Dance|XPHB|3"
+				}
+			],
+			"ENG_name": "College of Dance"
+		},
+		{
+			"name": "靈巧打擊",
+			"source": "XPHB",
+			"page": 64,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Dance",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"當你在一次動作、{@variantrule Bonus Action|XPHB|附贈動作}或{@variantrule Reaction|XPHB|反應}中消耗一次詩人激勵時，作為該動作、{@variantrule Bonus Action|XPHB|附贈動作}或{@variantrule Reaction|XPHB|反應}的一部分，你可以發動一次{@variantrule Unarmed Strike|XPHB|徒手打擊}。"
+			],
+			"ENG_name": "Agile Strikes"
+		},
+		{
+			"name": "詩人痛擊",
+			"source": "XPHB",
+			"page": 64,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Dance",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"你可以用敏捷代替力量進行{@variantrule Unarmed Strike|XPHB|徒手打擊}的攻擊檢定。當你以一次徒手打擊造成傷害時，你可以造成等於詩人激勵骰 + 敏捷調整值的鈍擊傷害，而非徒手打擊原本的傷害。此效果並不會消耗你的詩人激勵使用次數。"
+			],
+			"ENG_name": "Bardic Damage"
+		},
+		{
+			"name": "大舞蹈家",
+			"source": "XPHB",
+			"page": 64,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Dance",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"你進行的任何有關舞蹈的魅力（{@skill Performance|XPHB|表演}）檢定均具有{@variantrule Advantage|XPHB|優勢}。"
+			],
+			"ENG_name": "Dance Virtuoso"
+		},
+		{
+			"name": "炫目舞步",
+			"source": "XPHB",
+			"page": 64,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Dance",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"未著裝護甲且未持用{@item Shield|XPHB|盾牌}期間，你獲得以下增益：",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Dance Virtuoso|Bard|XPHB|Dance|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Unarmored Defense|Bard|XPHB|Dance|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Agile Strikes|Bard|XPHB|Dance|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bardic Damage|Bard|XPHB|Dance|XPHB|3"
+				}
+			],
+			"ENG_name": "Dazzling Footwork"
+		},
+		{
+			"name": "無甲防禦",
+			"source": "XPHB",
+			"page": 64,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Dance",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"你的基礎{@variantrule Armor Class|XPHB|護甲等級}等於 10 + 你的敏捷調整值  + 你的魅力調整值。"
+			],
+			"ENG_name": "Unarmored Defense"
+		},
+		{
+			"name": "鼓舞之移",
+			"source": "XPHB",
+			"page": 64,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Dance",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"當一名你能看見的敵人在距你5尺內結束其回合時，你可以用{@variantrule Reaction|XPHB|反應}消耗一次詩人激勵，移動至多等於你{@variantrule Speed|XPHB|速度}一半的距離。然後，距你30尺內一名由你選擇的盟友也可以使用其{@variantrule Reaction|XPHB|反應}，移動至多等於其{@variantrule Speed|XPHB|速度}一半的距離。",
+				"此特性進行的移動不會引發{@action Opportunity Attack|XPHB|藉機攻擊}。"
+			],
+			"ENG_name": "Inspiring Movement"
+		},
+		{
+			"name": "協同舞步",
+			"source": "XPHB",
+			"page": 64,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Dance",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"當你投擲{@variantrule Initiative|XPHB|先攻}時，若你未陷入{@condition Incapacitated|XPHB|失能}狀態，你可以消耗一次詩人激勵使用次數，投擲詩人激勵骰，令你與位於你 30 尺內的每個能聽見或看見你的盟友進行的{@variantrule Initiative|XPHB|先攻}檢定獲得等於該骰值的加值。"
+			],
+			"ENG_name": "Tandem Footwork"
+		},
+		{
+			"name": "引導閃避",
+			"source": "XPHB",
+			"page": 65,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Dance",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"當你受到一個允許你進行敏捷豁免來只承受一半傷害的效應影響時，你在豁免成功時不受傷害，豁免失敗時只承受一半傷害。若位於你5尺內的其他生物同樣需要進行這次敏捷豁免，你可以令他們也享受到此特性的增益。",
+				"若你陷入{@condition Incapacitated|XPHB|失能}狀態，你無法使用此特性。"
+			],
+			"ENG_name": "Leading Evasion"
+		},
+		{
+			"name": "迷惑學院",
+			"source": "XPHB",
+			"page": 65,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Glamour",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 織魔作惑妖精術}",
+				"魅心學院的起源要追溯到妖精荒野中的惑心魔法。研究這些魔法的吟遊詩人們將美好與恐怖化作絲線，編織到他們的歌曲和故事之中，此中大師甚至能夠披上超凡脫俗的威儀。他們的表演將調動人們對被淡忘的純真的渴望，喚醒人們潛意識中長存的恐懼，牽扯出最鐵石心腸的聽眾的情緒。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Beguiling Magic|Bard|XPHB|Glamour|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Mantle of Inspiration|Bard|XPHB|Glamour|XPHB|3"
+				}
+			],
+			"ENG_name": "College of Glamour"
+		},
+		{
+			"name": "惑心魔法",
+			"source": "XPHB",
+			"page": 65,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Glamour",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"你始終準備著法術{@spell Charm Person|XPHB|魅惑類人}和{@spell Mirror Image|XPHB|鏡影術}。",
+				"此外，在你使用法術位施展一道惑控或幻術學派的法術後，你可以立即使一名位於你 60 尺內的你可見的生物進行一次感知豁免檢定，對抗你的施法DC。豁免失敗則目標陷入{@condition Charmed|XPHB|魅惑}或{@condition Frightened|XPHB|恐慌}狀態（由你選擇），持續 1 分鐘。目標在其每個回合結束時，可以重新進行該豁免，成功則其身上的效應提前結束。",
+				"此增益一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。你也可以消耗一次詩人激勵使用次數（無需動作）重置此增益的使用權。"
+			],
+			"ENG_name": "Beguiling Magic"
+		},
+		{
+			"name": "激勵光環",
+			"source": "XPHB",
+			"page": 65,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Glamour",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"你可以將妖精魔法織入歌曲亦或是舞蹈，為他人獻上滿滿的活力。以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以消耗一次詩人激勵使用次數，並擲詩人激勵骰，從位於你 60 尺內的其他生物中選擇任意生物，數量至多等於你魅力調整值（至少選擇一名），每個被選中的生物獲得等於兩倍該詩人骰骰值的{@variantrule Temporary Hit Points|XPHB|臨時生命值}，然後每名生物均可以使用自己的{@variantrule Reaction|XPHB|反應}立即移動至多等於自己{@variantrule Speed|XPHB|速度}的距離，這次移動不會引發{@action Opportunity Attack|XPHB|藉機攻擊}。"
+			],
+			"ENG_name": "Mantle of Inspiration"
+		},
+		{
+			"name": "威嚴光環",
+			"source": "XPHB",
+			"page": 65,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Glamour",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"你始終準備著法術{@spell Command|XPHB|命令術}。",
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你無需法術位地施展{@spell Command|XPHB|命令術}，然後你將獲得超凡脫俗的容貌，持續 1 分鐘或在你{@status Concentration|XPHB|專注}終止時提前結束。在此期間，你能夠以一個{@variantrule Bonus Action|XPHB|附贈動作}，無需法術位地施展法術{@spell Command|XPHB|命令術}。",
+				"任何因你而陷入{@condition Charmed|XPHB|魅惑}狀態的生物在進行對抗你以此特性施展的{@spell Command|XPHB|命令術}時，其豁免檢定自動失敗。",
+				"此特性一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。你也可以消耗一個三環及以上的法術位（無需動作）來重置此特性的使用權。"
+			],
+			"ENG_name": "Mantle of Majesty"
+		},
+		{
+			"name": "無敵威嚴",
+			"source": "XPHB",
+			"page": 66,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Glamour",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以魔法性地呈現出莊嚴的姿態，持續 1 分鐘或在你陷入{@condition Incapacitated|XPHB|失能}狀態時結束。在此期間，任何生物在一個回合中的攻擊檢定首次命中你時，攻擊者必須透過一次對抗你施法DC的魅力豁免檢定，否則這次攻擊將因畏懼你的威儀而變得畏縮並失手。",
+				"一旦你呈現出這莊嚴的姿態，直至完成{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}你都無法再如此做。"
+			],
+			"ENG_name": "Unbreakable Majesty"
+		},
+		{
+			"name": "軼聞學院",
+			"source": "XPHB",
+			"page": 66,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Lore",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 博觀覓識深鑽法}",
+				"逸聞學院的吟遊詩人從各種渠道——例如奧術著作、神秘儀式甚至市井故事——收集咒語和奧秘。他們聚集在圖書館或是學府之中，分享彼此之間獲取的知識。他們也會出席國家事務或是參加節日活動，揭露腐敗、拆穿謊言、對自以為是的權威者發起嘲笑。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bonus Proficiencies|Bard|XPHB|Lore|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Cutting Words|Bard|XPHB|Lore|XPHB|3"
+				}
+			],
+			"ENG_name": "College of Lore"
+		},
+		{
+			"name": "額外熟練",
+			"source": "XPHB",
+			"page": 66,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Lore",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"你獲得三項由你選擇的技能的熟練。"
+			],
+			"ENG_name": "Bonus Proficiencies"
+		},
+		{
+			"name": "語出驚人",
+			"source": "XPHB",
+			"page": 66,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Lore",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"你學會了如何運用你的妙語連珠來超自然地打斷敵人、分散注意亦或是削弱他人的自信心和行動力。當一名你可見的位於你 60 尺內的生物進行傷害擲骰、成功於一次屬性檢定或攻擊檢定時，你能夠以{@variantrule Reaction|XPHB|反應}消耗一次詩人激勵使用次數，並擲詩人激勵骰，然後從該生物的擲骰結果中減去詩人骰的骰值，這將降低其造成的傷害或可能使這次檢定的成功變為失敗。"
+			],
+			"ENG_name": "Cutting Words"
+		},
+		{
+			"name": "魔法探秘",
+			"source": "XPHB",
+			"page": 66,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Lore",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"你習得兩道自選法術。這些法術可以從{@filter 牧師|spells|class=Cleric}、{@filter 德魯伊|spells|class=Druid}或{@filter 法師法術列表|spells|class=Wizard}的法術列表中單獨或組合選擇（這些職業的法術列表見其職業章節）。你選擇的法術必須是戲法或是你擁有對應環階法術位的法術，你擁有的法術位如吟遊詩人特性表中所示。",
+				"你始終準備著你選擇的這些法術。每當你獲得一個吟遊詩人等級時，你可以將其中一個法術替換為另一個滿足上述要求的法術。"
+			],
+			"ENG_name": "Magical Discoveries"
+		},
+		{
+			"name": "絕代技能",
+			"source": "XPHB",
+			"page": 67,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Lore",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"當你進行一次屬性檢定或攻擊檢定，並在檢定中失敗時，你可以消耗一次詩人激勵使用次數，投擲詩人激勵骰，並將擲骰結果加到{@dice d20}中，這可能使這次檢定的失敗變為成功。若檢定仍然失敗，詩人激勵次數將不會被消耗。"
+			],
+			"ENG_name": "Peerless Skill"
+		},
+		{
+			"name": "勇氣學院",
+			"source": "XPHB",
+			"page": 67,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Valor",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i 頌歌獨唱舊英傑}",
+				"勇氣學院的吟遊詩人是無畏的說書人，他們的故事承載了過往偉大英雄的記憶。這些人兒在穹頂之下、篝火之側、人群之間歌唱豪傑的功績。他們四處旅行，用雙眼記錄史詩的發生，將傳奇深埋心底並傳承下去。他們激勵新一代人勇攀高峰，達到與古老英雄同樣的高度。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Combat Inspiration|Bard|XPHB|Valor|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Martial Training|Bard|XPHB|Valor|XPHB|3"
+				}
+			],
+			"ENG_name": "College of Valor"
+		},
+		{
+			"name": "戰鬥激勵",
+			"source": "XPHB",
+			"page": 67,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Valor",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"你可以運用你的巧言來改變戰鬥的走向。一名擁有你的詩人激勵骰的生物可以從下列選項中選擇一種效應來使用詩人骰。",
+				{
+					"type": "entries",
+					"name": "防禦",
+					"entries": [
+						"當這名生物被一次攻擊檢定命中時，該生物能夠以{@variantrule Reaction|XPHB|反應}擲詩人激勵骰並將骰值加到對抗這次攻擊檢定的AC中，這可能使這次攻擊變為失手。"
+					],
+					"ENG_name": "Defense"
+				},
+				{
+					"type": "entries",
+					"name": "進攻",
+					"entries": [
+						"這名生物以一次攻擊檢定命中一名目標後，它可以立即投擲詩人激勵骰，並將骰值加到這次攻擊對這名目標造成的傷害中。"
+					],
+					"ENG_name": "Offense"
+				}
+			],
+			"ENG_name": "Combat Inspiration"
+		},
+		{
+			"name": "戰爭訓練",
+			"source": "XPHB",
+			"page": 67,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Valor",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"你獲得{@filter 軍用武器|items|type=martial weapon}熟練以及{@filter 中甲|items|type=Medium Armor}和{@item Shield|XPHB|盾牌}的護甲受訓。",
+				"此外，你施展你的{@filter 吟遊詩人法術列表|spells|class=Bard}中的法術時，可以使用簡易或軍用武器作為{@variantrule Spellcasting Focus|XPHB|法器}。"
+			],
+			"ENG_name": "Martial Training"
+		},
+		{
+			"name": "額外攻擊",
+			"source": "XPHB",
+			"page": 67,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Valor",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"當你在自己的回合執行{@action Attack|XPHB|攻擊}動作時，你可以發動兩次攻擊而非一次。",
+				"此外，你可以將額外攻擊中的一次，替換為施展一道施法時間為一動作的戲法。"
+			],
+			"ENG_name": "Extra Attack"
+		},
+		{
+			"name": "戰鬥魔法",
+			"source": "XPHB",
+			"page": 67,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Valor",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"在你施展一道施法時間為一動作的法術後，你能夠以一個{@variantrule Bonus Action|XPHB|附贈動作}，使用一把武器發動一次攻擊。"
+			],
+			"ENG_name": "Battle Magic"
+		}
+	]
+}
