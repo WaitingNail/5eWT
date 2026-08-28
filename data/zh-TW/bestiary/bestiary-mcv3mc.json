@@ -1,0 +1,604 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "烈焰人",
+			"source": "MCV3MC",
+			"page": 3,
+			"referenceSources": [
+				"LK"
+			],
+			"size": [
+				"M"
+			],
+			"type": "elemental",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 75,
+				"formula": "10d8 + 30"
+			},
+			"speed": {
+				"walk": 20,
+				"fly": {
+					"number": 20,
+					"condition": "（僅限垂直移動；懸停）"
+				},
+				"canHover": true
+			},
+			"str": 16,
+			"dex": 17,
+			"con": 16,
+			"int": 6,
+			"wis": 10,
+			"cha": 7,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"resist": [
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"immune": [
+				"fire"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"grappled",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"prone",
+				"restrained"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "烈焰棒",
+					"entries": [
+						"當火焰降到0點生命值時，它會在一團煙霧中消失，並有50%的機率留下一根價值100金幣的發光棍棒。這根棍棒會散發昏暗的光線，照亮周圍5英尺的範圍。作為一個動作，一個生物可以嘗試折斷棍棒，成功透過{@dc 14}力量檢定後即可將其折斷。折斷的棍棒會在自身為中心的5英尺半徑範圍內釋放其熾熱的能量。該區域內的每個生物都必須進行一次{@dc 14}敏捷豁免，未透過豁免則受到6（{@damage 1d12}）點火焰傷害，透過豁免則只受到一半傷害。"
+					],
+					"ENG_name": "Blaze Rod"
+				},
+				{
+					"name": "熾熱靈光",
+					"entries": [
+						"任何生物在其回合開始時如果在烈焰5尺範圍內，則受到3點（{@damage 1d6}）火焰傷害。"
+					],
+					"ENG_name": "Heat Aura"
+				},
+				{
+					"name": "照明",
+					"entries": [
+						"烈焰在20尺半徑內散發出明亮的光芒，並在額外的20尺內散發出微弱的光芒。"
+					],
+					"ENG_name": "Illumination"
+				},
+				{
+					"name": "水體易感",
+					"entries": [
+						"烈焰人在水中每移動5尺就會受到1點寒冷傷害，每被潑灑1加侖水也會受到1點寒冷傷害，或者每當它在雨中開始其回合時。"
+					],
+					"ENG_name": "Water Susceptibility"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"烈焰生物進行三次熾熱末日攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "熾熱末日",
+					"entries": [
+						"{@atk ms,rs} {@hit 6} 命中；近戰範圍 5 英尺或遠端範圍 60 英尺，單一目標。{@h}8 ({@damage 1d10 + 3}) 火焰傷害，若目標是生物或可燃物，則目標將燃起火焰。在目標生物採取行動撲滅火焰之前，燃燒的目標每回合結束時將受到 3 ({@damage 1d6}) 火焰傷害。"
+					],
+					"ENG_name": "Fiery Doom"
+				}
+			],
+			"traitTags": [
+				"Illumination"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"C",
+				"F"
+			],
+			"miscTags": [
+				"AOE"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Blaze"
+		},
+		{
+			"name": "苦力怕(爬行者)",
+			"source": "MCV3MC",
+			"page": 4,
+			"referenceSources": [
+				"LK"
+			],
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 12,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 19,
+				"formula": "3d8 + 6"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 11,
+			"con": 14,
+			"int": 6,
+			"wis": 8,
+			"cha": 3,
+			"skill": {
+				"perception": "+3",
+				"stealth": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 13,
+			"immune": [
+				"lightning"
+			],
+			"conditionImmune": [
+				"exhaustion"
+			],
+			"cr": "1/2",
+			"trait": [
+				{
+					"name": "奇特生理",
+					"entries": [
+						"爬行者除了{@action Dash||疾走}（衝刺）、{@action Disengage||撤離}（脫離戰鬥）、{@action Hide||躲藏}（隱藏）和{@action Search||搜尋}（搜尋）之外，不能採取其他行動。它不能採取附贈動作或反應。"
+					],
+					"ENG_name": "Bizarre Physiology"
+				},
+				{
+					"name": "苦力怕頭",
+					"entries": [
+						"當爬行者因被充電爬行者的爆炸（見毀滅特性）而降至0生命值時，它會死亡，其頭部會脫落。爬行者脫落的頭部是空的，可以作為面具佩戴，具有眼睛和嘴巴的開口。"
+					],
+					"ENG_name": "Creeper Head"
+				},
+				{
+					"name": "毀滅",
+					"entries": [
+						"當它在自己的回合結束時處於它能看到的類人生物10尺範圍內時，爬行者停止移動，併發出足夠響亮的嘶嘶聲，足以讓自身周圍30尺內的生物聽到。",
+						"如果爬行者在它的下回合開始前降至0點生命值，嘶嘶聲停止，爬行者死亡。否則，在爬行者的下回合開始時，會發生以下事情之一：",
+						{
+							"type": "list",
+							"items": [
+								"如果嘶嘶作響的爬行者周圍10尺內沒有類人生物，它就會停止嘶嘶聲。然後它將使用所有可用的移動能力去接近它能看到的最近的類人生物。",
+								"如果嘶鳴藤蔓 10 英尺範圍內有一個或更多類人生物，藤蔓將在一團能量中爆炸，形成一個以自身為中心、半徑 20 英尺的球體。這種能量會繞過角落擴散。藤蔓被摧毀，爆炸範圍內的所有其他生物必須進行一次 {@dc 12} 敏捷豁免檢定，若失敗則受到 14（{@damage 4d6}）點閃電傷害，若成功則只受到一半傷害。如果藤蔓處於充能狀態（見下方的\"電荷\"），則傷害增加 7（{@damage 2d6}）點。區域內未被穿戴或攜帶的物品會受到 14（{@damage 4d6}）點閃電傷害，如果藤蔓處於充能狀態，則受到 21（{@damage 6d6}）點閃電傷害。"
+							]
+						}
+					],
+					"ENG_name": "Destruction"
+				},
+				{
+					"name": "電氣充能",
+					"entries": [
+						"每當苦力怕受到雷電傷害時，它不會受到傷害，而是會充電1分鐘。在充電狀態下，苦力怕會在5尺半徑內發出微弱的藍光。"
+					],
+					"ENG_name": "Electrical Charge"
+				},
+				{
+					"name": "貓科動物恐懼症",
+					"entries": [
+						"當爬行者在其回合開始時，如果它能看到60尺範圍內的貓科生物，它就會處於{@condition frightened||恐慌}狀態。這個狀態持續到爬行者的下一個回合開始。"
+					],
+					"ENG_name": "Fear of Felines"
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"L"
+			],
+			"miscTags": [
+				"AOE"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Creeper"
+		},
+		{
+			"name": "末影龍",
+			"source": "MCV3MC",
+			"page": 5,
+			"referenceSources": [
+				"LK"
+			],
+			"size": [
+				"G"
+			],
+			"type": "dragon",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 22,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 350,
+				"formula": "20d20 + 140"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 120
+			},
+			"str": 27,
+			"dex": 14,
+			"con": 25,
+			"int": 10,
+			"wis": 15,
+			"cha": 19,
+			"save": {
+				"con": "+13",
+				"int": "+6",
+				"wis": "+8"
+			},
+			"skill": {
+				"perception": "+14",
+				"stealth": "+8"
+			},
+			"senses": [
+				"darkvision 240 ft."
+			],
+			"passive": 24,
+			"resist": [
+				"fire"
+			],
+			"immune": [
+				"necrotic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"龍語"
+			],
+			"cr": "19",
+			"trait": [
+				{
+					"name": "龍蛋",
+					"entries": [
+						"當末影龍的生命值降至0點時，它會散發出紫色光芒的光束，然後消失，留下一個不活躍的、漆黑的龍蛋，價值5,000金幣。"
+					],
+					"ENG_name": "Dragon Egg"
+				},
+				{
+					"name": "傳奇抗性（4/日）",
+					"entries": [
+						"龍豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (4/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"龍進行一次咬擊，並使用振翅攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} {@hit 14} 命中；射程 15 英尺，單一目標。{@h}18 ({@damage 3d6 + 8}) 穿刺傷害外加 7 ({@damage 2d6}) 暗蝕傷害。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "振翅",
+					"entries": [
+						"巨龍拍打其巨大的翅膀。距離巨龍15英尺內的每個生物必須成功透過一次{@dc 21}敏捷豁免檢定，否則將受到10（{@damage 1d4 + 8}）鈍擊傷害，被推開10英尺遠，並且獲得{@condition prone||倒地}狀態。"
+					],
+					"ENG_name": "Beating Wings"
+				},
+				{
+					"name": "致命吐息{@recharge 5}",
+					"entries": [
+						"龍在60尺的錐形區域內撥出腐臭氣體。該區域內的每個生物必須進行一次{@dc 21}體質豁免，豁免失敗者將受到52點（{@damage 15d6}）暗蝕傷害，成功則只受到一半傷害。然後，龍選擇一個它能看到且錐形區域與地面接觸的點。該點成為一道高10尺、半徑10尺的持續氣體圓柱的中心，氣體在龍的下一個回合開始時消失。任何在圓柱內開始其回合的生物將受到10點（{@damage 3d6}）暗蝕傷害。"
+					],
+					"ENG_name": "Harmful Breath {@recharge 5}"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"DR"
+			],
+			"damageTags": [
+				"B",
+				"N",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Ender Dragon"
+		},
+		{
+			"name": "末影人",
+			"source": "MCV3MC",
+			"page": 6,
+			"referenceSources": [
+				"LK"
+			],
+			"size": [
+				"M"
+			],
+			"type": "aberration",
+			"alignment": [
+				"C",
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 78,
+				"formula": "12d8 + 24"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 15,
+			"dex": 18,
+			"con": 15,
+			"int": 10,
+			"wis": 18,
+			"cha": 11,
+			"save": {
+				"str": "+5",
+				"con": "+5"
+			},
+			"skill": {
+				"perception": "+7",
+				"stealth": "+7",
+				"survival": "+7"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 17,
+			"resist": [
+				"necrotic"
+			],
+			"languages": [
+				"結束語"
+			],
+			"cr": "6",
+			"trait": [
+				{
+					"name": "迴避傳送",
+					"entries": [
+						"每當末影人受到傷害或成為遠端攻擊的目標時，它可以連同其穿戴或攜帶的裝備一起傳送到它能看到的20尺內的未被佔據的空間（無需行動）。如果這個效果是由遠端攻擊觸發的，末影人會在攻擊命中前瞬間傳送，導致攻擊落空。當末影人處於{@condition incapacitated||失能}狀態時，這個特性會被抑制。"
+					],
+					"ENG_name": "Evasive Teleportation"
+				},
+				{
+					"name": "崩裂",
+					"entries": [
+						"當末影人的生命值降至0時，它的身體會內爆而死亡。擲一個{@dice d10}骰子。如果擲出9或更低，末影人不會留下任何遺骸。如果擲出10，末影人會留下一個發光的紫色球體，稱為末影珍珠，價值500金幣。生物可以將珍珠投擲至60尺遠；如果珍珠落在一個足夠大的空地上，可以容納生物，生物會連同它所穿戴或攜帶的任何裝備一起傳送到那個空間，珍珠隨之消失。"
+					],
+					"ENG_name": "Implosion"
+				},
+				{
+					"name": "日照敏感",
+					"entries": [
+						"當在陽光中時，末影人攻擊檢定有劣勢。"
+					],
+					"ENG_name": "Sunlight Sensitivity"
+				},
+				{
+					"name": "水體易感",
+					"entries": [
+						"末影人在水中每移動5尺就會受到1點寒冷傷害，每被潑灑1加侖水也會受到1點寒冷傷害，或者每當它在雨中開始其回合時。"
+					],
+					"ENG_name": "Water Susceptibility"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"末影人進行兩次猛擊攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "猛擊",
+					"entries": [
+						"{@atk mw} {@hit 7}hit；射程10尺，單一目標。{@h}8 ({@damage 1d8 + 4})鈍擊傷害加上9 ({@damage 2d8})暗蝕傷害。"
+					],
+					"ENG_name": "Slam"
+				}
+			],
+			"traitTags": [
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"B",
+				"C",
+				"N"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Enderman"
+		},
+		{
+			"name": "主世界的狼",
+			"source": "MCV3MC",
+			"page": 7,
+			"referenceSources": [
+				"LK"
+			],
+			"size": [
+				"M"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 11,
+				"formula": "2d8 + 2"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 12,
+			"dex": 15,
+			"con": 12,
+			"int": 3,
+			"wis": 12,
+			"cha": 6,
+			"skill": {
+				"perception": "+5",
+				"stealth": "+4"
+			},
+			"passive": 15,
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "叢集戰術",
+					"entries": [
+						"如果至少有一隻狼的盟友在生物5尺範圍內，並且盟友沒有處於{@condition incapacitated||失能}狀態，則狼對生物進行攻擊檢定時具有優勢。"
+					],
+					"ENG_name": "Pack Tactics"
+				}
+			],
+			"action": [
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} {@hit 4} 命中；射程 5 尺，單一目標。{@h}7 ({@damage 2d4 + 2}) 點穿刺傷害。如果目標是一個生物，它必須成功進行一次 {@dc 11} 力量豁免檢定，否則會受到 {@condition prone||倒地} 狀態。"
+					],
+					"ENG_name": "Bite"
+				}
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Wolf of the Overworld"
+		}
+	]
+}

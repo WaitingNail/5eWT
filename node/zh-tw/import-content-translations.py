@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build guarded zh-TW sidecars for translated 5etools entity data.
 
-Supported groups are ``spells``, ``character-options``, and ``items``. Every localized
+Supported groups are ``spells``, ``character-options``, ``items``, and ``monsters``. Every localized
 entity is paired to the pinned v2.33.3 English entity by canonical name and
 source. The output retains all mechanical and identity fields from English,
 while replacing only renderer-visible prose. Inline-reference targets are
@@ -31,6 +31,33 @@ SOURCE_COMMIT = "46b15d04f548c23c526084deae078e3568500349"
 UPSTREAM_TAG = "v2.33.3"
 UPSTREAM_COMMIT = "e5f3e77b303a92df10487207857200245e71957c"
 ITEM_SIDECAR_CHUNK_SIZE = 300
+
+MONSTER_ENTRY_KEYS = {
+	"trait",
+	"action",
+	"bonus",
+	"reaction",
+	"legendary",
+	"mythic",
+	"variant",
+	"spellcasting",
+	"legendaryHeader",
+	"mythicHeader",
+	"lairActions",
+	"regionalEffects",
+	"resource",
+}
+MONSTER_DISPLAY_KEYS = {
+	*MONSTER_ENTRY_KEYS,
+	"ac",
+	"hp",
+	"speed",
+	"languages",
+	"resist",
+	"immune",
+	"vulnerable",
+	"conditionImmune",
+}
 
 
 def load_core_importer():
@@ -308,9 +335,166 @@ ITEM_TRANSLATION_OVERRIDES: dict[str, str] = {
 	"magicvariants.json/magicvariant/164/inherits/entries/2": "在你的誓敵仍活著期間，你使用其他所有武器進行的攻擊檢定具有{@variantrule Disadvantage|XPHB|劣勢}。",
 }
 
+MONSTER_TRANSLATION_OVERRIDES: dict[str, str] = {
+	"bestiary/bestiary-awm.json/monster/0/action/0/entries/0": "{@atk mw}命中{@hit 5}，單一目標。{@h}13（{@damage 3d6+3}）點鈍擊傷害。若目標為中型或更小體型，則陷入{@condition grappled||受擒}（掙脫{@dc 13}），並被拉向大水蛞5尺。直到此次{@action grapple||擒抱}結束前，目標陷入{@condition restrained||束縛}，大水蛞會試圖淹死它，且不能絞纏另一個目標。",
+	"bestiary/bestiary-awm.json/monster/3/action/0/entries/0": "{@atk mw}命中{@hit 2}，單一目標。{@h}3（{@damage 1d6}）點穿刺傷害。",
+	"bestiary/bestiary-awm.json/monster/4/action/2/entries/0": "{@atk mw}命中{@hit 6}，單一目標。{@h}17（{@damage 2d8 + 4}）點揮砍傷害。",
+	"bestiary/bestiary-awm.json/monster/5/action/1/entries/0": "{@atk mw}命中{@hit 4}，單一目標。{@h}3（{@damage 1d6 +2}）點揮砍傷害。",
+	"bestiary/bestiary-awm.json/monster/5/action/2/entries/0": "{@atk rw}命中{@hit 4}，單一目標。{@h}6（{@damage 1d6 + 2}）點穿刺傷害。",
+	"bestiary/bestiary-awm.json/monster/6/action/0/entries/0": "{@atk mw}命中{@hit 3}，單一目標。{@h}4（{@damage 1d6 + 1}）點揮砍傷害。",
+	"bestiary/bestiary-awm.json/monster/7/action/1/entries/0": "{@atk mw}命中{@hit 14}，單一目標。{@h}22（{@damage 3d8}）點穿刺傷害。目標必須通過一次{@dc 19}敏捷豁免，否則被蠕蟲吞下！",
+	"bestiary/bestiary-awm.json/monster/7/action/2/entries/0": "{@atk mw}命中{@hit 14}，單一生物。{@h}19（{@damage 3d6 + 9}）點穿刺傷害。目標必須進行一次{@dc 19}體質豁免；失敗受到42（{@damage 12d6}）點毒素傷害。",
+	"bestiary/bestiary-awm.json/monster/9/action/1/entries/0": "{@atk mw}命中{@hit 8}，單一目標。{@h}18（{@damage 3d8 + 5}）點鈍擊傷害。",
+	"bestiary/bestiary-awm.json/monster/9/action/2/entries/0": "{@atk rw}命中{@hit 8}，單一目標。{@h}21（{@damage 3d10 + 5}）點鈍擊傷害。",
+	"bestiary/bestiary-awm.json/monster/10/action/0/entries/0": "{@atk mw}命中{@hit 8}，觸及5尺，單一生物。{@h}8（{@damage 1d6 + 5}）點穿刺傷害。目標必須進行一次{@dc 13}體質豁免，失敗則陷入{@condition unconscious||昏迷}。另一個生物可以用一個動作搖醒目標。",
+	"bestiary/bestiary-bam.json/monster/0/languages/0": "阿爾圖克語",
+	"bestiary/bestiary-bam.json/monster/1/languages/0": "阿爾圖克語",
+	"bestiary/bestiary-bam.json/monster/2/languages/0": "阿爾圖克語",
+	"bestiary/bestiary-bgg.json/monster/71/action/2/entries/0": "異變體釋放一波心靈能量。異變體30尺內每個生物必須進行一次{@dc 14}智力豁免；失敗受到28（{@damage 8d6}）點心靈傷害，成功則傷害減半。",
+	"bestiary/bestiary-egw.json/monster/21/ac/1/condition": "縮入甲殼時",
+	"bestiary/bestiary-egw.json/monster/37/trait/0/entries/0": "海之怒能呼吸空氣和水。",
+	"bestiary/bestiary-egw.json/monster/43/trait/0/entries/0": "這隻蜥蜴能呼吸空氣和水。",
+	"bestiary/bestiary-egw.json/monster/46/action/0/entries/0": "{@atk mw}命中{@hit 2}，觸及5尺，單一目標。{@h}2（{@damage 1d4}）點穿刺傷害，外加3點閃電傷害。",
+	"bestiary/bestiary-crcotn.json/monster/26/bonus/0/entries/0": "加爾薩里亞德以自己或他能在自身60尺內看見的一個自願生物為目標，以魔法扭曲目標周圍的重力。目標5尺內每個生物受到7（{@damage 2d6}）點力場傷害。此外，目標可以用反應向上漂浮至多20尺，且不引發藉機攻擊。此效應在加爾薩里亞德下一回合開始時結束，屆時目標會緩緩下降至多20尺。",
+	"bestiary/bestiary-crcotn.json/monster/27/bonus/0/entries/0": "加爾薩里亞德以自己或他能在自身60尺內看見的一個自願生物為目標，以魔法扭曲目標周圍的重力。目標5尺內每個生物受到14（{@damage 4d6}）點力場傷害。此外，目標可以用反應向上漂浮至多20尺，且不引發藉機攻擊。此效應在加爾薩里亞德下一回合開始時結束，屆時目標會緩緩下降至多20尺。",
+	"bestiary/bestiary-mcv2dc.json/monster/2/bonus/0/entries/0": "森林大師以角觸地，使一道5尺高、90尺長、10尺寬的荊棘牆迸發。牆出現時，區域內每個生物被推至牆旁最近的未佔據空間，並必須進行一次{@dc 15}敏捷豁免；失敗受到27（{@damage 6d8}）點穿刺傷害，成功則傷害減半。",
+	"bestiary/bestiary-mgelft.json/monster/5/action/0/entries/0": "{@atk mw}命中{@hit 2}，觸及5尺，單一目標。{@h}3（{@damage 1d4 + 1}）點揮砍傷害，外加2（{@damage 1d4}）點寒冷傷害。爪擊同時造成揮砍與寒冷傷害。",
+	"bestiary/bestiary-ftd.json/monster/0/action/3/entries/0": "該龍在口中凝聚一顆閃耀的引力珠，接著將能量釋放成90尺錐形。區域內每個生物必須進行一次{@dc 20}力量豁免。失敗時，生物受到45（{@damage 10d8}）點力場傷害，且速度降為0，直到龍的下一回合開始；成功時，傷害減半且速度不會降低。",
+	"bestiary/bestiary-ftd.json/monster/49/hp/special": "5＋遊俠等級的五倍（龍獸具有等同於你遊俠等級數量的生命骰［d10］）",
+	"bestiary/bestiary-ggr.json/monster/52/ac/0/condition": "每有一名其他歐節達再加1",
+	"bestiary/bestiary-mm.json/monster/11/action/5/entries/0": "龍呼出毒氣，形成60尺錐形。區域內每個生物必須進行一次{@dc 18}體質豁免；失敗受到56（{@damage 16d6}）點毒素傷害，成功則傷害減半。",
+	"bestiary/bestiary-mm.json/monster/14/action/5/entries/0": "龍呼出冰寒氣息，形成60尺錐形。區域內每個生物必須進行一次{@dc 19}體質豁免；失敗受到54（{@damage 12d8}）點寒冷傷害，成功則傷害減半。",
+	"bestiary/bestiary-mm.json/monster/23/action/5/entries/0": "龍呼出毒氣，形成90尺錐形。區域內每個生物必須進行一次{@dc 22}體質豁免；失敗受到77（{@damage 22d6}）點毒素傷害，成功則傷害減半。",
+	"bestiary/bestiary-mm.json/monster/203/action/1/entries/0": "龍呼出毒氣，形成15尺錐形。區域內每個生物必須進行一次{@dc 11}體質豁免；失敗受到21（{@damage 6d6}）點毒素傷害，成功則傷害減半。",
+	"bestiary/bestiary-mm.json/monster/25/action/5/entries/1/items/1/entry": "龍呼出麻痺氣體，形成90尺錐形。區域內每個生物必須通過一次{@dc 24}體質豁免，否則陷入{@condition paralyzed||麻痺}1分鐘。生物可以在其每個回合結束時重複豁免，成功時終止自身的效應。",
+	"bestiary/bestiary-mm.json/monster/56/trait/1/entries/0": "生物若觸碰布丁怪，或在其5尺內以近戰攻擊命中它，便受到4（{@damage 1d8}）點強酸傷害。任何以金屬或木材製成的非魔法武器命中布丁怪後會腐蝕；造成傷害後，該武器的傷害擲骰承受永久且可累積的−1罰值。若罰值降至−5，武器便被摧毀。以金屬或木材製成的非魔法彈藥命中後，在造成傷害後被摧毀。布丁怪能在1輪內侵蝕2吋厚的非魔法木材或金屬。",
+	"bestiary/bestiary-mm.json/monster/69/action/2/entries/0": "{@atk mw,rw}命中{@hit 5}，觸及5尺或射程30/120尺，單一目標。{@h}近戰時造成9（{@damage 2d6 + 3}）點穿刺傷害，遠程時造成5（{@damage 1d6 + 3}）點穿刺傷害。",
+	"bestiary/bestiary-mm.json/monster/84/variant/0/entries/1/entries/0": "巨人試圖投擲其10尺內一個小型或中型生物。目標必須通過一次{@dc 20}敏捷豁免，否則沿巨人選擇的方向被水平擲出至多60尺並{@condition prone||倒地}落地；目標每被擲出10尺便受到4（{@damage 1d8}）點鈍擊傷害。",
+	"bestiary/bestiary-mm.json/monster/282/variant/0/entries/1/entries/0": "蕈人向30尺錐形區域釋放孢子。區域內每個生物必須通過一次{@dc 11}敏捷豁免，否則在蕈人的每個回合開始時受到3（{@damage 1d6}）點強酸傷害。生物可以在其回合結束時重複豁免，成功時終止自身的效應。豁免DC等於8＋蕈人的體質調整值＋熟練加值。",
+	"bestiary/bestiary-mm.json/monster/283/variant/0/entries/1/entries/0": "蕈人向30尺錐形區域釋放孢子。區域內每個生物必須通過一次{@dc 12}敏捷豁免，否則在蕈人的每個回合開始時受到3（{@damage 1d6}）點強酸傷害。生物可以在其回合結束時重複豁免，成功時終止自身的效應。豁免DC等於8＋蕈人的體質調整值＋熟練加值。",
+	"bestiary/bestiary-mm.json/monster/358/action/1/entries/1/items/1/entry": "龍呼出麻痺氣體，形成15尺錐形。區域內每個生物必須通過一次{@dc 13}體質豁免，否則陷入{@condition paralyzed||麻痺}1分鐘。生物可以在其每個回合結束時重複豁免，成功時終止自身的效應。",
+	"bestiary/bestiary-mm.json/monster/372/variant/0/entries/1/entries/0": "巨人試圖投擲其10尺內一個小型或中型生物。目標必須通過一次{@dc 17}敏捷豁免，否則沿巨人選擇的方向被水平擲出至多60尺並{@condition prone||倒地}落地；目標每被擲出10尺便受到3（{@damage 1d6}）點鈍擊傷害。",
+	"bestiary/bestiary-mm.json/monster/398/action/2/entries/0": "超等羅斯魔的雙眼閃爍乳白光芒，並以它30尺內一個它能看見的生物為目標。若目標能看見超等羅斯魔，便必須通過一次{@dc 17}感知豁免抵抗此魔法，否則陷入{@condition charmed||魅惑}直到超等羅斯魔下一回合結束。被{@condition charmed||魅惑}的目標同時陷入{@condition stunned||震懾}。若豁免成功，目標在接下來24小時內免疫該超等羅斯魔的凝視。",
+	"bestiary/bestiary-mpp.json/monster/46/action/2/entries/0": "若目標正為一道法術或類似效應維持{@status concentration||專注}，則為維持其{@status concentration||專注}而進行的體質豁免具有劣勢。",
+	"bestiary/bestiary-ps-z.json/monster/8/action/4/entries/0": "費利達爾以魔法傳送自己，以及它5尺內能看見的至多三個自願生物，連同各自穿戴或攜帶的裝備，抵達費利達爾熟悉且最遠1英里外的地點。",
+	"bestiary/bestiary-skt.json/monster/37/_copy/_mod/action/1/items/entries/0": "{@atk mw}命中{@hit 14}，觸及10尺，單一目標。{@h}19（{@damage 3d6 + 9}）點穿刺傷害；若以雙手持用，則造成（{@damage 3d8 + 9}）點穿刺傷害。",
+	"bestiary/bestiary-tce.json/monster/11/hp/special": "50（僅限惡魔）或40（僅限魔鬼）或60（僅限尤格羅斯魔），加上法術位每高於6環一環便增加15",
+	"bestiary/bestiary-tce.json/monster/16/action/2/entries/0": "靈魄發出尖嘯。它30尺內每個生物必須通過一次感知豁免，對抗你的法術豁免DC，否則陷入{@condition frightened||恐懼}1分鐘。陷入{@condition frightened||恐懼}的生物可以在其每個回合結束時重複豁免，成功時終止自身的效應。",
+	"bestiary/bestiary-tftyp.json/monster/71/trait/0/entries/0": "生物若觸碰黏液大師，或在其5尺內以近戰攻擊命中它，便受到9（{@damage 2d8}）點強酸傷害。任何非魔法武器命中黏液大師後會腐蝕；造成傷害後，武器的傷害擲骰承受永久且可累積的−1罰值。若罰值降至−5，武器便被摧毀。非魔法彈藥命中後，在造成傷害後被摧毀。",
+	"bestiary/bestiary-tftyp.json/monster/123/trait/1/entries/0": "任何以金屬製成的非魔法武器命中白喉後會腐蝕；造成傷害後，武器的傷害擲骰承受永久且可累積的−1罰值。若罰值降至−5，武器便被摧毀。以金屬製成的非魔法彈藥命中白喉後，在造成傷害後被摧毀。",
+	"bestiary/bestiary-toa.json/monster/9/legendary/2/entries/0": "萎縮者發出衰萎哀號。萎縮者120尺內能聽見哀號的每個生物必須通過一次{@dc 19}體質豁免，否則獲得1級{@condition exhaustion||力竭}。",
+	"bestiary/bestiary-wdh.json/monster/23/trait/0/entries/0": "法杖位於{@spell antimagic field||反魔法場}區域內時陷入{@condition incapacitated||失能}。若成為{@spell dispel magic||解除魔法}的目標，法杖必須通過一次體質豁免，DC等於施法者的法術豁免DC，否則陷入{@condition unconscious||昏迷}1分鐘。",
+	"bestiary/bestiary-xmm.json/monster/8/legendary/2/entries/0": "{@actSave con} {@dc 17}，以龍90尺內能看見的一點為中心，半徑20尺{@variantrule Sphere [Area of Effect]|XPHB|球形}內的每個生物。{@actSaveFail}10（{@damage 3d6}）點雷鳴傷害，且目標陷入{@condition Deafened|XPHB|耳聾}直到其下一回合結束。",
+	"bestiary/bestiary-xmm.json/monster/19/action/3/entries/0": "{@actSave con} {@dc 21}，90尺{@variantrule Cone [Area of Effect]|XPHB|錐形}內的每個生物。{@actSaveFail}目標陷入{@condition Incapacitated|XPHB|失能}直到其下一回合結束，屆時重複豁免。{@actSaveFail 2}目標陷入{@condition Unconscious|XPHB|昏迷}10分鐘。若目標受到傷害，或其5尺內一個生物採取動作將其喚醒，此效應對目標終止。",
+	"bestiary/bestiary-xmm.json/monster/35/action/1/entries/0": "{@atkr m,r} {@hit 9}，觸及5尺或射程120尺。{@h}31（{@damage 4d12 + 5}）點黯蝕傷害。",
+	"bestiary/bestiary-xmm.json/monster/81/action/1/entries/0": "{@atkr m} {@hit 7}，觸及5尺。{@h}17（{@damage 2d12 + 4}）點穿刺傷害。",
+	"bestiary/bestiary-xphb.json/monster/0/trait/0/entries/0": "若靈魄至少有1點{@variantrule Hit Points|XPHB|生命值}，則在其回合開始時恢復5點{@variantrule Hit Points|XPHB|生命值}。",
+	"bestiary/fluff-bestiary-bgg.json/monsterFluff/42/entries/0/entries/1": "受飼養者命令時，巨鵝會生下一枚金蛋——一個長1尺、重2磅、內部中空的黃金蛋殼。蛋殼價值100 gp。有時蛋中會莫名出現某種小飾品或次要魔法物品。巨鵝生下金蛋後，要過一年零一天才能再次生產。",
+	"bestiary/fluff-bestiary-cos.json/monsterFluff/3/entries/0/entries/0/entries/0/entries/3/entries/1": "史特拉德不認為鴉人是嚴重威脅，但萊薩迦選擇將他們視為眼中釘。經過長期搜索與探知，她在美酒巫師酒莊（第12章）發現一處鴉人庇護所，並開始對其發動戰爭。此外，她與出沒於往日山丘（第14章）的瘋狂德魯伊結盟，說服他們相信史特拉德是她所生，而德魯伊將史特拉德視為神祇。有德魯伊相助，她期望徹底清除巴洛維亞的鴉人禍患。",
+	"bestiary/fluff-bestiary-mabjov.json/monsterFluff/35/entries/3": "帕祖祖的居所是無底深淵第一層帕祖尼亞，又稱無限門扉平原或1,001櫥宮。此地環境險惡，表面遍布深坑與裂谷。這些深坑都是傳送門，不僅通往無底深淵的所有層級，也通往其他位面，乃至凡人世界。只有帕祖祖知道每道門通往何處。",
+	"bestiary/fluff-bestiary-mpmm.json/monsterFluff/167/entries/4/rows/0/1": "完好且仍裝有酒的酒囊",
+	"bestiary/fluff-bestiary-mpp.json/monsterFluff/5/entries/1/entries/0/entries/1": "在巢穴中遭遇貝納羅斯魔時，其挑戰等級為18（20,000 XP）。",
+	"bestiary/fluff-bestiary-mtf.json/monsterFluff/22/entries/2/entries/2/rows/2/1": "{@b 改良護甲。}發條構裝體的AC提高2。",
+	"bestiary/fluff-bestiary-skt.json/monsterFluff/35/entries/0/entries/0/entries/4/entries/4": "駝鹿：{@spell find steed||尋獲坐騎}（以1個動作施展；僅限駝鹿）、{@spell haste||加速術}",
+	"bestiary/bestiary-toa.json/monster/55/action/3/entries/0": "{@atk mw}命中{@hit 6}，觸及5尺，單一目標。{@h}7（{@damage 1d8 + 3}）點揮砍傷害；若以雙手持用則造成8（{@damage 1d10 + 3}）點揮砍傷害；此外再造成7（{@damage 2d6}）點火焰傷害。",
+	"bestiary/bestiary-xmm.json/monster/156/trait/1/entries/1": "若魔像的創造者位於狂怒魔像60尺內，創造者可以採取一個動作進行一次{@dc 15}魅力（{@skill Persuasion|XPHB|遊說}）檢定，嘗試使魔像冷靜；魔像必須能聽見其創造者。檢定成功時，魔像不再狂怒，直到其下一回合開始；若此時魔像仍處於{@status Bloodied|XPHB|浴血}狀態，便再次檢查狂怒特質是否生效。",
+	"bestiary/bestiary-xmm.json/monster/450/spellcasting/0/headerEntries/0": "吸血鬼施展{@spell Charm Person|XPHB|魅惑人類}，無需法術成分並以魅力作為施法屬性（法術豁免{@dc 17}），且持續時間為24小時。處於{@condition Charmed|XPHB|魅惑}狀態的目標會自願接受吸血鬼的啃咬，該次傷害不會終止法術。法術結束時，目標不會察覺自己曾被吸血鬼{@condition Charmed|XPHB|魅惑}。",
+	"bestiary/bestiary-xphb.json/monster/12/action/2/entries/0": "{@atkr r}{@hitYourSpellAttack 加值等於你的法術攻擊調整值}，射程60尺。{@h}{@damage 1d10 + 3 + summonSpellLevel}點鈍擊傷害，且目標的{@variantrule Speed|XPHB|速度}降為0，直到巨蟲下一回合開始。",
+}
+
+MONSTER_TEXT_OVERRIDES: dict[str, str] = {
+	"Red—5 years or less": "紅色—5歲或以下",
+	"The dragon beats its wings. Each creature within 10 feet of the dragon must succeed on a {@dc 19} Dexterity saving throw or take 13 ({@damage 2d6 + 6}) bludgeoning damage and be knocked {@condition prone}. The dragon can then fly up to half its flying speed.": "龍拍動雙翼。龍身邊10尺內每個生物必須通過一次{@dc 19}敏捷豁免，否則受到13（{@damage 2d6 + 6}）點鈍擊傷害並陷入{@condition prone||倒地}。龍接著可以飛行至多等同其飛行速度一半的距離。",
+	"The dragon beats its wings. Each creature within 15 feet of the dragon must succeed on a {@dc 23} Dexterity saving throw or take 15 ({@damage 2d6 + 8}) bludgeoning damage and be knocked {@condition prone}. The dragon can then fly up to half its flying speed.": "龍拍動雙翼。龍身邊15尺內每個生物必須通過一次{@dc 23}敏捷豁免，否則受到15（{@damage 2d6 + 8}）點鈍擊傷害並陷入{@condition prone||倒地}。龍接著可以飛行至多等同其飛行速度一半的距離。",
+	"{@atk mw} {@hit 14} to hit, reach 5 ft., one target. {@h}15 ({@damage 2d6 + 8}) slashing damage.": "{@atk mw}命中{@hit 14}，觸及5尺，單一目標。{@h}15（{@damage 2d6 + 8}）點揮砍傷害。",
+	"The dragon exhales paralyzing gas in a 60-foot cone. Each creature in that area must succeed on a {@dc 20} Constitution saving throw or be {@condition paralyzed} for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.": "龍呼出麻痺氣體，形成60尺錐形。區域內每個生物必須通過一次{@dc 20}體質豁免，否則陷入{@condition paralyzed||麻痺}1分鐘。生物可以在其每個回合結束時重複豁免，成功時終止自身的效應。",
+	"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage, and the target must make a {@dc 15} Constitution saving throw, taking 24 ({@damage 7d6}) poison damage on a failed save, or half as much damage on a successful one.": "{@atk mw}命中{@hit 6}，觸及5尺，單一目標。{@h}6（{@damage 1d6 + 3}）點穿刺傷害；目標必須進行一次{@dc 15}體質豁免，失敗受到24（{@damage 7d6}）點毒素傷害，成功則傷害減半。",
+}
+
+# Proper names which the pinned community source leaves in English.  Existing
+# community forms are preferred where discoverable (for example, Leosin and
+# Vizeran); otherwise these use the project's Taiwan Traditional Chinese
+# transliteration rules.  Machine identifiers intentionally remain unchanged.
+MONSTER_NAME_TRANSLATIONS: dict[str, str] = {
+	"Nintra Siotta": "妮恩特拉·西奧塔",
+	"Ram Sugar": "拉姆·舒格",
+	"Aeshma": "艾什瑪",
+	"Buer": "布耶爾",
+	"Eriflamme": "艾瑞弗蘭",
+	"Waeloquay": "維洛奎",
+	"Shira": "希拉",
+	"Sken Zabriss": "斯肯·札布里斯",
+	"Skr'a S'orsk": "斯克拉·索斯克",
+	"Three Earrings": "三耳環",
+	"Othokent": "奧索肯特",
+	"Leosin Erlanthar": "雷歐辛·厄蘭塔",
+	"Spellix Romwod": "斯佩利克斯·羅姆沃德",
+	"Lynx Creatlach": "林克斯·克里特拉赫",
+	"Sir Ursas": "烏薩斯爵士",
+	"Tarnhem": "塔恩赫姆",
+	"Nimuel": "尼姆埃爾",
+	"Wei Feng Ying": "魏鳳英",
+	"Zala Morphus": "薩拉·墨菲斯",
+	"Zorhanna Adulare": "佐哈娜·阿杜拉雷",
+	"Warwyck Blastimoff": "沃威克·布拉斯提莫夫",
+	"Whymsee": "懷姆希",
+	"Szikzith": "斯齊克齊斯",
+	"Rumpadump": "蘭帕丹普",
+	"Vizeran DeVir": "維茲蘭·迪威爾",
+	"Xazax the Eyemonger": "眼商札札克斯",
+	"Y": "歪",
+	"Yantha Coaxrock": "揚薩·寇克斯洛克",
+	"Nellik": "妮莉克",
+	"Qunbraxel": "昆布拉克塞爾",
+	"Voalsh": "沃爾什",
+	"Yanthdel Henlifel": "揚瑟爾·亨利菲爾",
+	"Na": "娜",
+	"Nyssa Otellion": "妮莎·歐泰利昂",
+	"Rezran \"Snake Eyes\" Agrodro": "雷茲蘭「蛇眼」阿格羅卓",
+	"Sangora": "桑戈拉",
+	"Sarusanda Allester": "薩魯桑達·阿勒斯特",
+	"Umberto Noblin": "翁貝托·諾布林",
+	"Uvashar": "烏瓦沙爾",
+	"Vaeve": "薇芙",
+	"Valendar": "瓦倫達爾",
+	"Obaya Uday": "歐芭雅·烏黛",
+	"Soluun Xibrindas": "索倫·希布林達斯",
+	"Tissina Khyret": "蒂西娜·凱瑞特",
+	"Willifort Crowelle": "威利福特·克羅威爾",
+	"Sundeth": "桑德斯",
+	"Thwad Underbrew": "斯瓦德·安德布魯",
+	"Torbit": "托比特",
+	"Wyllow": "威洛",
+	"Xarann A'Daragon": "札蘭·阿達拉貢",
+	"Xorta": "佐塔",
+	"Zox Clammersham": "佐克斯·克拉默沙姆",
+	"Zress Orlezziir": "澤瑞絲·奧雷齊爾",
+}
+
 ITEM_NUMERIC_EQUIVALENT_CONTEXTS: dict[str, str] = {
 	"items.json/item/2066/entries/3/items/0": "100 million miles is faithfully rendered as 1億英里",
 	"items.json/item/2220/entries/4/entries/1/items/1": "1/7 days is faithfully rendered as 每7天1次",
+	"bestiary/bestiary-bam.json/monster/71/trait/0/entries/0": "written English numbers are faithfully rendered as Chinese numerals",
+	"bestiary/bestiary-bmt.json/monster/5/trait/0/entries/0": "38°C is an explanatory conversion of 100°F",
+	"bestiary/bestiary-egw.json/monster/21/trait/1/entries/0": "Chinese large-number forms preserve 20,000 and 10,000",
+	"bestiary/bestiary-mm.json/monster/310/variant/0/entries/1": "100% faithfully expresses no chance of failure",
+	"bestiary/bestiary-mpmm.json/monster/93/trait/0/entries/0": "every foot is faithfully rendered as 每1尺",
+	"bestiary/bestiary-mpmm.json/monster/146/trait/0/entries/0": "every foot is faithfully rendered as 每1尺",
+	"bestiary/bestiary-mtf.json/monster/51/trait/1/entries/0": "every foot is faithfully rendered as 每1尺",
+	"bestiary/bestiary-mtf.json/monster/74/trait/1/entries/0": "every foot is faithfully rendered as 每1尺",
+	"bestiary/bestiary-wdh.json/monster/39/action/3/entries/1/items/3": "零下50 faithfully preserves -50",
+	"bestiary/fluff-bestiary-bgdia.json/monsterFluff/37/entries/0/entries/0/entries/0": "in his forties is faithfully rendered as 40歲左右",
+	"bestiary/fluff-bestiary-cos.json/monsterFluff/42/entries/0/entries/0/entries/0/entries/0": "five hundred is faithfully rendered as 500",
+	"bestiary/fluff-bestiary-ftd.json/monsterFluff/7/entries/1/entries/4/entries/1/entries/0/rows/2/1": "a thousand is faithfully rendered as 1000",
+	"bestiary/fluff-bestiary-ftd.json/monsterFluff/12/entries/1/entries/2/entries/2/entries/2/items/0/entry": "twelve hundred is faithfully rendered as 1200",
+	"bestiary/fluff-bestiary-ftd.json/monsterFluff/76/entries/1/entries/4/entries/1/entries/0/rows/2/1": "a thousand is faithfully rendered as 1000",
+	"bestiary/fluff-bestiary-mm.json/monsterFluff/380/entries/0/entries/0/entries/1": "written English measurements are faithfully rendered as Chinese numerals",
+	"bestiary/fluff-bestiary-mpmm.json/monsterFluff/19/entries/0": "sixty-six is faithfully rendered as 66",
+	"bestiary/fluff-bestiary-mpmm.json/monsterFluff/233/entries/2": "a thousand is faithfully rendered as 1000",
+	"bestiary/fluff-bestiary-mpmm.json/monsterFluff/291/entries/5/entries/0": "two dozen is faithfully rendered as 24",
+	"bestiary/fluff-bestiary-mtf.json/monsterFluff/157/entries/0/entries/1/entries/0": "two dozen is faithfully rendered as 24",
+	"bestiary/fluff-bestiary-oota.json/monsterFluff/6/entries/0/entries/0/entries/4/entries/0": "one hundred and fifty is faithfully rendered as 150",
+	"bestiary/legendarygroups.json/legendaryGroup/153/regionalEffects/1/items/0": "1 in 20 is faithfully rendered as 1/20",
 }
 
 
@@ -319,13 +503,16 @@ class ContentLocalizer(CORE.Localizer):
 	_FULLWIDTH_NUMBER_TRANSLATION = str.maketrans("０１２３４５６７８９", "0123456789")
 
 	def localize_string(self, english: str, translated: str, context: str) -> str:
-		if context in ITEM_TRANSLATION_OVERRIDES:
+		translation_overrides = {**ITEM_TRANSLATION_OVERRIDES, **MONSTER_TRANSLATION_OVERRIDES}
+		if context.startswith("bestiary/") and english in MONSTER_TEXT_OVERRIDES:
+			translation_overrides[context] = MONSTER_TEXT_OVERRIDES[english]
+		if context in translation_overrides:
 			self.report["sourceRepairsApplied"].append({
 				"context": context,
 				"from": self.normalize_text(translated),
-				"to": ITEM_TRANSLATION_OVERRIDES[context],
+				"to": translation_overrides[context],
 			})
-			translated = ITEM_TRANSLATION_OVERRIDES[context]
+			translated = translation_overrides[context]
 		translated = self.normalize_text(translated)
 		if context.endswith("/template"):
 			translated = translated.replace("\\xa0", "\u00a0")
@@ -431,9 +618,181 @@ class ItemLocalizer(ContentLocalizer):
 		return out
 
 
+class MonsterLocalizer(ContentLocalizer):
+	"""Translate monster stat-block prose while retaining every mechanical field."""
+
+	_VISIBLE_TREE_CANONICAL_KEYS = CORE.CANONICAL_KEYS | {
+		"ability",
+		"displayAs",
+		"hidden",
+		"slots",
+		"lower",
+		"upper",
+		"charges",
+		"number",
+		"choose",
+		"mode",
+		"addAs",
+		"addHeadersAs",
+		"index",
+		"replace",
+		"replaceWith",
+		"names",
+		"flags",
+		"scalar",
+	}
+	_NOTE_KEYS = {"from", "condition", "note", "preNote", "special"}
+
+	@staticmethod
+	def _replace_visible_proper_names(text: str) -> str:
+		def replace_segment(segment: str) -> str:
+			for english, localized in sorted(MONSTER_NAME_TRANSLATIONS.items(), key=lambda pair: len(pair[0]), reverse=True):
+				pattern = re.compile(rf"(?<![A-Za-z]){re.escape(english)}(?P<possessive>['’]s)?(?![A-Za-z])")
+				segment = pattern.sub(lambda match: f"{localized}{'的' if match.group('possessive') else ''}", segment)
+			return segment
+
+		# Preserve canonical identifiers inside 5etools inline tags.  These are
+		# link/search keys; only surrounding player-visible prose is transliterated.
+		out = []
+		last = 0
+		for match in CORE.TAG_RE.finditer(text):
+			out.append(replace_segment(text[last:match.start()]))
+			out.append(match.group(0))
+			last = match.end()
+		out.append(replace_segment(text[last:]))
+		return "".join(out)
+
+	def translate_name(self, english: str, translated: str, category: str) -> str:
+		return MONSTER_NAME_TRANSLATIONS.get(english) or super().translate_name(english, translated, category)
+
+	def localize_string(self, english: str, translated: str, context: str) -> str:
+		return self._replace_visible_proper_names(super().localize_string(english, translated, context))
+
+	def _localize_visible_tree(self, english, translated, context: str, category: str):
+		if isinstance(english, str):
+			if not isinstance(translated, str):
+				self.report["typeShapeMismatches"].append({
+					"context": context,
+					"englishType": "str",
+					"translatedType": type(translated).__name__,
+				})
+				return english
+			return self.localize_string(english, translated, context)
+
+		if isinstance(english, list):
+			if not isinstance(translated, list):
+				self.report["typeShapeMismatches"].append({
+					"context": context,
+					"englishType": "list",
+					"translatedType": type(translated).__name__,
+				})
+				return deepcopy(english)
+			if len(english) != len(translated):
+				self.report["arrayShapeMismatches"].append({
+					"context": context,
+					"englishLength": len(english),
+					"translatedLength": len(translated),
+				})
+			return [
+				self._localize_visible_tree(child, translated[ix] if ix < len(translated) else None, f"{context}/{ix}", category)
+				for ix, child in enumerate(english)
+			]
+
+		if isinstance(english, dict):
+			if not isinstance(translated, dict):
+				self.report["typeShapeMismatches"].append({
+					"context": context,
+					"englishType": "dict",
+					"translatedType": type(translated).__name__,
+				})
+				return deepcopy(english)
+			out = deepcopy(english)
+			if isinstance(english.get("name"), str) and isinstance(translated.get("name"), str):
+				out["ENG_name"] = english["name"]
+				out["name"] = self.translate_name(english["name"], translated["name"], category)
+			if isinstance(english.get("shortName"), str) and isinstance(translated.get("shortName"), str):
+				out["ENG_shortName"] = english["shortName"]
+				out["shortName"] = self.translate_name(english["shortName"], translated["shortName"], category)
+			for key, english_value in english.items():
+				if key in {"name", "shortName"} or key in self._VISIBLE_TREE_CANONICAL_KEYS or key not in translated:
+					continue
+				out[key] = self._localize_visible_tree(
+					english_value,
+					translated[key],
+					f"{context}/{key}",
+					category,
+				)
+			return out
+
+		return deepcopy(english)
+
+	def _localize_notes(self, english, translated, context: str, category: str):
+		if isinstance(english, list):
+			if not isinstance(translated, list):
+				return deepcopy(english)
+			return [
+				self._localize_notes(child, translated[ix] if ix < len(translated) else None, f"{context}/{ix}", category)
+				for ix, child in enumerate(english)
+			]
+		if not isinstance(english, dict) or not isinstance(translated, dict):
+			return deepcopy(english)
+		out = deepcopy(english)
+		for key, english_value in english.items():
+			if key not in translated:
+				continue
+			if key in self._NOTE_KEYS and isinstance(english_value, str) and isinstance(translated[key], str):
+				out[key] = self.localize_string(english_value, translated[key], f"{context}/{key}")
+			elif isinstance(english_value, (list, dict)):
+				out[key] = self._localize_notes(english_value, translated[key], f"{context}/{key}", category)
+		return out
+
+	def _localize_copy_mods(self, english, translated, context: str, category: str):
+		if isinstance(english, list):
+			if not isinstance(translated, list):
+				return deepcopy(english)
+			return [
+				self._localize_copy_mods(child, translated[ix] if ix < len(translated) else None, f"{context}/{ix}", category)
+				for ix, child in enumerate(english)
+			]
+		if not isinstance(english, dict) or not isinstance(translated, dict):
+			return deepcopy(english)
+		out = deepcopy(english)
+		for key, english_value in english.items():
+			if key not in translated:
+				continue
+			if key in MONSTER_ENTRY_KEYS:
+				if isinstance(english_value, str):
+					continue
+				out[key] = self._localize_visible_tree(english_value, translated[key], f"{context}/{key}", category)
+			elif isinstance(english_value, (list, dict)):
+				out[key] = self._localize_copy_mods(english_value, translated[key], f"{context}/{key}", category)
+		return out
+
+	def localize_node(self, english, translated, context: str, category: str, matcher=None):
+		out = super().localize_node(english, translated, context, category, matcher)
+		if not isinstance(english, dict) or not isinstance(translated, dict) or not isinstance(out, dict):
+			return out
+
+		for key in MONSTER_ENTRY_KEYS:
+			if key not in english or key not in translated:
+				continue
+			out[key] = self._localize_visible_tree(english[key], translated[key], f"{context}/{key}", category)
+
+		if "languages" in english and "languages" in translated:
+			out["languages"] = self._localize_visible_tree(english["languages"], translated["languages"], f"{context}/languages", category)
+		for key in {"ac", "hp", "speed", "resist", "immune", "vulnerable", "conditionImmune"}:
+			if key not in english or key not in translated:
+				continue
+			out[key] = self._localize_notes(english[key], translated[key], f"{context}/{key}", category)
+
+		if isinstance(english.get("_copy"), dict) and isinstance(translated.get("_copy"), dict):
+			out["_copy"] = self._localize_copy_mods(english["_copy"], translated["_copy"], f"{context}/_copy", category)
+		return out
+
+
 def parse_args() -> argparse.Namespace:
 	parser = argparse.ArgumentParser()
-	parser.add_argument("group", choices=("spells", "character-options", "items"))
+	parser.add_argument("group", choices=("spells", "character-options", "items", "monsters"))
 	parser.add_argument(
 		"--source-dir",
 		type=Path,
@@ -493,6 +852,15 @@ def get_spell_specs() -> list[tuple[str, tuple[str, ...]]]:
 	]
 
 
+def get_monster_specs() -> list[tuple[str, tuple[str, ...]]]:
+	bestiary_root = UPSTREAM_ROOT / "bestiary"
+	return [
+		*((f"bestiary/{path.name}", ("monster",)) for path in sorted(bestiary_root.glob("bestiary-*.json"))),
+		*((f"bestiary/{path.name}", ("monsterFluff",)) for path in sorted(bestiary_root.glob("fluff-bestiary-*.json"))),
+		("bestiary/legendarygroups.json", ("legendaryGroup",)),
+	]
+
+
 def get_group_config(group: str) -> dict:
 	if group == "spells":
 		return {
@@ -528,6 +896,13 @@ def get_group_config(group: str) -> dict:
 			],
 			"sharedProps": {},
 			"reportName": "item-import-report.json",
+		}
+	if group == "monsters":
+		return {
+			"folder": "bestiary",
+			"specs": get_monster_specs(),
+			"sharedProps": {},
+			"reportName": "monster-import-report.json",
 		}
 	raise ValueError(f"Unsupported content group: {group}")
 
@@ -633,6 +1008,7 @@ _VISIBLE_DIRECT_KEYS = CORE.DIRECT_VISIBLE_KEYS | {
 	"namePrefix",
 	"nameSuffix",
 	"nameRemove",
+	*MONSTER_DISPLAY_KEYS,
 }
 
 
@@ -644,6 +1020,7 @@ def validate_content_shape(
 	*,
 	parent_key: str | None = None,
 	is_top_entity: bool = False,
+	is_visible_branch: bool = False,
 ) -> None:
 	"""Require every non-visible leaf to remain byte-for-byte equivalent."""
 	if isinstance(english, list):
@@ -651,7 +1028,7 @@ def validate_content_shape(
 			failures.append({"context": context, "reason": "array-shape"})
 			return
 		for ix, child in enumerate(english):
-			validate_content_shape(child, localized[ix], f"{context}/{ix}", failures, parent_key=parent_key)
+			validate_content_shape(child, localized[ix], f"{context}/{ix}", failures, parent_key=parent_key, is_visible_branch=is_visible_branch)
 		return
 
 	if isinstance(english, dict):
@@ -667,13 +1044,20 @@ def validate_content_shape(
 			if key not in localized:
 				failures.append({"context": f"{context}/{key}", "reason": "missing-key"})
 				continue
-			validate_content_shape(value, localized[key], f"{context}/{key}", failures, parent_key=key)
+			validate_content_shape(
+				value,
+				localized[key],
+				f"{context}/{key}",
+				failures,
+				parent_key=key,
+				is_visible_branch=is_visible_branch or key in _VISIBLE_DIRECT_KEYS | CORE.CONTENT_CONTAINER_KEYS,
+			)
 		return
 
 	if english == localized:
 		return
 	if isinstance(english, str) and isinstance(localized, str):
-		if parent_key in _VISIBLE_DIRECT_KEYS | CORE.CONTENT_CONTAINER_KEYS:
+		if is_visible_branch or parent_key in _VISIBLE_DIRECT_KEYS | CORE.CONTENT_CONTAINER_KEYS:
 			return
 		failures.append({"context": context, "reason": "non-visible-string-changed"})
 		return
@@ -709,6 +1093,7 @@ def finalize_qa(localizer) -> dict:
 			CORE.is_intentional_untranslated(item)
 			or is_proper_name_list(item)
 			or english == "optional"
+			or item.get("context") == "bestiary/fluff-bestiary-mabjov.json/monsterFluff/21/entries/1/entries/0"
 			or re.fullmatch(r"\{\{[^{}]+\}\}(?:\s*\([^)]*\))?", english) is not None
 			or re.fullmatch(r"(?:[AKQJ]\s*)?\{@color\s+[♦♥]\|#ff0000\}(?:\s*\(Cups\))?", english) is not None
 		)
@@ -747,7 +1132,11 @@ def main() -> None:
 	source_root = args.source_dir.resolve()
 	config = get_group_config(args.group)
 	specs = config["specs"]
-	localizer = ItemLocalizer() if args.group == "items" else ContentLocalizer()
+	localizer = (
+		ItemLocalizer() if args.group == "items"
+		else MonsterLocalizer() if args.group == "monsters"
+		else ContentLocalizer()
+	)
 
 	guards = {}
 	for relative, _ in specs:

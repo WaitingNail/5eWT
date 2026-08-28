@@ -1,0 +1,689 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "陰林灰矮人",
+			"source": "MGELFT",
+			"page": 32,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"dwarf"
+				]
+			},
+			"alignment": [
+				{
+					"special": "lawful grumpy"
+				}
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"Plate Mail"
+					]
+				}
+			],
+			"hp": {
+				"formula": "4d8 + 8",
+				"average": 26
+			},
+			"speed": {
+				"walk": 25
+			},
+			"str": 16,
+			"dex": 11,
+			"con": 14,
+			"int": 11,
+			"wis": 10,
+			"cha": 9,
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"poison"
+			],
+			"languages": [
+				"矮人語",
+				"地底通用語"
+			],
+			"cr": "2",
+			"trait": [
+				{
+					"name": "灰矮人體魄",
+					"entries": [
+						"陰林灰矮人抵抗中毒，法術和幻覺時，進行的豁免檢定具有優勢。抵抗{@condition charmed||魅惑}和{@condition paralyzed||麻痺}狀態時，也是一樣。"
+					],
+					"ENG_name": "Duergar Resilience"
+				},
+				{
+					"name": "日照敏感",
+					"entries": [
+						"在陽光照射下，陰林灰矮人進行的攻擊檢定具有劣勢，此時其依賴視覺進行的感知（{@skill Perception||感知}）檢定也具有劣勢。"
+					],
+					"ENG_name": "Sunlight Sensitivity"
+				}
+			],
+			"action": [
+				{
+					"name": "口頭譏諷",
+					"entries": [
+						"灰矮人對60尺內一可見生物說出一句被精妙魔力點綴的侮辱詞句。如果該生物能聽到它（儘管它不需要聽懂），它必須成功透過一次{@dc 12}的感知豁免，否則受到{@damage 1d4}心靈傷害，且直到它的下個回合結束前，它的下一次攻擊檢定將具有劣勢。"
+					],
+					"ENG_name": "Verbal Jab"
+				},
+				{
+					"name": "萬鈞痛擊",
+					"entries": [
+						"{@atk mw} ：命中{@hit 5}，觸及5尺，單一目標。 {@h}：9 ({@damage 1d6 + 6}) 鈍擊傷害。如果灰矮人處於變巨狀態，傷害提升至10 ({@damage 2d6 + 3}) 鈍擊傷害。"
+					],
+					"ENG_name": "Haymaker"
+				}
+			],
+			"traitTags": [
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"languageTags": [
+				"D",
+				"U"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Dankwood Duergar"
+		},
+		{
+			"name": "陰林格龍蛙人",
+			"source": "MGELFT",
+			"page": 31,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"grung"
+				]
+			},
+			"alignment": [
+				{
+					"special": "lawful grumpy"
+				}
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"formula": "5d6 + 10",
+				"average": 27
+			},
+			"speed": {
+				"walk": 25,
+				"climb": 25
+			},
+			"str": 7,
+			"dex": 16,
+			"con": 15,
+			"int": 10,
+			"wis": 11,
+			"cha": 15,
+			"save": {
+				"dex": "+5"
+			},
+			"skill": {
+				"athletics": "+2",
+				"intimidation": "+4",
+				"perception": "+2",
+				"stealth": "+5"
+			},
+			"passive": 12,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"格龍蛙人語"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "水陸兩棲",
+					"entries": [
+						"格龍蛙人可以在空氣和水中呼吸。"
+					],
+					"ENG_name": "Amphibious"
+				},
+				{
+					"name": "毒性皮膚",
+					"entries": [
+						"任何抓取或其他原因直接觸碰到格龍蛙人皮膚的生物必須成功透過{@dc 12}的體質豁免檢定否則在接下來一分鐘內處於{@condition poisoned||中毒}狀態，該{@condition poisoned||中毒}生物在不直接接觸格龍蛙人的情況下在其每個回合結束時重複該豁免檢定，如果成功則結束該毒素影響。"
+					],
+					"ENG_name": "Poisonous Skin"
+				},
+				{
+					"name": "立定跳遠",
+					"entries": [
+						"格龍蛙人起跳時最遠可以跳25尺，最高15尺，不需要任何助跑。"
+					],
+					"ENG_name": "Standing Leap"
+				}
+			],
+			"action": [
+				{
+					"name": "暴躁的咕隆聲",
+					"entries": [
+						"兇猛的咆哮聲從該格龍蛙人的喉嚨裡發出，警告距離其周圍15尺內的生物它們確實脾氣暴躁。該區域內的生物必須成功進行一次 {@dc 12}的魅力豁免，否則就會陷入{@condition frightened||恐慌}，直到其下一回合結束。"
+					],
+					"ENG_name": "Grumpy Grung Growl"
+				},
+				{
+					"name": "匕首",
+					"entries": [
+						"{@atk mw,rw} ：命中{@hit 0}，觸及5尺，或射程20/60尺，單一目標。{@h}：3（{@damage 1d4 + 1}）點近戰穿刺傷害，或3 ({@damage 1d4 + 1}) 點遠端穿刺傷害。且該生物必須成功透過一次{@dc 12} 的體質豁免，否則受到5({@damage 2d4})點毒素傷害。"
+					],
+					"ENG_name": "Dagger"
+				}
+			],
+			"attachedItems": [
+				"dagger|phb"
+			],
+			"traitTags": [
+				"Amphibious"
+			],
+			"languageTags": [
+				"OTH"
+			],
+			"damageTags": [
+				"I",
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"savingThrowForced": [
+				"charisma",
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Dankwood Grung"
+		},
+		{
+			"name": "黏黏國王羅位元",
+			"source": "MGELFT",
+			"page": 32,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"grung"
+				]
+			},
+			"alignment": [
+				{
+					"special": "lawful grumpy"
+				}
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"formula": "5d6 + 10",
+				"average": 27
+			},
+			"speed": {
+				"walk": 25,
+				"climb": 25
+			},
+			"str": 7,
+			"dex": 16,
+			"con": 15,
+			"int": 10,
+			"wis": 11,
+			"cha": 15,
+			"save": {
+				"dex": "+5"
+			},
+			"skill": {
+				"athletics": "+2",
+				"intimidation": "+4",
+				"perception": "+2",
+				"stealth": "+5"
+			},
+			"passive": 12,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"poisoned"
+			],
+			"languages": [
+				"格龍蛙人語"
+			],
+			"cr": "2",
+			"trait": [
+				{
+					"name": "水陸兩棲",
+					"entries": [
+						"格龍蛙人可以在空氣和水中呼吸。"
+					],
+					"ENG_name": "Amphibious"
+				},
+				{
+					"name": "毒性皮膚",
+					"entries": [
+						"任何抓取或其他原因直接觸碰到格龍蛙人皮膚的生物必須成功透過{@dc 12}的體質豁免檢定否則在接下來一分鐘內處於{@condition poisoned||中毒}狀態，該{@condition poisoned||中毒}生物在不直接接觸格龍蛙人的情況下在其每個回合結束時重複該豁免檢定，如果成功則結束該毒素影響。"
+					],
+					"ENG_name": "Poisonous Skin"
+				},
+				{
+					"name": "立定跳遠",
+					"entries": [
+						"格龍蛙人起跳時最遠可以跳25尺，最高15尺，不需要任何助跑。"
+					],
+					"ENG_name": "Standing Leap"
+				}
+			],
+			"action": [
+				{
+					"name": "暴躁的咕隆聲",
+					"entries": [
+						"兇猛的咆哮聲從該格龍蛙人的喉嚨裡發出，警告距離其周圍15尺內的生物它們確實脾氣暴躁。該區域內的生物必須成功進行一次 {@dc 12}的魅力豁免，否則就會陷入{@condition frightened||恐慌}，直到其下一回合結束。"
+					],
+					"ENG_name": "Grumpy Grung Growl"
+				},
+				{
+					"name": "匕首",
+					"entries": [
+						"{@atk mw,rw} ：命中{@hit 0}，觸及5尺，或射程20/60尺，單一目標。{@h}：3（{@damage 1d4 + 1}）點近戰穿刺傷害，或3 ({@damage 1d4 + 1}) 點遠端穿刺傷害。且該生物必須成功透過一次{@dc 12} 的體質豁免，否則受到5({@damage 2d4})點毒素傷害。"
+					],
+					"ENG_name": "Dagger"
+				},
+				{
+					"name": "短弓",
+					"entries": [
+						"{@atk rw}：命中{@hit 5}，射程80/320尺，單一目標。{@h}：9 ({@damage 1d6 + 6}) 點穿刺傷害，且該生物必須成功透過一次{@dc 12}的體質豁免，否則受到5（{@damage 2d4}）點毒素傷害。"
+					],
+					"ENG_name": "Shortbow"
+				}
+			],
+			"attachedItems": [
+				"dagger|phb",
+				"shortbow|phb"
+			],
+			"traitTags": [
+				"Amphibious"
+			],
+			"languageTags": [
+				"OTH"
+			],
+			"damageTags": [
+				"I",
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RNG",
+				"RW",
+				"THW"
+			],
+			"savingThrowForced": [
+				"charisma",
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "King Robbit the Slimy"
+		},
+		{
+			"name": "泥鬼婆",
+			"source": "MGELFT",
+			"page": 33,
+			"size": [
+				"M"
+			],
+			"type": "fey",
+			"alignment": [
+				{
+					"special": "neutral oozy"
+				}
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "11d8 + 33",
+				"average": 82
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 12,
+			"con": 16,
+			"int": 13,
+			"wis": 14,
+			"cha": 14,
+			"skill": {
+				"arcana": "+3",
+				"deception": "+4",
+				"perception": "+4",
+				"stealth": "+3"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 14,
+			"languages": [
+				"通用語",
+				"龍語",
+				"木族語"
+			],
+			"cr": "3",
+			"spellcasting": [
+				{
+					"name": "天生施法",
+					"type": "spellcasting",
+					"will": [
+						"{@spell acid splash||酸液飛濺}",
+						"{@spell dancing lights||舞光術}",
+						"{@spell minor illusion||次級幻象}"
+					],
+					"footerEntries": [
+						"泥鬼婆天生施法的關鍵屬性為魅力（法術豁免{@dc 12}）。它天生可施展以下法術且不需要任何相應的材料成分："
+					],
+					"ENG_name": "Innate Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "無定形",
+					"entries": [
+						"泥鬼婆能夠輕鬆穿過最窄1寸寬的狹窄空間而不用擠進去 。"
+					],
+					"ENG_name": "Amorphous"
+				},
+				{
+					"name": "水陸兩棲",
+					"entries": [
+						"泥鬼婆可以在空氣和水中呼吸。"
+					],
+					"ENG_name": "Amphibious"
+				}
+			],
+			"action": [
+				{
+					"name": "無定形",
+					"entries": [
+						"泥鬼婆坍塌為一攤油乎乎的汙泥，靜止不動時與其他油乎乎的汙泥並無區別。"
+					],
+					"ENG_name": "False Appearance"
+				},
+				{
+					"name": "給泥一巴掌",
+					"entries": [
+						"{@atk mw} {@hit 6} 命中，觸及5尺，單一目標。{@h}12（{@damage 1d8 + 8}）鈍擊傷害，外加4（{@damage 1d8}）強酸傷害。給泥一巴掌同時造成鈍擊和強酸傷害。"
+					],
+					"ENG_name": "Sludge Slap"
+				}
+			],
+			"traitTags": [
+				"Amorphous",
+				"Amphibious"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"S"
+			],
+			"damageTags": [
+				"A",
+				"B"
+			],
+			"spellcastingTags": [
+				"I"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Sludge Hag"
+		},
+		{
+			"name": "蜘蛙",
+			"source": "MGELFT",
+			"page": 33,
+			"size": [
+				"S"
+			],
+			"type": "beast",
+			"alignment": [
+				{
+					"special": "chaotic sticky"
+				}
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"formula": "2d8 + 4",
+				"average": 13
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 30
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 14,
+			"int": 3,
+			"wis": 12,
+			"cha": 4,
+			"skill": {
+				"perception": "+3",
+				"stealth": "+7"
+			},
+			"senses": [
+				"blindsight 10 ft.",
+				"darkvision 60 ft."
+			],
+			"passive": 13,
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "水陸兩棲",
+					"entries": [
+						"蜘蛙可以在空氣和水中呼吸。"
+					],
+					"ENG_name": "Amphibious"
+				},
+				{
+					"name": "蛛行術",
+					"entries": [
+						"蜘蛙可以攀爬在難以攀爬的表面上 ， 包括倒吊在天花板上 ， 且不需要進行屬性檢定 。"
+					],
+					"ENG_name": "Spider Climb"
+				},
+				{
+					"name": "立定跳遠",
+					"entries": [
+						"蜘蛙不需要助跑就可以跳20尺遠、10尺高，且視為移動的一部分。"
+					],
+					"ENG_name": "Standing Leap"
+				}
+			],
+			"action": [
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw}：命中{@hit 2}，觸及5尺，單一目標。{@h}：4（{@damage 1d6 + 1}）點穿刺傷害，目標{@condition grappled||受擒}（逃脫{@dc 11}）。直至擒抱結束前，該目標被{@condition restrained||束縛}，而蜘蛙無法啃咬其他目標。"
+					],
+					"ENG_name": "Bite"
+				}
+			],
+			"traitTags": [
+				"Amphibious",
+				"Spider Climb"
+			],
+			"senseTags": [
+				"B",
+				"D"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"grappled",
+				"restrained"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Spiderfrog"
+		},
+		{
+			"name": "雪怪幼崽",
+			"source": "MGELFT",
+			"page": 34,
+			"size": [
+				"S"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				{
+					"special": "chaotic silly"
+				}
+			],
+			"ac": [
+				{
+					"ac": 11,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "2d6 + 2",
+				"average": 9
+			},
+			"speed": {
+				"walk": 20,
+				"climb": 20
+			},
+			"str": 10,
+			"dex": 11,
+			"con": 12,
+			"int": 6,
+			"wis": 8,
+			"cha": 5,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 9,
+			"immune": [
+				"cold"
+			],
+			"languages": [
+				"能聽懂雪怪語但不會說"
+			],
+			"cr": "1/8",
+			"trait": [
+				{
+					"name": "敏銳嗅覺",
+					"entries": [
+						"雪怪依賴嗅覺進行的感知（{@skill Perception||感知}）檢定具有優勢。"
+					],
+					"ENG_name": "Keen Smell"
+				},
+				{
+					"name": "雪地偽裝",
+					"entries": [
+						"雪怪在雪地地形中進?躲藏時所作的敏捷（{@skill Stealth||隱匿}）檢定具有優勢。"
+					],
+					"ENG_name": "Snow Camouflage"
+				}
+			],
+			"action": [
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atk mw}命中{@hit 2}，觸及5尺，單一目標。{@h}3（{@damage 1d4 + 1}）點揮砍傷害，外加2（{@damage 1d4}）點寒冷傷害。爪擊同時造成揮砍與寒冷傷害。"
+					],
+					"ENG_name": "Claw"
+				}
+			],
+			"traitTags": [
+				"Camouflage",
+				"Keen Senses"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"CS",
+				"OTH"
+			],
+			"damageTags": [
+				"C",
+				"S"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Yeti Tyke"
+		}
+	]
+}

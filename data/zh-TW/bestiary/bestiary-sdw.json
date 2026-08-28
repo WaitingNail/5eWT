@@ -1,0 +1,1001 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "專家",
+			"source": "SDW",
+			"level": 9,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "expert",
+				"sidekickHidden": true
+			},
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"{@item studded leather armor|PHB|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 55,
+				"formula": "10d8 + 10"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 18,
+			"con": 12,
+			"int": 14,
+			"wis": 10,
+			"cha": 14,
+			"save": {
+				"dex": "+8"
+			},
+			"skill": {
+				"acrobatics": "+12",
+				"performance": "+6",
+				"persuasion": "+6",
+				"sleight of hand": "+8",
+				"stealth": "+12"
+			},
+			"passive": 10,
+			"languages": [
+				"通用語",
+				"增加你選擇的一項"
+			],
+			"trait": [
+				{
+					"name": "好幫手",
+					"entries": [
+						"專家可以以附加動作執行幫助動作，接受幫助的生物在其{@dice d20}擲骰中獲得{@dice 1d6}加值。如果該擲骰為攻擊擲骰，該生物可以選擇不加此加值，若攻擊命中，則可以將此加值加到對單一目標的攻擊傷害擲骰中。"
+					],
+					"ENG_name": "Helpful"
+				},
+				{
+					"name": "反射閃避",
+					"entries": [
+						"當專家未處於{@condition incapacitated||失能}且受到允許其進行敏捷豁免以承受一半傷害的效果影響時，如果豁免成功，則不承受任何傷害；如果豁免失敗，則只承受一半傷害。"
+					],
+					"ENG_name": "Evasion"
+				},
+				{
+					"name": "工具",
+					"entries": [
+						"專家擁有盜賊工具和一件樂器。"
+					],
+					"ENG_name": "Tools"
+				}
+			],
+			"action": [
+				{
+					"name": "額外攻擊",
+					"entries": [
+						"專家在其回合採取攻擊行動時，可以進行兩次攻擊，而不是一次。"
+					],
+					"ENG_name": "Extra Attack"
+				},
+				{
+					"name": "短劍",
+					"entries": [
+						"{@atk mw} {@hit 8} 命中，觸及5尺，單一目標。{@h}7（{@damage 1d6 + 4}）穿刺傷害。"
+					],
+					"ENG_name": "Shortsword"
+				},
+				{
+					"name": "匕首",
+					"entries": [
+						"{@atk mw,rw} 命中{@hit 8}，觸及範圍5尺或射程20/60尺，單一目標。{@h}6 ({@damage 1d4 + 4}) 點穿刺傷害。"
+					],
+					"ENG_name": "Dagger"
+				},
+				{
+					"name": "短弓",
+					"entries": [
+						"{@atk rw} 命中{@hit 8}，射程80/320 尺，單一目標。{@h}7 ({@damage 1d6 + 4}) 點穿刺傷害。"
+					],
+					"ENG_name": "Shortbow"
+				}
+			],
+			"attachedItems": [
+				"dagger|phb",
+				"shortbow|phb",
+				"shortsword|phb"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RNG",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"ENG_name": "Expert"
+		},
+		{
+			"name": "巨型鯊魚骨架",
+			"source": "SDW",
+			"size": [
+				"H"
+			],
+			"type": "undead",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 126,
+				"formula": "11d12 + 55"
+			},
+			"speed": {
+				"walk": 20,
+				"swim": 50
+			},
+			"str": 23,
+			"dex": 11,
+			"con": 21,
+			"int": 1,
+			"wis": 10,
+			"cha": 5,
+			"skill": {
+				"perception": "+3"
+			},
+			"senses": [
+				"blindsight 60 ft."
+			],
+			"passive": 13,
+			"immune": [
+				"poison"
+			],
+			"vulnerable": [
+				"bludgeoning"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "血腥狂怒",
+					"entries": [
+						"巨型鯊魚骨架對任何未滿生命值的生物進行近戰攻擊檢定時具有優勢。"
+					],
+					"ENG_name": "Blood Frenzy"
+				}
+			],
+			"action": [
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 9}，觸及5尺，單一目標。{@h}22（{@damage 3d10 + 6}）點穿刺傷害。"
+					],
+					"ENG_name": "Bite"
+				}
+			],
+			"tokenCustom": true,
+			"senseTags": [
+				"B"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Giant Shark Skeleton"
+		},
+		{
+			"name": "拉瑪魯託斯",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "SDW",
+			"size": [
+				"H"
+			],
+			"type": "dragon",
+			"alignment": [
+				"L",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 19,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 212,
+				"formula": "17d12 + 102"
+			},
+			"speed": {
+				"walk": 40,
+				"fly": 80,
+				"swim": 40
+			},
+			"str": 25,
+			"dex": 10,
+			"con": 23,
+			"int": 16,
+			"wis": 15,
+			"cha": 19,
+			"save": {
+				"dex": "+5",
+				"con": "+11",
+				"wis": "+7",
+				"cha": "+9"
+			},
+			"skill": {
+				"insight": "+7",
+				"perception": "+12",
+				"stealth": "+5"
+			},
+			"senses": [
+				"blindsight 60 ft.",
+				"darkvision 120 ft."
+			],
+			"passive": 22,
+			"immune": [
+				"lightning"
+			],
+			"languages": [
+				"通用語",
+				"龍語"
+			],
+			"cr": "16",
+			"spellcasting": [
+				{
+					"name": "天生施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"拉瑪蘭託斯的施法能力基於魅力（法術豁免 {@dc 17}）。她天生就能施放以下法術，且無需任何材料成分："
+					],
+					"daily": {
+						"1e": [
+							"{@spell create food and water||造糧術}",
+							"{@spell detect thoughts||偵測思想}",
+							"{@spell fog cloud||雲霧術}",
+							"{@spell speak with animals||動物交談}"
+						]
+					},
+					"ability": "cha",
+					"ENG_name": "Innate Spellcasting"
+				},
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"拉瑪魯託斯是一名8級施法者。她的施法能力是魅力（法術豁免{@dc 17}；{@hit 9}命中法術攻擊）。她準備了以下巫師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell light||光亮術}",
+								"{@spell mage hand||法師之手}",
+								"{@spell mending||修復術}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell charm person||魅惑類人}",
+								"{@spell detect magic||偵測魔法}",
+								"{@spell expeditious retreat||腳底抹油}",
+								"{@spell sleep||睡眠術}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell darkness||黑暗術}",
+								"{@spell invisibility||隱形術}",
+								"{@spell suggestion||暗示術}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell dispel magic||解除魔法}",
+								"{@spell protection from energy||防護能量}"
+							]
+						},
+						"4": {
+							"slots": 2,
+							"spells": [
+								"{@spell dimension door||任意門}",
+								"{@spell stoneskin||石膚術}"
+							]
+						}
+					},
+					"ability": "cha",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "水陸兩棲",
+					"entries": [
+						"Lhammaruntosz 可以呼吸空氣和水。"
+					],
+					"ENG_name": "Amphibious"
+				},
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"如果Lhammaruntosz未能透過豁免檢定，她可以選擇成功。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				},
+				{
+					"name": "復生",
+					"entries": [
+						"Lhammaruntosz在她的回合開始時恢復5點生命值。"
+					],
+					"ENG_name": "Regeneration"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"拉瑪魯託斯可以使用她的駭人威儀。然後她進行三次攻擊：一次用她的咬擊和兩次用她的爪擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 12}，觸及10尺，單一目標。{@h}18（{@damage 2d10 + 7}）點穿刺傷害。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 12}，射程5尺，單一目標。{@h}14 ({@damage 2d6 + 7}) 點揮砍傷害。"
+					],
+					"ENG_name": "Claw"
+				},
+				{
+					"name": "尾擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 12}，觸及15尺，單一目標。{@h}16 ({@damage 2d8 + 7})點鈍擊傷害。"
+					],
+					"ENG_name": "Tail"
+				},
+				{
+					"name": "駭人威儀",
+					"entries": [
+						"拉瑪魯恩託斯選擇的每個在她120英尺範圍內並意識到她存在的生物必須成功透過一次{@dc 17}的感知豁免檢定，否則將陷入{@condition frightened||恐慌}狀態，持續1分鐘。生物可以在每回合結束時重複進行豁免檢定，成功則在自身結束此效果。如果生物豁免檢定成功或效果對其結束，該生物在接下來的24小時內對拉瑪魯恩託斯的恐懼存在免疫。"
+					],
+					"ENG_name": "Frightful Presence"
+				},
+				{
+					"name": "吐息武器 {@recharge 5}",
+					"entries": [
+						"拉瑪魯託斯可以使用下列吐息武器之一。"
+					],
+					"ENG_name": "Breath Weapons {@recharge 5}"
+				},
+				{
+					"name": "閃電吐息",
+					"entries": [
+						"拉瑪魯託斯在一個90尺長、5尺寬的直線上撥出閃電。在該直線上的每個生物必須進行一次敏捷豁免檢定（{@dc 19}），失敗時受到66點（{@damage 12d10}）閃電傷害，成功則只受到一半的傷害。"
+					],
+					"ENG_name": "Lightning Breath"
+				},
+				{
+					"name": "斥力吐息",
+					"entries": [
+						"Lhammaruntosz 在30尺錐形範圍內撥出排斥能量。該區域內的每個生物必須成功透過一次 {@dc 19} 的力量豁免檢定。若未透過檢定，則被推離龍60尺遠。"
+					],
+					"ENG_name": "Repulsion Breath"
+				},
+				{
+					"name": "變形",
+					"entries": [
+						"Lhammaruntosz 透過魔法變化成挑戰等級不高於她自己的類人生物或野獸，或者恢復她的真身。如果她死亡，她會恢復真身。她穿著或攜帶的任何裝備都會被新形態吸收或攜帶（由 Lhammaruntosz 選擇）。",
+						"在新形態下，Lhammaruntosz保留了她的陣營、生命值、命中骰、語言能力、熟練度、傳奇抗性、巢穴行動以及感知、感知和魅力的數值，以及這個動作。她的其他具體數值和能力被新形態的相應資料替代，除了該形態的任何職業特性或傳奇行動。"
+					],
+					"ENG_name": "Change Shape"
+				}
+			],
+			"legendary": [
+				{
+					"name": "偵查",
+					"entries": [
+						"Lhammaruntosz 進行一次感知（{@skill Perception||感知}）檢定。"
+					],
+					"ENG_name": "Detect"
+				},
+				{
+					"name": "尾擊攻擊",
+					"entries": [
+						"Lhammaruntosz 發起尾部攻擊。"
+					],
+					"ENG_name": "Tail Attack"
+				},
+				{
+					"name": "振翅攻擊（花費2個動作）",
+					"entries": [
+						"拉瑪蘭託斯拍打其翅膀。每個位於拉瑪蘭託斯10英尺範圍內的生物必須成功透過{@dc 20}的敏捷豁免，否則將受到14（{@damage 2d6 + 7}）點鈍擊傷害並被擊倒{@condition prone||倒地}。隨後，拉瑪蘭託斯可以飛至其飛行速度的一半距離。"
+					],
+					"ENG_name": "Wing Attack (Costs 2 Actions)"
+				}
+			],
+			"legendaryGroup": {
+				"name": "Bronze Dragon",
+				"source": "MM"
+			},
+			"traitTags": [
+				"Amphibious",
+				"Legendary Resistances",
+				"Regeneration"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Frightful Presence",
+				"Multiattack",
+				"Shapechanger"
+			],
+			"languageTags": [
+				"C",
+				"DR"
+			],
+			"damageTags": [
+				"B",
+				"L",
+				"P",
+				"S"
+			],
+			"damageTagsLegendary": [
+				"S",
+				"T"
+			],
+			"damageTagsSpell": [
+				"O"
+			],
+			"spellcastingTags": [
+				"CS",
+				"I"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"frightened",
+				"prone"
+			],
+			"conditionInflictLegendary": [
+				"deafened",
+				"prone"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"invisible",
+				"unconscious"
+			],
+			"savingThrowForced": [
+				"dexterity",
+				"strength",
+				"wisdom"
+			],
+			"savingThrowForcedLegendary": [
+				"constitution",
+				"dexterity",
+				"strength"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Lhammaruntosz"
+		},
+		{
+			"name": "施法者（治療者）",
+			"source": "SDW",
+			"level": 9,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "spellcaster",
+				"tags": [
+					"healer"
+				],
+				"sidekickHidden": true
+			},
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"{@item studded leather armor|PHB|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 45,
+				"formula": "10d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 12,
+			"con": 10,
+			"int": 15,
+			"wis": 18,
+			"cha": 13,
+			"save": {
+				"wis": "+8"
+			},
+			"skill": {
+				"arcana": "+6",
+				"investigation": "+6",
+				"religion": "+6"
+			},
+			"passive": 14,
+			"languages": [
+				"通用語",
+				"增加你選擇的一項"
+			],
+			"spellcasting": [
+				{
+					"name": "施法（治療者）",
+					"type": "spellcasting",
+					"headerEntries": [
+						"施法者的施法能力是感知（法術豁免{@dc 16}，{@hit 8}命中法術攻擊）。施法者準備了以下牧師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell guidance||神導術}",
+								"{@spell light||光亮術}",
+								"{@spell resistance||抵抗術}",
+								"{@spell sacred flame||聖火術}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell bless||祝福術}",
+								"{@spell cure wounds||療傷術}",
+								"{@spell shield of faith||虔誠護盾}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell aid||援助術}",
+								"{@spell lesser restoration||次等復原術}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell protection from energy||防護能量}",
+								"{@spell revivify||回生術}"
+							]
+						},
+						"4": {
+							"slots": 3,
+							"spells": [
+								"{@spell banishment||放逐術}",
+								"{@spell death ward||防死結界}"
+							]
+						},
+						"5": {
+							"slots": 1,
+							"spells": [
+								"{@spell greater restoration||高等復原術}"
+							]
+						}
+					},
+					"ability": "wis",
+					"ENG_name": "Spellcasting (Healer)"
+				}
+			],
+			"trait": [
+				{
+					"name": "強力戲法",
+					"entries": [
+						"施法者可以將其施法屬性調整值新增到其使用任何戲法造成的傷害上。"
+					],
+					"ENG_name": "Potent Cantrip"
+				}
+			],
+			"action": [
+				{
+					"name": "長棍",
+					"entries": [
+						"{@atk mw} {@hit 4} 命中，觸及5尺，單一目標。{@h}3（{@damage 1d6}）鈍擊傷害，或用雙手時4（{@damage 1d8}）鈍擊傷害。"
+					],
+					"ENG_name": "Quarterstaff"
+				}
+			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"R"
+			],
+			"spellcastingTags": [
+				"CC"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"incapacitated"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"dexterity"
+			],
+			"hasToken": true,
+			"ENG_name": "Spellcaster (Healer)"
+		},
+		{
+			"name": "施法者（魔術師）",
+			"source": "SDW",
+			"level": 9,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "spellcaster",
+				"tags": [
+					"mage"
+				],
+				"sidekickHidden": true
+			},
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"{@item studded leather armor|PHB|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 45,
+				"formula": "10d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 12,
+			"con": 10,
+			"int": 18,
+			"wis": 14,
+			"cha": 14,
+			"save": {
+				"wis": "+6"
+			},
+			"skill": {
+				"arcana": "+8",
+				"investigation": "+8",
+				"religion": "+8"
+			},
+			"passive": 12,
+			"languages": [
+				"通用語",
+				"增加你選擇的一項"
+			],
+			"spellcasting": [
+				{
+					"name": "施法（法師）",
+					"type": "spellcasting",
+					"headerEntries": [
+						"施法者的施法能力是智力（法術豁免{@dc 16}，法術攻擊命中{@hit 8}）。施法者準備了以下法師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell fire bolt||火焰箭}",
+								"{@spell light||光亮術}",
+								"{@spell mage hand||法師之手}",
+								"{@spell minor illusion||次級幻象}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell burning hands||燃燒之手}",
+								"{@spell shield||護盾術}",
+								"{@spell sleep||睡眠術}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell flaming sphere||熾焰法球}",
+								"{@spell invisibility||隱形術}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell fireball||火球術}",
+								"{@spell fly||飛行術}"
+							]
+						},
+						"4": {
+							"slots": 3,
+							"spells": [
+								"{@spell polymorph||變形術}",
+								"{@spell wall of fire||火牆術}"
+							]
+						},
+						"5": {
+							"slots": 1,
+							"spells": [
+								"{@spell cone of cold||寒冰錐}"
+							]
+						}
+					},
+					"ability": "int",
+					"ENG_name": "Spellcasting (Mage)"
+				}
+			],
+			"trait": [
+				{
+					"name": "強力戲法",
+					"entries": [
+						"施法者可以將其施法屬性調整值新增到其使用任何戲法造成的傷害上。"
+					],
+					"ENG_name": "Potent Cantrip"
+				}
+			],
+			"action": [
+				{
+					"name": "長棍",
+					"entries": [
+						"{@atk mw} {@hit 4} 命中，觸及5尺，單一目標。{@h}3（{@damage 1d6}）鈍擊傷害，或用雙手時4（{@damage 1d8}）鈍擊傷害。"
+					],
+					"ENG_name": "Quarterstaff"
+				}
+			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"C",
+				"F"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"invisible",
+				"unconscious"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"ENG_name": "Spellcaster (Mage)"
+		},
+		{
+			"name": "武者",
+			"source": "SDW",
+			"level": 9,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "warrior",
+				"sidekickHidden": true
+			},
+			"ac": [
+				{
+					"ac": 20,
+					"from": [
+						"{@item plate armor|PHB|plate}",
+						"{@item shield|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 65,
+				"formula": "10d8 + 20"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"advantageMode": "adv"
+			},
+			"str": 18,
+			"dex": 14,
+			"con": 14,
+			"int": 10,
+			"wis": 12,
+			"cha": 10,
+			"save": {
+				"con": "+6"
+			},
+			"skill": {
+				"athletics": "+8",
+				"perception": "+5",
+				"survival": "+5"
+			},
+			"passive": 15,
+			"languages": [
+				"通用語",
+				"增加你選擇的一項"
+			],
+			"trait": [
+				{
+					"name": "備戰",
+					"entries": [
+						"戰士在先攻骰上有優勢。"
+					],
+					"ENG_name": "Battle Readiness"
+				},
+				{
+					"name": "強化重擊",
+					"entries": [
+						"戰士的攻擊骰在擲出19或20時會得到重擊，使用的是{@dice d20}。"
+					],
+					"ENG_name": "Improved Critical"
+				},
+				{
+					"name": "不屈（1/日）",
+					"entries": [
+						"該戰士可以重擲一次失敗的豁免檢定，但必須使用新的結果。"
+					],
+					"ENG_name": "Indomitable (1/Day)"
+				},
+				{
+					"name": "戰鬥職能",
+					"entries": [
+						"該戰士具有以下特質之一，由你選擇：",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"name": "攻擊手",
+									"type": "item",
+									"entries": [
+										"戰士獲得攻擊檢定的+2加值。"
+									],
+									"ENG_name": "Attacker"
+								},
+								{
+									"name": "防禦者",
+									"type": "item",
+									"entries": [
+										"戰士獲得了以下保護反應。"
+									],
+									"ENG_name": "Defender"
+								}
+							]
+						}
+					],
+					"ENG_name": "Martial Role"
+				},
+				{
+					"name": "回氣 (短休或長休之後充能)",
+					"entries": [
+						"戰士可以在其回合使用附贈動作來恢復等於{@dice 1d10} + 其等級的生命值。"
+					],
+					"ENG_name": "Second Wind (Recharges after a Short or Long Rest)"
+				}
+			],
+			"action": [
+				{
+					"name": "額外攻擊",
+					"entries": [
+						"戰士在其回合採取攻擊行動時，可以進行兩次攻擊，而不是一次。"
+					],
+					"ENG_name": "Extra Attack"
+				},
+				{
+					"name": "長劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 8}，觸及範圍5尺，單一目標。{@h}8 ({@damage 1d8 + 4}) 揮砍傷害，或者如果使用雙手則為9 ({@damage 1d10 + 4}) 揮砍傷害。"
+					],
+					"ENG_name": "Longsword"
+				},
+				{
+					"name": "長弓",
+					"entries": [
+						"{@atk rw} 命中{@hit 6}，範圍150/600尺，單一目標。{@h}6（{@damage 1d8 + 2}）穿刺傷害。"
+					],
+					"ENG_name": "Longbow"
+				}
+			],
+			"reaction": [
+				{
+					"name": "防護（僅守衛者）",
+					"entries": [
+						"當戰士能看到的生物攻擊距離戰士5尺以內且目標不是戰士時，戰士可以使用其反應來使攻擊擲骰處於劣勢。戰士必須持有盾牌。"
+					],
+					"ENG_name": "Protection (Defender Only)"
+				}
+			],
+			"attachedItems": [
+				"longbow|phb",
+				"longsword|phb"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RNG",
+				"RW"
+			],
+			"hasToken": true,
+			"ENG_name": "Warrior"
+		}
+	]
+}

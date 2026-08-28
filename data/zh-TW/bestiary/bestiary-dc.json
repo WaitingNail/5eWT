@@ -1,0 +1,801 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "黑死",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "DC",
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 225,
+				"formula": "10d8"
+			},
+			"speed": {
+				"walk": 0,
+				"fly": 40
+			},
+			"str": 7,
+			"dex": 13,
+			"con": 10,
+			"int": 10,
+			"wis": 12,
+			"cha": 17,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 11,
+			"resist": [
+				"acid",
+				"fire",
+				"lightning",
+				"thunder",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"immune": [
+				"cold",
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"grappled",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"prone",
+				"restrained"
+			],
+			"languages": [
+				"它生前所知的任何語言"
+			],
+			"cr": "4",
+			"trait": [
+				{
+					"name": "以太視界",
+					"entries": [
+						"Ebondeath在物質位面時能看到60尺內的以太位面，反之亦然。"
+					],
+					"ENG_name": "Ethereal Sight"
+				},
+				{
+					"name": "虛體移動",
+					"entries": [
+						"Ebondeath 可以像透過{@quickref difficult terrain||3||困難地形}一樣透過其他生物和物體。如果它在物體內部結束回合，則會受到5點({@damage 1d10})力場傷害。"
+					],
+					"ENG_name": "Incorporeal Movement"
+				},
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"龍豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "枯萎觸擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 5}，觸及5尺，單一目標。{@h}17 ({@damage 4d6 + 3}) 點暗蝕傷害。"
+					],
+					"ENG_name": "Withering Touch"
+				},
+				{
+					"name": "以太化",
+					"entries": [
+						"Ebondeath從物質界進入以太界，或反之。當它在邊界以太中時，在物質界可見，反之亦然，但它不能影響或被另一界上的任何事物影響。"
+					],
+					"ENG_name": "Etherealness"
+				},
+				{
+					"name": "恐懼面容",
+					"entries": [
+						"在伊本迪思60英尺範圍內的每個非不死生物，如果能看到它，必須成功透過一次{@dc 13}的感知豁免，否則將被{@condition frightened||恐慌}1分鐘。如果豁免失敗且差值超過5，目標還會老化{@dice 1d4 × 10}年。{@condition frightened||恐慌}的目標可以在每個回合結束時重複進行豁免，成功則結束其自身的{@condition frightened||恐慌}狀態。如果目標的豁免成功或效果結束，目標在接下來的24小時內對伊本迪思的恐怖面容免疫。老化效果可以透過{@spell greater restoration||高等復原術}法術逆轉，但只能在發生後的24小時內進行。"
+					],
+					"ENG_name": "Horrifying Visage"
+				},
+				{
+					"name": "附身{@recharge}",
+					"entries": [
+						"在Ebondeath視線範圍內5尺內的一個人形生物必須成功進行一次{@dc 20}魅力豁免檢定，否則將被Ebondeath附體；Ebondeath隨後消失，目標進入{@condition incapacitated||失能}狀態並失去對身體的控制。Ebondeath現在控制了身體，但並未剝奪目標的意識。Ebondeath不能成為任何攻擊、法術或其他效果的目標，除非是驅散不死生物的效果，並且它保留了自己的陣營、感知、感知、魅力以及對{@condition charmed||魅惑}和{@condition frightened||恐慌}狀態的免疫。除此之外，它使用被附體目標的屬性，包括獲得目標的知識、職業特性和熟練度。",
+						"附身持續到身體降至0點生命值，Ebondeath可以透過附贈動作結束它，或者透過像{@spell dispel evil and good||驅逐善惡}法術這樣的效果被驅逐或被迫離開。當附身結束時，Ebondeath在身體5尺範圍內的未被佔據的空間重新出現。目標在成功透過豁免檢定或附身結束後24小時內對Ebondeath附身免疫。"
+					],
+					"ENG_name": "Possession {@recharge}"
+				}
+			],
+			"traitTags": [
+				"Ethereal Sight",
+				"Incorporeal Movement",
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"LF"
+			],
+			"damageTags": [
+				"N",
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"frightened",
+				"incapacitated"
+			],
+			"savingThrowForced": [
+				"charisma",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Ebondeath"
+		},
+		{
+			"name": "專家",
+			"source": "DC",
+			"level": 11,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "expert",
+				"sidekickHidden": true
+			},
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"{@item studded leather armor|phb|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 66,
+				"formula": "12d8 + 12"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 20,
+			"con": 12,
+			"int": 14,
+			"wis": 10,
+			"cha": 14,
+			"save": {
+				"dex": "+9"
+			},
+			"skill": {
+				"acrobatics": "+13",
+				"performance": "+6",
+				"persuasion": "+6",
+				"sleight of hand": "+9",
+				"stealth": "+13"
+			},
+			"passive": 10,
+			"languages": [
+				"通用語",
+				"增加你選擇的一項"
+			],
+			"trait": [
+				{
+					"name": "好幫手",
+					"entries": [
+						"專家可以以附加動作執行幫助動作，接受幫助的生物在其{@dice d20}擲骰中獲得{@dice 1d6}加值。如果該擲骰為攻擊擲骰，該生物可以選擇不加此加值，若攻擊命中，則可以將此加值加到對單一目標的攻擊傷害擲骰中。"
+					],
+					"ENG_name": "Helpful"
+				},
+				{
+					"name": "反射閃避",
+					"entries": [
+						"當專家未處於{@condition incapacitated||失能}且受到允許其進行敏捷豁免以承受一半傷害的效果影響時，如果豁免成功，則不承受任何傷害；如果豁免失敗，則只承受一半傷害。"
+					],
+					"ENG_name": "Evasion"
+				},
+				{
+					"name": "可靠才能",
+					"entries": [
+						"每當專家進行包括其全部熟練加值的屬性檢定時，可以將9或更低的{@dice d20}骰子視為10。"
+					],
+					"ENG_name": "Reliable Talent"
+				},
+				{
+					"name": "工具",
+					"entries": [
+						"該專家擁有{@item thieves' tools|phb|盜賊工具}和一件樂器。"
+					],
+					"ENG_name": "Tools"
+				}
+			],
+			"action": [
+				{
+					"name": "額外攻擊",
+					"entries": [
+						"專家在其回合採取攻擊行動時，可以進行兩次攻擊，而不是一次。"
+					],
+					"ENG_name": "Extra Attack"
+				},
+				{
+					"name": "短劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 9}，觸及5尺，單一目標。{@h}8 ({@damage 1d6 + 5}) 點穿刺傷害。"
+					],
+					"ENG_name": "Shortsword"
+				},
+				{
+					"name": "匕首",
+					"entries": [
+						"{@atk mw,rw} 命中{@hit 9}，觸及5尺或20/60尺，單一目標。{@h}7 ({@damage 1d4 + 5}) 點穿刺傷害。"
+					],
+					"ENG_name": "Dagger"
+				},
+				{
+					"name": "短弓",
+					"entries": [
+						"{@atk rw} 命中{@hit 9}，射程80/320尺，單一目標。{@h}8 ({@damage 1d6 + 5}) 點穿刺傷害。"
+					],
+					"ENG_name": "Shortbow"
+				}
+			],
+			"attachedItems": [
+				"dagger|phb",
+				"shortbow|phb",
+				"shortsword|phb"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RNG",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"ENG_name": "Expert"
+		},
+		{
+			"name": "施法者（治療者）",
+			"source": "DC",
+			"level": 11,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "spellcaster",
+				"tags": [
+					"healer"
+				],
+				"sidekickHidden": true
+			},
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"{@item studded leather armor|PHB|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 54,
+				"formula": "12d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 12,
+			"con": 10,
+			"int": 15,
+			"wis": 18,
+			"cha": 13,
+			"save": {
+				"wis": "+8"
+			},
+			"skill": {
+				"arcana": "+6",
+				"investigation": "+6",
+				"religion": "+6"
+			},
+			"passive": 14,
+			"languages": [
+				"通用語",
+				"增加你選擇的一項"
+			],
+			"spellcasting": [
+				{
+					"name": "施法（治療者）",
+					"type": "spellcasting",
+					"headerEntries": [
+						"施法者的施法能力是感知（法術豁免{@dc 16}，{@hit 8}命中法術攻擊）。施法者準備了以下牧師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell guidance||神導術}",
+								"{@spell light||光亮術}",
+								"{@spell resistance||抵抗術}",
+								"{@spell sacred flame||聖火術}",
+								"{@spell spare the dying||維生術}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell bless||祝福術}",
+								"{@spell cure wounds||療傷術}",
+								"{@spell shield of faith||虔誠護盾}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell aid||援助術}",
+								"{@spell lesser restoration||次等復原術}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell protection from energy||防護能量}",
+								"{@spell revivify||回生術}"
+							]
+						},
+						"4": {
+							"slots": 3,
+							"spells": [
+								"{@spell banishment||放逐術}",
+								"{@spell death ward||防死結界}"
+							]
+						},
+						"5": {
+							"slots": 2,
+							"spells": [
+								"{@spell greater restoration||高等復原術}",
+								"{@spell mass cure wounds||群體療傷術}"
+							]
+						},
+						"6": {
+							"slots": 1,
+							"spells": [
+								"{@spell heal||醫療術}"
+							]
+						}
+					},
+					"ability": "wis",
+					"ENG_name": "Spellcasting (Healer)"
+				}
+			],
+			"trait": [
+				{
+					"name": "增強法術",
+					"entries": [
+						"每當施法者使用法術位施展召喚學派的法術時，如果該法術有傷害骰或治療骰，施法者可以將法術施放能力調整值加到法術的傷害骰或治療骰上。"
+					],
+					"ENG_name": "Empowered Spells"
+				},
+				{
+					"name": "強力戲法",
+					"entries": [
+						"施法者可以將其施法屬性調整值新增到其使用任何戲法造成的傷害上。"
+					],
+					"ENG_name": "Potent Cantrip"
+				}
+			],
+			"action": [
+				{
+					"name": "長棍",
+					"entries": [
+						"{@atk mw} {@hit 4} 命中，觸及5尺，單一目標。{@h}3（{@damage 1d6}）鈍擊傷害，或用雙手時4（{@damage 1d8}）鈍擊傷害。"
+					],
+					"ENG_name": "Quarterstaff"
+				}
+			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"R"
+			],
+			"spellcastingTags": [
+				"CC"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"incapacitated"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"dexterity"
+			],
+			"hasToken": true,
+			"ENG_name": "Spellcaster (Healer)"
+		},
+		{
+			"name": "施法者（魔術師）",
+			"source": "DC",
+			"level": 11,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "spellcaster",
+				"tags": [
+					"mage"
+				],
+				"sidekickHidden": true
+			},
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"{@item studded leather armor|PHB|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 54,
+				"formula": "12d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 12,
+			"con": 10,
+			"int": 18,
+			"wis": 14,
+			"cha": 14,
+			"save": {
+				"wis": "+6"
+			},
+			"skill": {
+				"arcana": "+8",
+				"investigation": "+8",
+				"religion": "+8"
+			},
+			"passive": 12,
+			"languages": [
+				"通用語",
+				"增加你選擇的一項"
+			],
+			"spellcasting": [
+				{
+					"name": "施法（法師）",
+					"type": "spellcasting",
+					"headerEntries": [
+						"施法者的施法能力是智力（法術豁免{@dc 16}，法術攻擊命中{@hit 8}）。施法者準備了以下法師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell fire bolt||火焰箭}",
+								"{@spell light||光亮術}",
+								"{@spell mage hand||法師之手}",
+								"{@spell minor illusion||次級幻象}",
+								"{@spell shocking grasp||電爪}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell burning hands||燃燒之手}",
+								"{@spell shield||護盾術}",
+								"{@spell sleep||睡眠術}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell flaming sphere||熾焰法球}",
+								"{@spell invisibility||隱形術}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell fireball||火球術}",
+								"{@spell fly||飛行術}"
+							]
+						},
+						"4": {
+							"slots": 3,
+							"spells": [
+								"{@spell polymorph||變形術}",
+								"{@spell wall of fire||火牆術}"
+							]
+						},
+						"5": {
+							"slots": 2,
+							"spells": [
+								"{@spell cone of cold||寒冰錐}",
+								"{@spell hold monster||定身怪物}"
+							]
+						},
+						"6": {
+							"slots": 1,
+							"spells": [
+								"{@spell chain lightning||連鎖閃電}"
+							]
+						}
+					},
+					"ability": "int",
+					"ENG_name": "Spellcasting (Mage)"
+				}
+			],
+			"trait": [
+				{
+					"name": "增強法術",
+					"entries": [
+						"每當施法者使用法術位施展召喚學派的法術時，如果該法術有傷害骰或治療骰，施法者可以將法術施放能力調整值加到法術的傷害骰或治療骰上。"
+					],
+					"ENG_name": "Empowered Spells"
+				},
+				{
+					"name": "強力戲法",
+					"entries": [
+						"施法者可以將其施法屬性調整值新增到其使用任何戲法造成的傷害上。"
+					],
+					"ENG_name": "Potent Cantrip"
+				}
+			],
+			"action": [
+				{
+					"name": "長棍",
+					"entries": [
+						"{@atk mw} {@hit 4} 命中，觸及5尺，單一目標。{@h}3（{@damage 1d6}）鈍擊傷害，或用雙手時4（{@damage 1d8}）鈍擊傷害。"
+					],
+					"ENG_name": "Quarterstaff"
+				}
+			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"C",
+				"F",
+				"L"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"invisible",
+				"paralyzed",
+				"unconscious"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"ENG_name": "Spellcaster (Mage)"
+		},
+		{
+			"name": "武者",
+			"source": "DC",
+			"level": 11,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "warrior",
+				"sidekickHidden": true
+			},
+			"ac": [
+				{
+					"ac": 21,
+					"from": [
+						"{@item plate armor|PHB|plate}",
+						"{@item shield|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 78,
+				"formula": "12d8 + 24"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"advantageMode": "adv"
+			},
+			"str": 18,
+			"dex": 14,
+			"con": 14,
+			"int": 10,
+			"wis": 12,
+			"cha": 10,
+			"save": {
+				"con": "+6"
+			},
+			"skill": {
+				"athletics": "+8",
+				"perception": "+5",
+				"survival": "+5"
+			},
+			"passive": 15,
+			"languages": [
+				"通用語",
+				"增加你選擇的一項"
+			],
+			"trait": [
+				{
+					"name": "備戰",
+					"entries": [
+						"戰士在先攻骰上有優勢。"
+					],
+					"ENG_name": "Battle Readiness"
+				},
+				{
+					"name": "強化重擊",
+					"entries": [
+						"戰士的攻擊骰在擲出19或20時會得到重擊，使用的是{@dice d20}。"
+					],
+					"ENG_name": "Improved Critical"
+				},
+				{
+					"name": "精通防禦",
+					"entries": [
+						"戰士的AC增加了1。"
+					],
+					"ENG_name": "Improved Defense"
+				},
+				{
+					"name": "不屈（1/日）",
+					"entries": [
+						"該戰士可以重擲一次失敗的豁免檢定，但必須使用新的結果。"
+					],
+					"ENG_name": "Indomitable (1/Day)"
+				},
+				{
+					"name": "戰鬥職能",
+					"entries": [
+						"該戰士具有以下特質之一，由你選擇：",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "攻擊手",
+									"entries": [
+										"戰士獲得攻擊檢定的+2加值。"
+									],
+									"ENG_name": "Attacker"
+								},
+								{
+									"type": "item",
+									"name": "防禦者",
+									"entries": [
+										"戰士獲得了以下保護反應。"
+									],
+									"ENG_name": "Defender"
+								}
+							]
+						}
+					],
+					"ENG_name": "Martial Role"
+				},
+				{
+					"name": "回氣 (短休或長休之後充能)",
+					"entries": [
+						"戰士可以在其回合使用附贈動作來恢復等於{@dice 1d10} + 其等級的生命值。"
+					],
+					"ENG_name": "Second Wind (Recharges after a Short or Long Rest)"
+				}
+			],
+			"action": [
+				{
+					"name": "額外攻擊",
+					"entries": [
+						"每當戰士在自己的回合採取攻擊行動時，它可以攻擊三次，而不是一次。"
+					],
+					"ENG_name": "Extra Attack"
+				},
+				{
+					"name": "長劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 8}，觸及範圍5尺，單一目標。{@h}8 ({@damage 1d8 + 4}) 揮砍傷害，或者如果使用雙手則為9 ({@damage 1d10 + 4}) 揮砍傷害。"
+					],
+					"ENG_name": "Longsword"
+				},
+				{
+					"name": "長弓",
+					"entries": [
+						"{@atk rw} 命中{@hit 6}，範圍150/600尺，單一目標。{@h}6（{@damage 1d8 + 2}）穿刺傷害。"
+					],
+					"ENG_name": "Longbow"
+				}
+			],
+			"reaction": [
+				{
+					"name": "防護（僅守衛者）",
+					"entries": [
+						"當戰士能看到的生物攻擊距離戰士5尺以內且目標不是戰士時，戰士可以使用其反應來使攻擊擲骰處於劣勢。戰士必須持有盾牌。"
+					],
+					"ENG_name": "Protection (Defender Only)"
+				}
+			],
+			"attachedItems": [
+				"longbow|phb",
+				"longsword|phb"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RNG",
+				"RW"
+			],
+			"hasToken": true,
+			"ENG_name": "Warrior"
+		}
+	]
+}

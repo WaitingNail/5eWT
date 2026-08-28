@@ -1,0 +1,148 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "凶兆獵犬",
+			"source": "XGE",
+			"page": 50,
+			"summonedByClass": "Sorcerer|PHB",
+			"_copy": {
+				"name": "Dire Wolf",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "\\bwolf\\b",
+						"with": "hound"
+					},
+					"trait": [
+						{
+							"mode": "appendArr",
+							"items": [
+								{
+									"name": "暗影斗篷",
+									"entries": [
+										"當它出現時，它會獲得等同於你術士等級一半的臨時生命值。"
+									],
+									"ENG_name": "Cloak of Shadows"
+								},
+								{
+									"name": "虛體移動",
+									"entries": [
+										"獵犬可以像穿越{@quickref difficult terrain||3||困難地形}一樣穿過其他生物或物件。但如果當獵犬的回合結束時處於某個物件內，它會受到5點的力場傷害。"
+									],
+									"ENG_name": "Incorporeal Movement"
+								},
+								{
+									"name": "預兆視覺",
+									"entries": [
+										"當獵犬的回合開始時，自動知曉獵物的所在。如果目標此時隱藏了起來——對於獵犬來說，它將不再視為隱藏。"
+									],
+									"ENG_name": "Omen Sight"
+								},
+								{
+									"name": "永隨其後",
+									"entries": [
+										"當獵犬行動時，它只能以最短路徑衝向它的目標獵物，以及只能將動作用於攻擊獵物。獵犬可以使用藉機攻擊，但同樣的，其藉機攻擊的物件只能是獵物。此外，當凶兆獵犬身處獵物周圍5尺範圍內時，獵物對抗你所施展的任何法術所進行的豁免都將具有劣勢。凶兆獵犬會在5分鐘後消失，如果它的生命值降至0點或獵物的生命值降至0點，它將提前消失。"
+									],
+									"ENG_name": "Ever at Your Heels"
+								}
+							]
+						}
+					]
+				}
+			},
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"traitTags": [
+				"Incorporeal Movement",
+				"Keen Senses",
+				"Pack Tactics"
+			],
+			"hasToken": true,
+			"ENG_name": "Hound of Ill Omen"
+		},
+		{
+			"name": "迷你僕役",
+			"source": "XGE",
+			"page": 169,
+			"size": [
+				"T"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 10,
+				"formula": "4d4"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 30
+			},
+			"str": 4,
+			"dex": 16,
+			"con": 10,
+			"int": 2,
+			"wis": 10,
+			"cha": 1,
+			"senses": [
+				"blindsight 60 ft. (blind beyond this radius)"
+			],
+			"passive": 10,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"action": [
+				{
+					"name": "猛擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 5}，觸及5尺，單一目標。{@h}5（{@damage 1d4 + 3}）鈍擊傷害。"
+					],
+					"ENG_name": "Slam"
+				}
+			],
+			"senseTags": [
+				"B"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"ENG_name": "Tiny Servant"
+		}
+	]
+}

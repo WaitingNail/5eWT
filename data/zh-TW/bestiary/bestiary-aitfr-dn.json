@@ -1,0 +1,546 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "殭屍巨蟒",
+			"source": "AitFR-DN",
+			"page": 11,
+			"size": [
+				"H"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 187,
+				"formula": "22d12 + 44"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 20,
+				"swim": 30
+			},
+			"str": 19,
+			"dex": 16,
+			"con": 14,
+			"int": 1,
+			"wis": 15,
+			"cha": 4,
+			"skill": {
+				"perception": "+5",
+				"stealth": "+6"
+			},
+			"senses": [
+				"blindsight 15 ft.",
+				"darkvision 60 ft."
+			],
+			"passive": 15,
+			"vulnerable": [
+				"poison"
+			],
+			"cr": "8",
+			"trait": [
+				{
+					"name": "陽光易傷",
+					"entries": [
+						"在陽光下時，蛇在攻擊檢定以及依賴視覺的感知（{@skill Perception||感知}）檢定上具有劣勢。當蛇在陽光中開始其回合時，它立即遭受10點光耀傷害。"
+					],
+					"ENG_name": "Sunlight Vulnerability"
+				},
+				{
+					"name": "不死堅韌",
+					"entries": [
+						"如果傷害使蛇的生命值降至0點，除非傷害是光耀傷害或來自重擊，否則它必須進行一次體質豁免檢定，難度等級為5加上所受傷害。成功的話，蛇的生命值會降至1點而不是死亡。"
+					],
+					"ENG_name": "Undead Fortitude"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"蛇進行兩次攻擊：一次用咬，一次用纏繞攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 7}，觸及10尺，單一目標。{@h}17 ({@damage 3d8 + 4}) 點穿刺傷害，目標必須進行一次{@dc 15}體質豁免，失敗則受到17 ({@damage 5d6})毒素傷害，成功則傷害減半。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "絞纏",
+					"entries": [
+						"{@atk mw} 命中{@hit 7}，觸及 5 尺，單一目標。{@h}17 ({@damage 3d8 + 4}) 鈍擊傷害，目標被 {@condition grappled||受擒}（逃脫 {@dc 16}）。直到這次抓住結束，生物被 {@condition restrained||束縛} 並且蛇不能再抓住另單一目標。"
+					],
+					"ENG_name": "Constrict"
+				}
+			],
+			"tokenCustom": true,
+			"traitTags": [
+				"Undead Fortitude"
+			],
+			"senseTags": [
+				"B",
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"B",
+				"I",
+				"P"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"grappled",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Giant Zombie Constrictor Snake"
+		},
+		{
+			"name": "哈米什·休蘭德",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "AitFR-DN",
+			"page": 11,
+			"size": [
+				"H"
+			],
+			"type": "giant",
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 85,
+				"formula": "10d12 + 20"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 23,
+			"dex": 11,
+			"con": 15,
+			"int": 10,
+			"wis": 14,
+			"cha": 10,
+			"save": {
+				"str": "+9",
+				"wis": "+5"
+			},
+			"skill": {
+				"athletics": "+9",
+				"history": "+3",
+				"insight": "+5",
+				"perception": "+5"
+			},
+			"passive": 15,
+			"languages": [
+				"通用語",
+				"矮人語",
+				"巨人語"
+			],
+			"cr": "5",
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"Hamish 用他的斧頭進行兩次攻擊或投擲兩塊石頭。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "戰斧",
+					"entries": [
+						"{@atk mw} 命中{@hit 9}，觸及5尺，單一目標。{@h}17 ({@damage 2d10 + 6}) 揮砍傷害。"
+					],
+					"ENG_name": "Axe"
+				},
+				{
+					"name": "擲石",
+					"entries": [
+						"{@atk rw} 命中{@hit 9}，射程 60/240 英尺，單一目標。{@h}17 ({@damage 2d10 + 6}) 鈍擊傷害。"
+					],
+					"ENG_name": "Rock"
+				}
+			],
+			"reaction": [
+				{
+					"name": "格擋",
+					"entries": [
+						"Hamish 在對抗一次命中他的近戰攻擊時，他的AC增加2點。為此，他必須能看到攻擊者，並且必須持有近戰武器或盾牌。"
+					],
+					"ENG_name": "Parry"
+				}
+			],
+			"tokenCustom": true,
+			"actionTags": [
+				"Multiattack",
+				"Parry"
+			],
+			"languageTags": [
+				"C",
+				"D",
+				"GI"
+			],
+			"damageTags": [
+				"B",
+				"S"
+			],
+			"miscTags": [
+				"MW",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Hamish Hewland"
+		},
+		{
+			"name": "基里拉，被詛咒的石化鐵牛",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "AitFR-DN",
+			"page": 12,
+			"size": [
+				"L"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 127,
+				"formula": "15d10 + 45"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 16,
+			"con": 16,
+			"int": 14,
+			"wis": 14,
+			"cha": 15,
+			"save": {
+				"wis": "+6",
+				"cha": "+6"
+			},
+			"skill": {
+				"deception": "+6",
+				"insight": "+6",
+				"perception": "+6",
+				"stealth": "+7"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 16,
+			"resist": [
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed"
+			],
+			"languages": [
+				"通用語",
+				"龍語",
+				"原初語"
+			],
+			"cr": "10",
+			"trait": [
+				{
+					"name": "以痛為食（每日2次）",
+					"entries": [
+						"在她回合內，Kyrilla 第一次用武器攻擊命中目標時，可以對目標額外造成 16 點（{@damage 3d10}）毒素傷害，並恢復等於造成的傷害一半的生命值。"
+					],
+					"ENG_name": "Feed on Pain (2/Day)"
+				},
+				{
+					"name": "傳奇抗性（2/日）",
+					"entries": [
+						"如果她未能透過豁免檢定，Kyrilla可以選擇成功。"
+					],
+					"ENG_name": "Legendary Resistance (2/Day)"
+				},
+				{
+					"name": "石化凝視",
+					"entries": [
+						"當一個能夠看到Kyrilla眼睛的生物在其30尺範圍內開始其回合時，如果Kyrilla沒有被{@condition incapacitated||失能}並且能看到這個生物，Kyrilla可以強迫它進行一次{@dc 14}體質豁免檢定。如果豁免檢定失敗5點或更多，該生物立即被{@condition petrified||石化}。否則，失敗的生物開始變成石頭並被{@condition restrained||束縛}。被{@condition restrained||束縛}的生物必須在其下一個回合結束時重複進行豁免檢定，失敗則變成{@condition petrified||石化}，成功則結束效果。石化狀態將持續，直到生物透過{@spell greater restoration||高等復原術}法術或其他魔法被釋放。",
+						"除非處於{@status surprised||突襲}狀態，否則生物可以在其回合開始時閉上眼睛以避免進行豁免檢定。如果生物這樣做，它將無法看到Kyrilla，直到其下一個回合開始時，它才能再次閉上眼睛。如果在此期間生物看向Kyrilla，它必須立即進行豁免檢定。",
+						"Kyrilla的詛咒凝視不會影響不死生物或構造物。如果Kyrilla在明亮的光照下，看到自己反射在30尺範圍內的光滑表面上，由於她的詛咒，她會受到自己凝視的影響。"
+					],
+					"ENG_name": "Petrifying Gaze"
+				},
+				{
+					"name": "日照敏感",
+					"entries": [
+						"在日光下，Kyrilla 在攻擊檢定和依賴視力的感知（{@skill Perception||感知}）檢定上具有劣勢。"
+					],
+					"ENG_name": "Sunlight Sensitivity"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"Kyrilla 進行一次擠壓攻擊和兩次爪擊，或者她使用長弓進行三次攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 7}，觸及：5尺，單一目標。{@h}13（{@damage 3d6 + 3}）揮砍傷害。"
+					],
+					"ENG_name": "Claw"
+				},
+				{
+					"name": "絞纏",
+					"entries": [
+						"{@atk mw} 命中{@hit 4}，觸及10尺，單一目標。{@h}10（{@damage 3d6}）鈍擊傷害，如果目標是大型或更小的生物，則目標{@condition grappled||受擒}（逃脫 {@dc 13}）。直到此擒抱結束，目標{@condition restrained||束縛}，且基里拉無法勒緊另單一目標。"
+					],
+					"ENG_name": "Constrict"
+				},
+				{
+					"name": "長弓",
+					"entries": [
+						"{@atk rw} 命中{@hit 7}，射程150/600尺，單一目標。{@h}16點（{@damage 3d8 + 3}）點穿刺傷害。"
+					],
+					"ENG_name": "Longbow"
+				},
+				{
+					"name": "召喚一群有毒蛇群 {@recharge 5}",
+					"entries": [
+						"Kyrilla 在她10尺範圍內的空地上召喚出一群毒蛇。這群蛇群受Kyrilla控制，並在她回合後立即按照她的主動性順序行動。",
+						"它存在的時間最長可達1小時。Kyrilla每天最多可以召喚三個蜂群。她可以用一個附贈動作解散任何一個或所有召喚的蜂群。"
+					],
+					"ENG_name": "Summon Swarm of Poisonous Snakes {@recharge 5}"
+				}
+			],
+			"legendary": [
+				{
+					"name": "爪擊",
+					"entries": [
+						"Kyrilla 或一群有毒的蛇進行武器攻擊。"
+					],
+					"ENG_name": "Claw"
+				},
+				{
+					"name": "偵查",
+					"entries": [
+						"Kyrilla 進行一次感知（{@skill Perception||感知}）檢定。"
+					],
+					"ENG_name": "Detect"
+				},
+				{
+					"name": "蠕行",
+					"entries": [
+						"Kyrilla 以她的速度移動而不引發藉機攻擊。"
+					],
+					"ENG_name": "Slither"
+				}
+			],
+			"legendaryGroup": {
+				"name": "Kyrilla, Accursed Gorgon",
+				"source": "AitFR-DN"
+			},
+			"tokenCustom": true,
+			"attachedItems": [
+				"longbow|phb"
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"P"
+			],
+			"damageTags": [
+				"B",
+				"I",
+				"P",
+				"S"
+			],
+			"damageTagsLegendary": [
+				"R",
+				"S"
+			],
+			"miscTags": [
+				"MW",
+				"RCH",
+				"RNG",
+				"RW"
+			],
+			"conditionInflict": [
+				"grappled",
+				"petrified",
+				"restrained"
+			],
+			"conditionInflictLegendary": [
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedLegendary": [
+				"constitution",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Kyrilla, Accursed Gorgon"
+		},
+		{
+			"name": "骷髏恐怖",
+			"source": "AitFR-DN",
+			"page": 13,
+			"size": [
+				"L"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 150,
+				"formula": "20d10 + 40"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 14,
+			"con": 15,
+			"int": 6,
+			"wis": 10,
+			"cha": 5,
+			"skill": {
+				"perception": "+3"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 16,
+			"immune": [
+				"poison"
+			],
+			"vulnerable": [
+				"bludgeoning"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"cr": "6",
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"恐怖生物用它的爪子進行兩次攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 6}，觸及 5 尺，單一目標。{@h}19 ({@damage 3d10 + 3}) 揮砍傷害。"
+					],
+					"ENG_name": "Claw"
+				},
+				{
+					"name": "骨之波濤 {@recharge 5}",
+					"entries": [
+						"恐怖生物如波浪般衝向敵人，並迅速重新成型。每個位於恐怖生物10英尺範圍內的生物必須進行一次{@dc 15}敏捷豁免，若豁免失敗則受到18點（{@damage 4d8}）鈍擊傷害，若豁免成功則只受到一半傷害。如果生物此次豁免失敗，則還會被擊倒{@condition prone||倒地}。"
+					],
+					"ENG_name": "Wave of Bones {@recharge 5}"
+				}
+			],
+			"tokenCustom": true,
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"B",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Skeletal Horror"
+		}
+	]
+}

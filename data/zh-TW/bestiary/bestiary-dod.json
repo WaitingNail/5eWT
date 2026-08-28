@@ -1,0 +1,220 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "編織者",
+			"isNamedCreature": true,
+			"source": "DoD",
+			"page": 22,
+			"referenceSources": [
+				"WBtW"
+			],
+			"size": [
+				"H"
+			],
+			"type": {
+				"type": "fey",
+				"tags": [
+					"archfey"
+				]
+			},
+			"alignment": [
+				"L",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 138,
+				"formula": "12d12 + 60"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40
+			},
+			"str": 24,
+			"dex": 16,
+			"con": 21,
+			"int": 18,
+			"wis": 21,
+			"cha": 19,
+			"save": {
+				"con": "+9",
+				"wis": "+9",
+				"cha": "+8"
+			},
+			"skill": {
+				"perception": "+13",
+				"stealth": "+7"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 23,
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"通用語",
+				"德魯伊語",
+				"木族語"
+			],
+			"cr": "10",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"編織者施放以下法術之一，無需材料成分，並使用感知作為施法能力（法術豁免{@dc 17}）："
+					],
+					"will": [
+						"{@spell faerie fire||妖火}",
+						"{@spell speak with animals||動物交談}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell animal friendship||化獸為友}",
+							"{@spell create food and water||造糧術}",
+							"{@spell revivify||回生術}"
+						],
+						"1e": [
+							"{@spell awaken||啟蒙術}（作為動作）",
+							"{@spell pass without trace||行動無蹤}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "精類重生",
+					"entries": [
+						"如果 Yarnspinner 在其愉悅領域中死亡，他將在該領域內的一個安全地點在 {@dice 1d4} 天后復活，並且恢復所有生命值。"
+					],
+					"ENG_name": "Fey Rebirth"
+				},
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"如果紗線編織者失敗豁免檢定，他可以選擇成功。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				},
+				{
+					"name": "蛛行術",
+					"entries": [
+						"編織者可以攀登困難的表面，包括在天花板上倒掛，無需進行屬性檢定。"
+					],
+					"ENG_name": "Spider Climb"
+				},
+				{
+					"name": "蛛網行者",
+					"entries": [
+						"Yarnspinner 忽略由蛛網引起的移動限制。"
+					],
+					"ENG_name": "Web Walker"
+				},
+				{
+					"name": "織網者（每日3次）",
+					"entries": [
+						"編織者可以在1分鐘內用蛛網編織出以下結構之一：",
+						{
+							"type": "list",
+							"items": [
+								"一堵由最多三個10尺見方的區域組成的3英寸厚的不透明蛛網牆，每個區域都必須至少由兩面其他牆壁或表面固定。每個區域的護甲等級為12；有20點生命值；對火焰傷害易感；並對鈍擊、毒素和心靈傷害免疫。",
+								"一個足夠小，可以放入10尺立方體的小木屋。這個小木屋配有一個可關閉的門和一個舒適的網狀床，適合微型、小型或中型生物。",
+								"一條由不超過二十五個字元組成的訊息，固定在不同點上，懸掛在空中。"
+							]
+						}
+					],
+					"ENG_name": "Web Weaver (3/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"Yarnspinner 進行兩次咬擊，並使用一次法術施放或蛛網。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 11}，觸及10尺，單一目標。{@h}17點（{@damage 3d6 + 7}）點穿刺傷害，加上11點（{@damage 2d10}）毒素傷害。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "蛛網術",
+					"entries": [
+						"紡線者向一個他能看見的、距離他120英尺範圍內的生物射出蛛網。目標必須成功透過一個{@dc 17}的力量豁免，否則將被{@condition restrained||束縛}1小時。目標可以在每回合結束時重複進行豁免檢定，成功則在該回合結束時解除此效果。"
+					],
+					"ENG_name": "Web"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Spider Climb",
+				"Web Walker"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DU",
+				"S"
+			],
+			"damageTags": [
+				"I",
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"restrained"
+			],
+			"conditionInflictSpell": [
+				"charmed"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Yarnspinner"
+		}
+	]
+}

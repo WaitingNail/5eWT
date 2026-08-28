@@ -464,6 +464,9 @@
 			["itemMastery", "items"],
 			["magicvariant", "items"],
 			["itemFluff", "items"],
+			["monster", "bestiary"],
+			["monsterFluff", "bestiary"],
+			["legendaryGroup", "bestiary"],
 		]);
 
 		static _FILE_TO_PROPS = new Map([
@@ -479,6 +482,7 @@
 			["items-base.json", ["baseitem", "itemProperty", "itemType", "itemTypeAdditionalEntries", "itemEntry", "itemMastery"]],
 			["magicvariants.json", ["magicvariant"]],
 			["fluff-items.json", ["itemFluff"]],
+			["bestiary/legendarygroups.json", ["legendaryGroup"]],
 		]);
 
 		static _CONTENT_KEYS = new Set([
@@ -554,9 +558,10 @@
 		}
 
 		static async _pLoadFile ({folder, file, fnLoad = null}) {
-			const cacheKey = `${folder}/${file}`;
+			const fileClean = folder === "bestiary" ? file.split("/").at(-1) : file;
+			const cacheKey = `${folder}/${fileClean}`;
 			const url = `${this._getBaseUrl()}data/zh-TW/${cacheKey}`;
-			if (fnLoad) return fnLoad({folder, file, url});
+			if (fnLoad) return fnLoad({folder, file: fileClean, url});
 
 			if (!this._pFileCache.has(cacheKey)) {
 				this._pFileCache.set(cacheKey, (async () => {
@@ -651,6 +656,57 @@
 		static _getLocalizedEntity ({prop, canonical, localized}) {
 			const out = this._copy(canonical);
 			if (typeof localized.name === "string" && localized.name !== canonical.name) out._displayName = localized.name;
+
+			if (prop === "monster") {
+				for (const key of [
+					"trait",
+					"action",
+					"bonus",
+					"reaction",
+					"legendary",
+					"mythic",
+					"variant",
+					"spellcasting",
+					"resource",
+					"legendaryHeader",
+					"mythicHeader",
+				]) {
+					if (!(key in canonical) || !(key in localized)) continue;
+					out[key] = this._copy(localized[key]);
+				}
+
+				for (const [key, displayKey] of [
+					["ac", "_displayAc"],
+					["hp", "_displayHp"],
+					["speed", "_displaySpeed"],
+					["languages", "_displayLanguages"],
+					["vulnerable", "_displayVulnerable"],
+					["resist", "_displayResist"],
+					["immune", "_displayImmune"],
+					["conditionImmune", "_displayConditionImmune"],
+				]) {
+					if (!(key in canonical) || !(key in localized)) continue;
+					out[displayKey] = this._copy(localized[key]);
+				}
+
+				if (canonical._copy && localized._copy) out._copy = this._copy(localized._copy);
+
+				if (out.legendary?.length && !out.legendaryHeader) {
+					const uses = out.legendaryActions || 3;
+					const usesLair = out.legendaryActionsLair || uses;
+					const name = out._displayName || out.name;
+					out.legendaryHeader = [
+						`${name}可以採取${uses}次傳奇動作${usesLair !== uses ? `（位於巢穴中時為${usesLair}次）` : ""}，並從下列選項中選擇。一次只能使用一個傳奇動作，且只能在另一個生物的回合結束時使用。${name}會在自己回合開始時恢復已消耗的傳奇動作次數。`,
+					];
+				}
+			}
+
+			if (prop === "legendaryGroup") {
+				for (const key of ["lairActions", "regionalEffects", "mythicEncounter", "additionalEntries"]) {
+					if (!(key in canonical) || !(key in localized)) continue;
+					out[key] = this._copy(localized[key]);
+				}
+			}
 
 			for (const key of ["entries", "entriesHigherLevel", "additionalEntries", "entriesTemplate"]) {
 				if (!(key in canonical) || !(key in localized)) continue;
@@ -1003,7 +1059,7 @@
 				[/\bswim(?:ming)?\b/gi, "游泳"],
 				[/\bburrow(?:ing)?\b/gi, "掘穴"],
 				[/\bhover\b/gi, "懸浮"],
-				[/\bft\.?/gi, "尺"],
+				[/\bft\.(?=\s|[;,]|$)|\bft\b/gi, "尺"],
 				[/\bfeet\b/gi, "尺"],
 			]);
 		}
@@ -1015,6 +1071,54 @@
 				.map(([english, translated]) => [new RegExp(`\\b${english}s?\\b`, "gi"), translated]);
 			replacements.push([/\bor\b/gi, "或"]);
 			return this._replaceVisibleText(text, replacements);
+		}
+
+		static localizeMonsterMetaText (text) {
+			if (typeof text !== "string") return text;
+			const replacements = [
+				[/\bgargantuan\b/gi, "超巨型"],
+				[/\bhuge\b/gi, "巨型"],
+				[/\blarge\b/gi, "大型"],
+				[/\bmedium\b/gi, "中型"],
+				[/\bsmall\b/gi, "小型"],
+				[/\btiny\b/gi, "微型"],
+				[/\btypically\b/gi, "通常"],
+				[/\bany alignment\b/gi, "任意陣營"],
+				[/\bunaligned\b/gi, "無陣營"],
+				[/\blawful good\b/gi, "守序善良"],
+				[/\bneutral good\b/gi, "中立善良"],
+				[/\bchaotic good\b/gi, "混亂善良"],
+				[/\blawful neutral\b/gi, "守序中立"],
+				[/\bneutral evil\b/gi, "中立邪惡"],
+				[/\bchaotic neutral\b/gi, "混亂中立"],
+				[/\blawful evil\b/gi, "守序邪惡"],
+				[/\bchaotic evil\b/gi, "混亂邪惡"],
+				[/\bneutral\b/gi, "絕對中立"],
+				[/\bnatural armor\b/gi, "天生護甲"],
+				[/\bshield\b/gi, "盾牌"],
+				[/\bpassive Perception\b/gi, "被動察覺"],
+				[/\bblindsight\b/gi, "盲視"],
+				[/\bdarkvision\b/gi, "黑暗視覺"],
+				[/\btremorsense\b/gi, "震顫感知"],
+				[/\btruesight\b/gi, "真實視覺"],
+				[/\btelepathy\b/gi, "心靈感應"],
+				[/\bft\.(?=\s|[;,]|$)|\bft\b/gi, "尺"],
+				[/\band\b/gi, "與"],
+				[/\bor\b/gi, "或"],
+			];
+			for (const [english, translated] of Object.entries({...this._CREATURE_TYPES, ...this._DAMAGE_TYPES, ...this._CONDITIONS})) {
+				// The damage table also contains one-letter canonical rule codes (for
+				// example, `A` for acid). Those codes are data identifiers, not visible
+				// English, and replacing them case-insensitively would corrupt ordinary
+				// prose such as the article "a".
+				if (english.length < 3 || english !== english.toLowerCase()) continue;
+				replacements.push([new RegExp(`\\b${english}s?\\b`, "gi"), translated]);
+			}
+			for (const [english, translated] of Object.entries({...this._ABILITIES, ...this._SKILLS, ...this._LANGUAGES})) {
+				if (english.length < 3) continue;
+				replacements.push([new RegExp(`\\b${english.replaceAll(" ", "\\s+")}\\b`, "gi"), translated]);
+			}
+			return this.localizeSpeedText(this._replaceVisibleText(text, replacements));
 		}
 
 		static localizeRulesText (text) {

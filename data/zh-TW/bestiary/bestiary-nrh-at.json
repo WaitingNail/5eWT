@@ -1,0 +1,282 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "情緒",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "NRH-AT",
+			"page": 9,
+			"_copy": {
+				"name": "Beholder",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the beholder",
+						"with": "Emo",
+						"flags": "i"
+					},
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Eye Rays",
+							"items": {
+								"name": "眼波射線",
+								"entries": [
+									"Emo隨機發射以下三種魔法眼射線（重擲重複項），選擇它能看到的1至3個目標，目標必須在其120尺範圍內：",
+									{
+										"type": "list",
+										"style": "list-hang-notitle",
+										"items": [
+											{
+												"name": "1. 快樂射線",
+												"entries": [
+													"目標生物必須成功透過一次{@dc 14}感知豁免，否則將因大笑而{@condition prone||倒地}，並處於{@condition incapacitated||失能}狀態，無法站起，持續1分鐘或直到Emo對該生物造成傷害。目標可以在其每個回合結束時重複進行豁免，成功則結束該效果。"
+												],
+												"type": "item",
+												"ENG_name": "1. Happiness Ray"
+											},
+											{
+												"name": "2. 悲傷射線",
+												"entries": [
+													"目標生物必須成功透過一次 {@dc 15} 的智力豁免。如果豁免失敗，目標會被悲傷所籠罩並受到 {@damage 3d6} 點心靈傷害，且在下一個回合結束前無法使用反應。在它的下一個回合中，它只能使用一個動作或一個附贈動作，不能同時使用兩者。如果豁免成功，目標受到一半的傷害且不受其他效果影響。"
+												],
+												"type": "item",
+												"ENG_name": "2. Sadness Ray"
+											},
+											{
+												"name": "3. 憤怒射線",
+												"entries": [
+													"目標生物必須成功透過一次感知豁免檢定，難度為{@dc 14}，否則將被迫與Emo決鬥1分鐘。目標在對Emo以外的生物進行攻擊檢定時處於劣勢，並且每次嘗試遠離Emo超過30尺時，都必須進行一次感知豁免檢定。"
+												],
+												"type": "item",
+												"ENG_name": "3. Anger Ray"
+											},
+											{
+												"name": "4. 焦慮射線",
+												"entries": [
+													"目標生物必須在一次{@dc 15}智力豁免檢定中成功，否則在1分鐘內失去區分友敵的能力，將所有它能看到的生物視為敵人。每次目標受到傷害時，它可以重複豁免檢定，成功則結束自身的這種效果。",
+													"每當受影響的生物用攻擊、法術或其他能力瞄準另一個生物時，它必須從它能看到的範圍內使用攻擊、法術或其他能力的生物中隨機選擇目標。如果敵人從受影響的生物那裡引發藉機攻擊，如果生物能夠做到，它必須進行那次攻擊。"
+												],
+												"type": "item",
+												"ENG_name": "4. Anxiety Ray"
+											},
+											{
+												"name": "5. 恐懼射線",
+												"entries": [
+													"目標生物必須在一次{@dc 14}感知豁免檢定中成功，否則將被{@condition frightened||恐慌}1分鐘。",
+													"目標可以在每個回合結束時重複豁免檢定，成功則結束自身的效果。"
+												],
+												"type": "item",
+												"ENG_name": "5. Fear Ray"
+											},
+											{
+												"name": "6. 荒蕪射線",
+												"entries": [
+													"目標生物必須在一次智力豁免檢定上成功，難度等級為{@dc 14}。如果豁免成功，目標受到{@damage 5d10}點心靈傷害，法術結束。如果豁免失敗，目標受到{@damage 5d10}點心靈傷害，並在1分鐘內認為自己被限制在一個虛幻的石牢中。目標無法看到或聽到牢房之外的任何事物，並且處於{@condition restrained||束縛}狀態。"
+												],
+												"type": "item",
+												"ENG_name": "6. Desolation Ray"
+											},
+											{
+												"name": "7. 嫉妒射線",
+												"entries": [
+													"目標生物必須在一次{@dc 14}感知豁免檢定中成功，否則將被{@condition charmed||魅惑}1分鐘。當目標以這種方式被{@condition charmed||魅惑}時，它必須在每個回合行動前使用其動作對Emo選擇的生物進行近戰攻擊。目標可以在每個回合結束時重複豁免檢定，成功則結束此效果。"
+												],
+												"type": "item",
+												"ENG_name": "7. Jealousy Ray"
+											},
+											{
+												"name": "8. 令人作嘔射線",
+												"entries": [
+													"目標生物必須透過一次對抗毒素的智力豁免檢定，難度為{@dc 15}。如果豁免失敗，目標將被黃色、令人作嘔的氣體包圍，並在其下一回合花費動作嘔吐和搖晃。"
+												],
+												"type": "item",
+												"ENG_name": "8. Disgusting Ray"
+											},
+											{
+												"name": "9. 驚喜射線",
+												"entries": [
+													"被指定的生物必須成功進行一次",
+													"{@dc 15} 敏捷豁免檢定失敗將被{@condition blinded||目盲}，持續到其下一回合結束。"
+												],
+												"type": "item",
+												"ENG_name": "9. Surprise Ray"
+											},
+											{
+												"name": "10. 信任射線",
+												"entries": [
+													"被指定的生物必須成功進行一次",
+													"{@dc 16} 進行一次感知豁免檢定，否則在1小時內或直到Emo傷害該生物前被Emo所{@condition charmed||魅惑}。"
+												],
+												"type": "item",
+												"ENG_name": "10. Trust Ray"
+											}
+										]
+									}
+								],
+								"ENG_name": "Eye Rays"
+							}
+						}
+					]
+				}
+			},
+			"tokenCustom": true,
+			"hasToken": true,
+			"ENG_name": "Emo"
+		},
+		{
+			"name": "瑪德",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "NRH-AT",
+			"page": 12,
+			"_copy": {
+				"name": "Bugbear Chief",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the bugbear",
+						"with": "Maude",
+						"flags": "i"
+					}
+				}
+			},
+			"tokenCustom": true,
+			"hasToken": true,
+			"ENG_name": "Maude"
+		},
+		{
+			"name": "格雷斯通先生",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "NRH-AT",
+			"page": 13,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item studded leather armor|PHB|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 112,
+				"formula": "15d8 + 45"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 15,
+			"con": 16,
+			"int": 10,
+			"wis": 12,
+			"cha": 15,
+			"save": {
+				"str": "+7",
+				"dex": "+5",
+				"con": "+6"
+			},
+			"skill": {
+				"athletics": "+10",
+				"intimidation": "+5"
+			},
+			"passive": 11,
+			"languages": [
+				"通用語",
+				"地精語"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "勇氣",
+					"entries": [
+						"格雷斯頓先生在對抗被{@condition frightened||恐慌}的豁免檢定上有優勢。"
+					],
+					"ENG_name": "Brave"
+				},
+				{
+					"name": "殘暴",
+					"entries": [
+						"當格雷斯頓先生用它命中時，近戰武器會額外造成一骰的傷害（包含在攻擊中）。"
+					],
+					"ENG_name": "Brute"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"格雷斯頓先生進行兩次近戰攻擊或兩次遠端攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "短棒",
+					"entries": [
+						"{@atk mw} 命中{@hit 7}，觸及 5 尺，單一目標。{@h}11 ({@damage 2d6 + 4}) 點鈍擊傷害。"
+					],
+					"ENG_name": "Club"
+				},
+				{
+					"name": "手弩",
+					"entries": [
+						"{@atk rw} 命中{@hit 5}，射程30/120尺，單一目標。{@h}5（{@damage 1d6 + 2}）點穿刺傷害。"
+					],
+					"ENG_name": "Hand Crossbow"
+				}
+			],
+			"tokenCustom": true,
+			"attachedItems": [
+				"club|phb",
+				"hand crossbow|phb"
+			],
+			"traitTags": [
+				"Brute"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"GO"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RNG",
+				"RW"
+			],
+			"hasToken": true,
+			"ENG_name": "Mr. Greystone"
+		}
+	]
+}

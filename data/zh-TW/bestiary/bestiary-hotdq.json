@@ -1,0 +1,2854 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "伏擊龍獸",
+			"source": "HotDQ",
+			"page": 88,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 180
+				}
+			],
+			"referenceSources": [
+				"RoT"
+			],
+			"size": [
+				"M"
+			],
+			"type": "dragon",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 22,
+				"formula": "4d6 + 8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 13,
+			"dex": 15,
+			"con": 14,
+			"int": 4,
+			"wis": 11,
+			"cha": 6,
+			"skill": {
+				"perception": "+4",
+				"stealth": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 14,
+			"resist": [
+				"poison"
+			],
+			"languages": [
+				"懂龍語但不會說話"
+			],
+			"cr": "1/2",
+			"trait": [
+				{
+					"name": "叢集戰術",
+					"entries": [
+						"龍獸至少有一個未處於{@condition incapacitated||失能}的盟友在目標生物5尺內時，它對該生物發動的攻擊檢定具有優勢。"
+					],
+					"ENG_name": "Pack Tactics"
+				},
+				{
+					"name": "突襲攻擊",
+					"entries": [
+						"龍獸突襲一個生物，並在戰鬥開始第一輪中發動攻擊命中該生物時，該目標將在該次攻擊中額外受7（{@damage 2d6}）的同類傷害。"
+					],
+					"ENG_name": "Surprise Attack"
+				}
+			],
+			"action": [
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 4}，觸及5尺，單一目標。{@h}4（{@damage 1d6 + 1}）的穿刺傷害。"
+					],
+					"ENG_name": "Bite"
+				}
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"CS",
+				"DR"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Ambush Drake"
+		},
+		{
+			"name": "阿茲巴拉·喬斯",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 88,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 180
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				13,
+				{
+					"ac": 16,
+					"condition": "{@spell mage armor||法師護甲}時",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 39,
+				"formula": "6d8 + 12"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 16,
+			"con": 14,
+			"int": 16,
+			"wis": 13,
+			"cha": 11,
+			"save": {
+				"int": "+5",
+				"wis": "+3"
+			},
+			"skill": {
+				"arcana": "+5",
+				"deception": "+2",
+				"insight": "+3",
+				"stealth": "+5"
+			},
+			"passive": 11,
+			"languages": [
+				"通用語",
+				"龍語",
+				"煉獄語",
+				"原初語",
+				"賽爾語"
+			],
+			"cr": "4",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"阿茲巴拉作為6級施法者，其施法關鍵屬性為智力（法術豁免{@dc 13}，法術攻擊命中{@hit 5}）。阿茲巴拉準備了下列法師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell mage hand||法師之手}",
+								"{@spell prestidigitation||魔法伎倆}",
+								"{@spell ray of frost||冷凍射線}",
+								"{@spell shocking grasp||電爪}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell fog cloud||雲霧術}",
+								"{@spell magic missile||魔法飛彈}",
+								"{@spell shield||護盾術}",
+								"{@spell thunderwave||雷鳴波}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell invisibility||隱形術}",
+								"{@spell misty step||迷蹤步}",
+								"{@spell scorching ray||灼熱射線}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell counterspell||法術反制}",
+								"{@spell dispel magic||解除魔法}",
+								"{@spell fireball||火球術}"
+							]
+						}
+					},
+					"ability": "int",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "特殊裝備",
+					"entries": [
+						"阿茲巴拉身上帶著兩份{@spell mage armor||法師護甲}mage armor{@item spell scroll (1st level)||卷軸}。"
+					],
+					"ENG_name": "Special Equipment"
+				},
+				{
+					"name": "強力戲法",
+					"entries": [
+						"阿茲巴拉施展一道塑能戲法時，若法術未命中，或是其目標成功透過了法術的豁免，則該目標仍然承受該戲法半數的傷害，但不受該戲法其他效應影響。"
+					],
+					"ENG_name": "Potent Cantrips"
+				},
+				{
+					"name": "形塑法術",
+					"entries": [
+						"阿茲巴拉施展一道塑能法術時，若該法術影響到他能看見的其他生物，則他指定一定數量的受術目標（數量等於1＋法術環階）令其直接成功透過該法術的豁免檢定。若該生物對該法術豁免成功可傷害減半，則該生物此時不受任何傷害。"
+					],
+					"ENG_name": "Sculpt Spells"
+				}
+			],
+			"action": [
+				{
+					"name": "匕首",
+					"entries": [
+						"{@atk mw,rw}命中{@hit 5}，觸及5尺或射程20/60尺，單一目標。{@h}5（{@damage 1d4 + 3}）的穿刺傷害。"
+					],
+					"ENG_name": "Dagger"
+				}
+			],
+			"attachedItems": [
+				"dagger|phb"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"I",
+				"OTH",
+				"P"
+			],
+			"damageTags": [
+				"P"
+			],
+			"damageTagsSpell": [
+				"C",
+				"F",
+				"L",
+				"O",
+				"T"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Azbara Jos"
+		},
+		{
+			"name": "布拉戈提庫斯",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 89,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 181
+				}
+			],
+			"referenceSources": [
+				"RoT"
+			],
+			"size": [
+				"H"
+			],
+			"type": {
+				"type": "giant",
+				"tags": [
+					"cloud giant"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"{@item splint armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 138,
+				"formula": "12d12 + 60"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 26,
+			"dex": 13,
+			"con": 20,
+			"int": 16,
+			"wis": 15,
+			"cha": 15,
+			"save": {
+				"con": "+9",
+				"wis": "+6",
+				"cha": "+6"
+			},
+			"skill": {
+				"arcana": "+7",
+				"insight": "+6",
+				"intimidation": "+6",
+				"perception": "+6"
+			},
+			"passive": 16,
+			"languages": [
+				"通用語",
+				"龍語",
+				"巨人語"
+			],
+			"cr": "9",
+			"spellcasting": [
+				{
+					"name": "天生施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"布拉戈提庫斯天生可以施展以下法術（法術豁免{@dc 15}）而無需相關的材料成分："
+					],
+					"daily": {
+						"3e": [
+							"{@spell fog cloud||雲霧術}",
+							"{@spell levitate||浮空術}"
+						]
+					},
+					"ENG_name": "Innate Spellcasting"
+				},
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"布拉戈提庫斯作為5級施法者，其施法關鍵屬性為智力（法術豁免{@dc 15}，法術攻擊命中{@hit 7}）。布拉戈提庫斯準備了下列法師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell light||光亮術}",
+								"{@spell mage hand||法師之手}",
+								"{@spell prestidigitation||魔法伎倆}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell detect magic||偵測魔法}",
+								"{@spell identify||鑑定術}",
+								"{@spell magic missile||魔法飛彈}",
+								"{@spell shield||護盾術}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell gust of wind||造風術}",
+								"{@spell misty step||迷蹤步}",
+								"{@spell shatter||粉碎音波}"
+							]
+						},
+						"3": {
+							"slots": 2,
+							"spells": [
+								"{@spell fly||飛行術}",
+								"{@spell lightning bolt||閃電束}"
+							]
+						}
+					},
+					"ability": "int",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "敏銳嗅覺",
+					"entries": [
+						"布拉戈提庫斯依賴嗅覺進行感知（{@skill Perception||感知}）檢定時具有優勢。"
+					],
+					"ENG_name": "Keen Smell"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"布拉戈提庫斯發動兩次釘頭錘攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "釘頭錘",
+					"entries": [
+						"{@atk mw} 命中{@hit 10}，觸及10尺，單一目標。{@h}21（{@damage 3d8 + 8}）的穿刺傷害。"
+					],
+					"ENG_name": "Morningstar"
+				}
+			],
+			"attachedItems": [
+				"morningstar|phb"
+			],
+			"traitTags": [
+				"Keen Senses"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"GI"
+			],
+			"damageTags": [
+				"P"
+			],
+			"damageTagsSpell": [
+				"L",
+				"O",
+				"T"
+			],
+			"spellcastingTags": [
+				"CW",
+				"I"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RCH"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Blagothkus"
+		},
+		{
+			"name": "奧瑟斯坦隊長",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 89,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 181
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 19,
+					"from": [
+						"{@item splint armor|phb}",
+						"{@item shield|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 93,
+				"formula": "11d10 + 33"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 19,
+			"dex": 10,
+			"con": 16,
+			"int": 13,
+			"wis": 14,
+			"cha": 12,
+			"save": {
+				"str": "+7",
+				"con": "+6"
+			},
+			"skill": {
+				"athletics": "+7",
+				"intimidation": "+7",
+				"perception": "+5",
+				"religion": "+4"
+			},
+			"passive": 15,
+			"languages": [
+				"通用語",
+				"龍語",
+				"巨人語"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "動作如潮（短休或長休後充能）",
+					"entries": [
+						"奧瑟斯坦在其自己回合可額外執行一個動作。"
+					],
+					"ENG_name": "Action Surge (Recharges on a Short or Long Rest)"
+				},
+				{
+					"name": "復仇之提亞馬特祝福",
+					"entries": [
+						"奧瑟斯坦受到將其生命值降至0的傷害時，將立即回覆20點生命值。此後若他在自己的下一回合結束時生命值為20或更低數值，則他死亡。"
+					],
+					"ENG_name": "Tiamat's Blessing of Retribution"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"奧瑟斯坦以其鏈枷或矛發動兩次攻擊，或是用他的矛發動兩次遠端攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "鏈枷",
+					"entries": [
+						"{@atk mw}命中{@hit 7}，觸及5尺，單一目標。{@h}8（{@damage 1d8 + 4}）的鈍擊傷害。"
+					],
+					"ENG_name": "Flail"
+				},
+				{
+					"name": "矛",
+					"entries": [
+						"{@atk mw,rw}命中{@hit 7}，觸及5尺或射程20/60尺，單一目標。{@h}7（{@damage 1d6 + 4}）的穿刺傷害。"
+					],
+					"ENG_name": "Spear"
+				}
+			],
+			"attachedItems": [
+				"flail|phb",
+				"spear|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"GI"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Captain Othelstan"
+		},
+		{
+			"name": "龍爪",
+			"source": "HotDQ",
+			"page": 89,
+			"otherSources": [
+				{
+					"source": "RoT",
+					"page": 89
+				},
+				{
+					"source": "ToD",
+					"page": 182
+				}
+			],
+			"referenceSources": [
+				"RoT"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 16,
+				"formula": "3d8 + 3"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 16,
+			"con": 13,
+			"int": 11,
+			"wis": 10,
+			"cha": 12,
+			"save": {
+				"wis": "+2"
+			},
+			"skill": {
+				"deception": "+3",
+				"stealth": "+5"
+			},
+			"passive": 10,
+			"languages": [
+				"通用語",
+				"龍語"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "巨龍狂熱",
+					"entries": [
+						"龍爪為抵抗{@condition charmed||魅惑}或{@condition frightened||恐慌}狀態而作的豁免檢定具有優勢。若龍爪可看到某個友方的龍類或高階龍巫教徒，則該龍爪直接無視受{@condition charmed||魅惑}或受{@condition frightened||恐慌}的效應。"
+					],
+					"ENG_name": "Dragon Fanatic"
+				},
+				{
+					"name": "狂熱優勢",
+					"entries": [
+						"龍爪每回合有一次機會，在進行一次帶優勢的武器攻擊並命中時，令該攻擊額外多造成7（{@damage 2d6}）的傷害。"
+					],
+					"ENG_name": "Fanatic Advantage"
+				},
+				{
+					"name": "叢集戰術",
+					"entries": [
+						"龍爪至少有一個未處於{@condition incapacitated||失能}的盟友在目標生物5尺內時，他對該生物發動的攻擊檢定具有優勢。"
+					],
+					"ENG_name": "Pack Tactics"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"龍爪以其彎刀發動兩次攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "彎刀",
+					"entries": [
+						"{@atk mw} 命中{@hit 5}，觸及5尺，單一目標。{@h}6（{@damage 1d6 + 3}）點揮砍傷害。"
+					],
+					"ENG_name": "Scimitar"
+				}
+			],
+			"attachedItems": [
+				"scimitar|phb"
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR"
+			],
+			"damageTags": [
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Dragonclaw"
+		},
+		{
+			"name": "龍翼",
+			"source": "HotDQ",
+			"page": 90,
+			"otherSources": [
+				{
+					"source": "RoT",
+					"page": 89
+				},
+				{
+					"source": "ToD",
+					"page": 183
+				}
+			],
+			"referenceSources": [
+				"RoT"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 33,
+				"formula": "6d8 + 6"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 16,
+			"con": 13,
+			"int": 11,
+			"wis": 11,
+			"cha": 13,
+			"save": {
+				"wis": "+2"
+			},
+			"skill": {
+				"deception": "+3",
+				"stealth": "+5"
+			},
+			"passive": 10,
+			"resist": [
+				{
+					"resist": [
+						"acid",
+						"cold",
+						"fire",
+						"lightning",
+						"poison"
+					],
+					"preNote": "以下之一："
+				}
+			],
+			"languages": [
+				"通用語",
+				"龍語"
+			],
+			"cr": "2",
+			"trait": [
+				{
+					"name": "巨龍狂熱",
+					"entries": [
+						"龍翼在對抗被{@condition charmed||魅惑}或{@condition frightened||恐慌}的豁免投骰上具有優勢。當龍翼能看到一條龍或對其友好的更高階別的龍之教團成員時，龍翼忽略被{@condition charmed||魅惑}或{@condition frightened||恐慌}的效果。"
+					],
+					"ENG_name": "Dragon Fanatic"
+				},
+				{
+					"name": "狂熱優勢",
+					"entries": [
+						"每個回合一次，若龍翼在攻擊擲骰中獲得優勢並命中，目標將額外受到7點（{@damage 2d6}）傷害。"
+					],
+					"ENG_name": "Fanatic Advantage"
+				},
+				{
+					"name": "有限飛行",
+					"entries": [
+						"龍翼可以使用一個附贈動作，在它的回合結束前獲得30尺的飛行速度。"
+					],
+					"ENG_name": "Limited Flight"
+				},
+				{
+					"name": "叢集戰術",
+					"entries": [
+						"如果至少有一個龍翼的盟友在目標生物5尺範圍內，並且該盟友沒有處於{@condition incapacitated||失能}，則龍翼在對目標生物的攻擊骰上具有優勢。"
+					],
+					"ENG_name": "Pack Tactics"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"龍翼用其彎刀攻擊兩次。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "彎刀",
+					"entries": [
+						"{@atk mw} 命中{@hit 5}，範圍 5 英尺，單一目標。{@h}6 ({@damage 1d6 + 3}) 揮砍傷害外加 3 ({@damage 1d6}) 點該邪教徒具有抗性的傷害型別。"
+					],
+					"ENG_name": "Scimitar"
+				}
+			],
+			"attachedItems": [
+				"scimitar|phb"
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR"
+			],
+			"damageTags": [
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"ENG_name": "Dragonwing"
+		},
+		{
+			"name": "德拉莫瑞·灰生",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 90,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 184
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					{
+						"tag": "elf",
+						"prefix": "High"
+					}
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"{@item studded leather armor|phb|studded leather}",
+						"{@item shield|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 52,
+				"formula": "7d10 + 14"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 14,
+			"con": 14,
+			"int": 16,
+			"wis": 10,
+			"cha": 8,
+			"save": {
+				"str": "+6",
+				"con": "+4"
+			},
+			"skill": {
+				"arcana": "+5",
+				"deception": "+1",
+				"insight": "+2",
+				"perception": "+2",
+				"religion": "+5"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 12,
+			"languages": [
+				"通用語",
+				"啵靈蛙語",
+				"龍語",
+				"精靈語",
+				"地精語",
+				"木族語"
+			],
+			"cr": "3",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"德拉莫瑞作為7級施法者，其施法關鍵屬性為智力（法術豁免{@dc 13}，法術攻擊命中{@hit 5}）德拉莫瑞準備了下列法師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell fire bolt||火焰箭}",
+								"{@spell prestidigitation||魔法伎倆}",
+								"{@spell shocking grasp||電爪}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell longstrider||大步奔行}",
+								"{@spell magic missile||魔法飛彈}",
+								"{@spell shield||護盾術}",
+								"{@spell thunderwave||雷鳴波}"
+							]
+						},
+						"2": {
+							"slots": 2,
+							"spells": [
+								"{@spell magic weapon||魔化武器}",
+								"{@spell misty step||迷蹤步}"
+							]
+						}
+					},
+					"ability": "int",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "妖精血統",
+					"entries": [
+						"德拉莫瑞為抵抗{@condition charmed||魅惑}而作的豁免檢定具有優勢，並且不會因魔法效應而陷入睡眠。"
+					],
+					"ENG_name": "Fey Ancestry"
+				},
+				{
+					"name": "戰爭魔法",
+					"entries": [
+						"德拉莫瑞以其動作施展一道戲法時，他還可以執行一個附贈動作來發動一次武器攻擊。"
+					],
+					"ENG_name": "War Magic"
+				},
+				{
+					"name": "武器聯結",
+					"entries": [
+						"只要其長劍跟自己同處一個位面，德拉莫瑞就可以執行一個附贈動作來將其傳送到自己手上。"
+					],
+					"ENG_name": "Weapon Bond"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"德拉莫瑞發動兩次攻擊，每次攻擊都可以是長劍攻擊或匕首攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "長劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 6}，觸及5尺，單一目標。{@h}8 ({@damage 1d8 + 4}) 點揮砍傷害。"
+					],
+					"ENG_name": "Longsword"
+				},
+				{
+					"name": "匕首",
+					"entries": [
+						"{@atk mw,rw}命中{@hit 6}，觸及5尺或射程20/60尺，單一目標。{@h}6（{@damage 1d4 + 4}）的穿刺傷害。"
+					],
+					"ENG_name": "Dagger"
+				}
+			],
+			"attachedItems": [
+				"dagger|phb",
+				"longsword|phb"
+			],
+			"traitTags": [
+				"Fey Ancestry"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"E",
+				"GO",
+				"OTH",
+				"S"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"damageTagsSpell": [
+				"F",
+				"L",
+				"O",
+				"T"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Dralmorrer Borngray"
+		},
+		{
+			"name": "四臂巨魔",
+			"source": "HotDQ",
+			"page": 65,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 81
+				}
+			],
+			"_copy": {
+				"name": "Troll",
+				"source": "MM",
+				"_mod": {
+					"action": {
+						"mode": "replaceArr",
+						"replace": "Multiattack",
+						"items": {
+							"name": "多重攻擊",
+							"entries": [
+								"巨魔發動五次攻擊，一次用它的咬擊，四次用它的爪擊。如果有兩次或更多次的爪擊命中同一個目標，巨魔會撕裂目標，造成額外的{@damage 2d6}點揮砍傷害。"
+							],
+							"ENG_name": "Multiattack"
+						}
+					}
+				}
+			},
+			"cr": "6",
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Four-Armed Troll"
+		},
+		{
+			"name": "弗魯蘭·蒙達斯",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 90,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 184
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"{@item chain mail|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 44,
+				"formula": "8d8 + 8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 14,
+			"dex": 10,
+			"con": 13,
+			"int": 11,
+			"wis": 18,
+			"cha": 15,
+			"save": {
+				"wis": "+6",
+				"cha": "+4"
+			},
+			"skill": {
+				"deception": "+4",
+				"history": "+2",
+				"religion": "+2"
+			},
+			"passive": 14,
+			"languages": [
+				"通用語",
+				"龍語",
+				"煉獄語"
+			],
+			"cr": "2",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"弗魯蘭作為5級施法者，其施法關鍵屬性為感知（法術豁免{@dc 14}，法術攻擊命中{@hit 6}）。弗魯蘭準備了下列牧師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell light||光亮術}",
+								"{@spell sacred flame||聖火術}",
+								"{@spell thaumaturgy||奇術}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell command||命令術}",
+								"{@spell cure wounds||療傷術}",
+								"{@spell healing word||治癒真言}",
+								"{@spell sanctuary||庇護術}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell calm emotions||安定心神}",
+								"{@spell hold person||定身類人}",
+								"{@spell spiritual weapon||靈體武器}"
+							]
+						},
+						"3": {
+							"slots": 2,
+							"spells": [
+								"{@spell mass healing word||群體治癒真言}",
+								"{@spell spirit guardians||靈體衛士}"
+							]
+						}
+					},
+					"ability": "wis",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"弗魯蘭以其長戟發動兩次攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "長戟",
+					"entries": [
+						"{@atk mw}命中{@hit 5}，觸及10尺，單一目標。{@h}7（{@damage 1d10 + 2}）的鈍擊傷害。"
+					],
+					"ENG_name": "Halberd"
+				}
+			],
+			"attachedItems": [
+				"halberd|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"I"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"N",
+				"O",
+				"R"
+			],
+			"spellcastingTags": [
+				"CC"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RCH"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Frulam Mondath"
+		},
+		{
+			"name": "金色雄鹿",
+			"source": "HotDQ",
+			"page": 35,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 51
+				}
+			],
+			"_copy": {
+				"name": "Elk",
+				"source": "MM"
+			},
+			"hasToken": true,
+			"ENG_name": "Golden Stag"
+		},
+		{
+			"name": "守衛龍獸",
+			"source": "HotDQ",
+			"page": 91,
+			"otherSources": [
+				{
+					"source": "RoT",
+					"page": 90
+				},
+				{
+					"source": "ToD",
+					"page": 185
+				}
+			],
+			"referenceSources": [
+				"RoT"
+			],
+			"reprintedAs": [
+				"Guard Drake|MPMM"
+			],
+			"size": [
+				"M"
+			],
+			"type": "dragon",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 52,
+				"formula": "7d8 + 21"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 11,
+			"con": 16,
+			"int": 4,
+			"wis": 10,
+			"cha": 7,
+			"skill": {
+				"perception": "+2"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 12,
+			"resist": [
+				"lightning"
+			],
+			"languages": [
+				"懂龍語但不會說話"
+			],
+			"cr": "2",
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"龍獸發動兩次攻擊，一次啃咬攻擊和一次尾擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 5}，觸及5尺，單一目標。{@h}7 ({@damage 1d8 + 3}) 點穿刺傷害。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "尾擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 5}，觸及 5 尺，單一目標。{@h}6 ({@damage 1d6 + 3}) 點鈍擊傷害。"
+					],
+					"ENG_name": "Tail"
+				}
+			],
+			"soundClip": {
+				"type": "internal",
+				"path": "bestiary/guard-drake.opus"
+			},
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"CS",
+				"DR"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"ENG_name": "Guard Drake"
+		},
+		{
+			"name": "賈姆娜·爍銀",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 91,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 185
+				}
+			],
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"gnome"
+				]
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 22,
+				"formula": "4d6 + 8"
+			},
+			"speed": {
+				"walk": 25
+			},
+			"str": 8,
+			"dex": 17,
+			"con": 14,
+			"int": 15,
+			"wis": 10,
+			"cha": 12,
+			"save": {
+				"dex": "+5",
+				"int": "+4"
+			},
+			"skill": {
+				"acrobatics": "+5",
+				"deception": "+3",
+				"insight": "+2",
+				"perception": "+4",
+				"persuasion": "+3",
+				"stealth": "+7"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 14,
+			"languages": [
+				"通用語",
+				"侏儒語",
+				"地精語",
+				"木族語"
+			],
+			"cr": "1",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"賈姆娜作為4級施法者，其施法關鍵屬性為智力（法術豁免{@dc 12}，法術攻擊命中{@hit 4}）賈姆娜準備了下列法師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell mage hand||法師之手}",
+								"{@spell minor illusion||次級幻象}",
+								"{@spell prestidigitation||魔法伎倆}",
+								"{@spell ray of frost||冷凍射線}"
+							]
+						},
+						"1": {
+							"slots": 3,
+							"spells": [
+								"{@spell charm person||魅惑類人}",
+								"{@spell color spray||七彩噴射}",
+								"{@spell disguise self||易容術}",
+								"{@spell longstrider||大步奔行}"
+							]
+						}
+					},
+					"ability": "int",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "靈巧動作",
+					"entries": [
+						"賈姆娜在其自己回合內可用一個附贈動作執行{@action Dash||疾走}Dash，{@action Disengage||撤離}Disengage或{@action Hide||躲藏}Hide動作。"
+					],
+					"ENG_name": "Cunning Action"
+				},
+				{
+					"name": "侏儒狡黠",
+					"entries": [
+						"賈姆娜為抵抗魔法而進行的智力、感知和魅力豁免具有優勢。"
+					],
+					"ENG_name": "Gnome Cunning"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"賈姆娜發動兩次短劍攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "短劍",
+					"entries": [
+						"{@atk mw}命中{@hit 5}，觸及5尺，單一目標。{@h}6（{@damage 1d6 + 3}）的穿刺傷害，或當目標為中型或更大體型時9（{@damage 1d6 + 3}外加{@damage 1d6}）的穿刺傷害。"
+					],
+					"ENG_name": "Shortsword"
+				}
+			],
+			"attachedItems": [
+				"shortsword|phb"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"G",
+				"GO",
+				"S"
+			],
+			"damageTags": [
+				"P"
+			],
+			"damageTagsSpell": [
+				"C"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Jamna Gleamsilver"
+		},
+		{
+			"name": "蘭德卓薩·青怒",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 91,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 186
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"half-dragon"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"{@item splint armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 57,
+				"formula": "6d12 + 18"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 19,
+			"dex": 13,
+			"con": 16,
+			"int": 10,
+			"wis": 14,
+			"cha": 12,
+			"save": {
+				"str": "+6",
+				"con": "+5"
+			},
+			"skill": {
+				"athletics": "+6",
+				"intimidation": "+3",
+				"perception": "+4"
+			},
+			"senses": [
+				"blindsight 10 ft.",
+				"darkvision 60 ft."
+			],
+			"passive": 14,
+			"resist": [
+				"lightning"
+			],
+			"languages": [
+				"通用語",
+				"龍語"
+			],
+			"cr": "4",
+			"trait": [
+				{
+					"name": "動作如潮（短休或長休後充能）",
+					"entries": [
+						"蘭德卓薩在其自己回合可額外執行一個動作。"
+					],
+					"ENG_name": "Action Surge (Recharges on a Short or Long Rest)"
+				},
+				{
+					"name": "強化重擊",
+					"entries": [
+						"蘭德卓薩的武器攻擊其攻擊檢定骰出19或20時都視為重擊。"
+					],
+					"ENG_name": "Improved Critical"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"蘭德卓薩發動兩次攻擊，兩次都可以是巨劍或矛攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "巨劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 6}，觸及5尺，單一目標。{@h}11 ({@damage 2d6 + 4}) 點揮砍傷害。"
+					],
+					"ENG_name": "Greatsword"
+				},
+				{
+					"name": "矛",
+					"entries": [
+						"{@atk mw,rw} 命中{@hit 6}，觸及5尺或射程20/60尺，單一目標。{@h}7（{@damage 1d6 + 4}）的穿刺傷害。"
+					],
+					"ENG_name": "Spear"
+				},
+				{
+					"name": "閃電吐息{@recharge 5}",
+					"entries": [
+						"蘭德卓薩撥出閃電並覆蓋30尺長、5尺寬的線狀區域。該區域內的每個生物都必須進行一次{@dc 13}的敏捷豁免，豁免失敗者受到22（{@damage 4d10}）的閃電傷害，豁免成功則傷害減半。"
+					],
+					"ENG_name": "Lightning Breath {@recharge 5}"
+				}
+			],
+			"attachedItems": [
+				"greatsword|phb",
+				"spear|phb"
+			],
+			"senseTags": [
+				"B",
+				"D"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR"
+			],
+			"damageTags": [
+				"L",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Langdedrosa Cyanwrath"
+		},
+		{
+			"name": "雷歐辛·厄蘭塔",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 87,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 34
+				}
+			],
+			"_copy": {
+				"name": "Martial Arts Adept",
+				"source": "VGM",
+				"_mod": {
+					"trait": {
+						"mode": "prependArr",
+						"items": {
+							"name": "5etools 註釋",
+							"entries": [
+								"萊歐新·埃爾蘭薩爾在 {@adventure 龍後的寶山|HotDQ} 中被描述為一名半精靈武僧。為了方便使用，這裡提供了來自 {@book 瓦羅怪物指南|VGM} 的 {@creature martial arts adept|vgm|武術高手} 屬性塊。"
+							],
+							"ENG_name": "5etools Note"
+						}
+					}
+				}
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"half-elf"
+				]
+			},
+			"languages": [
+				"通用語"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Leosin Erlanthar"
+		},
+		{
+			"name": "利南·斯威夫特",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 8,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 24
+				}
+			],
+			"_copy": {
+				"name": "Commoner",
+				"source": "MM"
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"hp": {
+				"average": 8,
+				"formula": "1d8"
+			},
+			"action": [
+				{
+					"name": "矛",
+					"entries": [
+						"{@atk mw} 命中{@hit 2}，觸及5尺，單一目標。{@h}3（{@damage 1d6}）點穿刺傷害。"
+					],
+					"ENG_name": "Spear"
+				}
+			],
+			"tokenCustom": true,
+			"attachedItems": [
+				"spear|phb"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RCH",
+				"THW"
+			],
+			"hasToken": true,
+			"ENG_name": "Linan Swift"
+		},
+		{
+			"name": "昂塔爾·弗魯姆",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 28,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 15
+				}
+			],
+			"_copy": {
+				"name": "War Priest",
+				"source": "VGM",
+				"_mod": {
+					"trait": {
+						"mode": "prependArr",
+						"items": {
+							"name": "5etools 註釋",
+							"entries": [
+								"Ontharr Frume 在 {@adventure 龍後的寶山|HotDQ} 和 {@adventure 提亞馬特崛起|RoT} 中被描述為一位守序善良的人類聖武士，侍奉託姆。為了方便使用，這裡提供了 {@creature war priest|vgm|戰爭祭司} 的資料塊，選自 {@book 瓦羅怪物指南|VGM}。"
+							],
+							"ENG_name": "5etools Note"
+						}
+					}
+				}
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"L",
+				"G"
+			],
+			"languages": [
+				"通用語"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Ontharr Frume"
+		},
+		{
+			"name": "法佈列斯·濺黏",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 91,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 187
+				}
+			],
+			"referenceSources": [
+				"RoT"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"bullywug"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item studded leather armor|phb|studded leather}",
+						"{@item shield|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 59,
+				"formula": "7d8 + 28"
+			},
+			"speed": {
+				"walk": 20,
+				"swim": 40
+			},
+			"str": 15,
+			"dex": 12,
+			"con": 18,
+			"int": 11,
+			"wis": 16,
+			"cha": 7,
+			"save": {
+				"str": "+4",
+				"con": "+6"
+			},
+			"skill": {
+				"perception": "+5",
+				"religion": "+2",
+				"stealth": "+3"
+			},
+			"passive": 15,
+			"languages": [
+				"通用語",
+				"啵靈蛙語"
+			],
+			"cr": "3",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"法佈列斯作為6級施法者，其施法關鍵屬性為感知（法術豁免{@dc 13}，法術攻擊命中{@hit 5}）。法佈列斯準備了下列德魯伊法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell druidcraft||德魯伊伎倆}",
+								"{@spell guidance||神導術}",
+								"{@spell poison spray||毒氣噴湧}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell cure wounds||療傷術}",
+								"{@spell entangle||糾纏術}",
+								"{@spell healing word||治癒真言}",
+								"{@spell thunderwave||雷鳴波}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell barkskin||樹膚術}",
+								"{@spell beast sense||野獸感官}",
+								"{@spell spike growth||荊棘叢生}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell plant growth||植物滋長}",
+								"{@spell water walk||水上行走}"
+							]
+						}
+					},
+					"ability": "wis",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "水陸兩棲",
+					"entries": [
+						"法佈列斯在水裡和空氣中都可呼吸。"
+					],
+					"ENG_name": "Amphibious"
+				},
+				{
+					"name": "毒素打擊（3/日）",
+					"entries": [
+						"法佈列斯每回合有一次機會，在以近戰攻擊命中時使用一次該特質造成額外9（{@damage 2d8}）的毒素傷害。"
+					],
+					"ENG_name": "Poison Strike (3/Day)"
+				},
+				{
+					"name": "立定跳遠",
+					"entries": [
+						"作為他移動的一部分，且無需助跑，Pharblex可以進行長達20尺的立定跳遠和高達10尺的立定跳高。"
+					],
+					"ENG_name": "Standing Leap"
+				},
+				{
+					"name": "沼澤偽裝",
+					"entries": [
+						"Pharblex在沼澤地形中進行敏捷（{@skill Stealth||隱匿}）檢定時具有優勢。"
+					],
+					"ENG_name": "Swamp Camouflage"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"法佈列斯發動兩次攻擊，一次啃咬和一次矛攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw}命中{@hit 5}，觸及5尺，單一目標。{@h}4（{@damage 1d4 + 2}）的穿刺傷害。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "矛",
+					"entries": [
+						"{@atk mw,rw}命中{@hit 5}，觸及5尺或射程20/60尺，單一目標。{@h}5（{@damage 1d6 + 2}）的穿刺傷害。"
+					],
+					"ENG_name": "Spear"
+				}
+			],
+			"attachedItems": [
+				"spear|phb"
+			],
+			"traitTags": [
+				"Amphibious",
+				"Camouflage"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"OTH"
+			],
+			"damageTags": [
+				"I",
+				"P"
+			],
+			"damageTagsSpell": [
+				"I",
+				"P",
+				"T"
+			],
+			"spellcastingTags": [
+				"CD"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Pharblex Spattergoo"
+		},
+		{
+			"name": "拉格納·紅齒",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 74,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 90
+				}
+			],
+			"_copy": {
+				"name": "Veteran",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the veteran",
+						"with": "Raggnar",
+						"flags": "i"
+					}
+				}
+			},
+			"ac": [
+				11
+			],
+			"tokenCustom": true,
+			"hasToken": true,
+			"ENG_name": "Raggnar Redtooth"
+		},
+		{
+			"name": "拉斯·莫達",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 92,
+			"otherSources": [
+				{
+					"source": "RoT",
+					"page": 91
+				},
+				{
+					"source": "ToD",
+					"page": 188
+				}
+			],
+			"referenceSources": [
+				"RoT"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				13,
+				{
+					"ac": 16,
+					"condition": "{@spell mage armor||法師護甲}時",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 71,
+				"formula": "11d8 + 22"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 16,
+			"con": 14,
+			"int": 18,
+			"wis": 14,
+			"cha": 10,
+			"save": {
+				"int": "+7",
+				"wis": "+5"
+			},
+			"skill": {
+				"arcana": "+7",
+				"deception": "+3",
+				"insight": "+5",
+				"stealth": "+6"
+			},
+			"passive": 12,
+			"languages": [
+				"通用語",
+				"龍語",
+				"煉獄語",
+				"原初語",
+				"賽爾語"
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"拉斯作為11級施法者，其施法關鍵屬性為智力（法術豁免{@dc 15}，法術攻擊命中{@hit 7}）。拉斯準備了下列的法師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell fire bolt||火焰箭}",
+								"{@spell minor illusion||次級幻象}",
+								"{@spell prestidigitation||魔法伎倆}",
+								"{@spell shocking grasp||電爪}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell chromatic orb||繁綵球}",
+								"{@spell color spray||七彩噴射}",
+								"{@spell mage armor||法師護甲}",
+								"{@spell magic missile||魔法飛彈}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell detect thoughts||偵測思想}",
+								"{@spell mirror image||鏡影術}",
+								"{@spell phantasmal force||魅影之力}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell counterspell||法術反制}",
+								"{@spell fireball||火球術}",
+								"{@spell major image||高等幻影}"
+							]
+						},
+						"4": {
+							"slots": 3,
+							"spells": [
+								"{@spell confusion||困惑術}",
+								"{@spell greater invisibility||高等隱形術}"
+							]
+						},
+						"5": {
+							"slots": 2,
+							"spells": [
+								"{@spell mislead||假象術}",
+								"{@spell seeming||偽裝術}"
+							]
+						},
+						"6": {
+							"slots": 1,
+							"spells": [
+								"{@spell globe of invulnerability||法術無效結界}"
+							]
+						}
+					},
+					"ability": "int",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "特殊裝備",
+					"entries": [
+						"拉斯帶著一把{@item staff of fire||火焰法杖}staff of fire，以及{@spell dimension door||任意門}dimension door、{@spell feather fall||羽落術}feather fall和{@spell fireball||火球術}fireball的卷軸。"
+					],
+					"ENG_name": "Special Equipment"
+				}
+			],
+			"action": [
+				{
+					"name": "長棍",
+					"entries": [
+						"{@atk mw}命中{@hit 4}，觸及5尺，單一目標。{@h}4（{@damage 1d8}）的鈍擊傷害。"
+					],
+					"ENG_name": "Quarterstaff"
+				}
+			],
+			"reaction": [
+				{
+					"name": "幻影化形（短休或長休後充能）",
+					"entries": [
+						"一個拉斯能看到的生物對他發動一次攻擊檢定時，拉斯可以在攻擊者與自己之間佈置一個幻影分身。攻擊者對拉斯的攻擊直接判為未命中，幻影分身也隨即消散。"
+					],
+					"ENG_name": "Illusory Self (Recharges on a Short or Long Rest)"
+				}
+			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"I",
+				"OTH",
+				"P"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"A",
+				"C",
+				"F",
+				"I",
+				"L",
+				"O",
+				"T",
+				"Y"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"dexterity",
+				"intelligence",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Rath Modar"
+		},
+		{
+			"name": "瑞茲米爾",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 93,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 180
+				}
+			],
+			"referenceSources": [
+				"RoT"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"half-black dragon"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				13,
+				{
+					"ac": 15,
+					"condition": "佩戴黑龍面具",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 90,
+				"formula": "12d8 + 36"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 16,
+			"con": 16,
+			"int": 15,
+			"wis": 12,
+			"cha": 14,
+			"save": {
+				"dex": "+6",
+				"wis": "+4"
+			},
+			"skill": {
+				"arcana": "+5",
+				"stealth": "+9"
+			},
+			"senses": [
+				"blindsight 10 ft.",
+				"darkvision 120 ft."
+			],
+			"passive": 11,
+			"immune": [
+				"acid"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"通用語",
+				"龍語",
+				"煉獄語",
+				"巨人語",
+				"耐瑟瑞爾語"
+			],
+			"cr": "7",
+			"trait": [
+				{
+					"name": "特殊裝備",
+					"entries": [
+						"瑞茲米爾帶著{@item Black Dragon Mask|hotdq|黑龍面具}Black Dragon Mask，{@item Hazirawn|hotdq|哈茲瑞恩}Hazirawn以及一個{@item insignia of claws|hotdq|利爪徽章}insignia of claws。"
+					],
+					"ENG_name": "Special Equipment"
+				},
+				{
+					"name": "水陸兩棲",
+					"entries": [
+						"瑞茲米爾在水裡和空氣中都能呼吸。"
+					],
+					"ENG_name": "Amphibious"
+				},
+				{
+					"name": "黑暗優勢",
+					"entries": [
+						"瑞茲米爾每回合有一次機會，可以在一次武器攻擊命中時造成額外10（{@damage 3d6}）的傷害，前提是瑞茲米爾本次攻擊檢定必須帶優勢。"
+					],
+					"ENG_name": "Dark Advantage"
+				},
+				{
+					"name": "龍形威嚴",
+					"entries": [
+						"未著裝護甲而著裝黑龍面具 時，瑞茲米爾將其魅力加值加入其AC（已寫明）。"
+					],
+					"ENG_name": "Draconic Majesty"
+				},
+				{
+					"name": "焚燒術",
+					"entries": [
+						"瑞茲米爾生命值降至0時，其身軀將分解為一團灰燼。"
+					],
+					"ENG_name": "Immolation"
+				},
+				{
+					"name": "傳奇抗性（1/日）",
+					"entries": [
+						"瑞茲米爾著裝了黑龍面具 且豁免失敗時，她可將其結果改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (1/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "巨劍（哈茲瑞恩）",
+					"entries": [
+						"{@atk mw} 命中{@hit 9}，觸及5尺，單一目標。{@h}13（{@damage 2d6 + 6}）的揮砍傷害傷害，外加7（{@damage 2d6}）的暗蝕傷害。若目標為一生物，則該生物在隨後1分鐘內無法恢復生命值。該目標可在其每個自己回合結束時進行一次{@dc 15}的體質豁免，豁免成功則終止該效應。"
+					],
+					"ENG_name": "Greatsword (Hazirawn)"
+				},
+				{
+					"name": "酸蝕矢",
+					"entries": [
+						"{@atk rs}命中{@hit 8}，射程90尺，單一目標。{@h}18（{@damage 4d8}）的強酸傷害。"
+					],
+					"ENG_name": "Caustic Bolt"
+				},
+				{
+					"name": "強酸吐息 {@recharge 5}",
+					"entries": [
+						"瑞茲米爾撥出強酸並覆蓋一處30尺長、5尺寬的線狀區域。該區域內的每個生物都必須進行一次{@dc 14}的敏捷豁免，豁免失敗者將受到22（{@damage 5d8}）的強酸傷害，豁免成功則傷害減半。"
+					],
+					"ENG_name": "Acid Breath {@recharge 5}"
+				}
+			],
+			"legendaryHeader": [
+				"若瑞茲米爾著裝了黑龍面具，她將可以在其自己每回合之間執行2傳奇動作，它們可同時花費或在當輪裡分開使用。每個傳奇動作項只能在一個回合開始或結束時執行。瑞茲米爾擁有下列傳奇動作項，其中某些專案執行時需要花費多於1傳奇動作。"
+			],
+			"legendaryActions": 2,
+			"legendary": [
+				{
+					"name": "黑暗術（消耗 2動作）",
+					"entries": [
+						"一片半徑15尺的魔法黑暗從瑞茲米爾周邊60尺範圍內她能看到的一點擴散開來並充滿其所在區域的所有角落。黑暗區域在瑞茲米爾維持其{@status concentration||專注}時持續存在，且至多持續1分鐘。擁有黑暗視覺的生物無法看透這片黑暗，自然光照也無法照亮它。若黑暗區域與任何2環或更高環階法術創造的光照區域重疊，則該創造光照的法術被反制。"
+					],
+					"ENG_name": "Darkness (Costs 2 Actions)"
+				},
+				{
+					"name": "近戰攻擊",
+					"entries": [
+						"瑞茲米爾發動一次近戰攻擊。"
+					],
+					"ENG_name": "Melee Attack"
+				},
+				{
+					"name": "躲藏",
+					"entries": [
+						"瑞茲米爾執行{@action Hide||躲藏}Hide動作。"
+					],
+					"ENG_name": "Hide"
+				}
+			],
+			"attachedItems": [
+				"greatsword|phb"
+			],
+			"traitTags": [
+				"Amphibious",
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"GI",
+				"I",
+				"OTH"
+			],
+			"damageTags": [
+				"A",
+				"N",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW",
+				"MW"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Rezmir"
+		},
+		{
+			"name": "桑德西爾·莫吉亞",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 81,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 98
+				}
+			],
+			"_copy": {
+				"name": "Vampire",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the vampire",
+						"with": "Sandesyl",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Sandesyl Morgia"
+		},
+		{
+			"name": "白袍塔利斯",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 93,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 189
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"half-elf"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"{@item +1 scale mail}",
+						"{@item shield|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 58,
+				"formula": "9d8 + 18"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 14,
+			"dex": 12,
+			"con": 14,
+			"int": 10,
+			"wis": 16,
+			"cha": 16,
+			"save": {
+				"wis": "+6",
+				"cha": "+6"
+			},
+			"skill": {
+				"deception": "+6",
+				"insight": "+6",
+				"perception": "+6",
+				"persuasion": "+6"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 16,
+			"languages": [
+				"通用語",
+				"龍語",
+				"精靈語",
+				"煉獄語"
+			],
+			"cr": "5",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"塔利斯作為9級施法者，其施法關鍵屬性為感知（法術豁免{@dc 14}，法術攻擊命中{@hit 6}）。塔利斯準備了下列牧師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell guidance||神導術}",
+								"{@spell resistance||抵抗術}",
+								"{@spell thaumaturgy||奇術}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell command||命令術}",
+								"{@spell cure wounds||療傷術}",
+								"{@spell healing word||治癒真言}",
+								"{@spell inflict wounds||致傷術}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell blindness/deafness||目盲術/耳聾術}",
+								"{@spell lesser restoration||次等復原術}",
+								"{@spell spiritual weapon||靈體武器}（長矛）"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell dispel magic||解除魔法}",
+								"{@spell mass healing word||群體治癒真言}",
+								"{@spell sending||短訊術}"
+							]
+						},
+						"4": {
+							"slots": 3,
+							"spells": [
+								"{@spell death ward||防死結界}",
+								"{@spell freedom of movement||行動自如}"
+							]
+						},
+						"5": {
+							"slots": 1,
+							"spells": [
+								"{@spell insect plague||疫病蟲群}"
+							]
+						}
+					},
+					"ability": "wis",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "特殊裝備",
+					"entries": [
+						"塔利斯帶著一件 {@item +1 scale mail||+1 鱗甲}scale mail和{@item wand of winter|hotdq|凜冬魔杖}wand of winter。"
+					],
+					"ENG_name": "Special Equipment"
+				},
+				{
+					"name": "妖精血統",
+					"entries": [
+						"塔利斯為抵抗{@condition charmed||魅惑}而作的豁免檢定具有優勢，並且不會因魔法效應而陷入睡眠。"
+					],
+					"ENG_name": "Fey Ancestry"
+				},
+				{
+					"name": "凜冬打擊（3/日）",
+					"entries": [
+						"塔利斯每回合有一次機會，在以近戰攻擊命中時使用一次該特質造成額外9（{@damage 2d8}）的寒冷傷害。"
+					],
+					"ENG_name": "Winter Strike (3/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "矛",
+					"entries": [
+						"{@atk mw,rw}命中{@hit 5}，觸及5尺或射程20/60尺，單一目標。{@h}6（{@damage 1d6 + 2}）的穿刺傷害。"
+					],
+					"ENG_name": "Spear"
+				}
+			],
+			"attachedItems": [
+				"spear|phb"
+			],
+			"traitTags": [
+				"Fey Ancestry"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"E",
+				"I"
+			],
+			"damageTags": [
+				"C",
+				"P"
+			],
+			"damageTagsSpell": [
+				"N",
+				"O",
+				"P"
+			],
+			"spellcastingTags": [
+				"CC"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"conditionInflictSpell": [
+				"blinded",
+				"deafened",
+				"prone"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Talis the White"
+		},
+		{
+			"name": "特雷普辛",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotDQ",
+			"page": 63,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 79
+				}
+			],
+			"size": [
+				"L"
+			],
+			"type": "giant",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 84,
+				"formula": "8d10 + 40"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 13,
+			"con": 20,
+			"int": 7,
+			"wis": 9,
+			"cha": 7,
+			"skill": {
+				"perception": "+2"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 11,
+			"languages": [
+				"巨人語"
+			],
+			"cr": "6",
+			"trait": [
+				{
+					"name": "敏銳嗅覺",
+					"entries": [
+						"巨魔依賴嗅覺進行的感知（{@skill Perception||感知}）檢定具有優勢。"
+					],
+					"ENG_name": "Keen Smell"
+				},
+				{
+					"name": "復生",
+					"entries": [
+						"巨魔在它的回合開始時回覆10點生命值。如果巨魔受到強酸或者火焰傷害，則該特質在它的下一回合裡無法生效。如果巨魔以0生命值開始其自己回合且無法使用再生，則巨魔死亡。"
+					],
+					"ENG_name": "Regeneration"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"巨魔發動五次攻擊，一次用它的咬擊，四次用它的爪擊。如果有兩次或更多次的爪擊命中同一個目標，巨魔會撕裂目標，造成額外的{@damage 2d6}點揮砍傷害。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} {@hit +7} hit，觸及5尺，單一目標。{@h}7 ({@damage 1d6 + 4}) 點穿刺傷害。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atk mw} 命中加值 {@hit +7}，觸及範圍 5 尺，單一目標。{@h}11 ({@damage 2d6 + 4}) 揮砍傷害。"
+					],
+					"ENG_name": "Claw"
+				}
+			],
+			"traitTags": [
+				"Keen Senses",
+				"Regeneration"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"GI"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Trepsin"
+		}
+	]
+}

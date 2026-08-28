@@ -1,0 +1,354 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "成年藍寶石龍",
+			"source": "SADS",
+			"page": 1,
+			"size": [
+				"H"
+			],
+			"type": "dragon",
+			"alignment": [
+				"L",
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 19,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 207,
+				"formula": "18d12 + 60"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40,
+				"fly": 80,
+				"burrow": 40
+			},
+			"str": 23,
+			"dex": 16,
+			"con": 21,
+			"int": 18,
+			"wis": 17,
+			"cha": 18,
+			"save": {
+				"dex": "+8",
+				"con": "+10",
+				"wis": "+8",
+				"cha": "+9"
+			},
+			"skill": {
+				"history": "+9",
+				"perception": "+13",
+				"persuasion": "+14",
+				"stealth": "+8"
+			},
+			"senses": [
+				"blindsight 60 ft.",
+				"darkvision 120 ft."
+			],
+			"passive": 23,
+			"immune": [
+				"thunder"
+			],
+			"conditionImmune": [
+				"frightened"
+			],
+			"languages": [
+				"心靈感應 120 尺",
+				"通用語",
+				"龍語"
+			],
+			"cr": "15",
+			"spellcasting": [
+				{
+					"name": "天生施法（靈能）",
+					"type": "spellcasting",
+					"headerEntries": [
+						"龍的天賦施法能力是智力（法術豁免{@dc 17}）。它能夠天生施放以下法術，無需任何材料："
+					],
+					"daily": {
+						"1e": [
+							"{@spell scrying||探知術}",
+							"{@spell telekinesis||心靈遙控}",
+							"{@spell teleportation circle||傳送法陣}"
+						]
+					},
+					"ability": "int",
+					"ENG_name": "Innate Spellcasting (Psionics)"
+				}
+			],
+			"trait": [
+				{
+					"name": "傳奇抗性（2/日）",
+					"entries": [
+						"龍豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (2/Day)"
+				},
+				{
+					"name": "蛛行術",
+					"entries": [
+						"該龍可以攀爬在難以攀爬的表面上，包括倒吊在天花板上，且不需要進行屬性檢定。"
+					],
+					"ENG_name": "Spider Climb"
+				},
+				{
+					"name": "掘道者",
+					"entries": [
+						"龍可以在堅硬的岩石中挖掘，挖掘速度為其挖掘速度的一半，並且可以選擇在其身後留下一個直徑為10尺的隧道。"
+					],
+					"ENG_name": "Tunneler"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"龍可以使用其駭人威儀。然後它進行兩次近戰攻擊，一次用其咬擊，一次用其爪擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 11}，觸及：10尺，單一目標。{@h}17（{@damage 2d10 + 6}）點穿刺傷害，加上3（{@damage 1d6}）雷鳴傷害。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 11}，觸及10尺，單一目標。{@h}19（{@damage 3d8 + 6}）揮砍傷害。"
+					],
+					"ENG_name": "Claws"
+				},
+				{
+					"name": "尾擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 11}，觸及10尺，單一目標。{@h}15 ({@damage 2d8 + 6}) 鈍擊傷害。"
+					],
+					"ENG_name": "Tail"
+				},
+				{
+					"name": "駭人威儀",
+					"entries": [
+						"龍指定周邊120尺範圍內若干意識到其存在的生物，每個目標都必須進行一次{@dc 17}的感知豁免，豁免失敗者將陷入1分鐘的{@condition frightened||恐慌}狀態。該被恐慌生物可以在其自己回合結束時再進行一次該豁免，豁免成功則終止該生物身上的恐慌效應。豁免成功或身上的該效應結束的生物，將在接下來的24小時內免疫該龍的駭人威儀。"
+					],
+					"ENG_name": "Frightful Presence"
+				},
+				{
+					"name": "衰弱吐息{@recharge 5}",
+					"entries": [
+						"龍在60尺錐形區域中撥出一陣尖銳、幾乎聽不見的聲波。該區域內的每個生物必須進行一次{@dc 18}體質豁免檢定。若檢定失敗，該生物將受到45（{@damage 13d6}）點雷鳴傷害，並陷入{@condition incapacitated||失能}狀態，直到其下一回合結束。若檢定成功，該生物受到一半傷害，且不會陷入{@condition incapacitated||失能}狀態。"
+					],
+					"ENG_name": "Debilitating Breath {@recharge 5}"
+				}
+			],
+			"legendary": [
+				{
+					"name": "尾擊攻擊",
+					"entries": [
+						"龍進行了一次尾擊攻擊。"
+					],
+					"ENG_name": "Tail Attack"
+				},
+				{
+					"name": "念力飛擲",
+					"entries": [
+						"龍選擇一個它能看到的60尺範圍內的小型或更小的物體，該物體沒有被穿戴或攜帶，並且用魔法將該物體投擲向它能看到的60尺範圍內的生物。目標必須進行一次敏捷豁免檢定（{@dc 17}），未透過則受到15 ({@damage 4d6}) 鈍擊傷害。"
+					],
+					"ENG_name": "Telekinetic Fling"
+				},
+				{
+					"name": "傳送 (消耗 2動作)",
+					"entries": [
+						"龍使用魔法傳送到它能看到的30尺範圍內的未被佔據的空間。"
+					],
+					"ENG_name": "Teleport (Costs 2 Actions)"
+				}
+			],
+			"legendaryGroup": {
+				"name": "Sapphire Dragon",
+				"source": "SADS"
+			},
+			"variant": [
+				{
+					"type": "inset",
+					"name": "定製龍類",
+					"source": "FTD",
+					"page": 33,
+					"entries": [
+						"你可以定製任何龍的資料以反映龍的獨特能力。像下面這樣的小改動是很容易做到的，而且對龍的挑戰等級沒有影響。",
+						{
+							"type": "entries",
+							"name": "語言",
+							"entries": [
+								"大多數龍喜歡說龍語，但為了與盟友和僕從打交道同樣也需要學習通用語。鑑於龍的高智力和長壽命，它們可以很容易地學習其他語言。你可以將一些額外語言新增到龍的資料卡中。"
+							],
+							"ENG_name": "Languages"
+						},
+						{
+							"type": "entries",
+							"name": "技能",
+							"entries": [
+								"大多數龍都具有{@skill Perception||感知}和{@skill Stealth||隱匿}技能的熟練項，許多龍還有額外的技能熟練。和語言一樣，你可以定製龍的技能列表（甚至將他們對某些技能的熟練翻倍）以反映其特殊的興趣和技巧。你也可以給龍提供工具熟練，特別是當龍在人形狀態下花費了一段時間訓練時。"
+							],
+							"ENG_name": "Skills"
+						},
+						{
+							"type": "entries",
+							"name": "法術",
+							"entries": [
+								"{@note 請參閱下方的\"變體：龍類天生施法者\"小節。}"
+							],
+							"ENG_name": "Spells"
+						},
+						{
+							"type": "entries",
+							"name": "其他特性與動作",
+							"entries": [
+								"您可以借用其他怪物的特性和動作來為龍增添獨特的風味。考慮以下示例：",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "變形",
+											"entries": [
+												"您可以決定一條龍比通常年齡更早獲得這個動作，特別是如果您希望在您的戰役中突出展示以人形出現的龍：",
+												"龍可以用魔法變形為挑戰等級等於或低於其自身的類人生物或野獸，也可以同樣用該動作恢復其真實形態。在死亡時，它也會恢復其真實形態。它攜帶或著裝的任何裝備都將轉變為適應新形態，或是直接吸收為新形態的一部分（依照該龍的意願）。",
+												"在新形態下，龍將保留其陣營，生命骰，生命值，說話能力，傳奇抗性，巢穴動作以及智力、感知、魅力數值，還有該動作。而其它的資料和能力則替換為新形態的相應條目（不包括新形態的職業特性和傳奇動作）。"
+											],
+											"ENG_name": "Change Shape"
+										},
+										{
+											"type": "item",
+											"name": "飛掠",
+											"entries": [
+												"龍那超凡的飛行技巧使其能迅速飛出敵人的威脅範圍。",
+												"當龍飛出敵人的攻擊範圍時，它不會引發藉機攻擊。"
+											],
+											"ENG_name": "Flyby"
+										},
+										{
+											"type": "item",
+											"name": "擬聲",
+											"entries": [
+												"對狡猾的龍來說，模仿冒險者或他們的盟友可能是一個有趣並且的確有用的技巧。",
+												"龍可以模仿任何它曾聽過的聲音，包括聲線。生物成功透過一次{@dc 12}的感知（{@skill Insight||洞悉}）檢定後便可認出其模仿的本質。"
+											],
+											"ENG_name": "Mimicry"
+										},
+										{
+											"type": "item",
+											"name": "復生",
+											"entries": [
+												"在你的戰役中，你可能會將作為物質位面重要組成成分的龍類設定為幾乎不可能被完全殺死的存在。就像巫妖的靈魂被儲存在命匣裡一樣，龍的生命精華可能會被儲存在它最初出現的蛋裡、它的寶庫裡，或者世界中心的一個巨大洞穴裡。",
+												"如果它擁有一個儲存生命精華的物品，被殺死的龍將在{@dice 1d10}天內獲得新的身體，恢復所有生命值並再次活躍。新的身體出現在物品周圍5尺內。"
+											],
+											"ENG_name": "Rejuvenation"
+										},
+										{
+											"type": "item",
+											"name": "特殊感官",
+											"entries": [
+												"多數龍都有{@sense blindsight||盲視}和{@sense darkvision||黑暗視覺}。你可以將{@sense blindsight||盲視}升級為{@sense truesight||真實視覺}，或者你可以給一條有掘地速度的龍賦予{@sense tremorsense|MM|震顫感知}。"
+											],
+											"ENG_name": "Special Senses"
+										},
+										{
+											"type": "item",
+											"name": "掘道者",
+											"entries": [
+												"龍能夠以其一半的掘穴速度透過堅硬的巖層，並在其身後留下一條地道。"
+											],
+											"ENG_name": "Tunneler"
+										}
+									]
+								}
+							],
+							"ENG_name": "Other Traits and Actions"
+						}
+					],
+					"ENG_name": "Customizing Dragons"
+				}
+			],
+			"dragonAge": "adult",
+			"traitTags": [
+				"Legendary Resistances",
+				"Spider Climb",
+				"Tunneler"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Frightful Presence",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"TP"
+			],
+			"damageTags": [
+				"B",
+				"P",
+				"S",
+				"T"
+			],
+			"spellcastingTags": [
+				"I",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"frightened",
+				"incapacitated"
+			],
+			"conditionInflictLegendary": [
+				"charmed"
+			],
+			"conditionInflictSpell": [
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"savingThrowForcedLegendary": [
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Adult Sapphire Dragon"
+		}
+	]
+}

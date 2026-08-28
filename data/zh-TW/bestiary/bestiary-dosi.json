@@ -1,0 +1,756 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "煙霧龍獸",
+			"source": "DoSI",
+			"page": 41,
+			"size": [
+				"S"
+			],
+			"type": "elemental",
+			"alignment": [
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 22,
+				"formula": "5d6 + 5"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 30
+			},
+			"str": 6,
+			"dex": 14,
+			"con": 12,
+			"int": 6,
+			"wis": 10,
+			"cha": 11,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"龍語",
+				"火族語"
+			],
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "自爆",
+					"entries": [
+						"當煙霧龍獸死去時，它以一團有毒迷霧的形式炸裂。每個在煙霧龍獸 5 尺內的生物都需要透過一個{@dc 11}的體質豁免否則承受 4（{@damage 1d8}）點毒素傷害。"
+					],
+					"ENG_name": "Death Burst"
+				},
+				{
+					"name": "非凡本質",
+					"entries": [
+						"煙霧龍獸不需要食物，喝水或睡覺。"
+					],
+					"ENG_name": "Unusual Nature"
+				}
+			],
+			"action": [
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 4}，觸及5尺，單一目標。{@h}4（{@damage 1d4 + 2}）點火焰傷害。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "灼熱吐息{@recharge}",
+					"entries": [
+						"煙霧龍獸撥出灼熱氣息並覆蓋 15 尺的錐狀區域。該區域內的每個生物都必須進行一次{@dc 11}的敏捷豁免檢定。豁免失敗則受到 4（{@damage 1d8}）點火焰傷害，豁免成功受到半數傷害。"
+					],
+					"ENG_name": "Scalding Breath {@recharge}"
+				}
+			],
+			"tokenCustom": true,
+			"traitTags": [
+				"Death Burst",
+				"Unusual Nature"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Breath Weapon"
+			],
+			"languageTags": [
+				"DR",
+				"IG"
+			],
+			"damageTags": [
+				"F",
+				"I"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Fume Drake"
+		},
+		{
+			"name": "狗頭人修補匠",
+			"source": "DoSI",
+			"page": 43,
+			"size": [
+				"S"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 10,
+				"formula": "3d6"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 10
+			},
+			"str": 7,
+			"dex": 14,
+			"con": 10,
+			"int": 15,
+			"wis": 7,
+			"cha": 9,
+			"skill": {
+				"arcana": "+4",
+				"perception": "+0"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"languages": [
+				"通用語",
+				"龍語"
+			],
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "探究精神（1/日）",
+					"entries": [
+						"狗頭人可以釋放{@spell detect magic||偵測魔法}且不需要法術材料。 當你使用此特性施展這些法術時，智力是你的施法關鍵屬性。"
+					],
+					"ENG_name": "Inquiring Mind (1/Day)"
+				},
+				{
+					"name": "叢集戰術",
+					"entries": [
+						"狗頭人至少有一個未處於{@condition incapacitated||失能}的盟友在目標生物 5 尺內時，它對該生物發動的攻擊檢定有優勢。"
+					],
+					"ENG_name": "Pack Tactics"
+				},
+				{
+					"name": "日照敏感",
+					"entries": [
+						"受陽光照射時，狗頭人進行的攻擊檢定和依賴視覺進行的感知（{@skill Perception||感知}）檢定具有劣勢。"
+					],
+					"ENG_name": "Sunlight Sensitivity"
+				}
+			],
+			"action": [
+				{
+					"name": "匕首",
+					"entries": [
+						"{@atk mw,rw} 命中{@hit 4}，觸及5尺或射程20/60尺，單一目標。{@h}4（{@damage 1d4 + 2}）點穿刺傷害。"
+					],
+					"ENG_name": "Dagger"
+				},
+				{
+					"name": "鍊金火焰{@recharge}",
+					"entries": [
+						"狗頭人釋放火焰並覆蓋一處 15 尺錐形區域。該區域內的每個生物都必須進行一次{@dc 12}的敏捷豁免，豁免失敗者將受到 10（{@damage 3d6}）點火焰傷害，豁免成功則傷害減半。"
+					],
+					"ENG_name": "Alchemical Flame {@recharge}"
+				}
+			],
+			"tokenCustom": true,
+			"attachedItems": [
+				"dagger|phb"
+			],
+			"traitTags": [
+				"Pack Tactics",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"DR"
+			],
+			"damageTags": [
+				"F",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Kobold Tinkerer"
+		},
+		{
+			"name": "邁羅人魚敲詐者",
+			"source": "DoSI",
+			"page": 0,
+			"size": [
+				"L"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 30,
+				"formula": "4d10 + 8"
+			},
+			"speed": {
+				"walk": 10,
+				"swim": 40
+			},
+			"str": 16,
+			"dex": 10,
+			"con": 15,
+			"int": 8,
+			"wis": 10,
+			"cha": 9,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"languages": [
+				"深淵語",
+				"水族語",
+				"通用語"
+			],
+			"cr": {
+				"cr": "1",
+				"xp": 100
+			},
+			"trait": [
+				{
+					"name": "水陸兩棲",
+					"entries": [
+						"邁羅人魚可在水裡和空氣中呼吸。"
+					],
+					"ENG_name": "Amphibious"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"邁羅人魚進行兩次撕裂攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "撕裂",
+					"entries": [
+						"{@atk mw} 命中{@hit 5}，觸及10尺，單一目標。{@h}8（{@damage 2d4 + 3}）點穿刺傷害。"
+					],
+					"ENG_name": "Rend"
+				}
+			],
+			"traitTags": [
+				"Amphibious"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"AQ",
+				"C"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Merrow Extortionist"
+		},
+		{
+			"name": "米拉",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "DoSI",
+			"page": 9,
+			"_copy": {
+				"name": "Kobold Tinkerer",
+				"source": "DoSI",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the kobold",
+						"with": "Myla",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"L",
+				"G"
+			],
+			"hasToken": true,
+			"ENG_name": "Myla"
+		},
+		{
+			"name": "茹娜拉",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "DoSI",
+			"page": 40,
+			"_copy": {
+				"name": "Adult Bronze Dragon",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the dragon",
+						"with": "Runara",
+						"flags": "i"
+					},
+					"action": [
+						{
+							"mode": "removeArr",
+							"names": "Tail"
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Change Shape",
+							"items": {
+								"name": "變形",
+								"type": "entries",
+								"entries": [
+									"茹娜拉可以用魔法變形為中型或小型的類人生物或野獸，並保持她的遊戲資料（除了體型）。這種變形持續到茹娜拉的生命值降為 0 或她用一個附贈動作解除。"
+								],
+								"ENG_name": "Change Shape"
+							}
+						}
+					]
+				}
+			},
+			"cr": "13",
+			"legendary": null,
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Runara"
+		},
+		{
+			"name": "塞娜薩",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "DoSI",
+			"page": 45,
+			"_copy": {
+				"name": "Myconid Sovereign",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the myconid",
+						"with": "Sinensa",
+						"flags": "i"
+					},
+					"action": [
+						{
+							"mode": "removeArr",
+							"names": [
+								"Animating Spores (3/Day)",
+								"Pacifying Spores"
+							]
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Multiattack",
+							"items": {
+								"name": "多重攻擊",
+								"type": "entries",
+								"entries": [
+									"蕈人可以先發動拳擊攻擊，然後再使用致幻孢子。"
+								],
+								"ENG_name": "Multiattack"
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Fist",
+							"items": {
+								"name": "拳擊",
+								"type": "entries",
+								"entries": [
+									"{@atk mw} 命中{@hit 3}，觸及5尺，一目標。{@h}8 ({@damage 3d4 + 1}) 點鈍擊傷害加上7 ({@damage 2d4}) 點毒素傷害。"
+								],
+								"ENG_name": "Fist"
+							}
+						}
+					]
+				}
+			},
+			"tokenCustom": true,
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Sinensa"
+		},
+		{
+			"name": "孢子僕從八爪魚",
+			"source": "DoSI",
+			"page": 46,
+			"size": [
+				"L"
+			],
+			"type": "plant",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				11
+			],
+			"hp": {
+				"average": 52,
+				"formula": "8d10 + 8"
+			},
+			"speed": {
+				"walk": 5,
+				"swim": 50
+			},
+			"str": 17,
+			"dex": 13,
+			"con": 13,
+			"int": 2,
+			"wis": 6,
+			"cha": 1,
+			"senses": [
+				"blindsight 30 ft. (blind beyond this radius)"
+			],
+			"passive": 8,
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"frightened",
+				"paralyzed"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "屏息",
+					"entries": [
+						"當離開水時，章魚可以屏住呼吸長達1小時。"
+					],
+					"ENG_name": "Hold Breath"
+				},
+				{
+					"name": "水下呼吸",
+					"entries": [
+						"章魚只能在水下呼吸。"
+					],
+					"ENG_name": "Water Breathing"
+				}
+			],
+			"action": [
+				{
+					"name": "觸鬚",
+					"entries": [
+						"{@atk mw} 命中{@hit 5}，觸及 15 尺，單一目標 {@h}7 ({@damage 1d8 + 3}) 點鈍擊傷害。"
+					],
+					"ENG_name": "Tentacles"
+				}
+			],
+			"traitTags": [
+				"Hold Breath",
+				"Water Breathing"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Tentacles"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Spore Servant Octopus"
+		},
+		{
+			"name": "塔拉克",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "DoSI",
+			"page": 47,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 27,
+				"formula": "6d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 10,
+			"int": 12,
+			"wis": 14,
+			"cha": 16,
+			"skill": {
+				"deception": "+5",
+				"insight": "+4",
+				"medicine": "+4",
+				"nature": "+3"
+			},
+			"passive": 12,
+			"languages": [
+				"通用語",
+				"龍語",
+				"盜賊黑話"
+			],
+			"cr": "1",
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"塔拉克使用三次匕首攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "匕首",
+					"entries": [
+						"{@atk mw,rw} 命中{@hit 5}，觸及5尺或射程20/60尺，單一目標。{@h}5 ({@damage 1d4 + 3}) 點穿刺傷害。"
+					],
+					"ENG_name": "Dagger"
+				}
+			],
+			"bonus": [
+				{
+					"name": "靈巧動作",
+					"entries": [
+						"塔拉克執行{@action Dash||疾走}、{@action Disengage||撤離}或{@action Hide||躲藏}動作。"
+					],
+					"ENG_name": "Cunning Action"
+				}
+			],
+			"tokenCustom": true,
+			"attachedItems": [
+				"dagger|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"TC"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Tarak"
+		},
+		{
+			"name": "瓦努斯",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "DoSI",
+			"page": 47,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				11
+			],
+			"hp": {
+				"average": 39,
+				"formula": "6d8 + 12"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 13,
+			"con": 14,
+			"int": 10,
+			"wis": 11,
+			"cha": 10,
+			"skill": {
+				"athletics": "+5",
+				"history": "+2",
+				"perception": "+2",
+				"religion": "+2"
+			},
+			"passive": 12,
+			"languages": [
+				"通用語"
+			],
+			"cr": "2",
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"瓦努斯發動三次短劍攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "短劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 5}，觸及5尺，單一目標。{@h}6（{@damage 1d6 + 3}）點穿刺傷害。"
+					],
+					"ENG_name": "Shortsword"
+				}
+			],
+			"tokenCustom": true,
+			"attachedItems": [
+				"shortsword|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Varnoth"
+		},
+		{
+			"name": "紫腐菌",
+			"source": "DoSI",
+			"page": 48,
+			"referenceSources": [
+				"BMT",
+				"PaBTSO"
+			],
+			"_copy": {
+				"name": "Violet Fungus",
+				"source": "MM",
+				"_mod": {
+					"trait": [
+						{
+							"mode": "replaceArr",
+							"replace": "False Appearance",
+							"items": {
+								"name": "無定形",
+								"type": "entries",
+								"entries": [
+									"如果紫腐菌在戰鬥開始時保持靜止，它在先攻檢定上具有優勢。此外，如果一個生物沒有觀察到紫腐菌移動或行動，該生物必須成功透過一個{@dc 18}智力（{@skill Investigation||調查}）檢定才能辨別出紫腐菌並非普通蕈類。"
+								],
+								"ENG_name": "False Appearance"
+							}
+						}
+					]
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Violet Fungus"
+		}
+	]
+}

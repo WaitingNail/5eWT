@@ -1,0 +1,2950 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "異怪靈魄",
+			"source": "TCE",
+			"page": 109,
+			"reprintedAs": [
+				"Aberrant Spirit|XPHB"
+			],
+			"summonedBySpell": "Summon Aberration|TCE",
+			"summonedBySpellLevel": 4,
+			"size": [
+				"M"
+			],
+			"type": "aberration",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"special": "11 +法術等級 (天生護甲)"
+				}
+			],
+			"hp": {
+				"special": "40 +10×每比4環高的法術等級"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "（懸浮）（僅限類眼魔）"
+				},
+				"canHover": true
+			},
+			"str": 16,
+			"dex": 10,
+			"con": 15,
+			"int": 16,
+			"wis": 10,
+			"cha": 6,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"immune": [
+				"psychic"
+			],
+			"languages": [
+				"深潛語",
+				"理解你所說的語言"
+			],
+			"trait": [
+				{
+					"name": "再生（僅史拉蟾）",
+					"entries": [
+						"異怪在其自己的回合開始時恢復5點生命值，前提是它至少有1點生命值。"
+					],
+					"ENG_name": "Regeneration (Slaad Only)"
+				},
+				{
+					"name": "低語靈光（僅星之子）",
+					"entries": [
+						"於異怪自己的每個回合開始時，所有在其5尺內的生物必須進行一次感知豁免對抗你的法術豁免DC，豁免失敗則受到{@damage 2d6}心靈傷害，這個效果只在異怪不處於{@condition incapacitated||失能}時適用。"
+					],
+					"ENG_name": "Whispering Aura (Star Spawn Only)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"異怪發動等同於法術環數一半的次數的攻擊（向下取整）。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "眼波射線（僅類眼魔）",
+					"entries": [
+						"{@atk rs} 命中{@hitYourSpellAttack} ，射程 150 尺，單一生物。{@h}{@damage 1d8 + 3 + summonSpellLevel} 心靈傷害。"
+					],
+					"ENG_name": "Eye Ray (Beholderkin Only)"
+				},
+				{
+					"name": "爪擊（僅史拉蟾）",
+					"entries": [
+						"{@atk mw}命中 {@hitYourSpellAttack} ，觸及 5 尺，單一目標。{@h}{@damage 1d10 + 3 + summonSpellLevel} 揮砍傷害。如果目標是生物，其直到異怪下回合開始不能恢復生命值。"
+					],
+					"ENG_name": "Claws (Slaad Only)"
+				},
+				{
+					"name": "靈能猛擊（僅星之子）",
+					"entries": [
+						"{@atk ms} 命中{@hitYourSpellAttack}，觸及 5 尺，單一生物。{@h}{@damage 1d8 + 3 + summonSpellLevel} 心靈傷害。"
+					],
+					"ENG_name": "Psychic Slam (Star Spawn Only)"
+				}
+			],
+			"tokenCustom": true,
+			"traitTags": [
+				"Regeneration"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"DS"
+			],
+			"damageTags": [
+				"S",
+				"Y"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"hasToken": true,
+			"_versions": [
+				{
+					"name": "Aberrant Spirit (Beholderkin)",
+					"source": "TCE",
+					"_mod": {
+						"action": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Claws (Slaad Only)",
+									"Psychic Slam (Star Spawn Only)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Eye Ray (Beholderkin Only)",
+									"with": "Eye Ray"
+								}
+							}
+						]
+					},
+					"speed": {
+						"walk": 30,
+						"fly": {
+							"number": 30,
+							"condition": "(hover)"
+						},
+						"canHover": true
+					},
+					"trait": null,
+					"traitTags": null,
+					"damageTags": [
+						"Y"
+					],
+					"miscTags": null
+				},
+				{
+					"name": "Aberrant Spirit (Slaad)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Whispering Aura (Star Spawn Only)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Regeneration (Slaad Only)",
+									"with": "Regeneration"
+								}
+							}
+						],
+						"action": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Eye Ray (Beholderkin Only)",
+									"Psychic Slam (Star Spawn Only)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Claws (Slaad Only)",
+									"with": "Claws"
+								}
+							}
+						]
+					},
+					"speed": {
+						"walk": 30
+					},
+					"traitTags": [
+						"Regeneration"
+					],
+					"damageTags": [
+						"S"
+					],
+					"miscTags": [
+						"MW"
+					]
+				},
+				{
+					"name": "Aberrant Spirit (Star Spawn)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Regeneration (Slaad Only)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Whispering Aura (Star Spawn Only)",
+									"with": "Whispering Aura"
+								}
+							}
+						],
+						"action": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Eye Ray (Beholderkin Only)",
+									"Claws (Slaad Only)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Psychic Slam (Star Spawn Only)",
+									"with": "Psychic Slam"
+								}
+							}
+						]
+					},
+					"speed": {
+						"walk": 30
+					},
+					"traitTags": [
+						"Regeneration"
+					],
+					"damageTags": [
+						"Y"
+					],
+					"miscTags": null
+				}
+			],
+			"ENG_name": "Aberrant Spirit"
+		},
+		{
+			"name": "成年紅龍巫妖",
+			"source": "TCE",
+			"page": 137,
+			"_copy": {
+				"name": "Adult Red Dragon",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Dracolich",
+						"source": "MM"
+					}
+				]
+			},
+			"tokenCustom": true,
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"damageTagsLegendary": [],
+			"hasToken": true,
+			"ENG_name": "Adult Red Dracolich"
+		},
+		{
+			"name": "大地野獸",
+			"source": "TCE",
+			"page": 61,
+			"reprintedAs": [
+				"Beast of the Land|XPHB"
+			],
+			"summonedByClass": "Ranger|PHB",
+			"size": [
+				"M"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"special": "13+PB（天生護甲）"
+				}
+			],
+			"hp": {
+				"special": "5 + 你遊俠等級的五倍（野獸擁有與你遊俠等級相同數量的生命骰[d8]）"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40
+			},
+			"str": 14,
+			"dex": 14,
+			"con": 15,
+			"int": 8,
+			"wis": 14,
+			"cha": 11,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 12,
+			"languages": [
+				"理解你所說的語言"
+			],
+			"pbNote": "equals your bonus",
+			"trait": [
+				{
+					"name": "衝鋒",
+					"entries": [
+						"當大地野獸向一個目標直線移動了至少 20 尺，然後在同一回合以揮打攻擊命中目標時。目標會額外受到 {@damage 1d6} 揮砍傷害。如果目標是生物，它必須成功透過對抗你法術豁免DC的力量豁免檢定否則應擊{@condition prone||倒地}。"
+					],
+					"ENG_name": "Charge"
+				},
+				{
+					"name": "原初聯結",
+					"entries": [
+						"你能將你的熟練加值加到野獸進行的一切屬性檢定和豁免檢定上。"
+					],
+					"ENG_name": "Primal Bond"
+				}
+			],
+			"action": [
+				{
+					"name": "揮打",
+					"entries": [
+						"{@atk mw} {@hitYourSpellAttack} 命中，觸及 5 尺，單個目標。{@h}{@damage 1d8 + 2 + PB} 揮砍傷害。"
+					],
+					"ENG_name": "Maul"
+				}
+			],
+			"traitTags": [
+				"Charge"
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"hasToken": true,
+			"ENG_name": "Beast of the Land"
+		},
+		{
+			"name": "海洋野獸",
+			"source": "TCE",
+			"page": 61,
+			"reprintedAs": [
+				"Beast of the Sea|XPHB"
+			],
+			"summonedByClass": "Ranger|PHB",
+			"size": [
+				"M"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"special": "13+PB（天生護甲）"
+				}
+			],
+			"hp": {
+				"special": "5 + 你遊俠等級的五倍（野獸擁有與你遊俠等級相同數量的生命骰[d8]）"
+			},
+			"speed": {
+				"walk": 5,
+				"swim": 60
+			},
+			"str": 14,
+			"dex": 14,
+			"con": 15,
+			"int": 8,
+			"wis": 14,
+			"cha": 11,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 12,
+			"languages": [
+				"理解你所說的語言"
+			],
+			"pbNote": "equals your bonus",
+			"trait": [
+				{
+					"name": "水陸兩棲",
+					"entries": [
+						"野獸可以在空氣和水中呼吸。"
+					],
+					"ENG_name": "Amphibious"
+				},
+				{
+					"name": "原初聯結",
+					"entries": [
+						"你能將你的熟練加值加到野獸進行的一切屬性檢定和豁免檢定上。"
+					],
+					"ENG_name": "Primal Bond"
+				}
+			],
+			"action": [
+				{
+					"name": "攫擊",
+					"entries": [
+						"{@atk mw} {@hitYourSpellAttack} 命中，觸及 5 尺，單個目標。{@h}{@damage 1d6 + 2 + PB} 穿刺傷害或 {@damage 1d6 + 2 + PB} 鈍擊傷害（由你選擇），且目標被 {@condition grappled||受擒}（逃脫 DC 等於你的法術豁免 DC）。直到此擒抱結束前，野獸不能對另一個目標使用此攻擊。"
+					],
+					"ENG_name": "Binding Strike"
+				}
+			],
+			"traitTags": [
+				"Amphibious"
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"grappled"
+			],
+			"hasToken": true,
+			"ENG_name": "Beast of the Sea"
+		},
+		{
+			"name": "天空野獸",
+			"source": "TCE",
+			"page": 61,
+			"reprintedAs": [
+				"Beast of the Sky|XPHB"
+			],
+			"summonedByClass": "Ranger|PHB",
+			"size": [
+				"S"
+			],
+			"type": "beast",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				{
+					"special": "13+PB（天生護甲）"
+				}
+			],
+			"hp": {
+				"special": "4 + 你遊俠等級的四倍（野獸擁有與你遊俠等級相同數量的生命骰[d6s]）"
+			},
+			"speed": {
+				"walk": 10,
+				"fly": 60
+			},
+			"str": 6,
+			"dex": 16,
+			"con": 13,
+			"int": 8,
+			"wis": 14,
+			"cha": 11,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 12,
+			"languages": [
+				"理解你所說的語言"
+			],
+			"pbNote": "equals your bonus",
+			"trait": [
+				{
+					"name": "飛掠",
+					"entries": [
+						"野獸以飛行離開敵人的觸及範圍時不會引發對方的藉機攻擊。"
+					],
+					"ENG_name": "Flyby"
+				},
+				{
+					"name": "原初聯結",
+					"entries": [
+						"你能將你的熟練加值加到野獸進行的一切屬性檢定和豁免檢定上。"
+					],
+					"ENG_name": "Primal Bond"
+				}
+			],
+			"action": [
+				{
+					"name": "撕扯",
+					"entries": [
+						"{@atk mw} {@hitYourSpellAttack} 命中，觸及5尺，單一目標。{@h}{@damage 1d4 + 3 + PB} 揮砍傷害。"
+					],
+					"ENG_name": "Shred"
+				}
+			],
+			"traitTags": [
+				"Flyby"
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"S"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"ENG_name": "Beast of the Sky"
+		},
+		{
+			"name": "野獸靈魄",
+			"source": "TCE",
+			"page": 109,
+			"reprintedAs": [
+				"Bestial Spirit|XPHB"
+			],
+			"summonedBySpell": "Summon Beast|TCE",
+			"summonedBySpellLevel": 2,
+			"size": [
+				"S"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"special": "11 +法術等級 (天生護甲)"
+				}
+			],
+			"hp": {
+				"special": "20（僅限空）或 30（僅限陸與水），外加高於二環的每環階 5 點"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": {
+					"number": 30,
+					"condition": "（僅陸地）"
+				},
+				"fly": {
+					"number": 60,
+					"condition": "（僅空中）"
+				},
+				"swim": {
+					"number": 30,
+					"condition": "（僅水中）"
+				}
+			},
+			"str": 18,
+			"dex": 11,
+			"con": 16,
+			"int": 4,
+			"wis": 14,
+			"cha": 5,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 12,
+			"languages": [
+				"理解你所說的語言"
+			],
+			"trait": [
+				{
+					"name": "水下呼吸（僅海洋）",
+					"entries": [
+						"該野獸只能在水下呼吸。"
+					],
+					"ENG_name": "Water Breathing (Water Only)"
+				},
+				{
+					"name": "飛掠（僅天空）",
+					"entries": [
+						"野獸以飛行離開敵人的觸及範圍時不會引發對方的藉機攻擊。"
+					],
+					"ENG_name": "Flyby (Air Only)"
+				},
+				{
+					"name": "叢集戰術（僅大地與海洋）",
+					"entries": [
+						"該野獸至少有一個未處於{@condition incapacitated||失能}的盟友在目標生物 5尺內時，它對該生物發動的攻擊檢定有優勢。"
+					],
+					"ENG_name": "Pack Tactics (Land and Water Only)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"野獸發動等同於法術環階半數（向下取整）次數的攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "巨錘",
+					"entries": [
+						"{@atk mw} {@hitYourSpellAttack} 命中，觸及 5 尺，單個目標。{@h}{@damage 1d8 + 4 + summonSpellLevel} 穿刺傷害。"
+					],
+					"ENG_name": "Maul"
+				}
+			],
+			"tokenCustom": true,
+			"traitTags": [
+				"Flyby",
+				"Pack Tactics",
+				"Water Breathing"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"_versions": [
+				{
+					"name": "Bestial Spirit (Air)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Water Breathing (Water Only)",
+									"Pack Tactics (Land and Water Only)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Flyby (Air Only)",
+									"with": "Flyby"
+								}
+							}
+						]
+					},
+					"hp": {
+						"special": "20 + 5 for each spell level above 2nd"
+					},
+					"speed": {
+						"walk": 30,
+						"fly": 60
+					},
+					"traitTags": [
+						"Flyby"
+					]
+				},
+				{
+					"name": "Bestial Spirit (Land)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Water Breathing (Water Only)",
+									"Flyby (Air Only)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Pack Tactics (Land and Water Only)",
+									"with": "Pack Tactics"
+								}
+							}
+						]
+					},
+					"hp": {
+						"special": "30 + 5 for each spell level above 2nd"
+					},
+					"speed": {
+						"walk": 30,
+						"climb": 30
+					},
+					"traitTags": [
+						"Pack Tactics"
+					]
+				},
+				{
+					"name": "Bestial Spirit (Water)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Flyby (Air Only)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Pack Tactics (Land and Water Only)",
+									"with": "Pack Tactics"
+								}
+							}
+						]
+					},
+					"hp": {
+						"special": "30 + 5 for each spell level above 2nd"
+					},
+					"speed": {
+						"walk": 30,
+						"swim": 30
+					},
+					"traitTags": [
+						"Pack Tactics",
+						"Water Breathing"
+					]
+				}
+			],
+			"ENG_name": "Bestial Spirit"
+		},
+		{
+			"name": "天界靈魄",
+			"source": "TCE",
+			"page": 110,
+			"reprintedAs": [
+				"Celestial Spirit|XPHB"
+			],
+			"summonedBySpell": "Summon Celestial|TCE",
+			"summonedBySpellLevel": 5,
+			"size": [
+				"L"
+			],
+			"type": "celestial",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"special": "11+法術等級 (天生護甲)+2（僅限守護聖靈）"
+				}
+			],
+			"hp": {
+				"special": "40 + 10 每比五環高的法術等級"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 40
+			},
+			"str": 16,
+			"dex": 14,
+			"con": 16,
+			"int": 10,
+			"wis": 14,
+			"cha": 16,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 12,
+			"resist": [
+				"radiant"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"天界語",
+				"理解你所說的語言"
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"天族發動等同於法術環數一半的次數的攻擊（向下取整）。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "光耀之弓（僅復仇聖靈）",
+					"entries": [
+						"{@atk rw} {@hitYourSpellAttack} 命中，範圍 150 / 600 尺，單一目標。{@h}{@damage 2d6 + 2 + summonSpellLevel}光耀傷害。"
+					],
+					"ENG_name": "Radiant Bow (Avenger Only)"
+				},
+				{
+					"name": "光耀之錘（僅守護聖靈）",
+					"entries": [
+						"{@atk mw} {@hitYourSpellAttack} 命中，觸及 5 尺，單個目標。{@h}{@damage 1d10 + 3 + summonSpellLevel}光耀傷害，且天族可以選擇自身或目標10尺內另一個可見生物。被選中的生物獲得{@dice 1d10}臨時生命值。"
+					],
+					"ENG_name": "Radiant Mace (Defender Only)"
+				},
+				{
+					"name": "治癒之觸（1/日）",
+					"entries": [
+						"天族觸碰另一生物。目標魔法性地恢復目標等同於 {@dice 2d8 + summonSpellLevel} 點生命值。"
+					],
+					"ENG_name": "Healing Touch (1/Day)"
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"CE"
+			],
+			"damageTags": [
+				"R"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW"
+			],
+			"hasToken": true,
+			"_versions": [
+				{
+					"name": "Celestial Spirit (Avenger)",
+					"source": "TCE",
+					"_mod": {
+						"action": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Radiant Bow (Avenger Only)",
+									"with": "Radiant Bow"
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": "Radiant Mace (Defender Only)"
+							}
+						]
+					},
+					"ac": [
+						{
+							"special": "11 + the level of the spell (natural armor)"
+						}
+					],
+					"miscTags": [
+						"RW"
+					]
+				},
+				{
+					"name": "Celestial Spirit (Defender)",
+					"source": "TCE",
+					"_mod": {
+						"action": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Radiant Mace (Defender Only)",
+									"with": "Radiant Mace"
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": "Radiant Bow (Avenger Only)"
+							}
+						]
+					},
+					"ac": [
+						{
+							"special": "13 + the level of the spell (natural armor)"
+						}
+					],
+					"miscTags": [
+						"MLW",
+						"MW"
+					]
+				}
+			],
+			"ENG_name": "Celestial Spirit"
+		},
+		{
+			"name": "構裝靈魄",
+			"source": "TCE",
+			"page": 111,
+			"reprintedAs": [
+				"Construct Spirit|XPHB"
+			],
+			"summonedBySpell": "Summon Construct|TCE",
+			"summonedBySpellLevel": 4,
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"special": "13 + 法術環階（天生護甲）"
+				}
+			],
+			"hp": {
+				"special": "40 +每比 4 環高的法術環階 15 點"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 10,
+			"con": 18,
+			"int": 14,
+			"wis": 11,
+			"cha": 5,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"incapacitated",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"理解你所說的語言"
+			],
+			"trait": [
+				{
+					"name": "灼熱之軀（僅金屬）",
+					"entries": [
+						"當一個生物在構裝生物周邊 5 尺範圍內觸碰或對其發動近戰攻擊命中時，將受 {@damage 1d10} 火焰傷害。"
+					],
+					"ENG_name": "Heated Body (Metal Only)"
+				},
+				{
+					"name": "石迷昏眠（僅岩石）",
+					"entries": [
+						"當一個構裝生物可見的生物在其 10 尺距離內開始回合時，構裝生物可以強迫其進行一次感知豁免對抗你的法術豁免DC，豁免失敗則其直到其下個回合開始前不能使用反應，且速度減半。"
+					],
+					"ENG_name": "Stony Lethargy (Stone Only)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"構裝生物發動等同於法術環數一半的次數的攻擊（向下取整）。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "猛擊",
+					"entries": [
+						"{@atk mw} {@hitYourSpellAttack} 命中，觸及 5 尺，單一目標。{@h}{@damage 1d8 + 4 + summonSpellLevel} 鈍擊傷害。"
+					],
+					"ENG_name": "Slam"
+				}
+			],
+			"reaction": [
+				{
+					"name": "狂怒亂擊（僅粘土）",
+					"entries": [
+						"當構裝生物受到傷害時，對其 5 尺內的隨機一個生物進行一次猛擊攻擊。如果在其觸及範圍內沒有生物，則該構裝生物會以其一半的速度朝著其可見的一個敵人移動，且不會引發藉機攻擊。"
+					],
+					"ENG_name": "Berserk Lashing (Clay Only)"
+				}
+			],
+			"tokenCustom": true,
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"B",
+				"F"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"_versions": [
+				{
+					"name": "Construct Spirit (Clay)",
+					"source": "TCE",
+					"_mod": {
+						"reaction": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Berserk Lashing (Clay Only)",
+									"with": "Berserk Lashing"
+								}
+							}
+						]
+					},
+					"trait": null,
+					"damageTags": [
+						"B"
+					]
+				},
+				{
+					"name": "Construct Spirit (Metal)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Heated Body (Metal Only)",
+									"with": "Heated Body"
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": "Stony Lethargy (Stone Only)"
+							}
+						]
+					},
+					"reaction": null
+				},
+				{
+					"name": "Construct Spirit (Stone)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Stony Lethargy (Stone Only)",
+									"with": "Stony Lethargy"
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": "Heated Body (Metal Only)"
+							}
+						]
+					},
+					"reaction": null,
+					"damageTags": [
+						"B"
+					]
+				}
+			],
+			"ENG_name": "Construct Spirit"
+		},
+		{
+			"name": "舞空物品",
+			"source": "TCE",
+			"page": 29,
+			"summonedByClass": "Bard|PHB",
+			"size": [
+				"L"
+			],
+			"sizeNote": "or smaller",
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"special": "10 +你吟遊詩人等級的五倍"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"str": 18,
+			"dex": 14,
+			"con": 16,
+			"int": 4,
+			"wis": 10,
+			"cha": 6,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"poisoned",
+				"frightened"
+			],
+			"languages": [
+				"理解你所說的語言"
+			],
+			"trait": [
+				{
+					"name": "不變形態",
+					"entries": [
+						"該物品不會受到任何使它形態發生改變的法術或者其他效果的影響"
+					],
+					"ENG_name": "Immutable Form"
+				},
+				{
+					"name": "難抑舞動",
+					"entries": [
+						"若一個生物在該舞空物品10尺內開始回合，那麼他將可以增加或者減少10尺的步行移動力（由你來決定），直到他的下一個回合結束。舞空物品需要未處於{@condition incapacitated||失能}狀態才能提供這一效果。"
+					],
+					"ENG_name": "Irrepressible Dance"
+				}
+			],
+			"action": [
+				{
+					"name": "力場動能猛擊",
+					"entries": [
+						"{@atk mw} {@hitYourSpellAttack} 命中，觸及 5 尺，單個你可見的目標。{@h}{@damage 1d10 + PB} 力場傷害。"
+					],
+					"ENG_name": "Force-Empowered Slam"
+				}
+			],
+			"traitTags": [
+				"Immutable Form"
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"ENG_name": "Dancing Item"
+		},
+		{
+			"name": "元素靈魄",
+			"source": "TCE",
+			"page": 111,
+			"reprintedAs": [
+				"Elemental Spirit|XPHB"
+			],
+			"summonedBySpell": "Summon Elemental|TCE",
+			"summonedBySpellLevel": 4,
+			"size": [
+				"M"
+			],
+			"type": "elemental",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"special": "11 +法術等級 (天生護甲)"
+				}
+			],
+			"hp": {
+				"special": "50+每比四環高的法術環階10點"
+			},
+			"speed": {
+				"walk": 40,
+				"fly": {
+					"number": 40,
+					"condition": "（懸浮）（僅限氣）"
+				},
+				"burrow": {
+					"number": 40,
+					"condition": "（僅土）"
+				},
+				"swim": {
+					"number": 40,
+					"condition": "（僅水中）"
+				},
+				"canHover": true
+			},
+			"str": 18,
+			"dex": 15,
+			"con": 17,
+			"int": 4,
+			"wis": 10,
+			"cha": 16,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"resist": [
+				{
+					"resist": [
+						"lightning",
+						"thunder"
+					],
+					"cond": true,
+					"note": "（僅氣）"
+				},
+				{
+					"resist": [
+						"piercing",
+						"slashing"
+					],
+					"cond": true,
+					"note": "（僅土）"
+				},
+				{
+					"resist": [
+						"acid"
+					],
+					"cond": true,
+					"note": "（僅水）"
+				}
+			],
+			"immune": [
+				"poison",
+				{
+					"immune": [
+						"fire"
+					],
+					"cond": true,
+					"note": "（僅火）"
+				}
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"unconscious"
+			],
+			"languages": [
+				"原初語",
+				"理解你所說的語言"
+			],
+			"trait": [
+				{
+					"name": "不定形態（僅氣、火、水）",
+					"entries": [
+						"該元素生物能夠輕鬆穿過最窄 1 寸寬的狹窄空間而無需擠身透過。"
+					],
+					"ENG_name": "Amorphous Form (Air, Fire, and Water Only)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"該元素髮動等同於法術環階半數（向下取整）次數的攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "猛擊",
+					"entries": [
+						"{@atk mw} {@hitYourSpellAttack} 命中，觸及 5 尺，單一目標。{@h}{@damage 1d10 + 4 + summonSpellLevel} 鈍擊傷害（僅限氣、土和水）或火焰傷害（僅限火）。"
+					],
+					"ENG_name": "Slam"
+				}
+			],
+			"tokenCustom": true,
+			"traitTags": [
+				"Amorphous"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"P"
+			],
+			"damageTags": [
+				"B",
+				"F"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"_versions": [
+				{
+					"name": "Elemental Spirit (Air)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Amorphous Form (Air, Fire, and Water Only)",
+									"with": "Amorphous Form"
+								}
+							}
+						],
+						"action": {
+							"mode": "replaceArr",
+							"replace": "Slam",
+							"items": {
+								"name": "Slam",
+								"entries": [
+									"{@atk mw} {@hitYourSpellAttack} to hit, reach 5 ft., one target. {@h}{@damage 1d10 + 4 + summonSpellLevel} bludgeoning damage."
+								]
+							}
+						}
+					},
+					"speed": {
+						"walk": 40,
+						"fly": {
+							"number": 40,
+							"condition": "(hover)"
+						},
+						"canHover": true
+					},
+					"resist": [
+						"lightning",
+						"thunder"
+					],
+					"immune": [
+						"poison"
+					],
+					"damageTags": [
+						"B"
+					]
+				},
+				{
+					"name": "Elemental Spirit (Earth)",
+					"source": "TCE",
+					"_mod": {
+						"action": {
+							"mode": "replaceArr",
+							"replace": "Slam",
+							"items": {
+								"name": "Slam",
+								"entries": [
+									"{@atk mw} {@hitYourSpellAttack} to hit, reach 5 ft., one target. {@h}{@damage 1d10 + 4 + summonSpellLevel} bludgeoning damage."
+								]
+							}
+						}
+					},
+					"speed": {
+						"walk": 40,
+						"burrow": 40
+					},
+					"resist": [
+						"piercing",
+						"slashing"
+					],
+					"immune": [
+						"poison"
+					],
+					"trait": null,
+					"damageTags": [
+						"B"
+					]
+				},
+				{
+					"name": "Elemental Spirit (Fire)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Amorphous Form (Air, Fire, and Water Only)",
+									"with": "Amorphous Form"
+								}
+							}
+						],
+						"action": {
+							"mode": "replaceArr",
+							"replace": "Slam",
+							"items": {
+								"name": "Slam",
+								"entries": [
+									"{@atk mw} {@hitYourSpellAttack} to hit, reach 5 ft., one target. {@h}{@damage 1d10 + 4 + summonSpellLevel} fire damage."
+								]
+							}
+						}
+					},
+					"speed": {
+						"walk": 40
+					},
+					"immune": [
+						"poison",
+						"fire"
+					],
+					"damageTags": [
+						"F"
+					]
+				},
+				{
+					"name": "Elemental Spirit (Water)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Amorphous Form (Air, Fire, and Water Only)",
+									"with": "Amorphous Form"
+								}
+							}
+						],
+						"action": {
+							"mode": "replaceArr",
+							"replace": "Slam",
+							"items": {
+								"name": "Slam",
+								"entries": [
+									"{@atk mw} {@hitYourSpellAttack} to hit, reach 5 ft., one target. {@h}{@damage 1d10 + 4 + summonSpellLevel} bludgeoning damage."
+								]
+							}
+						}
+					},
+					"speed": {
+						"walk": 40,
+						"swim": 40
+					},
+					"resist": [
+						"acid"
+					],
+					"immune": [
+						"poison"
+					],
+					"damageTags": [
+						"B"
+					]
+				}
+			],
+			"ENG_name": "Elemental Spirit"
+		},
+		{
+			"name": "妖精靈魄",
+			"source": "TCE",
+			"page": 112,
+			"reprintedAs": [
+				"Fey Spirit|XPHB"
+			],
+			"summonedBySpell": "Summon Fey|TCE",
+			"summonedBySpellLevel": 3,
+			"size": [
+				"S"
+			],
+			"type": "fey",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"special": "12 + 法術環階（天生護甲）"
+				}
+			],
+			"hp": {
+				"special": "30 +10×每比3環高的法術等級"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 13,
+			"dex": 16,
+			"con": 14,
+			"int": 14,
+			"wis": 11,
+			"cha": 16,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"conditionImmune": [
+				"charmed"
+			],
+			"languages": [
+				"木族語",
+				"理解你所說的語言"
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"妖精發動等同於法術環階半數（向下取整）次數的攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "短劍",
+					"entries": [
+						"{@atk mw} {@hitYourSpellAttack} 命中，觸及 5 尺，單一目標。{@h}{@damage 1d6 + 3 + summonSpellLevel} 穿刺傷害 {@damage + 1d6} 力場傷害。"
+					],
+					"ENG_name": "Shortsword"
+				}
+			],
+			"bonus": [
+				{
+					"name": "妖精步伐",
+					"entries": [
+						"妖精魔法地傳送到最遠 30 尺的一處它可見的未被佔據空間。然後根據所選妖精情緒，觸發以下效果之一：",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "憤怒",
+									"entry": "在使用妖精步後，妖精在它回合結束前的下一次攻擊檢定具有優勢。",
+									"ENG_name": "Fuming"
+								},
+								{
+									"type": "item",
+									"name": "歡欣",
+									"entry": "在使用妖精步後，妖精可以立即選擇它 10 尺內可見的一個生物，強迫其進行一次對抗你的法術豁免 DC 的感知豁免，若豁免失敗則其將被你及妖精生物{@condition charmed||魅惑}，持續 1 分鐘或目標受到任何傷害。",
+									"ENG_name": "Mirthful"
+								},
+								{
+									"type": "item",
+									"name": "詭詐",
+									"entry": "妖精可以立即令魔法黑暗充斥於它 5 尺內的一個 5 尺立方區域，魔法黑暗持續直到妖精的下回合結束。",
+									"ENG_name": "Tricksy"
+								}
+							]
+						}
+					],
+					"ENG_name": "Fey Step"
+				}
+			],
+			"tokenCustom": true,
+			"attachedItems": [
+				"shortsword|phb"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"S"
+			],
+			"damageTags": [
+				"O",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW",
+				"MW"
+			],
+			"conditionInflict": [
+				"charmed"
+			],
+			"hasToken": true,
+			"_versions": [
+				{
+					"name": "Fey Spirit (Fuming)",
+					"source": "TCE",
+					"bonus": [
+						{
+							"name": "Fey Step",
+							"entries": [
+								"The fey magically teleports up to 30 feet to an unoccupied space it can see. The fey has advantage on the next attack roll it makes before the end of this turn."
+							]
+						}
+					]
+				},
+				{
+					"name": "Fey Spirit (Mirthful)",
+					"source": "TCE",
+					"bonus": [
+						{
+							"name": "Fey Step",
+							"entries": [
+								"The fey magically teleports up to 30 feet to an unoccupied space it can see. The fey can force one creature it can see within 10 feet of it to make a Wisdom saving throw against your spell save DC. Unless the save succeeds, the target is {@condition charmed} by you and the fey for 1 minute or until the target takes any damage."
+							]
+						}
+					]
+				},
+				{
+					"name": "Fey Spirit (Tricksy)",
+					"source": "TCE",
+					"bonus": [
+						{
+							"name": "Fey Step",
+							"entries": [
+								"The fey magically teleports up to 30 feet to an unoccupied space it can see. The fey can fill a 5-foot cube within 5 feet of it with magical darkness, which lasts until the end of its next turn."
+							]
+						}
+					]
+				}
+			],
+			"ENG_name": "Fey Spirit"
+		},
+		{
+			"name": "邪魔靈魄",
+			"source": "TCE",
+			"page": 112,
+			"reprintedAs": [
+				"Fiendish Spirit|XPHB"
+			],
+			"summonedBySpell": "Summon Fiend|TCE",
+			"summonedBySpellLevel": 6,
+			"size": [
+				"L"
+			],
+			"type": "fiend",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"special": "12 + 法術環階（天生護甲）"
+				}
+			],
+			"hp": {
+				"special": "50（僅限惡魔）或40（僅限魔鬼）或60（僅限尤格羅斯魔），加上法術位每高於6環一環便增加15"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": {
+					"number": 40,
+					"condition": "（僅惡魔）"
+				},
+				"fly": {
+					"number": 60,
+					"condition": "（僅魔鬼）"
+				}
+			},
+			"str": 13,
+			"dex": 16,
+			"con": 15,
+			"int": 10,
+			"wis": 10,
+			"cha": 16,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"fire"
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"深淵語",
+				"煉獄語",
+				"心靈感應 60 尺"
+			],
+			"trait": [
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"邪魔為抵抗法術和其他魔法效應而作的豁免檢定具有優勢。"
+					],
+					"ENG_name": "Magic Resistance"
+				},
+				{
+					"name": "焚身爆（僅惡魔）",
+					"entries": [
+						"邪魔生命值降為0時或法術結束時將爆炸，其周圍 10 尺內每個生物必須進行一次敏捷豁免對抗你的法術豁免DC，豁免失敗則將受到 {@damage 2d10 + summonSpellLevel}的火焰傷害，豁免成功則傷害減半。"
+					],
+					"ENG_name": "Death Throes (Demon Only)"
+				},
+				{
+					"name": "魔鬼視界（僅魔鬼）",
+					"entries": [
+						"魔法黑暗不會阻礙邪魔的黑暗視覺。"
+					],
+					"ENG_name": "Devil's Sight (Devil Only)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"邪魔發動等同於法術環數一半的次數的攻擊（向下取整）。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬（僅惡魔）",
+					"entries": [
+						"{@atk mw} {@hitYourSpellAttack} 命中，觸及 5 尺，單一目標。{@h}{@damage 1d12 + 3 + summonSpellLevel} 暗蝕傷害。"
+					],
+					"ENG_name": "Bite (Demon Only)"
+				},
+				{
+					"name": "爪擊（僅尤格羅斯魔）",
+					"entries": [
+						"{@atk mw} {@hitYourSpellAttack} 命中，觸及 5 尺，一個目標。{@h}{@damage 1d8 + 3 + summonSpellLevel} 揮砍傷害。發動攻擊後，邪魔可以魔法性地傳送至一處 30 尺內其可見且未被佔據的空間。"
+					],
+					"ENG_name": "Claws (Yugoloth Only)"
+				},
+				{
+					"name": "投擲烈焰（僅限於魔鬼）",
+					"entries": [
+						"{@atk rs} {@hitYourSpellAttack} 命中，射程 150 尺，單一目標。{@h}{@damage 2d6 + 3 + summonSpellLevel} 火焰傷害。如果目標時未被著裝或攜帶的可燃物件，則將被點燃。"
+					],
+					"ENG_name": "Hurl Flame (Devil Only)"
+				}
+			],
+			"tokenCustom": true,
+			"traitTags": [
+				"Death Burst",
+				"Devil's Sight",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"I",
+				"TP"
+			],
+			"damageTags": [
+				"F",
+				"N",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"hasToken": true,
+			"_versions": [
+				{
+					"name": "Fiendish Spirit (Demon)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Death Throes (Demon Only)",
+									"with": "Death Throes"
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": "Devil's Sight (Devil Only)"
+							}
+						],
+						"action": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Bite (Demon Only)",
+									"with": "Bite"
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": [
+									"Claws (Yugoloth Only)",
+									"Hurl Flame (Devil Only)"
+								]
+							}
+						]
+					},
+					"hp": {
+						"special": "50 + 15 for each spell level above 6th"
+					},
+					"speed": {
+						"walk": 40,
+						"climb": 40
+					},
+					"traitTags": [
+						"Death Burst",
+						"Magic Resistance"
+					],
+					"damageTags": [
+						"F"
+					]
+				},
+				{
+					"name": "Fiendish Spirit (Devil)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Devil's Sight (Devil Only)",
+									"with": "Devil's Sight"
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": "Death Throes (Demon Only)"
+							}
+						],
+						"action": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Hurl Flame (Devil Only)",
+									"with": "Hurl Flame"
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": [
+									"Bite (Demon Only)",
+									"Claws (Yugoloth Only)"
+								]
+							}
+						]
+					},
+					"hp": {
+						"special": "40 + 15 for each spell level above 6th"
+					},
+					"speed": {
+						"walk": 40,
+						"fly": 60
+					},
+					"traitTags": [
+						"Devil's Sight",
+						"Magic Resistance"
+					],
+					"damageTags": [
+						"N"
+					]
+				},
+				{
+					"name": "Fiendish Spirit (Yugoloth)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Death Throes (Demon Only)",
+									"Devil's Sight (Devil Only)"
+								]
+							}
+						],
+						"action": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Claws (Yugoloth Only)",
+									"with": "Claws"
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": [
+									"Bite (Demon Only)",
+									"Hurl Flame (Devil Only)"
+								]
+							}
+						]
+					},
+					"hp": {
+						"special": "60 + 15 for each spell level above 6th"
+					},
+					"speed": {
+						"walk": 40
+					},
+					"traitTags": [
+						"Magic Resistance"
+					],
+					"damageTags": [
+						"F"
+					]
+				}
+			],
+			"ENG_name": "Fiendish Spirit"
+		},
+		{
+			"name": "人工生命僕從",
+			"source": "TCE",
+			"page": 22,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 62
+				}
+			],
+			"reprintedAs": [
+				"Homunculus Servant|EFA"
+			],
+			"summonedByClass": "Artificer|TCE",
+			"size": [
+				"T"
+			],
+			"type": "construct",
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"special": "1 +你的智力調整值+你的奇械師等級（人工生命僕從擁有與你奇械師等級相同數量的D4 生命骰）"
+			},
+			"speed": {
+				"walk": 20,
+				"fly": 30
+			},
+			"str": 4,
+			"dex": 15,
+			"con": 12,
+			"int": 10,
+			"wis": 10,
+			"cha": 7,
+			"save": {
+				"dex": "+2 plus PB"
+			},
+			"skill": {
+				"perception": "+0 plus PB × 2",
+				"stealth": "+2 plus PB"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": "10 + (PB × 2)",
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"理解你所說的語言"
+			],
+			"pbNote": "equals your bonus",
+			"trait": [
+				{
+					"name": "反射閃避",
+					"entries": [
+						"當人工生命受到需要透過敏捷豁免來使傷害減半的效應時，可以作為代替，在豁免成功時不受傷害，豁免失敗時只受一半傷害。人工生命無法在{@condition incapacitated||失能}狀態下使用這個特性。"
+					],
+					"ENG_name": "Evasion"
+				}
+			],
+			"actionNote": "Requires Your Bonus Action",
+			"action": [
+				{
+					"name": "力場打擊",
+					"entries": [
+						"{@atk rw} ：攻擊加值等於{@hitYourSpellAttack} ，射程 30 尺，單個你可見的目標。{@h}{@damage 1d4 + PB} 力場傷害。"
+					],
+					"ENG_name": "Force Strike"
+				}
+			],
+			"reaction": [
+				{
+					"name": "傳遞法術",
+					"entries": [
+						"當你施展施法距離為觸碰的法術時，只要人工生命距離你120尺內，它就能替你傳遞該法術。"
+					],
+					"ENG_name": "Channel Magic"
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"O"
+			],
+			"miscTags": [
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Homunculus Servant"
+		},
+		{
+			"name": "幼體擬身怪",
+			"source": "TCE",
+			"page": 167,
+			"size": [
+				"T"
+			],
+			"type": {
+				"type": "monstrosity",
+				"tags": [
+					"shapechanger"
+				]
+			},
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				11
+			],
+			"hp": {
+				"average": 7,
+				"formula": "2d4 + 2"
+			},
+			"speed": {
+				"walk": 10,
+				"climb": 10
+			},
+			"str": 1,
+			"dex": 12,
+			"con": 13,
+			"int": 10,
+			"wis": 13,
+			"cha": 10,
+			"skill": {
+				"stealth": "+3"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 11,
+			"immune": [
+				"acid"
+			],
+			"conditionImmune": [
+				"prone"
+			],
+			"languages": [
+				"通用語",
+				"地底通用語",
+				"心靈感應 120 尺"
+			],
+			"cr": "0",
+			"trait": [
+				{
+					"name": "擬形（僅物件形態）",
+					"entries": [
+						"擬身怪靜止不動時與普通的物件幾乎一模一樣。"
+					],
+					"ENG_name": "False Appearance (Object Form Only)"
+				},
+				{
+					"name": "蛛行術",
+					"entries": [
+						"擬身怪可以攀爬在難以攀爬的表面上，包括倒吊在天花板上，且不需要進行屬性檢定。"
+					],
+					"ENG_name": "Spider Climb"
+				}
+			],
+			"action": [
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 3}，觸及 5 尺，單個目標。{@h} 1 點穿刺傷害加 2（{@damage 1d4}）強酸傷害。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "變形",
+					"entries": [
+						"擬身怪變形成一個物體或者變回到它真實的、無定形的形態。它的資料面板在每種形式中都是相同的。它穿著或攜帶的任何裝置都沒有變形。如果它死了，就會恢復到它的真實形態。"
+					],
+					"ENG_name": "Shape-Shift"
+				}
+			],
+			"traitTags": [
+				"False Appearance",
+				"Spider Climb"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"TP",
+				"U"
+			],
+			"damageTags": [
+				"A",
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"ENG_name": "Juvenile Mimic"
+		},
+		{
+			"name": "琉克歐的非凡機僕",
+			"source": "TCE",
+			"page": 131,
+			"size": [
+				"H"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 22,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 310,
+				"formula": "27d12 + 135"
+			},
+			"speed": {
+				"walk": 60
+			},
+			"str": 30,
+			"dex": 14,
+			"con": 20,
+			"int": 1,
+			"wis": 14,
+			"cha": 10,
+			"save": {
+				"wis": "+9",
+				"cha": "+7"
+			},
+			"skill": {
+				"perception": "+9"
+			},
+			"senses": [
+				"blindsight 120 ft."
+			],
+			"passive": 19,
+			"resist": [
+				"piercing",
+				"slashing"
+			],
+			"immune": [
+				"acid",
+				"bludgeoning",
+				"cold",
+				"fire",
+				"lightning",
+				"necrotic",
+				"poison",
+				"psychic",
+				"radiant"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"grappled",
+				"incapacitated",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"restrained",
+				"stunned",
+				"unconscious"
+			],
+			"languages": [
+				"懂得與之同調的生物的語言但不會說"
+			],
+			"trait": [
+				{
+					"name": "不變存在",
+					"entries": [
+						"機僕免疫任何可以改變其形態或將其送至另一個存在位面的法術或效應。"
+					],
+					"ENG_name": "Immutable Existence"
+				},
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"機僕在抵抗法術和其他魔法效應時進行的豁免檢定具有優勢，並且對其進行的法術攻擊具有劣勢。"
+					],
+					"ENG_name": "Magic Resistance"
+				},
+				{
+					"name": "復生",
+					"entries": [
+						"機僕在它的回合開始時回覆10點生命值。如果機僕的生命值降低到0，則該特質無法生效直到一個與之同調的生物耗費24小時維修神器或直到神器受到閃電傷害。"
+					],
+					"ENG_name": "Regeneration"
+				},
+				{
+					"name": "立定跳遠",
+					"entries": [
+						"無論是否助跑，機僕最遠可以跳50尺，最高25尺。"
+					],
+					"ENG_name": "Standing Leap"
+				},
+				{
+					"name": "非凡本質",
+					"entries": [
+						"機僕無須空氣，進食，飲水和睡眠。"
+					],
+					"ENG_name": "Unusual Nature"
+				}
+			],
+			"action": [
+				{
+					"name": "毀滅鐵拳",
+					"entries": [
+						"{@atk mw} 命中{@hit 17}，觸及 10 尺，單一目標。{@h}36（{@damage 4d12 + 10}）力場傷害。或遠端武器攻擊：命中{@hit 17}，範圍120尺，單一目標。{@h}36（{@damage 4d12 + 10}）力場傷害。如果目標為物件，它受到三倍傷害。"
+					],
+					"ENG_name": "Destructive Fist"
+				},
+				{
+					"name": "碾壓躍擊",
+					"entries": [
+						"如果機僕在其移動中跳躍 25 尺，它能用該動作著陸在一處由一個或多個生物佔據的空間。該空間內的每個生物被推到機僕身邊5尺內一處未被佔據的空間內，並必須進行一次{@dc 25} 的敏捷豁免。豁免失敗者受到 26 （{@damage 4d12}）鈍擊傷害並應擊{@condition prone||倒地}。豁免成功則傷害減半，且不會因此{@condition prone||倒地}。"
+					],
+					"ENG_name": "Crushing Leap"
+				}
+			],
+			"traitTags": [
+				"Magic Resistance",
+				"Regeneration",
+				"Unusual Nature"
+			],
+			"senseTags": [
+				"B"
+			],
+			"languageTags": [
+				"CS"
+			],
+			"damageTags": [
+				"B",
+				"O"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Mighty Servant of Leuk-o"
+		},
+		{
+			"name": "倒影",
+			"source": "TCE",
+			"page": 158,
+			"_copy": {
+				"name": "Shadow",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "shadow",
+						"with": "reflection"
+					}
+				}
+			},
+			"type": "fey",
+			"resist": [
+				"acid",
+				"cold",
+				"fire",
+				"lightning",
+				"thunder",
+				{
+					"resist": [
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"vulnerable": [
+				"bludgeoning"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Reflection"
+		},
+		{
+			"name": "暗影靈魄",
+			"source": "TCE",
+			"page": 114,
+			"summonedBySpell": "Summon Shadowspawn|TCE",
+			"summonedBySpellLevel": 3,
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"special": "11 +法術等級 (天生護甲)"
+				}
+			],
+			"hp": {
+				"special": "35 + 15 每比 3 環高的法術等級"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 13,
+			"dex": 16,
+			"con": 15,
+			"int": 4,
+			"wis": 10,
+			"cha": 16,
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"necrotic"
+			],
+			"conditionImmune": [
+				"frightened"
+			],
+			"languages": [
+				"理解你所說的語言"
+			],
+			"trait": [
+				{
+					"name": "懼怖狂怒（僅暴怒）",
+					"entries": [
+						"該靈魄對恐慌生物發動的{@condition frightened||恐慌}檢定具有優勢。"
+					],
+					"ENG_name": "Terror Frenzy (Fury Only)"
+				},
+				{
+					"name": "哀傷之重（僅絕望）",
+					"entries": [
+						"除你之外的所有生物在該靈魄 5 尺內開始回合時，其速度降低 20 尺直到該生物的下回合開始。"
+					],
+					"ENG_name": "Weight of Sorrow (Despair Only)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"該靈魄發動等同於法術環數一半的次數的攻擊（向下取整）。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "凍寒撕裂",
+					"entries": [
+						"{@atk mw} {@hitYourSpellAttack} 命中，觸及 5 尺，單一目標。{@h}{@damage 1d12 + 3 + summonSpellLevel} 寒冷傷害。"
+					],
+					"ENG_name": "Chilling Rend"
+				},
+				{
+					"name": "恐懼尖叫（1/日）",
+					"entries": [
+						"靈魄發出尖嘯。它30尺內每個生物必須透過一次感知豁免，對抗你的法術豁免DC，否則陷入{@condition frightened||恐懼}1分鐘。陷入{@condition frightened||恐懼}的生物可以在其每個回合結束時重複豁免，成功時終止自身的效應。"
+					],
+					"ENG_name": "Dreadful Scream (1/Day)"
+				}
+			],
+			"bonus": [
+				{
+					"name": "暗影潛藏（僅限恐懼）",
+					"entries": [
+						"在微光光照或黑暗中，暗影靈魄可以採取{@action Hide||躲藏}動作。"
+					],
+					"ENG_name": "Shadow Stealth (Fear Only)"
+				}
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"C"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Shadow Spirit (Despair)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Weight of Sorrow (Despair Only)",
+									"with": "Weight of Sorrow"
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": "Terror Frenzy (Fury Only)"
+							}
+						]
+					},
+					"bonus": null
+				},
+				{
+					"name": "Shadow Spirit (Fear)",
+					"source": "TCE",
+					"_mod": {
+						"bonus": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Shadow Stealth (Fear Only)",
+									"with": "Shadow Stealth"
+								}
+							}
+						]
+					},
+					"trait": null
+				},
+				{
+					"name": "Shadow Spirit (Fury)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Terror Frenzy (Fury Only)",
+									"with": "Terror Frenzy"
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": "Weight of Sorrow (Despair Only)"
+							}
+						]
+					},
+					"bonus": null
+				}
+			],
+			"ENG_name": "Shadow Spirit"
+		},
+		{
+			"name": "鋼鐵守衛",
+			"source": "TCE",
+			"page": 19,
+			"otherSources": [
+				{
+					"source": "ERLW",
+					"page": 61
+				}
+			],
+			"reprintedAs": [
+				"Steel Defender|EFA"
+			],
+			"summonedByClass": "Artificer|TCE",
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"special": "2 +你的智力調整值+你奇械師等級的五倍（鋼鐵守衛擁有與你奇械師等級相同數量的生命骰[D8]）"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 14,
+			"dex": 12,
+			"con": 14,
+			"int": 4,
+			"wis": 10,
+			"cha": 6,
+			"save": {
+				"dex": "+1 plus PB",
+				"con": "+2 plus PB"
+			},
+			"skill": {
+				"athletics": "+2 plus PB",
+				"perception": "+0 plus PB × 2"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": "10 + (PB × 2)",
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"理解你所說的語言"
+			],
+			"pbNote": "equals your bonus",
+			"trait": [
+				{
+					"name": "警覺",
+					"entries": [
+						"鋼鐵守衛不會被{@status surprised||突襲}。"
+					],
+					"ENG_name": "Vigilant"
+				}
+			],
+			"actionNote": "Requires Your Bonus Action",
+			"action": [
+				{
+					"name": "力場動能撕扯",
+					"entries": [
+						"{@atk mw} ：攻擊加值等同於{@hitYourSpellAttack} ，觸及 5 尺，單個你可見的目標。{@h}{@damage 1d8 + PB}點力場傷害。"
+					],
+					"ENG_name": "Force-Empowered Rend"
+				},
+				{
+					"name": "修理（ 3 次/天）",
+					"entries": [
+						"安裝於鋼鐵守衛內部的魔法機械能夠為鋼鐵守衛本身或距離其 5 尺內的構裝生物或物品恢復 {@dice 2d8 + PB}的生命值。"
+					],
+					"ENG_name": "Repair (3/Day)"
+				}
+			],
+			"reaction": [
+				{
+					"name": "招架攻擊",
+					"entries": [
+						"當距離鋼鐵守衛5尺內的一個可見生物對鋼鐵守衛以外的生物進行攻擊時，鋼鐵守衛能迫使此次攻擊承受劣勢。"
+					],
+					"ENG_name": "Deflect Attack"
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Steel Defender"
+		},
+		{
+			"name": "亡靈靈魄",
+			"source": "TCE",
+			"page": 114,
+			"reprintedAs": [
+				"Undead Spirit|XPHB"
+			],
+			"summonedBySpell": "Summon Undead|TCE",
+			"summonedBySpellLevel": 3,
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"special": "11 +法術等級 (天生護甲)"
+				}
+			],
+			"hp": {
+				"special": "30 （僅限幽體或腐屍）或20 （僅限骸骨）+ 10 每比三環高的法術等級"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 40,
+					"condition": "（懸浮）（僅限幽體）"
+				},
+				"canHover": true
+			},
+			"str": 12,
+			"dex": 16,
+			"con": 15,
+			"int": 4,
+			"wis": 10,
+			"cha": 9,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"immune": [
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned"
+			],
+			"languages": [
+				"理解你所說的語言"
+			],
+			"trait": [
+				{
+					"name": "虛體通行（僅幽體）",
+					"entries": [
+						"靈魄可以虛體化並如同穿過{@quickref difficult terrain||3||困難地形}一樣穿過其他生物和物件。如果它在自己的回合結束時仍處在物件內部，則被挪到距離最近的未被佔據的位置，且每虛體移動5尺便受到 {@damage 1d10} 力場傷害。"
+					],
+					"ENG_name": "Incorporeal Passage (Ghostly Only)"
+				},
+				{
+					"name": "腐滅靈光（僅腐屍）",
+					"entries": [
+						"除你之外的所有生物，在亡靈5尺內開始其回合時必須進行一次體質豁免對抗你的法術豁免DC，豁免失敗則在其下個回合開始前{@condition poisoned||中毒}。"
+					],
+					"ENG_name": "Festering Aura (Putrid Only)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"該靈魄發動等同於法術環數一半的次數的攻擊（向下取整）。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "致死之觸（僅幽體）",
+					"entries": [
+						"{@atk mw} {@hitYourSpellAttack}，觸及 5 尺，單一生物。{@h}{@damage 1d8 + 3 + summonSpellLevel}的暗蝕傷害，且目標生物必須進行一次感知豁免對抗你的法術豁免DC，豁免失敗則對亡靈{@condition frightened||恐慌}直到目標下回合結束。"
+					],
+					"ENG_name": "Deathly Touch (Ghostly Only)"
+				},
+				{
+					"name": "暗澹箭（僅骷髏）",
+					"entries": [
+						"{@atk rs}：命中採取 {@hitYourSpellAttack} ，射程 150 尺，單一目標。{@h}{@damage 2d4 + 3 + summonSpellLevel} 暗蝕傷害。"
+					],
+					"ENG_name": "Grave Bolt (Skeletal Only)"
+				},
+				{
+					"name": "腐滅爪擊（僅腐屍）",
+					"entries": [
+						"{@atk mw} 命中採取{@hitYourSpellAttack}，觸及 5 尺，單一目標。{@h} {@damage 1d6 + 3 + summonSpellLevel}的揮砍傷害。如果目標處於{@condition poisoned||中毒}狀態，其必須進行一次體質豁免對抗你的法術豁免DC，否則{@condition paralyzed||麻痺}直到目標下回合結束。"
+					],
+					"ENG_name": "Rotting Claw (Putrid Only)"
+				}
+			],
+			"tokenCustom": true,
+			"traitTags": [
+				"Incorporeal Movement"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"N",
+				"O",
+				"S"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"frightened",
+				"paralyzed",
+				"poisoned"
+			],
+			"hasToken": true,
+			"_versions": [
+				{
+					"name": "Undead Spirit (Ghostly)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Incorporeal Passage (Ghostly Only)",
+									"with": "Incorporeal Passage"
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": "Festering Aura (Putrid Only)"
+							}
+						],
+						"action": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Deathly Touch (Ghostly Only)",
+									"with": "Deathly Touch"
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": [
+									"Grave Bolt (Skeletal Only)",
+									"Rotting Claw (Putrid Only)"
+								]
+							}
+						]
+					},
+					"hp": {
+						"special": "30 + 10 for each spell level above 3rd"
+					},
+					"speed": {
+						"walk": 30,
+						"fly": {
+							"number": 40,
+							"condition": "(hover)"
+						},
+						"canHover": true
+					},
+					"damageTags": [
+						"N"
+					],
+					"conditionInflict": [
+						"frightened"
+					]
+				},
+				{
+					"name": "Undead Spirit (Putrid)",
+					"source": "TCE",
+					"_mod": {
+						"trait": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Festering Aura (Putrid Only)",
+									"with": "Festering Aura"
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": "Incorporeal Passage (Ghostly Only)"
+							}
+						],
+						"action": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Rotting Claw (Putrid Only)",
+									"with": "Rotting Claw"
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": [
+									"Deathly Touch (Ghostly Only)",
+									"Grave Bolt (Skeletal Only)"
+								]
+							}
+						]
+					},
+					"hp": {
+						"special": "30 + 10 for each spell level above 3rd"
+					},
+					"speed": {
+						"walk": 30
+					},
+					"traitTags": null,
+					"damageTags": [
+						"O",
+						"S"
+					],
+					"conditionInflict": [
+						"paralyzed",
+						"poisoned"
+					]
+				},
+				{
+					"name": "Undead Spirit (Skeletal)",
+					"source": "TCE",
+					"_mod": {
+						"action": [
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Grave Bolt (Skeletal Only)",
+									"with": "Grave Bolt"
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": [
+									"Deathly Touch (Ghostly Only)",
+									"Rotting Claw (Putrid Only)"
+								]
+							}
+						]
+					},
+					"hp": {
+						"special": "20 + 10 for each spell level above 3rd"
+					},
+					"speed": {
+						"walk": 30
+					},
+					"trait": null,
+					"traitTags": null,
+					"damageTags": [
+						"N"
+					],
+					"conditionInflict": null
+				}
+			],
+			"ENG_name": "Undead Spirit"
+		},
+		{
+			"name": "野火精魂",
+			"source": "TCE",
+			"page": 40,
+			"summonedByClass": "Druid|PHB",
+			"size": [
+				"S"
+			],
+			"type": "elemental",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"special": "5+五倍你的德魯伊等級"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"str": 10,
+			"dex": 14,
+			"con": 14,
+			"int": 13,
+			"wis": 15,
+			"cha": 11,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 12,
+			"immune": [
+				"fire"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"grappled",
+				"prone",
+				"restrained"
+			],
+			"languages": [
+				"理解你所說的語言"
+			],
+			"pbNote": "equals your bonus",
+			"action": [
+				{
+					"name": "火種",
+					"entries": [
+						"{@atk rw} {@hitYourSpellAttack}，射程 60 尺，單個你可見的目標。{@h} {@damage 1d6 + PB}點火焰傷害。"
+					],
+					"ENG_name": "Flame Seed"
+				},
+				{
+					"name": "烈焰傳送",
+					"entries": [
+						"靈魄與每個在其周圍 5 尺範圍內的你選擇的自願生物傳送至至多 15 尺遠的數處你可見的未被佔據的空間。隨後每個還處於靈魄原本在的地方周圍 5 尺範圍內的生物必須成功透過一次對抗你法術豁免DC的敏捷豁免，否則將受到 {@damage 1d6 + PB}火焰傷害。"
+					],
+					"ENG_name": "Fiery Teleportation"
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"F"
+			],
+			"miscTags": [
+				"AOE",
+				"RW"
+			],
+			"hasToken": true,
+			"ENG_name": "Wildfire Spirit"
+		}
+	]
+}

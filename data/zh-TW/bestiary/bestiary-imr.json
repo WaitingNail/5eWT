@@ -1,0 +1,2315 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "\"狄摩高根\"",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "IMR",
+			"page": 53,
+			"size": [
+				"L"
+			],
+			"type": "giant",
+			"alignment": [
+				"C",
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 123,
+				"formula": "13d12 + 39"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 21,
+			"dex": 8,
+			"con": 17,
+			"int": 6,
+			"wis": 10,
+			"cha": 8,
+			"skill": {
+				"perception": "+3"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 13,
+			"languages": [
+				"巨人語",
+				"獸人語"
+			],
+			"cr": "8",
+			"trait": [
+				{
+					"name": "雙頭",
+					"entries": [
+						"雙頭巨人進行感知（{@skill Perception||感知}）檢定，以及為抵抗{@condition blinded||目盲}，{@condition charmed||魅惑}，{@condition deafened||耳聾}，{@condition frightened||恐慌}，{@condition stunned||震懾}和應擊{@condition unconscious||昏迷}而進行豁免檢定時具有優勢。"
+					],
+					"ENG_name": "Two Heads"
+				},
+				{
+					"name": "警醒",
+					"entries": [
+						"雙頭巨人一個頭睡著時，另一個頭醒著。"
+					],
+					"ENG_name": "Wakeful"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"雙頭巨人發動兩次攻擊：一次戰斧攻擊和一次釘頭錘攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "戰斧",
+					"entries": [
+						"{@atk mw} 命中{@hit 8}，觸及5尺，單一目標。{@h}14（{@damage 2d8 + 5}）點揮砍傷害。"
+					],
+					"ENG_name": "Battleaxe"
+				},
+				{
+					"name": "釘頭錘",
+					"entries": [
+						"{@atk mw} 命中{@hit 8}，觸及5尺，單一目標。{@h}14（{@damage 2d8 + 5}）點穿刺傷害。"
+					],
+					"ENG_name": "Morningstar"
+				},
+				{
+					"name": "火焰吐息 {@recharge 5}",
+					"entries": [
+						"巨魔的右頭向30英尺錐形區域噴出火焰。該區域內的每個生物必須進行一次{@dc 14}敏捷豁免，豁免失敗則受到45（{@damage 10d8}）點火焰傷害，成功則受到一半傷害。"
+					],
+					"ENG_name": "Fire Breath {@recharge 5}"
+				},
+				{
+					"name": "寒冷吐息 {@recharge 5}",
+					"entries": [
+						"巨魔的左頭噴出一股30英尺錐形的冰冷氣息。該區域中的每個生物必須進行一次{@dc 14}的體質豁免，若豁免失敗則受到45（{@damage 10d8}）點寒冷傷害，若豁免成功則受到一半傷害。"
+					],
+					"ENG_name": "Cold Breath {@recharge 5}"
+				},
+				{
+					"name": "凝視",
+					"entries": [
+						"雙頭巨人將其魔法目光投向它120尺範圍內可以看到的一個生物。該目標必須進行一次{@dc 14}感知豁免檢定。除非目標處於{@condition incapacitated||失能}，否則它可以避開目光以自動成功豁免。如果目標這樣做了，它在雙頭巨人下回合開始之前將無法看到雙頭巨人。如果目標在此期間看向雙頭巨人，它必須立即進行豁免檢定。",
+						"如果目標未能透過豁免檢定，它將遭受雙頭巨人選擇的以下效果之一，或者隨機："
+					],
+					"ENG_name": "Gaze"
+				},
+				{
+					"name": "欺騙凝視",
+					"entries": [
+						"目標處於{@condition stunned||震懾}狀態，直到雙頭巨人的下一回合開始或雙頭巨人不再在視線範圍內。"
+					],
+					"ENG_name": "Beguiling Gaze"
+				},
+				{
+					"name": "催眠凝視",
+					"entries": [
+						"目標被巨人{@condition charmed||魅惑}，直到巨人下一回合開始。巨人選擇{@condition charmed||魅惑}目標如何使用其動作、反應和移動。"
+					],
+					"ENG_name": "Hypnotic Gaze"
+				},
+				{
+					"name": "癲狂凝視",
+					"entries": [
+						"目標受到{@spell confusion||困惑術}法術的效果，無需進行豁免檢定。效果持續到雙頭巨人下一回合開始。雙頭巨人不需要集中精神維持法術。"
+					],
+					"ENG_name": "Insanity Gaze"
+				}
+			],
+			"attachedItems": [
+				"battleaxe|phb",
+				"morningstar|phb"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"GI",
+				"O"
+			],
+			"damageTags": [
+				"C",
+				"F",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW",
+				"MW"
+			],
+			"conditionInflict": [
+				"charmed",
+				"incapacitated",
+				"stunned"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "\"The Demogorgon\""
+		},
+		{
+			"name": "安德拉斯",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "IMR",
+			"page": 31,
+			"_copy": {
+				"name": "Assassin",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the assassin",
+						"with": "Andras",
+						"flags": "i"
+					},
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "敏銳視聽覺",
+							"entries": [
+								"安德拉在依賴聽覺或視覺的感知（{@skill Perception||感知}）檢定上具有優勢。"
+							],
+							"ENG_name": "Keen Hearing and Sight"
+						}
+					},
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Shortsword",
+							"items": {
+								"name": "短劍",
+								"entries": [
+									"{@atk mw} {@hit 6}命中，觸及範圍5尺，單一目標。{@h}6（{@damage 1d6 + 3}）穿刺傷害，且目標必須成功透過{@dc 11}的體質豁免檢定，否則將受到鼠人{@variantrule Player Characters as Lycanthropes|MM|獸化}的詛咒。"
+								],
+								"ENG_name": "Shortsword"
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Light Crossbow",
+							"items": {
+								"name": "輕弩",
+								"entries": [
+									"{@atk rw} {@hit 6}命中，範圍80/320尺，單一目標。{@h}7（{@damage 1d8 + 3}）穿刺傷害，且目標必須成功透過{@dc 11}的體質豁免檢定，否則將遭受鼠人{@variantrule Player Characters as Lycanthropes|MM|獸化}的詛咒。"
+								],
+								"ENG_name": "Light Crossbow"
+							}
+						}
+					]
+				}
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"languages": [
+				"通用語",
+				"巨貓頭鷹語"
+			],
+			"tokenCustom": true,
+			"traitTags": [
+				"Keen Senses",
+				"Sneak Attack"
+			],
+			"languageTags": [
+				"C",
+				"GI",
+				"OTH"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"CUR"
+			],
+			"hasToken": true,
+			"ENG_name": "Andras"
+		},
+		{
+			"name": "女男爵",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "IMR",
+			"page": 91,
+			"_copy": {
+				"name": "Unicorn",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the unicorn",
+						"with": "Banrion",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Banrion"
+		},
+		{
+			"name": "巴爾巴託斯",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "IMR",
+			"page": 52,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item studded leather armor|phb|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 78,
+				"formula": "12d8 + 24"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 16,
+			"con": 14,
+			"int": 13,
+			"wis": 14,
+			"cha": 10,
+			"skill": {
+				"animal handling": "+5",
+				"deception": "+3",
+				"perception": "+5",
+				"stealth": "+6"
+			},
+			"passive": 13,
+			"resist": [
+				"poison"
+			],
+			"languages": [
+				"通用語"
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"巴巴託斯是一名6級施法者。他的施法能力是感知（法術豁免{@dc 13}，法術攻擊命中{@hit 5}）。他準備了以下游俠法術："
+					],
+					"spells": {
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell ensnaring strike||誘捕打擊}",
+								"{@spell hail of thorns||棘雹術}",
+								"{@spell hunter's mark||獵人印記}"
+							]
+						},
+						"2": {
+							"slots": 2,
+							"spells": [
+								"{@spell locate animals or plants||動植物定位術}"
+							]
+						}
+					},
+					"ability": "wis",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "鏽蝕怪物披風",
+					"entries": [
+						"任何非魔法的金屬武器擊中巴拉託斯都會腐蝕。在造成傷害後，武器對傷害骰的永久性累積減值變為-1。如果其減值降至-5，武器將被摧毀。任何非魔法的金屬製彈藥在擊中巴拉託斯並造成傷害後會被摧毀。"
+					],
+					"ENG_name": "Rust Monster Cloak"
+				},
+				{
+					"name": "巨魔之心",
+					"entries": [
+						"Barbatos在其回合開始時恢復10點生命值。如果Barbatos受到酸性或火焰傷害，這個特性在Barbatos下一個回合開始時不會生效。Barbatos只有在其回合開始時生命值為0且沒有再生時才會死亡。"
+					],
+					"ENG_name": "Heart of the Troll"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"Barbatos 進行兩次骨制短劍攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "骨制短劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 6}，觸及 5 尺，單一目標。{@h}6 ({@damage 1d6 + 3}) 點穿刺傷害。"
+					],
+					"ENG_name": "Bone Shortsword"
+				},
+				{
+					"name": "輕弩",
+					"entries": [
+						"{@atk rw} 命中骰命中{@hit 6}，射程80/320尺，單一目標。{@h}7（{@damage 1d8 + 3}）點穿刺傷害，目標必須進行一次{@dc 13}體質豁免，否則在1小時內被{@condition poisoned||中毒}。如果豁免失敗超過5點，目標也將進入{@condition unconscious||昏迷}狀態。如果目標受到傷害或另一個生物採取行動搖動它，目標將恢復意識。"
+					],
+					"ENG_name": "Light Crossbow"
+				},
+				{
+					"name": "斗篷掃擊",
+					"entries": [
+						"巴勒巴託斯腐蝕他能夠看見的5英尺範圍內的非魔法鐵質金屬物品。如果物品未被穿著或攜帶，觸碰會摧毀其一立方英尺的部分。如果物品被生物穿著或攜帶，該生物可以進行一次{@dc 12}敏捷豁免以避開巴勒巴託斯的觸碰。",
+						"如果接觸的物品是穿戴或攜帶的金屬盔甲或金屬盾牌，它提供的AC將永久性地累積減少1點。如果盔甲的AC降至10或盾牌的加值降至+0，則該物品將被摧毀。如果接觸的物品是手持的金屬武器，它將如同巴巴託斯的鏽蝕怪物斗篷特性中描述的那樣生鏽。"
+					],
+					"ENG_name": "Cloak Sweep"
+				}
+			],
+			"tokenCustom": true,
+			"attachedItems": [
+				"light crossbow|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P"
+			],
+			"damageTagsSpell": [
+				"P"
+			],
+			"spellcastingTags": [
+				"CR"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW",
+				"MW",
+				"RNG",
+				"RW"
+			],
+			"conditionInflict": [
+				"poisoned",
+				"unconscious"
+			],
+			"conditionInflictSpell": [
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"strength"
+			],
+			"hasToken": true,
+			"ENG_name": "Barbatos"
+		},
+		{
+			"name": "鐵製大腦",
+			"source": "IMR",
+			"page": 48,
+			"_copy": {
+				"name": "Brain in a Jar",
+				"source": "LLK",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "brain in a jar",
+						"with": "brain in iron"
+					}
+				}
+			},
+			"size": [
+				"L"
+			],
+			"type": "construct",
+			"alignment": [
+				"L",
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"speed": {
+				"walk": 20
+			},
+			"tokenCustom": true,
+			"hasToken": true,
+			"ENG_name": "Brain in Iron"
+		},
+		{
+			"name": "矮人工人",
+			"source": "IMR",
+			"page": 15,
+			"_copy": {
+				"name": "Cultist",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Mountain Dwarf",
+						"source": "PHB"
+					}
+				],
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "cultist",
+						"with": "worker",
+						"flags": "i"
+					}
+				}
+			},
+			"action": [
+				{
+					"name": "鎬或錘子",
+					"entries": [
+						"{@atk mw} 命中{@hit 3}，觸及5尺，單一生物。{@h}4 ({@damage 1d6 + 1}) 鈍擊或穿刺傷害。"
+					],
+					"ENG_name": "Pick or Hammer"
+				}
+			],
+			"tokenCustom": true,
+			"languageTags": [
+				"C",
+				"D",
+				"X"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"hasToken": true,
+			"ENG_name": "Dwarven Worker"
+		},
+		{
+			"name": "增強版美杜莎",
+			"alias": [
+				"Daoud's Living Lanthor"
+			],
+			"source": "IMR",
+			"page": 47,
+			"_copy": {
+				"name": "Medusa",
+				"source": "MM"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"spellcasting": [
+				{
+					"name": "天生施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"美杜莎的天賦施法能力是魅力（法術豁免{@dc 13}）。美杜莎天生能夠施放以下法術，無需任何材料："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell light||光亮術}"
+							]
+						}
+					},
+					"ability": "cha",
+					"ENG_name": "Innate Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "石化凝視",
+					"entries": [
+						"當一個能看見美杜莎眼睛的生物在其30尺內開始其回合時，如果美杜莎未處於{@condition incapacitated||失能}狀態且能看見該生物，美杜莎可以強迫其進行一次{@dc 14}的體質豁免。若豁免失敗且差值達到或超過5點，該生物將立即被{@condition petrified||石化}。否則，豁免失敗的生物將開始轉變為金屬、木頭或瓷器（由美杜莎選擇）並被{@condition restrained||束縛}。該{@condition restrained||束縛}的生物必須在其下一回合結束時重複進行豁免檢定，失敗則被{@condition petrified||石化}，成功則結束該效應。石化狀態將持續到該生物被{@spell greater restoration||高等復原術}法術或其他魔法釋放為止。",
+						"未遭受{@status surprised||突襲}的生物可以避開美杜莎的目光，以免除在其回合開始時進行的豁免。此時，該生物視為不能看見該美杜莎，直至其下一回合開始時再選擇是否避開美杜莎的目光。該生物在任何時候看向美杜莎時，都必須立即進行該豁免。",
+						"如果美杜莎在明亮光照下於其身邊30尺內看到自己的鏡中倒影，則美杜莎將成為自己詛咒的目標被自己的凝視影響。"
+					],
+					"ENG_name": "Petrifying Gaze"
+				}
+			],
+			"tokenCustom": true,
+			"spellcastingTags": [
+				"I"
+			],
+			"conditionInflict": [
+				"petrified",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"ENG_name": "Enhanced Medusa"
+		},
+		{
+			"name": "橡樹祖父",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "IMR",
+			"page": 5,
+			"_copy": {
+				"name": "Treant",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the treant",
+						"with": "Grandfather Oak",
+						"flags": "i"
+					},
+					"action": {
+						"mode": "appendArr",
+						"items": {
+							"name": "安撫孢子 (3/日)",
+							"entries": [
+								"老橡樹向其5尺範圍內可以看到的一個生物噴射孢子。目標必須進行一次{@dc 17}體質豁免檢定，否則將被{@condition stunned||震懾}1分鐘。目標可以在每個回合結束時重複進行豁免檢定，成功則結束此效果。"
+							],
+							"ENG_name": "Pacifying Spores (3/Day)"
+						}
+					}
+				}
+			},
+			"tokenCustom": true,
+			"hasToken": true,
+			"ENG_name": "Grandfather Oak"
+		},
+		{
+			"name": "林克斯·克里特拉赫",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "IMR",
+			"page": 54,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"tiefling"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"{@item leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 136,
+				"formula": "16d8 + 64"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 14,
+			"con": 18,
+			"int": 13,
+			"wis": 16,
+			"cha": 18,
+			"save": {
+				"str": "+7",
+				"con": "+7",
+				"wis": "+6",
+				"cha": "+7"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 13,
+			"resist": [
+				"necrotic",
+				"psychic"
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned",
+				"stunned"
+			],
+			"languages": [
+				"通用語",
+				"煉獄語"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "特殊裝備",
+					"entries": [
+						"猞猁的水晶眼是一顆魔法縮小的{@item crystal ball||水晶球}，具有真視能力。她的一顆牙齒被改造成了{@item ring of mind shielding||心靈護盾戒指}，而另一顆牙齒則被施了魔法，使她永久處於{@spell Nystul's magic aura||涅斯圖魔法靈光}法術的效果下，掩蓋了這些物品的魔法，並隱藏了她作為亡靈的真實本質，使其無法被魔法或能偵測亡靈的特性發現。"
+					],
+					"ENG_name": "Special Equipment"
+				},
+				{
+					"name": "厭火",
+					"entries": [
+						"如果Lynx受到火焰傷害，她在下一回合結束前攻擊骰和屬性檢定時將處於劣勢。"
+					],
+					"ENG_name": "Aversion of Fire"
+				},
+				{
+					"name": "不變形態",
+					"entries": [
+						"Lynx對任何會改變她形態的法術或效果免疫。"
+					],
+					"ENG_name": "Immutable Form"
+				},
+				{
+					"name": "閃電吸收",
+					"entries": [
+						"每當山貓遭受到雷電傷害時，她不會受到傷害，反而會根據受到的雷電傷害值恢復相應的生命值。"
+					],
+					"ENG_name": "Lightning Absorption"
+				},
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"Lynx在對抗法術和其他魔法效果的豁免檢定上有優勢。"
+					],
+					"ENG_name": "Magic Resistance"
+				},
+				{
+					"name": "復生",
+					"entries": [
+						"Lynx在其回合開始時恢復10點生命值。如果她受到火焰或光耀傷害，這個特性在她的下一個回合開始時不會生效。Lynx的身體只有在其回合開始時生命值為0且沒有再生時才會被摧毀。"
+					],
+					"ENG_name": "Regeneration"
+				},
+				{
+					"name": "免疫驅散",
+					"entries": [
+						"Lynx對驅散不死生物的效果免疫。"
+					],
+					"ENG_name": "Turn Immunity"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"Lynx進行兩次短劍攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "短劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 7}，觸及5尺，單一目標。{@h}7（{@damage 1d6 + 4}）點穿刺傷害。"
+					],
+					"ENG_name": "Shortsword"
+				}
+			],
+			"tokenCustom": true,
+			"attachedItems": [
+				"shortsword|phb"
+			],
+			"traitTags": [
+				"Damage Absorption",
+				"Immutable Form",
+				"Magic Resistance",
+				"Regeneration",
+				"Turn Immunity"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"I"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Lynx Creatlach"
+		},
+		{
+			"name": "莫加達姆",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "IMR",
+			"page": 55,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item breastplate|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 104,
+				"formula": "19d8 + 19"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 12,
+			"con": 13,
+			"int": 19,
+			"wis": 16,
+			"cha": 16,
+			"save": {
+				"con": "+5",
+				"int": "+8",
+				"wis": "+7"
+			},
+			"skill": {
+				"arcana": "+8",
+				"insight": "+7",
+				"medicine": "+7"
+			},
+			"passive": 13,
+			"languages": [
+				"深淵語",
+				"通用語",
+				"矮人語",
+				"煉獄語",
+				"地底通用語"
+			],
+			"cr": "12",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"莫加達姆是一名18級的施法者。他的施法能力是智力（法術豁免{@dc 16}，法術攻擊命中骰{@hit 8}）。他準備了以下奇械師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell dancing lights||舞光術}",
+								"{@spell light||光亮術}",
+								"{@spell message||傳訊術}",
+								"{@spell shocking grasp||電爪}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell comprehend languages||通曉語言}",
+								"{@spell cure wounds||療傷術}",
+								"{@spell grease||油膩術}",
+								"{@spell identify||鑑定術}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell detect thoughts||偵測思想}",
+								"{@spell invisibility||隱形術}",
+								"{@spell heat metal||灼熱金屬}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell dispel magic||解除魔法}",
+								"{@spell flame arrows|XGE|烈焰箭矢}",
+								"{@spell hypnotic pattern||催眠圖紋}"
+							]
+						},
+						"4": {
+							"slots": 3,
+							"spells": [
+								"{@spell fabricate||鬼斧神工}",
+								"{@spell stone shape||塑石術}",
+								"{@spell stoneskin||石膚術}"
+							]
+						},
+						"5": {
+							"slots": 1,
+							"spells": [
+								"{@spell creation||造物術}"
+							]
+						}
+					},
+					"ability": "int",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "特殊裝備",
+					"entries": [
+						"摩加丹姆揮舞著毀滅之刃（{@item Ruinblade|IMR|毀傷之刃}，見附錄C）。"
+					],
+					"ENG_name": "Special Equipment"
+				},
+				{
+					"name": "人造心智",
+					"entries": [
+						"莫加達姆能夠以一個漂浮的幽靈形象顯現出人工心智，這個形象是一隻{@creature demilich||半巫妖}的鑲珠寶顱。莫加達姆可以與這個心智進行心靈感應交流，將其傳送到離他最遠300尺的地方，並能透過它看到和聽到周圍的情況。"
+					],
+					"ENG_name": "Artificial Mind"
+				},
+				{
+					"name": "資訊傳送（每日1次）",
+					"entries": [
+						"Moghadam 可以傳送自己到他人造心智旁邊的未被佔據的空間。"
+					],
+					"ENG_name": "Infoportation (1/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "毀傷之刃",
+					"entries": [
+						"{@atk mw} {@hit 6} 命中，觸及 5 ft.，單一目標。{@h}9（{@damage 2d6 + 2}）揮砍傷害。"
+					],
+					"ENG_name": "Ruinblade"
+				},
+				{
+					"name": "枯萎（每日1次）",
+					"entries": [
+						"當裝備{@item Ruinblade|IMR|毀傷之刃}時，莫格達姆可以施放{@spell blight||枯萎術}（{@dc 15}）。"
+					],
+					"ENG_name": "Blight (1/Day)"
+				},
+				{
+					"name": "解離（1/7 天）",
+					"entries": [
+						"在持有{@item Ruinblade|IMR|毀傷之刃}時，Moghadam可以對任何非魔法物品或魔法力量創造的物體施放{@spell disintegrate||解離術}法術。"
+					],
+					"ENG_name": "Disintegrate (1/7 Days)"
+				},
+				{
+					"name": "資訊過載 {@recharge 5}",
+					"entries": [
+						"莫加達姆使自身或其人工心智5尺範圍內的一個生物的思維過載。目標必須進行一次智力豁免檢定（{@dc 16}），若失敗則受到22點（{@damage 4d8 + 4}）心靈傷害，並且在莫加達姆下一個回合結束前，下一次對目標進行的攻擊檢定具有優勢。"
+					],
+					"ENG_name": "Information Overload {@recharge 5}"
+				}
+			],
+			"attachedItems": [
+				"ruinblade|imr"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"D",
+				"I",
+				"U"
+			],
+			"damageTags": [
+				"S",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"F",
+				"L"
+			],
+			"spellcastingTags": [
+				"CA"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForced": [
+				"intelligence"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Moghadam"
+		},
+		{
+			"name": "新奧圖格",
+			"source": "IMR",
+			"page": 75,
+			"size": [
+				"H"
+			],
+			"type": "aberration",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 150,
+				"formula": "12d12 + 72"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 20,
+			"dex": 11,
+			"con": 22,
+			"int": 12,
+			"wis": 13,
+			"cha": 6,
+			"save": {
+				"con": "+9"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 11,
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"食腐獸語"
+			],
+			"cr": "7",
+			"spellcasting": [
+				{
+					"name": "天生施法（靈能）",
+					"type": "spellcasting",
+					"headerEntries": [
+						"新奧圖格的天賦施法能力是智力（法術豁免{@dc 12}）。它能夠天賦施放以下法術，無需任何材料："
+					],
+					"will": [
+						"{@spell detect thoughts||偵測思想}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell command||命令術}",
+							"{@spell hold person||定身類人}"
+						]
+					},
+					"ability": "int",
+					"ENG_name": "Innate Spellcasting (Psionics)"
+				}
+			],
+			"trait": [
+				{
+					"name": "有限感應",
+					"entries": [
+						"食腐獸可以將簡單的話語或影象轉換成目標能夠理解的語言，在以魔法傳導給120尺內任意一個生物。但並不能從目標處獲得回覆。"
+					],
+					"ENG_name": "Limited Telepathy"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"新 食腐獸進行三次攻擊：一次用咬擊，兩次用觸手。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 8}，觸及10尺，單一目標。{@h}16 ({@damage 2d10 + 5}) 點穿刺傷害。如果目標是一個生物，它必須在一次{@dc 17} 體質豁免檢定中成功，否則將受到{@condition poisoned||中毒}影響，直到疾病被治癒。每過24小時，目標必須重複豁免檢定，失敗時其生命值上限減少5點（{@dice 1d10}）。如果成功，則疾病被治癒。如果疾病將目標的生命值上限減少至0，則目標死亡。這種對目標生命值上限的減少將持續到疾病被治癒為止。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "觸鬚",
+					"entries": [
+						"{@atk mw} 命中{@hit 8}，觸及15尺，單一目標。{@h}10 ({@damage 1d10 + 5}) 鈍擊傷害。如果目標是大型或更小，它將{@condition grappled||受擒}（逃脫{@dc 16}）並{@condition restrained||束縛}直到抓取結束。新 食腐獸有兩個觸手，每個觸手可以抓住一個目標。"
+					],
+					"ENG_name": "Tentacle"
+				},
+				{
+					"name": "觸鬚猛擊",
+					"entries": [
+						"新 食腐獸將被其{@condition grappled||受擒}的生物猛擊到彼此或堅硬表面上。每個生物必須進行一次{@dc 16}體質豁免檢定，否則將受到15（{@damage 3d6 + 5}）鈍擊傷害，並在新 食腐獸下一回合結束前處於{@condition stunned||震懾}狀態。成功透過豁免檢定的生物受到一半的鈍擊傷害，並且不會{@condition stunned||震懾}。"
+					],
+					"ENG_name": "Tentacle Slam"
+				}
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Tentacles"
+			],
+			"languageTags": [
+				"OTH"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"spellcastingTags": [
+				"I",
+				"P"
+			],
+			"miscTags": [
+				"DIS",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"grappled",
+				"poisoned",
+				"restrained",
+				"stunned"
+			],
+			"conditionInflictSpell": [
+				"paralyzed",
+				"prone"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Neo-Otyugh"
+		},
+		{
+			"name": "塞奧德拉",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "IMR",
+			"page": 41,
+			"_copy": {
+				"name": "Noble",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the noble",
+						"with": "Seodra",
+						"flags": "i"
+					},
+					"trait": {
+						"mode": "appendArr",
+						"items": [
+							{
+								"name": "地面行走",
+								"entries": [
+									"塞奧德拉可以穿越由泥土或石頭構成的{@quickref difficult terrain||3||困難地形}而不需要額外消耗移動力。"
+								],
+								"ENG_name": "Earth Walk"
+							},
+							{
+								"name": "財寶感知",
+								"entries": [
+									"Seodra可以透過氣味精確定位到她周圍60尺範圍內的貴金屬和寶石，例如硬幣和寶石。"
+								],
+								"ENG_name": "Treasure Sense"
+							}
+						]
+					}
+				}
+			},
+			"ac": [
+				{
+					"ac": 19,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"languages": [
+				"通用語",
+				"原初語"
+			],
+			"tokenCustom": true,
+			"languageTags": [
+				"C",
+				"P"
+			],
+			"hasToken": true,
+			"ENG_name": "Seodra"
+		},
+		{
+			"name": "烏薩斯爵士",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "IMR",
+			"page": 56,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 20,
+					"from": [
+						"{@item plate armor|phb}",
+						"{@item shield|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 112,
+				"formula": "15d8 + 45"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 15,
+			"con": 16,
+			"int": 10,
+			"wis": 12,
+			"cha": 15,
+			"save": {
+				"str": "+7",
+				"dex": "+5",
+				"con": "+6"
+			},
+			"skill": {
+				"athletics": "+10",
+				"intimidation": "+5"
+			},
+			"passive": 11,
+			"resist": [
+				"fire"
+			],
+			"languages": [
+				"通用語",
+				"煉獄語"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "特殊裝備",
+					"entries": [
+						"烏爾薩爵士佩戴著一枚{@item ring of mind shielding||心靈護盾戒指}和一套{@item plate armor of fire resistance||火焰抗性板甲}。"
+					],
+					"ENG_name": "Special Equipment"
+				},
+				{
+					"name": "勇氣",
+					"entries": [
+						"烏薩斯爵士在對抗{@condition frightened||恐慌}狀態的豁免檢定上有優勢。"
+					],
+					"ENG_name": "Brave"
+				},
+				{
+					"name": "殘暴",
+					"entries": [
+						"當烏爾薩爵士用近戰武器擊中目標時，該武器會額外造成一次傷害骰的傷害（已包含在他的攻擊中）。"
+					],
+					"ENG_name": "Brute"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"烏薩斯爵士 進行三次近戰攻擊或兩次遠端攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 7}，觸及5尺，單一目標。{@h}11 ({@damage 2d6 + 4}) 點揮砍傷害。"
+					],
+					"ENG_name": "Claw"
+				},
+				{
+					"name": "矛",
+					"entries": [
+						"{@atk mw,rw} 命中{@hit 7}，觸及5尺和射程20/60尺，單一目標。{@h}11（{@damage 2d6 + 4}）點穿刺傷害，如果使用雙手進行近戰攻擊則為13（{@damage 2d8 + 4}）點穿刺傷害。"
+					],
+					"ENG_name": "Spear"
+				},
+				{
+					"name": "盾擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 7}，觸及範圍5尺，單一目標。{@h}9（{@damage 2d4 + 4}）鈍擊傷害，如果目標是中型或更小的生物，它必須進行一次力量豁免檢定（{@dc 15}），否則會被擊倒{@condition prone||倒地}。"
+					],
+					"ENG_name": "Shield Bash"
+				}
+			],
+			"reaction": [
+				{
+					"name": "格擋",
+					"entries": [
+						"烏薩斯爵士在一次命中他的近戰攻擊上對他的AC加上3點。為此，他必須能看到攻擊者並且手持近戰武器。"
+					],
+					"ENG_name": "Parry"
+				}
+			],
+			"tokenCustom": true,
+			"attachedItems": [
+				"spear|phb"
+			],
+			"traitTags": [
+				"Brute"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Parry"
+			],
+			"languageTags": [
+				"C",
+				"I"
+			],
+			"damageTags": [
+				"B",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Sir Ursas"
+		},
+		{
+			"name": "骷髏巨人貓頭鷹",
+			"source": "IMR",
+			"page": 33,
+			"_copy": {
+				"name": "Giant Owl",
+				"source": "MM"
+			},
+			"type": "undead",
+			"immune": [
+				"poison"
+			],
+			"vulnerable": [
+				"bludgeoning"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"tokenCustom": true,
+			"hasToken": true,
+			"ENG_name": "Skeletal Giant Owl"
+		},
+		{
+			"name": "骷髏梟熊",
+			"source": "IMR",
+			"page": 36,
+			"_copy": {
+				"name": "Owlbear",
+				"source": "MM"
+			},
+			"type": "undead",
+			"immune": [
+				"poison"
+			],
+			"vulnerable": [
+				"bludgeoning"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"tokenCustom": true,
+			"hasToken": true,
+			"ENG_name": "Skeletal Owlbear"
+		},
+		{
+			"name": "骷髏北極熊",
+			"source": "IMR",
+			"page": 34,
+			"_copy": {
+				"name": "Polar Bear",
+				"source": "MM"
+			},
+			"type": "undead",
+			"immune": [
+				"poison"
+			],
+			"vulnerable": [
+				"bludgeoning"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"tokenCustom": true,
+			"hasToken": true,
+			"ENG_name": "Skeletal Polar Bear"
+		},
+		{
+			"name": "骷髏雙頭梟熊",
+			"source": "IMR",
+			"page": 36,
+			"_copy": {
+				"name": "Two-Headed Owlbear",
+				"source": "IMR"
+			},
+			"type": "undead",
+			"immune": [
+				"poison"
+			],
+			"vulnerable": [
+				"bludgeoning"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"tokenCustom": true,
+			"hasToken": true,
+			"ENG_name": "Skeletal Two-Headed Owlbear"
+		},
+		{
+			"name": "斯托洛斯",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "IMR",
+			"page": 33,
+			"_copy": {
+				"name": "Warlock of the Great Old One",
+				"source": "VGM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the warlock",
+						"with": "Stolos",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"speed": {
+				"walk": 30,
+				"fly": 30
+			},
+			"action": [
+				{
+					"name": "禽爪",
+					"entries": [
+						"{@atk mw} 命中{@hit 3}，觸及5尺，單一目標。{@h}8（{@damage 2d6 + 1}）點揮砍傷害。"
+					],
+					"ENG_name": "Talons"
+				}
+			],
+			"tokenCustom": true,
+			"damageTags": [
+				"S",
+				"Y"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"ENG_name": "Stolos"
+		},
+		{
+			"name": "塔恩赫姆",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "IMR",
+			"page": 19,
+			"_copy": {
+				"name": "Balor",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the balor",
+						"with": "Tarnhem",
+						"flags": "i"
+					},
+					"action": {
+						"mode": "prependArr",
+						"items": {
+							"name": "復仇之拳",
+							"entries": [
+								"{@atk mw} 命中{@hit 14}，觸及範圍10尺，單一目標。{@h}13（{@damage 2d4 + 8}）鈍擊傷害加上7（{@damage 2d6}）火焰傷害。"
+							],
+							"ENG_name": "Fist of Retribution"
+						}
+					}
+				}
+			},
+			"tokenCustom": true,
+			"damageTags": [
+				"B",
+				"F",
+				"L",
+				"S"
+			],
+			"hasToken": true,
+			"ENG_name": "Tarnhem"
+		},
+		{
+			"name": "塞薩爾",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "IMR",
+			"page": 57,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item breastplate|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 104,
+				"formula": "19d8 + 19"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 12,
+			"con": 13,
+			"int": 19,
+			"wis": 16,
+			"cha": 16,
+			"save": {
+				"con": "+5",
+				"int": "+8",
+				"wis": "+7"
+			},
+			"skill": {
+				"animal handling": "+7",
+				"arcana": "+8",
+				"insight": "+7",
+				"medicine": "+7"
+			},
+			"passive": 13,
+			"immune": [
+				"acid",
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"龍語",
+				"精靈語",
+				"原初語"
+			],
+			"cr": "12",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Thessalar 是一個18級的施法者。他的施法能力是智力（法術豁免{@dc 16}，法術攻擊命中{@hit 8}）。他準備了以下奇械師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell light||光亮術}",
+								"{@spell mending||修復術}",
+								"{@spell message||傳訊術}",
+								"{@spell shocking grasp||電爪}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell alarm||警報術}",
+								"{@spell cure wounds||療傷術}",
+								"{@spell identify||鑑定術}",
+								"{@spell ray of sickness||致病射線}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell invisibility||隱形術}",
+								"{@spell Melf's acid arrow||馬友夫強酸箭}",
+								"{@spell web||蛛網術}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell dispel magic||解除魔法}",
+								"{@spell haste||加速術}",
+								"{@spell stinking cloud||臭雲術}"
+							]
+						},
+						"4": {
+							"slots": 3,
+							"spells": [
+								"{@spell blight||枯萎術}",
+								"{@spell Mordenkainen's faithful hound||魔鄧肯忠犬}",
+								"{@spell Otiluke's resilient sphere||歐提路克彈力法球}"
+							]
+						},
+						"5": {
+							"slots": 1,
+							"spells": [
+								"{@spell cloudkill||死雲術}"
+							]
+						}
+					},
+					"ability": "int",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "特殊裝備",
+					"entries": [
+						"塞薩拉持有一把塗有{@item +1 dagger||塞薩毒素毒藥}的{@item Thessaltoxin|IMR|+1 匕首}（見附錄C）。"
+					],
+					"ENG_name": "Special Equipment"
+				},
+				{
+					"name": "鍊金人工生命體",
+					"entries": [
+						"Thessalar 由他的{@creature Thessalar's homunculus|IMR|Thessalar的人工生命體}陪伴。如果對它施放{@spell mending||修復術}法術，人工生命體 恢復{@dice 2d6}生命值。"
+					],
+					"ENG_name": "Alchemical Homunculus"
+				},
+				{
+					"name": "治療毒性",
+					"entries": [
+						"任何能夠恢復生命值並且可以應用於穿刺或揮砍武器的魔法物品（如藥水、藥膏等），使用該武器命中Thessalar時，將造成額外傷害，等於該物品通常能恢復的生命值。"
+					],
+					"ENG_name": "Healing Toxicity"
+				},
+				{
+					"name": "高等復原術（每日一次）",
+					"entries": [
+						"如果塞薩拉有{@item Alchemist's Supplies|phb|鍊金術材料}，他可以施放{@spell greater restoration||高等復原術}。"
+					],
+					"ENG_name": "Greater Restoration (1/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "匕首",
+					"entries": [
+						"{@atk mw,rw} 命中{@hit 5}，觸及5尺或射程20/60尺，單一目標。{@h}3 ({@damage 1d4 + 1}) 點穿刺傷害，目標必須進行一次{@dc 15}體質豁免。豁免失敗，目標將受到{@spell polymorph||變形術}的影響，隨機變成一個{@filter 野獸|bestiary|type=beast|miscellaneous=!swarm}或在過去24小時內見過的生物（由DM選擇）。這個效果持續直到目標完成一次長休。"
+					],
+					"ENG_name": "Dagger"
+				}
+			],
+			"attachedItems": [
+				"dagger|phb"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"E",
+				"P"
+			],
+			"damageTags": [
+				"P"
+			],
+			"damageTagsSpell": [
+				"A",
+				"F",
+				"I",
+				"L",
+				"N",
+				"P"
+			],
+			"spellcastingTags": [
+				"CA"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Thessalar"
+		},
+		{
+			"name": "Thessalar的人工生命體",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "IMR",
+			"page": 35,
+			"_copy": {
+				"name": "Homunculus",
+				"source": "MM",
+				"_mod": {
+					"action": {
+						"mode": "appendArr",
+						"items": {
+							"name": "酸性唾沫",
+							"entries": [
+								"{@atk rw}命中{@hit 4}，射程30尺，單一目標。{@h}5（{@damage 1d6 + 2}）強酸傷害。"
+							],
+							"ENG_name": "Acidic Spittle"
+						}
+					}
+				}
+			},
+			"damageTags": [
+				"A",
+				"P"
+			],
+			"miscTags": [
+				"MW",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Thessalar's Homunculus"
+		},
+		{
+			"name": "塞薩爾之心構裝生物",
+			"source": "IMR",
+			"page": 86,
+			"size": [
+				"T"
+			],
+			"type": "construct",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 7,
+				"formula": "2d4 + 2"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40
+			},
+			"str": 4,
+			"dex": 15,
+			"con": 12,
+			"int": 10,
+			"wis": 10,
+			"cha": 7,
+			"senses": [
+				"darkvision 60"
+			],
+			"passive": 10,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"poisoned"
+			],
+			"languages": [
+				"能理解其創造者的語言但無法說話"
+			],
+			"cr": "0",
+			"trait": [
+				{
+					"name": "心靈聯結",
+					"entries": [
+						"當構裝生物與其主人處於同一存在平面時，它可以神奇地將其感知到的東西傳達給主人，兩者可以進行心靈感應交流。"
+					],
+					"ENG_name": "Telepathic Bond"
+				}
+			],
+			"action": [
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atk mw} {@hit 4} 攻擊命中，範圍 5 英尺，單一目標。{@h}1 點揮砍傷害，且目標必須成功透過一次 {@dc 10} 體質豁免檢定，否則將 {@condition poisoned||中毒} 中毒 1 分鐘。如果豁免檢定失敗且差值達到 5 或更多，目標將改為 {@condition poisoned||中毒} 中毒 5（{@dice 1d10}）分鐘，且在此種 {@condition unconscious||中毒} 中毒狀態下 {@condition poisoned||昏迷} 陷入 unconscious 無意識狀態。"
+					],
+					"ENG_name": "Claws"
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"CS"
+			],
+			"damageTags": [
+				"S"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"poisoned",
+				"unconscious"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Thessalheart Construct"
+		},
+		{
+			"name": "塞薩拉克拉肯",
+			"source": "IMR",
+			"page": 87,
+			"size": [
+				"G"
+			],
+			"type": {
+				"type": "monstrosity",
+				"tags": [
+					"titan"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 207,
+				"formula": "18d12 + 90"
+			},
+			"speed": {
+				"walk": 20,
+				"swim": 60
+			},
+			"str": 24,
+			"dex": 11,
+			"con": 20,
+			"int": 19,
+			"wis": 15,
+			"cha": 17,
+			"save": {
+				"str": "+12",
+				"dex": "+5",
+				"con": "+10",
+				"int": "+9",
+				"wis": "+7"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 12,
+			"immune": [
+				"acid",
+				{
+					"immune": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"paralyzed"
+			],
+			"languages": [
+				"懂深淵語",
+				"天界語",
+				"煉獄語",
+				"並且是原始語言，但不能說話",
+				"心靈感應 120 尺"
+			],
+			"cr": "14",
+			"trait": [
+				{
+					"name": "水陸兩棲",
+					"entries": [
+						"塞薩爾克拉肯可以呼吸空氣和水。"
+					],
+					"ENG_name": "Amphibious"
+				},
+				{
+					"name": "行動自如",
+					"entries": [
+						"塞斯海妖忽略{@quickref difficult terrain||3||困難地形}，魔法效果無法降低它的速度或使其{@condition restrained||束縛}。它可以花費5英尺的移動力來擺脫非魔法束縛或{@condition grappled||受擒}。"
+					],
+					"ENG_name": "Freedom of Movement"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"塞薩爾克拉肯進行一次咬擊和兩次觸手攻擊。它可以用一次投擲攻擊替代每一次觸手攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 12}，觸及 5 尺，單一目標。{@h}20 ({@damage 3d8 + 7}) 穿刺傷害加 5 ({@damage 1d10}) 酸傷害。如果目標是中型或更小的生物並被泰薩克拉肯{@condition grappled||受擒}，該生物將被吞下，且擒抱結束。被吞下時，該生物處於{@condition blinded||目盲}和{@condition restrained||束縛}狀態，且在泰薩克拉肯之外的所有攻擊和其他效果對其具有{@quickref Cover||3||掩護}，並在泰薩克拉肯的每回合開始時受到 21 ({@damage 6d6}) 酸傷害。",
+						"如果塞薩爾克拉肯在單一回合內被其內部的生物造成35點或更多傷害，它必須在該回合結束時進行一次{@dc 23}體質豁免檢定，否則將吐出所有被吞噬的生物，這些生物會在塞薩爾克拉肯10尺內的空間中以{@condition prone||倒地}狀態落下。如果塞薩爾克拉肯死亡，被吞噬的生物不再被它{@condition restrained||束縛}，可以使用10尺的移動距離從屍體中逃脫，以{@condition prone||倒地}狀態出現。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "觸鬚",
+					"entries": [
+						"{@atk mw} 命中{@hit 12}，觸及20尺，單一目標。{@h}17 ({@damage 3d6 + 7}) 揮砍傷害，並且目標{@condition grappled||受擒}（逃脫{@dc 16}）。直到這次抓取結束，目標{@condition restrained||束縛}。Thesalkraken有十個觸手，每個觸手都可以抓住一個目標。"
+					],
+					"ENG_name": "Tentacle"
+				},
+				{
+					"name": "拋擲",
+					"entries": [
+						"由塞克拉肯持有或{@condition grappled||受擒}的一箇中型或更小的物體或生物被扔到40英尺內的一個隨機方向並被擊倒{@condition prone||倒地}。如果被扔出的目標撞到固體表面，目標每被扔出10英尺就會受到3 ({@damage 1d6})點鈍擊傷害。如果目標被扔向另一個生物，該生物必須成功透過一個{@dc 16}的敏捷豁免，否則會受到相同的傷害並被擊倒{@condition prone||倒地}。"
+					],
+					"ENG_name": "Fling"
+				},
+				{
+					"name": "酸性唾液 {@recharge 5}",
+					"entries": [
+						"Thesalkraken向它能看到的60尺範圍內的一點吐出一團酸液。距離該點10尺內的每一生物都必須進行一次{@dc 18}敏捷豁免檢定，失敗則受到22 ({@damage 4d10}) 強酸傷害，成功則傷害減半。"
+					],
+					"ENG_name": "Acid Saliva {@recharge 5}"
+				}
+			],
+			"legendary": [
+				{
+					"name": "觸鬚攻擊",
+					"entries": [
+						"塞薩爾克拉肯進行一次觸手攻擊。"
+					],
+					"ENG_name": "Tentacle Attack"
+				},
+				{
+					"name": "拋擲",
+					"entries": [
+						"塞薩爾克拉肯使用投擲。"
+					],
+					"ENG_name": "Fling"
+				},
+				{
+					"name": "墨汁雲 (消耗 3動作)",
+					"entries": [
+						"在水下時，塞薩拉克拉肯會噴出一個半徑60尺的墨水雲。雲霧會繞過轉角擴散，該區域對塞薩拉克拉肯以外的生物而言處於{@quickref Vision and Light||2||重度遮蔽}狀態。除塞薩拉克拉肯外，每個在該區域結束其回合的生物必須成功透過一次{@dc 18}的體質豁免檢定，豁免失敗則受到16（{@damage 3d10}）毒素傷害，豁免成功則承受一半傷害。一股強流可以驅散雲霧，否則雲霧將在塞薩拉克拉肯的下一個回合結束時消失。"
+					],
+					"ENG_name": "Ink Cloud (Costs 3 Actions)"
+				}
+			],
+			"legendaryGroup": {
+				"name": "Thessalkraken",
+				"source": "IMR"
+			},
+			"tokenCustom": true,
+			"traitTags": [
+				"Amphibious"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Swallow",
+				"Tentacles"
+			],
+			"languageTags": [
+				"AB",
+				"CE",
+				"CS",
+				"I",
+				"P",
+				"TP"
+			],
+			"damageTags": [
+				"A",
+				"B",
+				"I",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"blinded",
+				"grappled",
+				"prone",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"savingThrowForcedLegendary": [
+				"strength",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Thessalkraken"
+		},
+		{
+			"name": "提夫林壁畫家",
+			"source": "IMR",
+			"page": 17,
+			"_copy": {
+				"name": "Cultist",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Tiefling",
+						"source": "PHB"
+					}
+				],
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "cultist",
+						"with": "muralist"
+					}
+				}
+			},
+			"tokenCustom": true,
+			"languageTags": [
+				"C",
+				"I",
+				"X"
+			],
+			"damageTagsSpell": [
+				"F"
+			],
+			"hasToken": true,
+			"ENG_name": "Tiefling Muralist"
+		},
+		{
+			"name": "雙頭鱷魚",
+			"source": "IMR",
+			"page": 89,
+			"size": [
+				"L"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 12,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 19,
+				"formula": "3d10 + 3"
+			},
+			"speed": {
+				"walk": 20,
+				"swim": 30
+			},
+			"str": 15,
+			"dex": 10,
+			"con": 13,
+			"int": 2,
+			"wis": 10,
+			"cha": 5,
+			"skill": {
+				"perception": "+2",
+				"stealth": "+2"
+			},
+			"passive": 12,
+			"cr": "1",
+			"trait": [
+				{
+					"name": "屏息",
+					"entries": [
+						"雙頭鱷魚可以屏住呼吸長達15分鐘。"
+					],
+					"ENG_name": "Hold Breath"
+				},
+				{
+					"name": "雙頭",
+					"entries": [
+						"雙頭鱷魚在感知（{@skill Perception||感知}）檢定上具有優勢，並且在對抗被{@condition blinded||目盲}、{@condition charmed||魅惑}、{@condition deafened||耳聾}、{@condition frightened||恐慌}、{@condition stunned||昏迷}以及被擊昏{@condition unconscious||震懾}的豁免檢定上也具有優勢。"
+					],
+					"ENG_name": "Two Heads"
+				},
+				{
+					"name": "警醒",
+					"entries": [
+						"當鱷魚的一個頭在睡覺時，它的另一個頭是醒著的。"
+					],
+					"ENG_name": "Wakeful"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"雙頭鱷魚進行兩次咬擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 4}，觸及 5 尺，單一目標。 {@h}7 ({@damage 1d10 + 2}) 穿刺傷害，並且目標{@condition grappled||受擒}（逃脫 {@dc 12}）。在擒抱結束前，目標處於{@condition restrained||束縛}狀態，且鱷魚的該頭部無法攻擊另一個目標。"
+					],
+					"ENG_name": "Bite"
+				}
+			],
+			"tokenCustom": true,
+			"traitTags": [
+				"Hold Breath"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"grappled",
+				"restrained"
+			],
+			"hasToken": true,
+			"ENG_name": "Two-Headed Crocodile"
+		},
+		{
+			"name": "雙頭梟熊",
+			"source": "IMR",
+			"page": 90,
+			"size": [
+				"L"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 59,
+				"formula": "7d10 + 21"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 20,
+			"dex": 12,
+			"con": 17,
+			"int": 3,
+			"wis": 12,
+			"cha": 7,
+			"skill": {
+				"perception": "+3"
+			},
+			"senses": [
+				"darkvision 60"
+			],
+			"passive": 13,
+			"cr": "3",
+			"trait": [
+				{
+					"name": "雙頭",
+					"entries": [
+						"雙頭梟熊在感知（{@skill Perception||感知}感知）檢定上具有優勢，並且在對抗被{@condition blinded||目盲}（失明）、{@condition charmed||魅惑}（魅惑）、{@condition deafened||耳聾}（耳聾）、{@condition frightened||恐慌}（恐懼）、{@condition stunned||震懾}（昏迷）以及被擊昏{@condition unconscious||昏迷}（失去意識）的豁免檢定上也具有優勢。"
+					],
+					"ENG_name": "Two Heads"
+				},
+				{
+					"name": "警醒",
+					"entries": [
+						"當梟熊的一個頭睡著時，它的另一個頭是醒著的。"
+					],
+					"ENG_name": "Wakeful"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"雙頭梟熊進行三次攻擊：兩次用它的喙，一次用它的爪子。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "喙啄",
+					"entries": [
+						"{@atk mw} 命中{@hit 7}，觸及5尺，單一目標。{@h}10 ({@damage 1d10 + 5}) 點穿刺傷害。"
+					],
+					"ENG_name": "Beak"
+				},
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 7}，觸及5尺，單一目標。{@h}14 ({@damage 2d8 + 5})點揮砍傷害。"
+					],
+					"ENG_name": "Claws"
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Two-Headed Owlbear"
+		}
+	]
+}

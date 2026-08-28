@@ -1,0 +1,2006 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "活動瓷磚奇美拉",
+			"source": "RoT",
+			"page": 42,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 128
+				}
+			],
+			"_copy": {
+				"name": "Chimera",
+				"source": "MM",
+				"_mod": {
+					"trait": {
+						"mode": "prependArr",
+						"items": {
+							"name": "復生",
+							"entries": [
+								"如果被摧毀，瓷磚生物將在24小時內恢復所有生命值並再次活躍，除非至少收集了其一半的瓷磚並將其與生物的其他瓷磚分開存放。"
+							],
+							"ENG_name": "Rejuvenation"
+						}
+					},
+					"reaction": {
+						"mode": "appendArr",
+						"items": {
+							"name": "狹窄閃避",
+							"entries": [
+								"當被近戰攻擊瞄準時，瓷磚生物可以採取反應將其最狹窄的一面朝向攻擊者。攻擊者在攻擊擲骰上具有劣勢。"
+							],
+							"ENG_name": "Narrow Dodge"
+						}
+					}
+				}
+			},
+			"resist": [
+				"piercing"
+			],
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"tokenCustom": true,
+			"traitTags": [
+				"Rejuvenation"
+			],
+			"hasToken": true,
+			"ENG_name": "Animated Tile Chimera"
+		},
+		{
+			"name": "水生巨魔",
+			"source": "RoT",
+			"page": 36,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 112
+				},
+				{
+					"source": "PotA",
+					"page": 88
+				}
+			],
+			"_copy": {
+				"name": "Troll",
+				"source": "MM",
+				"_mod": {
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "水下呼吸",
+							"entries": [
+								"巨魔可以在水下呼吸。"
+							],
+							"ENG_name": "Water Breathing"
+						}
+					}
+				}
+			},
+			"speed": {
+				"walk": 30,
+				"swim": 30
+			},
+			"resist": [
+				"cold"
+			],
+			"traitTags": [
+				"Keen Senses",
+				"Regeneration",
+				"Water Breathing"
+			],
+			"hasToken": true,
+			"ENG_name": "Aquatic Troll"
+		},
+		{
+			"name": "食人花",
+			"source": "RoT",
+			"page": 67,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 153
+				}
+			],
+			"_copy": {
+				"name": "Otyugh",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "otyugh",
+						"with": "plant"
+					}
+				}
+			},
+			"type": "plant",
+			"speed": {
+				"walk": 0
+			},
+			"hasToken": true,
+			"ENG_name": "Carnivorous Flower"
+		},
+		{
+			"name": "迪德里烏斯",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "RoT",
+			"page": 40,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 131
+				}
+			],
+			"_copy": {
+				"name": "Mummy Lord",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the mummy lord",
+						"with": "Diderius",
+						"flags": "i"
+					}
+				},
+				"_preserve": {
+					"legendaryGroup": true
+				}
+			},
+			"int": 18,
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"迪德里斯是一名10級施法者。他的施法能力是智力（法術豁免難度{@dc 17}，法術攻擊命中{@hit 9}）。他準備了以下法師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell minor illusion||次級幻象}",
+								"{@spell ray of frost||冷凍射線}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell charm person||魅惑類人}",
+								"{@spell detect magic||偵測魔法}",
+								"{@spell shield||護盾術}",
+								"{@spell thunderwave||雷鳴波}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell cloud of daggers||匕首之雲}",
+								"{@spell hold person||定身類人}",
+								"{@spell see invisibility||識破隱形}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell animate dead||活化死屍}",
+								"{@spell dispel magic||解除魔法}"
+							]
+						},
+						"4": {
+							"slots": 3,
+							"spells": [
+								"{@spell fire shield||火焰護盾}",
+								"{@spell greater invisibility||高等隱形術}"
+							]
+						},
+						"5": {
+							"slots": 2,
+							"spells": [
+								"{@spell cloudkill||死雲術}",
+								"{@spell wall of stone||石牆術}"
+							]
+						}
+					},
+					"ability": "int",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"tokenCustom": true,
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"ENG_name": "Diderius"
+		},
+		{
+			"name": "龍牙",
+			"source": "RoT",
+			"page": 89,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 182
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item studded leather armor|phb|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 78,
+				"formula": "12d8 + 24"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 16,
+			"con": 14,
+			"int": 12,
+			"wis": 12,
+			"cha": 14,
+			"save": {
+				"wis": "+4"
+			},
+			"skill": {
+				"deception": "+5",
+				"stealth": "+6"
+			},
+			"passive": 11,
+			"resist": [
+				{
+					"resist": [
+						"acid",
+						"cold",
+						"fire",
+						"lightning",
+						"poison"
+					],
+					"preNote": "以下之一："
+				}
+			],
+			"languages": [
+				"通用語",
+				"龍語",
+				"煉獄語"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "巨龍狂熱",
+					"entries": [
+						"龍牙在對抗被{@condition charmed||魅惑}或{@condition frightened||恐慌}的豁免檢定中具有優勢。當龍牙能看到一個龍或者對它友好的更高階別的龍之教團成員時，龍牙忽略被{@condition charmed||魅惑}或{@condition frightened||恐慌}的效果。"
+					],
+					"ENG_name": "Dragon Fanatic"
+				},
+				{
+					"name": "狂熱優勢",
+					"entries": [
+						"每回合一次，如果龍牙在攻擊擲骰上具有優勢並進行武器攻擊並命中，目標將額外受到10點（{@damage 3d6}）傷害。"
+					],
+					"ENG_name": "Fanatic Advantage"
+				},
+				{
+					"name": "有限飛行",
+					"entries": [
+						"龍牙可以使用附贈動作，在回合結束前獲得30尺的飛行速度。"
+					],
+					"ENG_name": "Limited Flight"
+				},
+				{
+					"name": "叢集戰術",
+					"entries": [
+						"如果至少有一個龍牙的盟友在生物的5尺範圍內，並且盟友沒有處於{@condition incapacitated||失能}狀態，則龍牙在對該生物的攻擊檢定上具有優勢。"
+					],
+					"ENG_name": "Pack Tactics"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"龍牙用短劍攻擊兩次。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "短劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 6}，範圍 5 英尺，單一目標。{@h}6 ({@damage 1d6 + 3}) 穿刺傷害加上 7 ({@damage 2d6}) 龍牙對之具有抗性的型別傷害。"
+					],
+					"ENG_name": "Shortsword"
+				},
+				{
+					"name": "龍息寶珠（每日2次）",
+					"entries": [
+						"{@atk rs} 命中{@hit 5}，範圍 50 英尺，單一目標。 {@h}22 ({@damage 5d8}) 傷害型別為龍牙具有傷害抗性的型別。"
+					],
+					"ENG_name": "Orb of Dragon's Breath (2/Day)"
+				}
+			],
+			"attachedItems": [
+				"shortsword|phb"
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"I"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"ENG_name": "Dragonfang"
+		},
+		{
+			"name": "龍魂",
+			"source": "RoT",
+			"page": 89,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 183
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"{@item studded leather armor|phb|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 110,
+				"formula": "17d8 + 34"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 18,
+			"con": 14,
+			"int": 13,
+			"wis": 12,
+			"cha": 16,
+			"save": {
+				"wis": "+4"
+			},
+			"skill": {
+				"deception": "+6",
+				"stealth": "+7"
+			},
+			"passive": 11,
+			"resist": [
+				{
+					"resist": [
+						"acid",
+						"cold",
+						"fire",
+						"lightning",
+						"poison"
+					],
+					"preNote": "以下之一："
+				}
+			],
+			"languages": [
+				"通用語",
+				"龍語",
+				"煉獄語"
+			],
+			"cr": "7",
+			"trait": [
+				{
+					"name": "巨龍狂熱",
+					"entries": [
+						"龍魂在對抗被{@condition charmed||魅惑}或{@condition frightened||恐慌}的豁免檢定中具有優勢。當龍魂能看到一個龍或等級更高的對它友好的龍之教團成員時，龍魂忽略被{@condition charmed||魅惑}或{@condition frightened||恐慌}的效果。"
+					],
+					"ENG_name": "Dragon Fanatic"
+				},
+				{
+					"name": "狂熱優勢",
+					"entries": [
+						"每回合一次，如果龍魂在攻擊骰上具有優勢並進行武器攻擊並命中，目標將額外受到10點（{@damage 3d6}）傷害。"
+					],
+					"ENG_name": "Fanatic Advantage"
+				},
+				{
+					"name": "有限飛行",
+					"entries": [
+						"龍魂可以使用一個附贈動作來獲得30尺的飛行速度，直到其回合結束。"
+					],
+					"ENG_name": "Limited Flight"
+				},
+				{
+					"name": "叢集戰術",
+					"entries": [
+						"如果至少有一個龍魂的盟友在生物5尺範圍內，並且該盟友沒有處於{@condition incapacitated||失能}狀態，則龍魂對生物的攻擊檢定具有優勢。"
+					],
+					"ENG_name": "Pack Tactics"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"龍魂使用短劍進行兩次攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "短劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 7}，範圍 5 英尺，單一目標。{@h}6 ({@damage 1d6 + 3}) 穿刺傷害加 10 ({@damage 3d6}) 龍魂具有抗性的傷害型別。"
+					],
+					"ENG_name": "Shortsword"
+				},
+				{
+					"name": "龍息寶珠（每日3次）",
+					"entries": [
+						"{@atk rs} 命中{@hit 7}，範圍90英尺，單一目標。{@h}27（{@damage 6d8}）點傷害，傷害型別與龍魂具有抗性的型別相同。"
+					],
+					"ENG_name": "Orb of Dragon's Breath (3/Day)"
+				}
+			],
+			"attachedItems": [
+				"shortsword|phb"
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"I"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"ENG_name": "Dragonsoul"
+		},
+		{
+			"name": "加爾文",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "RoT",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 12
+				}
+			],
+			"_copy": {
+				"name": "Dragonsoul",
+				"source": "RoT",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the dragonsoul",
+						"with": "Galvan",
+						"flags": "i"
+					},
+					"trait": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"name": "5etools 註釋",
+								"entries": [
+									"儘管加爾文並未出現在{@adventure 提亞馬特的崛起|RoT}的遭遇中，但為了方便使用，這裡提供了{@creature dragonsoul|RoT|龍魂}的屬性資料塊，幷包含適用於{@item Blue Dragon Mask|RoTOS|藍龍面具}的可選修改。"
+								],
+								"ENG_name": "5etools Note"
+							},
+							{
+								"name": "特殊裝備",
+								"entries": [
+									"加爾凡擁有{@item Blue Dragon Mask|RoTOS|藍龍面具}。"
+								],
+								"ENG_name": "Special Equipment"
+							},
+							{
+								"name": "龍形威嚴",
+								"entries": [
+									"當加爾文不穿護甲並佩戴藍龍面具時，他將魅力加值加到AC上（已包含）。"
+								],
+								"ENG_name": "Draconic Majesty"
+							},
+							{
+								"name": "持續電擊",
+								"entries": [
+									"如果加爾文在佩戴藍龍面具時對生物造成閃電傷害，該生物直到其下一回合之前不能進行反應。"
+								],
+								"ENG_name": "Lingering Shock"
+							},
+							{
+								"name": "傳奇抗性（1/日）",
+								"entries": [
+									"如果加爾文在佩戴藍龍面具時失敗豁免檢定，他可以選擇成功。"
+								],
+								"ENG_name": "Legendary Resistance (1/Day)"
+							}
+						]
+					}
+				}
+			},
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"{@item studded leather armor|phb|studded leather}"
+					]
+				},
+				{
+					"ac": 17,
+					"condition": "佩戴著藍龍面具",
+					"braces": true
+				}
+			],
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"immune": [
+				"lightning"
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Pack Tactics"
+			],
+			"senseTags": [
+				"D"
+			],
+			"hasToken": true,
+			"ENG_name": "Galvan"
+		},
+		{
+			"name": "半藍龍角鬥士",
+			"source": "RoT",
+			"page": 55,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 141
+				}
+			],
+			"referenceSources": [
+				"DC"
+			],
+			"_copy": {
+				"name": "Gladiator",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Large or Smaller Half-Blue Dragon",
+						"source": "MM"
+					}
+				],
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "gladiator",
+						"with": "half-dragon"
+					}
+				}
+			},
+			"tokenCustom": true,
+			"senseTags": [
+				"B",
+				"D"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack",
+				"Parry"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"X"
+			],
+			"damageTags": [
+				"B",
+				"L",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"ENG_name": "Half-Blue Dragon Gladiator"
+		},
+		{
+			"name": "半綠龍刺客",
+			"source": "RoT",
+			"page": 56,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 142
+				}
+			],
+			"_copy": {
+				"name": "Assassin",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Large or Smaller Half-Green Dragon",
+						"source": "MM"
+					}
+				],
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "assassin",
+						"with": "half-dragon"
+					}
+				}
+			},
+			"tokenCustom": true,
+			"senseTags": [
+				"B",
+				"D"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"DR",
+				"TC",
+				"X"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RNG",
+				"RW"
+			],
+			"hasToken": true,
+			"ENG_name": "Half-Green Dragon Assassin"
+		},
+		{
+			"name": "半紅龍角鬥士",
+			"source": "RoT",
+			"page": 56,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 142
+				}
+			],
+			"_copy": {
+				"name": "Gladiator",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Large or Smaller Half-Red Dragon",
+						"source": "MM"
+					}
+				],
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "gladiator",
+						"with": "half-dragon"
+					}
+				}
+			},
+			"senseTags": [
+				"B",
+				"D"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack",
+				"Parry"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"X"
+			],
+			"damageTags": [
+				"B",
+				"F",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"ENG_name": "Half-Red Dragon Gladiator"
+		},
+		{
+			"name": "冰蟾蜍",
+			"source": "RoT",
+			"page": 90,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 185
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 12,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 32,
+				"formula": "5d8 + 10"
+			},
+			"speed": {
+				"walk": 30,
+				"swim": 30
+			},
+			"str": 13,
+			"dex": 10,
+			"con": 14,
+			"int": 8,
+			"wis": 10,
+			"cha": 6,
+			"skill": {
+				"perception": "+2"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 12,
+			"immune": [
+				"cold"
+			],
+			"languages": [
+				"冰蟾蜍語"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "水陸兩棲",
+					"entries": [
+						"蟾蜍可以呼吸空氣或水。"
+					],
+					"ENG_name": "Amphibious"
+				},
+				{
+					"name": "冷凍光環",
+					"entries": [
+						"任何在其回合開始時位於蟾蜍5尺範圍內的生物將受到3點（{@damage 1d6}）的寒冷傷害。"
+					],
+					"ENG_name": "Cold Aura"
+				},
+				{
+					"name": "立定跳遠",
+					"entries": [
+						"蟾蜍跳遠20英尺，跳高10英尺，不論是否助跑"
+					],
+					"ENG_name": "Standing Leap"
+				}
+			],
+			"action": [
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 3}，觸及5尺，單一目標。{@h}4 ({@damage 1d8}) 寒冷傷害。如果目標是中型或更小的生物，則會{@condition grappled||受擒}（逃脫{@dc 11}）。直到這個纏繞結束，蟾蜍不能再咬另單一目標。"
+					],
+					"ENG_name": "Bite"
+				}
+			],
+			"traitTags": [
+				"Amphibious"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"OTH"
+			],
+			"damageTags": [
+				"C"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"grappled"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Ice Toad"
+		},
+		{
+			"name": "冰巨魔",
+			"source": "RoT",
+			"page": 30,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 121
+				}
+			],
+			"_copy": {
+				"name": "Troll",
+				"source": "MM"
+			},
+			"resist": [
+				"cold"
+			],
+			"hasToken": true,
+			"ENG_name": "Ice Troll"
+		},
+		{
+			"name": "伊斯坎德爾",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "RoT",
+			"page": 62,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 148
+				}
+			],
+			"_copy": {
+				"name": "Mage",
+				"source": "MM",
+				"_mod": {
+					"trait": {
+						"mode": "prependArr",
+						"items": {
+							"name": "5etools 註釋",
+							"entries": [
+								"伊斯坎德爾在{@adventure 提亞馬特的崛起|RoT}中被描述為一位中立邪惡的男性人類法師。為了方便使用，這裡提供了{@creature mage||魔法師}的統計區塊。"
+							],
+							"ENG_name": "5etools Note"
+						}
+					}
+				}
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Iskander"
+		},
+		{
+			"name": "緋紅的麥卡絲",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "RoT",
+			"page": 33,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 111
+				}
+			],
+			"_copy": {
+				"name": "Mage",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Tiefling",
+						"source": "PHB"
+					}
+				],
+				"_mod": {
+					"trait": {
+						"mode": "prependArr",
+						"items": {
+							"name": "5etools 註釋",
+							"entries": [
+								"緋紅的麥卡絲在 {@adventure 提亞馬特的崛起|RoT} 中被描述為一名女性提夫林術士，並且是奧法兄弟會的成員。為了方便使用，這裡提供了修改了提夫林種族特性的 {@creature mage||魔法師} 資料塊。"
+							],
+							"ENG_name": "5etools Note"
+						}
+					}
+				}
+			},
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"I",
+				"X"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Maccath the Crimson"
+		},
+		{
+			"name": "馬伕爾布",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "RoT",
+			"page": 35,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 121
+				}
+			],
+			"_copy": {
+				"name": "Ice Toad",
+				"source": "RoT"
+			},
+			"int": 13,
+			"tokenCustom": true,
+			"hasToken": true,
+			"ENG_name": "Marfulb"
+		},
+		{
+			"name": "修補網",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "RoT",
+			"page": 32,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 116
+				}
+			],
+			"_copy": {
+				"name": "Tribal Warrior",
+				"source": "MM"
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"tokenCustom": true,
+			"hasToken": true,
+			"ENG_name": "Mend-nets"
+		},
+		{
+			"name": "納爾戈斯·劍領主",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "RoT",
+			"page": 90,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 186
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"{@item plate armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 135,
+				"formula": "18d8 + 54"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 20,
+			"dex": 12,
+			"con": 16,
+			"int": 12,
+			"wis": 14,
+			"cha": 16,
+			"save": {
+				"dex": "+5",
+				"wis": "+6"
+			},
+			"skill": {
+				"perception": "+6",
+				"stealth": "+5"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 16,
+			"resist": [
+				"necrotic",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "非銀質武器且非魔法攻擊的",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"龍語"
+			],
+			"cr": "11",
+			"trait": [
+				{
+					"name": "日照敏感",
+					"entries": [
+						"在日光下，Naergoth在攻擊檢定上處於劣勢，以及在依靠視力的感知（{@skill Perception||感知}）檢定上也處於劣勢。"
+					],
+					"ENG_name": "Sunlight Sensitivity"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"奈爾戈斯進行三次攻擊，可以使用長劍或長弓。他可以用生命吸取代替一次長劍攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "吸取生命",
+					"entries": [
+						"{@atk mw} 命中{@hit 9}，觸及5尺，單一目標。{@h}20（{@damage 5d6 + 3}）暗蝕傷害。目標必須進行一次{@dc 15}體質豁免，否則其生命值上限將減少等同於受到的傷害。這種減少持續到目標完成一次長休息。如果這個效果將目標的生命值上限減少到0，目標將死亡。"
+					],
+					"ENG_name": "Life Drain"
+				},
+				{
+					"name": "長劍",
+					"entries": [
+						"{@atk mw} {@hit 9} 攻擊命中，觸及 5 尺，單一目標。{@h}9（{@damage 1d8 + 5}）揮砍傷害，或雙手持用時 10（{@damage 1d10 + 5}），外加 10（{@damage 3d6}）暗蝕傷害。"
+					],
+					"ENG_name": "Longsword"
+				},
+				{
+					"name": "長弓",
+					"entries": [
+						"{@atk rw} 命中{@hit 5}，射程150/600 尺，單一目標。{@h}5 ({@damage 1d8 + 1}) 點穿刺傷害加上10 ({@damage 3d6}) 暗蝕傷害。"
+					],
+					"ENG_name": "Longbow"
+				}
+			],
+			"attachedItems": [
+				"longbow|phb",
+				"longsword|phb"
+			],
+			"traitTags": [
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR"
+			],
+			"damageTags": [
+				"N",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"HPR",
+				"MLW",
+				"MW",
+				"RNG",
+				"RW"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Naergoth Bladelord"
+		},
+		{
+			"name": "內洛維",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "RoT",
+			"page": 91,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 187
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"elf"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				17
+			],
+			"hp": {
+				"average": 117,
+				"formula": "18d8 + 36"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 8,
+			"dex": 17,
+			"con": 15,
+			"int": 16,
+			"wis": 13,
+			"cha": 18,
+			"save": {
+				"con": "+5",
+				"wis": "+4"
+			},
+			"skill": {
+				"arcana": "+6",
+				"perception": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 15,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"龍語",
+				"精靈語",
+				"煉獄語"
+			],
+			"cr": "9",
+			"trait": [
+				{
+					"name": "龍形威嚴",
+					"entries": [
+						"尼隆文(Neronvain)將他的魅力加值加到他的護甲等級(AC)中（已包含）。"
+					],
+					"ENG_name": "Draconic Majesty"
+				},
+				{
+					"name": "妖精血統",
+					"entries": [
+						"魔法無法使Neronvain入睡。"
+					],
+					"ENG_name": "Fey Ancestry"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"尼隆凡進行兩次攻擊，可以使用他的短劍或奧術箭。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "短劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 7}，觸及5尺，單一目標。{@h}6（{@damage 1d6 + 3}）點穿刺傷害加上13（{@damage 3d8}）毒素傷害。"
+					],
+					"ENG_name": "Shortsword"
+				},
+				{
+					"name": "奧法毒箭",
+					"entries": [
+						"{@atk rs} 命中{@hit 7}，射程120尺，單一目標。{@h}11（{@damage 2d10}）力場傷害加上9（{@damage 2d8}）毒素傷害。"
+					],
+					"ENG_name": "Eldritch Arrow"
+				},
+				{
+					"name": "毒霧（每日2次）",
+					"entries": [
+						"毒氣充盈著以涅龍凡視野範圍內50英尺內一個點為中心的20英尺半徑的球體。毒氣繞過角落擴散，並持續到涅龍凡的下一個回合開始。每個在毒氣中開始其回合的生物必須成功透過一次{@dc 16}的體質豁免檢定，否則將被{@condition poisoned||中毒}1分鐘。生物可以在其每個回合結束時重複進行豁免檢定，成功則在自己身上結束此效果。"
+					],
+					"ENG_name": "Poisonous Cloud (2/Day)"
+				}
+			],
+			"attachedItems": [
+				"shortsword|phb"
+			],
+			"traitTags": [
+				"Fey Ancestry"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"E",
+				"I"
+			],
+			"damageTags": [
+				"I",
+				"O",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW",
+				"MW"
+			],
+			"conditionInflict": [
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Neronvain"
+		},
+		{
+			"name": "紙片旋風",
+			"source": "RoT",
+			"page": 72,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 158
+				}
+			],
+			"_copy": {
+				"name": "Swarm of Ravens",
+				"source": "MM"
+			},
+			"type": {
+				"type": "construct",
+				"swarmSize": "T"
+			},
+			"vulnerable": [
+				"fire"
+			],
+			"hasToken": true,
+			"ENG_name": "Paper Whirlwind"
+		},
+		{
+			"name": "紅袍巫師會",
+			"source": "RoT",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 171
+				}
+			],
+			"_copy": {
+				"name": "Mage",
+				"source": "MM"
+			},
+			"hasToken": true,
+			"ENG_name": "Red Wizard"
+		},
+		{
+			"name": "賽維林",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "RoT",
+			"page": 92,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 189
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 150,
+				"formula": "20d8 + 60"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 13,
+			"con": 16,
+			"int": 17,
+			"wis": 12,
+			"cha": 20,
+			"save": {
+				"dex": "+5",
+				"wis": "+5"
+			},
+			"skill": {
+				"arcana": "+7",
+				"religion": "+7"
+			},
+			"senses": [
+				"While wearing the Mask of the Dragon Queen: darkvision 60 ft."
+			],
+			"passive": 11,
+			"resist": [
+				{
+					"resist": [
+						"acid",
+						"cold",
+						"lightning",
+						"poison",
+						{
+							"resist": [
+								"bludgeoning",
+								"piercing",
+								"slashing"
+							],
+							"note": "來自非魔法攻擊",
+							"cond": true
+						}
+					],
+					"preNote": "當佩戴龍後面具時："
+				}
+			],
+			"immune": [
+				{
+					"immune": [
+						"fire"
+					],
+					"preNote": "當佩戴龍後面具時："
+				}
+			],
+			"conditionImmune": [
+				{
+					"conditionImmune": [
+						"charmed",
+						"frightened",
+						"poisoned"
+					],
+					"preNote": "當佩戴龍後面具時："
+				}
+			],
+			"languages": [
+				"通用語",
+				"龍語",
+				"煉獄語"
+			],
+			"cr": "11",
+			"trait": [
+				{
+					"name": "特殊裝備",
+					"entries": [
+						"Severin 擁有龍後面具（{@item Mask of the Dragon Queen|rot|龍後面具}）。"
+					],
+					"ENG_name": "Special Equipment"
+				},
+				{
+					"name": "龍形威嚴",
+					"entries": [
+						"塞弗林將他的感知加值加到他的AC上（已包含）。"
+					],
+					"ENG_name": "Draconic Majesty"
+				},
+				{
+					"name": "點燃敵人",
+					"entries": [
+						"如果塞維林在佩戴龍後面具時對生物造成火焰傷害，目標將著火。在它的每個回合開始時，燃燒的目標會受到5（{@damage 1d10}）火焰傷害。在火源範圍內的生物可以使用動作來撲滅火焰。"
+					],
+					"ENG_name": "Ignite Enemy"
+				},
+				{
+					"name": "傳奇抗性（5/日）",
+					"entries": [
+						"當佩戴龍後面具時，如果塞弗林失敗豁免檢定，他可以選擇成功。"
+					],
+					"ENG_name": "Legendary Resistance (5/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "灼熱之觸",
+					"entries": [
+						"{@atk ms} 命中{@hit 9}，觸及5尺，單一目標。{@h}18（{@damage 4d8}）火焰傷害。"
+					],
+					"ENG_name": "Burning Touch"
+				},
+				{
+					"name": "火焰法球",
+					"entries": [
+						"{@atk rs} 命中{@hit 9}，射程90尺，單一目標。{@h}40（{@damage 9d8}）火焰傷害。"
+					],
+					"ENG_name": "Flaming Orb"
+				},
+				{
+					"name": "坍塌火球",
+					"entries": [
+						"塞維林選擇一個他可以看到且距離他60英尺內的點。該點5英尺範圍內的每個生物必須進行{@dc 17}敏捷豁免，豁免失敗則受到18（{@damage 4d8}）點火焰傷害，豁免成功則傷害減半。"
+					],
+					"ENG_name": "Scorching Burst"
+				}
+			],
+			"legendaryHeader": [
+				"如果塞弗林佩戴著龍後面具，他可以進行3次傳奇行動，從列出的選項中選擇。一次只能使用一個傳奇行動選項，且只能在另一生物的回合結束時使用。塞弗林在他的回合開始時恢復已使用的傳奇行動。"
+			],
+			"legendary": [
+				{
+					"name": "攻擊",
+					"entries": [
+						"塞弗林進行一次攻擊。"
+					],
+					"ENG_name": "Attack"
+				},
+				{
+					"name": "熾熱傳送（花費2個動作）",
+					"entries": [
+						"塞維林，以及他佩戴或攜帶的任何物品，傳送至他能看到的60尺內的未被佔據的空間。在他傳送前，每個距離塞維林5尺內的生物會受到5（{@damage 1d10}）火焰傷害。"
+					],
+					"ENG_name": "Fiery Teleport (Costs 2 Actions)"
+				},
+				{
+					"name": "地獄鎖鏈（消耗3個動作）",
+					"entries": [
+						"塞維林以他30英尺內可見的一個生物為目標。目標被魔法火焰鏈束縛並{@condition restrained||束縛}。{@condition restrained||束縛}的目標在每個其回合開始時受到21（{@damage 6d6}）點火焰傷害。在回合結束時，目標可以進行一次{@dc 17}力量豁免，成功則結束該效果。"
+					],
+					"ENG_name": "Hellish Chains (Costs 3 Actions)"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"I"
+			],
+			"damageTags": [
+				"F"
+			],
+			"miscTags": [
+				"AOE"
+			],
+			"conditionInflict": [
+				"restrained"
+			],
+			"savingThrowForced": [
+				"dexterity",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Severin"
+		},
+		{
+			"name": "雪橇犬",
+			"source": "RoT",
+			"page": 27,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 113
+				}
+			],
+			"_copy": {
+				"name": "Wolf",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "wolf",
+						"with": "dog"
+					}
+				}
+			},
+			"hasToken": true,
+			"ENG_name": "Sled Dog"
+		},
+		{
+			"name": "蛇形恐怖獸",
+			"source": "RoT",
+			"page": 46,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 132
+				}
+			],
+			"_copy": {
+				"name": "Helmed Horror",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "helmed horror",
+						"with": "snake horror"
+					},
+					"action": {
+						"mode": "replaceArr",
+						"replace": "Longsword",
+						"items": {
+							"name": "長劍",
+							"entries": [
+								"{@atk mw} 命中{@hit 6}，範圍 5 尺，單一目標。{@h}8 ({@damage 1d8 + 4}) 揮砍傷害，或 9 ({@damage 1d10 + 4}) 揮砍傷害如果使用雙手，並且目標必須進行 {@dc 12} 體質豁免檢定，失敗則受到 9 ({@damage 2d8}) 毒素傷害，成功則受到一半傷害。"
+							],
+							"ENG_name": "Longsword"
+						}
+					}
+				}
+			},
+			"tokenCredit": "FromSoftware",
+			"tokenCustom": true,
+			"damageTags": [
+				"I",
+				"S"
+			],
+			"hasToken": true,
+			"ENG_name": "Snake Horror"
+		},
+		{
+			"name": "提亞馬特",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "RoT",
+			"page": 92,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 190
+				}
+			],
+			"referenceSources": [
+				"BGDIA"
+			],
+			"size": [
+				"G"
+			],
+			"type": "fiend",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 25,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 615,
+				"formula": "30d20 + 300"
+			},
+			"speed": {
+				"walk": 60,
+				"fly": 120
+			},
+			"str": 30,
+			"dex": 10,
+			"con": 30,
+			"int": 26,
+			"wis": 26,
+			"cha": 28,
+			"save": {
+				"str": "+19",
+				"dex": "+9",
+				"wis": "+17"
+			},
+			"skill": {
+				"arcana": "+17",
+				"perception": "+26",
+				"religion": "+17"
+			},
+			"senses": [
+				"darkvision 240 ft.",
+				"truesight 120 ft."
+			],
+			"passive": 36,
+			"immune": [
+				"acid",
+				"cold",
+				"fire",
+				"lightning",
+				"poison",
+				{
+					"immune": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"frightened",
+				"poisoned",
+				"stunned"
+			],
+			"languages": [
+				"通用語",
+				"龍語",
+				"煉獄語"
+			],
+			"cr": "30",
+			"spellcasting": [
+				{
+					"name": "天生施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"提亞馬特天生能夠施放以下法術，她的法術施放能力是魅力（法術豁免{@dc 26}）:"
+					],
+					"daily": {
+						"3": [
+							"{@spell divine word||聖言術}"
+						]
+					},
+					"ability": "cha",
+					"ENG_name": "Innate Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "解體",
+					"entries": [
+						"當提亞馬特降至0生命值或死亡時，她的身體會被摧毀，但她的本質會返回到九層地獄的領域，並且在一段時間內無法以實體形態出現。"
+					],
+					"ENG_name": "Discorporation"
+				},
+				{
+					"name": "傳奇抗性（5/日）",
+					"entries": [
+						"如果提亞馬特失敗豁免檢定，她可以選擇成功。"
+					],
+					"ENG_name": "Legendary Resistance (5/Day)"
+				},
+				{
+					"name": "有限魔免",
+					"entries": [
+						"除非她願意受到影響，提亞馬特對6級或更低等級的法術免疫。她對所有其他法術和魔法效果的豁免檢定具有優勢。"
+					],
+					"ENG_name": "Limited Magic Immunity"
+				},
+				{
+					"name": "魔法武器",
+					"entries": [
+						"提亞瑪特的武器攻擊是魔法攻擊。"
+					],
+					"ENG_name": "Magic Weapons"
+				},
+				{
+					"name": "多頭",
+					"entries": [
+						"提亞馬特每回合可以執行一次反應，而不僅僅每輪一次。她在對抗被{@condition unconscious||昏迷}狀態的豁免檢定上具有優勢。如果她未能透過一個會使生物眩暈的豁免檢定，她的一次未使用的傳奇動作將被消耗。"
+					],
+					"ENG_name": "Multiple Heads"
+				},
+				{
+					"name": "復生",
+					"entries": [
+						"提亞馬特在她的回合開始時恢復30點生命值。"
+					],
+					"ENG_name": "Regeneration"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"提亞馬特可以使用她的駭人威儀。然後她進行三次攻擊：兩次使用她的爪子，一次使用她的尾巴。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atk mw} 命中：{@hit 19}，觸及15尺，單一目標。{@h}24（{@damage 4d6 + 10}）揮砍傷害。"
+					],
+					"ENG_name": "Claw"
+				},
+				{
+					"name": "尾擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 19}，觸及25尺，單一目標。{@h}28 ({@damage 4d8 + 10}) 點穿刺傷害。"
+					],
+					"ENG_name": "Tail"
+				},
+				{
+					"name": "駭人威儀",
+					"entries": [
+						"在提亞馬特240尺範圍內且意識到她存在的每個生物，必須成功進行一次{@dc 26}感知豁免檢定，否則會在1分鐘內變為{@condition frightened||恐慌}。生物可以在每個回合結束時重複豁免檢定，成功則結束此效果。如果生物的豁免檢定成功或效果對其結束，該生物在接下來的24小時內對提亞馬特的駭人威儀免疫。"
+					],
+					"ENG_name": "Frightful Presence"
+				}
+			],
+			"legendaryHeader": [
+				"提亞馬特可以進行5次傳奇行動，從下面的選項中選擇。一次只能使用一個傳奇行動，只能在另一個生物的回合結束時使用。提亞馬特在其回合開始時恢復已使用的傳奇行動。",
+				"提亞馬特的傳奇行動選項與她的五個龍頭相關（每個頭都有一次咬擊和一個吐息武器攻擊）。一旦提亞馬特為她的某個頭選擇了一個傳奇行動選項，她就不能在她的下一個回合開始之前為那個頭選擇另一個相關的傳奇行動選項。"
+			],
+			"legendaryActions": 5,
+			"legendary": [
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 19}，射程 20 英尺，單一目標。{@h}32 ({@damage 4d10 + 10}) 揮砍傷害加 14 ({@damage 4d6}) 酸性傷害（黑龍頭），閃電傷害（藍龍頭），毒素傷害（綠龍頭），火焰傷害（紅龍頭），或寒冷傷害（白龍頭）。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "黑龍頭部：酸性呼吸（消耗2個動作）",
+					"entries": [
+						"提亞馬特向120英尺長、10英尺寬的直線區域噴吐酸液。該直線區域內的每個生物必須進行一次{@dc 27}敏捷豁免，若豁免失敗則受到67（{@damage 15d8}）點酸液傷害，若豁免成功則傷害減半。"
+					],
+					"ENG_name": "Black Dragon Head: Acid Breath (Costs 2 Actions)"
+				},
+				{
+					"name": "藍龍頭部：閃電吐息（消耗2個動作）",
+					"entries": [
+						"提亞馬特在120尺長的直線上呼吸閃電，該直線寬10尺。在該直線上的每個生物都必須進行一次敏捷豁免檢定{@dc 27}，如果失敗，則受到88 ({@damage 16d10}) 閃電傷害，如果成功，則受到一半的傷害。"
+					],
+					"ENG_name": "Blue Dragon Head: Lightning Breath (Costs 2 Actions)"
+				},
+				{
+					"name": "綠龍頭部：毒素呼吸（消耗2個動作）",
+					"entries": [
+						"提亞馬特在一個90尺的錐形區域內噴吐有毒氣體。該區域內的每個生物都必須進行一次體質豁免檢定（{@dc 27}），失敗則受到77（{@damage 22d6}）點毒素傷害，成功則傷害減半。"
+					],
+					"ENG_name": "Green Dragon Head: Poison Breath (Costs 2 Actions)"
+				},
+				{
+					"name": "紅龍頭部：火焰呼吸（消耗2個動作）",
+					"entries": [
+						"提亞馬特在一個90尺的錐形區域內吐出火焰。該區域內的每個生物都必須進行一次{@dc 27}敏捷豁免，失敗時受到91（{@damage 26d6}）火焰傷害，成功則受到一半的傷害。"
+					],
+					"ENG_name": "Red Dragon Head: Fire Breath (Costs 2 Actions)"
+				},
+				{
+					"name": "白龍頭部：寒冰吐息（消耗2個動作）",
+					"entries": [
+						"提亞馬特在90尺錐形範圍內噴吐出寒冰衝擊。區域內的每個生物必須進行{@dc 27}敏捷豁免，豁免失敗將受到72（{@damage 16d8}）點寒冷傷害，豁免成功則傷害減半。"
+					],
+					"ENG_name": "White Dragon Head: Cold Breath (Costs 2 Actions)"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Weapons",
+				"Regeneration"
+			],
+			"senseTags": [
+				"SD",
+				"U"
+			],
+			"actionTags": [
+				"Frightful Presence",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"I"
+			],
+			"damageTags": [
+				"A",
+				"C",
+				"F",
+				"I",
+				"L",
+				"P",
+				"S"
+			],
+			"spellcastingTags": [
+				"I"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"conditionInflictSpell": [
+				"blinded",
+				"deafened",
+				"stunned"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"charisma"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Tiamat"
+		},
+		{
+			"name": "瓦拉姆",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "RoT",
+			"page": 9,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 8
+				}
+			],
+			"_copy": {
+				"name": "Dragonsoul",
+				"source": "RoT",
+				"_templates": [
+					{
+						"name": "Mountain Dwarf",
+						"source": "PHB"
+					}
+				],
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the dragonsoul",
+						"with": "Varram",
+						"flags": "i"
+					},
+					"trait": {
+						"mode": "prependArr",
+						"items": {
+							"name": "5etools 註釋",
+							"entries": [
+								"Varram 在 {@adventure 提亞馬特的崛起|RoT} 中被描述為一名男性矮人。為了方便使用，這裡提供了經過矮人種族特徵修改的 {@creature dragonsoul|RoT|龍魂} 資料塊。"
+							],
+							"ENG_name": "5etools Note"
+						}
+					}
+				}
+			},
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"D",
+				"DR",
+				"I"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Varram"
+		}
+	]
+}

@@ -1,0 +1,381 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "狄摩高根",
+			"source": "HftT",
+			"page": 36,
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 60,
+				"formula": "8d8 + 24"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 12,
+			"con": 16,
+			"int": 3,
+			"wis": 12,
+			"cha": 5,
+			"skill": {
+				"perception": "+3",
+				"stealth": "+5"
+			},
+			"senses": [
+				"blindsight 60 ft."
+			],
+			"passive": 13,
+			"cr": "4",
+			"trait": [
+				{
+					"name": "敏銳嗅覺",
+					"entries": [
+						"狄摩高根在依靠嗅覺的感知({@skill Perception||感知})檢定上具有優勢。"
+					],
+					"ENG_name": "Keen Smell"
+				},
+				{
+					"name": "血腥狂怒",
+					"entries": [
+						"如果任何生物沒有全部生命值，那麼狄摩高根在對其進行近戰攻擊檢定時具有優勢。"
+					],
+					"ENG_name": "Blood Frenzy"
+				},
+				{
+					"name": "復生",
+					"entries": [
+						"狄摩高根在其回合開始時恢復10點生命值。如果狄摩高根受到酸性或火焰傷害，此特性在狄摩高根下一個回合開始時不會生效。狄摩高根只有在其回合開始時生命值為0且沒有再生時才會死亡。"
+					],
+					"ENG_name": "Regeneration"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"狄摩高根進行三次攻擊：一次用咬擊，兩次用爪擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 5}，觸及5尺，單一目標。{@h}7 ({@damage 1d8 + 3}) 點穿刺傷害。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 5}，觸及5尺，單一目標。{@h}12 ({@damage 2d8 + 3}) 揮砍傷害。"
+					],
+					"ENG_name": "Claw"
+				}
+			],
+			"traitTags": [
+				"Keen Senses",
+				"Regeneration"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Demogorgon"
+		},
+		{
+			"name": "邪惡法師",
+			"source": "HftT",
+			"page": 42,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"formula": "5d8",
+				"average": 22
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 14,
+			"con": 11,
+			"int": 17,
+			"wis": 12,
+			"cha": 11,
+			"save": {
+				"int": "+5",
+				"wis": "+3"
+			},
+			"skill": {
+				"arcana": "+5",
+				"history": "+5"
+			},
+			"passive": 11,
+			"languages": [
+				"通用語",
+				"龍語",
+				"矮人語",
+				"精靈語"
+			],
+			"cr": "1",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"該法師是4級施法者，使用智力作為其施法能力（法術豁免{@dc 13}，法術攻擊命中{@hit 5}）。法師知道以下來自法師法術列表的法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell light||光亮術}",
+								"{@spell mage hand||法師之手}",
+								"{@spell shocking grasp||電爪}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell charm person||魅惑類人}",
+								"{@spell magic missile||魔法飛彈}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell hold person||定身類人}",
+								"{@spell misty step||迷蹤步}"
+							],
+							"slots": 3
+						}
+					},
+					"ability": "int",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"action": [
+				{
+					"name": "長棍",
+					"entries": [
+						"{@atk mw} 命中{@hit 1}，觸及5尺，單一目標。{@h}3 ({@damage 1d8 -1}) 鈍擊傷害。"
+					],
+					"ENG_name": "Quarterstaff"
+				}
+			],
+			"tokenCustom": true,
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
+			"languageTags": [
+				"C",
+				"D",
+				"DR",
+				"E"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"L",
+				"O"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Evil Mage"
+		},
+		{
+			"name": "特薩爾蛇蜥",
+			"source": "HftT",
+			"page": 41,
+			"referenceSources": [
+				"IMR"
+			],
+			"size": [
+				"H"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 69,
+				"formula": "6d12 + 30"
+			},
+			"speed": {
+				"walk": 30,
+				"swim": 30
+			},
+			"str": 19,
+			"dex": 12,
+			"con": 20,
+			"int": 5,
+			"wis": 10,
+			"cha": 7,
+			"skill": {
+				"perception": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 14,
+			"immune": [
+				"acid"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"frightened",
+				"stunned"
+			],
+			"cr": "4",
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"特薩爾蛇蜥發動一次喉咬和一次疾風連啃。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "疾風連啃",
+					"entries": [
+						"{@atk mw} 命中{@hit 7}，觸及10尺，單一目標。{@h}7 ({@damage 1d6 + 4}) 點穿刺傷害加上10 ({@damage 4d4}) 毒素傷害。"
+					],
+					"ENG_name": "Flurry of Bites"
+				},
+				{
+					"name": "喉咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 7}，觸及5尺，單一目標。{@h}9（{@damage 1d10 + 4}）點穿刺傷害加上5（{@damage 1d10}）強酸傷害。"
+					],
+					"ENG_name": "Maw"
+				},
+				{
+					"name": "尾鉗",
+					"entries": [
+						"{@atk mw} 命中{@hit 7}，觸及10尺，單一目標。{@h}10 ({@damage 1d12 + 4}) 揮砍傷害，目標{@condition grappled||受擒}。作為動作，目標可以透過成功進行{@dc 14} 力量({@skill Athletics||運動})或敏捷({@skill Acrobatics||體操})檢定（它選擇）來逃脫抓住。直到這個抓住結束，蛇髮女妖不能使用它的尾部鉗子。"
+					],
+					"ENG_name": "Tail Pincer"
+				},
+				{
+					"name": "酸性唾液 {@recharge 5}",
+					"entries": [
+						"塞薩利多頭蛇向它能看到的30尺範圍內的一點吐出一團酸液。距離那點10尺範圍內的每個生物都必須進行一次{@dc 15}敏捷豁免檢定，失敗則受到18（{@damage 4d8}）強酸傷害，成功則傷害減半。"
+					],
+					"ENG_name": "Acid Saliva {@recharge 5}"
+				}
+			],
+			"legendaryActions": 2,
+			"legendary": [
+				{
+					"name": "偵查",
+					"entries": [
+						"賽薩海德拉進行一次優勢感知（{@skill Perception||感知}）檢定。"
+					],
+					"ENG_name": "Detect"
+				},
+				{
+					"name": "擺尾",
+					"entries": [
+						"賽薩爾九頭蛇進行尾部夾擊攻擊。"
+					],
+					"ENG_name": "Tail Swipe"
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"A",
+				"I",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"grappled"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Thessalhydra"
+		}
+	]
+}

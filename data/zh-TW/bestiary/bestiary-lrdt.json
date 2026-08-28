@@ -1,0 +1,270 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "阿拉克斯·玉鱗",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "LRDT",
+			"page": 11,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"dragonborn"
+				]
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				10
+			],
+			"hp": {
+				"average": 58,
+				"formula": "9d8 + 18"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 10,
+			"con": 14,
+			"int": 11,
+			"wis": 16,
+			"cha": 15,
+			"skill": {
+				"animal handling": "+5",
+				"survival": "+5"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 13,
+			"resist": [
+				"poison"
+			],
+			"languages": [
+				"通用語",
+				"龍語"
+			],
+			"cr": "2",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"阿拉克斯施展下列法術之一，以感知為其施法屬性（法術豁免{@dc 13}）："
+					],
+					"will": [
+						"{@spell Druidcraft||德魯伊伎倆}",
+						"{@spell Resistance||抗性}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Cure Wounds||療傷術}",
+							"{@spell Faerie Fire||妖火}",
+							"{@spell Purify Food and Drink||淨化飲食}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"阿拉克斯發動兩次火焰打擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "火焰打擊",
+					"entries": [
+						"{@atk ms,rs} 命中{@hit 5}，觸及5尺或射程60尺，單一目標。{@h}10 ({@damage 2d6 + 3}) 點火焰傷害。"
+					],
+					"ENG_name": "Fire Strike"
+				},
+				{
+					"name": "吐息武器（短休或長休後充能）",
+					"entries": [
+						"阿拉克斯噴出覆蓋15尺錐形區域的火焰，該區域內所有生物須進行一次{@dc 12}的敏捷豁免檢定，豁免失敗者將受到14（{@damage 4d6}）的火焰傷害，豁免成功者只受半數傷害。"
+					],
+					"ENG_name": "Breath Weapon (Recharges after a Short or Long Rest)"
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR"
+			],
+			"damageTags": [
+				"F"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Alax Jadescales"
+		},
+		{
+			"name": "埃爾文·墮落靈魂",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "LRDT",
+			"page": 11,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "{@spell mage armor||法師護甲}時",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 84,
+				"formula": "13d8 + 26"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 15,
+			"con": 14,
+			"int": 11,
+			"wis": 8,
+			"cha": 17,
+			"skill": {
+				"arcana": "3",
+				"deception": "+6"
+			},
+			"passive": 9,
+			"languages": [
+				"通用語",
+				"龍語"
+			],
+			"cr": "5",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"埃爾文施展下列法術之一，以魅力為其施法屬性（法術豁免{@dc 14}）："
+					],
+					"will": [
+						"{@spell Light||光亮術}",
+						"{@spell Mage Hand||法師之手}"
+					],
+					"daily": {
+						"2": [
+							"{@spell Dimension Door||任意門}"
+						],
+						"1e": [
+							"{@spell Disguise Self||易容術}",
+							"{@spell Levitate||浮空術}",
+							"{@spell Mage Armor||法師護甲}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"埃爾文使用法杖發動三次奧能爆發。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "奧能爆發",
+					"entries": [
+						"{@atk ms,rs} 命中{@hit 6}，觸及5尺或射程120尺，單一目標。{@h}13（{@damage 3d6 + 3}）點力場傷害。"
+					],
+					"ENG_name": "Arcane Blast"
+				},
+				{
+					"name": "酸雨（短休或長休後充能）",
+					"entries": [
+						"酸液從天而降，以埃爾文視野範圍120尺內指定的一處為中心點，形成半徑10尺高20尺的圓柱形，該區域內所有生物須進行一次{@dc 14}的敏捷豁免檢定，豁免失敗者受到22（{@damage 4d10}）強酸傷害，豁免成功者只受半數傷害。"
+					],
+					"ENG_name": "Acid Rain (Recharges after a Short or Long Rest)"
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR"
+			],
+			"damageTags": [
+				"A",
+				"O"
+			],
+			"damageTagsSpell": [
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Ervan Soulfallen"
+		}
+	]
+}

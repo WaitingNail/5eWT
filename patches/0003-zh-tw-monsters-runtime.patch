@@ -1,0 +1,724 @@
+diff --git a/js/bestiary.js b/js/bestiary.js
+--- a/js/bestiary.js
++++ b/js/bestiary.js
+@@ -11,6 +11,8 @@
+ import {EncounterBuilderPartyCustom} from "./encounterbuilder/party/encounterbuilder-party-custom.js";
+ import {EncounterBuilderPartyCustomAdvanced} from "./encounterbuilder/party/encounterbuilder-party-custom-advanced.js";
+ 
++const {I18nZhTwContent} = globalThis;
++
+ class _BestiaryConsts {
+ 	static PROF_MODE_BONUS = "bonus";
+ 	static PROF_MODE_DICE = "dice";
+@@ -33,7 +35,7 @@
+ 	static getListDisplayType (mon) {
+ 		let type = mon._pTypes.asTextShort.uppercaseFirst();
+ 		if (mon._pTypes.asTextSidekick) type += `, ${mon._pTypes.asTextSidekick}`;
+-		return type;
++		return I18nZhTwContent?.localizeMonsterMetaText(type) || type;
+ 	}
+ }
+ 
+@@ -80,12 +82,12 @@
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-5 ve-pl-0 ve-pr-1",
+ 				colStyle: "",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Type",
++				name: "類型",
+ 				css: "ve-col-3-8 ve-px-1",
+ 				colStyle: "",
+ 			}),
+@@ -95,7 +97,7 @@
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Number",
++				name: "數量",
+ 				css: "ve-col-2 ve-pl-1 ve-pr-0 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+@@ -113,7 +115,7 @@
+ 
+ 		const cellsText = [name, type, cr];
+ 
+-		const hovStatblock = veT`<span class="ve-col-1-4 ve-help ve-help--hover best-ecgen__visible">Stat Block</span>`
++		const hovStatblock = veT`<span class="ve-col-1-4 ve-help ve-help--hover best-ecgen__visible">資料卡</span>`
+ 			.vee.onn("mouseover", evt => this._encounterBuilder.doStatblockMouseOver({
+ 				evt,
+ 				ele: hovStatblock,
+@@ -125,11 +127,11 @@
+ 			.vee.onn("mouseleave", evt => Renderer.hover.handleLinkMouseLeave(evt, hovStatblock));
+ 
+ 		// TODO(Future) run `pFnCleanup` before list item is destroyed
+-		const hovToken = veT`<span class="ve-col-1-2 best-ecgen__visible ve-help ve-help--hover">Token</span>`;
++		const hovToken = veT`<span class="ve-col-1-2 best-ecgen__visible ve-help ve-help--hover">標記</span>`;
+ 		Renderer.monster.hover.bindTokenMouseover({mon, ele: hovToken});
+ 
+ 		// TODO(Future) run `pFnCleanup` before list item is destroyed
+-		const hovImage = veT`<span class="ve-col-1-2 best-ecgen__visible ve-help ve-help--hover">Image</span>`;
++		const hovImage = veT`<span class="ve-col-1-2 best-ecgen__visible ve-help ve-help--hover">圖片</span>`;
+ 		Renderer.monster.hover.bindFluffImageMouseover({mon, ele: hovImage});
+ 
+ 		const ptCr = (() => {
+@@ -232,9 +234,9 @@
+ class BestiaryPageBookView extends ListPageBookView {
+ 	constructor (opts) {
+ 		super({
+-			nameSingular: "creature",
+-			namePlural: "creatures",
+-			pageTitle: "Bestiary Printer View",
++			nameSingular: "生物",
++			namePlural: "生物",
++			pageTitle: "怪物圖鑑列印檢視",
+ 			...opts,
+ 		});
+ 	}
+@@ -254,16 +256,16 @@
+ 			});
+ 		};
+ 
+-		const btnDownloadMarkdown = veT`<button class="ve-btn ve-btn-default ve-btn-sm">Download as Markdown</button>`
++		const btnDownloadMarkdown = veT`<button class="ve-btn ve-btn-default ve-btn-sm">下載 Markdown</button>`
+ 			.vee.onn("click", async () => DataUtil.userDownloadText("bestiary.md", await pGetAsMarkdown()));
+ 
+-		const btnCopyMarkdown = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-px-2" title="Copy Markdown to Clipboard"><span class="glyphicon glyphicon-copy"></span></button>`
++		const btnCopyMarkdown = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-px-2" title="複製 Markdown 至剪貼簿"><span class="glyphicon glyphicon-copy"></span></button>`
+ 			.vee.onn("click", async () => {
+ 				await MiscUtil.pCopyTextToClipboard(await pGetAsMarkdown());
+ 				JqueryUtil.showCopiedEffect(btnCopyMarkdown);
+ 			});
+ 
+-		const btnDownloadMarkdownSettings = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"></span></button>`
++		const btnDownloadMarkdownSettings = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-px-2" title="Markdown 設定"><span class="glyphicon glyphicon-cog"></span></button>`
+ 			.vee.onn("click", async () => RendererMarkdown.pShowSettingsModal());
+ 
+ 		veT`<div class="ve-flex-v-center ve-btn-group ve-ml-2">
+@@ -357,59 +359,59 @@
+ 			},
+ 
+ 			tableViewOptions: {
+-				title: "Bestiary",
++				title: "怪物圖鑑",
+ 				colTransforms: {
+-					name: UtilsTableview.COL_TRANSFORM_NAME,
+-					source: UtilsTableview.COL_TRANSFORM_SOURCE,
+-					page: UtilsTableview.COL_TRANSFORM_PAGE,
+-					size: {name: "Size", transform: size => Renderer.utils.getRenderedSize(size)},
+-					type: {name: "Type", transform: type => Parser.monTypeToFullObj(type).asText},
+-					alignment: {name: "Alignment", transform: align => Parser.alignmentListToFull(align)},
++					name: {name: "名稱", transform: mon => I18nZhTwContent?.getDisplayName(mon) || mon.name},
++					source: {...UtilsTableview.COL_TRANSFORM_SOURCE, name: "來源"},
++					page: {...UtilsTableview.COL_TRANSFORM_PAGE, name: "頁碼"},
++					size: {name: "體型", transform: size => I18nZhTwContent?.localizeMonsterMetaText(Renderer.utils.getRenderedSize(size)) || Renderer.utils.getRenderedSize(size)},
++					type: {name: "類型", transform: type => I18nZhTwContent?.localizeMonsterMetaText(Parser.monTypeToFullObj(type).asText) || Parser.monTypeToFullObj(type).asText},
++					alignment: {name: "陣營", transform: align => I18nZhTwContent?.localizeMonsterMetaText(Parser.alignmentListToFull(align)) || Parser.alignmentListToFull(align)},
+ 					ac: {name: "AC", transform: ac => ac != null ? Parser.acToFull(ac) : ""},
+ 					hp: {name: "HP", transform: hp => hp != null ? Renderer.monster.getRenderedHp(hp) : ""},
+-					_speed: {name: "Speed", transform: mon => Parser.getSpeedString(mon)},
+-					...Parser.ABIL_ABVS.mergeMap(ab => ({[ab]: {name: Parser.attAbvToFull(ab)}})),
+-					_save: {name: "Saving Throws", transform: mon => Renderer.monster.getSavesPart(mon)},
+-					_skill: {name: "Skills", transform: mon => Renderer.monster.getSkillsString(Renderer.get(), mon)},
+-					vulnerable: {name: "Damage Vulnerabilities", transform: it => Parser.getFullImmRes(it)},
+-					resist: {name: "Damage Resistances", transform: it => Parser.getFullImmRes(it)},
+-					immune: {name: "Damage Immunities", transform: it => Parser.getFullImmRes(it)},
+-					conditionImmune: {name: "Condition Immunities", transform: it => Parser.getFullCondImm(it)},
+-					_senses: {name: "Senses", transform: mon => Renderer.monster.getSensesPart(mon, {isForcePassive: true})},
+-					languages: {name: "Languages", transform: it => Renderer.monster.getRenderedLanguages(it)},
++					_speed: {name: "速度", transform: mon => I18nZhTwContent?.localizeMonsterMetaText(Parser.getSpeedString(mon)) || Parser.getSpeedString(mon)},
++					...Parser.ABIL_ABVS.mergeMap(ab => ({[ab]: {name: I18nZhTwContent?.getAbility(ab) || Parser.attAbvToFull(ab)}})),
++					_save: {name: "豁免", transform: mon => I18nZhTwContent?.localizeMonsterMetaText(Renderer.monster.getSavesPart(mon)) || Renderer.monster.getSavesPart(mon)},
++					_skill: {name: "技能", transform: mon => I18nZhTwContent?.localizeMonsterMetaText(Renderer.monster.getSkillsString(Renderer.get(), mon)) || Renderer.monster.getSkillsString(Renderer.get(), mon)},
++					vulnerable: {name: "傷害易傷", transform: it => I18nZhTwContent?.localizeMonsterMetaText(Parser.getFullImmRes(it)) || Parser.getFullImmRes(it)},
++					resist: {name: "傷害抗性", transform: it => I18nZhTwContent?.localizeMonsterMetaText(Parser.getFullImmRes(it)) || Parser.getFullImmRes(it)},
++					immune: {name: "傷害免疫", transform: it => I18nZhTwContent?.localizeMonsterMetaText(Parser.getFullImmRes(it)) || Parser.getFullImmRes(it)},
++					conditionImmune: {name: "狀態免疫", transform: it => I18nZhTwContent?.localizeMonsterMetaText(Parser.getFullCondImm(it)) || Parser.getFullCondImm(it)},
++					_senses: {name: "感官", transform: mon => I18nZhTwContent?.localizeMonsterMetaText(Renderer.monster.getSensesPart(mon, {isForcePassive: true})) || Renderer.monster.getSensesPart(mon, {isForcePassive: true})},
++					languages: {name: "語言", transform: it => I18nZhTwContent?.localizeMonsterMetaText(Renderer.monster.getRenderedLanguages(it)) || Renderer.monster.getRenderedLanguages(it)},
+ 					_cr: {name: "CR", transform: mon => Renderer.monster.getChallengeRatingPart(mon)},
+ 					_trait: {
+-						name: "Traits",
++						name: "特質",
+ 						transform: mon => BestiaryPage._tableView_getEntryPropTransform({mon, fnGet: Renderer.monster.getOrderedTraits}),
+ 						flex: 3,
+ 					},
+ 					_action: {
+-						name: "Actions",
++						name: "動作",
+ 						transform: mon => BestiaryPage._tableView_getEntryPropTransform({mon, fnGet: Renderer.monster.getOrderedActions}),
+ 						flex: 3,
+ 					},
+ 					_bonus: {
+-						name: "Bonus Actions",
++						name: "附贈動作",
+ 						transform: mon => BestiaryPage._tableView_getEntryPropTransform({mon, fnGet: Renderer.monster.getOrderedBonusActions}),
+ 						flex: 3,
+ 					},
+ 					_reaction: {
+-						name: "Reactions",
++						name: "反應",
+ 						transform: mon => BestiaryPage._tableView_getEntryPropTransform({mon, fnGet: Renderer.monster.getOrderedReactions}),
+ 						flex: 3,
+ 					},
+ 					_legendary: {
+-						name: "Legendary Actions",
++						name: "傳奇動作",
+ 						transform: mon => BestiaryPage._tableView_getEntryPropTransform({mon, fnGet: Renderer.monster.getOrderedLegendaryActions}),
+ 						flex: 3,
+ 					},
+ 					_mythic: {
+-						name: "Mythic Actions",
++						name: "神話動作",
+ 						transform: mon => BestiaryPage._tableView_getEntryPropTransform({mon, fnGet: Renderer.monster.getOrderedMythicActions}),
+ 						flex: 3,
+ 					},
+ 					_lairActions: {
+-						name: "Lair Actions",
++						name: "巢穴動作",
+ 						transform: mon => {
+ 							const legGroup = DataUtil.monster.getLegendaryGroup(mon);
+ 							if (!legGroup?.lairActions?.length) return "";
+@@ -418,7 +420,7 @@
+ 						flex: 3,
+ 					},
+ 					_regionalEffects: {
+-						name: "Regional Effects",
++						name: "區域效應",
+ 						transform: mon => {
+ 							const legGroup = DataUtil.monster.getLegendaryGroup(mon);
+ 							if (!legGroup?.regionalEffects?.length) return "";
+@@ -426,8 +428,8 @@
+ 						},
+ 						flex: 3,
+ 					},
+-					environment: {name: "Environment", transform: it => Renderer.monster.getRenderedEnvironment(it)},
+-					treasure: {name: "Treasure", transform: it => Renderer.monster.getRenderedTreasure(it)},
++					environment: {name: "環境", transform: it => I18nZhTwContent?.localizeMonsterMetaText(Renderer.monster.getRenderedEnvironment(it)) || Renderer.monster.getRenderedEnvironment(it)},
++					treasure: {name: "寶藏", transform: it => I18nZhTwContent?.localizeMonsterMetaText(Renderer.monster.getRenderedTreasure(it)) || Renderer.monster.getRenderedTreasure(it)},
+ 				},
+ 			},
+ 			propEntryData: "monster",
+@@ -473,6 +475,7 @@
+ 
+ 	getListItem (mon, mI) {
+ 		const hash = UrlUtil.autoEncodeHash(mon);
++		const displayName = I18nZhTwContent?.getDisplayName(mon) || mon.name;
+ 		if (this._seenHashes.has(hash)) return null;
+ 		this._seenHashes.add(hash);
+ 
+@@ -498,7 +501,7 @@
+ 					click: evt => this._handleBestiaryLinkClick(evt),
+ 					children: [
+ 						this._encounterBuilder.getButtons(mI),
+-						veE({tag: "span", clazz: `best-ecgen__name ve-bold ve-col-4-2 ve-pl-0 ve-pr-1`, txt: mon.name}),
++						veE({tag: "span", clazz: `best-ecgen__name ve-bold ve-col-4-2 ve-pl-0 ve-pr-1`, txt: displayName}),
+ 						veE({tag: "span", clazz: `ve-col-4-1 ve-px-1`, txt: type}),
+ 						veE({tag: "span", clazz: `ve-col-1-7 ve-px-1 ve-text-center`, txt: cr}),
+ 						veE({
+@@ -515,11 +518,12 @@
+ 		const listItem = new ListItem(
+ 			mI,
+ 			eleLi,
+-			mon.name,
++			displayName,
+ 			{
+ 				source,
+ 				type,
+ 				cr,
++				englishName: I18nZhTwContent?.getCanonicalName(mon) || mon.name,
+ 				...ListItem.getCommonValues(mon),
+ 			},
+ 			{
+@@ -602,18 +606,18 @@
+ 
+ 		this._encounterBuilder.render();
+ 
+-		const btnSaveToUrl = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Save to URL</button>`
++		const btnSaveToUrl = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">儲存為網址</button>`
+ 			.vee.onn("click", () => this._sublistManager.pHandleClick_download({isUrl: true, eleCopyEffect: btnSaveToUrl}));
+-		const btnSaveToFile = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Save to File</button>`
++		const btnSaveToFile = veT`<button class="ve-btn ve-btn-default ve-btn-xs">儲存至檔案</button>`
+ 			.vee.onn("click", () => this._sublistManager.pHandleClick_download());
+-		const btnLoadFromFile = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Load from File</button>`
++		const btnLoadFromFile = veT`<button class="ve-btn ve-btn-default ve-btn-xs">從檔案載入</button>`
+ 			.vee.onn("click", evt => this._sublistManager.pHandleClick_upload({isAdditive: evt.shiftKey}));
+-		const btnCopyAsText = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" title="SHIFT for Multi-Line Format">Copy as Text</button>`
++		const btnCopyAsText = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" title="按住 SHIFT 使用多行格式">複製為文字</button>`
+ 			.vee.onn("click", (evt) => this._encounterBuilder.handleClickCopyAsText(evt));
+-		const btnReset = veT`<button class="ve-btn ve-btn-danger ve-btn-xs" title="SHIFT to Reset Players">Reset</button>`
++		const btnReset = veT`<button class="ve-btn ve-btn-danger ve-btn-xs" title="按住 SHIFT 同時重設玩家">重設</button>`
+ 			.vee.onn("click", (evt) => this._sublistManager.pHandleClick_new(evt));
+ 
+-		const btnBackToStatblocks = veT`<button class="ve-btn ve-btn-success ve-btn-xs">Back to Stat Blocks</button>`
++		const btnBackToStatblocks = veT`<button class="ve-btn ve-btn-success ve-btn-xs">返回資料卡</button>`
+ 			.vee.onn("click", (evt) => this._encounterBuilder.handleClickBackToStatblocks(evt));
+ 
+ 		veT`<div class="ve-flex-col ve-w-100">
+@@ -737,7 +741,7 @@
+ 		}
+ 
+ 		const tabMetaStats = new Renderer.utils.TabButton({
+-			label: "Stat Block",
++			label: "資料卡",
+ 			fnChange: () => {
+ 				if (this._btnProf) this._wrpBtnProf.vee.appends(this._btnProf);
+ 				this._tokenDisplay.doShow();
+@@ -765,7 +769,7 @@
+ 				const tabMetas = [
+ 					tabMetaStats,
+ 					new Renderer.utils.TabButton({
+-						label: "Info",
++						label: "資訊",
+ 						fnChange: () => {
+ 							this._tokenDisplay.doHide();
+ 						},
+@@ -773,7 +777,7 @@
+ 						isVisible: hasFluffText,
+ 					}),
+ 					new Renderer.utils.TabButton({
+-						label: "Images",
++						label: "圖片",
+ 						fnChange: () => {
+ 							this._tokenDisplay.doHide();
+ 						},
+@@ -801,7 +805,7 @@
+ 	) {
+ 		Renderer.get().setFirstSection(true);
+ 
+-		const btnScaleCr = !ScaleCreature.isCrInScaleRange(mon) ? null : veT`<button id="btn-scale-cr" title="Scale Creature By CR (Highly Experimental)" class="mon__btn-scale-cr ve-btn ve-btn-xs ve-btn-default ve-popwindow__hidden no-print ve-lst-is-exporting-image__hidden"><span class="glyphicon glyphicon-signal"></span></button>`
++		const btnScaleCr = !ScaleCreature.isCrInScaleRange(mon) ? null : veT`<button id="btn-scale-cr" title="依 CR 縮放生物（高度實驗性）" class="mon__btn-scale-cr ve-btn ve-btn-xs ve-btn-default ve-popwindow__hidden no-print ve-lst-is-exporting-image__hidden"><span class="glyphicon glyphicon-signal"></span></button>`
+ 			.vee.onn("click", (evt) => {
+ 				evt.stopPropagation();
+ 				const win = (evt.view || {}).window;
+@@ -818,7 +822,7 @@
+ 				});
+ 			});
+ 
+-		const btnResetScaleCr = !ScaleCreature.isCrInScaleRange(mon) ? null : veT`<button id="btn-reset-cr" title="Reset CR Scaling" class="mon__btn-reset-cr ve-btn ve-btn-xs ve-btn-default ve-popwindow__hidden no-print ve-lst-is-exporting-image__hidden ve-ml-2"><span class="glyphicon glyphicon-refresh"></span></button>`
++		const btnResetScaleCr = !ScaleCreature.isCrInScaleRange(mon) ? null : veT`<button id="btn-reset-cr" title="重設 CR 縮放" class="mon__btn-reset-cr ve-btn ve-btn-xs ve-btn-default ve-popwindow__hidden no-print ve-lst-is-exporting-image__hidden ve-ml-2"><span class="glyphicon glyphicon-refresh"></span></button>`
+ 			.vee.onn("click", () => Hist.setSubhash(VeCt.HASH_SCALED, null))
+ 			.vee.toggle(isScaledCr);
+ 
+diff --git a/js/render-bestiary.js b/js/render-bestiary.js
+--- a/js/render-bestiary.js
++++ b/js/render-bestiary.js
+@@ -5,6 +5,8 @@
+ class _RenderBestiaryImplBase {
+ 	_style;
+ 
++	_tMeta (text) { return globalThis.I18nZhTwContent?.localizeMonsterMetaText(text) || text; }
++
+ 	/**
+ 	 * @param {object} mon
+ 	 * @param [opts]
+@@ -208,15 +210,16 @@
+ 	}
+ 
+ 	_getCommonHtmlParts_sizeTypeAlignment ({mon, renderer, isInlinedToken}) {
+-		return `<tr><td colspan="6"><div ${isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><i>${Renderer.monster.getTypeAlignmentPart(mon, {renderer})}</i></div></td></tr>`;
++		return `<tr><td colspan="6"><div ${isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><i>${this._tMeta(Renderer.monster.getTypeAlignmentPart(mon, {renderer}))}</i></div></td></tr>`;
+ 	}
+ 
+ 	/* ----- */
+ 
+ 	_getCommonHtmlParts_hitPoints ({mon, isInlinedToken}) {
+-		const label = this._style === "classic" ? "Hit Points" : "HP";
+-		const ptTitle = this._style === "classic" ? "" : `title="Hit Points"`;
+-		const rendered = mon.hp == null ? "\u2014" : Renderer.monster.getRenderedHp(mon.hp);
++		const label = this._style === "classic" ? "生命值" : "HP";
++		const ptTitle = this._style === "classic" ? "" : `title="生命值"`;
++		const hp = mon._displayHp || mon.hp;
++		const rendered = hp == null ? "\u2014" : this._tMeta(Renderer.monster.getRenderedHp(hp));
+ 		return `<tr><td colspan="6"><div ${isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><strong ${ptTitle}>${label}</strong> ${rendered}</div></td></tr>`;
+ 	}
+ 
+@@ -228,7 +231,8 @@
+ 	}
+ 
+ 	_getCommonHtmlParts_speed ({mon, isInlinedToken}) {
+-		return `<tr><td colspan="6"><div ${this._style !== "classic" && isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><strong>Speed</strong> ${Parser.getSpeedString(mon, {styleHint: this._style})}</div></td></tr>`;
++		const monDisplay = mon._displaySpeed ? {...mon, speed: mon._displaySpeed} : mon;
++		return `<tr><td colspan="6"><div ${this._style !== "classic" && isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><strong>速度</strong> ${this._tMeta(Parser.getSpeedString(monDisplay, {styleHint: this._style}))}</div></td></tr>`;
+ 	}
+ 
+ 	/* ----- */
+@@ -240,71 +244,73 @@
+ 	/* ----- */
+ 
+ 	_getCommonHtmlParts_skills ({mon, renderer}) {
+-		return mon.skill ? `<tr><td colspan="6"><strong>Skills</strong> ${Renderer.monster.getSkillsString(renderer, mon)}</td></tr>` : "";
++		return mon.skill ? `<tr><td colspan="6"><strong>技能</strong> ${this._tMeta(Renderer.monster.getSkillsString(renderer, mon))}</td></tr>` : "";
+ 	}
+ 
+ 	_getCommonHtmlParts_tools ({mon, renderer}) {
+-		return mon.tool ? `<tr><td colspan="6"><strong>Tools</strong> ${Renderer.monster.getToolsString(renderer, mon, {styleHint: this._style})}</td></tr>` : "";
++		return mon.tool ? `<tr><td colspan="6"><strong>工具</strong> ${this._tMeta(Renderer.monster.getToolsString(renderer, mon, {styleHint: this._style}))}</td></tr>` : "";
+ 	}
+ 
+ 	_getCommonHtmlParts_vulnerabilities ({mon}) {
+-		const label = this._style === "classic" ? "Damage Vulnerabilities" : "Vulnerabilities";
+-		return mon.vulnerable ? `<tr><td colspan="6"><strong>${label}</strong> ${Parser.getFullImmRes(mon.vulnerable, {isTitleCase: this._style !== "classic"})}</td></tr>` : "";
++		const label = this._style === "classic" ? "傷害易傷" : "易傷";
++		const vulnerable = mon._displayVulnerable || mon.vulnerable;
++		return vulnerable ? `<tr><td colspan="6"><strong>${label}</strong> ${this._tMeta(Parser.getFullImmRes(vulnerable, {isTitleCase: this._style !== "classic"}))}</td></tr>` : "";
+ 	}
+ 
+ 	_getCommonHtmlParts_resistances ({mon}) {
+-		const label = this._style === "classic" ? "Damage Resistances" : "Resistances";
+-		return mon.resist ? `<tr><td colspan="6"><strong>${label}</strong> ${Parser.getFullImmRes(mon.resist, {isTitleCase: this._style !== "classic"})}</td></tr>` : "";
++		const label = this._style === "classic" ? "傷害抗性" : "抗性";
++		const resist = mon._displayResist || mon.resist;
++		return resist ? `<tr><td colspan="6"><strong>${label}</strong> ${this._tMeta(Parser.getFullImmRes(resist, {isTitleCase: this._style !== "classic"}))}</td></tr>` : "";
+ 	}
+ 
+ 	_getCommonHtmlParts_senses ({mon}) {
+ 		const pt = Renderer.monster.getSensesPart(mon, {isTitleCase: this._style !== "classic"});
+-		return pt ? `<tr><td colspan="6"><strong>Senses</strong> ${pt}</td></tr>` : "";
++		return pt ? `<tr><td colspan="6"><strong>感官</strong> ${this._tMeta(pt)}</td></tr>` : "";
+ 	}
+ 
+ 	_getCommonHtmlParts_languages ({mon}) {
+-		return `<tr><td colspan="6"><strong>Languages</strong> ${Renderer.monster.getRenderedLanguages(mon.languages, {styleHint: this._style})}</td></tr>`;
++		return `<tr><td colspan="6"><strong>語言</strong> ${Renderer.monster.getRenderedLanguages(mon._displayLanguages || mon.languages, {styleHint: this._style})}</td></tr>`;
+ 	}
+ 
+ 	/* ----- */
+ 
+ 	_getCommonHtmlParts_actions ({mon, entsAction}) {
+-		return `${entsAction?.length ? `${this._getRenderedSectionHeader({mon, title: "Actions", prop: "action"})}
++		return `${entsAction?.length ? `${this._getRenderedSectionHeader({mon, title: "動作", prop: "action"})}
+ 		${this._getRenderedSection({mon, prop: "action", entries: entsAction})}` : ""}`;
+ 	}
+ 
+ 	_getCommonHtmlParts_bonusActions ({mon, entsBonusAction}) {
+-		return `${entsBonusAction?.length ? `${this._getRenderedSectionHeader({mon, title: "Bonus Actions", prop: "bonus"})}
++		return `${entsBonusAction?.length ? `${this._getRenderedSectionHeader({mon, title: "附贈動作", prop: "bonus"})}
+ 		${this._getRenderedSection({mon, prop: "bonus", entries: entsBonusAction})}` : ""}`;
+ 	}
+ 
+ 	_getCommonHtmlParts_reactions ({mon, entsReaction}) {
+-		return `${entsReaction?.length ? `${this._getRenderedSectionHeader({mon, title: "Reactions", prop: "reaction"})}
++		return `${entsReaction?.length ? `${this._getRenderedSectionHeader({mon, title: "反應", prop: "reaction"})}
+ 		${this._getRenderedSection({mon, prop: "reaction", entries: entsReaction})}` : ""}`;
+ 	}
+ 
+ 	_getCommonHtmlParts_legendaryActions ({mon, entsLegendaryAction}) {
+ 		if (!entsLegendaryAction?.length) return "";
+ 		const ptHeader = Renderer.monster.getLegendaryActionIntro(mon, {styleHint: this._style});
+-		return `${this._getRenderedSectionHeader({mon, title: "Legendary Actions", prop: "legendary"})}
++		return `${this._getRenderedSectionHeader({mon, title: "傳奇動作", prop: "legendary"})}
+ 		${this._getRenderedSection({mon, prop: "legendary", entries: entsLegendaryAction, ptHeader})}`;
+ 	}
+ 
+ 	_getCommonHtmlParts_mythicActions ({mon, entsMythicAction}) {
+ 		if (!entsMythicAction?.length) return "";
+-		return `${this._getRenderedSectionHeader({mon, title: "Mythic Actions", prop: "mythic"})}
++		return `${this._getRenderedSectionHeader({mon, title: "神話動作", prop: "mythic"})}
+ 		${this._getRenderedSection({mon, prop: "mythic", entries: entsMythicAction})}`;
+ 	}
+ 
+ 	/* ----- */
+ 
+ 	_getCommonHtmlParts_lairActions ({legGroup}) {
+-		return `${legGroup && legGroup.lairActions ? `<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner ve-stats__sect-header-inner--non-statblock">Lair Actions</h3></td></tr>
++		return `${legGroup && legGroup.lairActions ? `<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner ve-stats__sect-header-inner--non-statblock">巢穴動作</h3></td></tr>
+ 		${this._getRenderedSection({prop: "lairaction", entries: legGroup.lairActions, depth: -1})}` : ""}`;
+ 	}
+ 
+ 	_getCommonHtmlParts_regionalEffects ({legGroup}) {
+-		return `${legGroup && legGroup.regionalEffects ? `<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner ve-stats__sect-header-inner--non-statblock">Regional Effects</h3></td></tr>
++		return `${legGroup && legGroup.regionalEffects ? `<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner ve-stats__sect-header-inner--non-statblock">區域效應</h3></td></tr>
+ 		${this._getRenderedSection({prop: "regionaleffect", entries: legGroup.regionalEffects, depth: -1})}` : ""}`;
+ 	}
+ 
+@@ -320,7 +326,7 @@
+ 		const ptVariants = renderedVariants ? `<tr><td colspan="6">${renderedVariants}</td></tr>` : "";
+ 
+ 		const ptFooter = `${mon.footer ? `<tr><td colspan="6" class="ve-stats__sect-row-inner">${renderer.render({entries: mon.footer})}</td></tr>` : ""}
+-		${mon.summonedBySpell ? `<tr><td colspan="6"><b>Summoned By:</b> ${renderer.render(`{@spell ${mon.summonedBySpell}}`)}</td></tr>` : ""}
++		${mon.summonedBySpell ? `<tr><td colspan="6"><b>召喚法術：</b> ${renderer.render(`{@spell ${mon.summonedBySpell}}`)}</td></tr>` : ""}
+ 		${ptEnvironment ? `<tr><td colspan="6">${ptEnvironment}</td></tr>` : ""}
+ 		${ptTreasure ? `<tr><td colspan="6">${ptTreasure}</td></tr>` : ""}
+ 		<tr><td colspan="6">${ptSource}</td></tr>`.trim();
+@@ -370,18 +376,18 @@
+ 
+ 	_getHtmlPtEnvironment (mon) {
+ 		if (!mon.environment?.length) return "";
+-		return `<div><b>${this._style === "classic" ? "Environment" : "Habitat"}:</b> ${Renderer.monster.getRenderedEnvironment(mon.environment)}</div>`;
++		return `<div><b>${this._style === "classic" ? "環境" : "棲地"}：</b> ${this._tMeta(Renderer.monster.getRenderedEnvironment(mon.environment))}</div>`;
+ 	}
+ 
+ 	_getHtmlPtTreasure (mon) {
+ 		if (!mon.treasure?.length) return "";
+-		return `<div><b>Treasure:</b> ${Renderer.monster.getRenderedTreasure(mon.treasure)}</div>`;
++		return `<div><b>寶藏：</b> ${this._tMeta(Renderer.monster.getRenderedTreasure(mon.treasure))}</div>`;
+ 	}
+ 
+ 	/* -------------------------------------------- */
+ 
+ 	_getTdChallenge (mon, opts) {
+-		const ptLabel = `<strong ${this._style === "classic" ? "" : `title="Challenge Rating"`}>${this._style !== "classic" ? "CR" : "Challenge"}</strong>`;
++		const ptLabel = `<strong ${this._style === "classic" ? "" : `title="挑戰等級"`}>${this._style !== "classic" ? "CR" : "挑戰等級"}</strong>`;
+ 
+ 		if (Parser.crToNumber(mon.cr) >= VeCt.CR_UNKNOWN && this._style === "classic") return `<td colspan="3">${ptLabel} <span>\u2014</span></td>`;
+ 
+@@ -425,25 +431,28 @@
+ 	/* ----- */
+ 
+ 	_getHtmlParts_armorClass ({mon, renderer, isInlinedToken}) {
+-		return `<tr><td colspan="6"><div ${isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><strong>Armor Class</strong> ${mon.ac == null ? "\u2014" : Parser.acToFull(mon.ac, {renderer})}</div></td></tr>`;
++		const ac = mon._displayAc || mon.ac;
++		return `<tr><td colspan="6"><div ${isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><strong>護甲等級</strong> ${ac == null ? "\u2014" : this._tMeta(Parser.acToFull(ac, {renderer}))}</div></td></tr>`;
+ 	}
+ 
+ 	/* ----- */
+ 
+ 	_getHtmlParts_initiative ({mon}) {
+-		return mon.initiative ? `<tr><td colspan="6"><strong>Initiative</strong> ${Renderer.monster.getInitiativePart(mon)}</td></tr>` : "";
++		return mon.initiative ? `<tr><td colspan="6"><strong>先攻</strong> ${Renderer.monster.getInitiativePart(mon)}</td></tr>` : "";
+ 	}
+ 
+ 	_getHtmlParts_savingThrows ({mon}) {
+-		return mon.save ? `<tr><td colspan="6"><strong>Saving Throws</strong> ${Renderer.monster.getSavesPart(mon)}</td></tr>` : "";
++		return mon.save ? `<tr><td colspan="6"><strong>豁免</strong> ${this._tMeta(Renderer.monster.getSavesPart(mon))}</td></tr>` : "";
+ 	}
+ 
+ 	_getHtmlParts_damageImmunities ({mon}) {
+-		return mon.immune ? `<tr><td colspan="6"><strong>Damage Immunities</strong> ${Parser.getFullImmRes(mon.immune)}</td></tr>` : "";
++		const immune = mon._displayImmune || mon.immune;
++		return immune ? `<tr><td colspan="6"><strong>傷害免疫</strong> ${this._tMeta(Parser.getFullImmRes(immune))}</td></tr>` : "";
+ 	}
+ 
+ 	_getHtmlParts_conditionImmunities ({mon}) {
+-		return mon.conditionImmune ? `<tr><td colspan="6"><strong>Condition Immunities</strong> ${Parser.getFullCondImm(mon.conditionImmune)}</td></tr>` : "";
++		const conditionImmune = mon._displayConditionImmune || mon.conditionImmune;
++		return conditionImmune ? `<tr><td colspan="6"><strong>狀態免疫</strong> ${this._tMeta(Parser.getFullCondImm(conditionImmune))}</td></tr>` : "";
+ 	}
+ 
+ 	/* ----- */
+@@ -451,7 +460,7 @@
+ 	_getHtmlParts_pb ({mon}) {
+ 		const ptPb = Renderer.monster.getPbPart(mon);
+ 		if (!ptPb) return `<td colspan="3"></td>`;
+-		return `<td colspan="3" class="ve-text-right"><strong>Proficiency Bonus</strong> ${ptPb}</td>`;
++		return `<td colspan="3" class="ve-text-right"><strong>熟練加值</strong> ${ptPb}</td>`;
+ 	}
+ 
+ 	/* ----- */
+@@ -576,8 +585,8 @@
+ 			${htmlPtPb}
+ 		</tr>
+ 
+-		<tr>${opts.selSummonSpellLevel ? veT`<td colspan="6"><strong class="ve-mr-2">Spell Level</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
+-		<tr>${opts.selSummonClassLevel ? veT`<td colspan="6"><strong class="ve-mr-2">${opts.classLevelScalerClass ? "Class Level" : "Level"}</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
++		<tr>${opts.selSummonSpellLevel ? veT`<td colspan="6"><strong class="ve-mr-2">法術環階</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
++		<tr>${opts.selSummonClassLevel ? veT`<td colspan="6"><strong class="ve-mr-2">${opts.classLevelScalerClass ? "職業等級" : "等級"}</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
+ 
+ 		${htmlPtTraits}
+ 		${htmlPtActions}
+@@ -625,10 +634,11 @@
+ 	/* ----- */
+ 
+ 	_getHtmlParts_armorClass ({mon, renderer, isInlinedToken}) {
++		const ac = mon._displayAc || mon.ac;
+ 		return `<tr><td colspan="6">
+ 			<div class="ve-split-v-center ve-lst-is-exporting-image__no-wrap ${isInlinedToken ? `ve-stats__wrp-avoid-token` : ""}">
+-				<div><strong title="Armor Class">AC</strong> ${mon.ac == null ? "\u2014" : Parser.acToFull(mon.ac, {renderer})}</div>
+-				<div><strong>Initiative</strong> ${Renderer.monster.getInitiativePart(mon)}</div>
++				<div><strong title="護甲等級">AC</strong> ${ac == null ? "\u2014" : this._tMeta(Parser.acToFull(ac, {renderer}))}</div>
++				<div><strong>先攻</strong> ${Renderer.monster.getInitiativePart(mon)}</div>
+ 			</div>
+ 		</td></tr>`;
+ 	}
+@@ -637,27 +647,32 @@
+ 
+ 	_getHtmlParts_savingThrows ({mon, renderer}) {
+ 		if (!mon.save?.special) return "";
+-		return `<tr><td colspan="6"><strong>Saving Throws</strong> ${Renderer.monster.getSave(renderer, "special", mon.save.special)}</td></tr>`;
++		return `<tr><td colspan="6"><strong>豁免</strong> ${this._tMeta(Renderer.monster.getSave(renderer, "special", mon.save.special))}</td></tr>`;
+ 	}
+ 
+ 	/* ----- */
+ 
+ 	_getHtmlParts_immunities ({mon}) {
+-		const pt = Renderer.monster.getImmunitiesCombinedPart(mon);
++		const monDisplay = {
++			...mon,
++			immune: mon._displayImmune || mon.immune,
++			conditionImmune: mon._displayConditionImmune || mon.conditionImmune,
++		};
++		const pt = Renderer.monster.getImmunitiesCombinedPart(monDisplay);
+ 		if (!pt) return "";
+-		return `<tr><td colspan="6"><strong>Immunities</strong> ${pt}</td></tr>`;
++		return `<tr><td colspan="6"><strong>免疫</strong> ${this._tMeta(pt)}</td></tr>`;
+ 	}
+ 
+ 	_getHtmlParts_gear ({mon}) {
+ 		const pt = Renderer.monster.getGearPart(mon);
+ 		if (!pt) return "";
+-		return `<tr><td colspan="6"><strong>Gear</strong> ${pt}</td></tr>`;
++		return `<tr><td colspan="6"><strong>裝備</strong> ${pt}</td></tr>`;
+ 	}
+ 
+ 	/* ----- */
+ 
+ 	_getHtmlParts_traits ({mon, entsTrait}) {
+-		return `${entsTrait?.length ? `${this._getRenderedSectionHeader({mon, title: "Traits", prop: "trait"})}
++		return `${entsTrait?.length ? `${this._getRenderedSectionHeader({mon, title: "特質", prop: "trait"})}
+ 		${this._getRenderedSection({prop: "trait", entries: entsTrait})}` : ""}`;
+ 	}
+ 
+@@ -769,8 +784,8 @@
+ 			${this._getTdChallenge(mon, opts)}
+ 		</tr>
+ 
+-		<tr>${opts.selSummonSpellLevel ? veT`<td colspan="6"><strong class="ve-mr-2">Spell Level</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
+-		<tr>${opts.selSummonClassLevel ? veT`<td colspan="6"><strong class="ve-mr-2">${opts.classLevelScalerClass ? "Class Level" : "Level"}</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
++		<tr>${opts.selSummonSpellLevel ? veT`<td colspan="6"><strong class="ve-mr-2">法術環階</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
++		<tr>${opts.selSummonClassLevel ? veT`<td colspan="6"><strong class="ve-mr-2">${opts.classLevelScalerClass ? "職業等級" : "等級"}</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
+ 
+ 		${htmlPtTraits}
+ 		${htmlPtActions}
+@@ -816,9 +831,9 @@
+ 		${Renderer.utils.getBorderTr()}
+ 		${Renderer.utils.getNameTr(legGroup)}
+ 		<tr><td colspan="6">
+-			${legGroup.lairActions && legGroup.lairActions.length ? Renderer.get().render({type: "entries", entries: [{type: "entries", name: "Lair Actions", entries: legGroup.lairActions}]}) : ""}
+-			${legGroup.regionalEffects && legGroup.regionalEffects.length ? Renderer.get().render({type: "entries", entries: [{type: "entries", name: "Regional Effects", entries: legGroup.regionalEffects}]}) : ""}
+-			${legGroup.mythicEncounter && legGroup.mythicEncounter.length ? Renderer.get().render({type: "entries", entries: [{type: "entries", name: `<i title="This will display the creature's name when this legendary group is referenced from a creature statblock." class="ve-help-subtle">&lt;Creature Name&gt;</i> as a Mythic Encounter`, entries: legGroup.mythicEncounter}]}) : ""}
++			${legGroup.lairActions && legGroup.lairActions.length ? Renderer.get().render({type: "entries", entries: [{type: "entries", name: "巢穴動作", entries: legGroup.lairActions}]}) : ""}
++			${legGroup.regionalEffects && legGroup.regionalEffects.length ? Renderer.get().render({type: "entries", entries: [{type: "entries", name: "區域效應", entries: legGroup.regionalEffects}]}) : ""}
++			${legGroup.mythicEncounter && legGroup.mythicEncounter.length ? Renderer.get().render({type: "entries", entries: [{type: "entries", name: `<i title="從生物資料卡引用這個傳奇群組時，這裡會顯示該生物的名稱。" class="ve-help-subtle">&lt;生物名稱&gt;</i>的神話遭遇`, entries: legGroup.mythicEncounter}]}) : ""}
+ 		</td></tr>
+ 		${Renderer.utils.getBorderTr()}`;
+ 	}
+diff --git a/js/render.js b/js/render.js
+--- a/js/render.js
++++ b/js/render.js
+@@ -1445,20 +1445,20 @@
+ 
+ 		if (this._SPELLCASTING_PROPS.some(prop => entry[prop])) {
+ 			const tempList = {type: "list", style: "list-hang-notitle", items: [], data: {isSpellList: true}};
+-			if (entry.constant && !hidden.has("constant")) tempList.items.push({type: "itemSpell", name: `Constant:`, entry: this._renderSpellcasting_getRenderableList(entry.constant).join(", ")});
+-			if (entry.will && !hidden.has("will")) tempList.items.push({type: "itemSpell", name: `At will:`, entry: this._renderSpellcasting_getRenderableList(entry.will).join(", ")});
++			if (entry.constant && !hidden.has("constant")) tempList.items.push({type: "itemSpell", name: `常駐：`, entry: this._renderSpellcasting_getRenderableList(entry.constant).join("、")});
++			if (entry.will && !hidden.has("will")) tempList.items.push({type: "itemSpell", name: `隨意：`, entry: this._renderSpellcasting_getRenderableList(entry.will).join("、")});
+ 
+ 			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "recharge", fnGetDurationText: num => `{@recharge ${num}|m}`, isSkipPrefix: true});
+-			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "legendary", fnGetDurationText: num => ` legendary action${num === 1 ? "" : "s"}`});
+-			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "charges", fnGetDurationText: num => ` charge${num === 1 ? "" : "s"}`});
+-			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "rest", durationText: "/rest"});
+-			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "restLong", durationText: "/long rest"});
+-			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "daily", durationText: "/day"});
+-			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "weekly", durationText: "/week"});
+-			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "monthly", durationText: "/month"});
+-			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "yearly", durationText: "/year"});
++			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "legendary", fnGetDurationText: () => `次傳奇動作`});
++			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "charges", fnGetDurationText: () => `發充能`});
++			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "rest", durationText: "次／休息"});
++			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "restLong", durationText: "次／長休"});
++			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "daily", durationText: "次／日"});
++			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "weekly", durationText: "次／週"});
++			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "monthly", durationText: "次／月"});
++			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "yearly", durationText: "次／年"});
+ 
+-			if (entry.ritual && !hidden.has("ritual")) tempList.items.push({type: "itemSpell", name: `Rituals:`, entry: this._renderSpellcasting_getRenderableList(entry.ritual).join(", ")});
++			if (entry.ritual && !hidden.has("ritual")) tempList.items.push({type: "itemSpell", name: `儀式：`, entry: this._renderSpellcasting_getRenderableList(entry.ritual).join("、")});
+ 			tempList.items = tempList.items.filter(it => it.entry !== "");
+ 			if (tempList.items.length) toRender[0].entries.push(tempList);
+ 		}
+@@ -1473,13 +1473,13 @@
+ 			for (const lvl of lvls) {
+ 				const spells = entry.spells[lvl];
+ 				if (spells) {
+-					let levelCantrip = `${Parser.spLevelToFull(lvl)}${(lvl === 0 ? "s" : " level")}`;
+-					let slotsAtWill = ` (at will)`;
++					let levelCantrip = globalThis.I18nZhTwContent?.getSpellLevel(lvl, {isIncludeWord: true}) || `${Parser.spLevelToFull(lvl)}${(lvl === 0 ? "s" : " level")}`;
++					let slotsAtWill = `（隨意）`;
+ 					const slots = spells.slots;
+-					if (slots >= 0) slotsAtWill = slots > 0 ? ` (${slots} slot${slots > 1 ? "s" : ""})` : ``;
++					if (slots >= 0) slotsAtWill = slots > 0 ? `（${slots}個法術位）` : ``;
+ 					if (spells.lower && spells.lower !== lvl) {
+-						levelCantrip = `${Parser.spLevelToFull(spells.lower)}-${levelCantrip}`;
+-						if (slots >= 0) slotsAtWill = slots > 0 ? ` (${slots} ${Parser.spLevelToFull(lvl)}-level slot${slots > 1 ? "s" : ""})` : ``;
++						levelCantrip = `${globalThis.I18nZhTwContent?.getSpellLevel(spells.lower) || Parser.spLevelToFull(spells.lower)}–${levelCantrip}`;
++						if (slots >= 0) slotsAtWill = slots > 0 ? `（${slots}個${globalThis.I18nZhTwContent?.getSpellLevel(lvl) || Parser.spLevelToFull(lvl)}法術位）` : ``;
+ 					}
+ 					tempList.items.push({type: "itemSpell", name: `${levelCantrip}${slotsAtWill}:`, entry: this._renderSpellcasting_getRenderableList(spells.spells).join(", ") || "\u2014"});
+ 				}
+@@ -1508,7 +1508,7 @@
+ 					const isHideEach = !per && per.length === 1;
+ 					tempList.items.push({
+ 						type: "itemSpell",
+-						name: `${isSkipPrefix ? "" : lvl}${fnGetDurationText ? fnGetDurationText(lvl) : durationText}${isHideEach ? "" : ` each`}:`,
++						name: `${isSkipPrefix ? "" : lvl}${fnGetDurationText ? fnGetDurationText(lvl) : durationText}${isHideEach ? "" : `（各自）`}：`,
+ 						entry: this._renderSpellcasting_getRenderableList(per).join(", "),
+ 					});
+ 					return;
+@@ -1516,7 +1516,7 @@
+ 
+ 				tempList.items.push({
+ 					type: "itemSpell",
+-					name: `${isSkipPrefix ? "" : k}${fnGetDurationText ? fnGetDurationText(lvl) : durationText}:`,
++					name: `${isSkipPrefix ? "" : k}${fnGetDurationText ? fnGetDurationText(lvl) : durationText}：`,
+ 					entry: this._renderSpellcasting_getRenderableList(per).join(", "),
+ 				});
+ 			});
+@@ -2297,9 +2297,9 @@
+ 				if (tag === "@recharge") {
+ 					const [, flagsRaw] = Renderer.splitTagByPipe(text);
+ 					const flags = flagsRaw ? flagsRaw.split("") : null;
+-					textStack[0] += `${flags && flags.includes("m") ? "" : "("}Recharge `;
++					textStack[0] += `${flags && flags.includes("m") ? "" : "（"}充能 `;
+ 					this._recursiveRender(fauxEntry, textStack, meta);
+-					textStack[0] += `${flags && flags.includes("m") ? "" : ")"}`;
++					textStack[0] += `${flags && flags.includes("m") ? "" : "）"}`;
+ 				} else {
+ 					this._recursiveRender(fauxEntry, textStack, meta);
+ 				}
+@@ -5847,8 +5847,8 @@
+ 				}
+ 				case "@recharge": {
+ 					const asNum = Number(rollText || 6);
+-					if (isNaN(asNum)) return `(Recharge ?)`;
+-					return `(Recharge ${asNum}${asNum < 6 ? `\u20136` : ""})`;
++					if (isNaN(asNum)) return `（充能 ?）`;
++					return `（充能 ${asNum}${asNum < 6 ? `\u20136` : ""}）`;
+ 				}
+ 				case "@chance": {
+ 					return displayText || `${rollText} percent`;
+diff --git a/js/utils.js b/js/utils.js
+--- a/js/utils.js
++++ b/js/utils.js
+@@ -4603,10 +4603,25 @@
+ 
+ 	static async _pLoadSourceEntities ({indexKey = null, isUnmerged = false, file}) {
+ 		await this._pInitPreData();
++		const url = `${Renderer.get().baseUrl}data/${this._DIR}/${file}`;
++
++		// Monster `_copy` records inherit most of their visible text from other
++		// stat blocks. Apply the zh-TW sidecar to each raw source before resolving
++		// those copies, so inherited traits/actions are assembled in Chinese too.
++		if (!isUnmerged && ["monster", "monsterFluff"].includes(this._PROP) && globalThis.I18nZhTwContent?.pApplyEntities) {
++			const json = MiscUtil.copyFast(await DataUtil.loadRawJSON(url));
++			let data = (json[this._PROP] || []).filter(MultiSourceUtil.isEntityIndexKeyMatch.bind(this, indexKey, this._PROP));
++			data = await globalThis.I18nZhTwContent.pApplyEntities({prop: this._PROP, file, entities: data});
++			json[this._PROP] = data;
++			await DataUtil.pDoMetaMerge(CryptUtil.uid(), json, {isSkipMetaMergeCache: true});
++			data = (json[this._PROP] || []).filter(MultiSourceUtil.isEntityIndexKeyMatch.bind(this, indexKey, this._PROP));
++			if (!this._IS_MUT_ENTITIES) return data;
++			return data.map(ent => this._mutEntity(ent));
++		}
+ 
+ 		const fnLoad = isUnmerged ? DataUtil.loadRawJSON.bind(DataUtil) : DataUtil.loadJSON.bind(DataUtil);
+ 
+-		let data = await fnLoad(`${Renderer.get().baseUrl}data/${this._DIR}/${file}`);
++		let data = await fnLoad(url);
+ 		data = (data[this._PROP] || []).filter(MultiSourceUtil.isEntityIndexKeyMatch.bind(this, indexKey, this._PROP));
+ 		if (globalThis.I18nZhTwContent?.pApplyEntities) {
+ 			data = await globalThis.I18nZhTwContent.pApplyEntities({prop: this._PROP, file, entities: data});

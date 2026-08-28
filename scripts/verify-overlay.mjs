@@ -38,6 +38,11 @@ const required = [
 	"data/zh-TW/items/items-base.json",
 	"data/zh-TW/items/magicvariants.json",
 	"data/zh-TW/items/fluff-items.json",
+	"data/zh-TW/bestiary/index.json",
+	"data/zh-TW/bestiary/bestiary-mm.json",
+	"data/zh-TW/bestiary/bestiary-xmm.json",
+	"data/zh-TW/bestiary/fluff-bestiary-mm.json",
+	"data/zh-TW/bestiary/legendarygroups.json",
 	"js/zh-tw/class-i18n.js",
 	"js/zh-tw/class-body-i18n.js",
 	"js/zh-tw/site-i18n.js",
@@ -57,6 +62,9 @@ const required = [
 	"node/zh-tw/test-item-i18n.mjs",
 	"node/zh-tw/test-item-page-runtime.mjs",
 	"node/zh-tw/validate-item-translations.mjs",
+	"node/zh-tw/test-monster-i18n.mjs",
+	"node/zh-tw/test-monster-page-runtime.mjs",
+	"node/zh-tw/validate-monster-translations.mjs",
 ];
 
 for (const relativePath of required) {
@@ -92,6 +100,8 @@ for (const script of [
 	"js/races.js",
 	"js/render-races.js",
 	"js/items.js",
+	"js/bestiary.js",
+	"js/render-bestiary.js",
 	"js/render-items.js",
 	"js/utils.js",
 	"js/utils-list.js",
@@ -120,5 +130,8 @@ runNode("node/zh-tw/test-content-i18n.mjs");
 runNode("node/zh-tw/validate-item-translations.mjs");
 runNode("node/zh-tw/test-item-i18n.mjs");
 runNode("node/zh-tw/test-item-page-runtime.mjs");
+runNode("node/zh-tw/validate-monster-translations.mjs");
+runNode("node/zh-tw/test-monster-i18n.mjs");
+runNode("node/zh-tw/test-monster-page-runtime.mjs");
 execFileSync("git", ["diff", "--check"], {cwd: upstreamRoot, stdio: "inherit"});
-console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, and items overlay verification passed.");
+console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, items, and monsters overlay verification passed.");

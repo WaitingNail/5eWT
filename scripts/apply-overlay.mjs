@@ -8,6 +8,7 @@ const upstreamRoot = path.join(projectRoot, "vendor", "5etools-src");
 const patchPaths = [
 	path.join(projectRoot, "patches", "0001-zh-tw-classes-runtime.patch"),
 	path.join(projectRoot, "patches", "0002-zh-tw-items-runtime.patch"),
+	path.join(projectRoot, "patches", "0003-zh-tw-monsters-runtime.patch"),
 ];
 const copyRoots = [
   "requirements-zh-tw.txt",
@@ -50,12 +51,19 @@ const canGitApply = (patchPath, args) => {
 };
 const runGitApply = (patchPath, args) => execFileSync("git", ["apply", ...args, patchPath], {cwd: upstreamRoot, stdio: "inherit"});
 
-for (const patchPath of patchPaths) {
-	if (canGitApply(patchPath, [])) {
-		runGitApply(patchPath, []);
-	} else if (!canGitApply(patchPath, ["--reverse"])) {
-		throw new Error(`zh-TW overlay patch does not apply cleanly: ${path.basename(patchPath)}`);
+
+// The runtime patches intentionally overlap (later stages extend shared data
+// loading and rendering code). If the final patch can be reversed, the whole
+// ordered stack is already present; checking older patches independently would
+// fail because their context has since been extended by the newer patches.
+if (!canGitApply(patchPaths.at(-1), ["--reverse"])) {
+	for (const patchPath of patchPaths) {
+		if (canGitApply(patchPath, [])) {
+			runGitApply(patchPath, []);
+		} else if (!canGitApply(patchPath, ["--reverse"])) {
+			throw new Error(`zh-TW overlay patch does not apply cleanly: ${path.basename(patchPath)}`);
+		}
 	}
 }
 
-console.log("Applied zh-TW interface, Class, rules, spells, character-options, and items overlay; assets were refreshed.");
+console.log("Applied zh-TW interface, Class, rules, spells, character-options, items, and monsters overlay; assets were refreshed.");

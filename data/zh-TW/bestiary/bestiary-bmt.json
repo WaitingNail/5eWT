@@ -1,0 +1,6255 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "高階拘禁無人機",
+			"source": "BMT",
+			"page": 135,
+			"_copy": {
+				"name": "Shield Guardian",
+				"source": "MM",
+				"_mod": {
+					"*": [
+						{
+							"mode": "replaceTxt",
+							"replace": "shield guardian",
+							"with": "drone"
+						},
+						{
+							"mode": "replaceTxt",
+							"replace": "guardian",
+							"with": "drone"
+						}
+					],
+					"trait": {
+						"mode": "removeArr",
+						"names": "Bound"
+					},
+					"action": [
+						{
+							"mode": "appendArr",
+							"items": {
+								"name": "拘禁球",
+								"entries": [
+									"無人機向距離自身30尺內的一個生物射出一個微型魔法力場球。該生物必須成功透過{@dc 15}的體質豁免，否則被包裹進法球中，球體會膨脹到足以容納該生物的大小。當被包裹在球中時，生物無需呼吸、進食或飲水，也不會衰老。球體無法被任何東西穿過，任何生物也無法透過傳送或位面旅行的方式進入或離開球內。作為附贈動作，無人機能夠將球體及其內容朝著任何方向移動30尺。在球體上成功施展{@spell Dispel Magic||解除魔法}法術（{@dc 15}）能夠將它摧毀。否則，球體會保持原狀，直到無人機作為動作結束該效果或無人機被摧毀。一架無人機只能同時啟用一個拘禁球；如果它在已經存在一個啟用的拘禁球的情況下創造另一個，那麼第一個球體便會消失，將裡面的生物放出來。"
+								],
+								"ENG_name": "Detention Orb"
+							}
+						}
+					]
+				}
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"tokenCredit": "MOAI",
+			"tokenCustom": true,
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Advanced Detention Drone"
+		},
+		{
+			"name": "狂傲殺手",
+			"source": "BMT",
+			"page": 45,
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"{@item studded leather armor|PHB|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 91,
+				"formula": "14d8 + 28"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40
+			},
+			"str": 10,
+			"dex": 18,
+			"con": 15,
+			"int": 18,
+			"wis": 14,
+			"cha": 16,
+			"save": {
+				"dex": "+7",
+				"int": "+7"
+			},
+			"skill": {
+				"deception": "+9",
+				"perception": "+5",
+				"stealth": "+10"
+			},
+			"senses": [
+				"blindsight 10 ft."
+			],
+			"passive": 15,
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"通用語",
+				"盜賊黑話",
+				"外加任何一種語言"
+			],
+			"cr": {
+				"cr": "5",
+				"lair": "6"
+			},
+			"trait": [
+				{
+					"name": "傳奇抗性（2/日）",
+					"entries": [
+						"如果刺客在一次豁免檢定中失敗，它可以選擇直接成功豁免。"
+					],
+					"ENG_name": "Legendary Resistance (2/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"刺客進行兩次毒刃攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "毒刃",
+					"entries": [
+						"{@atk mw,rw} {@hit 7} 命中，觸及5尺或射程60尺，單一目標。{@h}6（{@damage 1d4 + 4}）穿刺傷害外加5（{@damage 1d10}）毒素傷害。"
+					],
+					"ENG_name": "Poison Blade"
+				}
+			],
+			"reaction": [
+				{
+					"name": "直覺閃避",
+					"entries": [
+						"當刺客所能夠看見的攻擊手以攻擊命中刺客時，刺客可以減半這次攻擊對它的傷害。"
+					],
+					"ENG_name": "Uncanny Dodge"
+				}
+			],
+			"legendary": [
+				{
+					"name": "狡黠",
+					"entries": [
+						"刺客掙脫非魔法的拘束，並解除自身的{@condition grappled||受擒}狀態，隨後其可移動至多等於其速度的距離，且不會引發藉機攻擊。"
+					],
+					"ENG_name": "Cunning"
+				},
+				{
+					"name": "刺殺（花費2個動作）",
+					"entries": [
+						"刺客發動一次毒刃攻擊。"
+					],
+					"ENG_name": "Stab (Costs 2 Actions)"
+				},
+				{
+					"name": "隱匿逃逸（花費3個動作）",
+					"entries": [
+						"刺客製造出一些使人分神的東西，例如擴散的惑心煙霧或者炫目的閃光，在離刺客5尺的位置內出現一個10尺的立方體效應區域。刺客在該區域內所選擇的每個生物將承受9（{@damage 2d8}）的心靈傷害，且刺客獲得{@condition invisible||隱形}狀態。這種隱形狀態持續到刺客的下一個回合結束為止。"
+					],
+					"ENG_name": "Vanishing Escape (Costs 3 Actions)"
+				}
+			],
+			"legendaryGroup": {
+				"name": "Villain",
+				"source": "BMT"
+			},
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"TC",
+				"X"
+			],
+			"damageTags": [
+				"I",
+				"P",
+				"Y"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RW"
+			],
+			"conditionInflict": [
+				"invisible"
+			],
+			"savingThrowForcedLegendary": [
+				"constitution",
+				"dexterity",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Ambitious Assassin"
+		},
+		{
+			"name": "活化盔甲拘禁無人機",
+			"source": "BMT",
+			"page": 135,
+			"_copy": {
+				"name": "Animated Armor",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "armor",
+						"with": "drone"
+					},
+					"action": [
+						{
+							"mode": "appendArr",
+							"items": {
+								"name": "拘禁球",
+								"entries": [
+									"無人機向距離自身30尺內的一個生物射出一個微型魔法力場球。該生物必須成功透過{@dc 15}的體質豁免，否則被包裹進法球中，球體會膨脹到足以容納該生物的大小。當被包裹在球中時，生物無需呼吸、進食或飲水，也不會衰老。球體無法被任何東西穿過，任何生物也無法透過傳送或位面旅行的方式進入或離開球內。作為附贈動作，無人機能夠將球體及其內容朝著任何方向移動30尺。在球體上成功施展{@spell Dispel Magic||解除魔法}法術（{@dc 15}）能夠將它摧毀。否則，球體會保持原狀，直到無人機作為動作結束該效果或無人機被摧毀。一架無人機只能同時啟用一個拘禁球；如果它在已經存在一個啟用的拘禁球的情況下創造另一個，那麼第一個球體便會消失，將裡面的生物放出來。"
+								],
+								"ENG_name": "Detention Orb"
+							}
+						}
+					]
+				}
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"tokenCredit": "Smite, Hirez",
+			"tokenCustom": true,
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Animated Armor Detention Drone"
+		},
+		{
+			"name": "彗星渴求者",
+			"source": "BMT",
+			"page": 91,
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				11
+			],
+			"hp": {
+				"average": 27,
+				"formula": "5d8 + 5"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 13,
+			"dex": 12,
+			"con": 12,
+			"int": 11,
+			"wis": 10,
+			"cha": 13,
+			"passive": 10,
+			"languages": [
+				"通用語，以及任意一種語言"
+			],
+			"cr": "1/2",
+			"trait": [
+				{
+					"name": "虛無之宴",
+					"entries": [
+						"當渴求者被降至0生命值時，它的身體和它所攜帶或著裝的任何事物（除魔法物品）都會被捲入虛空之中並被摧毀。任何位於渴求者15尺球狀區域內的生物都必須進行一次{@dc 11}的力量豁免檢定。豁免失敗者受到10（{@damage 3d6}）暗蝕傷害並被向著渴求者的位置直線拉近10尺。豁免成功者只受一半傷害。"
+					],
+					"ENG_name": "Hunger of the Void"
+				},
+				{
+					"name": "罪業獻身",
+					"entries": [
+						"渴求者為抵抗{@condition charmed||魅惑}和{@condition frightened||恐慌}狀態的豁免檢定具有優勢。"
+					],
+					"ENG_name": "Sinister Devotion"
+				}
+			],
+			"action": [
+				{
+					"name": "矛",
+					"entries": [
+						"{@atk mw,rw} 命中{@hit 3}，觸及5尺或射程20/60尺，單一目標。{@h}4 ({@damage 1d6 + 1}) 點穿刺傷害，或使用雙手發動近戰攻擊時5（{@damage 1d8 + 1}）點穿刺傷害。"
+					],
+					"ENG_name": "Spear"
+				}
+			],
+			"attachedItems": [
+				"spear|phb"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"N",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Aspirant of the Comet"
+		},
+		{
+			"name": "阿斯忒瑞亞",
+			"isNamedCreature": true,
+			"source": "BMT",
+			"page": 188,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human",
+					"paladin"
+				]
+			},
+			"alignment": [
+				"C",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"{@item breastplate|PHB}",
+						"{@item shield|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 195,
+				"formula": "26d8 + 78"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "（飛翼之靴）"
+				}
+			},
+			"str": 12,
+			"dex": 21,
+			"con": 17,
+			"int": 15,
+			"wis": 11,
+			"cha": 20,
+			"save": {
+				"dex": "+11",
+				"con": "+9",
+				"wis": "+6",
+				"cha": "+11"
+			},
+			"skill": {
+				"acrobatics": "+11",
+				"arcana": "+14",
+				"investigation": "+8",
+				"perception": "+12",
+				"persuasion": "+11",
+				"survival": "+6"
+			},
+			"passive": 22,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"德魯伊語"
+			],
+			"cr": "18",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"阿斯忒瑞亞施展以下一道法術，無需任何材料成分並使用魅力作為施法屬性（法術豁免{@dc 19}）："
+					],
+					"will": [
+						"{@spell Guidance||神導術}",
+						"{@spell Light||光亮術}",
+						"{@spell Thaumaturgy||奇術}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Bless||祝福術}",
+							"{@spell Freedom of Movement||行動自如}",
+							"{@spell Greater Restoration||高等復原術}",
+							"{@spell Plane Shift||位面轉移}（僅自身）",
+							"{@spell Protection from Evil and Good||防護善惡}",
+							"{@spell Revivify||回生術}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "護衛靈光",
+					"entries": [
+						"每當阿斯忒瑞亞身邊30尺內一個她指定的生物進行豁免檢定時，阿斯忒瑞亞可以使其在那次豁免檢定中具有優勢（不需要動作）。如果阿斯忒瑞亞處於{@condition incapacitated||失能}狀態，這個特質不會起效。"
+					],
+					"ENG_name": "Guardian Aura"
+				},
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"如果阿斯忒瑞亞豁免檢定失敗，她可以改為選擇成功。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				},
+				{
+					"name": "特殊裝備",
+					"entries": [
+						"阿斯忒瑞亞穿著一雙{@item Winged Boots||飛翼之靴}，這雙靴子帶給她飛行速度（上方資料已包括）。她還帶著一對{@item Sending Stones||短訊石}中的一個；這對短訊石的另一個由尤瑞艾莉持有。"
+					],
+					"ENG_name": "Special Equipment"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"阿斯忒瑞亞發動兩次光耀之劍攻擊並且使用一次聖域狂瀾。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "光耀之劍",
+					"entries": [
+						"{@atk mw} {@hit 11} 命中，觸及5尺，單一目標。{@h}9（{@damage 1d8 + 5}）揮砍傷害外加13（{@damage 3d8}）光耀傷害。"
+					],
+					"ENG_name": "Radiant Blade"
+				},
+				{
+					"name": "聖域狂瀾",
+					"entries": [
+						"阿斯忒瑞亞釋放出一股魔法能量，籠罩住一個她能看到的60尺內的生物。目標必須進行{@dc 19}的敏捷豁免檢定，若豁免失敗則受到40點（{@damage 9d8}）力場傷害，豁免成功則傷害減半。阿斯忒瑞亞或她能看到的60尺範圍內的所有其他生物恢復10點生命值。"
+					],
+					"ENG_name": "Bursting Benediction"
+				}
+			],
+			"bonus": [
+				{
+					"name": "堅盾之佑 {@recharge 4}",
+					"entries": [
+						"阿斯忒瑞亞召喚一個她盾牌的靈體版本，環繞並援助一個她可見範圍內距其60尺的生物。這個靈體盾牌會持續到阿斯忒瑞亞的下個回合開始。當這個盾牌環繞那個生物時，其獲得{@quickref Cover||3||掩護}，對{@condition frightened||恐慌}狀態免疫，且所做的武器攻擊檢定具有優勢。"
+					],
+					"ENG_name": "Empowering Aegis {@recharge 4}"
+				}
+			],
+			"legendary": [
+				{
+					"name": "勇毅打擊",
+					"entries": [
+						"阿斯忒瑞亞發動一次光耀之劍攻擊。"
+					],
+					"ENG_name": "Brazen Strike"
+				},
+				{
+					"name": "迅捷衝刺",
+					"entries": [
+						"阿斯忒瑞亞移動至多等於其速度的距離。此移動不會觸發藉機攻擊。"
+					],
+					"ENG_name": "Nimble Sprint"
+				},
+				{
+					"name": "施法（花費2個動作）",
+					"entries": [
+						"阿斯忒瑞亞使用施法。"
+					],
+					"ENG_name": "Cast a Spell (Costs 2 Actions)"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DU"
+			],
+			"damageTags": [
+				"O",
+				"R",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Asteria"
+		},
+		{
+			"name": "奧諾茨",
+			"isNamedCreature": true,
+			"source": "BMT",
+			"page": 167,
+			"size": [
+				"G"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"demon"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 370,
+				"formula": "20d20 + 160"
+			},
+			"speed": {
+				"walk": 50,
+				"burrow": 30
+			},
+			"str": 27,
+			"dex": 20,
+			"con": 26,
+			"int": 6,
+			"wis": 21,
+			"cha": 19,
+			"save": {
+				"str": "+15",
+				"con": "+15"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 15,
+			"resist": [
+				"cold",
+				"lightning"
+			],
+			"immune": [
+				"acid",
+				"fire",
+				"poison",
+				{
+					"immune": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"深淵語",
+				"心靈感應 120 尺"
+			],
+			"cr": {
+				"cr": "22",
+				"lair": "23"
+			},
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"奧諾茨施展以下一道法術，無需任何材料成分並使用感知作為施法屬性（法術豁免{@dc 20}）："
+					],
+					"will": [
+						"{@spell Detect Magic||偵測魔法}",
+						"{@spell Heat Metal||灼熱金屬}（7環版本）"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Darkness||黑暗術}",
+							"{@spell Dispel Magic||解除魔法}",
+							"{@spell Hold Person||定身類人}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "汲熱再生",
+					"entries": [
+						"若奧諾茨周圍的溫度在100華氏度（約38攝氏度）或更高，則它在它的回合開始時恢復15點生命值。如果它受到冷凍或光耀傷害，則該特性在其下一回合開始時無法生效。奧諾茨只會在以0點生命值開始回合且無法再生時死亡。"
+					],
+					"ENG_name": "Heat Regeneration"
+				},
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"如果奧諾茨豁免檢定失敗，它可以選擇改為成功。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				},
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"奧諾茨為抵抗法術和其他魔法效應而作的豁免檢定具有優勢。"
+					],
+					"ENG_name": "Magic Resistance"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"奧諾茨發動一次啃咬攻擊和兩次尾擊攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} {@hit 15} 命中，觸及10尺，單一目標。{@h}21（{@damage 2d12 + 8}）揮砍傷害外加9（{@damage 2d8}）火焰傷害。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "尾擊",
+					"entries": [
+						"{@atk mw} {@hit 15} 命中，觸及10尺，單一目標。{@h}17（{@damage 2d8 + 8}）鈍擊傷害。"
+					],
+					"ENG_name": "Tail"
+				},
+				{
+					"name": "黏液飛濺{@recharge 5}",
+					"entries": [
+						"奧諾茨噴出黏液覆蓋一處60尺錐形區域。任何位於該區域的生物都必須進行一次{@dc 20}的敏捷豁免檢定，豁免失敗者受到42（{@damage 12d6}）強酸傷害，豁免成功則傷害減半。"
+					],
+					"ENG_name": "Mucus Spray {@recharge 5}"
+				}
+			],
+			"legendary": [
+				{
+					"name": "移動",
+					"entries": [
+						"奧諾茨移動至多等於其速度的距離。"
+					],
+					"ENG_name": "Move"
+				},
+				{
+					"name": "尾擊",
+					"entries": [
+						"奧諾茨發動一次尾擊攻擊。"
+					],
+					"ENG_name": "Tail"
+				},
+				{
+					"name": "施法（花費2個動作）",
+					"entries": [
+						"奧諾茨使用施法。"
+					],
+					"ENG_name": "Cast a Spell (Costs 2 Actions)"
+				},
+				{
+					"name": "烈火纏身（花費2個動作）",
+					"entries": [
+						"奧諾茨臨時性地被火焰包圍。任何位於其15尺內的生物都必須進行一次{@dc 20}的敏捷豁免檢定，豁免失敗者受到18（{@damage 4d8}）火焰傷害，豁免成功則傷害減半。"
+					],
+					"ENG_name": "Conflagration (Costs 2 Actions)"
+				}
+			],
+			"legendaryGroup": {
+				"name": "Aurnozci",
+				"source": "BMT"
+			},
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance",
+				"Regeneration"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"TP"
+			],
+			"damageTags": [
+				"A",
+				"B",
+				"F",
+				"S"
+			],
+			"damageTagsSpell": [
+				"F"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflictSpell": [
+				"paralyzed"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"savingThrowForcedLegendary": [
+				"constitution",
+				"strength"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Aurnozci"
+		},
+		{
+			"name": "奧古斯都老大",
+			"source": "BMT",
+			"page": 82,
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 150,
+				"formula": "20d8 + 60"
+			},
+			"speed": {
+				"walk": {
+					"number": 40,
+					"condition": "狼與半人形態下"
+				}
+			},
+			"str": 18,
+			"dex": 16,
+			"con": 17,
+			"int": 14,
+			"wis": 15,
+			"cha": 12,
+			"save": {
+				"str": "+8",
+				"dex": "+7"
+			},
+			"skill": {
+				"perception": "+10",
+				"sleight of hand": "+7",
+				"stealth": "+7"
+			},
+			"passive": 20,
+			"languages": [
+				"通用語",
+				"盜賊黑話（不能在狼形態下說話）"
+			],
+			"cr": "9",
+			"trait": [
+				{
+					"name": "復生",
+					"entries": [
+						"奧古斯都在其回合開始時恢復10點生命值。如果他受到銀質武器的傷害，該特性在他下一回合開始時無法生效。奧古斯都只會在以0點生命值開始回合並且無法再生的情況下死亡。"
+					],
+					"ENG_name": "Regeneration"
+				},
+				{
+					"name": "特殊裝備",
+					"entries": [
+						"奧古斯都使用一把{@item +2 Longsword||+2 長劍}。"
+					],
+					"ENG_name": "Special Equipment"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"奧古斯都可以進行兩次啃咬、爪抓或魔法長劍攻擊的任意組合。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬（僅狼與半人形態）",
+					"entries": [
+						"{@atk mw} {@hit 8}命中，觸及範圍5尺，單一目標。{@h}26（{@damage 5d8 + 4}）穿刺傷害。如果目標是類人生物，它必須成功透過{@dc 15}的體質豁免檢定，否則將被詛咒感染{@variantrule Player Characters as Lycanthropes|MM|獸化}。以此方式被詛咒期間，目標保留其陣營、語言和裝備，但除此之外使用狼人資料卡，排除目標沒有裝備所需的動作。在天空中有滿月的任何夜晚，目標會變成由DM控制的通用角色，並保持此狀態直到夜晚結束。一個{@spell Remove Curse||移除詛咒}法術或類似的魔法可以結束此詛咒。"
+					],
+					"ENG_name": "Bite (Wolf or Hybrid Form Only)"
+				},
+				{
+					"name": "爪擊（僅狼與半人形態）",
+					"entries": [
+						"{@atk mw} {@hit 8} 命中，觸及5尺，單一目標。{@h}21（{@damage 5d6 + 4}）穿刺傷害。如果目標是生物，則目標必須進行一次{@dc 16}力量豁免檢定，否則陷入{@condition prone||倒地}倒地狀態。"
+					],
+					"ENG_name": "Claw (Wolf or Hybrid Form Only)"
+				},
+				{
+					"name": "魔法長劍（僅類人與半人形態）",
+					"entries": [
+						"{@atk mw} {@hit 10} 命中，觸及5尺，單一目標。{@h}28（{@damage 4d10 + 6}）揮砍傷害。"
+					],
+					"ENG_name": "Magic Longsword (Humanoid or Hybrid Form Only)"
+				}
+			],
+			"bonus": [
+				{
+					"name": "變形",
+					"entries": [
+						"奧古斯都變形為狼與類人生物結合的半人形態、狼形態或他的類人形態。除了移動速度以外，他在各種形態下的資料均相同。其著裝及攜帶的裝備不會隨之轉化。如果死亡，他回覆他的類人形態。"
+					],
+					"ENG_name": "Change Shape"
+				},
+				{
+					"name": "靈巧動作",
+					"entries": [
+						"奧古斯都老大執行{@action Dash||疾走}、{@action Disengage||撤離}或{@action Hide||躲藏}動作。"
+					],
+					"ENG_name": "Cunning Action"
+				}
+			],
+			"traitTags": [
+				"Regeneration"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Shapechanger"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"TC"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"CUR",
+				"MLW",
+				"MW"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Boss Augustus"
+		},
+		{
+			"name": "德洛爾老大",
+			"source": "BMT",
+			"page": 83,
+			"size": [
+				"S"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 110,
+				"formula": "20d6 + 40"
+			},
+			"speed": {
+				"walk": {
+					"number": 30,
+					"condition": "老鼠或混合形態"
+				}
+			},
+			"str": 12,
+			"dex": 18,
+			"con": 15,
+			"int": 17,
+			"wis": 14,
+			"cha": 16,
+			"save": {
+				"dex": "+8",
+				"int": "+7"
+			},
+			"skill": {
+				"deception": "+11",
+				"perception": "+10",
+				"sleight of hand": "+8",
+				"stealth": "+8"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 20,
+			"languages": [
+				"通用語",
+				"盜賊黑話（不能在老鼠形態下說話）"
+			],
+			"cr": "9",
+			"trait": [
+				{
+					"name": "反射閃避",
+					"entries": [
+						"如果德洛爾受到一個允許他進行敏捷豁免檢定以僅受一半傷害的效果影響，則他在豁免成功時不受任何傷害，豁免失敗時只受一半傷害，前提是他沒有處於{@condition incapacitated||失能}狀態。"
+					],
+					"ENG_name": "Evasion"
+				},
+				{
+					"name": "靈巧",
+					"entries": [
+						"德洛爾可以穿越任何中型或大型的生物所在空間。"
+					],
+					"ENG_name": "Nimbleness"
+				},
+				{
+					"name": "復生",
+					"entries": [
+						"德洛爾在其回合開始時恢復10點生命值。如果他受到銀質武器的傷害，在他下一回合開始時該特性會失效。德洛爾只會在他以0點生命值開始回合並且無法再生的情況下死亡。"
+					],
+					"ENG_name": "Regeneration"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"德洛爾可以進行三次啃咬、短劍或手弩攻擊的任意組合。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬（僅鼠與半人形態）",
+					"entries": [
+						"{@atk mw} {@hit 8} 命中，觸及範圍 5 尺，單一目標。{@h}26 ({@damage 5d8 + 4}) 穿刺傷害。如果目標是類人生物，它必須成功透過一次 {@dc 14} 的體質豁免檢定，否則將被詛咒感染 {@variantrule Player Characters as Lycanthropes|MM|獸化}。當以此方式被詛咒時，目標保留其陣營、語言和裝備，但在其他方面使用鼠人資料卡，排除那些需要目標沒有的裝備才能使用的動作。在天空中有滿月的任何夜晚，目標會變成一個由地下城主控制的通用角色，並保持此狀態直到夜晚結束。一個 {@spell Remove Curse||移除詛咒} 法術或類似的魔法可以結束此詛咒。"
+					],
+					"ENG_name": "Bite (Rat or Hybrid Form Only)"
+				},
+				{
+					"name": "短劍（僅類人與半人形態）",
+					"entries": [
+						"{@atk mw} {@hit 8} 命中，觸及5尺，單一目標。{@h}11（{@damage 2d6 + 4}）穿刺傷害外加10（{@damage 3d6}）毒素傷害。"
+					],
+					"ENG_name": "Shortsword (Humanoid or Hybrid Form Only)"
+				},
+				{
+					"name": "手弩（僅類人與半人形態）",
+					"entries": [
+						"{@atk rw} {@hit 8} 命中，射程30/120尺，單一目標。{@h}11（{@damage 2d6 + 4}）穿刺傷害外加10（{@damage 3d6}）毒素傷害。"
+					],
+					"ENG_name": "Hand Crossbow (Humanoid or Hybrid Form Only)"
+				}
+			],
+			"bonus": [
+				{
+					"name": "變形",
+					"entries": [
+						"德洛爾可以變身成鼠與類人生物結合的半人形態、中型巨鼠形態，或他的類人形態。除了體型和速度以外，他在各種形態下的資料均相同。其著裝及攜帶的裝備不會隨之轉化。如果死亡，他回覆他的類人形態。"
+					],
+					"ENG_name": "Change Shape"
+				},
+				{
+					"name": "靈巧動作",
+					"entries": [
+						"德洛爾執行{@action Dash||疾走}、{@action Disengage||撤離}或{@action Hide||躲藏}動作。"
+					],
+					"ENG_name": "Cunning Action"
+				}
+			],
+			"attachedItems": [
+				"hand crossbow|phb",
+				"shortsword|phb"
+			],
+			"traitTags": [
+				"Regeneration"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Shapechanger"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"TC"
+			],
+			"damageTags": [
+				"I",
+				"P"
+			],
+			"miscTags": [
+				"CUR",
+				"MLW",
+				"MW",
+				"RW"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Boss Delour"
+		},
+		{
+			"name": "飲息者",
+			"source": "BMT",
+			"page": 154,
+			"size": [
+				"M"
+			],
+			"type": "aberration",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 157,
+				"formula": "21d8 + 63"
+			},
+			"speed": {
+				"walk": 0,
+				"fly": {
+					"number": 60,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"str": 5,
+			"dex": 18,
+			"con": 16,
+			"int": 11,
+			"wis": 15,
+			"cha": 20,
+			"save": {
+				"int": "+5",
+				"wis": "+7"
+			},
+			"skill": {
+				"perception": "+7",
+				"stealth": "+9",
+				"survival": "+7"
+			},
+			"senses": [
+				"blindsight 60 ft."
+			],
+			"passive": 17,
+			"resist": [
+				"acid",
+				"cold",
+				"fire",
+				"lightning",
+				"thunder",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison",
+				"radiant"
+			],
+			"vulnerable": [
+				"necrotic"
+			],
+			"conditionImmune": [
+				"grappled",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"prone",
+				"restrained"
+			],
+			"languages": [
+				"深潛語",
+				"心靈感應 120 尺"
+			],
+			"cr": "14",
+			"trait": [
+				{
+					"name": "虛體移動",
+					"entries": [
+						"飲息者可以如同穿過困難地形一樣穿過其他生物和物件。如果它在一個物件內結束它的回合就要受到5（{@damage 1d10}）力場傷害。"
+					],
+					"ENG_name": "Incorporeal Movement"
+				},
+				{
+					"name": "光耀吸收",
+					"entries": [
+						"當飲息者將要受到光耀傷害時，它不會受到傷害，並且恢復等同於光耀傷害數值的生命值。"
+					],
+					"ENG_name": "Radiant Absorption"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"飲息者發動兩次衰弱之爪攻擊。它也可以使用痛飲氣息。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "衰弱之爪",
+					"entries": [
+						"{@atk mw} {@hit 10} 命中，觸及5尺，單一生物。{@h}12（{@damage 2d6 + 5}）暗蝕傷害，如果目標體型為大型或更小，它會陷入{@condition grappled||受擒}狀態（逃脫{@dc 18}）。目標必須成功透過一次{@dc 18}的體質豁免否則其生命值上限減少相當於傷害的數值。此降低效果持續到目標完成一次長休。如果此效果將目標的生命值上限降至0則目標死亡。"
+					],
+					"ENG_name": "Enervating Claw"
+				},
+				{
+					"name": "痛飲氣息",
+					"entries": [
+						"飲息者指定一個處於{@condition incapacitated||失能}狀態或被飲息者擒抱的非構裝體非不死生物。目標必須進行一次{@dc 18}的魅力豁免檢定。豁免失敗時，目標受到36（{@damage 8d8}）暗蝕傷害，並且其魅力值減少{@dice 1d6}。此減少持續到目標完成一次短休或長休。如果這使目標的魅力降至0，則目標死亡。在飲息者死亡之前，死去的目標無法以任何弱於神聖幹預的方式復活。豁免成功時，目標只受到一半暗蝕傷害。無論豁免成功與否，飲息者都恢復等同於造成的暗蝕傷害數值的生命值。"
+					],
+					"ENG_name": "Drink Breath"
+				},
+				{
+					"name": "隱形",
+					"entries": [
+						"飲息者處於{@condition invisible||隱形}狀態。此隱形狀態會在飲息者的攻擊檢定命中或失手，以及使用痛飲氣息時立即解除。"
+					],
+					"ENG_name": "Invisibility"
+				}
+			],
+			"traitTags": [
+				"Damage Absorption",
+				"Incorporeal Movement"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"DS",
+				"TP"
+			],
+			"damageTags": [
+				"N",
+				"O"
+			],
+			"miscTags": [
+				"HPR",
+				"MW"
+			],
+			"savingThrowForced": [
+				"charisma",
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Breath Drinker"
+		},
+		{
+			"name": "布魯西法",
+			"isNamedCreature": true,
+			"source": "BMT",
+			"page": 127,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"minotaur",
+					"warlock"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 90,
+				"formula": "12d8 + 36"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 18,
+			"dex": 11,
+			"con": 16,
+			"int": 12,
+			"wis": 16,
+			"cha": 16,
+			"save": {
+				"wis": "+5",
+				"cha": "+5"
+			},
+			"skill": {
+				"deception": "+5",
+				"perception": "+7",
+				"religion": "+3"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 17,
+			"languages": [
+				"深淵語",
+				"通用語"
+			],
+			"cr": "3",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"布魯西法施展以下一個法術，使用魅力作為施法屬性（法術豁免{@dc 13}）："
+					],
+					"will": [
+						"{@spell Prestidigitation||魔法伎倆}",
+						"{@spell Speak with Animals||動物交談}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Bestow Curse||降咒}",
+							"{@spell Command||命令術}",
+							"{@spell Crown of Madness||瘋狂冠冕}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "喚魔儀式",
+					"entries": [
+						"布魯西法可以用3小時的時間來完成一場儀式，以此召喚出{@dice 1d3 + 1}只惡猿魔或1只狂蟾魔。她必須得在儀式中為偉大的巴弗滅獻祭一隻中型或更大體型的活體生物，且這一儀式只有在晚上才能進行。這些惡魔會在黎明時分消失。"
+					],
+					"ENG_name": "Demonic Ritual"
+				},
+				{
+					"name": "迷宮追憶",
+					"entries": [
+						"布魯西法可以清晰的回憶起她曾經走過的任何路徑。"
+					],
+					"ENG_name": "Labyrinthine Recall"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"布魯西法發動兩次魔能爆攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "魔能爆",
+					"entries": [
+						"{@atk rs} {@hit 5} 命中，射程120尺，單一目標。{@h}8（{@damage 1d10 + 3}）力場傷害。"
+					],
+					"ENG_name": "Eldritch Blast"
+				},
+				{
+					"name": "頂撞",
+					"entries": [
+						"{@atk mw} {@hit 6} 命中，觸及5尺，單一目標。{@h}8（{@damage 1d8 + 4}）穿刺傷害外加4（{@damage 1d8}）暗蝕傷害。如果布魯西法在直線向著目標移動了至少10尺後立刻用角撞命中目標，目標將額外受到4（{@damage 1d8}）穿刺傷害，若目標是生物，該生物還必須透過一次{@dc 15}力量豁免，豁免失敗將被布魯西法推離至多10尺並陷入{@condition prone||倒地}狀態。"
+					],
+					"ENG_name": "Gore"
+				},
+				{
+					"name": "煽動獵手（短休或長休後充能）",
+					"entries": [
+						"布魯西法允許每個她周圍30尺範圍內，具有精準追獵特質的盟友，以反應對自身精準追獵的目標發動一次武器攻擊。"
+					],
+					"ENG_name": "Incite the Hunters (Recharges after a Short or Long Rest)"
+				}
+			],
+			"bonus": [
+				{
+					"name": "精準追獵",
+					"entries": [
+						"布魯西法魔法性地與一個她可見的生物建立一條心靈連結。接下來的一小時內，只要目標與布魯西法處於同一存在位面，布魯西法就永遠可以知曉與那個生物之間的距離與方向。若布魯西法陷入{@condition incapacitated||失能}狀態或是再次使用此能力，這一連結將提前結束。"
+					],
+					"ENG_name": "Unerring Tracker"
+				}
+			],
+			"reaction": [
+				{
+					"name": "巴弗滅之祝福",
+					"entries": [
+						"當布魯西法將一個敵對生物的生命值降低到0時，她獲得8點臨時生命值。"
+					],
+					"ENG_name": "Baphomet's Blessing"
+				}
+			],
+			"tokenCustom": true,
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"C"
+			],
+			"damageTags": [
+				"N",
+				"O",
+				"P"
+			],
+			"damageTagsSpell": [
+				"N"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"prone"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"ENG_name": "Brusipha"
+		},
+		{
+			"name": "牌組守衛",
+			"source": "BMT",
+			"page": 72,
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"special": "5 + 你等級的五倍（牌組守衛擁有等同於你等級數量枚的生命骰[d8]）"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 16,
+			"con": 14,
+			"int": 3,
+			"wis": 10,
+			"cha": 1,
+			"senses": [
+				"blindsight 60 ft. (can't see beyond this radius)"
+			],
+			"passive": 10,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"理解你的一種語言但不能說"
+			],
+			"pbNote": "equals your bonus",
+			"trait": [
+				{
+					"name": "友之騎士",
+					"entries": [
+						"牌組守衛的部分資料基於抽取那張騎士卡的角色決定。牌組守衛資料卡中的所有\"你\"一詞均指代抽出那張卡的角色。"
+					],
+					"ENG_name": "Allied Knight"
+				},
+				{
+					"name": "萬變摺紙",
+					"entries": [
+						"在完成一次長休後，你可以重塑牌組守衛的外形，將其轉化為特技師形態、狂戰士形態或守護者形態。"
+					],
+					"ENG_name": "Folded Versatility"
+				},
+				{
+					"name": "脆弱",
+					"entries": [
+						"如果牌組守衛的生命值被降至0，它將化為一堆雜亂的非魔法撲克牌，且無法被複活或重構。"
+					],
+					"ENG_name": "Fragile"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"牌組守衛發動相當於其熟練加值一半（向下取整）次數的攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "紙裁刀",
+					"entries": [
+						"{@atk mw} 熟練加值 + {@hit 3} 命中，觸及5尺，單一目標。{@h}7（{@damage 1d8 + 3}）揮砍傷害。"
+					],
+					"ENG_name": "Paper Cut"
+				},
+				{
+					"name": "魯莽強襲（僅狂戰士形態）",
+					"entries": [
+						"{@atk mw} PB + {@hit 3} 命中（具有優勢），觸及5尺，單一目標。{@h}10（{@damage 2d6 + 3}）揮砍傷害，且命中後直到牌組守衛的下個回合開始前所有向牌組守衛發動的攻擊都將具有優勢。"
+					],
+					"ENG_name": "Reckless Strike (Berserker Form Only)"
+				}
+			],
+			"bonus": [
+				{
+					"name": "靈巧步伐（僅限特技師形態）",
+					"entries": [
+						"牌組守衛執行{@action Dash||疾走}或{@action Disengage||撤離}動作。"
+					],
+					"ENG_name": "Swift Step (Acrobat Form Only)"
+				}
+			],
+			"reaction": [
+				{
+					"name": "保護（僅防衛者形態）",
+					"entries": [
+						"當一個牌組守衛可以看見的生物攻擊牌組守衛以外的目標，且該生物位於牌組守衛周圍5尺範圍內時，牌組守衛能迫使此次攻擊檢定承受劣勢。"
+					],
+					"ENG_name": "Protection (Guardian Form Only)"
+				}
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"CS"
+			],
+			"damageTags": [
+				"S"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Deck Defender"
+		},
+		{
+			"name": "惑心臥底",
+			"source": "BMT",
+			"page": 46,
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "fey",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"veiled presence"
+					]
+				}
+			],
+			"hp": {
+				"average": 156,
+				"formula": "24d8 + 48"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 10,
+			"dex": 20,
+			"con": 15,
+			"int": 20,
+			"wis": 16,
+			"cha": 18,
+			"save": {
+				"dex": "+9",
+				"int": "+9"
+			},
+			"skill": {
+				"deception": "+12",
+				"perception": "+7",
+				"stealth": "+13"
+			},
+			"senses": [
+				"blindsight 30 ft."
+			],
+			"passive": 17,
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"通用語",
+				"盜賊黑話",
+				"外加任何一種語言"
+			],
+			"cr": {
+				"cr": "11",
+				"lair": "12"
+			},
+			"trait": [
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"如果臥底在一次豁免檢定中失敗，它可以選擇直接成功豁免檢定。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				},
+				{
+					"name": "縹緲身影",
+					"entries": [
+						"該滲透者的AC包括其感知調整值，且該滲透者無法成為預言魔法或讀取其思想或確定其生物型別的特徵的目標。"
+					],
+					"ENG_name": "Veiled Presence"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"臥底進行兩次毒刃攻擊，然後可以使用迷魅低語。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "毒刃",
+					"entries": [
+						"{@atk mw,rw} {@hit 9}命中，觸及5尺或射程60尺，單一目標。{@h}7（{@damage 1d4 + 5}）穿刺傷害外加11（{@damage 2d10}）毒素傷害。"
+					],
+					"ENG_name": "Poison Blade"
+				},
+				{
+					"name": "醉人低語",
+					"entries": [
+						"臥底魔法性的向30尺內它能看見的生物發出低語。目標必須透過一次{@dc 17}的感知豁免檢定，否則因恐懼或愉悅（由臥底選擇）而陷入{@condition stunned||震懾}狀態，直到目標的下個回合結束。此後，該目標將在24小時內免疫迷魅低語。"
+					],
+					"ENG_name": "Beguiling Whisper"
+				}
+			],
+			"reaction": [
+				{
+					"name": "直覺閃避",
+					"entries": [
+						"當滲透者能看見的一個攻擊手以攻擊命中滲透者時，滲透者可以減半該攻擊對其造成的傷害。"
+					],
+					"ENG_name": "Uncanny Dodge"
+				}
+			],
+			"legendary": [
+				{
+					"name": "狡黠",
+					"entries": [
+						"該臥底逃脫非魔法的束縛並結束其自身的{@condition grappled||受擒}狀態，然後移動至多其速度而不引發藉機攻擊。"
+					],
+					"ENG_name": "Cunning"
+				},
+				{
+					"name": "刺殺（花費2個動作）",
+					"entries": [
+						"臥底進行一次毒刃攻擊。"
+					],
+					"ENG_name": "Stab (Costs 2 Actions)"
+				},
+				{
+					"name": "誘導逃逸（花費3個動作）",
+					"entries": [
+						"臥底魔法性地獲得{@condition invisible||隱形}狀態，並在自身的位置創造出一個自己的幻象複製品，然後傳送，連同任何其正在著裝或攜帶的裝備，至自身15尺內的一處未佔據空間。幻象會朝著幻象20尺內的、臥底所選擇的兩名生物扔出幻影刀刃。每個目標必須進行一次{@dc 17}的感知豁免檢定，豁免失敗則承受13（{@damage 3d8}）點心靈傷害，豁免成功則承受一半傷害。隱形狀態持續到臥底的下個回合結束為止。"
+					],
+					"ENG_name": "Misdirecting Escape (Costs 3 Actions)"
+				}
+			],
+			"legendaryGroup": {
+				"name": "Villain",
+				"source": "BMT"
+			},
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"TC",
+				"X"
+			],
+			"damageTags": [
+				"I",
+				"P",
+				"Y"
+			],
+			"miscTags": [
+				"MW",
+				"RW"
+			],
+			"conditionInflict": [
+				"stunned"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"savingThrowForcedLegendary": [
+				"constitution",
+				"dexterity",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Enchanting Infiltrator"
+		},
+		{
+			"name": "尤瑞艾莉",
+			"isNamedCreature": true,
+			"source": "BMT",
+			"page": 189,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "monstrosity",
+				"tags": [
+					"druid",
+					"medusa"
+				]
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 297,
+				"formula": "35d8 + 140"
+			},
+			"speed": {
+				"walk": 30,
+				"alternate": {
+					"walk": [
+						{
+							"number": 50,
+							"condition": "蛇形態"
+						}
+					],
+					"climb": [
+						{
+							"number": 50,
+							"condition": "蛇形態"
+						}
+					]
+				}
+			},
+			"str": 21,
+			"dex": 16,
+			"con": 18,
+			"int": 12,
+			"wis": 20,
+			"cha": 15,
+			"save": {
+				"dex": "+9",
+				"con": "+10",
+				"int": "+7",
+				"wis": "+11"
+			},
+			"skill": {
+				"animal handling": "+11",
+				"insight": "+17",
+				"medicine": "+11",
+				"nature": "+13",
+				"perception": "+11"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 21,
+			"resist": [
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"德魯伊語"
+			],
+			"cr": "18",
+			"spellcasting": [
+				{
+					"name": "施法（僅美杜莎形態）",
+					"type": "spellcasting",
+					"headerEntries": [
+						"尤瑞艾莉施展以下一道法術，無需任何材質成分並使用感知作為施法屬性（法術豁免{@dc 19}）："
+					],
+					"will": [
+						"{@spell Druidcraft||德魯伊伎倆}",
+						"{@spell Pass without Trace||行動無蹤}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Goodberry||神莓術}",
+							"{@spell Lesser Restoration||次等復原術}",
+							"{@spell Locate Creature||生物定位術}",
+							"{@spell Move Earth||地動術}",
+							"{@spell Transport via Plants||木遁術}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting (Medusa Form Only)"
+				}
+			],
+			"trait": [
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"如果尤瑞艾莉在一次豁免檢定中失敗，她可以選擇直接成功豁免。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				},
+				{
+					"name": "特殊裝備",
+					"entries": [
+						"尤瑞艾莉帶著一對{@item Sending Stones||短訊石}中的一個；這對短訊石的另一個由阿斯忒瑞亞持有。"
+					],
+					"ENG_name": "Special Equipment"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"尤瑞艾莉發動三次攻擊。如果她處於巨蛇形態，那麼她只能在多重攻擊中使用一次絞纏攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "絞纏（僅巨蛇形態）",
+					"entries": [
+						"{@atk mw} {@hit 11} 命中，觸及 15 尺，一個大型或更小的生物。{@h}16（{@damage 2d10 + 5}）鈍擊傷害，且目標陷入{@condition grappled||受擒}狀態（逃脫{@dc 19}）。直到擒抱解除前，目標在其每輪迴合開始時受到11（{@damage 2d10}）鈍擊傷害，且尤瑞艾莉不能絞纏另一目標。"
+					],
+					"ENG_name": "Constrict (Serpent Form Only)"
+				},
+				{
+					"name": "蛇咬",
+					"entries": [
+						"{@atk mw} {@hit 11} 命中，觸及 10 尺，單一目標。{@h}12（{@damage 2d6 + 5}）穿刺傷害，並且該目標必須進行一次{@dc 18}的體質豁免檢定否則獲得{@condition poisoned||中毒}狀態直到尤瑞艾莉的下個回合開始。"
+					],
+					"ENG_name": "Snake Bite"
+				},
+				{
+					"name": "蒼翠箭（僅美杜莎形態）",
+					"entries": [
+						"{@atk rs} {@hit 11} 命中，射程120尺，單一目標。{@h}18（{@damage 4d8}）強酸傷害。"
+					],
+					"ENG_name": "Verdant Bolt (Medusa Form Only)"
+				}
+			],
+			"bonus": [
+				{
+					"name": "變形",
+					"entries": [
+						"尤瑞艾莉變形為一條巨型的巨蛇形態或者變回中型的美杜莎形態。尤瑞艾莉的遊戲資料在每種形態中保持一致，除了此資料卡中標記出的地方以外。她佩戴或攜帶的任何裝備都不會隨其變形改變。尤瑞艾莉死亡時迴歸她的美杜莎形態。"
+					],
+					"ENG_name": "Change Shape"
+				},
+				{
+					"name": "石化凝視{@recharge 4}",
+					"entries": [
+						"尤瑞艾莉從自己的眼睛中發出30尺錐狀的石化魔法。該區域內的每個沒有陷入{@condition blinded||目盲}狀態的生物都必須進行一次{@dc 18}的體質豁免。若其豁免失敗且差值為5或更高，則該生物立即陷入{@condition petrified||石化}狀態。否則豁免失敗的生物受到14（{@damage 4d6}）點力場傷害，開始逐漸轉變為石頭並陷入{@condition restrained||束縛}狀態。受{@condition restrained||束縛}的生物必須在其自己的下一回合結束時再次進行該豁免。豁免失敗則該生物陷入{@condition petrified||石化}狀態，豁免成功則終止該效應。石化效應將持續直至其受{@spell Greater Restoration||高等復原術}或其他魔法解除該效應。一個生物可以使用其反應，如果可用的話，閉上眼睛來避免該豁免檢定。如果該生物這樣做，它將陷入{@condition blinded||目盲}狀態直到其下一回合結束。"
+					],
+					"ENG_name": "Petrifying Gaze {@recharge 4}"
+				}
+			],
+			"legendary": [
+				{
+					"name": "移動",
+					"entries": [
+						"尤瑞艾莉移動至多等於其速度的距離。"
+					],
+					"ENG_name": "Move"
+				},
+				{
+					"name": "劇毒打擊（花費2個動作）",
+					"entries": [
+						"尤瑞艾莉使用一次蛇咬攻擊。如果該目標具有{@condition poisoned||中毒}狀態，則攻擊會額外造成16（{@damage 3d10}）毒素傷害。"
+					],
+					"ENG_name": "Venomous Strike (Costs 2 Actions)"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Shapechanger"
+			],
+			"languageTags": [
+				"C",
+				"DU"
+			],
+			"damageTags": [
+				"A",
+				"B",
+				"I",
+				"O",
+				"P"
+			],
+			"spellcastingTags": [
+				"F"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"petrified",
+				"poisoned",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Euryale"
+		},
+		{
+			"name": "命運鬼婆",
+			"source": "BMT",
+			"page": 176,
+			"size": [
+				"M"
+			],
+			"type": "fey",
+			"alignment": [
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 71,
+				"formula": "13d8 + 13"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 14,
+			"con": 13,
+			"int": 12,
+			"wis": 18,
+			"cha": 15,
+			"save": {
+				"con": "+3",
+				"wis": "+6"
+			},
+			"skill": {
+				"arcana": "+5",
+				"deception": "+6",
+				"history": "+5",
+				"perception": "+6"
+			},
+			"senses": [
+				"truesight 60 ft."
+			],
+			"passive": 16,
+			"conditionImmune": [
+				"charmed"
+			],
+			"languages": [
+				"所有"
+			],
+			"cr": "4",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"鬼婆持握其剪刀時施展以下一道法術，無需任何材料成分並使用感知作為施法屬性（法術豁免{@dc 14}）："
+					],
+					"will": [
+						"{@spell Bless||祝福術}",
+						"{@spell Guidance||神導術}",
+						"{@spell Silent Image||無聲幻影}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Bane||災禍術}",
+							"{@spell Bestow Curse||降咒}",
+							"{@spell Divination||預言}",
+							"{@spell Scrying||探知術}（以一動作）"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "傳奇抗性（2/日）",
+					"entries": [
+						"鬼婆豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (2/Day)"
+				},
+				{
+					"name": "追溯命運之線（1/日）",
+					"entries": [
+						"鬼婆可以施放{@spell Legend Lore||通曉傳奇}法術，無需材料成分且使用感知作為施法屬性。"
+					],
+					"ENG_name": "Trace the Threads (1/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"鬼婆發動兩次剪刀攻擊。它可以將其中一次攻擊替換為使用施法。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "剪刀",
+					"entries": [
+						"{@atk mw} {@hit 6} 命中，觸及5尺，單一目標。{@h}8（{@damage 1d8 + 4}）力場傷害。如果目標為一個生物，則目標在鬼婆的下個回合結束前在攻擊檢定中具有劣勢。"
+					],
+					"ENG_name": "Shears"
+				}
+			],
+			"legendary": [
+				{
+					"name": "命定遷躍",
+					"entries": [
+						"鬼婆以魔法連同自身穿戴和攜帶的所有裝備一同傳送至一處30尺內它可見的未被佔據空間中。"
+					],
+					"ENG_name": "Destined Jaunt"
+				},
+				{
+					"name": "織命纏運",
+					"entries": [
+						"鬼婆魔法性地用靈體銀絲纏上一個位於其60尺內的它可見的生物。該生物必須成功透過一次{@dc 14}的力量豁免，否則其速度降為0直至其下一回合結束。"
+					],
+					"ENG_name": "Tangle Threads"
+				},
+				{
+					"name": "厄運纏身（花費2個動作）",
+					"entries": [
+						"鬼婆魔法性地詛咒一個位於其60尺內的它可見的生物。該生物必須進行一次{@dc 14}的感知豁免，若該生物在前一分鐘內對該鬼婆造成過傷害，則此豁免具有劣勢。豁免失敗者會在屬性檢定，攻擊檢定以及豁免檢定上具有劣勢，直至該詛咒結束。每回合一次，當被詛咒的生物進行一次上述的{@dice d20}投擲並失敗時，它都會受到7（{@damage 2d6}）力場傷害。詛咒會在一分鐘後結束；若該生物在此期間累計成功了三次屬性檢定，攻擊檢定或豁免檢定中的任何組合；或是鬼婆再次使用此動作，則詛咒也會結束。"
+					],
+					"ENG_name": "Destiny Curse (Costs 2 Actions)"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"XX"
+			],
+			"damageTags": [
+				"O"
+			],
+			"damageTagsSpell": [
+				"N"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForced": [
+				"strength",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Fate Hag"
+		},
+		{
+			"name": "格雷莫利的鬼魂",
+			"source": "BMT",
+			"page": 122,
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 82,
+				"formula": "15d8 + 15"
+			},
+			"speed": {
+				"walk": 0,
+				"fly": {
+					"number": 40,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"str": 7,
+			"dex": 14,
+			"con": 12,
+			"int": 18,
+			"wis": 12,
+			"cha": 17,
+			"save": {
+				"int": "+8",
+				"wis": "+5"
+			},
+			"skill": {
+				"arcana": "+8",
+				"history": "+8"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 11,
+			"resist": [
+				"acid",
+				"fire",
+				"lightning",
+				"thunder",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"immune": [
+				"cold",
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"grappled",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"prone",
+				"restrained"
+			],
+			"languages": [
+				"通用語",
+				"龍語",
+				"矮人語",
+				"巨人語"
+			],
+			"cr": "9",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"格雷莫利的鬼魂施展以下一道法術，使用智力作為施法屬性（法術豁免{@dc 16}）："
+					],
+					"will": [
+						"{@spell Dancing Lights||舞光術}",
+						"{@spell Mage Hand||法師之手}",
+						"{@spell Prestidigitation||魔法伎倆}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Slow||緩慢術}"
+						],
+						"2e": [
+							"{@spell Bestow Curse||降咒}",
+							"{@spell Dispel Magic||解除魔法}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "以太視界",
+					"entries": [
+						"格雷莫利在物質位面時可以看見身邊60尺以太位面的景色，反之亦然。"
+					],
+					"ENG_name": "Ethereal Sight"
+				},
+				{
+					"name": "虛體移動",
+					"entries": [
+						"格雷莫利可以如同穿過困難地形一樣穿過其他生物和物件。如果他在自己的回合結束時仍處在物件內部則受到5（{@damage 1d10}）點力場傷害。"
+					],
+					"ENG_name": "Incorporeal Movement"
+				},
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"如果格雷莫利在一次豁免檢定中失敗，他可以選擇直接成功豁免。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"格雷莫利的鬼魂發動三次枯萎猛擊攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "枯萎猛擊",
+					"entries": [
+						"{@atk ms} {@hit 8} 命中，觸及5尺，單一目標。{@h}19（{@damage 3d12}）暗蝕傷害。"
+					],
+					"ENG_name": "Withering Strike"
+				},
+				{
+					"name": "墮落死咒",
+					"entries": [
+						"格雷莫利的鬼魂指定一個他60尺內能看見的生物為目標。目標必須進行一次{@dc 16}的體質豁免檢定，豁免失敗時受到61（{@damage 7d8 + 30}）暗蝕傷害，豁免成功時僅受到一半傷害。此外，格雷莫利的鬼魂恢復9（{@dice 2d8}）生命值。"
+					],
+					"ENG_name": "Fell Necromancy"
+				},
+				{
+					"name": "附身{@recharge}",
+					"entries": [
+						"格雷莫利身邊5尺內他可以看見的一名類人生物必須進行一次{@dc 15}的魅力豁免，豁免失敗則被格雷莫利附身；格雷莫利消失，目標陷入{@condition incapacitated||失能}狀態且身體失去控制。格雷莫利此時只能被驅散亡靈類效應指定為目標，其他任何攻擊、法術或別的效應都無法將其指定為目標。此時的幽魂保留自己的陣營以及智力、感知、魅力屬性，並且免疫{@condition charmed||魅惑}和{@condition frightened||恐慌}狀態。其他資料則與被附身生物相同，但不能獲得該目標的知識、職業特性或熟練項。",
+						"附身效果持續到目標生命值降至0、格雷莫利以附贈動作結束附身、或者格雷莫利被類似{@spell Dispel Evil and Good||驅逐善惡}法術的效應轉變或驅逐為止。當附身結束時，格雷莫利在目標5尺內的一個未佔據空間重新出現。目標在豁免檢定成功或附身結束後的24小時內免疫此附身效果。"
+					],
+					"ENG_name": "Possession {@recharge}"
+				}
+			],
+			"bonus": [
+				{
+					"name": "以太跨步 {@recharge 4}",
+					"entries": [
+						"格雷莫利傳送到30尺內他能見到的一處未被佔據空間中。"
+					],
+					"ENG_name": "Ethereal Step {@recharge 4}"
+				}
+			],
+			"tokenCredit": "Nidoart",
+			"tokenCustom": true,
+			"traitTags": [
+				"Ethereal Sight",
+				"Incorporeal Movement",
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"D",
+				"DR",
+				"GI"
+			],
+			"damageTags": [
+				"N",
+				"O"
+			],
+			"damageTagsSpell": [
+				"N"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"savingThrowForced": [
+				"charisma",
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Gremorly's Ghost"
+		},
+		{
+			"name": "血海之死懼大君",
+			"source": "BMT",
+			"page": 161,
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"{@item plate armor|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 280,
+				"formula": "33d8 + 132"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 23,
+			"dex": 12,
+			"con": 18,
+			"int": 10,
+			"wis": 17,
+			"cha": 21,
+			"save": {
+				"str": "+12",
+				"dex": "+7",
+				"con": "+10"
+			},
+			"skill": {
+				"athletics": "+12",
+				"intimidation": "+11",
+				"perception": "+9"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 19,
+			"resist": [
+				"cold",
+				"necrotic",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"poisoned",
+				"stunned",
+				"unconscious"
+			],
+			"languages": [
+				"通用語"
+			],
+			"cr": "20",
+			"trait": [
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"如果勇士在一次豁免檢定中失敗，它可以選擇直接成功豁免。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"勇士發動四次烈焰釘錘攻擊。它可以將其中的一次攻擊替換為劍刃風暴（如果可用）。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "烈焰釘錘",
+					"entries": [
+						"{@atk mw} {@hit 12} 命中，觸及5尺，單一目標。{@h}10（{@damage 1d8 + 6}）穿刺傷害外加14（{@damage 4d6}）火焰傷害。"
+					],
+					"ENG_name": "Blazing Morningstar"
+				},
+				{
+					"name": "劍刃風暴{@recharge 5}",
+					"entries": [
+						"勇士咒喚出一陣翻騰的靈體刀刃風暴，充滿一個以它120尺內能看見的一點為中心，邊長為20尺的立方區域。該風暴持續至勇士的下一回合開始。當風暴處於活躍狀態時，該風暴區域為困難地形。每當一個生物在一個回合內第一次進入該風暴，或是在該區域內開始其回合時，它必須進行一次{@dc 19}的敏捷豁免檢定，豁免失敗受到27（{@damage 6d8}）揮砍傷害，豁免成功則只受到一半傷害。"
+					],
+					"ENG_name": "Blade Storm {@recharge 5}"
+				}
+			],
+			"legendary": [
+				{
+					"name": "狂怒追擊",
+					"entries": [
+						"大君移動至多等於自己速度的距離或命令其坐騎移動至多等於其速度的距離。此移動不會觸發藉機攻擊。"
+					],
+					"ENG_name": "Furious Pursuit"
+				},
+				{
+					"name": "煽動暴力",
+					"entries": [
+						"勇士指定一個它60尺內能看見的生物。目標必須成功透過一次{@dc 19}的感知豁免檢定，否則立即對勇士指定的另一個在目標觸及範圍內的生物發動一次近戰武器攻擊。如果沒有生物在目標觸及範圍內，或者目標處於{@condition incapacitated||失能}狀態，則目標改為受到11（{@damage 2d10}）點心靈傷害。"
+					],
+					"ENG_name": "Induce Violence"
+				},
+				{
+					"name": "威嚇（花費2個動作）",
+					"entries": [
+						"大君選擇自身30尺內能看見的任意數量的生物。每個目標必須成功透過{@dc 19}的感知豁免檢定否則陷入{@condition frightened||恐慌}狀態直到自身下個回合結束。"
+					],
+					"ENG_name": "Menace (Costs 2 Actions)"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"F",
+				"P",
+				"S",
+				"Y"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW",
+				"MW"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrowForced": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Grim Champion of Bloodshed"
+		},
+		{
+			"name": "寂滅之死懼大君",
+			"source": "BMT",
+			"page": 162,
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"{@item studded leather armor|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 416,
+				"formula": "49d8 + 196"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 22,
+			"dex": 23,
+			"con": 18,
+			"int": 12,
+			"wis": 20,
+			"cha": 19,
+			"save": {
+				"dex": "+14",
+				"con": "+12",
+				"wis": "+13"
+			},
+			"skill": {
+				"deception": "+12",
+				"insight": "+13",
+				"perception": "+13",
+				"stealth": "+14"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 23,
+			"resist": [
+				"cold",
+				"necrotic",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"poisoned",
+				"stunned",
+				"unconscious"
+			],
+			"languages": [
+				"通用語",
+				"精靈語"
+			],
+			"cr": "25",
+			"trait": [
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"如果勇士在一次豁免檢定中失敗，它可以選擇直接成功豁免。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"大君發動兩次吸血劍攻擊，並使用空無虛湮。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "吸血劍",
+					"entries": [
+						"{@atk mw} {@hit 14} 命中，觸及5尺，單一目標。{@h}13（{@damage 2d6 + 6}）揮砍傷害外加33（{@damage 6d10}）寒冷傷害，且勇士恢復10點生命值。"
+					],
+					"ENG_name": "Leeching Blade"
+				},
+				{
+					"name": "空無虛湮",
+					"entries": [
+						"勇士在其120尺內能看見的一個生物周圍召喚一個飢渴裂谷。該生物必須進行一次{@dc 22}的體質豁免檢定。豁免失敗時，該生物受到49（{@damage 11d8}）力場傷害並獲得{@condition stunned||震懾}狀態，持續至勇士的下一個回合開始。豁免成功時，該生物僅受到一半傷害。如果一個生物因該效果生命值降至0，該生物死亡，其身體化為粉塵。"
+					],
+					"ENG_name": "Hollow Void"
+				}
+			],
+			"bonus": [
+				{
+					"name": "化作虛無 {@recharge 4}",
+					"entries": [
+						"該大君連同其穿戴和攜帶的任何裝備獲得{@condition invisible||隱形}狀態，並傳送到自身30尺內能看見的一個未佔據空間。該大君保持{@condition invisible||隱形}狀態直到其下個回合開始或在其造成傷害後立即結束。"
+					],
+					"ENG_name": "Step into Nothing {@recharge 4}"
+				}
+			],
+			"legendary": [
+				{
+					"name": "碾壓",
+					"entries": [
+						"大君對30尺內可見的一個生物釋放出一道衝擊波。該生物必須成功透過{@dc 22}的力量豁免否則受到14（{@damage 4d6}）力場傷害並陷入{@condition prone||倒地}狀態。"
+					],
+					"ENG_name": "Crush"
+				},
+				{
+					"name": "恐怖追擊",
+					"entries": [
+						"大君移動至多等於自己速度的距離或命令其坐騎移動至多等於其速度的距離。此移動不會觸發藉機攻擊。"
+					],
+					"ENG_name": "Fearsome Pursuit"
+				},
+				{
+					"name": "消除（花費2個動作）",
+					"entries": [
+						"該勇士向一處60尺錐狀區域釋放一道魔法波濤。該區域內由該勇士選擇的生物和物件身上的5環或更低法術終止。"
+					],
+					"ENG_name": "Nullify (Costs 2 Actions)"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"E"
+			],
+			"damageTags": [
+				"C",
+				"O",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"conditionInflict": [
+				"prone",
+				"stunned"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Grim Champion of Desolation"
+		},
+		{
+			"name": "災疫之死懼大君",
+			"source": "BMT",
+			"page": 163,
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				14,
+				{
+					"ac": 17,
+					"condition": "{@spell mage armor||法師護甲}時",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 120,
+				"formula": "16d8 + 48"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 10,
+			"dex": 18,
+			"con": 16,
+			"int": 17,
+			"wis": 15,
+			"cha": 21,
+			"save": {
+				"dex": "+9",
+				"cha": "+10"
+			},
+			"skill": {
+				"arcana": "+8",
+				"perception": "+7",
+				"stealth": "+9"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 17,
+			"resist": [
+				"cold",
+				"necrotic",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"poisoned",
+				"stunned",
+				"unconscious"
+			],
+			"languages": [
+				"通用語",
+				"煉獄語"
+			],
+			"cr": "15",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"大君施展以下一道法術，無需任何材料成分並使用魅力作為施法屬性（法術豁免{@dc 18}）："
+					],
+					"will": [
+						"{@spell Detect Magic||偵測魔法}",
+						"{@spell Mage Armor||法師護甲}（僅自身）"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Blight||枯萎術}",
+							"{@spell Blindness/Deafness||目盲術/耳聾術}"
+						],
+						"1e": [
+							"{@spell Cloudkill||死雲術}",
+							"{@spell Contagion||疫病術}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "災疫光環",
+					"entries": [
+						"大君身邊環繞著致命的魔法光環，形態為發光的白色蟲群。每一個在大君10尺內開始回合的生物都必須成功透過{@dc 18}的體質豁免否則陷入{@condition incapacitated||失能}狀態直到其下個回合開始，因為蟲群對其身體的破壞。"
+					],
+					"ENG_name": "Halo of Pestilence"
+				},
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"如果勇士在一次豁免檢定中失敗，它可以選擇直接成功豁免。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"大君發動兩次枯木杖攻擊，兩次瘟疫矢攻擊，或兩者各一。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "枯木杖",
+					"entries": [
+						"{@atk mw} {@hit 9} 命中，觸及5尺，單一目標。{@h}8（{@damage 1d8 + 4}）鈍擊傷害外加21（{@damage 6d6}）暗蝕傷害。"
+					],
+					"ENG_name": "Blight Staff"
+				},
+				{
+					"name": "瘟疫矢",
+					"entries": [
+						"{@atk rs} {@hit 10} 命中，射程120尺，單一目標。{@h}23（{@damage 4d8 + 5}）毒素傷害，且目標陷入{@condition poisoned||中毒}狀態直至勇士的下個回合開始。"
+					],
+					"ENG_name": "Plague Bolt"
+				}
+			],
+			"legendary": [
+				{
+					"name": "攻擊",
+					"entries": [
+						"大君發動一次枯木杖或瘟疫矢攻擊。"
+					],
+					"ENG_name": "Attack"
+				},
+				{
+					"name": "狂怒追擊",
+					"entries": [
+						"大君移動至多等於自己速度的距離或命令其坐騎移動至多等於其速度的距離。此移動不會觸發藉機攻擊。"
+					],
+					"ENG_name": "Furious Pursuit"
+				},
+				{
+					"name": "施法（花費2個動作）",
+					"entries": [
+						"該勇士使用施法。"
+					],
+					"ENG_name": "Cast a Spell (Costs 2 Actions)"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"I"
+			],
+			"damageTags": [
+				"B",
+				"I",
+				"N"
+			],
+			"damageTagsSpell": [
+				"I",
+				"N"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"blinded",
+				"deafened",
+				"poisoned",
+				"stunned"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Grim Champion of Pestilence"
+		},
+		{
+			"name": "苦刑獵鷹",
+			"source": "BMT",
+			"page": 177,
+			"size": [
+				"T"
+			],
+			"type": "undead",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 25,
+				"formula": "10d4"
+			},
+			"speed": {
+				"walk": 10,
+				"fly": 60
+			},
+			"str": 5,
+			"dex": 16,
+			"con": 10,
+			"int": 2,
+			"wis": 14,
+			"cha": 7,
+			"skill": {
+				"perception": "+6",
+				"stealth": "+5"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 16,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"cr": "1",
+			"action": [
+				{
+					"name": "禽爪",
+					"entries": [
+						"{@atk mw} {@hit 5} 命中，觸及5尺，單一目標。{@h}8（{@damage 2d4 + 3}）揮砍傷害外加3（{@damage 1d6}）暗蝕傷害。"
+					],
+					"ENG_name": "Talons"
+				},
+				{
+					"name": "位面轉移（2/日）",
+					"entries": [
+						"獵鷹對自身施展{@spell Plane Shift||位面轉移}，無需任何法術成分並使用感知作為施法屬性。"
+					],
+					"ENG_name": "Plane Shift (2/Day)"
+				}
+			],
+			"bonus": [
+				{
+					"name": "幽影疾馳",
+					"entries": [
+						"當獵鷹身處微光光照或黑暗環境中時，它傳送至位於其30尺內的它可見的一處未被佔據的空間，前提是該空間也處於微光光照或黑暗環境中。隨後獵鷹在該回合結束前發動的第一次近戰攻擊具有優勢。"
+					],
+					"ENG_name": "Shadow Dash"
+				}
+			],
+			"senseTags": [
+				"SD"
+			],
+			"damageTags": [
+				"N",
+				"S"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Harrow Hawk"
+		},
+		{
+			"name": "苦刑獵犬",
+			"source": "BMT",
+			"page": 164,
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 45,
+				"formula": "6d8 + 18"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 16,
+			"dex": 19,
+			"con": 16,
+			"int": 8,
+			"wis": 15,
+			"cha": 13,
+			"skill": {
+				"perception": "+6",
+				"stealth": "+6"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 16,
+			"resist": [
+				"necrotic",
+				"psychic",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"閃現犬語",
+				"懂木族語但不能說"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "叢集戰術",
+					"entries": [
+						"若至少有一個獵犬的盟友在目標5尺內且該盟友未處於{@condition incapacitated||失能}狀態，則獵犬對該生物發動的攻擊檢定具有優勢。"
+					],
+					"ENG_name": "Pack Tactics"
+				},
+				{
+					"name": "超自然追蹤者",
+					"entries": [
+						"獵犬知道曾位於自己30尺內的任何生物的距離和方向，即使該生物在另一個存在位面上。如果被獵犬追蹤的生物死去，它也同樣會知曉。"
+					],
+					"ENG_name": "Supernatural Tracker"
+				}
+			],
+			"action": [
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} {@hit 5} 命中，觸及5尺，單一目標。{@h}10（{@damage 2d6 + 3}）穿刺傷害外加3（{@damage 1d6}）暗蝕傷害。如果目標為一個生物，則目標必須成功透過{@dc 13}的力量豁免檢定否則獲得{@condition prone||倒地}狀態。"
+					],
+					"ENG_name": "Bite"
+				}
+			],
+			"bonus": [
+				{
+					"name": "陰影步 {@recharge 4}",
+					"entries": [
+						"該獵犬以魔法連同自身穿戴和攜帶的所有裝備一同傳送至一處40尺內它可見的未被佔據空間中。"
+					],
+					"ENG_name": "Shadow Step {@recharge 4}"
+				}
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"CS",
+				"OTH",
+				"S"
+			],
+			"damageTags": [
+				"N",
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Harrow Hound"
+		},
+		{
+			"name": "恐怖鎧甲拘禁無人機",
+			"source": "BMT",
+			"page": 135,
+			"_copy": {
+				"name": "Helmed Horror",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "helmed horror",
+						"with": "drone"
+					},
+					"action": [
+						{
+							"mode": "appendArr",
+							"items": {
+								"name": "拘禁球",
+								"entries": [
+									"無人機向距離自身30尺內的一個生物射出一個微型魔法力場球。該生物必須成功透過{@dc 15}的體質豁免，否則被包裹進法球中，球體會膨脹到足以容納該生物的大小。當被包裹在球中時，生物無需呼吸、進食或飲水，也不會衰老。球體無法被任何東西穿過，任何生物也無法透過傳送或位面旅行的方式進入或離開球內。作為附贈動作，無人機能夠將球體及其內容朝著任何方向移動30尺。在球體上成功施展{@spell Dispel Magic||解除魔法}法術（{@dc 15}）能夠將它摧毀。否則，球體會保持原狀，直到無人機作為動作結束該效果或無人機被摧毀。一架無人機只能同時啟用一個拘禁球；如果它在已經存在一個啟用的拘禁球的情況下創造另一個，那麼第一個球體便會消失，將裡面的生物放出來。"
+								],
+								"ENG_name": "Detention Orb"
+							}
+						}
+					]
+				}
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"tokenCredit": "Databuffer",
+			"tokenCustom": true,
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Helmed Horror Detention Drone"
+		},
+		{
+			"name": "美杜莎法皇",
+			"source": "BMT",
+			"page": 179,
+			"size": [
+				"L"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 237,
+				"formula": "25d10 + 100"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40,
+				"swim": 40
+			},
+			"str": 22,
+			"dex": 20,
+			"con": 18,
+			"int": 15,
+			"wis": 23,
+			"cha": 22,
+			"save": {
+				"con": "+10",
+				"wis": "+12"
+			},
+			"skill": {
+				"insight": "+12",
+				"perception": "+12",
+				"persuasion": "+12",
+				"religion": "+8",
+				"stealth": "+11"
+			},
+			"passive": 22,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"通用語和任意三種語言（推薦深淵語、天界語、德魯伊語或煉獄語）"
+			],
+			"cr": "17",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"美杜莎施展以下一道法術，無需任何材料成分並使用感知作為施法屬性（法術豁免{@dc 20}）："
+					],
+					"will": [
+						"{@spell Light||光亮術}",
+						"{@spell Spare the Dying||維生術}",
+						"{@spell Thaumaturgy||奇術}"
+					],
+					"daily": {
+						"2": [
+							"{@spell Mass Cure Wounds||群體療傷術}（以8環施放）"
+						],
+						"1e": [
+							"{@spell Blade Barrier||劍刃護壁}",
+							"{@spell Divination||預言}",
+							"{@spell Greater Restoration||高等復原術}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "奉獻之召（1/日）",
+					"entries": [
+						"美杜莎可以施放{@spell Resurrection||復生術}法術，無需任何材料成分並使用感知作為施法屬性。"
+					],
+					"ENG_name": "Devotion's Call (1/Day)"
+				},
+				{
+					"name": "傳奇抗性（4/日）",
+					"entries": [
+						"如果美杜莎在一次豁免檢定中失敗，它可以選擇直接成功豁免檢定。"
+					],
+					"ENG_name": "Legendary Resistance (4/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"美杜莎發動一次絞纏攻擊，一次終末幻刃攻擊和一次蛇發攻擊。或者，它發動兩次盛怒焰擊攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "絞纏",
+					"entries": [
+						"{@atk mw} {@hit 12} 命中，觸及10尺，單一目標。{@h}16（{@damage 3d6 + 6}）鈍擊傷害，且若目標為一箇中型或更小的生物，則其還會陷入{@condition grappled||受擒}狀態（逃脫{@dc 20}）。直到此擒抱結束前，目標還會陷入{@condition restrained||束縛}狀態，且美杜莎不能絞纏另一生物。"
+					],
+					"ENG_name": "Constrict"
+				},
+				{
+					"name": "終末幻刃",
+					"entries": [
+						"{@atk mw} {@hit 12} 命中，觸及5尺，單一目標。{@h}13（{@damage 2d6 + 6}）揮砍傷害外加21（{@damage 6d6}）力場傷害。若目標有至少一顆頭且美杜莎在攻擊檢定中擲出了20，則目標必須成功透過一次{@dc 20}的體質豁免否則被斬首並死亡，除非目標沒有頭也能生存。如果一個生物沒有從此攻擊中受到任何傷害，有傳奇動作，或是體型為巨型或更大，則該生物免疫此斬首效應，但會在此次攻擊中額外受到28（{@damage 8d6}）力場傷害。"
+					],
+					"ENG_name": "Final Blade"
+				},
+				{
+					"name": "蛇發",
+					"entries": [
+						"{@atk mw} {@hit 12} 命中，觸及5尺，單一目標。{@h}11（{@damage 1d10 + 6}）穿刺傷害外加5（{@damage 1d10}）毒素傷害。"
+					],
+					"ENG_name": "Snake Hair"
+				},
+				{
+					"name": "盛怒焰擊",
+					"entries": [
+						"{@atk rs} {@hit 12} 命中，射程120尺，單一生物。{@h}22（{@damage 3d10 + 6}）光耀傷害，且目標陷入{@condition blinded||目盲}狀態直至其下一回合結束。"
+					],
+					"ENG_name": "Wrathful Strike"
+				}
+			],
+			"bonus": [
+				{
+					"name": "石化凝視{@recharge 4}",
+					"entries": [
+						"美杜莎從其眼中釋放出石化的魔法，覆蓋一處30尺錐狀區域。任何位於區域內且未陷入{@condition blinded||目盲}狀態的生物都必須進行一次{@dc 18}的體質豁免。若豁免失敗且差值為5或更高，則該生物陷入{@condition petrified||石化}狀態。否則，豁免失敗者受到10（{@damage 3d6}）力場傷害，開始逐漸轉變為石頭並陷入{@condition restrained||束縛}狀態。陷入{@condition restrained||束縛}狀態的生物必須在其下一回合結束時重複此豁免。豁免失敗則該生物陷入{@condition petrified||石化}狀態，豁免成功則結束該效應。石化效應將持續直至其受{@spell Greater Restoration||高等復原術}法術或其他魔法解除該效應。",
+						"一個生物可以用其反應（若可用）來閉上眼睛，以此避免該豁免檢定。若該生物這樣做，則它將陷入{@condition blinded||目盲}狀態，直至其下一回合結束。"
+					],
+					"ENG_name": "Petrifying Gaze {@recharge 4}"
+				}
+			],
+			"legendary": [
+				{
+					"name": "移動",
+					"entries": [
+						"美杜莎移動至多等於其速度的距離且不觸發藉機攻擊。"
+					],
+					"ENG_name": "Move"
+				},
+				{
+					"name": "盛怒魔爆（花費2個動作）",
+					"entries": [
+						"美杜莎發動一次盛怒焰擊攻擊。"
+					],
+					"ENG_name": "Wrathful Blast (Costs 2 Actions)"
+				},
+				{
+					"name": "終末一斬（花費3個動作）",
+					"entries": [
+						"美杜莎發動一次具有優勢的終末幻刃攻擊。"
+					],
+					"ENG_name": "Final Slash (Costs 3 Actions)"
+				}
+			],
+			"legendaryGroup": {
+				"name": "Hierophant Medusa",
+				"source": "BMT"
+			},
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"CE",
+				"DU",
+				"I",
+				"X"
+			],
+			"damageTags": [
+				"B",
+				"I",
+				"O",
+				"P",
+				"R",
+				"S"
+			],
+			"damageTagsSpell": [
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"petrified",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedLegendary": [
+				"constitution",
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Hierophant Medusa"
+		},
+		{
+			"name": "彗星教宗",
+			"source": "BMT",
+			"page": 92,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"warlock"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item breastplate|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 153,
+				"formula": "18d8 + 72"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 13,
+			"con": 18,
+			"int": 15,
+			"wis": 17,
+			"cha": 20,
+			"save": {
+				"wis": "+7",
+				"cha": "+9"
+			},
+			"skill": {
+				"arcana": "+10",
+				"deception": "+9",
+				"persuasion": "+9",
+				"religion": "+6"
+			},
+			"senses": [
+				"truesight 30 ft."
+			],
+			"passive": 13,
+			"resist": [
+				"psychic"
+			],
+			"languages": [
+				"通用語加上任意兩種語言",
+				"心靈感應 60 尺"
+			],
+			"cr": "11",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"教宗施展以下一道法術，使用魅力作為施法屬性（法術豁免{@dc 17}）："
+					],
+					"will": [
+						"{@spell Detect Thoughts||偵測思想}",
+						"{@spell Mage Hand||法師之手}",
+						"{@spell Thaumaturgy||奇術}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Dimension Door||任意門}",
+							"{@spell Mass Suggestion||群體暗示術}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "彗星之聲（1/日）",
+					"entries": [
+						"教宗可以施放{@spell Contact Other Plane||異界探知}，使用魅力作為施法屬性。"
+					],
+					"ENG_name": "Comet's Voice (1/Day)"
+				},
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"彗星教宗為抵抗法術和其他魔法效應而作的豁免檢定具有優勢。"
+					],
+					"ENG_name": "Magic Resistance"
+				},
+				{
+					"name": "思想護盾",
+					"entries": [
+						"除非教宗允許，否則任何手段都不能閱讀它的思想。"
+					],
+					"ENG_name": "Thought Shield"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"彗星教宗發動兩次先驅魔斧攻擊或三次彗星爆攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "先驅魔斧",
+					"entries": [
+						"{@atk mw} {@hit 9} 命中，觸及5尺，單一目標。{@h}11（{@damage 1d12 + 5}）揮砍傷害外加10（{@damage 3d6}）暗蝕傷害。"
+					],
+					"ENG_name": "Herald's Axe"
+				},
+				{
+					"name": "彗星爆",
+					"entries": [
+						"{@atk rs} {@hit 9} 命中，射程120尺，單一目標。{@h}16（{@damage 2d10 + 5}）力場傷害。"
+					],
+					"ENG_name": "Comet Blast"
+				},
+				{
+					"name": "吞噬萬物之星 {@recharge}",
+					"entries": [
+						"教宗咒喚出吞噬萬物之星的一道顯跡：絢爛的光線和陰魂不散的尖嘯，覆蓋以教宗60尺內能看見的一點為中心，半徑20尺的球狀區域。任何位於該區域內的生物都會陷入{@condition blinded||目盲}和{@condition deafened||耳聾}狀態。任何在一個回合內第一次進入該區域，或是在該區域內開始回合的生物都必須進行一次{@dc 17}的感知豁免。豁免失敗者受到27（{@damage 6d8}）心靈傷害並陷入{@condition incapacitated||失能}狀態直至其下一回合開始。豁免成功則只受到一半傷害。這道顯跡將持續存在，直至該教宗死亡、陷入{@condition incapacitated||失能}狀態、使用附贈動作結束該效果，或是再次使用此動作。"
+					],
+					"ENG_name": "All-Consuming Star {@recharge}"
+				}
+			],
+			"bonus": [
+				{
+					"name": "魔星之慾",
+					"entries": [
+						"教宗指定一個位於其吞噬萬物之星的中心30尺內的生物。目標必須成功透過一次{@dc 17}的力量豁免否則被拉向吞噬萬物之星的中心點至多30尺。"
+					],
+					"ENG_name": "Star's Hunger"
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"TP",
+				"X"
+			],
+			"damageTags": [
+				"N",
+				"O",
+				"S",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"conditionInflict": [
+				"incapacitated"
+			],
+			"savingThrowForced": [
+				"strength",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Hierophant of the Comet"
+		},
+		{
+			"name": "霍加茲",
+			"isNamedCreature": true,
+			"source": "BMT",
+			"page": 169,
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"devil"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 190,
+				"formula": "20d10 + 80"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"str": 17,
+			"dex": 10,
+			"con": 18,
+			"int": 14,
+			"wis": 15,
+			"cha": 20,
+			"save": {
+				"wis": "+7",
+				"cha": "+10"
+			},
+			"skill": {
+				"deception": "+10",
+				"insight": "+7",
+				"perception": "+7",
+				"persuasion": "+10"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 17,
+			"resist": [
+				"acid",
+				"cold",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "非銀質武器且非魔法攻擊的",
+					"cond": true
+				}
+			],
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"poisoned"
+			],
+			"languages": [
+				"深淵語",
+				"通用語",
+				"心靈感應 120 尺"
+			],
+			"cr": "14",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"霍加茲施展以下一道法術，無需任何材質成分並使用魅力作為施法屬性（法術豁免{@dc 18}）："
+					],
+					"will": [
+						"{@spell Charm Person||魅惑類人}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Teleport||傳送術}"
+						],
+						"2e": [
+							"{@spell Dispel Magic||解除魔法}",
+							"{@spell Fog Cloud||雲霧術}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"若霍加茲豁免檢定失敗，她可以改為成功。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				},
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"霍加茲為抵抗法術和其他魔法效應而作的豁免檢定具有優勢。"
+					],
+					"ENG_name": "Magic Resistance"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"霍加茲發動兩次爪抓攻擊和一次迷醉毒刺攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atk mw} {@hit 8} 命中，觸及5尺，單一目標。{@h}12（{@damage 2d8 + 3}）揮砍傷害。"
+					],
+					"ENG_name": "Claw"
+				},
+				{
+					"name": "迷醉毒刺",
+					"entries": [
+						"{@atk mw} {@hit 8}命中，觸及10尺，單一生物。{@h}8（{@damage 1d10 + 3}）穿刺傷害外加10（{@damage 3d6}）毒素傷害，且目標必須成功透過一次{@dc 17}的感知豁免檢定否則獲得{@condition charmed||魅惑}狀態直至霍加茲的下一回合開始。"
+					],
+					"ENG_name": "Intoxicating Sting"
+				},
+				{
+					"name": "硫磺蒸汽{@recharge 5}",
+					"entries": [
+						"霍加茲撥出一道30尺錐狀的劇毒灼熱蒸汽。該區域內的每個生物都必須成功透過一次{@dc 17}的體質豁免否則陷入{@condition poisoned||中毒}狀態1分鐘。以此法{@condition poisoned||中毒}期間，生物會在每次其回合開始時受到31（{@damage 7d8}）火焰傷害並在感知豁免上具有劣勢。目標可以在每次它的回合結束時重複此體質豁免，豁免成功則終止此效應。"
+					],
+					"ENG_name": "Brimstone Vapor {@recharge 5}"
+				}
+			],
+			"legendary": [
+				{
+					"name": "攻擊",
+					"entries": [
+						"霍加茲進行一次爪擊攻擊。"
+					],
+					"ENG_name": "Attack"
+				},
+				{
+					"name": "魅惑",
+					"entries": [
+						"霍加茲用其施法特性施放{@spell Charm Person||魅惑類人}。"
+					],
+					"ENG_name": "Charm"
+				},
+				{
+					"name": "心臟停滯（花費2個動作）",
+					"entries": [
+						"霍加茲扭轉其{@condition charmed||魅惑}受害者的好心情。她選擇任意數量的她能看見且被她{@condition charmed||魅惑}的生物。每個目標受到17（{@damage 5d6}）心靈傷害且霍加茲對該生物造成的{@condition charmed||魅惑}狀態結束。"
+					],
+					"ENG_name": "Curdle Heart (Costs 2 Actions)"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"TP"
+			],
+			"damageTags": [
+				"F",
+				"I",
+				"P",
+				"S",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"charmed"
+			],
+			"conditionInflictSpell": [
+				"charmed"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Hulgaz"
+		},
+		{
+			"name": "彗星門徒",
+			"source": "BMT",
+			"page": 93,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"warlock"
+				]
+			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 75,
+				"formula": "10d8 + 30"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 14,
+			"con": 16,
+			"int": 11,
+			"wis": 13,
+			"cha": 17,
+			"save": {
+				"wis": "+3",
+				"cha": "+5"
+			},
+			"skill": {
+				"arcana": "+2"
+			},
+			"passive": 11,
+			"languages": [
+				"通用語，以及任意一種語言"
+			],
+			"cr": "4",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"門徒施展以下一道法術，使用魅力作為施法屬性（法術豁免{@dc 13}）："
+					],
+					"will": [
+						"{@spell Mage Hand||法師之手}",
+						"{@spell Thaumaturgy||奇術}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Dimension Door||任意門}",
+							"{@spell Divination||預言}",
+							"{@spell Enthrall||注目術}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"彗星門徒在對抗法術和其他魔法效應的豁免檢定上具有優勢。"
+					],
+					"ENG_name": "Magic Resistance"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"門徒發動兩次彗星打擊攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "彗星打擊",
+					"entries": [
+						"{@atk ms,rs} {@hit 5} 命中，觸及5尺或射程120尺，單一目標。{@h}14（{@damage 2d10 + 3}）力場傷害。"
+					],
+					"ENG_name": "Comet Strike"
+				}
+			],
+			"reaction": [
+				{
+					"name": "片刻先見（1/日）",
+					"entries": [
+						"當被一次攻擊檢定命中後，門徒可以迫使攻擊手重骰該次攻擊並使用新的結果，可能令該攻擊失手。"
+					],
+					"ENG_name": "Moment of Foresight (1/Day)"
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"O"
+			],
+			"damageTagsSpell": [
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Initiate of the Comet"
+		},
+		{
+			"name": "墜星傳諭使",
+			"source": "BMT",
+			"page": 180,
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "celestial",
+			"alignment": [
+				"L",
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 65,
+				"formula": "10d8 + 20"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"str": 14,
+			"dex": 16,
+			"con": 14,
+			"int": 14,
+			"wis": 16,
+			"cha": 15,
+			"save": {
+				"dex": "+5",
+				"wis": "+5"
+			},
+			"skill": {
+				"arcana": "+6",
+				"history": "+6",
+				"insight": "+5",
+				"perception": "+5"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 15,
+			"immune": [
+				"radiant"
+			],
+			"conditionImmune": [
+				"exhaustion"
+			],
+			"languages": [
+				"所有"
+			],
+			"cr": "3",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"墜星傳諭使施展以下一道法術，無需任何材質成分並使用感知作為施法屬性："
+					],
+					"daily": {
+						"2": [
+							"{@spell Cure Wounds||療傷術}"
+						],
+						"1e": [
+							"{@spell Divination||預言}",
+							"{@spell Greater Restoration||高等復原術}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "輝耀（僅真實形態）",
+					"entries": [
+						"墜星傳諭使散發出30尺半徑的明亮光照，外加30尺的微光光照。"
+					],
+					"ENG_name": "Brilliance (True Form Only)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"墜星傳諭使發動兩次耀光打擊攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "光耀打擊",
+					"entries": [
+						"{@atk ms,rs} {@hit 5} 命中，觸及5尺或射程120尺，單一目標。{@h}9（{@damage 1d12 + 3}）光耀傷害。"
+					],
+					"ENG_name": "Radiant Strike"
+				},
+				{
+					"name": "吉兆恩典",
+					"entries": [
+						"墜星傳諭使魔法性地將其預言的力量注入給一個位於其30尺內的它可見的願意生物。目標的當前生命值及其上限增加7（{@dice 1d8 + 3}），且它獲得一枚預兆骰——一顆{@dice d8}。每個該生物的回合一次，當它失敗於一次屬性檢定或豁免檢定，亦或是在一次攻擊檢定中失手，它都可以投擲該預兆骰並將其結果新增到擲骰結果中，可能改變結果。該祝福會在1小時後，或是墜星傳諭使主動結束祝福（無需動作），或是再次使用此動作時結束。"
+					],
+					"ENG_name": "Prophetic Blessing"
+				}
+			],
+			"bonus": [
+				{
+					"name": "變形",
+					"entries": [
+						"墜星傳諭使可以魔法性地變形為一個類人生物，同時保留其遊戲資料（除了體型和輝耀特質）。如果墜星傳諭使的生命值被降至0或使用一個附贈動作來結束，則該變形結束。"
+					],
+					"ENG_name": "Change Shape"
+				}
+			],
+			"reaction": [
+				{
+					"name": "忤逆之代價",
+					"entries": [
+						"當墜星傳諭使被一個位於其120尺內的它可見的生物造成傷害時，光耀能量會灼燒該生物。該生物必須進行一次{@dc 13}的體質豁免檢定，豁免失敗則受到10（{@damage 3d6}）光耀傷害，豁免成功則傷害減半。"
+					],
+					"ENG_name": "Price of Defiance"
+				}
+			],
+			"variant": [
+				{
+					"name": "活體星辰之碎片",
+					"type": "variant",
+					"entries": [
+						"夜空中一些星辰乃是上古邪物，來自悖逆現實的遙遠國度的異域存在，有著如神般的偉力。",
+						"墜星傳諭使可以是這些存在意志的一小塊碎片。這些墜星傳諭使是異怪而不是天界生物，陣營通常為混亂邪惡。它們將資料卡中的任何光耀傷害替換為暗蝕或心靈傷害（由DM決定）。它們的法術也可能有所不同。一些已知的上古邪物包括以下：",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "埃克馬",
+									"entry": "一顆吞噬其遭遇的其他星辰或恆星遺骸的死亡之星。",
+									"ENG_name": "Acamar"
+								},
+								{
+									"type": "item",
+									"name": "凱豐，夢語者",
+									"entry": "一顆紫色的星星，其指引和僕從看似能提供一時的協助，但其影響力終將不可避免地導向災難。",
+									"ENG_name": "Caiphon, the Dream Whisperer"
+								},
+								{
+									"type": "item",
+									"name": "哈達，烏黯之飢渴",
+									"entry": "一顆灰燼紅色的垂死星星，從其僕從身上汲取生命以延緩自身的消亡。",
+									"ENG_name": "Hadar, the Dark Hunger"
+								},
+								{
+									"type": "item",
+									"name": "奇拉德，秘兆之星",
+									"entry": "一顆藍白色的星星，其賜予的禮物能帶來洞悉，但也會揭示可怖的真相。",
+									"ENG_name": "Khirad, the Star of Secrets"
+								},
+								{
+									"type": "item",
+									"name": "燭頓，屍星",
+									"entry": "一塊屍星以低語傳播著反抗死亡的力量。",
+									"ENG_name": "Zhudun, the Corpse Star"
+								}
+							]
+						}
+					],
+					"ENG_name": "Servants of Living Stars"
+				}
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Shapechanger"
+			],
+			"languageTags": [
+				"XX"
+			],
+			"damageTags": [
+				"R"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Living Star (Necrotic)",
+					"source": "BMT",
+					"_mod": {
+						"*": {
+							"mode": "replaceTxt",
+							"replace": "\\bradiant\\b",
+							"with": "necrotic"
+						}
+					},
+					"type": "aberration",
+					"alignment": [
+						"C",
+						"E"
+					],
+					"variant": null
+				},
+				{
+					"name": "Living Star (Psychic)",
+					"source": "BMT",
+					"_mod": {
+						"*": {
+							"mode": "replaceTxt",
+							"replace": "\\bradiant\\b",
+							"with": "psychic"
+						}
+					},
+					"type": "aberration",
+					"alignment": [
+						"C",
+						"E"
+					],
+					"variant": null
+				}
+			],
+			"ENG_name": "Living Portent"
+		},
+		{
+			"name": "瑪拉希克斯",
+			"isNamedCreature": true,
+			"source": "BMT",
+			"page": 173,
+			"size": [
+				"H"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"yugoloth"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 312,
+				"formula": "25d12 + 150"
+			},
+			"speed": {
+				"walk": 40,
+				"fly": 60
+			},
+			"str": 23,
+			"dex": 16,
+			"con": 22,
+			"int": 22,
+			"wis": 20,
+			"cha": 18,
+			"save": {
+				"str": "+12",
+				"con": "+12"
+			},
+			"skill": {
+				"arcana": "+12",
+				"athletics": "+12",
+				"perception": "+11"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 21,
+			"resist": [
+				"cold",
+				"fire",
+				"lightning",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"immune": [
+				"acid",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"深淵語",
+				"煉獄語",
+				"心靈感應 120 尺"
+			],
+			"cr": "18",
+			"trait": [
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"如果瑪拉希克斯豁免檢定失敗，它可以選擇直接成功豁免。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				},
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"瑪拉希克斯為抵抗法術和其他魔法效應而作的豁免檢定具有優勢。"
+					],
+					"ENG_name": "Magic Resistance"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"瑪拉希克斯發動共計兩次的鍛錘或鞭攻擊（任意組合）。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "鍛錘",
+					"entries": [
+						"{@atk mw,rw} {@hit 12} 命中，觸及10尺或射程60/180尺，單一目標。{@h}28（{@damage 4d10 + 6}）鈍擊傷害，且目標不能執行反應直至瑪拉希克斯的下一回合結束。{@hom}鍛錘然後魔法性地回到瑪拉希克斯的手中。"
+					],
+					"ENG_name": "Forge Hammer"
+				},
+				{
+					"name": "鞭擊",
+					"entries": [
+						"{@atk mw} {@hit 12}命中，觸及30尺，單一生物。{@h}15（{@damage 2d8 + 6}）揮砍傷害，且目標獲得{@condition restrained||束縛}狀態1分鐘。被{@condition restrained||束縛}的目標可以在其每個回合結束時進行一次{@dc 20}力量豁免檢定，成功則自身終止該效應。同一時間只能有一個生物被鞭子{@condition restrained||束縛}。"
+					],
+					"ENG_name": "Whip"
+				},
+				{
+					"name": "麥澤羅斯旋風{@recharge 5}",
+					"entries": [
+						"瑪拉希克斯在位於其90尺內他可見的一點上召喚一道由飛旋的毒蟲羅斯魔組成的渦流。該渦流會覆蓋以該點位中心30尺半徑，100尺高的柱形區域。任何位於該區域內的生物（除了瑪拉希克斯）都必須進行一次{@dc 20}的敏捷豁免檢定。豁免失敗者受到35（{@damage 10d6}）力場傷害並在位於柱形區域內時陷入{@condition restrained||束縛}狀態。豁免成功則傷害減半且被推至柱形區域之外最近的未被佔據的空間。該渦流持續至瑪拉希克斯的下一回合開始。"
+					],
+					"ENG_name": "Mezzoloth Vortex {@recharge 5}"
+				}
+			],
+			"legendary": [
+				{
+					"name": "魔驅電掣",
+					"entries": [
+						"瑪拉希克斯移動至多等於其速度的距離且不會觸發藉機攻擊。當瑪拉希克斯移動經過了一個生物5尺內時，該生物受到5（{@damage 1d10}）閃電傷害。一個生物在一回合內只會受到一次該傷害。"
+					],
+					"ENG_name": "Fiendish Stride"
+				},
+				{
+					"name": "攻擊（花費2個動作）",
+					"entries": [
+						"瑪拉希克斯發動一次鍛錘或鞭子攻擊。"
+					],
+					"ENG_name": "Attack (Costs 2 Actions)"
+				}
+			],
+			"legendaryGroup": {
+				"name": "Malaxxix",
+				"source": "BMT"
+			},
+			"attachedItems": [
+				"whip|phb"
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"I",
+				"TP"
+			],
+			"damageTags": [
+				"B",
+				"L",
+				"O",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW",
+				"MW",
+				"RCH",
+				"RW"
+			],
+			"conditionInflict": [
+				"restrained"
+			],
+			"savingThrowForced": [
+				"dexterity",
+				"strength"
+			],
+			"savingThrowForcedLegendary": [
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Malaxxix"
+		},
+		{
+			"name": "牛頭人考古學者",
+			"source": "BMT",
+			"page": 126,
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 11,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 18,
+				"formula": "4d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 10,
+			"con": 11,
+			"int": 13,
+			"wis": 12,
+			"cha": 10,
+			"skill": {
+				"arcana": "+3",
+				"history": "+5",
+				"perception": "+5",
+				"religion": "+3"
+			},
+			"passive": 15,
+			"languages": [
+				"通用語"
+			],
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "迷宮追憶",
+					"entries": [
+						"牛頭人能完美回憶起它走過的任何路徑。"
+					],
+					"ENG_name": "Labyrinthine Recall"
+				}
+			],
+			"action": [
+				{
+					"name": "頂撞",
+					"entries": [
+						"{@atk mw} {@hit 3} 命中，觸及5尺，單一目標。{@h}4（{@damage 1d6 + 1}）穿刺傷害。如果牛頭人在命中前至少直線移動了10尺接近目標，則目標受到額外3（{@damage 1d6}）穿刺傷害，且如果目標為大型或更小的生物，則其必須成功透過{@dc 11}的力量豁免否則被推開至多10尺並陷入{@condition prone||倒地}狀態。"
+					],
+					"ENG_name": "Gore"
+				}
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Minotaur Archaeologist"
+		},
+		{
+			"name": "牛頭人秘教徒",
+			"source": "BMT",
+			"page": 127,
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 52,
+				"formula": "8d8 + 16"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 18,
+			"dex": 11,
+			"con": 14,
+			"int": 8,
+			"wis": 16,
+			"cha": 10,
+			"skill": {
+				"deception": "+2",
+				"perception": "+7",
+				"religion": "+1"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 17,
+			"languages": [
+				"深淵語",
+				"通用語"
+			],
+			"cr": "2",
+			"trait": [
+				{
+					"name": "迷宮追憶",
+					"entries": [
+						"牛頭人能完美回憶起它走過的任何路徑。"
+					],
+					"ENG_name": "Labyrinthine Recall"
+				}
+			],
+			"action": [
+				{
+					"name": "頂撞",
+					"entries": [
+						"{@atk mw} {@hit 6} 命中，觸及5尺，單一目標。{@h}8（{@damage 1d8 + 4}）穿刺傷害，或變巨期間13（{@damage 2d8 + 4}）穿刺傷害。如果牛頭人在命中前至少直線移動了10尺接近目標，目標將受到額外4（{@damage 1d8}）穿刺傷害，或牛頭人變巨期間9（{@damage 2d8}）穿刺傷害。如果目標是生物，則必須成功透過{@dc 14}的力量豁免檢定，否則被推開至多10尺並陷入{@condition prone||倒地}狀態。"
+					],
+					"ENG_name": "Gore"
+				},
+				{
+					"name": "鶴嘴鋤",
+					"entries": [
+						"{@atk mw} {@hit 6} 命中，觸及10尺，單一目標。{@h}10（{@damage 1d12 + 4}）鈍擊傷害，變巨期間改為17（{@damage 2d12 + 4}）鈍擊傷害。若目標是生物且牛頭人處於變巨期間，目標必須透過一次{@dc 14}的力量豁免檢定，否則陷入{@condition prone||倒地}狀態。"
+					],
+					"ENG_name": "Mattock"
+				},
+				{
+					"name": "變巨（短休或長休後充能）。",
+					"entries": [
+						"接下來的一分鐘內，牛頭人的身軀魔法性的變大，其隨身攜帶或穿著的物品也將一起變大。變巨期間，牛頭人的體型變為大型，其基於力量屬性的武器攻擊可以骰雙倍數量的傷害骰（已寫明在攻擊項中），並且它進行的力量檢定與力量豁免均具有優勢。如果周遭空間無法容納變巨後的牛頭人，牛頭人的體型將不會發生改變。"
+					],
+					"ENG_name": "Enlarge (Recharges after a Short or Long Rest)"
+				}
+			],
+			"bonus": [
+				{
+					"name": "精準追獵",
+					"entries": [
+						"牛頭人魔法性地與一個它可見的生物建立一條心靈連結。接下來的一小時內，只要目標與牛頭人處於同一存在位面，牛頭人就永遠可以知曉與那個生物之間的距離與方向。若牛頭人陷入{@condition incapacitated||失能}狀態或是再次使用此能力於不同目標，這一連結將提前結束。"
+					],
+					"ENG_name": "Unerring Tracker"
+				}
+			],
+			"tokenCustom": true,
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"AB",
+				"C"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"hasToken": true,
+			"ENG_name": "Minotaur Infiltrator"
+		},
+		{
+			"name": "歐德樂溫",
+			"isNamedCreature": true,
+			"source": "BMT",
+			"page": 111,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "fey",
+				"tags": [
+					"goblinoid"
+				]
+			},
+			"alignment": [
+				"C",
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"{@item leather armor|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 21,
+				"formula": "6d6"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 8,
+			"dex": 14,
+			"con": 10,
+			"int": 10,
+			"wis": 16,
+			"cha": 15,
+			"skill": {
+				"performance": "+4",
+				"stealth": "+6"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 13,
+			"conditionImmune": [
+				"charmed"
+			],
+			"languages": [
+				"通用語",
+				"地精語",
+				"木族語"
+			],
+			"cr": "2",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"歐德樂溫施展以下一個法術，使用魅力作為施法屬性（法術豁免{@dc 12}）："
+					],
+					"will": [
+						"{@spell Mage Hand||法師之手}",
+						"{@spell Tasha's Hideous Laughter||塔莎狂笑術}"
+					],
+					"ability": "cha",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "算命師",
+					"entries": [
+						"歐德樂溫可以以儀式施放{@spell Augury||卜筮術}法術，使用卡牌作為材料成分。"
+					],
+					"ENG_name": "Fortune Teller"
+				},
+				{
+					"name": "林布哥症",
+					"entries": [
+						"任何試圖傷害歐德樂溫的生物都必須首先成功透過{@dc 12}的魅力豁免檢定，否則獲得{@condition charmed||魅惑}狀態直到該生物下個回合結束。該生物必須使用其動作來讚美歐德樂溫。",
+						"歐德樂溫無法恢復生命值，包括透過魔法治療，除非透過他的逆轉命運反應。"
+					],
+					"ENG_name": "Nilbogism"
+				}
+			],
+			"action": [
+				{
+					"name": "愚者權杖",
+					"entries": [
+						"{@atk mw} 命中{@hit 4}，觸及5尺，單一目標。{@h}5（{@damage 1d6 + 2}）點鈍擊傷害。"
+					],
+					"ENG_name": "Fool's Scepter"
+				},
+				{
+					"name": "卡片之雲",
+					"entries": [
+						"歐德樂溫在自己60尺內召喚出在空中飛旋切割的魔法卡牌，充滿5尺立方空間，並持續存在到歐德樂溫的下回合。一個在方塊範圍內開始回合的生物或在一個回合中第一次進入區域的生物都會受到10（{@damage 4d4}）揮砍傷害。"
+					],
+					"ENG_name": "Cloud of Cards"
+				}
+			],
+			"bonus": [
+				{
+					"name": "迅捷逃逸",
+					"entries": [
+						"歐德樂溫執行{@action Disengage||撤離}或{@action Hide||躲藏}動作。"
+					],
+					"ENG_name": "Nimble Escape"
+				}
+			],
+			"reaction": [
+				{
+					"name": "逆轉命運",
+					"entries": [
+						"當另一個生物對歐德樂溫造成傷害時，歐德樂溫將本次傷害值降低至0並恢復9（{@dice 2d8}）生命值。"
+					],
+					"ENG_name": "Reversal of Fortune"
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"GO",
+				"S"
+			],
+			"damageTags": [
+				"B",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"incapacitated",
+				"prone"
+			],
+			"savingThrowForced": [
+				"charisma"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Oddlewin"
+		},
+		{
+			"name": "蝕心異客",
+			"source": "BMT",
+			"page": 47,
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "aberration",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 19,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 217,
+				"formula": "29d8 + 87"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40
+			},
+			"str": 12,
+			"dex": 22,
+			"con": 16,
+			"int": 22,
+			"wis": 18,
+			"cha": 20,
+			"save": {
+				"dex": "+12",
+				"int": "+12"
+			},
+			"skill": {
+				"perception": "+10",
+				"stealth": "+18"
+			},
+			"senses": [
+				"blindsight 30 ft."
+			],
+			"passive": 20,
+			"resist": [
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"通用語",
+				"心靈感應 120 尺",
+				"盜賊黑話"
+			],
+			"cr": {
+				"cr": "17",
+				"lair": "18"
+			},
+			"trait": [
+				{
+					"name": "異界心靈",
+					"entries": [
+						"魔法和其他特徵均無法偵測出蝕心異客的生物型別。如果一個生物試圖讀取蝕心異客的思想，那個生物必須透過一次{@dc 20}的智力豁免檢定，否則陷入{@condition stunned||震懾}狀態持續1分鐘。被{@condition stunned||震懾}的生物可以在每個自己的回合結束時重複這次豁免檢定，成功則終止效應。"
+					],
+					"ENG_name": "Alien Mind"
+				},
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"如果蝕心異客在一次豁免檢定中失敗，它可以改為選擇成功。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				},
+				{
+					"name": "蛛行術",
+					"entries": [
+						"蝕心異客可以在難以攀爬的表面上攀爬，包括倒吊在天花板上，且不需要進行屬性檢定。"
+					],
+					"ENG_name": "Spider Climb"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"蝕心異客進行三次言刃攻擊，並且可以使用衰弱之觸。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "言刃",
+					"entries": [
+						"{@atk mw,rw} {@hit 12} 命中，觸及5尺或射程60尺，單一目標。{@h}10（{@damage 1d8 + 6}）穿刺傷害外加14（{@damage 4d6}）心靈傷害。如果目標為一個生物，則目標必須成功透過{@dc 20}的感知豁免否則無法言語直至蝕心異客的下個回合開始。"
+					],
+					"ENG_name": "Whispering Blade"
+				},
+				{
+					"name": "衰弱之觸",
+					"entries": [
+						"蝕心異客蠕動的觸鬚抽向30尺內它能夠看見的一個生物。該目標必須成功透過一次{@dc 20}的體質豁免檢定，否則陷入{@condition paralyzed||麻痺}狀態直到其下一回合結束，此後該目標將在24小時內免疫此衰弱之觸。"
+					],
+					"ENG_name": "Debilitating Touch"
+				}
+			],
+			"bonus": [
+				{
+					"name": "變形",
+					"entries": [
+						"蝕心異客可以魔法性地變形為任何小型或中型生物，同時保留其遊戲資料（除了體型）。該變形在蝕心異客生命值降至0或使用附贈動作結束時終止。"
+					],
+					"ENG_name": "Change Shape"
+				}
+			],
+			"reaction": [
+				{
+					"name": "直覺閃避",
+					"entries": [
+						"當蝕心異客能夠看見的攻擊手以攻擊命中蝕心異客時，蝕心異客可以減半這次攻擊對它的傷害。"
+					],
+					"ENG_name": "Uncanny Dodge"
+				}
+			],
+			"legendary": [
+				{
+					"name": "狡黠",
+					"entries": [
+						"蝕心異客掙脫非魔法的拘束，並解除自身的{@condition grappled||受擒}和{@condition restrained||束縛}狀態，隨後其可移動至多等於其速度的距離，且不會引發藉機攻擊。"
+					],
+					"ENG_name": "Cunning"
+				},
+				{
+					"name": "刺殺（花費2個動作）",
+					"entries": [
+						"蝕心異客發動一次言刃攻擊。"
+					],
+					"ENG_name": "Stab (Costs 2 Actions)"
+				},
+				{
+					"name": "化形逃逸（花費3個動作）",
+					"entries": [
+						"蝕心異客溶解為一灘包含觸鬚、眼睛、爪擊和嘴的化形血肉。異客20尺內能看見的兩個生物必須進行一次{@dc 20}的智力豁免檢定，失敗則承受18（{@damage 4d8}）點心靈傷害，成功則減半。此化形持續到異客的下個回合結束。化形期間，異客的攻擊檢定具有優勢，對異客發動的攻擊檢定具有劣勢，並且它可以自由穿過最小一寸寬的空隙。"
+					],
+					"ENG_name": "Amorphous Escape (Costs 3 Actions)"
+				}
+			],
+			"legendaryGroup": {
+				"name": "Villain",
+				"source": "BMT"
+			},
+			"traitTags": [
+				"Legendary Resistances",
+				"Spider Climb"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Shapechanger"
+			],
+			"languageTags": [
+				"C",
+				"TC",
+				"TP"
+			],
+			"damageTags": [
+				"P",
+				"Y"
+			],
+			"miscTags": [
+				"MW",
+				"RW"
+			],
+			"conditionInflict": [
+				"paralyzed",
+				"stunned"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"intelligence",
+				"wisdom"
+			],
+			"savingThrowForcedLegendary": [
+				"constitution",
+				"dexterity",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Otherworldly Corrupter"
+		},
+		{
+			"name": "帕茲蘿丁",
+			"isNamedCreature": true,
+			"source": "BMT",
+			"page": 113,
+			"size": [
+				"G"
+			],
+			"type": {
+				"type": "dragon",
+				"tags": [
+					"moonstone"
+				]
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 20,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 330,
+				"formula": "20d20 + 120"
+			},
+			"speed": {
+				"walk": 40,
+				"fly": 80
+			},
+			"str": 22,
+			"dex": 18,
+			"con": 23,
+			"int": 20,
+			"wis": 22,
+			"cha": 26,
+			"save": {
+				"int": "+12",
+				"wis": "+13",
+				"cha": "+15"
+			},
+			"skill": {
+				"perception": "+13",
+				"persuasion": "+15",
+				"stealth": "+11"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 23,
+			"conditionImmune": [
+				"charmed"
+			],
+			"languages": [
+				"所有",
+				"心靈感應 120 尺"
+			],
+			"cr": "21",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"帕茲蘿丁施展以下一道法術，無需任何材料成分並使用魅力作為施法屬性（法術豁免{@dc 23}）："
+					],
+					"will": [
+						"{@spell Faerie Fire||妖火}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Calm Emotions||安定心神}",
+							"{@spell Dispel Magic||解除魔法}",
+							"{@spell Invisibility||隱形}"
+						],
+						"1e": [
+							"{@spell Mass Cure Wounds||群體療傷術}",
+							"{@spell Revivify||回生術}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "集市守衛",
+					"entries": [
+						"帕茲蘿丁能感覺到喜樂集市中的物品被偷時。她知道失竊物品的距離和方向，如同{@spell Locate Object||物件定位術}法術一般。"
+					],
+					"ENG_name": "Guardian of the Market"
+				},
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"如果帕茲蘿丁在一次豁免檢定中失敗，她可以選擇直接成功豁免。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"帕茲蘿丁進行一次啃咬攻擊與兩次爪擊攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw} 命中{@hit 13}，觸及15尺，單一目標。{@h}17（{@damage 2d10 + 6}）穿刺傷害外加11（{@damage 2d10}）光耀傷害。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 13}，觸及10尺，單一目標。{@h}13（{@damage 2d6 + 6}）揮砍傷害。"
+					],
+					"ENG_name": "Claw"
+				},
+				{
+					"name": "尾擊",
+					"entries": [
+						"{@atk mw} {@hit 13} 命中，觸及20尺，單一目標。{@h}10（{@damage 1d8 + 6}）鈍擊傷害。若目標為一個生物，則必須成功透過{@dc 21}力量豁免檢定否則陷入{@condition prone||倒地}狀態。"
+					],
+					"ENG_name": "Tail"
+				},
+				{
+					"name": "吐息武器{@recharge 5}",
+					"entries": [
+						"帕茲蘿丁可以使用下列吐息武器之一：",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "入夢吐息",
+									"entries": [
+										"帕茲蘿丁撥出一道覆蓋90尺錐狀區域的迷霧。任何位於此區域中的生物必須成功透過{@dc 21}的體質豁免檢定，否則陷入{@condition unconscious||昏迷}狀態10分鐘。當一個受到影響的生物受到傷害或有人作為動作搖醒他時，此效果便結束。"
+									],
+									"ENG_name": "Dream Breath"
+								},
+								{
+									"type": "item",
+									"name": "月光吐息",
+									"entries": [
+										"帕茲蘿丁撥出一道長120尺，寬10尺的月光束。任何位於此區域中的生物必須進行一次{@dc 21}的敏捷豁免檢定，豁免失敗則受到60（{@damage 11d10}）點光耀傷害，豁免成功則傷害減半。"
+									],
+									"ENG_name": "Moonlight Breath"
+								}
+							]
+						}
+					],
+					"ENG_name": "Breath Weapon {@recharge 5}"
+				}
+			],
+			"legendary": [
+				{
+					"name": "尾擊",
+					"entries": [
+						"帕茲蘿丁發動一次尾擊攻擊。"
+					],
+					"ENG_name": "Tail"
+				},
+				{
+					"name": "施法（花費2個動作）",
+					"entries": [
+						"帕茲蘿丁使用施法。"
+					],
+					"ENG_name": "Cast a Spell (Costs 2 Actions)"
+				}
+			],
+			"legendaryGroup": {
+				"name": "Pazrodine",
+				"source": "BMT"
+			},
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"TP",
+				"XX"
+			],
+			"damageTags": [
+				"B",
+				"P",
+				"R",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflictSpell": [
+				"invisible"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity",
+				"strength"
+			],
+			"savingThrowForcedLegendary": [
+				"charisma",
+				"dexterity",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Pazrodine"
+		},
+		{
+			"name": "四旋翼拘禁無人機",
+			"group": null,
+			"source": "BMT",
+			"page": 135,
+			"_copy": {
+				"name": "Quadrone",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "quadrone",
+						"with": "drone"
+					},
+					"action": [
+						{
+							"mode": "appendArr",
+							"items": {
+								"name": "拘禁球",
+								"entries": [
+									"無人機向距離自身30尺內的一個生物射出一個微型魔法力場球。該生物必須成功透過{@dc 15}的體質豁免，否則被包裹進法球中，球體會膨脹到足以容納該生物的大小。當被包裹在球中時，生物無需呼吸、進食或飲水，也不會衰老。球體無法被任何東西穿過，任何生物也無法透過傳送或位面旅行的方式進入或離開球內。作為附贈動作，無人機能夠將球體及其內容朝著任何方向移動30尺。在球體上成功施展{@spell Dispel Magic||解除魔法}法術（{@dc 15}）能夠將它摧毀。否則，球體會保持原狀，直到無人機作為動作結束該效果或無人機被摧毀。一架無人機只能同時啟用一個拘禁球；如果它在已經存在一個啟用的拘禁球的情況下創造另一個，那麼第一個球體便會消失，將裡面的生物放出來。"
+								],
+								"ENG_name": "Detention Orb"
+							}
+						}
+					]
+				}
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Quadrone Detention Drone"
+		},
+		{
+			"name": "收割者靈魄",
+			"source": "BMT",
+			"page": 50,
+			"summonedBySpell": "Spirit of Death|BMT",
+			"summonedBySpellLevel": 4,
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				{
+					"special": "11 +法術等級 (天生護甲)"
+				}
+			],
+			"hp": {
+				"special": "40 +10×每比4環高的法術等級"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"str": 16,
+			"dex": 16,
+			"con": 16,
+			"int": 16,
+			"wis": 16,
+			"cha": 16,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 13,
+			"immune": [
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned"
+			],
+			"languages": [
+				"理解你所說的語言"
+			],
+			"pbNote": "equals your bonus",
+			"trait": [
+				{
+					"name": "虛體移動",
+					"entries": [
+						"靈魄可以如同穿過困難地形一樣穿過其他生物和物件。如果它在自己的回合結束時仍處在物件內部，則會被傳送到最近的未佔據空間，每被傳送5尺就會受到{@damage 1d10}的力場傷害。"
+					],
+					"ENG_name": "Incorporeal Movement"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"靈魄發動等同於法術環階一半的次數的收割之鐮攻擊（向下取整）。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "收割之鐮",
+					"entries": [
+						"{@atk mw} 你的法術攻擊調整值命中（具有優勢），觸及5尺，作祟生物所困擾的生物。{@h}{@damage 1d8 + 3 + summonSpellLevel} 暗蝕傷害。"
+					],
+					"ENG_name": "Reaping Scythe"
+				}
+			],
+			"bonus": [
+				{
+					"name": "作祟生物",
+					"entries": [
+						"靈魄以自己10尺內一個它能看見的生物為目標，並開始作祟該生物。當目標被作祟時，如果目標和你在同一個存在位面上，你和靈魄就會感知到目標的方向和距離。此外，如果目標在靈魄10尺內開始其回合，則該目標必須對你的法術豁免DC進行一次成功的感知豁免，否則將陷入{@condition frightened||恐慌}狀態直到目標的下一回合開始。目標在死亡、靈魄消失或靈魄再次使用此動作前一直處於被作祟狀態。"
+					],
+					"ENG_name": "Haunt Creature"
+				}
+			],
+			"tokenCredit": "Chris Cold",
+			"tokenCustom": true,
+			"traitTags": [
+				"Incorporeal Movement"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"N",
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"hasToken": true,
+			"ENG_name": "Reaper Spirit"
+		},
+		{
+			"name": "洗牌妖",
+			"source": "BMT",
+			"page": 181,
+			"size": [
+				"S"
+			],
+			"type": "fey",
+			"alignment": [
+				"C",
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 90,
+				"formula": "20d6 + 20"
+			},
+			"speed": {
+				"walk": 30,
+				"burrow": 20
+			},
+			"str": 8,
+			"dex": 16,
+			"con": 12,
+			"int": 11,
+			"wis": 15,
+			"cha": 17,
+			"save": {
+				"dex": "+6",
+				"cha": "+6"
+			},
+			"skill": {
+				"arcana": "+6",
+				"insight": "+5",
+				"sleight of hand": "+9",
+				"stealth": "+6"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 12,
+			"resist": [
+				"necrotic",
+				"radiant"
+			],
+			"languages": [
+				"通用語",
+				"木族語"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "卡牌感知",
+					"entries": [
+						"洗牌妖可以感知到其1英里內魔法卡牌的細微存在痕跡，包括永珍無常牌和其他魔法卡牌。它知曉這些卡牌的方向和距離。能阻止目標被預言魔法感知的效應會遮蔽這種感知。"
+					],
+					"ENG_name": "Card Sense"
+				},
+				{
+					"name": "洗牌步法",
+					"entries": [
+						"洗牌妖可以掘穴穿過任何非魔法且非鐵的材質，如同洗牌妖像翻起卡牌般將被穿過的材質翻開並將自己像卡牌一般洗入其中，隨後被翻開的材質立即閉合。"
+					],
+					"ENG_name": "Riffling Step"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"洗牌妖發動兩次靈體飛牌攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "靈體飛牌",
+					"entries": [
+						"{@atk ms,rs} {@hit 6} 命中，觸及5尺或射程60尺，單一目標。{@h}8（{@damage 1d10 + 3}）力場傷害外加5（{@damage 1d10}）傷害，若{@dice d10}擲骰結果為偶數則為光耀傷害，若為奇數則為暗蝕傷害。"
+					],
+					"ENG_name": "Spectral Card"
+				},
+				{
+					"name": "飛散卡牌{@recharge 5}",
+					"entries": [
+						"洗牌妖魔法性地飛出一片靈體卡牌，覆蓋一處30尺錐狀區域。任何位於區域內的生物都必須進行一次{@dc 14}的敏捷豁免。豁免失敗者受到27（{@damage 5d10}）力場傷害並陷入{@condition restrained||束縛}狀態1分鐘。豁免成功則只受到一半的傷害。被{@condition restrained||束縛}的生物可以在它的回合結束時重複此豁免，豁免成功則結束此效應。"
+					],
+					"ENG_name": "Card Spray {@recharge 5}"
+				},
+				{
+					"name": "位面轉移",
+					"entries": [
+						"洗牌妖對自身施展{@spell Plane Shift||位面轉移}法術，無需任何材質成分並使用魅力作為施法屬性。"
+					],
+					"ENG_name": "Plane Shift"
+				}
+			],
+			"reaction": [
+				{
+					"name": "重洗命運",
+					"entries": [
+						"當一個洗牌妖30尺內它可見的生物進行一次屬性檢定，攻擊檢定或是豁免檢定時，洗牌妖可以魔法性地迫使該生物擲一次{@dice d6}並在檢定中加入或減去（由洗牌妖選擇）等於該骰值的數值，這可能會改變檢定結果。"
+					],
+					"ENG_name": "Shuffle Destiny"
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"S"
+			],
+			"damageTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE"
+			],
+			"conditionInflict": [
+				"restrained"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Riffler"
+		},
+		{
+			"name": "廢墟蝕滅蛛",
+			"source": "BMT",
+			"page": 182,
+			"size": [
+				"L"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 105,
+				"formula": "14d10 + 28"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40
+			},
+			"str": 16,
+			"dex": 18,
+			"con": 14,
+			"int": 2,
+			"wis": 13,
+			"cha": 4,
+			"skill": {
+				"stealth": "+10"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 11,
+			"immune": [
+				"acid"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "毀蝕酸液",
+					"entries": [
+						"任何擊中該蜘蛛的非魔法武器都會被腐蝕。造成傷害後，該武器所作的傷害擲骰將永久承受-1減值且累計疊加。如果減值總和達到-5，則該武器被摧毀。由金屬製成的非魔法彈藥在擊中該蜘蛛並造成傷害後將隨即被摧毀。"
+					],
+					"ENG_name": "Ruinous Acid"
+				},
+				{
+					"name": "蛛行術",
+					"entries": [
+						"蜘蛛可以攀爬在難以攀爬的表面上，包括倒吊在天花板上，且不需要進行屬性檢定。"
+					],
+					"ENG_name": "Spider Climb"
+				},
+				{
+					"name": "蛛網感知",
+					"entries": [
+						"與蛛網接觸時，蜘蛛可以知曉其他與該蛛網接觸生物的準確位置。"
+					],
+					"ENG_name": "Web Sense"
+				},
+				{
+					"name": "蛛網行者",
+					"entries": [
+						"蜘蛛在蛛網上移動時無視蛛網造成的移動限制。"
+					],
+					"ENG_name": "Web Walker"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"蝕滅蛛發動兩次毀蝕啃咬攻擊。它可以將其中一次攻擊替換為使用蛛網。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "毀蝕啃咬",
+					"entries": [
+						"{@atk mw} {@hit 7} 命中，觸及5尺，單一目標。{@h}8（{@damage 1d8 + 4}）穿刺傷害外加9（{@damage 2d8}）強酸傷害。此外，若目標為一個著裝了非魔法護甲的生物，則其護甲提供的AC還將永久遭受-1減值且累計疊加。護甲提供AC被降至10時，該護甲將會被摧毀。"
+					],
+					"ENG_name": "Ruinous Bite"
+				},
+				{
+					"name": "蛛網{@recharge 5}",
+					"entries": [
+						"{@atk rw} {@hit 7}命中，射程30/60尺，單一生物。{@h}目標受{@condition restrained||束縛}束縛狀態。作為動作，被{@condition restrained||束縛}束縛的目標可以進行一次{@dc 13}力量檢定，檢定透過則掙脫蛛網。蛛網也可以被破壞（AC10；5點生命值；火焰傷害易傷；免疫強酸、鈍擊、毒素和心靈傷害）。"
+					],
+					"ENG_name": "Web {@recharge 5}"
+				}
+			],
+			"traitTags": [
+				"Spider Climb",
+				"Web Sense",
+				"Web Walker"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"A",
+				"P"
+			],
+			"miscTags": [
+				"MW",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Ruin Spider"
+		},
+		{
+			"name": "傑瑞德先生",
+			"source": "BMT",
+			"page": 80,
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 20,
+					"from": [
+						"{@item plate armor|PHB}",
+						"{@item shield|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 90,
+				"formula": "12d8 + 36"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 12,
+			"con": 17,
+			"int": 13,
+			"wis": 14,
+			"cha": 17,
+			"save": {
+				"str": "+7",
+				"con": "+6"
+			},
+			"skill": {
+				"arcana": "+4",
+				"athletics": "+7",
+				"persuasion": "+6",
+				"survival": "+5"
+			},
+			"passive": 12,
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"通用語",
+				"半身人語"
+			],
+			"cr": "5",
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"傑瑞德發動三次長劍攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "長劍",
+					"entries": [
+						"{@atk mw} {@hit 7} 命中，觸及5尺，單一目標。{@h}8（{@damage 1d8 + 4}）揮砍傷害加4（{@damage 1d8}）光耀傷害。在擲骰結果為19或20時，傑瑞德先生造成重擊。"
+					],
+					"ENG_name": "Longsword"
+				}
+			],
+			"reaction": [
+				{
+					"name": "保護盟友",
+					"entries": [
+						"當某個傑瑞德能看見的生物攻擊傑瑞德身邊5尺內除傑瑞德之外的目標時，傑瑞德可以用反應迫使該次攻擊的攻擊檢定具有劣勢。"
+					],
+					"ENG_name": "Protect Ally"
+				}
+			],
+			"attachedItems": [
+				"longsword|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"H"
+			],
+			"damageTags": [
+				"R",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Sir Jared"
+		},
+		{
+			"name": "熾天之壁騎士",
+			"source": "BMT",
+			"page": 75,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"paladin"
+				]
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 20,
+					"from": [
+						"{@item plate armor|PHB}",
+						"{@item shield|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 150,
+				"formula": "20d8 + 60"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 10,
+			"con": 17,
+			"int": 15,
+			"wis": 16,
+			"cha": 17,
+			"save": {
+				"wis": "+7",
+				"cha": "+7"
+			},
+			"skill": {
+				"arcana": "+6",
+				"history": "+6"
+			},
+			"passive": 13,
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"通用語，以及任意一種語言"
+			],
+			"cr": "9",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"騎士施展以下一道法術，使用魅力作為施法屬性（法術豁免{@dc 15}）："
+					],
+					"daily": {
+						"1e": [
+							"{@spell Greater Restoration||高等復原術}",
+							"{@spell Sending||短訊術}",
+							"{@spell Word of Recall||回返真言}（預備好的避難所就是熾天之壁）"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "守護靈光",
+					"entries": [
+						"騎士與身邊10尺內的每個盟友在豁免檢定時具有優勢。當騎士處於{@condition incapacitated||失能}狀態時，該特質不會起效。"
+					],
+					"ENG_name": "Aura of Protection"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"騎士進行三次熾天之矛攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "熾天之矛",
+					"entries": [
+						"{@atk ms,rs} {@hit 8} 命中，觸及5尺或射程120尺，單一目標。{@h}14（{@damage 3d6 + 4}）光耀傷害，若目標為邪魔或不死生物則為21（{@damage 5d6 + 4}）光耀傷害。"
+					],
+					"ENG_name": "Sunspear"
+				},
+				{
+					"name": "太陽耀斑 {@recharge 5}",
+					"entries": [
+						"騎士釋放出一股耀眼的能量，充滿以騎士為中心的半徑為30尺球狀範圍。在那個區域中騎士選擇的每個生物都必須進行一次{@dc 15}的敏捷豁免檢定。若豁免失敗，目標受到22點（{@damage 4d10}）的光耀傷害，並陷入{@condition blinded||目盲}狀態直至其下個回合結束。若豁免成功，被選中的生物只會受到一半的傷害。在接下來的一分鐘裡，受影響的區域裡充滿了明亮光照，這個光照被視為陽光。"
+					],
+					"ENG_name": "Solar Flare {@recharge 5}"
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"R"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE"
+			],
+			"conditionInflict": [
+				"blinded"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Solar Bastion Knight"
+		},
+		{
+			"name": "利爪裂法獸",
+			"source": "BMT",
+			"page": 183,
+			"size": [
+				"L"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 114,
+				"formula": "12d10 + 48"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 22,
+			"dex": 14,
+			"con": 19,
+			"int": 5,
+			"wis": 12,
+			"cha": 5,
+			"skill": {
+				"perception": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 14,
+			"conditionImmune": [
+				"frightened"
+			],
+			"cr": "7",
+			"trait": [
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"利爪裂法獸為抵抗法術和其他魔法效應而作的豁免檢定具有優勢。"
+					],
+					"ENG_name": "Magic Resistance"
+				},
+				{
+					"name": "感知魔法",
+					"entries": [
+						"利爪裂法獸能偵測並定位其120尺內的魔法。"
+					],
+					"ENG_name": "Sense Magic"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"利爪裂法獸發動兩次禽爪攻擊，或是一次禽爪攻擊和一次喙啄攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "喙啄",
+					"entries": [
+						"{@atk mw} {@hit 9} 命中，觸及 5 尺，單一目標。{@h}17（{@damage 2d10 + 6}）穿刺傷害，且如果目標自身有任何法術效應或擁有任何魔法物品，目標必須進行一次{@dc 15} 魅力豁免檢定。豁免失敗時，目標身上的一個隨機法術效應結束。如果目標身上沒有法術效應，其擁有的一個隨機魔法物品的詞條被壓制1分鐘。如果該物品是藥水或卷軸，則變為非魔法的。"
+					],
+					"ENG_name": "Beak"
+				},
+				{
+					"name": "禽爪",
+					"entries": [
+						"{@atk mw} {@hit 9} 命中，觸及10尺，單一目標。{@h}15（{@damage 2d8 + 6}）揮砍傷害，且目標陷入{@condition grappled||受擒}受擒狀態（逃脫{@dc 17}）。擒抱結束前，目標處於{@condition restrained||束縛}束縛狀態，且利爪裂法獸無法對另一個目標使用禽爪。"
+					],
+					"ENG_name": "Talon"
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"charisma"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Talon Beast"
+		},
+		{
+			"name": "縹緲身影",
+			"source": "BMT",
+			"page": 48,
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "celestial",
+			"alignment": [
+				"L",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 20,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 300,
+				"formula": "40d8 + 120"
+			},
+			"speed": {
+				"walk": 40,
+				"fly": {
+					"number": 80,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"str": 14,
+			"dex": 24,
+			"con": 16,
+			"int": 24,
+			"wis": 20,
+			"cha": 22,
+			"save": {
+				"dex": "+14",
+				"int": "+14"
+			},
+			"skill": {
+				"perception": "+12",
+				"stealth": "+21"
+			},
+			"senses": [
+				"truesight 30 ft."
+			],
+			"passive": 22,
+			"resist": [
+				"necrotic",
+				"radiant"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"所有"
+			],
+			"cr": {
+				"cr": "21",
+				"lair": "22"
+			},
+			"trait": [
+				{
+					"name": "不可褻瀆",
+					"entries": [
+						"縹緲身影無法被能夠讀取其思想或偵測其生物種類的特性、以及預言系魔法作為目標。"
+					],
+					"ENG_name": "Inviolate Presence"
+				},
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"如果縹緲身影在一次豁免檢定中失敗，它可以選擇直接成功豁免。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"縹緲身影進行兩次判罰之刃攻擊，並且可以使用天啟。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "判罰之刃",
+					"entries": [
+						"{@atk mw,rw} {@hit 14} 命中，觸及5尺或射程60尺，單一目標。{@h}10（{@damage 1d6 + 7}）穿刺傷害外加27（{@damage 6d8}）光耀傷害。如果目標為一個生物，則目標必須成功透過{@dc 22}的魅力豁免檢定，否則在其下一回閤中，它可以移動或執行一個動作，但不能同時進行兩者。"
+					],
+					"ENG_name": "Blade of Judgment"
+				},
+				{
+					"name": "天啟",
+					"entries": [
+						"縹緲身影向一個它30尺內能看見的生物展露其異界本質的一瞥。目標必須成功透過{@dc 22}的感知豁免否則陷入{@condition paralyzed||麻痺}狀態直到其下個回合結束，此後該目標將在24小時內免疫此天啟。"
+					],
+					"ENG_name": "Revelation"
+				}
+			],
+			"reaction": [
+				{
+					"name": "直覺閃避",
+					"entries": [
+						"當縹緲身影能夠看見的攻擊手以一次攻擊命中縹緲身影時，縹緲身影可以減半這次攻擊對它的傷害。"
+					],
+					"ENG_name": "Uncanny Dodge"
+				}
+			],
+			"legendary": [
+				{
+					"name": "瞬步",
+					"entries": [
+						"縹緲身影魔法性的與其攜帶或著裝的裝備一同傳送至位於40尺內一處它能看見的未被佔據的空間。"
+					],
+					"ENG_name": "Flash Step"
+				},
+				{
+					"name": "刺殺（花費2個動作）",
+					"entries": [
+						"縹緲身影發動一次判罰之刃攻擊。"
+					],
+					"ENG_name": "Stab (Costs 2 Actions)"
+				},
+				{
+					"name": "灼熱光輝（花費3個動作）",
+					"entries": [
+						"縹緲身影以自身為源點，射散出半徑10尺的魔法閃光，持續到自己的下個回合結束為止。期間，對其發動的攻擊具有劣勢，而它發動的攻擊具有優勢。閃光會跟隨著縹緲身影移動。每當其他生物在閃光中開始其回合、或在自己的回合裡第一次進入閃光時，那個生物必須進行一次{@dc 22}的體質豁免，豁免失敗則受到18（{@damage 4d8}）點光耀傷害，豁免成功則只受到一半傷害。"
+					],
+					"ENG_name": "Searing Radiance (Costs 3 Actions)"
+				}
+			],
+			"legendaryGroup": {
+				"name": "Villain",
+				"source": "BMT"
+			},
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"XX"
+			],
+			"damageTags": [
+				"P",
+				"R"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RW"
+			],
+			"conditionInflict": [
+				"paralyzed"
+			],
+			"savingThrowForced": [
+				"charisma",
+				"constitution",
+				"wisdom"
+			],
+			"savingThrowForcedLegendary": [
+				"constitution",
+				"dexterity",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Veiled Presence"
+		},
+		{
+			"name": "禿鷲人",
+			"source": "BMT",
+			"page": 184,
+			"size": [
+				"M"
+			],
+			"type": "fiend",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 75,
+				"formula": "10d8 + 30"
+			},
+			"speed": {
+				"walk": 30,
+				"alternate": {
+					"walk": [
+						{
+							"number": 10,
+							"condition": "在禿鷲形態"
+						},
+						{
+							"number": 30,
+							"condition": "混合形態"
+						}
+					],
+					"fly": [
+						{
+							"number": 60,
+							"condition": "在禿鷲或混合形態"
+						}
+					]
+				}
+			},
+			"str": 16,
+			"dex": 14,
+			"con": 17,
+			"int": 11,
+			"wis": 13,
+			"cha": 8,
+			"skill": {
+				"perception": "+5"
+			},
+			"passive": 15,
+			"languages": [
+				"通用語（不能在禿鷲形態說話）"
+			],
+			"cr": "4",
+			"trait": [
+				{
+					"name": "復生",
+					"entries": [
+						"禿鷲人在它的回合開始時回覆10點生命值。如果禿鷲人受到光耀傷害，則該特質在它的下一回合裡無法生效。禿鷲人只會在以0生命值開始其回合且無法再生時死亡。"
+					],
+					"ENG_name": "Regeneration"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"禿鷲人發動兩次禽爪攻擊，或是一次喙啄攻擊和一次禽爪攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "喙啄（僅禿鷲與半人形態）",
+					"entries": [
+						"{@atk mw} {@hit 5}命中，觸及5尺，單一目標。{@h}10（{@damage 2d6 + 3}）穿刺傷害。如果目標是類人生物，則目標必須成功透過一次{@dc 13}的體質豁免否則將遭受詛咒直至成為{@spell Remove Curse||移除詛咒}法術或類似效果的目標。如果被詛咒的目標生命值降至0，它將變成一隻受DM控制的禿鷲人並恢復10點生命值。"
+					],
+					"ENG_name": "Beak (Vulture or Hybrid Form Only)"
+				},
+				{
+					"name": "禽爪",
+					"entries": [
+						"{@atk mw} {@hit 5} 命中，觸及5尺，單一目標。{@h}13（{@damage 4d4 + 3}）揮砍傷害。"
+					],
+					"ENG_name": "Talon"
+				},
+				{
+					"name": "長弓（僅類人與半人形態）",
+					"entries": [
+						"{@atk rw} 命中{@hit 4}，射程 150/600 尺，單一目標。{@h}11 ({@damage 2d8 + 2}) 點穿刺傷害。"
+					],
+					"ENG_name": "Longbow (Humanoid or Hybrid Form Only)"
+				}
+			],
+			"bonus": [
+				{
+					"name": "變形",
+					"entries": [
+						"禿鷲人變身成一種禿鷲與類人生物結合的半人形態，禿鷲形態，或變回其類人生物形態。其遊戲資料，除速度外，各個形態均相同。任何其著裝及攜帶的裝備不會隨之轉化。死亡時它將恢復其類人生物形態。"
+					],
+					"ENG_name": "Change Shape"
+				}
+			],
+			"attachedItems": [
+				"longbow|phb"
+			],
+			"traitTags": [
+				"Regeneration"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Shapechanger"
+			],
+			"languageTags": [
+				"C",
+				"CS"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"CUR",
+				"MW",
+				"RW"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Werevulture"
+		}
+	]
+}

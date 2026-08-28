@@ -1,0 +1,640 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "塔洛斯隱士",
+			"source": "DIP",
+			"page": 51,
+			"referenceSources": [
+				"DC",
+				"SDW"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"half-orc",
+					"shapechanger"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"{@item hide armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 58,
+				"formula": "9d8 + 18"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 13,
+			"con": 14,
+			"int": 9,
+			"wis": 15,
+			"cha": 12,
+			"skill": {
+				"nature": "+1",
+				"stealth": "+3",
+				"survival": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 12,
+			"languages": [
+				"通用語",
+				"獸人語"
+			],
+			"cr": "3",
+			"spellcasting": [
+				{
+					"name": "天生施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"隱士的天生施法屬性為感知（法術豁免{@dc 12}）。它可以自發施展以下法術而無需法術材料："
+					],
+					"daily": {
+						"3": [
+							"{@spell thunderwave||雷鳴波} ({@damage 2d8} 傷害)"
+						],
+						"1e": [
+							"{@spell augury||卜筮術}",
+							"{@spell bless||祝福術}",
+							"{@spell lightning bolt||閃電束} ({@damage 8d6} 傷害)",
+							"{@spell revivify||回生術}"
+						]
+					},
+					"ability": "wis",
+					"ENG_name": "Innate Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "變形者",
+					"entries": [
+						"隱士可以使用它的動作以變形成一個半野豬類人或一隻野豬，或變回它類人生物的真實型態。它在各個型態的資料保持不變。任何它所穿戴或攜帶的裝備並不會隨著變形發生轉變。它會在死亡時回覆它的真實型態。"
+					],
+					"ENG_name": "Shapechanger"
+				}
+			],
+			"action": [
+				{
+					"name": "帶爪手套（僅類人形態）",
+					"entries": [
+						"{@atk mw} 命中{@hit 5}，觸及5尺，單一目標。{@h}5 ({@damage 1d4 + 3}) 點揮砍傷害。"
+					],
+					"ENG_name": "Clawed Gauntlet (Humanoid Form Only)"
+				},
+				{
+					"name": "獠牙（僅野豬形態）",
+					"entries": [
+						"{@atk mw} 命中{@hit 5}，觸及5尺，單一目標。{@h}6（{@damage 1d6 + 3}）點揮砍傷害。"
+					],
+					"ENG_name": "Tusk (Boar Form Only)"
+				}
+			],
+			"traitTags": [
+				"Shapechanger"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"O"
+			],
+			"damageTags": [
+				"S"
+			],
+			"damageTagsSpell": [
+				"L",
+				"T"
+			],
+			"spellcastingTags": [
+				"I"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Anchorite of Talos"
+		},
+		{
+			"name": "東容·拉斯坎",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "DIP",
+			"page": 56,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				10
+			],
+			"hp": {
+				"average": 44,
+				"formula": "8d8 + 8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 10,
+			"con": 13,
+			"int": 12,
+			"wis": 10,
+			"cha": 14,
+			"save": {
+				"dex": "+2",
+				"con": "+3"
+			},
+			"skill": {
+				"deception": "+4",
+				"persuasion": "+4"
+			},
+			"passive": 10,
+			"languages": [
+				"通用語",
+				"矮人語"
+			],
+			"cr": "1/2",
+			"trait": [
+				{
+					"name": "勇氣",
+					"entries": [
+						"東容在對抗{@condition frightened||恐慌}的豁免中有優勢。"
+					],
+					"ENG_name": "Brave"
+				},
+				{
+					"name": "還沒死呢（長休息後充能）",
+					"entries": [
+						"如果東容受到傷害並降至0點生命值，那麼他降到1點生命值，並在他下回合結束前的所有攻擊中具有優勢。"
+					],
+					"ENG_name": "Not Dead Yet (Recharges after a Long Rest)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"東容進行三次近戰攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "匕首",
+					"entries": [
+						"{@atk mw,rw} 命中{@hit 2}，觸及範圍5尺或射程20/60尺，單一目標。{@h}2 ({@damage 1d4}) 點穿刺傷害。"
+					],
+					"ENG_name": "Dagger"
+				},
+				{
+					"name": "投石索",
+					"entries": [
+						"{@atk rw} 命中{@hit 2}，射程 30/120 尺，單一目標。{@h}2 ({@damage 1d4}) 點鈍擊傷害。"
+					],
+					"ENG_name": "Sling"
+				}
+			],
+			"attachedItems": [
+				"dagger|phb",
+				"sling|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"D"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RNG",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Don-Jon Raskin"
+		},
+		{
+			"name": "獵人戰隼",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "DIP",
+			"page": 56,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item studded leather armor|phb|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 112,
+				"formula": "15d8 + 45"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 14,
+			"dex": 15,
+			"con": 16,
+			"int": 11,
+			"wis": 16,
+			"cha": 15,
+			"save": {
+				"dex": "+4",
+				"wis": "+5"
+			},
+			"skill": {
+				"athletics": "+4",
+				"perception": "+7",
+				"survival": "+5"
+			},
+			"passive": 17,
+			"languages": [
+				"通用語"
+			],
+			"cr": "4",
+			"trait": [
+				{
+					"name": "射手座",
+					"entries": [
+						"當戰隼使用長弓或者短弓擊中一個敵人時，額外骰一顆傷害骰（已包含入其長弓攻擊之中）。"
+					],
+					"ENG_name": "Archer"
+				},
+				{
+					"name": "神射手",
+					"entries": [
+						"戰隼的遠端武器攻擊無視{@quickref Cover||3||掩護}與{@quickref Cover||3||掩護}。"
+					],
+					"ENG_name": "Sharpshooter"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"戰隼進行三次近戰攻擊或者兩次遠端攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "長劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 4}，觸及5尺，單一目標。{@h}6 ({@damage 1d8 + 2}) 點揮砍傷害，或者如果用雙手使用則為7 ({@damage 1d10 + 2}) 點揮砍傷害。"
+					],
+					"ENG_name": "Longsword"
+				},
+				{
+					"name": "長弓",
+					"entries": [
+						"{@atk rw} 命中{@hit 4}，射程 150/600 尺，單一目標。{@h}11 ({@damage 2d8 + 2}) 點穿刺傷害。"
+					],
+					"ENG_name": "Longbow"
+				}
+			],
+			"attachedItems": [
+				"longbow|phb",
+				"longsword|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RNG",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Falcon the Hunter"
+		},
+		{
+			"name": "雷霆野豬戈索克",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "DIP",
+			"page": 58,
+			"size": [
+				"H"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 73,
+				"formula": "7d12 + 28"
+			},
+			"speed": {
+				"walk": 50
+			},
+			"str": 20,
+			"dex": 11,
+			"con": 19,
+			"int": 6,
+			"wis": 10,
+			"cha": 14,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"resist": [
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"immune": [
+				"lightning",
+				"thunder"
+			],
+			"cr": "6",
+			"trait": [
+				{
+					"name": "堅韌（短休或長休後充能）。",
+					"entries": [
+						"如果戈索克在承受27點或更少的傷害並被降到0點生命值時，它被降到1點生命值。"
+					],
+					"ENG_name": "Relentless (Recharges after a Short or Long Rest)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"戈索克進行兩次近戰攻擊：一次用它的閃電獠牙，一次用它的雷鳴蹄擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "閃電獠牙",
+					"entries": [
+						"{@atk mw} 命中{@hit 8}，觸及10尺，單一目標。{@h}12 ({@damage 2d6 + 5}) 點揮砍傷害加上7 ({@damage 2d6})點 閃電傷害。"
+					],
+					"ENG_name": "Lightning Tusks"
+				},
+				{
+					"name": "雷鳴蹄擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 8}，觸及10尺，單一目標。{@h}12 ({@damage 2d6 + 5}) 鈍擊傷害加上7 ({@damage 2d6}) 雷鳴傷害。"
+					],
+					"ENG_name": "Thunder Hooves"
+				},
+				{
+					"name": "閃電束 {@recharge}",
+					"entries": [
+						"戈索克向120尺內一個可見的生物射出一道閃電。目標必須透過{@dc 15}的敏捷豁免，否則受到18（{@damage 4d8}）點閃電傷害，透過豁免則該傷害減半。"
+					],
+					"ENG_name": "Lightning Bolt {@recharge}"
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"B",
+				"L",
+				"S",
+				"T"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Gorthok the Thunder Boar"
+		},
+		{
+			"name": "岩石侏儒隱士",
+			"source": "DIP",
+			"page": 62,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"gnome"
+				]
+			},
+			"alignment": [
+				"C",
+				"N"
+			],
+			"ac": [
+				10,
+				{
+					"ac": 13,
+					"condition": "{@spell mage armor||法師護甲}時",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 7,
+				"formula": "2d6"
+			},
+			"speed": {
+				"walk": 25
+			},
+			"str": 6,
+			"dex": 11,
+			"con": 10,
+			"int": 15,
+			"wis": 10,
+			"cha": 13,
+			"skill": {
+				"arcana": "+4",
+				"history": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"languages": [
+				"通用語",
+				"侏儒語"
+			],
+			"cr": "1/4",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"侏儒是2級施法者。其施法能力是智力（法術豁免{@dc 12}，法術攻擊命中{@hit 4}）。它準備了以下法師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell mage hand||法師之手}",
+								"{@spell prestidigitation||魔法伎倆}",
+								"{@spell ray of frost||冷凍射線}（見下文\"動作\"部分）"
+							]
+						},
+						"1": {
+							"slots": 3,
+							"spells": [
+								"{@spell detect magic||偵測魔法}",
+								"{@spell mage armor||法師護甲}",
+								"{@spell magic missile||魔法飛彈}（見下文\"動作\"部分）",
+								"{@spell shield||護盾術}"
+							]
+						}
+					},
+					"ability": "int",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "侏儒狡黠",
+					"entries": [
+						"侏儒對抗魔法時進行的智力、感知和魅力豁免具有優勢。"
+					],
+					"ENG_name": "Gnome Cunning"
+				}
+			],
+			"action": [
+				{
+					"name": "魔法飛彈（消耗一個1環法術位）",
+					"entries": [
+						"侏儒創造了三個魔法飛彈。每個飛彈擊中侏儒選擇的120尺內的一個生物，並造成3（{@damage 1d4 + 1}）點力場傷害。"
+					],
+					"ENG_name": "Magic Missile (Expends a 1st-Level Spell Slot)"
+				},
+				{
+					"name": "冷凍射線",
+					"entries": [
+						"{@atk rs} 命中{@hit 4}，射程60尺，單一生物。{@h}4 ({@damage 1d8}) 寒冷傷害，並且目標的速度在侏儒下一個回合開始前減少10尺。"
+					],
+					"ENG_name": "Ray of Frost"
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"G"
+			],
+			"damageTags": [
+				"C",
+				"O"
+			],
+			"damageTagsSpell": [
+				"C",
+				"O"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Rock Gnome Recluse"
+		},
+		{
+			"name": "骷髏乘用馬",
+			"source": "DIP",
+			"page": 21,
+			"_copy": {
+				"name": "Riding Horse",
+				"source": "MM"
+			},
+			"type": "undead",
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Skeletal Riding Horse"
+		}
+	]
+}

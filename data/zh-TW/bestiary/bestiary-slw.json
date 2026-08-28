@@ -1,0 +1,867 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "專家",
+			"source": "SLW",
+			"level": 7,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "expert",
+				"sidekickHidden": true
+			},
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item studded leather armor|phb|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 44,
+				"formula": "8d8 + 8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 12,
+			"int": 14,
+			"wis": 10,
+			"cha": 14,
+			"save": {
+				"dex": "+6"
+			},
+			"skill": {
+				"acrobatics": "+9",
+				"performance": "+5",
+				"persuasion": "+5",
+				"sleight of hand": "+6",
+				"stealth": "+9"
+			},
+			"passive": 10,
+			"languages": [
+				"通用語",
+				"增加你選擇的一項"
+			],
+			"trait": [
+				{
+					"name": "好幫手",
+					"entries": [
+						"專家可以以附加動作執行幫助動作，接受幫助的生物在其{@dice d20}擲骰中獲得{@dice 1d6}加值。如果該擲骰為攻擊擲骰，該生物可以選擇不加此加值，若攻擊命中，則可以將此加值加到對單一目標的攻擊傷害擲骰中。"
+					],
+					"ENG_name": "Helpful"
+				},
+				{
+					"name": "工具",
+					"entries": [
+						"該專家擁有{@item thieves' tools|phb|盜賊工具}和一件樂器。"
+					],
+					"ENG_name": "Tools"
+				}
+			],
+			"action": [
+				{
+					"name": "額外攻擊",
+					"entries": [
+						"專家可以在其回合內採取{@action Attack||攻擊}動作時攻擊兩次，而非一次。"
+					],
+					"ENG_name": "Extra Attack"
+				},
+				{
+					"name": "短劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 6}，觸及 5 尺，單一目標。{@h}6 ({@damage 1d6 + 3}) 點穿刺傷害。"
+					],
+					"ENG_name": "Shortsword"
+				},
+				{
+					"name": "匕首",
+					"entries": [
+						"{@atk mw,rw} 命中{@hit 6}，觸及5尺或20/60尺，單一目標。{@h}5 ({@damage 1d4 + 3}) 點穿刺傷害。"
+					],
+					"ENG_name": "Dagger"
+				},
+				{
+					"name": "短弓",
+					"entries": [
+						"{@atk rw} 命中{@hit 6}，射程80/320尺，單一目標。{@h}6 ({@damage 1d6 + 3}) 點穿刺傷害。"
+					],
+					"ENG_name": "Shortbow"
+				}
+			],
+			"attachedItems": [
+				"dagger|phb",
+				"shortbow|phb",
+				"shortsword|phb"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RNG",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"ENG_name": "Expert"
+		},
+		{
+			"name": "骷髏飛人",
+			"source": "SLW",
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 24,
+				"formula": "3d8"
+			},
+			"speed": {
+				"walk": 10,
+				"fly": 50
+			},
+			"str": 10,
+			"dex": 14,
+			"con": 10,
+			"int": 1,
+			"wis": 10,
+			"cha": 3,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"cr": "1/2",
+			"action": [
+				{
+					"name": "釘刺",
+					"entries": [
+						"{@atk mw} 命中{@hit 4}，觸及5尺，單一生物。{@h}5（{@damage 1d6 + 2}）點穿刺傷害，目標必須進行一次{@dc 11}的體質豁免，豁免失敗則受到10（{@damage 3d6}）點毒素傷害，豁免成功則傷害減半且不會中毒。若該傷害將一個生物的生命值降為0，則目標傷勢穩定但陷入{@condition poisoned||中毒}，該中毒狀態持續1小時，此期間目標同時處於{@condition paralyzed||麻痺}和{@condition poisoned||中毒}狀態。"
+					],
+					"ENG_name": "Sting"
+				}
+			],
+			"tokenCustom": true,
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"I",
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"paralyzed",
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"ENG_name": "Skull Flier"
+		},
+		{
+			"name": "施法者（治療者）",
+			"source": "SLW",
+			"level": 7,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "spellcaster",
+				"tags": [
+					"healer"
+				],
+				"sidekickHidden": true
+			},
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"{@item studded leather armor|phb|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 36,
+				"formula": "8d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 12,
+			"con": 10,
+			"int": 15,
+			"wis": 16,
+			"cha": 13,
+			"save": {
+				"wis": "+6"
+			},
+			"skill": {
+				"arcana": "+5",
+				"investigation": "+5",
+				"religion": "+5"
+			},
+			"passive": 13,
+			"languages": [
+				"通用語",
+				"增加你選擇的一項"
+			],
+			"spellcasting": [
+				{
+					"name": "施法（治療者）",
+					"type": "spellcasting",
+					"headerEntries": [
+						"施法者的施法能力是感知（法術豁免{@dc 14}，{@hit 6}命中法術攻擊）。施法者準備了以下牧師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell guidance||神導術}",
+								"{@spell light||光亮術}",
+								"{@spell resistance||抵抗術}",
+								"{@spell sacred flame||聖火術}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell bless||祝福術}",
+								"{@spell cure wounds||療傷術}",
+								"{@spell shield of faith||虔誠護盾}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell aid||援助術}",
+								"{@spell lesser restoration||次等復原術}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell protection from energy||防護能量}",
+								"{@spell revivify||回生術}"
+							]
+						},
+						"4": {
+							"slots": 1,
+							"spells": [
+								"{@spell death ward||防死結界}"
+							]
+						}
+					},
+					"ability": "wis",
+					"ENG_name": "Spellcasting (Healer)"
+				}
+			],
+			"trait": [
+				{
+					"name": "強力戲法",
+					"entries": [
+						"施法者可以將其施法屬性調整值新增到其使用任何戲法造成的傷害上。"
+					],
+					"ENG_name": "Potent Cantrip"
+				}
+			],
+			"action": [
+				{
+					"name": "長棍",
+					"entries": [
+						"{@atk mw} {@hit 3} 命中，觸及5尺，單一目標。{@h}3（{@damage 1d6}）鈍擊傷害，或使用雙手攻擊時4（{@damage 1d8}）鈍擊傷害。"
+					],
+					"ENG_name": "Quarterstaff"
+				}
+			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"R"
+			],
+			"spellcastingTags": [
+				"CC"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"ENG_name": "Spellcaster (Healer)"
+		},
+		{
+			"name": "施法者（魔術師）",
+			"source": "SLW",
+			"level": 7,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "spellcaster",
+				"tags": [
+					"mage"
+				],
+				"sidekickHidden": true
+			},
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"{@item studded leather armor|phb|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 36,
+				"formula": "8d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 12,
+			"con": 10,
+			"int": 16,
+			"wis": 14,
+			"cha": 13,
+			"save": {
+				"wis": "+5"
+			},
+			"skill": {
+				"arcana": "+6",
+				"investigation": "+6",
+				"religion": "+6"
+			},
+			"passive": 12,
+			"languages": [
+				"通用語",
+				"增加你選擇的一項"
+			],
+			"spellcasting": [
+				{
+					"name": "施法（法師）",
+					"type": "spellcasting",
+					"headerEntries": [
+						"施法者的施法能力是智力（法術豁免{@dc 14}，法術攻擊命中{@hit 6}）。施法者準備了以下法師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell fire bolt||火焰箭}",
+								"{@spell light||光亮術}",
+								"{@spell mage hand||法師之手}",
+								"{@spell minor illusion||次級幻象}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell burning hands||燃燒之手}",
+								"{@spell shield||護盾術}",
+								"{@spell sleep||睡眠術}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell flaming sphere||熾焰法球}",
+								"{@spell invisibility||隱形術}"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell fireball||火球術}",
+								"{@spell fly||飛行術}"
+							]
+						},
+						"4": {
+							"slots": 1,
+							"spells": [
+								"{@spell wall of fire||火牆術}"
+							]
+						}
+					},
+					"ability": "int",
+					"ENG_name": "Spellcasting (Mage)"
+				}
+			],
+			"trait": [
+				{
+					"name": "強力戲法",
+					"entries": [
+						"施法者可以將其施法屬性調整值新增到其使用任何戲法造成的傷害上。"
+					],
+					"ENG_name": "Potent Cantrip"
+				}
+			],
+			"action": [
+				{
+					"name": "長棍",
+					"entries": [
+						"{@atk mw} {@hit 3} 命中，觸及5尺，單一目標。{@h}3（{@damage 1d6}）鈍擊傷害，或使用雙手攻擊時4（{@damage 1d8}）鈍擊傷害。"
+					],
+					"ENG_name": "Quarterstaff"
+				}
+			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"F"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"ENG_name": "Spellcaster (Mage)"
+		},
+		{
+			"name": "塔洛斯雕像",
+			"source": "SLW",
+			"size": [
+				"L"
+			],
+			"type": "elemental",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 147,
+				"formula": "14d10 + 70"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 60
+			},
+			"str": 19,
+			"dex": 11,
+			"con": 20,
+			"int": 6,
+			"wis": 11,
+			"cha": 9,
+			"save": {
+				"wis": "+4"
+			},
+			"skill": {
+				"perception": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 14,
+			"resist": [
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "非精金武器且非魔法攻擊的",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"土族語"
+			],
+			"cr": "10",
+			"trait": [
+				{
+					"name": "無定形",
+					"entries": [
+						"當雕像保持靜止時，它與無生命的雕像無法區分。"
+					],
+					"ENG_name": "False Appearance"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"雕像進行五次攻擊：一次用頭槌，四次用其閃電劍刃。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "頭槌",
+					"entries": [
+						"{@atk mw}命中{@hit 8}，觸及5尺，單一目標。{@h}11（{@damage 2d6 + 4}）點穿刺傷害。"
+					],
+					"ENG_name": "Headbutt"
+				},
+				{
+					"name": "閃電刀刃",
+					"entries": [
+						"{@atk mw} 命中{@hit 8}，觸及5尺，單一目標。{@h}9（{@damage 2d4 + 4}）點揮砍傷害。"
+					],
+					"ENG_name": "Lightning Bolt Blades"
+				}
+			],
+			"tokenCustom": true,
+			"traitTags": [
+				"False Appearance"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"T"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"ENG_name": "Statue of Talos"
+		},
+		{
+			"name": "爪牙",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "SLW",
+			"size": [
+				"M"
+			],
+			"type": "fiend",
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 45,
+				"formula": "7d8 + 14"
+			},
+			"speed": {
+				"walk": 50
+			},
+			"str": 17,
+			"dex": 12,
+			"con": 14,
+			"int": 6,
+			"wis": 13,
+			"cha": 6,
+			"skill": {
+				"perception": "+5"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 15,
+			"immune": [
+				"cold"
+			],
+			"languages": [
+				"能理解煉獄語但無法說它"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "敏銳嗅聽覺",
+					"entries": [
+						"Tooth-N-Claw 在依靠聽覺或嗅覺的感知（{@skill Perception||感知}）檢定上具有優勢。"
+					],
+					"ENG_name": "Keen Hearing and Smell"
+				},
+				{
+					"name": "叢集戰術",
+					"entries": [
+						"如果至少有一個盟友在5尺內且該盟友不是{@condition incapacitated||失能}狀態，Tooth-N-Claw在對生物進行攻擊檢定時具有優勢。"
+					],
+					"ENG_name": "Pack Tactics"
+				}
+			],
+			"action": [
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@atk mw}命中{@hit 5}，觸及5尺，單一目標。{@h}7（{@damage 1d8 + 3}）點穿刺傷害加上7（{@damage 2d6}）寒冷傷害。"
+					],
+					"ENG_name": "Bite"
+				},
+				{
+					"name": "凍結吐息{@recharge 5}",
+					"entries": [
+						"牙與爪在一個15尺的錐形範圍內撥出一道冰冷的吐息。該區域內的每個生物必須進行一次{@dc 12}的敏捷豁免檢定，若豁免失敗則受到21（{@damage 6d6}）點寒冷傷害，若豁免成功則只受到一半傷害。"
+					],
+					"ENG_name": "Freezing Breath {@recharge 5}"
+				}
+			],
+			"tokenCustom": true,
+			"traitTags": [
+				"Keen Senses",
+				"Pack Tactics"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Breath Weapon"
+			],
+			"languageTags": [
+				"CS",
+				"I"
+			],
+			"damageTags": [
+				"C",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"ENG_name": "Tooth-N-Claw"
+		},
+		{
+			"name": "武者",
+			"source": "SLW",
+			"level": 7,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "warrior",
+				"sidekickHidden": true
+			},
+			"ac": [
+				{
+					"ac": 20,
+					"from": [
+						"{@item plate armor|phb}",
+						"{@item shield|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 52,
+				"formula": "8d8 + 16"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"advantageMode": "adv"
+			},
+			"str": 16,
+			"dex": 14,
+			"con": 14,
+			"int": 10,
+			"wis": 12,
+			"cha": 10,
+			"save": {
+				"con": "+5"
+			},
+			"skill": {
+				"athletics": "+6",
+				"perception": "+4",
+				"survival": "+4"
+			},
+			"passive": 14,
+			"languages": [
+				"通用語",
+				"增加你選擇的一項"
+			],
+			"trait": [
+				{
+					"name": "備戰",
+					"entries": [
+						"戰士在先攻骰上有優勢。"
+					],
+					"ENG_name": "Battle Readiness"
+				},
+				{
+					"name": "強化重擊",
+					"entries": [
+						"戰士的攻擊檢定在d20骰出19或20時獲得重擊。"
+					],
+					"ENG_name": "Improved Critical"
+				},
+				{
+					"name": "戰鬥職能",
+					"entries": [
+						"該戰士具有以下特質之一，由你選擇：",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "攻擊手",
+									"entry": "戰士獲得攻擊檢定的+2加值。",
+									"ENG_name": "Attacker"
+								},
+								{
+									"type": "item",
+									"name": "防禦者",
+									"entry": "戰士獲得了以下保護反應。",
+									"ENG_name": "Defender"
+								}
+							]
+						}
+					],
+					"ENG_name": "Martial Role"
+				}
+			],
+			"action": [
+				{
+					"name": "額外攻擊",
+					"entries": [
+						"戰士在其回合內執行{@action Attack||攻擊}動作時，可以攻擊兩次而非一次。"
+					],
+					"ENG_name": "Extra Attack"
+				},
+				{
+					"name": "長劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 6}，觸及5尺，單一目標。{@h}7（{@damage 1d8 + 3}）點揮砍傷害，，雙手持時8（{@damage 1d10 + 3}）點揮砍傷害。"
+					],
+					"ENG_name": "Longsword"
+				},
+				{
+					"name": "長弓",
+					"entries": [
+						"{@atk rw} 命中{@hit 5}，範圍150/600尺，單一目標。{@h}6（{@damage 1d8 + 2}）穿刺傷害。"
+					],
+					"ENG_name": "Longbow"
+				}
+			],
+			"reaction": [
+				{
+					"name": "防護（僅守衛者）",
+					"entries": [
+						"戰士對5尺內的目標不是戰士的生物的攻擊檢定施加劣勢。戰士必須能看到攻擊者。"
+					],
+					"ENG_name": "Protection (Defender Only)"
+				}
+			],
+			"altArt": [
+				{
+					"name": "Warrior (Defender)",
+					"source": "SLW"
+				}
+			],
+			"attachedItems": [
+				"longbow|phb",
+				"longsword|phb"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RNG",
+				"RW"
+			],
+			"hasToken": true,
+			"ENG_name": "Warrior"
+		}
+	]
+}

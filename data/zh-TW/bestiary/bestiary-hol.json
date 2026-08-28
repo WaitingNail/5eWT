@@ -1,0 +1,404 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "學徒",
+			"source": "HoL",
+			"page": 201,
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"ac": [
+				10
+			],
+			"hp": {
+				"average": 7,
+				"formula": "2d8 - 2"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 8,
+			"dex": 10,
+			"con": 9,
+			"int": 13,
+			"wis": 11,
+			"cha": 12,
+			"save": {
+				"int": "+3"
+			},
+			"skill": {
+				"arcana": "+3",
+				"history": "+3"
+			},
+			"passive": 10,
+			"languages": [
+				"任何一種語言（通常是通用語）"
+			],
+			"pbNote": "+2",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"你施放以下法師法術之一（法術豁免{@dc 11}），使用智力作為施法能力："
+					],
+					"will": [
+						"{@spell minor illusion||次級幻象}",
+						{
+							"entry": "{@spell Fire Bolt||火焰箭}",
+							"hidden": true
+						}
+					],
+					"daily": {
+						"2": [
+							"{@spell grease||油膩術}"
+						],
+						"2e": [
+							{
+								"entry": "{@spell Burning Hands||燃燒之手}",
+								"hidden": true
+							}
+						]
+					},
+					"ability": "int",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"action": [
+				{
+					"name": "長棍",
+					"entries": [
+						"{@atk mw} {@hit 1} 命中，觸及5尺，單一目標。{@h}2（{@damage 1d6 - 1}）鈍擊傷害，或使用雙手時3（{@damage 1d8 - 1}）鈍擊傷害。"
+					],
+					"ENG_name": "Quarterstaff"
+				},
+				{
+					"name": "熾手術（1環法術；每日2次）",
+					"entries": [
+						"你發射出一道15尺長的火焰錐。在該區域內的每個生物都必須進行一次敏捷豁免檢定，難度為{@dc 11}。如果檢定失敗，生物將承受10 ({@damage 3d6})點火焰傷害，如果檢定成功，則承受一半的傷害。火焰會點燃區域內所有未被穿戴或攜帶的易燃物品。"
+					],
+					"ENG_name": "Burning Hands (1st-Level Spell; 2/Day)"
+				},
+				{
+					"name": "火焰箭（戲法）",
+					"entries": [
+						"{@atk rs}命中{@hit 3}，射程120尺，單一目標。造成{@h}5點（{@damage 1d10}）火焰傷害。如果被此法術擊中的易燃物體沒有被穿戴或攜帶，則會被點燃。"
+					],
+					"ENG_name": "Fire Bolt (Cantrip)"
+				}
+			],
+			"tokenCustom": true,
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"B",
+				"F"
+			],
+			"damageTagsSpell": [
+				"F"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW",
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"ENG_name": "Apprentice"
+		},
+		{
+			"name": "門徒",
+			"source": "HoL",
+			"page": 201,
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"ac": [
+				{
+					"ac": 11,
+					"from": [
+						"{@item shield|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 9,
+				"formula": "2d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 9,
+			"con": 10,
+			"int": 11,
+			"wis": 13,
+			"cha": 9,
+			"save": {
+				"wis": "+3"
+			},
+			"skill": {
+				"perception": "+3",
+				"religion": "+2"
+			},
+			"passive": 13,
+			"languages": [
+				"任何一種語言（通常是通用語）"
+			],
+			"pbNote": "+2",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"你施放以下牧師法術之一（法術豁免{@dc 11}），使用感知作為施法能力："
+					],
+					"will": [
+						"{@spell guidance||神導術}",
+						{
+							"entry": "{@spell Sacred Flame||聖火術}",
+							"hidden": true
+						}
+					],
+					"daily": {
+						"2": [
+							"{@spell cure wounds||療傷術}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"action": [
+				{
+					"name": "硬頭錘",
+					"entries": [
+						"{@atk mw} 命中{@hit 3}，觸及5尺，單一目標。{@h}4 ({@damage 1d6 + 1}) 點鈍擊傷害。"
+					],
+					"ENG_name": "Mace"
+				},
+				{
+					"name": "聖火術（戲法）",
+					"entries": [
+						"你選擇一個在你60尺範圍內你能看到的生物作為目標。目標必須進行一次敏捷豁免（{@dc 11}），否則將受到4點（{@damage 1d8}）光耀傷害。在這個豁免檢定中，目標不會因掩體而獲得任何好處。"
+					],
+					"ENG_name": "Sacred Flame (Cantrip)"
+				}
+			],
+			"tokenCustom": true,
+			"attachedItems": [
+				"mace|phb"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"B",
+				"R"
+			],
+			"damageTagsSpell": [
+				"R"
+			],
+			"spellcastingTags": [
+				"CC"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"ENG_name": "Disciple"
+		},
+		{
+			"name": "鬼祟者",
+			"source": "HoL",
+			"page": 201,
+			"size": [
+				"S"
+			],
+			"type": "humanoid",
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"{@item shield|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 9,
+				"formula": "2d6 + 2"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 8,
+			"dex": 13,
+			"con": 12,
+			"int": 11,
+			"wis": 12,
+			"cha": 9,
+			"save": {
+				"dex": "+3"
+			},
+			"skill": {
+				"sleight of hand": "+3",
+				"stealth": "+3"
+			},
+			"passive": 11,
+			"languages": [
+				"任何一種語言（通常是通用語）"
+			],
+			"pbNote": "+2",
+			"action": [
+				{
+					"name": "匕首",
+					"entries": [
+						"{@atk mw,rw} 命中{@hit 3}，觸及5尺或射程20/60尺，單一目標。{@h}3（{@damage 1d4 + 1}）點穿刺傷害。"
+					],
+					"ENG_name": "Dagger"
+				}
+			],
+			"bonus": [
+				{
+					"name": "撤離",
+					"entries": [
+						"你執行{@action Disengage||撤離}動作。"
+					],
+					"ENG_name": "Disengage"
+				}
+			],
+			"tokenCustom": true,
+			"attachedItems": [
+				"dagger|phb"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"ENG_name": "Sneak"
+		},
+		{
+			"name": "侍從",
+			"source": "HoL",
+			"page": 201,
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"ac": [
+				{
+					"ac": 12,
+					"from": [
+						"{@item shield|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 11,
+				"formula": "2d8 + 2"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 13,
+			"dex": 10,
+			"con": 12,
+			"int": 8,
+			"wis": 11,
+			"cha": 9,
+			"save": {
+				"str": "+3"
+			},
+			"skill": {
+				"athletics": "+3"
+			},
+			"passive": 10,
+			"languages": [
+				"任何一種語言（通常是通用語）"
+			],
+			"pbNote": "+2",
+			"action": [
+				{
+					"name": "長劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 3}，觸及5尺，單一目標。{@h}5（{@damage 1d8 + 1}）點揮砍傷害，或如果用雙手使用則為6（{@damage 1d10 + 1}）點揮砍傷害。"
+					],
+					"ENG_name": "Longsword"
+				}
+			],
+			"bonus": [
+				{
+					"name": "推撞",
+					"entries": [
+						"當你持盾時，你嘗試推動距離你5尺內的一隻生物。"
+					],
+					"ENG_name": "Shove"
+				}
+			],
+			"tokenCustom": true,
+			"attachedItems": [
+				"longsword|phb"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"ENG_name": "Squire"
+		}
+	]
+}

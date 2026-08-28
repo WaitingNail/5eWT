@@ -1,0 +1,811 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "灰燼喪屍",
+			"source": "LMoP",
+			"page": 31,
+			"reprintedAs": [
+				"Ash Zombie|PaBTSO"
+			],
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				8
+			],
+			"hp": {
+				"average": 22,
+				"formula": "3d8 + 9"
+			},
+			"speed": {
+				"walk": 20
+			},
+			"str": 13,
+			"dex": 6,
+			"con": 16,
+			"int": 3,
+			"wis": 6,
+			"cha": 5,
+			"save": {
+				"wis": "+0"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 8,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"能理解它生前所說的所有語言，但不能說話"
+			],
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "不死堅韌",
+					"entries": [
+						"當喪屍由於受到非光耀非重擊傷害而使其生命值降低至0時，它必須進行一次DC為5+所受傷害值的體質豁免，豁免成功則生命值改為降低至1。"
+					],
+					"ENG_name": "Undead Fortitude"
+				},
+				{
+					"name": "灰燼噴發",
+					"entries": [
+						"喪屍第一次受到傷害時，其5尺範圍內的任何活體生物必須成功透過{@dc 10}的體質豁免檢定，否則在攻擊檢定、豁免檢定和屬性檢定上獲得劣勢，持續1分鐘。生物可以在其每回合結束時重複進行豁免檢定，若成功則提前終止效應。"
+					],
+					"ENG_name": "Ash Puff"
+				}
+			],
+			"action": [
+				{
+					"name": "猛擊",
+					"entries": [
+						"{@atk mw} 命中{@hit 3}，觸及5尺，單一目標。{@h}4 ({@damage 1d6 + 1}) 點鈍擊傷害。"
+					],
+					"ENG_name": "Slam"
+				}
+			],
+			"traitTags": [
+				"Undead Fortitude"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"CS",
+				"LF"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Ash Zombie"
+		},
+		{
+			"name": "邪惡法師",
+			"source": "LMoP",
+			"page": 57,
+			"referenceSources": [
+				"RMBRE"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 22,
+				"formula": "5d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 14,
+			"con": 11,
+			"int": 17,
+			"wis": 12,
+			"cha": 11,
+			"save": {
+				"int": "+5",
+				"wis": "+3"
+			},
+			"skill": {
+				"arcana": "+5",
+				"history": "+5"
+			},
+			"passive": 11,
+			"languages": [
+				"通用語",
+				"龍語",
+				"矮人語",
+				"精靈語"
+			],
+			"cr": "1",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"該法師是一個4級施法者，使用智力作為其施法能力（法術豁免{@dc 13}；法術攻擊命中需要{@hit 5}）。法師知道以下來自法師法術列表的法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell light||光亮術}",
+								"{@spell mage hand||法師之手}",
+								"{@spell shocking grasp||電爪}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell charm person||魅惑類人}",
+								"{@spell magic missile||魔法飛彈}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell hold person||定身類人}",
+								"{@spell misty step||迷蹤步}"
+							]
+						}
+					},
+					"ability": "int",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"action": [
+				{
+					"name": "長棍",
+					"entries": [
+						"{@atk mw} 命中{@hit 1}，觸及5尺，單一目標。{@h}3 ({@damage 1d8 - 1}) 鈍擊傷害。"
+					],
+					"ENG_name": "Quarterstaff"
+				}
+			],
+			"altArt": [
+				{
+					"name": "Evil Mage",
+					"source": "RMBRE"
+				}
+			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
+			"languageTags": [
+				"C",
+				"D",
+				"DR",
+				"E"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"L",
+				"O"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Evil Mage"
+		},
+		{
+			"name": "剛鐸·尋巖者",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "LMoP",
+			"page": 41,
+			"reprintedAs": [
+				"Gundren Rockseeker|PaBTSO"
+			],
+			"_copy": {
+				"name": "Commoner",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Mountain Dwarf",
+						"source": "PHB"
+					}
+				]
+			},
+			"hasToken": true,
+			"ENG_name": "Gundren Rockseeker"
+		},
+		{
+			"name": "縛靈·墨梅斯克",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "LMoP",
+			"page": 59,
+			"reprintedAs": [
+				"Mormesk the Wraith|PaBTSO"
+			],
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 45,
+				"formula": "6d8 + 18"
+			},
+			"speed": {
+				"walk": 0,
+				"fly": 60
+			},
+			"str": 6,
+			"dex": 16,
+			"con": 16,
+			"int": 12,
+			"wis": 14,
+			"cha": 15,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 12,
+			"resist": [
+				"acid",
+				"cold",
+				"fire",
+				"lightning",
+				"thunder",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "非銀質武器且非魔法攻擊的",
+					"cond": true
+				}
+			],
+			"immune": [
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"grappled",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"prone",
+				"restrained"
+			],
+			"languages": [
+				"通用語",
+				"煉獄語"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "虛體移動",
+					"entries": [
+						"幽魂可以穿過物體或其他生物，但不能停留在那裡。"
+					],
+					"ENG_name": "Incorporeal Movement"
+				},
+				{
+					"name": "日照敏感",
+					"entries": [
+						"在陽光下，邪靈在攻擊骰上處於劣勢，並且在依賴視力的感知（{@skill Perception||感知}）檢定上也處於劣勢。"
+					],
+					"ENG_name": "Sunlight Sensitivity"
+				}
+			],
+			"action": [
+				{
+					"name": "吸取生命",
+					"entries": [
+						"{@atk mw} {@hit 5} 攻擊命中，觸及 5 尺，單一生物。 {@h}16 ({@damage 3d8 + 3}) 點暗蝕傷害，且目標必須進行一次 {@dc 13} 體質豁免，豁免失敗則其生命值上限降低等同於所受傷害的數值。若此攻擊將目標的生命值上限降低至 0，則目標死亡。目標生命值上限的降低效果持續到目標完成一次長休為止。"
+					],
+					"ENG_name": "Life Drain"
+				}
+			],
+			"traitTags": [
+				"Incorporeal Movement",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"I"
+			],
+			"damageTags": [
+				"N"
+			],
+			"miscTags": [
+				"HPR",
+				"MW"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Mormesk the Wraith"
+		},
+		{
+			"name": "\"黑蜘蛛\"那茲納爾",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "LMoP",
+			"page": 59,
+			"reprintedAs": [
+				"Nezznar the Spider|PaBTSO"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"elf"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				11,
+				{
+					"ac": 14,
+					"condition": "{@spell mage armor||法師護甲}時",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 27,
+				"formula": "6d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 13,
+			"con": 10,
+			"int": 16,
+			"wis": 14,
+			"cha": 13,
+			"save": {
+				"int": "+5",
+				"wis": "+4"
+			},
+			"skill": {
+				"arcana": "+5",
+				"perception": "+4",
+				"stealth": "+3"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 14,
+			"languages": [
+				"精靈語",
+				"地底通用語"
+			],
+			"cr": "2",
+			"spellcasting": [
+				{
+					"name": "天生施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Nezznar天生能夠施展以下法術，無需任何材料成分："
+					],
+					"will": [
+						"{@spell dancing lights||舞光術}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell darkness||黑暗術}",
+							"{@spell faerie fire||妖火} (豁免{@dc 12})"
+						]
+					},
+					"ENG_name": "Innate Spellcasting"
+				},
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"內茲納是一名4級施法者，使用智力作為他的施法能力（法術豁免{@dc 13}；{@hit 5}命中法術攻擊）。內茲納從法師的法術列表中準備了以下法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell mage hand||法師之手}",
+								"{@spell ray of frost||冷凍射線}",
+								"{@spell shocking grasp||電爪}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell mage armor||法師護甲}",
+								"{@spell magic missile||魔法飛彈}",
+								"{@spell shield||護盾術}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell invisibility||隱形術}",
+								"{@spell suggestion||暗示術}"
+							]
+						}
+					},
+					"ability": "int",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "特殊裝備",
+					"entries": [
+						"Nezznar擁有一根{@item spider staff|LMoP|蜘蛛法杖}。"
+					],
+					"ENG_name": "Special Equipment"
+				},
+				{
+					"name": "妖精血統",
+					"entries": [
+						"Nezznar 在對抗被{@condition charmed||魅惑}的豁免檢定上有優勢，魔法也無法使他入睡。"
+					],
+					"ENG_name": "Fey Ancestry"
+				},
+				{
+					"name": "日照敏感",
+					"entries": [
+						"當Nezznar或其目標處於陽光下時，他在攻擊檢定時具有劣勢。"
+					],
+					"ENG_name": "Sunlight Sensitivity"
+				}
+			],
+			"action": [
+				{
+					"name": "蜘蛛法杖",
+					"entries": [
+						"{@atk mw} 命中{@hit 1}，觸及5尺，單一目標。{@h}2 ({@damage 1d6 - 1}) 鈍擊傷害加上3 ({@damage 1d6}) 毒素傷害。"
+					],
+					"ENG_name": "Spider Staff"
+				}
+			],
+			"traitTags": [
+				"Fey Ancestry",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"languageTags": [
+				"E",
+				"U"
+			],
+			"damageTags": [
+				"B",
+				"I"
+			],
+			"damageTagsSpell": [
+				"C",
+				"L",
+				"O"
+			],
+			"spellcastingTags": [
+				"CW",
+				"I"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"invisible"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Nezznar the Black Spider"
+		},
+		{
+			"name": "南卓·尋巖者",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "LMoP",
+			"page": 50,
+			"reprintedAs": [
+				"Nundro Rockseeker|PaBTSO"
+			],
+			"_copy": {
+				"name": "Commoner",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Mountain Dwarf",
+						"source": "PHB"
+					}
+				]
+			},
+			"hasToken": true,
+			"ENG_name": "Nundro Rockseeker"
+		},
+		{
+			"name": "紅標幫惡霸",
+			"source": "LMoP",
+			"page": 61,
+			"reprintedAs": [
+				"Redbrand Ruffian|PaBTSO"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item studded leather armor|phb|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 16,
+				"formula": "3d8 + 3"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 14,
+			"con": 12,
+			"int": 9,
+			"wis": 9,
+			"cha": 11,
+			"skill": {
+				"intimidation": "+2"
+			},
+			"passive": 9,
+			"languages": [
+				"通用語"
+			],
+			"cr": "1/2",
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"這個流氓進行了兩次近戰攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "短劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 4}，觸及5尺，單一目標。{@h}5 ({@damage 1d6 + 2}) 點穿刺傷害。"
+					],
+					"ENG_name": "Shortsword"
+				}
+			],
+			"attachedItems": [
+				"shortsword|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Redbrand Ruffian"
+		},
+		{
+			"name": "修達·霍溫特",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "LMoP",
+			"page": 61,
+			"reprintedAs": [
+				"Sildar Hallwinter|PaBTSO"
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"{@item chain mail|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 27,
+				"formula": "5d8 + 5"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 13,
+			"dex": 10,
+			"con": 12,
+			"int": 10,
+			"wis": 11,
+			"cha": 10,
+			"save": {
+				"str": "+3",
+				"con": "+3"
+			},
+			"skill": {
+				"perception": "+2"
+			},
+			"passive": 12,
+			"languages": [
+				"通用語"
+			],
+			"cr": "1",
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"Sildar 進行兩次近戰攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "長劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 3}，觸及5尺，單一目標。{@h}5 ({@damage 1d8 + 1}) 點揮砍傷害。"
+					],
+					"ENG_name": "Longsword"
+				},
+				{
+					"name": "重弩",
+					"entries": [
+						"{@atk rw} 命中{@hit 2}，射程100/400尺，單一目標。{@h}5（{@damage 1d10}）點穿刺傷害。"
+					],
+					"ENG_name": "Heavy Crossbow"
+				}
+			],
+			"reaction": [
+				{
+					"name": "格擋",
+					"entries": [
+						"當攻擊者用近戰攻擊命中Sildar，並且Sildar可以看到攻擊者時，他可以擲一個{@dice 1d6}，並將擲出的數字加到他的AC上，以對抗觸發攻擊，前提是他手持近戰武器。"
+					],
+					"ENG_name": "Parry"
+				}
+			],
+			"attachedItems": [
+				"heavy crossbow|phb",
+				"longsword|phb"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Parry"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RNG",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Sildar Hallwinter"
+		},
+		{
+			"name": "毒牙",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "LMoP",
+			"page": 63,
+			"_copy": {
+				"name": "Young Green Dragon",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the dragon",
+						"with": "Venomfang",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluffImages": true,
+			"ENG_name": "Venomfang"
+		}
+	]
+}

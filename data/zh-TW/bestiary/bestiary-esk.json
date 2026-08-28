@@ -1,0 +1,406 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "專家",
+			"source": "ESK",
+			"page": 63,
+			"referenceSources": [
+				"DC",
+				"SDW"
+			],
+			"level": 1,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "expert",
+				"sidekickHidden": true
+			},
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item studded leather armor|phb|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 11,
+				"formula": "2d8 + 2"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 15,
+			"con": 12,
+			"int": 13,
+			"wis": 10,
+			"cha": 14,
+			"save": {
+				"dex": "+4"
+			},
+			"skill": {
+				"acrobatics": "+4",
+				"performance": "+4",
+				"persuasion": "+4",
+				"sleight of hand": "+4",
+				"stealth": "+4"
+			},
+			"passive": 10,
+			"languages": [
+				"通用語",
+				"增加你選擇的一項"
+			],
+			"trait": [
+				{
+					"name": "好幫手",
+					"entries": [
+						"專家可以將援助行動作為附贈動作。"
+					],
+					"ENG_name": "Helpful"
+				},
+				{
+					"name": "工具",
+					"entries": [
+						"該專家擁有{@item thieves' tools|phb|盜賊工具}和一件樂器。"
+					],
+					"ENG_name": "Tools"
+				}
+			],
+			"action": [
+				{
+					"name": "短劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 4}，觸及5尺，單一目標。{@h}5 ({@damage 1d6 + 2}) 點穿刺傷害。"
+					],
+					"ENG_name": "Shortsword"
+				},
+				{
+					"name": "匕首",
+					"entries": [
+						"{@atk mw,rw} 命中{@hit 4}，觸及5尺或射程20/60尺，單一目標。{@h}4（{@damage 1d4 + 2}）點穿刺傷害。"
+					],
+					"ENG_name": "Dagger"
+				},
+				{
+					"name": "短弓",
+					"entries": [
+						"{@atk rw} 命中{@hit 4}，射程80/320尺，單一目標。{@h}5（{@damage 1d6 + 2}）點穿刺傷害。"
+					],
+					"ENG_name": "Shortbow"
+				}
+			],
+			"attachedItems": [
+				"dagger|phb",
+				"shortbow|phb",
+				"shortsword|phb"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RNG",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"ENG_name": "Expert"
+		},
+		{
+			"name": "施法者",
+			"source": "ESK",
+			"page": 63,
+			"referenceSources": [
+				"DC",
+				"SDW"
+			],
+			"level": 1,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "spellcaster",
+				"sidekickHidden": true
+			},
+			"ac": [
+				{
+					"ac": 12,
+					"from": [
+						"{@item leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 9,
+				"formula": "2d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 12,
+			"con": 10,
+			"int": 15,
+			"wis": 14,
+			"cha": 13,
+			"save": {
+				"wis": "+4"
+			},
+			"skill": {
+				"arcana": "+4",
+				"investigation": "+4",
+				"religion": "+4"
+			},
+			"passive": 12,
+			"languages": [
+				"通用語",
+				"增加你選擇的一項"
+			],
+			"spellcasting": [
+				{
+					"name": "施法（治療者）",
+					"type": "spellcasting",
+					"headerEntries": [
+						"施法者的法術施放能力是感知（法術豁免難度{@dc 12}，法術攻擊命中時需投擲{@hit 4}）。施法者準備了以下牧師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell guidance||神導術}",
+								"{@spell sacred flame||聖火術}"
+							]
+						},
+						"1": {
+							"slots": 2,
+							"spells": [
+								"{@spell cure wounds||療傷術}"
+							]
+						}
+					},
+					"ability": "wis",
+					"ENG_name": "Spellcasting (Healer)"
+				},
+				{
+					"name": "施法（法師）",
+					"type": "spellcasting",
+					"headerEntries": [
+						"施法者的施法能力是智力（法術豁免難度{@dc 12}，法術攻擊命中{@hit 4}）。施法者準備了以下法師法術："
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell fire bolt||火焰箭}",
+								"{@spell light||光亮術}"
+							]
+						},
+						"1": {
+							"slots": 2,
+							"spells": [
+								"{@spell sleep||睡眠術}"
+							]
+						}
+					},
+					"ability": "int",
+					"ENG_name": "Spellcasting (Mage)"
+				}
+			],
+			"trait": [
+				{
+					"name": "魔法職能",
+					"entries": [
+						"為施法者選擇一個角色：治療師或法師。您的選擇將決定下面使用哪種施法特性。"
+					],
+					"ENG_name": "Magical Role"
+				}
+			],
+			"action": [
+				{
+					"name": "長棍",
+					"entries": [
+						"{@atk mw} {@hit 2} 命中，觸及5尺，單一目標。{@h}3（{@damage 1d6}）鈍擊傷害，或用雙手時4（{@damage 1d8}）鈍擊傷害。"
+					],
+					"ENG_name": "Quarterstaff"
+				}
+			],
+			"altArt": [
+				{
+					"name": "Spellcaster (Healer)",
+					"source": "ESK"
+				}
+			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"F",
+				"R"
+			],
+			"spellcastingTags": [
+				"CC",
+				"CW"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"ENG_name": "Spellcaster"
+		},
+		{
+			"name": "武者",
+			"source": "ESK",
+			"page": 63,
+			"referenceSources": [
+				"DC",
+				"SDW"
+			],
+			"level": 1,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "warrior",
+				"sidekickHidden": true
+			},
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"{@item chain shirt|phb}",
+						"{@item shield|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 13,
+				"formula": "2d8 + 4"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 15,
+			"dex": 13,
+			"con": 14,
+			"int": 10,
+			"wis": 12,
+			"cha": 10,
+			"save": {
+				"con": "+4"
+			},
+			"skill": {
+				"athletics": "+4",
+				"perception": "+3",
+				"survival": "+3"
+			},
+			"passive": 13,
+			"languages": [
+				"通用語",
+				"增加你選擇的一項"
+			],
+			"trait": [
+				{
+					"name": "戰鬥職能",
+					"entries": [
+						"該戰士具有以下特質之一，由你選擇：",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "攻擊手",
+									"entry": "戰士獲得攻擊檢定的+2加值。",
+									"ENG_name": "Attacker"
+								},
+								{
+									"type": "item",
+									"name": "防禦者",
+									"entry": "戰士獲得了以下保護反應。",
+									"ENG_name": "Defender"
+								}
+							]
+						}
+					],
+					"ENG_name": "Martial Role"
+				}
+			],
+			"action": [
+				{
+					"name": "長劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 4}，觸及5尺，單一目標。{@h}6 ({@damage 1d8 + 2}) 點揮砍傷害，或者如果用雙手使用則為7 ({@damage 1d10 + 2}) 點揮砍傷害。"
+					],
+					"ENG_name": "Longsword"
+				},
+				{
+					"name": "長弓",
+					"entries": [
+						"{@atk rw} 命中{@hit 3}，射程150/600 尺，單一目標。{@h}5（{@damage 1d8 + 1}）點穿刺傷害。"
+					],
+					"ENG_name": "Longbow"
+				}
+			],
+			"reaction": [
+				{
+					"name": "防護（僅守衛者）",
+					"entries": [
+						"戰士對5尺內的目標不是戰士的生物的攻擊檢定施加劣勢。戰士必須能看到攻擊者。"
+					],
+					"ENG_name": "Protection (Defender Only)"
+				}
+			],
+			"altArt": [
+				{
+					"name": "Warrior (Defender)",
+					"source": "ESK"
+				}
+			],
+			"attachedItems": [
+				"longbow|phb",
+				"longsword|phb"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RNG",
+				"RW"
+			],
+			"hasToken": true,
+			"ENG_name": "Warrior"
+		}
+	]
+}

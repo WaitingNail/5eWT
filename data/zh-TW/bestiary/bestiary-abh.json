@@ -1,0 +1,957 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "惡魔圖騰",
+			"source": "ABH",
+			"page": 14,
+			"size": [
+				"S"
+			],
+			"type": "construct",
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 22,
+				"formula": "5d6 + 5"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 15,
+			"dex": 12,
+			"con": 13,
+			"int": 6,
+			"wis": 11,
+			"cha": 6,
+			"skill": {
+				"stealth": "+5"
+			},
+			"senses": [
+				"Darkvision 60"
+			],
+			"passive": 10,
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"理解通用語和煉獄語但不會說"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"該圖示在對抗法術和其他魔法效果的豁免上具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Magic Resistance"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"聖像發動兩次猛擊攻擊並使用熾焰爆發。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "猛擊",
+					"entries": [
+						"{@atkr m}：  {@hit 4}，觸及 5 尺。{@h}： 4（ {@damage 1d4 + 2} ）鈍擊傷害。"
+					],
+					"ENG_name": "Slam"
+				},
+				{
+					"name": "熾熱噴發",
+					"entries": [
+						"{@actSave dex} {@dc 11}，位於聖徽發出的5尺{@variantrule Emanation [Area of Effect]|XPHB|光環}範圍內的每個生物。{@actSaveFail} 7（{@damage 2d6}）火焰傷害。"
+					],
+					"ENG_name": "Fiery Eruption"
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"I"
+			],
+			"damageTags": [
+				"B",
+				"F"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Fiendish Icon"
+		},
+		{
+			"name": "收割者魔鬼",
+			"source": "ABH",
+			"page": 15,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"devil"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 65,
+				"formula": "10d8 + 20"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 17,
+			"con": 14,
+			"int": 14,
+			"wis": 13,
+			"cha": 19,
+			"save": {
+				"con": "+4",
+				"wis": "+3"
+			},
+			"skill": {
+				"perception": "+3",
+				"persuasion": "+8",
+				"stealth": "+5"
+			},
+			"senses": [
+				"Darkvision 120 ft. (unimpeded by magical {@variantrule Darkness|XPHB})"
+			],
+			"passive": 13,
+			"resist": [
+				"cold"
+			],
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"煉獄語; 心靈感應 120 尺"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "惡魔護符",
+					"entries": [
+						"針對該魔鬼的攻擊檢定具有{@variantrule Disadvantage|XPHB|劣勢}。如果該魔鬼進行攻擊檢定，此特性將受到抑制直到其下一回合開始。"
+					],
+					"ENG_name": "Diabolic Ward"
+				},
+				{
+					"name": "魔鬼復甦",
+					"entries": [
+						"若該魔鬼於九層地獄之外死去，其身軀會化為硫磺煙霧消失，並立即在九層地獄某處以滿{@variantrule Hit Points|XPHB|生命值}獲得一具新的身體。"
+					],
+					"ENG_name": "Diabolical Restoration"
+				},
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"該魔鬼對抗法術和其他魔法效應時進行的豁免檢定具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Magic Resistance"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"該魔鬼進行兩次攻擊，使用地獄之刃或困惑射線以任意組合。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "地獄之刃",
+					"entries": [
+						"{@atkr m} {@hit 5}，觸及5尺。{@h}6（{@damage 1d6 + 3}）揮砍傷害和7（{@damage 2d6}）火焰傷害。"
+					],
+					"ENG_name": "Infernal Blade"
+				},
+				{
+					"name": "迷惑射線",
+					"entries": [
+						"{@atkr r} {@hit 5}，範圍120尺。{@h}13（{@damage 2d12}）心靈傷害。如果目標是生物，在魔鬼的下個回合開始前，它不能進行{@action Opportunity Attack|XPHB|借機攻擊}。"
+					],
+					"ENG_name": "Confounding Ray"
+				},
+				{
+					"name": "強制契約（1/白晝）",
+					"entries": [
+						"{@actSave cha} {@dc 14}，魔鬼30尺內的一個生物。{@actSaveFail} 目標獲得{@condition Charmed|XPHB|魅惑}狀態。當處於{@condition Stunned|XPHB|震懾}狀態時，它獲得{@condition Charmed|XPHB|魅惑}狀態，但目標可以說話。如果目標同意魔鬼的契約，此效果結束。否則，每當目標受到傷害時以及在其每個回合結束時重複豁免，成功則自身結束此效果。1分鐘後，它自動成功。"
+					],
+					"ENG_name": "Compelling Contract (1/Day)"
+				}
+			],
+			"environment": [
+				"planar, nine hells"
+			],
+			"traitTags": [
+				"Devil's Sight",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"I",
+				"TP"
+			],
+			"damageTags": [
+				"F",
+				"S",
+				"Y"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"charmed",
+				"stunned"
+			],
+			"savingThrowForced": [
+				"charisma"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Harvester Devil"
+		},
+		{
+			"name": "魔鬼代言人",
+			"source": "ABH",
+			"page": 17,
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"devil"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				17
+			],
+			"hp": {
+				"average": 189,
+				"formula": "18d10 + 90"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 30
+			},
+			"str": 21,
+			"dex": 19,
+			"con": 20,
+			"int": 22,
+			"wis": 18,
+			"cha": 17,
+			"save": {
+				"con": "+9",
+				"int": "+10",
+				"wis": "+8",
+				"cha": "+7"
+			},
+			"skill": {
+				"arcana": "+10",
+				"history": "+10",
+				"perception": "+8"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 18,
+			"resist": [
+				"cold"
+			],
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"煉獄語; 心靈感應 120 尺"
+			],
+			"cr": "12",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"該魔鬼施展以下法術之一，無需材料成分並使用智力作為施法屬性（法術豁免{@dc 18}）："
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB|偵測魔法}",
+						"{@spell Detect Thoughts|XPHB|偵測思想}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Dimension Door|XPHB|任意門}",
+							"{@spell Modify Memory|XPHB|篡改記憶}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "魔鬼復甦",
+					"entries": [
+						"若該魔鬼於九層地獄之外死去，其身軀會化為硫磺煙霧消失，並立即在九層地獄某處以滿{@variantrule Hit Points|XPHB|生命值}獲得一具新的身體。"
+					],
+					"ENG_name": "Diabolical Restoration"
+				},
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"該魔鬼對抗法術和其他魔法效應時進行的豁免檢定具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Magic Resistance"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"該魔鬼進行兩次雷鳴戟攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "雷鳴戟",
+					"entries": [
+						"{@atkr m} {@hit 9}，觸及10尺。{@h}16（{@damage 2d10 + 5}）揮砍傷害外加14（{@damage 4d6}）雷鳴傷害。"
+					],
+					"ENG_name": "Thundering Halberd"
+				}
+			],
+			"bonus": [
+				{
+					"name": "痛苦之語",
+					"entries": [
+						"{@actSave wis} {@dc 18}，魔鬼周圍20尺{@variantrule Emanation [Area of Effect]|XPHB|光環}內的每個生物。{@actSaveFail} 目標獲得{@condition Stunned|XPHB|震懾}狀態直到魔鬼的下個回合結束。"
+					],
+					"ENG_name": "Utterance of Pain"
+				},
+				{
+					"name": "毀滅真言",
+					"entries": [
+						"{@actSave con} {@dc 18}，魔鬼周圍20尺{@variantrule Emanation [Area of Effect]|XPHB|光環}內的每個生物。{@actSaveFail} 22（{@damage 4d10}）力場傷害。{@actSaveSuccess} 一半傷害。"
+					],
+					"ENG_name": "Utterance of Unmaking"
+				}
+			],
+			"environment": [
+				"planar, nine hells"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"I",
+				"TP"
+			],
+			"damageTags": [
+				"O",
+				"S",
+				"T"
+			],
+			"damageTagsSpell": [
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"stunned"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"incapacitated"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Speaker Devil"
+		},
+		{
+			"name": "吸血鬼獄炎魔使",
+			"source": "ABH",
+			"page": 18,
+			"size": [
+				"S",
+				"M"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"wizard"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 172,
+				"formula": "23d8 + 69"
+			},
+			"speed": {
+				"walk": 40,
+				"fly": 40
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 19,
+			"dex": 16,
+			"con": 17,
+			"int": 20,
+			"wis": 16,
+			"cha": 18,
+			"save": {
+				"con": "+8",
+				"int": "+10"
+			},
+			"skill": {
+				"arcana": "+10",
+				"perception": "+8",
+				"religion": "+10",
+				"stealth": "+8"
+			},
+			"senses": [
+				"Darkvision 120 ft. (unimpeded by magical {@variantrule Darkness|XPHB})"
+			],
+			"passive": 18,
+			"resist": [
+				"fire",
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"煉獄語"
+			],
+			"cr": {
+				"cr": "14",
+				"xpLair": 13000
+			},
+			"gear": [
+				"orb|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"該吸血鬼施展下列法術之一，使用智力作為施法屬性（法術豁免{@dc 18}）："
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB|偵測魔法}",
+						"{@spell Detect Thoughts|XPHB|偵測思想}",
+						"{@spell Dispel Magic|XPHB|解除魔法}",
+						"{@spell Fireball|XPHB|火球術}（四環版本）",
+						"{@spell Mage Hand|XPHB|法師之手}",
+						"{@spell Prestidigitation|XPHB|魔法伎倆}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Wall of Fire|XPHB|火牆術}"
+						],
+						"2": [
+							"{@spell Scrying|XPHB|探知術}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "傳奇抗性（3/日，或巢穴內4/日）",
+					"entries": [
+						"吸血鬼豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day, or 4/Day in Lair)"
+				},
+				{
+					"name": "霧遁",
+					"entries": [
+						"若吸血鬼在其休眠地之外{@variantrule Hit Points|XPHB|生命值}降至 0，其立即使用變形動作變為霧氣（無需動作）。若此時其無法使用變形，則其被摧毀。",
+						"若吸血鬼處於迷霧形態且具有 0 {@variantrule Hit Points|XPHB|生命值}生命值時，其無法變回其吸血鬼形態，且必須在 2 小時內返回其休眠地，否則亦會被摧毀。一旦返回其休眠地，其變回吸血鬼形態並陷入{@condition Paralyzed|XPHB|麻痺}麻痺狀態直至其恢復任意{@variantrule Hit Points|XPHB|生命值}生命值，吸血鬼在此地停留 1 小時後恢復 1 {@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Misty Escape"
+				},
+				{
+					"name": "吸血鬼弱點",
+					"entries": [
+						"吸血鬼擁有以下弱點：",
+						{
+							"type": "list",
+							"style": "list-hang-subtrait",
+							"items": [
+								{
+									"type": "itemSub",
+									"name": "禁制術",
+									"entries": [
+										"吸血鬼未得到一位居住者的邀請時無法進入相應的民宅。"
+									],
+									"ENG_name": "Forbiddance"
+								},
+								{
+									"type": "itemSub",
+									"name": "流水",
+									"entries": [
+										"若吸血鬼在流水中結束回合，其受到 20 強酸傷害。"
+									],
+									"ENG_name": "Running Water"
+								},
+								{
+									"type": "itemSub",
+									"name": "樁刺",
+									"entries": [
+										"若吸血鬼位於其休眠地且陷入{@condition Incapacitated|XPHB|無力}狀態期間，若用一把造成穿刺傷害的武器釘入其心臟，其陷入{@condition Paralyzed|XPHB|麻痺}狀態直至該武器被移除。"
+									],
+									"ENG_name": "Stake to the Heart"
+								},
+								{
+									"type": "itemSub",
+									"name": "陽光",
+									"entries": [
+										"若吸血鬼在陽光下開始其回合，其受到 20 光耀傷害。若其身處陽光下，其進行的攻擊檢定和屬性檢定具有{@variantrule Disadvantage|XPHB|劣勢}。"
+									],
+									"ENG_name": "Sunlight"
+								}
+							]
+						}
+					],
+					"ENG_name": "Vampire Weakness"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊（僅吸血鬼形態）",
+					"entries": [
+						"該吸血鬼發動兩次地獄火爪抓攻擊並使用啃咬。"
+					],
+					"ENG_name": "Multiattack (Vampire Form Only)"
+				},
+				{
+					"name": "地獄火爪抓（僅限吸血鬼形態）",
+					"entries": [
+						"{@atkr m} {@hit 9}，觸及5尺。{@h}13（{@damage 2d8 + 4}）揮砍傷害外加10（{@damage 3d6}）火焰傷害。如果目標是中型或更小的生物，它會被其中一隻爪子施加{@condition Grappled|XPHB|被擒}狀態（逃脫{@dc 17}）。"
+					],
+					"ENG_name": "Hellfire Claw (Vampire Form Only)"
+				},
+				{
+					"name": "啃咬（僅小魔鬼或吸血鬼形態）",
+					"entries": [
+						"{@actSave con} {@dc 18}，5尺內一個自願或處於{@condition Grappled|XPHB|被擒}、{@condition Incapacitated|XPHB|無力}或{@condition Restrained|XPHB|束縛}狀態的生物。{@actSaveFail} 6（{@damage 1d4 + 4}）穿刺傷害加16（{@damage 3d10}）暗蝕傷害，且該生物失去其最高可用法術位（如果有）。目標的{@variantrule Hit Points|XPHB|生命值}上限減少相當於所受暗蝕傷害的數值，且吸血鬼恢復相當於該數值的{@variantrule Hit Points|XPHB|生命值}。一個類人生物因該傷害{@variantrule Hit Points|XPHB|生命值}降至0並被埋葬，將在次日日落時作為受該吸血鬼控制的初生吸血鬼復活。"
+					],
+					"ENG_name": "Bite (Imp or Vampire Form Only)"
+				}
+			],
+			"bonus": [
+				{
+					"name": "變形",
+					"entries": [
+						"如果該吸血鬼不在陽光或流水中，它會變形為一個微型小魔鬼（{@variantrule Speed|XPHB|速度} 20尺，{@variantrule Fly Speed|XPHB|飛行速度} 40尺），或一箇中型霧團（{@variantrule Speed|XPHB|速度} 5尺，{@variantrule Fly Speed|XPHB|飛行速度} 20尺[懸浮]），或變回其吸血鬼形態。它所穿戴的任何物品都會隨之變形。",
+						"在小魔鬼形態下，該吸血鬼的具體數值，除了體型和{@variantrule Speed|XPHB|速度}，保持不變。",
+						"處於迷霧形態期間，吸血鬼無法執行任何動作，亦無法說話或操縱物件。迷霧沒有重量且可以進入並停留在某個生物所處的空間。迷霧可以穿過空氣能透過的空間，但無法穿過液體。除了其因日照受到的傷害外，迷霧具有對所有傷害的{@variantrule Resistance|XPHB|抗性}。"
+					],
+					"ENG_name": "Shape-Shift"
+				}
+			],
+			"legendaryActionsLair": 4,
+			"legendary": [
+				{
+					"name": "地獄火打擊",
+					"entries": [
+						"該吸血鬼移動至多其{@variantrule Speed|XPHB|速度}的一半，並發動一次地獄火爪抓攻擊。"
+					],
+					"ENG_name": "Hellfire Strike"
+				},
+				{
+					"name": "煉獄威儀",
+					"entries": [
+						"{@actSave cha} {@dc 17}，吸血鬼周圍20尺{@variantrule Emanation [Area of Effect]|XPHB|光環}範圍內的每個生物。{@actSaveFail} 9（{@damage 2d8}）心靈傷害，且目標獲得{@condition Frightened|XPHB|恐懼}狀態直到其下一回合開始。{@actSaveSuccess} 僅造成一半傷害。{@actSaveSuccessOrFail} 吸血鬼在其下一回合開始前無法再次使用此動作。"
+					],
+					"ENG_name": "Infernal Majesty"
+				},
+				{
+					"name": "傳送",
+					"entries": [
+						"該吸血鬼傳送至多30尺至一個它能看見的未佔據空間。"
+					],
+					"ENG_name": "Teleport"
+				}
+			],
+			"legendaryGroup": {
+				"name": "Vampire Infernalist",
+				"source": "ABH"
+			},
+			"environment": [
+				"planar, nine hells",
+				"underdark",
+				"urban"
+			],
+			"traitTags": [
+				"Devil's Sight",
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"I"
+			],
+			"damageTags": [
+				"A",
+				"F",
+				"N",
+				"P",
+				"S",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"F"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"HPR",
+				"MA"
+			],
+			"conditionInflict": [
+				"frightened",
+				"grappled"
+			],
+			"savingThrowForced": [
+				"charisma",
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Vampire Infernalist"
+		},
+		{
+			"name": "吸血鬼看守",
+			"source": "ABH",
+			"page": 20,
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				18
+			],
+			"hp": {
+				"average": 190,
+				"formula": "21d8 + 96"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 21,
+			"dex": 15,
+			"con": 18,
+			"int": 10,
+			"wis": 14,
+			"cha": 17,
+			"save": {
+				"con": "+8",
+				"wis": "+6"
+			},
+			"skill": {
+				"athletics": "+9",
+				"perception": "+10"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 20,
+			"resist": [
+				"necrotic"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"frightened"
+			],
+			"languages": [
+				"通用語"
+			],
+			"cr": "10",
+			"spellcasting": [
+				{
+					"name": "守護者命令",
+					"type": "spellcasting",
+					"headerEntries": [
+						"該吸血鬼施放{@spell Compulsion|XPHB|強迫術}，無需法術成分並使用魅力作為施法屬性（法術豁免{@dc 15}）。"
+					],
+					"will": [
+						"{@spell Compulsion|XPHB|強迫術}"
+					],
+					"ability": "cha",
+					"displayAs": "action",
+					"hidden": [
+						"will"
+					],
+					"ENG_name": "Guardian's Command"
+				}
+			],
+			"trait": [
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"該吸血鬼在對抗法術和其他魔法效果的豁免上具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Magic Resistance"
+				},
+				{
+					"name": "吸血鬼弱點",
+					"entries": [
+						"吸血鬼擁有以下弱點：",
+						{
+							"type": "list",
+							"style": "list-hang-subtrait",
+							"items": [
+								{
+									"type": "itemSub",
+									"name": "禁制術",
+									"entries": [
+										"吸血鬼未得到一位居住者的邀請時無法進入相應的民宅。"
+									],
+									"ENG_name": "Forbiddance"
+								},
+								{
+									"type": "itemSub",
+									"name": "流水",
+									"entries": [
+										"若吸血鬼在流水中結束回合，其受到 20 強酸傷害。"
+									],
+									"ENG_name": "Running Water"
+								},
+								{
+									"type": "itemSub",
+									"name": "樁刺",
+									"entries": [
+										"如果吸血鬼處於{@condition Incapacitated|XPHB|無力}狀態時，一把造成穿刺傷害的武器被刺入吸血鬼的心臟，那麼吸血鬼將獲得{@condition Paralyzed|XPHB|麻痺}狀態，直到武器被移除。"
+									],
+									"ENG_name": "Stake to the Heart"
+								},
+								{
+									"type": "itemSub",
+									"name": "陽光",
+									"entries": [
+										"若吸血鬼在陽光下開始其回合，其受到 20 光耀傷害。若其身處陽光下，其進行的攻擊檢定和屬性檢定具有{@variantrule Disadvantage|XPHB|劣勢}。"
+									],
+									"ENG_name": "Sunlight"
+								},
+								{
+									"type": "itemSub",
+									"name": "靜止恢復",
+									"entries": [
+										"若吸血鬼在其未處於{@condition Petrified|XPHB|石化}狀態時{@variantrule Hit Points|XPHB|生命值}降至0，其立即變為石頭並恢復50 {@variantrule Hit Points|XPHB|生命值}。同時陷入{@condition Petrified|XPHB|石化}狀態，持續1小時。"
+									],
+									"ENG_name": "Immobile Restoration"
+								}
+							]
+						}
+					],
+					"ENG_name": "Vampire Weakness"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"該吸血鬼發動兩次爪抓攻擊，並使用啃咬或守護者的命令術。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atkr m} {@hit 9}，觸及5尺。{@h}14（{@damage 2d8 + 5}）揮砍傷害外加7（{@damage 2d6}）暗蝕傷害。如果目標是大型或更小的生物，它被其中一隻爪子獲得{@condition Grappled|XPHB|被擒}狀態（逃脫{@dc 16}）。"
+					],
+					"ENG_name": "Claw"
+				},
+				{
+					"name": "啃咬",
+					"entries": [
+						"{@actSave con} {@dc 16}，5尺內一個自願或處於{@condition Grappled|XPHB|被擒}、{@condition Incapacitated|XPHB|無力}或{@condition Restrained|XPHB|束縛}狀態的生物。{@actSaveFail} 7（{@damage 1d4 + 5}）穿刺傷害加7（{@damage 2d6}）暗蝕傷害。目標的{@variantrule Hit Points|XPHB|生命值}上限減少相當於所受暗蝕傷害的數值，吸血鬼恢復相當於該數值的{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Bite"
+				}
+			],
+			"reaction": [
+				{
+					"name": "堅韌血肉",
+					"entries": [
+						"{@actTrigger} 吸血鬼被一個它能看見的攻擊者的近戰攻擊骰命中。{@actResponse} 吸血鬼將該攻擊對其造成的傷害減少11（{@dice 2d6 + 4}）。"
+					],
+					"ENG_name": "Resilient Flesh"
+				}
+			],
+			"environment": [
+				"underdark",
+				"urban"
+			],
+			"tokenCredit": "ThePrisoner",
+			"tokenCustom": true,
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"A",
+				"N",
+				"P",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"HPR",
+				"MA"
+			],
+			"conditionInflict": [
+				"grappled"
+			],
+			"conditionInflictSpell": [
+				"charmed"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Vampire Warden"
+		}
+	]
+}

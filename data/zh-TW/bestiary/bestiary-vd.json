@@ -1,0 +1,279 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "維克那，大巫妖",
+			"shortName": "維克那",
+			"isNamedCreature": true,
+			"source": "VD",
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"wizard"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "32d8 + 128",
+				"average": 272
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 14,
+			"dex": 16,
+			"con": 18,
+			"int": 22,
+			"wis": 24,
+			"cha": 16,
+			"save": {
+				"con": "+12",
+				"int": "+14",
+				"wis": "+15"
+			},
+			"skill": {
+				"arcana": "+22",
+				"history": "+14",
+				"insight": "+15",
+				"perception": "+15"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 25,
+			"resist": [
+				"cold",
+				"lightning",
+				"necrotic"
+			],
+			"immune": [
+				{
+					"immune": [
+						"poison"
+					]
+				},
+				{
+					"immune": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "來自非魔法攻擊",
+					"cond": true
+				}
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned",
+				"stunned"
+			],
+			"languages": [
+				"通用語",
+				"龍語",
+				"精靈語",
+				"煉獄語"
+			],
+			"cr": "26",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"維克那 施放以下法術之一，不需要材料成分，使用智力作為施法能力（法術豁免{@dc 22}）："
+					],
+					"will": [
+						"{@spell animate dead||活化死屍}（以一個動作）",
+						"{@spell detect magic||偵測魔法}",
+						"{@spell dispel magic||解除魔法}",
+						"{@spell fly||飛行術}",
+						"{@spell lightning bolt||閃電束}",
+						"{@spell mage hand||法師之手}",
+						"{@spell prestidigitation||魔法伎倆}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell dimension door||任意門}",
+							"{@spell invisibility||隱形術}",
+							"{@spell scrying||探知術}（以一動作）"
+						],
+						"1e": [
+							"{@spell dominate monster||支配怪物}",
+							"{@spell globe of invulnerability||法術無效結界}",
+							"{@spell plane shift||位面轉移}（僅自身）"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "傳奇抗性（5/日）",
+					"entries": [
+						"如果維克那未能透過豁免檢定，他可以選擇成功。"
+					],
+					"ENG_name": "Legendary Resistance (5/Day)"
+				},
+				{
+					"name": "特殊裝備",
+					"entries": [
+						"維克那攜帶一把名為'事後回想'的魔法匕首。在除維克那之外的任何人手中，'事後回想'是一把{@item +2 dagger||+2 匕首}。"
+					],
+					"ENG_name": "Special Equipment"
+				},
+				{
+					"name": "不朽者",
+					"entries": [
+						"如果維克那被擊敗，他的靈魂拒絕接受自己的命運，並以一個無實體的精神形態存活，經過{@dice 1d100}年後為自己塑造新的身體。即使維克那的舊身體被燒成灰燼或以其他方式被徹底摧毀，他的靈魂也能塑造新的身體。當新的身體完成時，維克那恢復所有生命值並再次活躍起來。維克那的新身體出現在他被擊敗地點100英里內的任何地方。"
+					],
+					"ENG_name": "Undying"
+				},
+				{
+					"name": "非凡本質",
+					"entries": [
+						"維克那不需要空氣、食物、飲水或睡眠。"
+					],
+					"ENG_name": "Unusual Nature"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"維克那使用《被詛咒者的飛行》（如果可用）、《腐爛命運》或《施法》。然後他使用{@i 事後回想}進行兩次攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "事後回想",
+					"entries": [
+						"{@atk mw} 命中{@hit 13}，觸及5尺，單一目標。{@h}7 ({@damage 1d4 + 5}) 點穿刺傷害，加上9 ({@damage 2d8})暗蝕傷害。如果目標是一個生物，它會被熵魔法影響，在它每個回合開始時受到9 ({@damage 2d8})暗蝕傷害。在它的回合上立即承受此傷害後，目標可以進行一次{@dc 20}體質豁免，成功則結束此效果。在成功此豁免之前，受影響的目標不能恢復生命值。"
+					],
+					"ENG_name": "Afterthought"
+				},
+				{
+					"name": "詛咒之飛行 {@recharge 5}",
+					"entries": [
+						"維克那召喚出一股飛行的幽靈實體洪流，填滿120尺的錐形區域，穿過該區域內的所有生物後消散。該區域內的每個生物必須進行一次{@dc 22}體質豁免檢定。檢定失敗的生物將受到36點（{@damage 8d8}）暗蝕傷害，並且在1分鐘內對維克那感到{@condition frightened||恐慌}。檢定成功的生物受到的傷害減半，並且不會{@condition frightened||恐慌}。處於{@condition frightened||恐慌}狀態的生物可以在每個回合結束時重複進行豁免檢定，成功則結束該效果。"
+					],
+					"ENG_name": "Flight of the Damned {@recharge 5}"
+				},
+				{
+					"name": "腐爛命運",
+					"entries": [
+						"維克那 使得死靈魔法包圍他120尺內他能看到的一個生物。目標必須進行一次{@dc 22}體質豁免檢定，失敗則受到96({@damage 8d8 + 60})點暗蝕傷害，成功則傷害減半。被這魔法殺死的類人生物在維克那下一回合開始時會作為{@creature zombie||喪屍}復活，並在行動順序中緊接維克那之後立即行動。該{@creature zombie||喪屍}受維克那的控制。"
+					],
+					"ENG_name": "Rotten Fate"
+				}
+			],
+			"bonus": [
+				{
+					"name": "邪惡傳送",
+					"entries": [
+						"維克那連同他穿戴或攜帶的任何裝備，可以傳送至他能看到的30尺內的未被佔據的空間。他可以選擇使他目的地15尺內的每個生物受到10點（{@damage 3d6}）心靈傷害。如果至少有一個生物受到此傷害，維克那恢復80點生命值。"
+					],
+					"ENG_name": "Vile Teleport"
+				}
+			],
+			"reactionHeader": [
+				"Vecna can take up to three reactions per round but only one per turn."
+			],
+			"reaction": [
+				{
+					"name": "恐怖反制",
+					"entries": [
+						"維克那對一個他能看到的正在施法的生物說出一個可怕的詞來打斷它。如果法術等級是4級或更低，法術失敗且無效。如果法術等級是5級或更高，維克那進行智力檢定（{@dc 10} + 法術等級）。成功時，法術失敗且無效。無論法術等級如何，如果法術失敗，施法者會受到10點（{@damage 3d6}）心靈傷害。"
+					],
+					"ENG_name": "Dread Counterspell"
+				},
+				{
+					"name": "墮落斥責",
+					"entries": [
+						"當維克那被攻擊命中時，他發出一個邪惡的咒語，對攻擊者造成10（{@damage 3d6}）點暗蝕傷害，並且維克那連同他穿戴或攜帶的任何裝備一起傳送，至多30尺到他能看到的未被佔據的空間。"
+					],
+					"ENG_name": "Fell Rebuke"
+				}
+			],
+			"altArt": [
+				{
+					"name": "Vecna the Archlich (Alt)",
+					"source": "VD"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Unusual Nature"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"E",
+				"I"
+			],
+			"damageTags": [
+				"N",
+				"P",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"L",
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Vecna the Archlich",
+			"ENG_shortName": "Vecna"
+		}
+	]
+}

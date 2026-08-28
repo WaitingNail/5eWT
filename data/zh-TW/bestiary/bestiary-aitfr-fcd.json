@@ -1,0 +1,390 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.33.3",
+		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "僱傭兵使者",
+			"source": "AitFR-FCD",
+			"page": 10,
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item chain shirt|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 26,
+				"formula": "4d8 + 8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 15,
+			"dex": 15,
+			"con": 15,
+			"int": 10,
+			"wis": 12,
+			"cha": 9,
+			"save": {
+				"str": "+4",
+				"con": "+4"
+			},
+			"skill": {
+				"athletics": "+4",
+				"perception": "+3"
+			},
+			"passive": 13,
+			"languages": [
+				"通用語"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "鼓舞勇氣",
+					"entries": [
+						"當僱傭兵在至少一個盟友5尺範圍內時，他在對抗{@condition charmed||魅惑}、{@condition frightened||恐慌}、{@condition grappled||受擒}或{@condition restrained||束縛}的豁免投擲上有優勢。"
+					],
+					"ENG_name": "Inspired Courage"
+				},
+				{
+					"name": "成軍優勢",
+					"entries": [
+						"每回合一次，如果僱傭兵用武器攻擊命中一個距離其盟友5尺以內的生物，並且該盟友沒有處於{@condition incapacitated||失能}，僱傭兵可以對該生物額外造成7點（{@damage 2d6}）傷害。"
+					],
+					"ENG_name": "Martial Advantage"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"僱傭兵進行兩次長劍攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "長劍",
+					"entries": [
+						"{@atk mw} 命中{@hit 4}，觸及5尺，單一目標。{@h}6（{@damage 1d8 + 2}）點揮砍傷害。"
+					],
+					"ENG_name": "Longsword"
+				},
+				{
+					"name": "重弩",
+					"entries": [
+						"{@atk rw} 命中{@hit 4}，射程",
+						"100/400 尺，單一目標。{@h}7 ({@damage 1d10 + 2}) 點穿刺傷害。"
+					],
+					"ENG_name": "Heavy Crossbow"
+				}
+			],
+			"tokenCustom": true,
+			"attachedItems": [
+				"heavy crossbow|phb",
+				"longsword|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RNG",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Mercenary Envoy"
+		},
+		{
+			"name": "泰瑞斯，幻術師",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "AitFR-FCD",
+			"page": 11,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 156,
+				"formula": "24d8 + 48"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 14,
+			"int": 20,
+			"wis": 15,
+			"cha": 16,
+			"save": {
+				"int": "+10",
+				"wis": "+7"
+			},
+			"skill": {
+				"arcana": "+12",
+				"deception": "+8",
+				"history": "+10",
+				"perception": "+7"
+			},
+			"passive": 17,
+			"resist": [
+				{
+					"special": "法術傷害"
+				},
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "（來自石膚術）",
+					"preNote": "非魔法的",
+					"cond": true
+				}
+			],
+			"languages": [
+				"通用語",
+				"深潛語",
+				"龍語",
+				"原初語",
+				"木族語"
+			],
+			"cr": "13",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"泰瑞斯 是一名16級施法者。他的施法屬性是智力（法術豁免{@dc 18}，法術攻擊命中{@hit 10}）。他準備了以下法師法術。"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell fire bolt||火焰箭}",
+								"{@spell light||光亮術}",
+								"{@spell mage hand||法師之手}",
+								"{@spell minor illusion||次級幻象}",
+								"{@spell shocking grasp||電爪}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell mage armor||法師護甲}",
+								"{@spell magic missile||魔法飛彈}",
+								"{@spell shield||護盾術}",
+								"{@spell thunderwave||雷鳴波}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell invisibility||隱形術}*",
+								"{@spell mirror image||鏡影術}*",
+								"{@spell phantasmal force||魅影之力}*"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell counterspell||法術反制}",
+								"{@spell fly||飛行術}",
+								"{@spell lightning bolt||閃電束}",
+								"{@spell major image||高等幻影}*"
+							]
+						},
+						"4": {
+							"slots": 3,
+							"spells": [
+								"{@spell banishment||放逐術}",
+								"{@spell hallucinatory terrain||幻景}*",
+								"{@spell phantasmal killer||魅影殺手}*",
+								"{@spell stoneskin||石膚術}"
+							]
+						},
+						"5": {
+							"slots": 2,
+							"spells": [
+								"{@spell conjure elemental||咒喚元素}",
+								"{@spell mislead||假象術}*",
+								"{@spell telekinesis||心靈遙控}"
+							]
+						},
+						"6": {
+							"slots": 1,
+							"spells": [
+								"{@spell disintegrate||解離術}"
+							]
+						},
+						"7": {
+							"slots": 1,
+							"spells": [
+								"{@spell plane shift||位面轉移}"
+							]
+						},
+						"8": {
+							"slots": 1,
+							"spells": [
+								"{@spell maze||迷宮術}"
+							]
+						}
+					},
+					"footerEntries": [
+						"*（1級或更高階別的幻術系法術）"
+					],
+					"ability": "int",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "傳奇抗性 (3/日)",
+					"entries": [
+						"當泰瑞斯豁免失敗時，他可以選擇將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				},
+				{
+					"name": "亦真亦幻",
+					"entries": [
+						"當Tyreus施放1級或更高階別的幻象法術時，他可以選擇幻象中的一個無生命、非魔法物品並使其變為真實。在法術持續期間，他可以在自己的回合以一個附贈動作這樣做。",
+						"該物體保持真實狀態持續1分鐘。該物體不能造成傷害或以其他方式直接傷害任何人。"
+					],
+					"ENG_name": "Illusory Reality"
+				},
+				{
+					"name": "偏移（在泰瑞斯施放1級或更高階別的幻術法術後重新充能）",
+					"entries": [
+						"作為附贈動作，Tyreus投射出一個幻象，使他看起來像是站在他實際位置幾英寸之外的地方，導致任何生物在對Tyreus的攻擊檢定上具有劣勢。如果Tyreus受到傷害，他處於{@condition incapacitated||失能}，或者他的速度變為0，效果就會結束。"
+					],
+					"ENG_name": "Displacement (Recharges after Tyreus Casts an Illusion Spell of 1st Level or Higher)"
+				}
+			],
+			"action": [
+				{
+					"name": "匕首",
+					"entries": [
+						"{@atk mw,rw} 命中{@hit 8}，觸及5尺或20/60尺，單一目標。{@h}5 ({@damage 1d4 + 3}) 點穿刺傷害。"
+					],
+					"ENG_name": "Dagger"
+				},
+				{
+					"name": "幻象修改",
+					"entries": [
+						"當泰瑞斯施放持續時間達到1分鐘或更長的幻術時，他可以使用他的行動來改變該幻術的性質（使用幻術的正常引數），前提是他能看到這個幻術。"
+					],
+					"ENG_name": "Modify Illusion"
+				}
+			],
+			"legendary": [
+				{
+					"name": "仔細檢查",
+					"entries": [
+						"Tyreus 進行感知（{@skill Investigation||調查}）或感知（{@skill Perception||感知}）檢定。"
+					],
+					"ENG_name": "Scrutinize"
+				},
+				{
+					"name": "施展戲法",
+					"entries": [
+						"泰瑞斯從他的法術列表中施放了一個戲法。"
+					],
+					"ENG_name": "Cast Cantrip"
+				},
+				{
+					"name": "施法（消耗1-3個動作）",
+					"entries": [
+						"Tyreus 使用法術位位施放一個他已準備的1環、2環或3環法術。這樣做的話，每環法術消耗1點傳奇行動。"
+					],
+					"ENG_name": "Cast Spell (Costs 1-3 Actions)"
+				}
+			],
+			"tokenCustom": true,
+			"attachedItems": [
+				"dagger|phb"
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"DS",
+				"P",
+				"S"
+			],
+			"damageTags": [
+				"P"
+			],
+			"damageTagsSpell": [
+				"F",
+				"L",
+				"O",
+				"T",
+				"Y"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"conditionInflictSpell": [
+				"blinded",
+				"deafened",
+				"frightened",
+				"incapacitated",
+				"invisible",
+				"restrained"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"dexterity",
+				"intelligence",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"ENG_name": "Tyreus, Illusionist"
+		}
+	]
+}
