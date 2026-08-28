@@ -274,6 +274,15 @@
 		};
 
 		static _DAMAGE_TYPES = {
+			A: "強酸",
+			B: "鈍擊",
+			C: "寒冷",
+			F: "火焰",
+			L: "閃電",
+			N: "暗蝕",
+			P: "穿刺",
+			S: "揮砍",
+			T: "雷鳴",
 			acid: "強酸",
 			bludgeoning: "鈍擊",
 			cold: "寒冷",
@@ -287,6 +296,47 @@
 			radiant: "光耀",
 			slashing: "揮砍",
 			thunder: "雷鳴",
+		};
+
+		static _ITEM_RARITIES = {
+			none: "無稀有度",
+			common: "普通",
+			uncommon: "非普通",
+			rare: "稀有",
+			"very rare": "極稀有",
+			legendary: "傳奇",
+			artifact: "神器",
+			varies: "不定",
+			"unknown (magic)": "未知（魔法）",
+			unknown: "未知",
+		};
+
+		static _ITEM_RARITIES_SHORT = {
+			common: "普通",
+			uncommon: "非普",
+			rare: "稀有",
+			"very rare": "極稀",
+			legendary: "傳奇",
+			artifact: "神器",
+			varies: "不定",
+		};
+
+		static _ITEM_TIERS = {
+			none: "無",
+			minor: "次要",
+			major: "主要",
+		};
+
+		static _ITEM_WEAPON_CATEGORIES = {
+			simple: "簡易武器",
+			martial: "軍用武器",
+		};
+
+		static _ITEM_POISON_TYPES = {
+			contact: "接觸型",
+			ingested: "攝入型",
+			inhaled: "吸入型",
+			injury: "傷口型",
 		};
 
 		static _CONDITIONS = {
@@ -404,6 +454,16 @@
 			["featFluff", "character-options"],
 			["optionalfeature", "character-options"],
 			["optionalfeatureFluff", "character-options"],
+			["item", "items"],
+			["itemGroup", "items"],
+			["baseitem", "items"],
+			["itemProperty", "items"],
+			["itemType", "items"],
+			["itemTypeAdditionalEntries", "items"],
+			["itemEntry", "items"],
+			["itemMastery", "items"],
+			["magicvariant", "items"],
+			["itemFluff", "items"],
 		]);
 
 		static _FILE_TO_PROPS = new Map([
@@ -415,6 +475,10 @@
 			["fluff-feats.json", ["featFluff"]],
 			["optionalfeatures.json", ["optionalfeature"]],
 			["fluff-optionalfeatures.json", ["optionalfeatureFluff"]],
+			["items.json", ["item", "itemGroup"]],
+			["items-base.json", ["baseitem", "itemProperty", "itemType", "itemTypeAdditionalEntries", "itemEntry", "itemMastery"]],
+			["magicvariants.json", ["magicvariant"]],
+			["fluff-items.json", ["itemFluff"]],
 		]);
 
 		static _CONTENT_KEYS = new Set([
@@ -454,12 +518,39 @@
 		}
 
 		static _getEntityKey ({prop, entity}) {
-			if (!prop || !entity || typeof entity !== "object" || typeof entity.source !== "string") return null;
-			const name = entity.ENG_name ?? entity.name ?? "";
+			if (!prop || !entity || typeof entity !== "object") return null;
+			const name = (() => {
+				switch (prop) {
+					case "itemProperty":
+					case "itemType": return entity.abbreviation ?? entity.ENG_name ?? entity.name ?? "";
+					default: return entity.ENG_name ?? entity.name ?? "";
+				}
+			})();
 			if (typeof name !== "string") return null;
-			const parts = [prop, name, entity.source];
+			const source = entity.source ?? (prop === "magicvariant" ? entity.inherits?.source : null);
+			if (typeof source !== "string") return null;
+			const parts = [prop, name, source];
 			if (prop === "subrace") parts.push(entity.raceName || "", entity.raceSource || "");
 			return parts.map(it => `${it}`.trim().toLowerCase()).join("\u0000");
+		}
+
+		static async _pFetchJson (url) {
+			const response = await fetch(url);
+			if (!response.ok) throw new Error(`${response.status} ${response.statusText}`.trim());
+			return response.json();
+		}
+
+		static _mergeSidecars (sidecars) {
+			const out = {};
+			for (const sidecar of sidecars) {
+				if (!sidecar || typeof sidecar !== "object") continue;
+				if (!out._meta && sidecar._meta) out._meta = this._copy(sidecar._meta);
+				for (const [prop, entities] of Object.entries(sidecar)) {
+					if (prop === "_meta" || !Array.isArray(entities)) continue;
+					(out[prop] ||= []).push(...entities);
+				}
+			}
+			return out;
 		}
 
 		static async _pLoadFile ({folder, file, fnLoad = null}) {
@@ -470,9 +561,14 @@
 			if (!this._pFileCache.has(cacheKey)) {
 				this._pFileCache.set(cacheKey, (async () => {
 					try {
-						const response = await fetch(url);
-						if (!response.ok) throw new Error(`${response.status} ${response.statusText}`.trim());
-						return await response.json();
+						if (folder === "items" && file === "items.json") {
+							const index = await this._pFetchJson(`${this._getBaseUrl()}data/zh-TW/items/index.json`);
+							const chunkFiles = index?.fileChunks?.[file];
+							if (!Array.isArray(chunkFiles) || !chunkFiles.length) throw new Error("Missing items.json chunk manifest");
+							const sidecars = await Promise.all(chunkFiles.map(chunkFile => this._pFetchJson(`${this._getBaseUrl()}data/zh-TW/items/${chunkFile}`)));
+							return this._mergeSidecars(sidecars);
+						}
+						return await this._pFetchJson(url);
 					} catch (error) {
 						console.warn(`[zh-TW content] Could not load ${url}; using canonical English data.`, error);
 						return null;
@@ -552,13 +648,38 @@
 			});
 		}
 
-		static _getLocalizedEntity ({canonical, localized}) {
+		static _getLocalizedEntity ({prop, canonical, localized}) {
 			const out = this._copy(canonical);
 			if (typeof localized.name === "string" && localized.name !== canonical.name) out._displayName = localized.name;
 
-			for (const key of ["entries", "entriesHigherLevel"]) {
+			for (const key of ["entries", "entriesHigherLevel", "additionalEntries", "entriesTemplate"]) {
 				if (!(key in canonical) || !(key in localized)) continue;
 				out[key] = this._overlayContentValue({canonical: canonical[key], localized: localized[key]});
+			}
+
+			for (const [key, displayKey] of [
+				["reqAttune", "_displayReqAttune"],
+				["reqAttuneAlt", "_displayReqAttuneAlt"],
+				["detail1", "_displayDetail1"],
+			]) {
+				if (typeof canonical[key] === "string" && typeof localized[key] === "string") out[displayKey] = localized[key];
+			}
+
+			if (prop === "itemProperty" && typeof canonical.template === "string" && typeof localized.template === "string") {
+				out.template = localized.template;
+			}
+
+			if (prop === "magicvariant" && canonical.inherits && localized.inherits) {
+				out.inherits = this._copy(canonical.inherits);
+				for (const key of ["entries", "additionalEntries", "entriesTemplate"]) {
+					if (!(key in canonical.inherits) || !(key in localized.inherits)) continue;
+					out.inherits[key] = this._overlayContentValue({canonical: canonical.inherits[key], localized: localized.inherits[key]});
+				}
+				out._i18nDisplayInherits = {};
+				for (const key of ["namePrefix", "nameSuffix", "nameRemove", "reqAttune", "detail1"]) {
+					if (typeof localized.inherits[key] !== "string") continue;
+					out._i18nDisplayInherits[key] = localized.inherits[key];
+				}
 			}
 
 			if (canonical.components && localized.components) {
@@ -596,7 +717,7 @@
 				const canonical = this.getCanonicalEntity(entity);
 				const key = this._getEntityKey({prop, entity: canonical});
 				const localized = key ? localizedIndex.get(key) : null;
-				return localized ? this._getLocalizedEntity({canonical, localized}) : this._copy(canonical);
+				return localized ? this._getLocalizedEntity({prop, canonical, localized}) : this._copy(canonical);
 			});
 		}
 
@@ -604,7 +725,8 @@
 			const props = this._FILE_TO_PROPS.get(file);
 			if (!props || !data || typeof data !== "object") return data;
 
-			const folder = "character-options";
+			const folder = props.map(prop => this._PROP_TO_FOLDER.get(prop)).find(Boolean);
+			if (!folder) return this._copy(data);
 			const sidecar = await this._pLoadFile({folder, file, fnLoad});
 			if (!sidecar) return this._copy(data);
 
@@ -617,6 +739,27 @@
 					entities: data[prop],
 					fnLoad: async () => sidecar,
 				});
+			}
+
+			if (file === "items.json" && out.item?.length && out.itemGroup?.length) {
+				const byName = new Map();
+				for (const item of out.item) {
+					const nameKey = `${item.name || ""}`.trim().toLowerCase();
+					if (!byName.has(nameKey)) byName.set(nameKey, []);
+					byName.get(nameKey).push(item);
+				}
+				for (const group of out.itemGroup) {
+					if (!Array.isArray(group.items)) continue;
+					group._displayItems = group.items.map(ref => {
+						const rawName = typeof ref === "string" ? ref.split("|")[0] : ref?.name;
+						const rawSource = typeof ref === "string" ? ref.split("|")[1] : ref?.source;
+						const candidates = byName.get(`${rawName || ""}`.trim().toLowerCase()) || [];
+						const match = rawSource
+							? candidates.find(it => `${it.source || ""}`.toLowerCase() === rawSource.toLowerCase())
+							: candidates.find(it => it.source === "DMG") || candidates[0];
+						return match?._displayName || rawName || "";
+					});
+				}
 			}
 
 			if (file === "fluff-races.json" && data.raceFluffMeta && sidecar.raceFluffMeta) {
@@ -908,6 +1051,26 @@
 
 		static getDamageType (type) {
 			return this._DAMAGE_TYPES[type] || type || "";
+		}
+
+		static getItemRarity (rarity) {
+			return this._ITEM_RARITIES[rarity] || rarity || "";
+		}
+
+		static getItemRarityShort (rarity) {
+			return this._ITEM_RARITIES_SHORT[rarity] || this.getItemRarity(rarity);
+		}
+
+		static getItemTier (tier) {
+			return this._ITEM_TIERS[tier] || tier || "";
+		}
+
+		static getItemWeaponCategory (category) {
+			return this._ITEM_WEAPON_CATEGORIES[`${category || ""}`.toLowerCase()] || `${category || ""}`;
+		}
+
+		static getItemPoisonType (type) {
+			return this._ITEM_POISON_TYPES[`${type || ""}`.toLowerCase()] || `${type || ""}`;
 		}
 
 		static getCondition (condition) {

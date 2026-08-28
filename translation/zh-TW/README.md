@@ -14,6 +14,7 @@
 - `rules/`：動作、狀態／疾病、技能、感官、核心／變體規則與 2014 Quick Reference 的匯入來源、署名與 QA 報告。
 - `spells/`：936 筆法術與 89 筆法術補充敘述的繁中 sidecar、來源署名、動態欄位中文化與機械值 QA 報告。
 - `character-options/`：1,331 筆種族／亞種、背景、專長、選用特性與補充敘述的繁中 sidecar、來源署名與機械值 QA 報告。
+- `items/`：3,097 筆物品、物品群組、基礎物品、詞條、類型、精通與魔法變體規則資料，加上 948 筆物品補充敘述；保留英文 canonical 身分供網址、搜尋與規則處理，並由顯示層輸出繁中名稱與正文。
 
 ## 重新產生盤點
 
@@ -36,6 +37,6 @@ npm run zh-tw:validate-glossary
 npm run zh-tw:verify
 ```
 
-此命令會驗證術語、Class、法術與角色選項全量 sidecar、共用介面、核心規則 runtime、canonical 欄位／inline tags，以及 Quick Reference／法術／角色選項的英文 hash 與雙語搜尋。
+此命令會驗證術語、Class、法術、角色選項與物品全量 sidecar、共用介面、核心規則 runtime、canonical 欄位／inline tags，以及 Quick Reference／法術／角色選項／物品的英文 hash 與雙語搜尋。
 
-`rules/`、部分 `classes/`、`spells/` 與 `character-options/` 資料包含非 SRD 書籍內容，只能用於私人、自用 repository；授權與署名界線見各子目錄說明。
+`rules/`、部分 `classes/`、`spells/`、`character-options/` 與 `items/` 資料包含非 SRD 書籍內容，只能用於私人、自用 repository；授權與署名界線見各子目錄說明。

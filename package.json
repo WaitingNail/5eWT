@@ -1,6 +1,6 @@
 {
   "name": "5ewt-zh-tw-overlay",
-	"version": "2.33.3-zh-tw.4",
+	"version": "2.33.3-zh-tw.5",
   "private": true,
   "type": "module",
   "scripts": {
@@ -22,6 +22,9 @@
 		"validate:spells": "node vendor/5etools-src/node/zh-tw/validate-content-translations.mjs",
 		"test:character-options": "node vendor/5etools-src/node/zh-tw/test-content-i18n.mjs",
 		"validate:character-options": "node vendor/5etools-src/node/zh-tw/validate-character-options-translations.mjs",
+		"import:items": "python vendor/5etools-src/node/zh-tw/import-content-translations.py items",
+		"test:items": "node vendor/5etools-src/node/zh-tw/test-item-i18n.mjs && node vendor/5etools-src/node/zh-tw/test-item-page-runtime.mjs",
+		"validate:items": "node vendor/5etools-src/node/zh-tw/validate-item-translations.mjs",
 		"serve": "npm --prefix vendor/5etools-src run serve:dev"
   }
 }

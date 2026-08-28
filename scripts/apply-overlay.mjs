@@ -5,7 +5,10 @@ import {fileURLToPath} from "node:url";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const upstreamRoot = path.join(projectRoot, "vendor", "5etools-src");
-const patchPath = path.join(projectRoot, "patches", "0001-zh-tw-classes-runtime.patch");
+const patchPaths = [
+	path.join(projectRoot, "patches", "0001-zh-tw-classes-runtime.patch"),
+	path.join(projectRoot, "patches", "0002-zh-tw-items-runtime.patch"),
+];
 const copyRoots = [
   "requirements-zh-tw.txt",
   "data/zh-TW",
@@ -37,7 +40,7 @@ for (const relativePath of copyRoots) {
   copyRecursive(sourcePath, path.join(upstreamRoot, relativePath));
 }
 
-const canGitApply = args => {
+const canGitApply = (patchPath, args) => {
   try {
     execFileSync("git", ["apply", ...args, "--check", patchPath], {cwd: upstreamRoot, stdio: "pipe"});
     return true;
@@ -45,13 +48,14 @@ const canGitApply = args => {
     return false;
   }
 };
-const runGitApply = args => execFileSync("git", ["apply", ...args, patchPath], {cwd: upstreamRoot, stdio: "inherit"});
+const runGitApply = (patchPath, args) => execFileSync("git", ["apply", ...args, patchPath], {cwd: upstreamRoot, stdio: "inherit"});
 
-if (canGitApply([])) {
-	runGitApply([]);
-	console.log("Applied zh-TW interface, Class, core-rules, Quick Reference, spells, and character-options overlay.");
-} else if (canGitApply(["--reverse"])) {
-	console.log("zh-TW overlay is already applied; assets were refreshed.");
-} else {
-  throw new Error("zh-TW overlay does not apply cleanly to the pinned upstream tag.");
+for (const patchPath of patchPaths) {
+	if (canGitApply(patchPath, [])) {
+		runGitApply(patchPath, []);
+	} else if (!canGitApply(patchPath, ["--reverse"])) {
+		throw new Error(`zh-TW overlay patch does not apply cleanly: ${path.basename(patchPath)}`);
+	}
 }
+
+console.log("Applied zh-TW interface, Class, rules, spells, character-options, and items overlay; assets were refreshed.");

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build guarded zh-TW sidecars for translated 5etools entity data.
 
-Supported groups are ``spells`` and ``character-options``. Every localized
+Supported groups are ``spells``, ``character-options``, and ``items``. Every localized
 entity is paired to the pinned v2.33.3 English entity by canonical name and
 source. The output retains all mechanical and identity fields from English,
 while replacing only renderer-visible prose. Inline-reference targets are
@@ -30,6 +30,7 @@ SOURCE_REPOSITORY = "https://github.com/tjliqy/5etools-cn"
 SOURCE_COMMIT = "46b15d04f548c23c526084deae078e3568500349"
 UPSTREAM_TAG = "v2.33.3"
 UPSTREAM_COMMIT = "e5f3e77b303a92df10487207857200245e71957c"
+ITEM_SIDECAR_CHUNK_SIZE = 300
 
 
 def load_core_importer():
@@ -262,12 +263,72 @@ CHARACTER_OPTION_EXACT_REPAIRS: dict[str, tuple[tuple[str, str], ...]] = {
 }
 
 
+ITEM_EXACT_REPAIRS: dict[str, tuple[tuple[str, str], ...]] = {}
+
+ITEM_TRANSLATION_OVERRIDES: dict[str, str] = {
+	"items.json/item/97/entries/6/colLabels/1": "上",
+	"items.json/item/98/entries/5/colLabels/1": "上",
+	"items.json/item/87/entries/2": "如果你不是亡靈，每當你使用護符傳送時，都必須進行一次{@dc 16}體質豁免。豁免失敗時，黑顱骨會咯咯作笑，而你在傳送途中發生轉化。轉化會在你抵達目的地時立即生效；其結果透過擲百分骰並查閱黑顱骨轉化表隨機決定。",
+	"items.json/item/124/entries/3/entries/2": "這把斧具有{@itemProperty T|XPHB|投擲}詞條，普通射程為20尺，長射程為60尺。當你使用這把武器進行遠程攻擊並命中時，額外造成{@damage 1d8}點力場傷害；若目標是巨人類生物，則額外造成{@damage 2d8}點力場傷害。命中或失手後，武器會立即飛回你手中。",
+	"items.json/item/137/entries/0": "這個沉重的布袋裡裝著{@dice 3d4}顆乾豆。布袋重½磅，另加其中每顆豆子¼磅。",
+	"items.json/item/173/entries/0": "這顆小型黑色球體直徑為¾吋，重一盎司。通常會同時找到{@dice 1d4 + 4}顆{@italic 力場珠}。",
+	"items.json/item/174/entries/0": "這顆小型黑色球體直徑為3/4吋，重一盎司。通常會同時找到{@dice 1d4 + 4}顆力場珠。",
+	"items.json/item/405/entries/0": "食物與其他易腐物品放在保鮮箱內時不會老化或腐敗。箱子長2½尺、寬1½尺、高1尺，箱蓋呈半桶形。箱子設有鎖；使用{@item thieves' tools|PHB|盜賊工具}並成功通過一次{@dc 15}敏捷檢定即可將其撬開。砸壞鎖或箱子的任何其他部分，都會使箱子失去魔法。",
+	"items.json/item/449/entries/0": "這枚銅製護符內含互相咬合的微小齒輪，並由機械境的魔法驅動；那是一個由發條般的可預測性支配的位面。護符內傳出微弱的滴答聲與轉動聲。",
+	"items.json/item/474/entries/0": "這件物品是一枚普通但相當巨大的海螺殼，其上刻有烏瓦符文。海螺長2½尺，重20磅。",
+	"items.json/item/511/entries/0": "一般的水晶球是極珍稀物品，直徑約6吋。接觸它時，你可以用它施展{@spell Scrying|XPHB|探知術}（豁免{@dc 17}）。",
+	"items.json/item/549/entries/0": "自第一副萬象無常牌創造以來的數個世紀裡，許多人都曾試圖仿製它，卻以失敗告終。但也有人創造出新的卡牌。這四十四張額外卡牌合稱為萬事萬象無常牌。（關於為這副牌創造新卡牌的更多資訊，見第二章。）",
+	"items.json/item/549/entries/1": "如同萬象無常牌，萬事萬象無常牌在不同世界會以不同形式顯現。它可能包含較少或不同的卡牌，但通常會與萬象無常牌一同出現，組成一副六十六張的彩飾牌組。組合牌組通常收在盒子或小袋中。萬事萬象無常牌的四十四張牌帶有與萬象無常牌相似的圖像，並具有強大的魔法效果，詳見本條目後文。值得注意的是，萬事萬象無常牌中的卡牌較可能帶來益處，然而其中約三分之一依然危險。",
+	"items.json/item/551/entries/4/footnotes/0": "* 僅出現在二十二張牌的牌組中",
+	"items.json/item/552/entries/0": "這副牌通常放在盒子或小袋裡，內含若干象牙或犢皮紙製成的卡牌。大多數（75%）牌組有十三張牌，但有些有二十二張。隨機決定從牌組抽到的牌時，使用萬象無常牌表的適當欄位。",
+	"items.json/item/553/entries/0": "這個木盒內裝有一副三十二張的羊皮紙牌。",
+	"items.json/item/731/entries/1": "當你在持握或佩戴碎片時對一道法術使用超魔法選項，你可以令一條黏滑觸手撕裂現實織體，攻擊你30尺內一個你看得見的生物。該生物必須進行一次魅力豁免，對抗你的法術豁免DC；失敗則受到{@damage 3d6}點心靈傷害，並對你陷入{@condition frightened||恐懼}，直到你下一回合開始。",
+	"items.json/item/910/entries/0": "點燃裝滿火藥的火藥角會使其爆炸。火藥角爆炸時，以其為中心10尺半徑的{@variantrule Sphere [Area of Effect]|XPHB|球形}內，每個生物進行一次{@dc 12}敏捷豁免；失敗受到10（{@damage 3d6}）點火焰傷害，成功則傷害減半。",
+	"items.json/item/988/entries/0": "你可以採取一次{@action Magic|XPHB|魔法}動作吹響號角；號角會在30尺的{@variantrule Cone [Area of Effect]|XPHB|錐形}範圍內發出雷鳴爆響，聲音在600尺外仍可聽見。{@variantrule Cone [Area of Effect]|XPHB|錐形}範圍內每個生物進行一次{@dc 15}體質豁免。豁免失敗時，生物受到{@damage 5d8}點雷鳴傷害，並陷入{@condition Deafened|XPHB|耳聾}狀態1分鐘；成功時，只受到一半傷害。{@variantrule Cone [Area of Effect]|XPHB|錐形}範圍內未被穿戴或攜帶的玻璃或水晶物件受到{@damage 10d8}點雷鳴傷害。",
+	"items.json/item/995/entries/1": "青銅號角會召喚4名{@creature Berserker|XMM|狂戰士}。若要使用青銅號角，你必須受過所有中型護甲的訓練。",
+	"items.json/item/1040/entries/1": "你可以演奏安斯翠瑟豎琴來施展以下法術之一：{@spell Fly|XPHB|飛行術}、{@spell Invisibility|XPHB|隱形術}、{@spell Levitate|XPHB|浮空術}、{@spell Protection from Evil and Good|XPHB|防護善惡}、{@spell Cure Wounds|XPHB|療傷術}（5環）、{@spell Ice Storm|XPHB|冰風暴}及{@spell Wall of Thorns|XPHB|荊棘牆}。安斯翠瑟豎琴施展某道法術後，直到下次黎明前都不能再次用它施展該法術。這些法術使用你的施法屬性與法術豁免DC。",
+	"items.json/item/1042/entries/1": "你可以演奏卡奈斯曼陀林來施展以下法術之一：{@spell Fly|XPHB|飛行術}、{@spell Invisibility|XPHB|隱形術}、{@spell Levitate|XPHB|浮空術}、{@spell Protection from Evil and Good|XPHB|防護善惡}、{@spell Cure Wounds|XPHB|療傷術}（3環）、{@spell Dispel Magic|XPHB|解除魔法}及{@spell Protection from Energy|XPHB|防護能量}（僅限閃電傷害）。卡奈斯曼陀林施展某道法術後，直到下次黎明前都不能再次用它施展該法術。這些法術使用你的施法屬性與法術豁免DC。",
+	"items.json/item/1196/entries/1/entries/0": "這塊石頭受到詛咒，但其魔法本質遭到隱藏；{@spell detect magic||偵測魔法}無法偵測到它。{@spell identify||鑑定術}會揭露石頭的真正本質。當石頭在你身上時，若你採取{@action Dash||疾走}或{@action Disengage||撤離}動作，其詛咒便會啟動。直到以{@spell remove curse||移除詛咒}或類似魔法破除詛咒前，你的速度降低5尺，且最大負重與最大舉重能力減半。你也會變得不願與石頭分離。",
+	"items.json/item/1217/entries/0": "這個散發微光的水晶十二面體比外觀看來更沉重。其各側裝有一組把手，被觸碰時會脈動並發出低鳴。",
+	"items.json/item/1217/entries/1/entries/2": "若原本的{@dice d20}擲骰具有優勢或劣勢，該生物會在優勢或劣勢套用於原擲骰後，再擲出自己的{@dice d20}。",
+	"items.json/item/1402/entries/7/entries/0": "龍珠具有7發充能，並在每日黎明時重獲{@dice 1d4 + 3}發已消耗的充能。若你控制龍珠，你可以用它施展下表中的一道法術。表格列出施展各法術時必須消耗的充能數。",
+	"items.json/item/1562/entries/0": "這瓶藥水是一件魔法物品。你可以用一個{@variantrule Bonus Action|XPHB|附贈動作}喝下它，或將它餵給你5尺內的另一個生物。喝下瓶中魔法紅色液體的生物恢復{@dice 2d4 + 2}點{@variantrule Hit Points|XPHB|生命值}。藥水的紅色液體受搖晃時會閃光。",
+	"items.json/item/1588/entries/2": "若原本的{@dice d20}擲骰具有優勢或劣勢，你會在優勢或劣勢套用於原擲骰後，再擲出自己的{@dice d20}。",
+	"items.json/item/1661/entries/6/entries/0": "這把武器具有{@itemProperty T|XPHB|投擲}詞條，普通射程為30尺，長射程為120尺。使用這把武器進行遠程攻擊後，它會立即飛回你手中。",
+	"items.json/item/1800/entries/1": "權杖每天黎明時重獲1發已消耗的充能。若權杖降至0發充能，擲一個{@dice d20}。若擲出1，權杖會在一陣光輝中消失。",
+	"items.json/item/1825/entries/4/entries/1/items/1": "你向60尺錐形範圍放出寒冰爆風。該區域內每個生物都必須進行一次{@dc 19}體質豁免；失敗受到{@damage 12d8}點寒冷傷害，成功則傷害減半。",
+	"items.json/item/2023/entries/0": "靈魂幣由煉獄鐵鑄造，直徑約5吋、厚約一吋。每枚硬幣重三分之一磅，上面刻有煉獄語文字與一道將單一靈魂魔法束縛於幣中的法術。每枚靈魂幣都囚禁著獨一無二的靈魂，因此各有自己的故事。一個生物可能因未履行交易而遭囚禁，另一個則可能是夜鬼婆詛咒的受害者。",
+	"items.json/item/2206/entries/1/entries/3/rows/1/3": "當你完成長休時，牙齒會對你施展{@spell sanctuary||庇護術}（{@dc 18}），該法術持續24小時，或直到你使其終止。",
+	"items.json/item/2373/entries/2/entries/0": "征服者具有{@itemProperty T|XPHB|投擲}詞條，普通射程為60尺，長射程為180尺。當你使用征服者進行遠程攻擊並命中時，目標額外受到{@damage 1d8}點力場傷害；若目標是構裝體、元素或巨人，則額外受到{@damage 4d8}點力場傷害。命中或失手後，武器會立即飛回你手中。",
+	"items.json/item/2393/entries/0": "穿著這雙靴子時，你具有等同於步行速度的飛行速度。你可以用靴子飛行至多4小時，能一次用完或分成數次較短的飛行；每次飛行至少消耗持續時間中的1分鐘。若持續時間耗盡時你仍在飛行，便會以每輪30尺的速度下降，直到著地。",
+	"items.json/item/2423/entries/4/entries/0": "任何觸碰密瑟能核球體的生物都必須進行一次{@dc 22}體質豁免；失敗受到180（{@damage 20d10 + 70}）點光耀傷害，成功則傷害減半。亡靈進行此豁免時具有劣勢。除神器或密瑟能核的托架外，任何觸碰球體的物件都會立即解離（無豁免）。",
+	"magicvariants.json/magicvariant/114/inherits/entries/0": "這件武器中封印著一道2環法術。該法術在武器製成時決定，且必須屬於{@filter 咒法、預言、塑能、死靈或變化|spells|school=C;D;V;N;T|level=2}學派。武器具有6發充能，並在每日黎明時重獲{@dice 1d6}發已消耗的充能。持握武器時，你可以消耗1發充能來施展其中的法術。",
+	"magicvariants.json/magicvariant/128/inherits/entries/2": "當你拔出這把武器時，可以熄滅自身30尺內所有非魔法火焰。此屬性一旦使用，直到1小時後才能再次使用。",
+	"magicvariants.json/magicvariant/163/inherits/entries/0": "你使用這把魔法武器進行攻擊檢定與傷害擲骰時獲得+2加值。",
+	"magicvariants.json/magicvariant/164/inherits/entries/2": "在你的誓敵仍活著期間，你使用其他所有武器進行的攻擊檢定具有{@variantrule Disadvantage|XPHB|劣勢}。",
+}
+
+ITEM_NUMERIC_EQUIVALENT_CONTEXTS: dict[str, str] = {
+	"items.json/item/2066/entries/3/items/0": "100 million miles is faithfully rendered as 1億英里",
+	"items.json/item/2220/entries/4/entries/1/items/1": "1/7 days is faithfully rendered as 每7天1次",
+}
+
+
 class ContentLocalizer(CORE.Localizer):
 	_SLOT_ABOVE_RE = re.compile(r"for each slot level above (\d+)(?:st|nd|rd|th)", re.IGNORECASE)
 	_FULLWIDTH_NUMBER_TRANSLATION = str.maketrans("０１２３４５６７８９", "0123456789")
 
 	def localize_string(self, english: str, translated: str, context: str) -> str:
+		if context in ITEM_TRANSLATION_OVERRIDES:
+			self.report["sourceRepairsApplied"].append({
+				"context": context,
+				"from": self.normalize_text(translated),
+				"to": ITEM_TRANSLATION_OVERRIDES[context],
+			})
+			translated = ITEM_TRANSLATION_OVERRIDES[context]
 		translated = self.normalize_text(translated)
+		if context.endswith("/template"):
+			translated = translated.replace("\\xa0", "\u00a0")
 		if not context.startswith("spells/"):
 			translated = translated.translate(self._FULLWIDTH_NUMBER_TRANSLATION)
 		if match := self._SLOT_ABOVE_RE.search(english):
@@ -289,6 +350,7 @@ class ContentLocalizer(CORE.Localizer):
 		for source, replacement in (
 			*SPELL_EXACT_REPAIRS.get(context, ()),
 			*CHARACTER_OPTION_EXACT_REPAIRS.get(context, ()),
+			*ITEM_EXACT_REPAIRS.get(context, ()),
 		):
 			if source not in translated:
 				raise ValueError(f"Stale spell source repair at {context}: {source!r} not found")
@@ -302,9 +364,76 @@ class ContentLocalizer(CORE.Localizer):
 		return super().localize_string(english, translated, context)
 
 
+class ItemLocalizer(ContentLocalizer):
+	"""Translate renderer-facing item fields without mutating item identities."""
+
+	_EXTRA_VISIBLE_KEYS = {
+		"additionalEntries",
+		"entriesTemplate",
+		"reqAttune",
+		"detail1",
+		"template",
+	}
+	_INHERITS_VISIBLE_KEYS = {
+		"entries",
+		"reqAttune",
+		"detail1",
+		"namePrefix",
+		"nameSuffix",
+		"nameRemove",
+	}
+
+	@staticmethod
+	def _is_top_item_group(context: str) -> bool:
+		return re.fullmatch(r"items\.json/itemGroup/\d+", context) is not None
+
+	def localize_node(
+		self,
+		english,
+		translated,
+		context: str,
+		category: str,
+		matcher=None,
+	):
+		translated_for_base = translated
+		if isinstance(english, dict) and isinstance(translated, dict) and self._is_top_item_group(context):
+			# ``itemGroup.items`` contains canonical item UIDs, not prose.
+			translated_for_base = {key: value for key, value in translated.items() if key != "items"}
+
+		out = super().localize_node(english, translated_for_base, context, category, matcher)
+		if not isinstance(english, dict) or not isinstance(translated, dict) or not isinstance(out, dict):
+			return out
+
+		for key in self._EXTRA_VISIBLE_KEYS:
+			if key not in english or key not in translated:
+				continue
+			out[key] = super().localize_node(
+				english[key],
+				translated[key],
+				f"{context}/{key}",
+				category,
+				matcher,
+			)
+
+		if isinstance(english.get("inherits"), dict) and isinstance(translated.get("inherits"), dict):
+			out["inherits"] = deepcopy(english["inherits"])
+			for key in self._INHERITS_VISIBLE_KEYS:
+				if key not in english["inherits"] or key not in translated["inherits"]:
+					continue
+				out["inherits"][key] = super().localize_node(
+					english["inherits"][key],
+					translated["inherits"][key],
+					f"{context}/inherits/{key}",
+					category,
+					matcher,
+				)
+
+		return out
+
+
 def parse_args() -> argparse.Namespace:
 	parser = argparse.ArgumentParser()
-	parser.add_argument("group", choices=("spells", "character-options"))
+	parser.add_argument("group", choices=("spells", "character-options", "items"))
 	parser.add_argument(
 		"--source-dir",
 		type=Path,
@@ -321,6 +450,29 @@ def read_json(path: Path):
 def write_json(path: Path, value) -> None:
 	path.parent.mkdir(parents=True, exist_ok=True)
 	path.write_text(json.dumps(value, ensure_ascii=False, indent="\t") + "\n", encoding="utf-8")
+
+
+def write_item_sidecar_chunks(output: dict) -> list[str]:
+	"""Write the large item sidecar as deterministic browser-loadable chunks."""
+	output_dir = OUTPUT_ROOT / "items"
+	output_dir.mkdir(parents=True, exist_ok=True)
+	for stale_path in output_dir.glob("items-[0-9][0-9][0-9].json"):
+		stale_path.unlink()
+	for stale_path in (output_dir / "item-groups.json", output_dir / "items.json"):
+		stale_path.unlink(missing_ok=True)
+
+	meta = deepcopy(output.get("_meta", {}))
+	chunk_files = []
+	items = output.get("item", [])
+	for start in range(0, len(items), ITEM_SIDECAR_CHUNK_SIZE):
+		file_name = f"items-{start // ITEM_SIDECAR_CHUNK_SIZE:03d}.json"
+		write_json(output_dir / file_name, {"_meta": meta, "item": items[start:start + ITEM_SIDECAR_CHUNK_SIZE]})
+		chunk_files.append(file_name)
+
+	group_file = "item-groups.json"
+	write_json(output_dir / group_file, {"_meta": meta, "itemGroup": output.get("itemGroup", [])})
+	chunk_files.append(group_file)
+	return chunk_files
 
 
 def sha256(path: Path) -> str:
@@ -364,6 +516,18 @@ def get_group_config(group: str) -> dict:
 			],
 			"sharedProps": {"fluff-races.json": ("raceFluffMeta",)},
 			"reportName": "character-options-import-report.json",
+		}
+	if group == "items":
+		return {
+			"folder": "items",
+			"specs": [
+				("items.json", ("item", "itemGroup")),
+				("items-base.json", ("baseitem", "itemProperty", "itemType", "itemTypeAdditionalEntries", "itemEntry", "itemMastery")),
+				("magicvariants.json", ("magicvariant",)),
+				("fluff-items.json", ("itemFluff",)),
+			],
+			"sharedProps": {},
+			"reportName": "item-import-report.json",
 		}
 	raise ValueError(f"Unsupported content group: {group}")
 
@@ -456,7 +620,20 @@ def build_file(
 	return output, counts
 
 
-_VISIBLE_DIRECT_KEYS = CORE.DIRECT_VISIBLE_KEYS | {"m", "condition", "note", "label"}
+_VISIBLE_DIRECT_KEYS = CORE.DIRECT_VISIBLE_KEYS | {
+	"m",
+	"condition",
+	"note",
+	"label",
+	"additionalEntries",
+	"entriesTemplate",
+	"reqAttune",
+	"detail1",
+	"template",
+	"namePrefix",
+	"nameSuffix",
+	"nameRemove",
+}
 
 
 def validate_content_shape(
@@ -510,7 +687,11 @@ def finalize_qa(localizer) -> dict:
 	numeric_equivalent = []
 	numeric_unresolved = []
 	for item in numeric_raw:
-		is_equivalent, reason = CORE.classify_numeric_difference(item)
+		if item.get("context") in ITEM_NUMERIC_EQUIVALENT_CONTEXTS:
+			is_equivalent = True
+			reason = ITEM_NUMERIC_EQUIVALENT_CONTEXTS[item["context"]]
+		else:
+			is_equivalent, reason = CORE.classify_numeric_difference(item)
 		annotated = {**item, "reason": reason}
 		(numeric_equivalent if is_equivalent else numeric_unresolved).append(annotated)
 	report["numericDifferencesRawCount"] = len(numeric_raw)
@@ -523,7 +704,14 @@ def finalize_qa(localizer) -> dict:
 		return len(parts) >= 5 and all(re.fullmatch(r"[A-Z][A-Za-z'’ -]*", part) for part in parts)
 
 	def is_intentional_untranslated(item: dict) -> bool:
-		return CORE.is_intentional_untranslated(item) or is_proper_name_list(item)
+		english = item.get("english", "")
+		return (
+			CORE.is_intentional_untranslated(item)
+			or is_proper_name_list(item)
+			or english == "optional"
+			or re.fullmatch(r"\{\{[^{}]+\}\}(?:\s*\([^)]*\))?", english) is not None
+			or re.fullmatch(r"(?:[AKQJ]\s*)?\{@color\s+[♦♥]\|#ff0000\}(?:\s*\(Cups\))?", english) is not None
+		)
 
 	intentional = [
 		{
@@ -559,7 +747,7 @@ def main() -> None:
 	source_root = args.source_dir.resolve()
 	config = get_group_config(args.group)
 	specs = config["specs"]
-	localizer = ContentLocalizer()
+	localizer = ItemLocalizer() if args.group == "items" else ContentLocalizer()
 
 	guards = {}
 	for relative, _ in specs:
@@ -599,7 +787,10 @@ def main() -> None:
 		)
 		outputs[relative] = output
 		counts.update(file_counts)
-		write_json(OUTPUT_ROOT / config["folder"] / Path(relative).name, output)
+		if not (args.group == "items" and relative == "items.json"):
+			write_json(OUTPUT_ROOT / config["folder"] / Path(relative).name, output)
+
+	item_chunk_files = write_item_sidecar_chunks(outputs["items.json"]) if args.group == "items" else []
 
 	canonical_failures = []
 	for relative, props in specs:
@@ -656,6 +847,8 @@ def main() -> None:
 		"files": [Path(relative).name for relative, _ in specs],
 		"entityCounts": dict(counts),
 	}
+	if item_chunk_files:
+		index["fileChunks"] = {"items.json": item_chunk_files}
 	write_json(OUTPUT_ROOT / config["folder"] / "index.json", index)
 
 	report = {

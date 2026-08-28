@@ -1,0 +1,684 @@
+diff --git a/js/items.js b/js/items.js
+index 1ffeda8..d029090 100644
+--- a/js/items.js
++++ b/js/items.js
+@@ -1,5 +1,7 @@
+ import {RenderItems} from "./render-items.js";
+ 
++const {I18nZhTwContent} = globalThis;
++
+ class ItemsSublistManager extends SublistManager {
+ 	constructor () {
+ 		super({
+@@ -52,8 +54,9 @@ class ItemsSublistManager extends SublistManager {
+ 	}
+ 
+ 	pGetSublistItem (item, hash, {count = 1} = {}) {
++		const displayName = I18nZhTwContent?.getDisplayName(item) || item.name;
+ 		const cellsText = [
+-			item.name,
++			displayName,
+ 			item._l_weight || "\u2014",
+ 			item._l_value,
+ 		];
+@@ -110,7 +113,7 @@ class ItemsSublistManager extends SublistManager {
+ 		const listItem = new ListItem(
+ 			hash,
+ 			ele,
+-			item.name,
++			displayName,
+ 			{
+ 				source: Parser.sourceJsonToAbv(item.source),
+ 				...ListItem.getCommonValues(item),
+@@ -236,17 +239,17 @@ class ItemsPage extends ListPage {
+ 			dataProps: ["item"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "item",
+-				namePlural: "items",
+-				pageTitle: "Items Book View",
++				nameSingular: "物品",
++				namePlural: "物品",
++				pageTitle: "物品書籍檢視",
+ 				propMarkdown: "item",
+ 				isSublistItemsCountable: true,
+ 			},
+ 
+ 			tableViewOptions: {
+-				title: "Items",
++				title: "物品",
+ 				colTransforms: {
+-					name: UtilsTableview.COL_TRANSFORM_NAME,
++					name: {name: "名稱", transform: item => I18nZhTwContent?.getDisplayName(item) || item.name},
+ 					source: UtilsTableview.COL_TRANSFORM_SOURCE,
+ 					page: UtilsTableview.COL_TRANSFORM_PAGE,
+ 					rarity: {name: "Rarity"},
+@@ -291,6 +294,7 @@ class ItemsPage extends ListPage {
+ 
+ 	getListItem (item, itI, isExcluded) {
+ 		const hash = UrlUtil.autoEncodeHash(item);
++		const displayName = I18nZhTwContent?.getDisplayName(item) || item.name;
+ 
+ 		if (Renderer.item.isExcluded(item, {hash})) return null;
+ 		if (item.noDisplay) return null;
+@@ -313,7 +317,7 @@ class ItemsPage extends ListPage {
+ 						href: `#${hash}`,
+ 						clazz: "ve-lst__row-border ve-lst__row-inner",
+ 						children: [
+-							veE({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-pr-1 ve-bold`, txt: item.name}),
++							veE({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-pr-1 ve-bold`, txt: displayName}),
+ 							veE({tag: "span", clazz: `ve-col-4-5 ve-px-1`, txt: type}),
+ 							veE({tag: "span", clazz: `ve-col-1-5 ve-px-1 ve-text-center`, txt: item._l_value}),
+ 							veE({tag: "span", clazz: `ve-col-1-5 ve-px-1 ve-text-center`, txt: item._l_weight}),
+@@ -331,7 +335,7 @@ class ItemsPage extends ListPage {
+ 			const listItem = new ListItem(
+ 				itI,
+ 				eleLi,
+-				item.name,
++				displayName,
+ 				{
+ 					source,
+ 					...ListItem.getCommonValues(item),
+@@ -358,15 +362,15 @@ class ItemsPage extends ListPage {
+ 						href: `#${hash}`,
+ 						clazz: "ve-lst__row-border ve-lst__row-inner",
+ 						children: [
+-							veE({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-bold`, txt: item.name}),
++							veE({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-bold`, txt: displayName}),
+ 							veE({tag: "span", clazz: `ve-col-4`, txt: type}),
+ 							veE({tag: "span", clazz: `ve-col-1-5 ve-text-center`, txt: item._l_weight}),
+ 							veE({tag: "span", clazz: `ve-col-0-6 ve-text-center`, txt: item._attunementCategory !== VeCt.STR_NO_ATTUNEMENT ? "×" : ""}),
+ 							veE({
+ 								tag: "span",
+ 								clazz: `ve-col-1-4 ve-text-center ${item.rarity ? `ve-itm__rarity-${item.rarity}` : ""}`,
+-								title: (item.rarity || "").toTitleCase(),
+-								txt: Parser.itemRarityToShort(item.rarity) || "",
++								title: I18nZhTwContent?.getItemRarity(item.rarity) || (item.rarity || "").toTitleCase(),
++								txt: I18nZhTwContent?.getItemRarityShort(item.rarity) || Parser.itemRarityToShort(item.rarity) || "",
+ 							}),
+ 							veE({
+ 								tag: "span",
+@@ -382,7 +386,7 @@ class ItemsPage extends ListPage {
+ 			const listItem = new ListItem(
+ 				itI,
+ 				eleLi,
+-				item.name,
++				displayName,
+ 				{
+ 					source,
+ 					...ListItem.getCommonValues(item),
+@@ -408,7 +412,7 @@ class ItemsPage extends ListPage {
+ 		FilterBox.selectFirstVisible(this._dataList);
+ 	}
+ 
+-	_tabTitleStats = "Item";
++	_tabTitleStats = "物品";
+ 
+ 	_renderStats_doBuildStatsTab ({ent}) {
+ 		this._pgContent.vee.empty().vee.appends(RenderItems.getRenderedItem(ent));
+@@ -514,8 +518,8 @@ class ItemsPage extends ListPage {
+ 		super._addData(data);
+ 
+ 		// Populate table labels
+-		veEs(`h3.ele-mundane span.side-label`).vee.txt("Mundane");
+-		veEs(`h3.ele-magic span.side-label`).vee.txt("Magic");
++		veEs(`h3.ele-mundane span.side-label`).vee.txt("非魔法");
++		veEs(`h3.ele-magic span.side-label`).vee.txt("魔法");
+ 	}
+ 
+ 	_addListItem (listItem) {
+diff --git a/js/render.js b/js/render.js
+index 97a45d7..8c255df 100644
+--- a/js/render.js
++++ b/js/render.js
+@@ -12305,7 +12305,9 @@ Renderer.item = class {
+ 	static _sortProperties (a, b) {
+ 		const uidA = a.uid || a;
+ 		const uidB = b.uid || b;
+-		return SortUtil.ascSort(Renderer.item.getProperty(uidA, {isIgnoreMissing: true})?.name || "", Renderer.item.getProperty(uidB, {isIgnoreMissing: true})?.name || "");
++		const propA = Renderer.item.getProperty(uidA, {isIgnoreMissing: true});
++		const propB = Renderer.item.getProperty(uidB, {isIgnoreMissing: true});
++		return SortUtil.ascSort(propA?._displayName || propA?.name || "", propB?._displayName || propB?.name || "");
+ 	}
+ 
+ 	static _getPropertyText ({item, property, valsUsed, renderer}) {
+@@ -12314,7 +12316,8 @@ Renderer.item = class {
+ 
+ 		const ptNote = property.note ? ` (${property.note})` : "";
+ 
+-		if (!pFull.template) return `${pFull.name}${ptNote}`;
++		const displayName = pFull._displayName || pFull.name;
++		if (!pFull.template) return `${displayName}${ptNote}`;
+ 
+ 		const toRender = Renderer.utils.applyTemplate(
+ 			item,
+@@ -12325,8 +12328,8 @@ Renderer.item = class {
+ 					if (variablePath === "item.range") valsUsed.range = true;
+ 				},
+ 				mapCustom: {
+-					"prop_name": pFull.name.replace(/-/g, "\u2011"),
+-					"prop_name_lower": pFull.name.replace(/-/g, "\u2011").toLowerCase(),
++					"prop_name": displayName.replace(/-/g, "\u2011"),
++					"prop_name_lower": displayName.replace(/-/g, "\u2011").toLowerCase(),
+ 				},
+ 				mapCustomFns: {
+ 					"item.dmg1": () => Renderer.item._getTaggedDamage(item.dmg1, {renderer}),
+@@ -12364,8 +12367,8 @@ Renderer.item = class {
+ 		return renderedProperties.join(", ");
+ 	}
+ 
+-	static _getPropertiesText_unusedDmg2 ({item, renderer}) { return `alt. ${Renderer.item._renderDamage(item.dmg2, {renderer})}`; }
+-	static _getPropertiesText_unusedRange ({item, renderer}) { return `range ${item.range} ft.`; }
++	static _getPropertiesText_unusedDmg2 ({item, renderer}) { return `替代傷害 ${Renderer.item._renderDamage(item.dmg2, {renderer})}`; }
++	static _getPropertiesText_unusedRange ({item, renderer}) { return `射程 ${item.range} 尺`; }
+ 
+ 	static _getPropertiesText_noProperties ({item, renderer}) {
+ 		const parts = [];
+@@ -12405,7 +12408,7 @@ Renderer.item = class {
+ 			const isAddDex = item.dexterityMax !== undefined || ![Parser.ITM_TYP_ABV__HEAVY_ARMOR, Parser.ITM_TYP_ABV__SHIELD].includes(itemTypeAbv);
+ 
+ 			const prefix = itemTypeAbv === Parser.ITM_TYP_ABV__SHIELD ? "+" : "";
+-			const suffix = isAddDex ? ` + Dex${dexterityMax ? ` (max ${dexterityMax})` : ""}` : "";
++			const suffix = isAddDex ? ` + 敏捷${dexterityMax ? `（上限 ${dexterityMax}）` : ""}` : "";
+ 
+ 			damageParts.push(`AC ${prefix}${item.ac}${suffix}`);
+ 		}
+@@ -12416,7 +12419,7 @@ Renderer.item = class {
+ 			damageParts.push(
+ 				[
+ 					Renderer.item._renderDamage(item.dmg1, {renderer}),
+-					item.dmgType ? Parser.dmgTypeToFull(item.dmgType) : "",
++					item.dmgType ? (globalThis.I18nZhTwContent?.getDamageType(item.dmgType) || Parser.dmgTypeToFull(item.dmgType)) : "",
+ 				]
+ 					.filter(Boolean)
+ 					.join(" "),
+@@ -12424,23 +12427,23 @@ Renderer.item = class {
+ 		}
+ 
+ 		// mounts
+-		if (item.speed != null) damageParts.push(`Speed: ${item.speed}`);
+-		if (item.carryingCapacity) damageParts.push(`Carrying Capacity: ${item.carryingCapacity} lb.`);
++		if (item.speed != null) damageParts.push(`速度：${item.speed}`);
++		if (item.carryingCapacity) damageParts.push(`載重：${item.carryingCapacity} 磅`);
+ 
+ 		// vehicles
+ 		if (item.vehSpeed || item.capCargo || item.capPassenger || item.crew || item.crewMin || item.crewMax || item.vehAc || item.vehHp || item.vehDmgThresh || item.travelCost || item.shippingCost) {
+-			const vehPartUpper = item.vehSpeed ? `Speed: ${Parser.numberToVulgar(item.vehSpeed)} mph` : null;
++			const vehPartUpper = item.vehSpeed ? `速度：${Parser.numberToVulgar(item.vehSpeed)} 英里／時` : null;
+ 
+-			const vehPartMiddle = item.capCargo || item.capPassenger ? `Carrying Capacity: ${[item.capCargo ? `${Parser.numberToFractional(item.capCargo)} ton${item.capCargo === 0 || item.capCargo > 1 ? "s" : ""} cargo` : null, item.capPassenger ? `${item.capPassenger} passenger${item.capPassenger === 1 ? "" : "s"}` : null].filter(Boolean).join(", ")}` : null;
++			const vehPartMiddle = item.capCargo || item.capPassenger ? `載重：${[item.capCargo ? `${Parser.numberToFractional(item.capCargo)} 噸貨物` : null, item.capPassenger ? `${item.capPassenger} 名乘客` : null].filter(Boolean).join("、")}` : null;
+ 
+ 			const {travelCostFull, shippingCostFull} = Parser.itemVehicleCostsToFull(item);
+ 
+ 			// These may not be present in homebrew
+ 			const vehPartLower = [
+-				item.crew ? `Crew ${item.crew}` : null,
+-				item.crewMin && item.crewMax ? `Crew ${item.crewMin}-${item.crewMax}` : null,
++				item.crew ? `乘員 ${item.crew}` : null,
++				item.crewMin && item.crewMax ? `乘員 ${item.crewMin}–${item.crewMax}` : null,
+ 				item.vehAc ? `AC ${item.vehAc}` : null,
+-				item.vehHp ? `HP ${item.vehHp}${item.vehDmgThresh ? `, Damage Threshold ${item.vehDmgThresh}` : ""}` : null,
++				item.vehHp ? `HP ${item.vehHp}${item.vehDmgThresh ? `，傷害閾值 ${item.vehDmgThresh}` : ""}` : null,
+ 			].filter(Boolean).join(", ");
+ 
+ 			damageParts.push([
+@@ -12448,8 +12451,8 @@ Renderer.item = class {
+ 				vehPartMiddle,
+ 
+ 				// region ~~Dammit Mercer~~ Additional fields present in EGW
+-				travelCostFull ? `Personal Travel Cost: ${travelCostFull} per mile per passenger` : null,
+-				shippingCostFull ? `Shipping Cost: ${shippingCostFull} per 100 pounds per mile` : null,
++				travelCostFull ? `個人旅費：每名乘客每英里 ${travelCostFull}` : null,
++				shippingCostFull ? `運費：每 100 磅每英里 ${shippingCostFull}` : null,
+ 				// endregion
+ 
+ 				vehPartLower,
+@@ -12460,9 +12463,9 @@ Renderer.item = class {
+ 		if (item.barDimensions) {
+ 			damageParts.push(
+ 				[
+-					item.barDimensions.l ? `${Parser.getInchesToFull(item.barDimensions.l, {isShort: true})} long` : "",
+-					item.barDimensions.w ? `${Parser.getInchesToFull(item.barDimensions.w, {isShort: true})} wide` : "",
+-					item.barDimensions.h ? `${Parser.getInchesToFull(item.barDimensions.h, {isShort: true})} thick` : "",
++					item.barDimensions.l ? `長 ${Parser.getInchesToFull(item.barDimensions.l, {isShort: true})}` : "",
++					item.barDimensions.w ? `寬 ${Parser.getInchesToFull(item.barDimensions.w, {isShort: true})}` : "",
++					item.barDimensions.h ? `厚 ${Parser.getInchesToFull(item.barDimensions.h, {isShort: true})}` : "",
+ 				]
+ 					.filter(Boolean)
+ 					.join(" × "),
+@@ -12481,7 +12484,7 @@ Renderer.item = class {
+ 		if (!item.mastery) return "";
+ 
+ 		return [
+-			isSkipPrefix ? "" : "Mastery: ",
++			isSkipPrefix ? "" : "精通：",
+ 			item.mastery
+ 				.map(info => {
+ 					if (!info.uid) return renderer.render(`{@itemMastery ${info}}`);
+@@ -12503,7 +12506,7 @@ Renderer.item = class {
+ 
+ 		const typeRarity = [
+ 			item._entryType === "other" ? "" : entryType,
+-			(item.rarity && Renderer.item.doRenderRarity(item.rarity) ? (item.rarity)[fnTransform]() : ""),
++			(item.rarity && Renderer.item.doRenderRarity(item.rarity) ? (globalThis.I18nZhTwContent?.getItemRarity(item.rarity) || (item.rarity)[fnTransform]()) : ""),
+ 		]
+ 			.filter(Boolean)
+ 			.join(", ");
+@@ -12515,7 +12518,7 @@ Renderer.item = class {
+ 			entryTypeRarity: [typeRarity, ptAttunement].filter(Boolean).join(" "),
+ 			entrySubtype,
+ 			entryTier: item.tier
+-				? `${item.tier} tier`[fnTransform]()
++				? `${globalThis.I18nZhTwContent?.getItemTier(item.tier) || item.tier}級`
+ 				: "",
+ 		};
+ 	}
+@@ -12546,31 +12549,29 @@ Renderer.item = class {
+ 		if (item[prop] === true) {
+ 			return {
+ 				attunementCategory: "Requires Attunement",
+-				attunement: "(requires attunement)"[styleHint === "classic" ? "toString" : "toTitleCase"](),
++				attunement: "（需要同調）",
+ 			};
+ 		}
+ 
+ 		if (item[prop] === "optional") {
+ 			return {
+ 				attunementCategory: "Attunement Optional",
+-				attunement: "(attunement optional)"[styleHint === "classic" ? "toString" : "toTitleCase"](),
++				attunement: "（可選擇同調）",
+ 			};
+ 		}
+ 
+ 		if (item[prop].toLowerCase().startsWith("by")) {
++			const displayValue = item[prop === "reqAttune" ? "_displayReqAttune" : "_displayReqAttuneAlt"] || item[prop];
+ 			return {
+ 				attunementCategory: "Requires Attunement By...",
+-				attunement: styleHint === "classic"
+-					? `(requires attunement ${Renderer.get().render(item[prop])})`
+-					: `(Requires Attunement ${Renderer.get().render(item[prop].toTitleCase())})`,
++				attunement: `（需要同調；${Renderer.get().render(displayValue)}）`,
+ 			};
+ 		}
+ 
++		const displayValue = item[prop === "reqAttune" ? "_displayReqAttune" : "_displayReqAttuneAlt"] || item[prop];
+ 		return {
+ 			attunementCategory: "Requires Attunement", // throw any weird ones in the "Yes" category (e.g. "outdoors at night")
+-			attunement: styleHint === "classic"
+-				? `(requires attunement ${Renderer.get().render(item[prop])})`
+-				: `(Requires Attunement ${Renderer.get().render(item[prop].toTitleCase())})`,
++			attunement: `（需要同調；${Renderer.get().render(displayValue)}）`,
+ 		};
+ 	}
+ 
+@@ -12586,43 +12587,48 @@ Renderer.item = class {
+ 
+ 		let showingBase = false;
+ 		if (item.wondrous) {
+-			ptsEntryType.push(`wondrous item${item.tattoo ? ` (tattoo)` : ""}`);
+-			textTypes.push("wondrous item");
++			ptsEntryType.push(`奇物${item.tattoo ? "（魔法刺青）" : ""}`);
++			textTypes.push("奇物");
+ 		}
+ 		if (item.tattoo) {
+-			textTypes.push("tattoo");
++			textTypes.push("魔法刺青");
+ 		}
+ 		if (item.staff) {
+-			ptsEntryType.push("staff");
+-			textTypes.push("staff");
++			ptsEntryType.push("法杖");
++			textTypes.push("法杖");
+ 		}
+ 		if (item.ammo) {
+-			ptsEntryType.push(`ammunition`);
+-			textTypes.push("ammunition");
++			ptsEntryType.push("彈藥");
++			textTypes.push("彈藥");
+ 		}
+ 		if (item.age) {
+ 			ptsEntrySubType.push(item.age);
+ 			textTypes.push(item.age);
+ 		}
+ 		if (item.weaponCategory) {
+-			ptsEntryType.push(`weapon${item.baseItem ? ` ({@item ${styleHint === "classic" ? item.baseItem : item.baseItem.toTitleCase()}})` : ""}`);
+-			ptsEntrySubType.push(`${item.weaponCategory} weapon`);
+-			textTypes.push(`${item.weaponCategory} weapon`);
++			const baseItemTag = item._baseDisplayName
++				? `${styleHint === "classic" ? item.baseItem : item.baseItem.toTitleCase()}|${item._baseDisplayName}`
++				: styleHint === "classic" ? item.baseItem : item.baseItem?.toTitleCase();
++			ptsEntryType.push(`武器${item.baseItem ? `（{@item ${baseItemTag}}）` : ""}`);
++			const weaponCategory = globalThis.I18nZhTwContent?.getItemWeaponCategory(item.weaponCategory) || `${item.weaponCategory} weapon`;
++			ptsEntrySubType.push(weaponCategory);
++			textTypes.push(weaponCategory);
+ 			showingBase = true;
+ 		}
+ 		if (item.staff && (itemTypeAbv !== Parser.ITM_TYP_ABV__MELEE_WEAPON && itemTypeAltAbv !== Parser.ITM_TYP_ABV__MELEE_WEAPON)) { // DMG p140: "Unless a staff's description says otherwise, a staff can be used as a quarterstaff."
+-			ptsEntrySubType.push("melee weapon");
+-			textTypes.push("melee weapon");
++			ptsEntrySubType.push("近戰武器");
++			textTypes.push("近戰武器");
+ 		}
+ 		if (item.type) Renderer.item._getHtmlAndTextTypes_type({type: item.type, typeAbv: itemTypeAbv, ptsEntryType, textTypes, ptsEntrySubType, showingBase, item});
+ 		if (item.typeAlt) Renderer.item._getHtmlAndTextTypes_type({type: item.typeAlt, typeAbv: itemTypeAltAbv, ptsEntryType, textTypes, ptsEntrySubType, showingBase, item});
+ 		if (item.firearm) {
+-			ptsEntrySubType.push("firearm");
+-			textTypes.push("firearm");
++			ptsEntrySubType.push("火器");
++			textTypes.push("火器");
+ 		}
+ 		if (item.poison) {
+-			ptsEntryType.push(`poison${item.poisonTypes ? ` (${item.poisonTypes.joinConjunct(", ", " or ")})` : ""}`);
+-			textTypes.push("poison");
++			const poisonTypes = item.poisonTypes?.map(it => globalThis.I18nZhTwContent?.getItemPoisonType(it) || it);
++			ptsEntryType.push(`毒藥${poisonTypes?.length ? `（${poisonTypes.join("、")}）` : ""}`);
++			textTypes.push("毒藥");
+ 		}
+ 		return {
+ 			textTypes: textTypes,
+@@ -12633,12 +12639,13 @@ Renderer.item = class {
+ 
+ 	static _getHtmlAndTextTypes_type ({type, typeAbv, ptsEntryType, textTypes, ptsEntrySubType, showingBase, item}) {
+ 		const fullType = Renderer.item.getItemTypeName(type);
++		const baseItemTag = item._baseDisplayName ? `${item.baseItem}|${item._baseDisplayName}` : item.baseItem;
+ 
+-		const isSub = (textTypes.some(it => it.includes("weapon")) && fullType.includes("weapon"))
+-			|| (textTypes.some(it => it.includes("armor")) && fullType.includes("armor"));
++		const isSub = (textTypes.some(it => /weapon|武器/u.test(it)) && /weapon|武器/u.test(fullType))
++			|| (textTypes.some(it => /armor|護甲/u.test(it)) && /armor|護甲/u.test(fullType));
+ 
+-		if (!showingBase && !!item.baseItem) (isSub ? ptsEntrySubType : ptsEntryType).push(`${fullType} ({@item ${item.baseItem}})`);
+-		else if (typeAbv === Parser.ITM_TYP_ABV__SHIELD) (isSub ? ptsEntrySubType : ptsEntryType).push(`armor ({@item shield|phb})`);
++		if (!showingBase && !!item.baseItem) (isSub ? ptsEntrySubType : ptsEntryType).push(`${fullType}（{@item ${baseItemTag}}）`);
++		else if (typeAbv === Parser.ITM_TYP_ABV__SHIELD) (isSub ? ptsEntrySubType : ptsEntryType).push("護甲（{@item shield|phb|盾牌}）");
+ 		else (isSub ? ptsEntrySubType : ptsEntryType).push(fullType);
+ 
+ 		textTypes.push(fullType);
+@@ -12662,11 +12669,11 @@ Renderer.item = class {
+ 		});
+ 
+ 		const handlersName = {
+-			string: (str) => Renderer.item._getRenderedEntries_handlerConvertNamesToItalics.bind(Renderer.item, item, item.name)(str),
++			string: (str) => Renderer.item._getRenderedEntries_handlerConvertNamesToItalics.bind(Renderer.item, item, item._displayName || item.name)(str),
+ 		};
+ 
+ 		const handlersVariantName = item._variantName == null ? null : {
+-			string: (str) => Renderer.item._getRenderedEntries_handlerConvertNamesToItalics.bind(Renderer.item, item, item._variantName)(str),
++			string: (str) => Renderer.item._getRenderedEntries_handlerConvertNamesToItalics.bind(Renderer.item, item, item._variantDisplayName || item._variantName)(str),
+ 		};
+ 
+ 		const renderStack = [];
+@@ -12687,7 +12694,7 @@ Renderer.item = class {
+ 		}
+ 
+ 		if (!isCompact && item.lootTables) {
+-			renderStack.push(`<div><span class="ve-bold">Found On: </span>${item.lootTables.sort(SortUtil.ascSortLower).map(tbl => renderer.render(`{@table ${tbl}}`)).join(", ")}</div>`);
++			renderStack.push(`<div><span class="ve-bold">出現於：</span>${item.lootTables.sort(SortUtil.ascSortLower).map(tbl => renderer.render(`{@table ${tbl}}`)).join("、")}</div>`);
+ 		}
+ 
+ 		return renderStack.join("").trim();
+@@ -12969,7 +12976,8 @@ Renderer.item = class {
+ 	/* -------------------------------------------- */
+ 
+ 	static async _pGetSiteUnresolvedRefItems_pLoadItems () {
+-		const itemData = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/items.json`);
++		let itemData = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/items.json`);
++		if (globalThis.I18nZhTwContent?.pApplyDataFile) itemData = await globalThis.I18nZhTwContent.pApplyDataFile({file: "items.json", data: itemData});
+ 		const items = itemData.item;
+ 		itemData.itemGroup.forEach(it => it._isItemGroup = true);
+ 		return [...items, ...itemData.itemGroup];
+@@ -12977,7 +12985,8 @@ Renderer.item = class {
+ 
+ 	static async pGetSiteUnresolvedRefItems () {
+ 		const itemList = await Renderer.item._pGetSiteUnresolvedRefItems_pLoadItems();
+-		const baseItemsJson = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/items-base.json`);
++		let baseItemsJson = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/items-base.json`);
++		if (globalThis.I18nZhTwContent?.pApplyDataFile) baseItemsJson = await globalThis.I18nZhTwContent.pApplyDataFile({file: "items-base.json", data: baseItemsJson});
+ 		const baseItems = await Renderer.item._pGetAndProcBaseItems(baseItemsJson);
+ 		const {genericVariants, linkedLootTables} = await Renderer.item._pGetCacheSiteGenericVariants();
+ 		const specificVariants = Renderer.item._createSpecificVariants(baseItems, genericVariants, {linkedLootTables});
+@@ -12993,7 +13002,9 @@ Renderer.item = class {
+ 	static _pGettingSiteGenericVariants = null;
+ 	static async _pGetCacheSiteGenericVariants () {
+ 		Renderer.item._pGettingSiteGenericVariants = Renderer.item._pGettingSiteGenericVariants || (async () => {
+-			const [genericVariants, linkedLootTables] = Renderer.item._getAndProcGenericVariants(await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/magicvariants.json`));
++			let variantData = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/magicvariants.json`);
++			if (globalThis.I18nZhTwContent?.pApplyDataFile) variantData = await globalThis.I18nZhTwContent.pApplyDataFile({file: "magicvariants.json", data: variantData});
++			const [genericVariants, linkedLootTables] = Renderer.item._getAndProcGenericVariants(variantData);
+ 			return {genericVariants, linkedLootTables};
+ 		})();
+ 		return Renderer.item._pGettingSiteGenericVariants;
+@@ -13137,6 +13148,7 @@ Renderer.item = class {
+ 		delete specificVariant._fullEntries;
+ 
+ 		specificVariant._baseName = baseItem.name;
++		if (baseItem._displayName) specificVariant._baseDisplayName = baseItem._displayName;
+ 		specificVariant._baseSrd = baseItem.srd;
+ 		specificVariant._baseSrd52 = baseItem.srd52;
+ 		specificVariant._baseBasicRules = baseItem.basicRules;
+@@ -13144,6 +13156,7 @@ Renderer.item = class {
+ 		if (baseItem.source !== inherits.source) specificVariant._baseSource = baseItem.source;
+ 
+ 		specificVariant._variantName = genericVariant.name;
++		if (genericVariant._displayName) specificVariant._variantDisplayName = genericVariant._displayName;
+ 
+ 		// Magic items do not inherit the value of the non-magical item
+ 		specificVariant._baseValue = baseItem.value;
+@@ -13230,10 +13243,21 @@ Renderer.item = class {
+ 						}
+ 						break;
+ 					}
+-					default: specificVariant[inheritedProperty] = val;
+-				}
++				default: specificVariant[inheritedProperty] = val;
++			}
+ 			});
+ 
++		if (baseItem._displayName || genericVariant._i18nDisplayInherits) {
++			const displayInherits = genericVariant._i18nDisplayInherits || {};
++			let displayName = baseItem._displayName || baseItem.name;
++			if (displayInherits.nameRemove) displayName = displayName.replace(new RegExp(displayInherits.nameRemove.escapeRegexp(), "g"), "");
++			if (displayInherits.namePrefix) displayName = `${displayInherits.namePrefix}${displayName}`;
++			if (displayInherits.nameSuffix) displayName = `${displayName}${displayInherits.nameSuffix}`;
++			specificVariant._displayName = displayName;
++			if (displayInherits.reqAttune) specificVariant._displayReqAttune = displayInherits.reqAttune;
++			if (displayInherits.detail1) specificVariant._displayDetail1 = displayInherits.detail1;
++		}
++
+ 		Renderer.item._createSpecificVariants_mergeVulnerableResistImmune({specificVariant, inherits});
+ 
+ 		// Inherit fluff
+@@ -13366,7 +13390,8 @@ Renderer.item = class {
+ 		if (opts.baseItems) {
+ 			baseItems = opts.baseItems;
+ 		} else {
+-			const baseItemData = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/items-base.json`);
++			let baseItemData = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/items-base.json`);
++			if (globalThis.I18nZhTwContent?.pApplyDataFile) baseItemData = await globalThis.I18nZhTwContent.pApplyDataFile({file: "items-base.json", data: baseItemData});
+ 			Renderer.item._addBasePropertiesAndTypes(baseItemData);
+ 			baseItems = [...baseItemData.baseitem, ...(opts.additionalBaseItems || [])];
+ 		}
+@@ -13384,7 +13409,7 @@ Renderer.item = class {
+ 
+ 	static _getInjectableProps (baseItem, inherits) {
+ 		return {
+-			baseName: baseItem.name,
++			baseName: baseItem._displayName || baseItem.name,
+ 			dmgType: baseItem.dmgType ? Parser.dmgTypeToFull(baseItem.dmgType) : null,
+ 			bonusAc: inherits.bonusAc,
+ 			bonusWeapon: inherits.bonusWeapon,
+@@ -13430,6 +13455,8 @@ Renderer.item = class {
+ 		if (!genericVariant.entries && genericVariant.inherits.entries) {
+ 			genericVariant.entries = MiscUtil.copyFast(Renderer.applyAllProperties(genericVariant.inherits.entries, genericVariant.inherits));
+ 		}
++		if (genericVariant._i18nDisplayInherits?.reqAttune) genericVariant._displayReqAttune = genericVariant._i18nDisplayInherits.reqAttune;
++		if (genericVariant._i18nDisplayInherits?.detail1) genericVariant._displayDetail1 = genericVariant._i18nDisplayInherits.detail1;
+ 
+ 		// Add blanket-added properties, to enable filter
+ 		if (genericVariant.inherits.propertyAdd) genericVariant.property = [...(genericVariant.property || []), ...genericVariant.inherits.propertyAdd];
+@@ -13438,7 +13465,8 @@ Renderer.item = class {
+ 	}
+ 
+ 	static getItemTypeName (t) {
+-		return Renderer.item.getType(t)?.name?.toLowerCase() || t;
++		const itemType = Renderer.item.getType(t);
++		return itemType?._displayName || itemType?.name?.toLowerCase() || t;
+ 	}
+ 
+ 	static enhanceItem (item, {styleHint = null} = {}) {
+@@ -13475,13 +13503,13 @@ Renderer.item = class {
+ 			if (item.stealth) {
+ 				Renderer.item._initFullEntries(item);
+ 				const wrapped = styleHint === "classic"
+-					? "The wearer has disadvantage on Dexterity ({@skill Stealth}) checks."
+-					: "The wearer has {@variantrule Disadvantage|XPHB} on Dexterity ({@skill Stealth|XPHB}) checks.";
++					? "穿戴者進行敏捷（{@skill Stealth||隱匿}）檢定時具有劣勢。"
++					: "穿戴者進行敏捷（{@skill Stealth|XPHB|隱匿}）檢定時具有{@variantrule Disadvantage|XPHB|劣勢}。";
+ 				item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+ 			}
+ 			if (itemTypeAbv === Parser.ITM_TYP_ABV__HEAVY_ARMOR && item.strength) {
+ 				Renderer.item._initFullEntries(item);
+-				item._fullEntries.push({type: "wrapper", wrapped: `If the wearer has a Strength score lower than ${item.strength}, their speed is reduced by 10 feet.`, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
++				item._fullEntries.push({type: "wrapper", wrapped: `若穿戴者的力量值低於 ${item.strength}，其速度降低 10 尺。`, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+ 			}
+ 		}
+ 		if (itemTypeAbv === Parser.ITM_TYP_ABV__SPELLCASTING_FOCUS) {
+@@ -13489,44 +13517,44 @@ Renderer.item = class {
+ 				if (item.scfType === "arcane" && item.source !== Parser.SRC_ERLW) {
+ 					Renderer.item._initFullEntries(item);
+ 					const wrapped = styleHint === "classic"
+-						? "An arcane focus is a special item\u2014an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item\u2014designed to channel the power of arcane spells. A {@class sorcerer}, {@class warlock}, or {@class wizard} can use such an item as a spellcasting focus."
+-						: "An Arcane Focus takes a specific form and is bejeweled or carved to channel arcane magic. A {@class Sorcerer|XPHB}, {@class Warlock|XPHB}, or {@class Wizard|XPHB} can use such an item as a {@variantrule Spellcasting Focus|XPHB}.";
++						? "奧術法器是用來引導奧術魔力的特殊物品，例如寶珠、水晶、權杖、特製法杖、形似魔杖的木條或類似物品。{@class sorcerer||術士}、{@class warlock||魔契師}或{@class wizard||法師}可以使用這類物品作為施法法器。"
++						: "奧術法器具有特定外形，並鑲有寶石或刻紋以引導奧術魔力。{@class Sorcerer|XPHB|術士}、{@class Warlock|XPHB|魔契師}或{@class Wizard|XPHB|法師}可以使用這類物品作為{@variantrule Spellcasting Focus|XPHB|施法法器}。";
+ 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+ 				}
+ 				if (item.scfType === "druid") {
+ 					Renderer.item._initFullEntries(item);
+ 					const wrapped = styleHint === "classic"
+-						? "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A {@class druid} can use such an object as a spellcasting focus."
+-						: "A Druidic Focus takes a specific form and is carved, tied with ribbon, or painted to channel primal magic. A {@class Druid|XPHB} or {@class Ranger|XPHB} can use such an object as a {@variantrule Spellcasting Focus|XPHB}.";
++						? "德魯伊法器可以是一小枝槲寄生或冬青、以紫杉或其他特殊木材製成的魔杖或權杖、由活樹完整取材的法杖，或融入神聖動物羽毛、毛皮、骨頭與牙齒的圖騰物件。{@class druid||德魯伊}可以使用這類物品作為施法法器。"
++						: "德魯伊法器具有特定外形，並經雕刻、繫上緞帶或彩繪以引導原初魔力。{@class Druid|XPHB|德魯伊}或{@class Ranger|XPHB|遊俠}可以使用這類物品作為{@variantrule Spellcasting Focus|XPHB|施法法器}。";
+ 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+ 				}
+ 				if (item.scfType === "holy") {
+ 					Renderer.item._initFullEntries(item);
+ 					const wrapped = styleHint === "classic"
+-						? "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+-						: "A Holy Symbol takes a specific form and is bejeweled or painted to channel divine magic. A {@class Cleric|XPHB} or {@class Paladin|XPHB} can use a Holy Symbol as a {@variantrule Spellcasting Focus|XPHB}.";
++						? "聖徽代表一位神祇或一個神系。它可以是刻有神祇象徵的護符、仔細雕刻或鑲嵌在盾牌上的相同徽記，或裝著一小片神聖遺物的盒子。牧師或聖武士可以使用聖徽作為施法法器；施法者必須手持聖徽、明顯佩戴它，或將它裝在盾牌上。"
++						: "聖徽具有特定外形，並鑲有寶石或彩繪以引導神聖魔力。{@class Cleric|XPHB|牧師}或{@class Paladin|XPHB|聖武士}可以使用聖徽作為{@variantrule Spellcasting Focus|XPHB|施法法器}。";
+ 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+ 				}
+ 			} else {
+ 				if (item.scfType === "arcane") {
+ 					Renderer.item._initFullEntries(item);
+ 					const wrapped = styleHint === "classic"
+-						? "An arcane focus is a special item designed to channel the power of arcane spells. A {@class sorcerer}, {@class warlock}, or {@class wizard} can use such an item as a spellcasting focus."
+-						: "An Arcane Focus takes a specific form and is bejeweled or carved to channel arcane magic. A {@class Sorcerer|XPHB}, {@class Warlock|XPHB}, or {@class Wizard|XPHB} can use such an item as a {@variantrule Spellcasting Focus|XPHB}.";
++						? "奧術法器是用來引導奧術魔力的特殊物品。{@class sorcerer||術士}、{@class warlock||魔契師}或{@class wizard||法師}可以使用這類物品作為施法法器。"
++						: "奧術法器具有特定外形，並鑲有寶石或刻紋以引導奧術魔力。{@class Sorcerer|XPHB|術士}、{@class Warlock|XPHB|魔契師}或{@class Wizard|XPHB|法師}可以使用這類物品作為{@variantrule Spellcasting Focus|XPHB|施法法器}。";
+ 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+ 				}
+ 				if (item.scfType === "druid") {
+ 					Renderer.item._initFullEntries(item);
+ 					const wrapped = styleHint === "classic"
+-						? "A {@class druid} can use this object as a spellcasting focus."
+-						: "A Druidic Focus takes a specific form and is carved, tied with ribbon, or painted to channel primal magic. A {@class Druid|XPHB} or {@class Ranger|XPHB} can use such an object as a {@variantrule Spellcasting Focus|XPHB}.";
++						? "{@class druid||德魯伊}可以使用這件物品作為施法法器。"
++						: "德魯伊法器具有特定外形，並經雕刻、繫上緞帶或彩繪以引導原初魔力。{@class Druid|XPHB|德魯伊}或{@class Ranger|XPHB|遊俠}可以使用這類物品作為{@variantrule Spellcasting Focus|XPHB|施法法器}。";
+ 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+ 				}
+ 				if (item.scfType === "holy") {
+ 					Renderer.item._initFullEntries(item);
+ 					const wrapped = styleHint === "classic"
+-						? "A holy symbol is a representation of a god or pantheon. A {@class cleric} or {@class paladin} can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+-						: "A Holy Symbol takes a specific form and is bejeweled or painted to channel divine magic. A {@class Cleric|XPHB} or {@class Paladin|XPHB} can use a Holy Symbol as a {@variantrule Spellcasting Focus|XPHB}.";
++						? "聖徽代表一位神祇或一個神系。{@class cleric||牧師}或{@class paladin||聖武士}可以使用聖徽作為施法法器；施法者必須手持聖徽、明顯佩戴它，或將它裝在盾牌上。"
++						: "聖徽具有特定外形，並鑲有寶石或彩繪以引導神聖魔力。{@class Cleric|XPHB|牧師}或{@class Paladin|XPHB|聖武士}可以使用聖徽作為{@variantrule Spellcasting Focus|XPHB|施法法器}。";
+ 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+ 				}
+ 			}
+@@ -13544,7 +13572,7 @@ Renderer.item = class {
+ 					type: "wrapper",
+ 					wrapped: {
+ 						type: "entries",
+-						name: `Mastery: ${mastery.name}`,
++						name: `精通：${mastery._displayName || mastery.name}`,
+ 						source: mastery.source,
+ 						page: mastery.page,
+ 						entries: Renderer.item._enhanceItem_getItemPropertyTypeEntries({item, ent: mastery}),
+@@ -13559,7 +13587,7 @@ Renderer.item = class {
+ 		if (item.type === Parser.ITM_TYP__TOOL || item.type === Parser.ITM_TYP__ARTISAN_TOOL || item.type === Parser.ITM_TYP__INSTRUMENT || item.type === Parser.ITM_TYP__GAMING_SET) { // tools, artisan's tools, instruments, gaming sets
+ 			Renderer.item._initFullAdditionalEntries(item);
+ 			item._fullAdditionalEntries.push({type: "wrapper", wrapped: {type: "hr"}, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+-			item._fullAdditionalEntries.push({type: "wrapper", wrapped: `{@note See the {@variantrule Tool Proficiencies|XGE} entry for more information.}`, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
++			item._fullAdditionalEntries.push({type: "wrapper", wrapped: "{@note 更多資訊見{@variantrule Tool Proficiencies|XGE|工具熟練項}條目。}", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+ 		}
+ 
+ 		// Add additional sources for all instruments and gaming sets
+@@ -13595,12 +13623,16 @@ Renderer.item = class {
+ 		// handle item groups
+ 		if (item._isItemGroup && item.items?.length && !item.itemsHidden) {
+ 			Renderer.item._initFullEntries(item);
+-			item._fullEntries.push({type: "wrapper", wrapped: "Multiple variations of this item exist, as listed below:", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "magicvariant"}});
++			item._fullEntries.push({type: "wrapper", wrapped: "此物品有多種版本，如下所列：", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "magicvariant"}});
+ 			item._fullEntries.push({
+ 				type: "wrapper",
+ 				wrapped: {
+ 					type: "list",
+-					items: item.items.map(it => typeof it === "string" ? `{@item ${it}}` : `{@item ${it.name}|${it.source}}`),
++					items: item.items.map((it, ix) => {
++						const displayName = item._displayItems?.[ix];
++						if (typeof it === "string") return displayName ? `{@item ${it.includes("|") ? it : `${it}|`}|${displayName}}` : `{@item ${it}}`;
++						return `{@item ${it.name}|${it.source}${displayName ? `|${displayName}` : ""}}`;
++					}),
+ 				},
+ 				data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "magicvariant"},
+ 			});
+@@ -13616,13 +13648,13 @@ Renderer.item = class {
+ 				type: "wrapper",
+ 				wrapped: {
+ 					type: "entries",
+-					name: "Base items",
++					name: "基礎物品",
+ 					entries: [
+-						"This item variant can be applied to the following base items:",
++						"此物品變體可以套用到下列基礎物品：",
+ 						{
+ 							type: "list",
+ 							items: item.variants.map(({base, specificVariant}) => {
+-								return `{@item ${base.name}|${base.source}} ({@item ${specificVariant.name}|${specificVariant.source}})`;
++								return `{@item ${base.name}|${base.source}|${base._displayName || base.name}}（{@item ${specificVariant.name}|${specificVariant.source}|${specificVariant._displayName || specificVariant.name}}）`;
+ 							}),
+ 						},
+ 					],
+diff --git a/js/utils.js b/js/utils.js
+index e619ade..8f70ea0 100644
+--- a/js/utils.js
++++ b/js/utils.js
+@@ -6863,12 +6863,20 @@ globalThis.DataUtil = class {
+ 				const urlItemsBase = `${Renderer.get().baseUrl}data/items-base.json`;
+ 				const urlVariants = `${Renderer.get().baseUrl}data/magicvariants.json`;
+ 
+-				const [dataItems, dataItemsBase, dataVariants] = await Promise.all([
++				let [dataItems, dataItemsBase, dataVariants] = await Promise.all([
+ 					DataUtil.loadJSON(urlItems),
+ 					DataUtil.loadJSON(urlItemsBase),
+ 					DataUtil.loadJSON(urlVariants),
+ 				]);
+ 
++				if (globalThis.I18nZhTwContent?.pApplyDataFile) {
++					[dataItems, dataItemsBase, dataVariants] = await Promise.all([
++						globalThis.I18nZhTwContent.pApplyDataFile({file: "items.json", data: dataItems}),
++						globalThis.I18nZhTwContent.pApplyDataFile({file: "items-base.json", data: dataItemsBase}),
++						globalThis.I18nZhTwContent.pApplyDataFile({file: "magicvariants.json", data: dataVariants}),
++					]);
++				}
++
+ 				DataUtil.item._loadedRawJson = {
+ 					item: MiscUtil.copyFast(dataItems.item),
+ 					itemGroup: MiscUtil.copyFast(dataItems.itemGroup),
+
