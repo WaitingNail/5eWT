@@ -9,6 +9,7 @@ const patchPaths = [
 	path.join(projectRoot, "patches", "0001-zh-tw-classes-runtime.patch"),
 	path.join(projectRoot, "patches", "0002-zh-tw-items-runtime.patch"),
 	path.join(projectRoot, "patches", "0003-zh-tw-monsters-runtime.patch"),
+	path.join(projectRoot, "patches", "0004-zh-tw-monster-copy-identity.patch"),
 ];
 const copyRoots = [
   "requirements-zh-tw.txt",
