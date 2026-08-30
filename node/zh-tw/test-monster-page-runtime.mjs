@@ -52,6 +52,42 @@ assert.equal(lulu._displayName, "露露");
 assert.ok(lulu.trait.some(it => it.name === "無敵光環"), "copied traits were assembled before localization");
 assert.ok(lulu.action.some(it => it.name === "獠牙"), "copied actions were assembled before localization");
 
+const bestiaryIndex = readJson("data/zh-TW/bestiary/index.json");
+const allLocalized = [];
+for (const file of bestiaryIndex.files) {
+	const source = readJson(`data/bestiary/${file}`);
+	const entities = await I18n.pApplyEntities({
+		prop: "monster",
+		file,
+		entities: source.monster || [],
+		fnLoad: async () => readJson(`data/zh-TW/bestiary/${file}`),
+	});
+	entities.forEach(monster => monster.__prop = "monster");
+	allLocalized.push(...entities);
+}
+const copyRecords = allLocalized.filter(monster => monster._copy);
+assert.ok(copyRecords.length > 0);
+
+const fnLoadJson = DataUtil.loadJSON;
+DataUtil.loadJSON = async url => {
+	const data = readJson(url.replace(/^\\.\\//, ""));
+	await DataUtil.pDoMetaMerge(`test:${url}`, data, {isSkipMetaMergeCache: true});
+	return data;
+};
+try {
+	for (const monster of copyRecords) {
+		const resolved = structuredClone(monster);
+		try {
+			await DataUtil.monster.pMergeCopy(allLocalized, resolved, {isErrorOnMissing: true});
+		} catch (error) {
+			throw new Error(`${monster.name}|${monster.source}: ${error.message}`, {cause: error});
+		}
+		assert.equal(resolved._copy, undefined, `${monster.name}|${monster.source}`);
+	}
+} finally {
+	DataUtil.loadJSON = fnLoadJson;
+}
+
 const metadata = I18n.localizeMonsterMetaText("A large dragon, chaotic evil; darkvision 120 ft.; fire and poisoned");
 assert.match(metadata, /^A 大型 龍/u, "ordinary English articles must not be replaced by rule-code translations");
 assert.match(metadata, /混亂邪惡/u);
