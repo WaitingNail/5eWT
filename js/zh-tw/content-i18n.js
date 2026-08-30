@@ -604,6 +604,9 @@
 
 			if (!localized || typeof localized !== "object" || Array.isArray(localized)) return this._copy(canonical);
 			const out = {...canonical};
+			if (typeof canonical.name === "string" && typeof localized.name === "string" && canonical.name !== localized.name) {
+				out.ENG_name = canonical.name;
+			}
 			for (const key of this._CONTENT_KEYS) {
 				if (!(key in canonical) || !(key in localized)) continue;
 				out[key] = this._overlayContentValue({canonical: canonical[key], localized: localized[key]});
@@ -651,6 +654,47 @@
 				}
 				return out;
 			});
+		}
+
+		static _overlayStartingEquipment ({canonical, localized}) {
+			if (Array.isArray(canonical)) {
+				if (!Array.isArray(localized) || canonical.length !== localized.length) return this._copy(canonical);
+				return canonical.map((child, ix) => this._overlayStartingEquipment({canonical: child, localized: localized[ix]}));
+			}
+			if (!canonical || typeof canonical !== "object") return canonical;
+			if (!localized || typeof localized !== "object" || Array.isArray(localized)) return this._copy(canonical);
+
+			const out = {...canonical};
+			for (const [key, value] of Object.entries(canonical)) {
+				if (["displayName", "special"].includes(key) && typeof value === "string" && typeof localized[key] === "string") {
+					out[key] = localized[key];
+					continue;
+				}
+				if (value && typeof value === "object") {
+					out[key] = this._overlayStartingEquipment({canonical: value, localized: localized[key]});
+				}
+			}
+			return out;
+		}
+
+		static _overlayVersions ({canonical, localized}) {
+			if (Array.isArray(canonical)) {
+				if (!Array.isArray(localized) || canonical.length !== localized.length) return this._copy(canonical);
+				return canonical.map((child, ix) => this._overlayVersions({canonical: child, localized: localized[ix]}));
+			}
+			if (!canonical || typeof canonical !== "object") return canonical;
+			if (!localized || typeof localized !== "object" || Array.isArray(localized)) return this._copy(canonical);
+
+			const out = {...canonical};
+			if (typeof canonical.name === "string" && typeof localized.name === "string" && canonical.name !== localized.name) {
+				out._displayName = localized.name;
+			}
+			if (canonical._mod && localized._mod) out._mod = this._copy(localized._mod);
+			for (const key of ["_abstract", "_implementations"]) {
+				if (!(key in canonical) || !(key in localized)) continue;
+				out[key] = this._overlayVersions({canonical: canonical[key], localized: localized[key]});
+			}
+			return out;
 		}
 
 		static _getLocalizedEntity ({prop, canonical, localized}) {
@@ -711,6 +755,25 @@
 			for (const key of ["entries", "entriesHigherLevel", "additionalEntries", "entriesTemplate"]) {
 				if (!(key in canonical) || !(key in localized)) continue;
 				out[key] = this._overlayContentValue({canonical: canonical[key], localized: localized[key]});
+			}
+
+			if (prop === "background" && canonical.startingEquipment && localized.startingEquipment) {
+				out.startingEquipment = this._overlayStartingEquipment({
+					canonical: canonical.startingEquipment,
+					localized: localized.startingEquipment,
+				});
+			}
+
+			if (["race", "subrace"].includes(prop) && canonical.sizeEntry && localized.sizeEntry) {
+				out.sizeEntry = this._overlayContentValue({canonical: canonical.sizeEntry, localized: localized.sizeEntry});
+			}
+
+			if (["background", "race", "subrace"].includes(prop) && canonical._copy && localized._copy) {
+				out._copy = this._copy(localized._copy);
+			}
+
+			if (["race", "subrace"].includes(prop) && canonical._versions && localized._versions) {
+				out._versions = this._overlayVersions({canonical: canonical._versions, localized: localized._versions});
 			}
 
 			for (const [key, displayKey] of [

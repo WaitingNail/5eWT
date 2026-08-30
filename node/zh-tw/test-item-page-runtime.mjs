@@ -5,6 +5,7 @@ import {fileURLToPath} from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const readJson = relative => JSON.parse(fs.readFileSync(path.join(ROOT, relative), "utf8"));
+const readText = relative => fs.readFileSync(path.join(ROOT, relative), "utf8");
 const itemIndex = readJson("data/zh-TW/items/index.json");
 const readItemSidecar = file => (itemIndex.fileChunks?.[file] || [file]).reduce((out, chunkFile) => {
 	const chunk = readJson(`data/zh-TW/items/${chunkFile}`);
@@ -67,6 +68,14 @@ assert.match(Renderer.item.getRenderedEntries(specificVariant), /魔法武器/u)
 const propertyText = Renderer.item.getRenderedDamageAndProperties(longsword)[1];
 assert.match(propertyText, /多用/u);
 assert.doesNotMatch(propertyText, /versatile/iu);
+
+const itemsPageSource = readText("js/items.js");
+const itemModalSource = readText("js/filter-items.js");
+assert.match(itemsPageSource, /const displayName = I18nZhTwContent\.getDisplayName\(item\)/u);
+assert.equal((itemsPageSource.match(/txt: displayName/g) || []).length, 2, "both mundane and magic item lists must render localized names");
+assert.match(itemsPageSource, /englishName: I18nZhTwContent\.getCanonicalName\(item\)/u);
+assert.match(itemModalSource, /\$\{displayName\}<\/div>/u);
+assert.match(itemModalSource, /englishName: globalThis\.I18nZhTwContent\.getCanonicalName\(item\)/u);
 
 console.log("Item page integration tests: PASS");
 console.log("Canonical hashes retained; localized lists, metadata, attunement, variants, properties, and prose rendered.");

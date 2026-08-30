@@ -1,0 +1,180 @@
+diff --git a/js/utils.js b/js/utils.js
+--- a/js/utils.js
++++ b/js/utils.js
+@@ -4552,6 +4552,17 @@ class _DataUtilPropConfigSingleSource extends _DataUtilPropConfig {
+ 	static async loadJSON () { return this.loadRawJSON(); }
+ 
+ 	static async _pLoadAndLocalize ({isUnmerged = false} = {}) {
++		if (
++			!isUnmerged
++			&& ["backgrounds.json", "races.json"].includes(this._FILENAME)
++			&& globalThis.I18nZhTwContent?.pApplyDataFile
++		) {
++			const data = MiscUtil.copyFast(await DataUtil.loadRawJSON(this.getDataUrl()));
++			const localized = await globalThis.I18nZhTwContent.pApplyDataFile({file: this._FILENAME, data});
++			await DataUtil.pDoMetaMerge(CryptUtil.uid(), localized, {isSkipMetaMergeCache: true});
++			return localized;
++		}
++
+ 		const fnLoad = isUnmerged ? DataUtil.loadRawJSON.bind(DataUtil) : DataUtil.loadJSON.bind(DataUtil);
+ 		const data = await fnLoad(this.getDataUrl());
+ 		if (!globalThis.I18nZhTwContent?.pApplyDataFile) return data;
+--- a/js/items.js
++++ b/js/items.js
+@@ -1,5 +1,7 @@
+ import {RenderItems} from "./render-items.js";
+ 
++const {I18nZhTwContent} = globalThis;
++
+ class ItemsSublistManager extends SublistManager {
+ 	constructor () {
+ 		super({
+@@ -29,22 +31,22 @@
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-6 ve-pl-0 ve-pr-1",
+ 				colStyle: "",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Weight",
++				name: "重量",
+ 				css: "ve-text-center ve-col-2 ve-px-1",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Cost",
++				name: "價格",
+ 				css: "ve-text-center ve-col-2 ve-px-1",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Number",
++				name: "數量",
+ 				css: "ve-text-center ve-col-2 ve-pl-1 ve-pr-0",
+ 				colStyle: "text-center",
+ 			}),
+@@ -52,8 +54,9 @@
+ 	}
+ 
+ 	pGetSublistItem (item, hash, {count = 1} = {}) {
++		const displayName = I18nZhTwContent.getDisplayName(item);
+ 		const cellsText = [
+-			item.name,
++			displayName,
+ 			item._l_weight || "\u2014",
+ 			item._l_value,
+ 		];
+@@ -110,10 +113,11 @@
+ 		const listItem = new ListItem(
+ 			hash,
+ 			ele,
+-			item.name,
++			displayName,
+ 			{
+ 				source: Parser.sourceJsonToAbv(item.source),
+ 				...ListItem.getCommonValues(item),
++				englishName: I18nZhTwContent.getCanonicalName(item),
+ 				weight: Parser.weightValueToNumber(item.weight),
+ 				cost: item.value || 0,
+ 			},
+@@ -244,9 +248,9 @@
+ 			},
+ 
+ 			tableViewOptions: {
+-				title: "Items",
++				title: "物品",
+ 				colTransforms: {
+-					name: UtilsTableview.COL_TRANSFORM_NAME,
++					name: {name: "名稱", transform: (item) => I18nZhTwContent.getDisplayName(item)},
+ 					source: UtilsTableview.COL_TRANSFORM_SOURCE,
+ 					page: UtilsTableview.COL_TRANSFORM_PAGE,
+ 					rarity: {name: "Rarity"},
+@@ -295,6 +299,7 @@
+ 		if (Renderer.item.isExcluded(item, {hash})) return null;
+ 		if (item.noDisplay) return null;
+ 		Renderer.item.enhanceItem(item);
++		const displayName = I18nZhTwContent.getDisplayName(item);
+ 
+ 		this._pageFilter.mutateAndAddToFilters(item, isExcluded);
+ 
+@@ -313,7 +318,7 @@
+ 						href: `#${hash}`,
+ 						clazz: "ve-lst__row-border ve-lst__row-inner",
+ 						children: [
+-							veE({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-pr-1 ve-bold`, txt: item.name}),
++							veE({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-pr-1 ve-bold`, txt: displayName}),
+ 							veE({tag: "span", clazz: `ve-col-4-5 ve-px-1`, txt: type}),
+ 							veE({tag: "span", clazz: `ve-col-1-5 ve-px-1 ve-text-center`, txt: item._l_value}),
+ 							veE({tag: "span", clazz: `ve-col-1-5 ve-px-1 ve-text-center`, txt: item._l_weight}),
+@@ -331,10 +336,11 @@
+ 			const listItem = new ListItem(
+ 				itI,
+ 				eleLi,
+-				item.name,
++				displayName,
+ 				{
+ 					source,
+ 					...ListItem.getCommonValues(item),
++					englishName: I18nZhTwContent.getCanonicalName(item),
+ 					type,
+ 					cost: item.value || 0,
+ 					weight: Parser.weightValueToNumber(item.weight),
+@@ -358,7 +364,7 @@
+ 						href: `#${hash}`,
+ 						clazz: "ve-lst__row-border ve-lst__row-inner",
+ 						children: [
+-							veE({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-bold`, txt: item.name}),
++							veE({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-bold`, txt: displayName}),
+ 							veE({tag: "span", clazz: `ve-col-4`, txt: type}),
+ 							veE({tag: "span", clazz: `ve-col-1-5 ve-text-center`, txt: item._l_weight}),
+ 							veE({tag: "span", clazz: `ve-col-0-6 ve-text-center`, txt: item._attunementCategory !== VeCt.STR_NO_ATTUNEMENT ? "×" : ""}),
+@@ -382,10 +388,11 @@
+ 			const listItem = new ListItem(
+ 				itI,
+ 				eleLi,
+-				item.name,
++				displayName,
+ 				{
+ 					source,
+ 					...ListItem.getCommonValues(item),
++					englishName: I18nZhTwContent.getCanonicalName(item),
+ 					type,
+ 					rarity: item.rarity,
+ 					attunement: item._attunementCategory !== VeCt.STR_NO_ATTUNEMENT,
+--- a/js/filter-items.js
++++ b/js/filter-items.js
+@@ -602,6 +602,7 @@
+ 
+ 		Renderer.item.enhanceItem(item);
+ 		pageFilter.mutateAndAddToFilters(item);
++		const displayName = globalThis.I18nZhTwContent.getDisplayName(item);
+ 
+ 		const eleRow = document.createElement("div");
+ 		eleRow.className = "ve-px-0 ve-w-100 ve-flex-col ve-no-shrink";
+@@ -617,7 +618,7 @@
+ 				<div class="ve-ui-list__btn-inline ve-px-2 ve-no-select" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
+ 			</div>
+ 
+-			<div class="ve-col-5 ve-px-1 ${item._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${item._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${item.name}</div>
++			<div class="ve-col-5 ve-px-1 ${item._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${item._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${displayName}</div>
+ 			<div class="ve-col-5 ve-px-1">${type.uppercaseFirst()}</div>
+ 			<div class="ve-col-1 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(item.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(item.source)}">${source}${Parser.sourceJsonToMarkerHtml(item.source, {isList: true})}</div>
+ 		</div>`;
+@@ -627,11 +628,12 @@
+ 		const listItem = new ListItem(
+ 			itI,
+ 			eleRow,
+-			item.name,
++			displayName,
+ 			{
+ 				source,
+ 				sourceJson: item.source,
+ 				...ListItem.getCommonValues(item),
++				englishName: globalThis.I18nZhTwContent.getCanonicalName(item),
+ 				type,
+ 			},
+ 			{
+

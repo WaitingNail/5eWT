@@ -111,5 +111,63 @@ assert.deepEqual(Object.keys(raceFluffSidecar.raceFluffMeta).sort(), ["monstrous
 assert.equal(raceFluffSidecar.raceFluffMeta.uncommon.name, "罕見種族");
 assert.equal(raceFluffSidecar.raceFluffMeta.monstrous.name, "怪物冒險者");
 
+const canonicalBackgrounds = readJson("data/backgrounds.json");
+const localizedBackgrounds = readJson("data/zh-TW/character-options/backgrounds.json");
+const canonicalRaces = readJson("data/races.json");
+const localizedRaces = readJson("data/zh-TW/character-options/races.json");
+
+const acolyte = localizedBackgrounds.background.find(it => it.ENG_name === "Acolyte" && it.source === "PHB");
+assert.equal(acolyte.startingEquipment[0]._[0].displayName, "聖徽（出任神職時的禮物）");
+assert.equal(acolyte.startingEquipment[0]._[1].special, "薰香");
+assert.equal(acolyte.startingEquipment[0]._[2].special, "祭袍");
+
+let localizedEquipmentLabels = 0;
+const validateEquipment = (canonical, localized, context) => {
+	if (Array.isArray(canonical)) {
+		assert.ok(Array.isArray(localized), `${context} localized shape changed`);
+		assert.equal(localized.length, canonical.length, `${context} localized length changed`);
+		return canonical.forEach((child, ix) => validateEquipment(child, localized[ix], `${context}/${ix}`));
+	}
+	if (!canonical || typeof canonical !== "object") return;
+	for (const [key, value] of Object.entries(canonical)) {
+		if (["displayName", "special"].includes(key) && typeof value === "string") {
+			assert.notEqual(localized[key], value, `${context}/${key} remained English`);
+			localizedEquipmentLabels++;
+			continue;
+		}
+		if (value && typeof value === "object") validateEquipment(value, localized[key], `${context}/${key}`);
+	}
+};
+canonicalBackgrounds.background.forEach((entity, ix) => {
+	const localized = localizedBackgrounds.background[ix];
+	if (entity.startingEquipment) validateEquipment(entity.startingEquipment, localized.startingEquipment, `background/${ix}/startingEquipment`);
+	if (!entity._copy) return;
+	assert.equal(localized._copy.name, entity._copy.name);
+	assert.equal(localized._copy.source, entity._copy.source);
+});
+assert.equal(localizedEquipmentLabels, 189);
+
+for (const prop of ["race", "subrace"]) canonicalRaces[prop].forEach((entity, ix) => {
+	const localized = localizedRaces[prop][ix];
+	if (entity._copy) {
+		assert.equal(localized._copy.name, entity._copy.name);
+		assert.equal(localized._copy.source, entity._copy.source);
+	}
+});
+
+const aasimar2024 = localizedRaces.race.find(it => it.ENG_name === "Aasimar" && it.source === "XPHB");
+assert.equal(aasimar2024.sizeEntry.name, "體型：");
+assert.match(aasimar2024.sizeEntry.entries[0], /中型/u);
+
+const aasimar = localizedRaces.race.find(it => it.ENG_name === "Aasimar" && it.source === "MPMM");
+assert.equal(aasimar._versions[0].ENG_name, "Aasimar; Necrotic Shroud");
+assert.equal(aasimar._versions[0].name, "阿斯莫; 死靈斗篷");
+assert.equal(aasimar._versions[0]._mod.entries.replace, "Celestial Revelation");
+assert.match(JSON.stringify(aasimar._versions[0]._mod.entries.items), /天界啟示/u);
+
+const dankwoodGoblin = localizedRaces.race.find(it => it.ENG_name === "Goblin (Dankwood)" && it.source === "AWM");
+const replaceText = dankwoodGoblin._copy._mod.entries.find(it => it.mode === "replaceTxt");
+assert.deepEqual(replaceText, {mode: "replaceTxt", replace: "地精", with: "陰林地精", flags: "i"});
+
 console.log("Character-option translation validation: PASS");
-console.log(`${totalEntities} entities; ${localizedNames} localized names; ${fileProps.size} guarded source files.`);
+console.log(`${totalEntities} entities; ${localizedNames} localized names; ${localizedEquipmentLabels} localized equipment labels; ${fileProps.size} guarded source files.`);

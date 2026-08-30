@@ -219,6 +219,22 @@ assert.notStrictEqual(missingCharacterOptionFallback, canonicalBackgrounds, "fal
 await import("../../js/parser.js");
 await import("../../js/utils.js");
 await import("../../js/render.js");
+
+const localizedBackgroundData = await I18n.pApplyDataFile({
+	file: "backgrounds.json",
+	data: readJson("data/backgrounds.json"),
+	fnLoad: async () => readJson("data/zh-TW/character-options/backgrounds.json"),
+});
+const acolyte = localizedBackgroundData.background.find(it => it.name === "Acolyte" && it.source === "PHB");
+assert.equal(acolyte.startingEquipment[0]._[0].displayName, "聖徽（出任神職時的禮物）");
+assert.equal(acolyte.startingEquipment[0]._[1].special, "薰香");
+assert.equal(acolyte.startingEquipment[0]._[2].special, "祭袍");
+assert.equal(localizedBackgroundData.background.filter(it => it._copy).length, 26);
+await DataUtil.pDoMetaMerge("test:localized-backgrounds", localizedBackgroundData, {isSkipMetaMergeCache: true});
+assert.equal(localizedBackgroundData.background.filter(it => it._copy).length, 0, "all localized background copies must resolve");
+const baldursGateAcolyte = localizedBackgroundData.background.find(it => it.name === "Baldur's Gate Acolyte" && it.source === "BGDIA");
+assert.match(JSON.stringify(baldursGateAcolyte.entries), /博德之門特性/u);
+
 const canonicalRaceData = readJson("data/races.json");
 const localizedRaceSidecar = readJson("data/zh-TW/character-options/races.json");
 const localizedRawRaceData = await I18n.pApplyDataFile({
@@ -226,6 +242,16 @@ const localizedRawRaceData = await I18n.pApplyDataFile({
 	data: canonicalRaceData,
 	fnLoad: async () => localizedRaceSidecar,
 });
+const aasimar2024 = localizedRawRaceData.race.find(it => it.name === "Aasimar" && it.source === "XPHB");
+assert.equal(aasimar2024.sizeEntry.name, "體型：");
+const aasimar = localizedRawRaceData.race.find(it => it.name === "Aasimar" && it.source === "MPMM");
+assert.equal(aasimar._versions[0].name, "Aasimar; Necrotic Shroud");
+assert.equal(aasimar._versions[0]._displayName, "阿斯莫; 死靈斗篷");
+assert.equal(aasimar._versions[0]._mod.entries.replace, "Celestial Revelation");
+assert.match(JSON.stringify(aasimar._versions[0]._mod.entries.items), /天界啟示/u);
+assert.equal([...localizedRawRaceData.race, ...localizedRawRaceData.subrace].filter(it => it._copy).length, 17);
+await DataUtil.pDoMetaMerge("test:localized-races", localizedRawRaceData, {isSkipMetaMergeCache: true});
+assert.equal([...localizedRawRaceData.race, ...localizedRawRaceData.subrace].filter(it => it._copy).length, 0, "all localized race copies must resolve");
 const processedRaceData = DataUtil.race.getPostProcessedSiteJson(localizedRawRaceData, {isAddBaseRaces: true});
 const highElf = processedRaceData.race.find(it => it.name === "Elf (High)" && it.source === "PHB");
 assert.ok(highElf, "expected merged PHB High Elf");

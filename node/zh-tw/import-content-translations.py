@@ -551,6 +551,214 @@ class ContentLocalizer(CORE.Localizer):
 		return super().localize_string(english, translated, context)
 
 
+class CharacterOptionLocalizer(ContentLocalizer):
+	"""Translate renderer-facing background/race extension fields without changing selectors."""
+	_VISIBLE_KEYS = CORE.DIRECT_VISIBLE_KEYS | CORE.CONTENT_CONTAINER_KEYS | {
+		"displayName",
+		"special",
+		"sizeEntry",
+	}
+	_SELECTOR_KEYS = CORE.CANONICAL_KEYS | {
+		"mode",
+		"replace",
+		"renames",
+		"rename",
+		"with",
+		"names",
+		"flags",
+		"index",
+		"scalar",
+		"prop",
+		"value",
+		"choose",
+		"from",
+		"raceName",
+		"raceSource",
+	}
+
+	def _localize_visible_tree(self, english, translated, context: str, category: str):
+		if isinstance(english, str):
+			if not isinstance(translated, str):
+				self.report["typeShapeMismatches"].append({
+					"context": context,
+					"englishType": "str",
+					"translatedType": type(translated).__name__,
+				})
+				return english
+			return self.localize_string(english, translated, context)
+
+		if isinstance(english, list):
+			if not isinstance(translated, list):
+				self.report["typeShapeMismatches"].append({
+					"context": context,
+					"englishType": "list",
+					"translatedType": type(translated).__name__,
+				})
+				return deepcopy(english)
+			if len(english) != len(translated):
+				self.report["arrayShapeMismatches"].append({
+					"context": context,
+					"englishLength": len(english),
+					"translatedLength": len(translated),
+				})
+			return [
+				self._localize_visible_tree(child, translated[ix] if ix < len(translated) else None, f"{context}/{ix}", category)
+				for ix, child in enumerate(english)
+			]
+
+		if isinstance(english, dict):
+			if not isinstance(translated, dict):
+				self.report["typeShapeMismatches"].append({
+					"context": context,
+					"englishType": "dict",
+					"translatedType": type(translated).__name__,
+				})
+				return deepcopy(english)
+			out = deepcopy(english)
+			if isinstance(english.get("name"), str) and isinstance(translated.get("name"), str):
+				out["ENG_name"] = english["name"]
+				out["name"] = self.translate_name(english["name"], translated["name"], category)
+			for key, english_value in english.items():
+				if key == "name" or key in self._SELECTOR_KEYS or key not in translated:
+					continue
+				if key in self._VISIBLE_KEYS:
+					out[key] = self._localize_visible_tree(
+						english_value,
+						translated[key],
+						f"{context}/{key}",
+						category,
+					)
+			return out
+
+		return deepcopy(english)
+
+	def _localize_mod_tree(self, english, translated, context: str, category: str, *, translate_names: bool):
+		if isinstance(english, list):
+			if not isinstance(translated, list):
+				return deepcopy(english)
+			return [
+				self._localize_mod_tree(
+					child,
+					translated[ix] if ix < len(translated) else None,
+					f"{context}/{ix}",
+					category,
+					translate_names=translate_names,
+				)
+				for ix, child in enumerate(english)
+			]
+		if not isinstance(english, dict) or not isinstance(translated, dict):
+			return deepcopy(english)
+
+		out = deepcopy(english)
+		if translate_names and isinstance(english.get("name"), str) and isinstance(translated.get("name"), str):
+			out["ENG_name"] = english["name"]
+			out["name"] = self.translate_name(english["name"], translated["name"], category)
+		if english.get("mode") == "replaceTxt" and translated.get("mode") == "replaceTxt":
+			for key in ("replace", "with"):
+				if isinstance(english.get(key), str) and isinstance(translated.get(key), str):
+					out[key] = self.localize_string(english[key], translated[key], f"{context}/{key}")
+		for key, english_value in english.items():
+			if key == "name" or key in self._SELECTOR_KEYS or key not in translated:
+				continue
+			if key == "_copy":
+				out[key] = self._localize_mod_tree(
+					english_value,
+					translated[key],
+					f"{context}/{key}",
+					category,
+					translate_names=False,
+				)
+			elif key in self._VISIBLE_KEYS:
+				is_mod_node = (
+					isinstance(english_value, dict) and "mode" in english_value
+				) or (
+					isinstance(english_value, list)
+					and any(isinstance(item, dict) and "mode" in item for item in english_value)
+				)
+				out[key] = (
+					self._localize_mod_tree(
+						english_value,
+						translated[key],
+						f"{context}/{key}",
+						category,
+						translate_names=translate_names,
+					)
+					if is_mod_node
+					else self._localize_visible_tree(
+						english_value,
+						translated[key],
+						f"{context}/{key}",
+						category,
+					)
+				)
+			elif isinstance(english_value, (list, dict)):
+				out[key] = self._localize_mod_tree(
+					english_value,
+					translated[key],
+					f"{context}/{key}",
+					category,
+					translate_names=translate_names,
+				)
+		return out
+
+	def _localize_starting_equipment(self, english, translated, context: str):
+		if isinstance(english, list):
+			if not isinstance(translated, list):
+				return deepcopy(english)
+			return [
+				self._localize_starting_equipment(child, translated[ix] if ix < len(translated) else None, f"{context}/{ix}")
+				for ix, child in enumerate(english)
+			]
+		if not isinstance(english, dict) or not isinstance(translated, dict):
+			return deepcopy(english)
+		out = deepcopy(english)
+		for key, english_value in english.items():
+			if key not in translated:
+				continue
+			if key in {"displayName", "special"} and isinstance(english_value, str) and isinstance(translated[key], str):
+				out[key] = self.localize_string(english_value, translated[key], f"{context}/{key}")
+			elif isinstance(english_value, (list, dict)):
+				out[key] = self._localize_starting_equipment(english_value, translated[key], f"{context}/{key}")
+		return out
+
+	def localize_node(self, english, translated, context: str, category: str, matcher=None):
+		out = super().localize_node(english, translated, context, category, matcher)
+		if not isinstance(english, dict) or not isinstance(translated, dict) or not isinstance(out, dict):
+			return out
+
+		if "startingEquipment" in english and "startingEquipment" in translated:
+			out["startingEquipment"] = self._localize_starting_equipment(
+				english["startingEquipment"],
+				translated["startingEquipment"],
+				f"{context}/startingEquipment",
+			)
+		if "sizeEntry" in english and "sizeEntry" in translated:
+			out["sizeEntry"] = self._localize_visible_tree(
+				english["sizeEntry"],
+				translated["sizeEntry"],
+				f"{context}/sizeEntry",
+				category,
+			)
+		if "_copy" in english and "_copy" in translated:
+			out["_copy"] = self._localize_mod_tree(
+				english["_copy"],
+				translated["_copy"],
+				f"{context}/_copy",
+				category,
+				translate_names=False,
+			)
+		if "_versions" in english and "_versions" in translated:
+			out["_versions"] = self._localize_mod_tree(
+				english["_versions"],
+				translated["_versions"],
+				f"{context}/_versions",
+				category,
+				translate_names=True,
+			)
+		return out
+
+
+
 class ItemLocalizer(ContentLocalizer):
 	"""Translate renderer-facing item fields without mutating item identities."""
 
@@ -1135,6 +1343,7 @@ def main() -> None:
 	localizer = (
 		ItemLocalizer() if args.group == "items"
 		else MonsterLocalizer() if args.group == "monsters"
+		else CharacterOptionLocalizer() if args.group == "character-options"
 		else ContentLocalizer()
 	)
 

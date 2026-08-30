@@ -107,8 +107,10 @@ assert.match(rendererSource, /_displayLanguages/u);
 assert.match(rendererSource, /傳奇動作/u);
 assert.match(rendererSource, /巢穴動作/u);
 assert.match(rendererSource, /區域效應/u);
+const monsterPreApplyIndex = utilsSource.indexOf("data = await globalThis.I18nZhTwContent.pApplyEntities");
+const monsterMetaMergeIndex = utilsSource.indexOf("await DataUtil.pDoMetaMerge(CryptUtil.uid(), json");
 assert.ok(
-	utilsSource.indexOf("I18nZhTwContent.pApplyEntities") < utilsSource.indexOf("DataUtil.pDoMetaMerge(CryptUtil.uid()"),
+	monsterPreApplyIndex >= 0 && monsterMetaMergeIndex > monsterPreApplyIndex,
 	"monster sidecars must be applied before resolving _copy inheritance",
 );
 
