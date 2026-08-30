@@ -1,0 +1,105 @@
+diff --git a/js/utils.js b/js/utils.js
+index 093ffc5..b768090 100644
+--- a/js/utils.js
++++ b/js/utils.js
+@@ -5479,6 +5479,17 @@ globalThis.DataUtil = class {
+ 				if (!(obj[prop] instanceof Array)) obj[prop] = [obj[prop]];
+ 			}
+ 
++			static _getSpellUid (spell) {
++				if (typeof spell !== "string") return spell;
++				const match = /^\{@spell ([^|}]+)(?:\|([^|}]*))?(?:\|[^}]*)?}/.exec(spell);
++				if (!match) return spell;
++				return `${match[1].toLowerCase()}|${(match[2] || "PHB").toLowerCase()}`;
++			}
++
++			static _isSpellMatch (spell, target) {
++				return this._getSpellUid(spell) === this._getSpellUid(target);
++			}
++
+ 			static _getRegexFromReplaceModInfo ({replace, flags}) {
+ 				return new RegExp(replace, `g${flags || ""}`);
+ 			}
+@@ -5572,11 +5583,19 @@ globalThis.DataUtil = class {
+ 				let ixOld;
+ 				if (modInfo.replace.regex) {
+ 					const re = new RegExp(modInfo.replace.regex, modInfo.replace.flags || "");
+-					ixOld = valExisting.findIndex(it => it.name ? re.test(it.name) : typeof it === "string" ? re.test(it) : false);
++					const isMatch = str => {
++						re.lastIndex = 0;
++						return re.test(str);
++					};
++					ixOld = valExisting.findIndex(it => {
++						if (typeof it === "string") return isMatch(it);
++						if (it.name && isMatch(it.name)) return true;
++						return it.ENG_name ? isMatch(it.ENG_name) : false;
++					});
+ 				} else if (modInfo.replace.index != null) {
+ 					ixOld = modInfo.replace.index;
+ 				} else {
+-					ixOld = valExisting.findIndex(it => it.name ? it.name === modInfo.replace : it === modInfo.replace);
++					ixOld = valExisting.findIndex(it => it.name ? it.name === modInfo.replace || it.ENG_name === modInfo.replace : it === modInfo.replace);
+ 				}
+ 
+ 				if (~ixOld) {
+@@ -5603,7 +5622,7 @@ globalThis.DataUtil = class {
+ 				if (modInfo.names) {
+ 					this._doEnsureArray({obj: modInfo, prop: "names"});
+ 					modInfo.names.forEach(nameToRemove => {
+-						const ixOld = valExisting.findIndex(it => it.name === nameToRemove);
++						const ixOld = valExisting.findIndex(it => it.name === nameToRemove || it.ENG_name === nameToRemove);
+ 						if (~ixOld) valExisting.splice(ixOld, 1);
+ 						else {
+ 							if (!modInfo.force) throw new Error(`${msgPtFailed} Could not find "${propPath.join(".")}" item with name "${nameToRemove}" to remove`);
+@@ -5630,7 +5649,7 @@ globalThis.DataUtil = class {
+ 
+ 				modInfo.renames
+ 					.forEach(rename => {
+-						const ent = valExisting.find(ent => ent?.name === rename.rename);
++						const ent = valExisting.find(ent => ent?.name === rename.rename || ent?.ENG_name === rename.rename);
+ 						if (!ent) {
+ 							if (isThrow) throw new Error(`${msgPtFailed} Could not find "${propPath.join(".")}" item with name "${rename.rename}" to rename`);
+ 							return;
+@@ -5759,7 +5778,7 @@ globalThis.DataUtil = class {
+ 
+ 				// TODO could accept a "position" parameter should spells need to be added to other spellcasting traits
+ 				const spellcasting = modInfo.name
+-					? copyTo.spellcasting.find(ent => ent.name === modInfo.name)
++					? copyTo.spellcasting.find(ent => ent.name === modInfo.name || ent.ENG_name === modInfo.name)
+ 					: copyTo.spellcasting[0];
+ 
+ 				if (modInfo.name && !spellcasting) throw new Error(`${msgPtFailed} Creature did not have spellcasting trait named "${modInfo.name}"!`);
+@@ -5814,7 +5833,7 @@ globalThis.DataUtil = class {
+ 				const handleReplace = (curSpells, replaceMeta, k) => {
+ 					this._doEnsureArray({obj: replaceMeta, prop: "with"});
+ 
+-					const ix = curSpells[k].indexOf(replaceMeta.replace);
++					const ix = curSpells[k].findIndex(spell => this._isSpellMatch(spell, replaceMeta.replace));
+ 					if (~ix) {
+ 						curSpells[k].splice(ix, 1, ...replaceMeta.with);
+ 						curSpells[k].sort(SortUtil.ascSortLower);
+@@ -5857,13 +5876,13 @@ globalThis.DataUtil = class {
+ 					Object.keys(modInfo.spells).forEach(k => {
+ 						if (!spells[k]?.spells) return;
+ 
+-						spells[k].spells = spells[k].spells.filter(it => !modInfo.spells[k].includes(it));
++						spells[k].spells = spells[k].spells.filter(it => !modInfo.spells[k].some(spell => this._isSpellMatch(it, spell)));
+ 					});
+ 				}
+ 
+ 				["constant", "will", "ritual"].forEach(prop => {
+ 					if (!modInfo[prop]) return;
+-					spellcasting[prop].filter(it => !modInfo[prop].includes(it));
++					spellcasting[prop] = spellcasting[prop].filter(it => !modInfo[prop].some(spell => this._isSpellMatch(it, spell)));
+ 				});
+ 
+ 				["recharge", "legendary", "charges", "rest", "restLong", "daily", "weekly", "monthly", "yearly"].forEach(prop => {
+@@ -5875,7 +5894,7 @@ globalThis.DataUtil = class {
+ 
+ 							spellcasting[prop] ||= {};
+ 
+-							spellcasting[prop][k] = spellcasting[prop][k].filter(it => !spells.includes(it));
++							spellcasting[prop][k] = spellcasting[prop][k].filter(it => !spells.some(spell => this._isSpellMatch(it, spell)));
+ 						});
+ 				});
+ 			}
