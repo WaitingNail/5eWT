@@ -1,0 +1,685 @@
+diff --git a/js/adventure.js b/js/adventure.js
+index 190be76..f693637 100644
+--- a/js/adventure.js
++++ b/js/adventure.js
+@@ -23,8 +23,8 @@ async function onJsonLoad (data) {
+ 
+ 	BookUtil.bookIndex = data?.adventure || [];
+ 
+-	veEs(`#page__subtitle`).vee.txt(`Select an adventure from the list on the left`);
+-	veEs(`.book-loading-message`).vee.txt(`Select an adventure to begin`);
++	veEs(`#page__subtitle`).vee.txt(UiUtil.getTranslatedText("Select an adventure from the list on the left"));
++	veEs(`.book-loading-message`).vee.txt(UiUtil.getTranslatedText("Select an adventure to begin"));
+ 
+ 	BookUtil.bookIndexPrerelease = (await PrereleaseUtil.pGetBrewProcessed())?.adventure || [];
+ 	BookUtil.bookIndexBrew = (await BrewUtil2.pGetBrewProcessed())?.adventure || [];
+diff --git a/js/bastions.js b/js/bastions.js
+index 3a09706..c30ac56 100644
+--- a/js/bastions.js
++++ b/js/bastions.js
+@@ -1,35 +1,38 @@
+ import {RenderBastions} from "./render-bastions.js";
+ 
++const {I18nZhTwContent} = globalThis;
++
+ class BastionsSublistManager extends SublistManager {
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Type",
++				name: "類型",
+ 				css: "ve-col-2 ve-pl-0 ve-pr-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-3 ve-px-1",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Level",
++				name: "等級",
+ 				css: "ve-col-2 ve-px-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Prerequisite",
++				name: "先決條件",
+ 				css: "ve-col-5 ve-pl-1 ve-pr-0",
+ 			}),
+ 		];
+ 	}
+ 
+ 	pGetSublistItem (ent, hash) {
+-		const facilityType = (ent.facilityType || "Unknown").toTitleCase();
++		const displayName = I18nZhTwContent.getDisplayName(ent);
++		const facilityType = I18nZhTwContent.getFacilityType(ent.facilityType);
+ 
+ 		const cellsText = [
+ 			facilityType,
+-			ent.name,
++			displayName,
+ 			ent.level || "\u2014",
+ 			ent._slPrereq,
+ 		];
+@@ -45,9 +48,10 @@ class BastionsSublistManager extends SublistManager {
+ 		const listItem = new ListItem(
+ 			hash,
+ 			ele,
+-			ent.name,
++			displayName,
+ 			{
+ 				...ListItem.getCommonValues(ent),
++				englishName: I18nZhTwContent.getCanonicalName(ent),
+ 				facilityType,
+ 				level: ent.level || 0,
+ 				prerequisite: ent._slPrereq,
+@@ -75,35 +79,35 @@ class BastionsPage extends ListPage {
+ 			dataProps: ["facility"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "facility",
+-				namePlural: "facilities",
+-				pageTitle: "Facilities Book View",
++				nameSingular: "設施",
++				namePlural: "設施",
++				pageTitle: "堡壘設施列印檢視",
+ 			},
+ 
+ 			tableViewOptions: {
+-				title: "Facilities",
++				title: "堡壘設施",
+ 				colTransforms: {
+-					name: UtilsTableview.COL_TRANSFORM_NAME,
++					name: {name: "名稱", transform: ent => I18nZhTwContent.getDisplayName(ent)},
+ 					source: UtilsTableview.COL_TRANSFORM_SOURCE,
+ 					page: UtilsTableview.COL_TRANSFORM_PAGE,
+-					_level: {name: "Level", transform: ent => ent.level || ""},
+-					_prerequisite: {name: "Prerequisite", transform: ent => ent._slPrereq},
+-					_space: {name: "Space",
++					_level: {name: "等級", transform: ent => ent.level || ""},
++					_prerequisite: {name: "先決條件", transform: ent => ent._slPrereq},
++					_space: {name: "空間",
+ 						transform: ent => {
+ 							const {entrySpace} = Renderer.facility.getFacilityRenderableEntriesMeta(ent);
+ 							return Renderer.get().render(entrySpace);
+ 						}},
+-					_hirelings: {name: "Hirelings",
++					_hirelings: {name: "僱工",
+ 						transform: ent => {
+ 							const {entryHirelings} = Renderer.facility.getFacilityRenderableEntriesMeta(ent);
+ 							return Renderer.get().render(entryHirelings);
+ 						}},
+-					_orders: {name: "Orders",
++					_orders: {name: "指令",
+ 						transform: ent => {
+ 							const {entryOrders} = Renderer.facility.getFacilityRenderableEntriesMeta(ent);
+ 							return Renderer.get().render(entryOrders);
+ 						}},
+-					entries: {name: "Text", transform: ent => Renderer.get().render({type: "entries", entries: ent}, 2), flex: 3},
++					entries: {name: "內容", transform: ent => Renderer.get().render({type: "entries", entries: ent}, 2), flex: 3},
+ 				},
+ 			},
+ 		});
+@@ -117,11 +121,12 @@ class BastionsPage extends ListPage {
+ 
+ 		const hash = UrlUtil.autoEncodeHash(ent);
+ 		const source = Parser.sourceJsonToAbv(ent.source);
+-		const facilityType = (ent.facilityType || "Unknown").toTitleCase();
++		const displayName = I18nZhTwContent.getDisplayName(ent);
++		const facilityType = I18nZhTwContent.getFacilityType(ent.facilityType);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-col-2 ve-text-center ve-pl-0 ve-pr-1">${facilityType}</span>
+-			<span class="ve-bold ve-col-3 ve-px-1">${ent.name}</span>
++			<span class="ve-bold ve-col-3 ve-px-1">${displayName}</span>
+ 			<span class="ve-col-1 ve-text-center ve-px-1 ${ent.level == null ? "ve-italic" : ""}">${ent.level || "\u2014"}</span>
+ 			<span class="ve-col-4 ve-px-1 ${ent._slPrereq === VeCt.STR_NONE ? "ve-italic " : ""}">${ent._slPrereq}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)}  ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
+@@ -130,10 +135,11 @@ class BastionsPage extends ListPage {
+ 		const listItem = new ListItem(
+ 			ixEnt,
+ 			eleLi,
+-			ent.name,
++			displayName,
+ 			{
+ 				source,
+ 				...ListItem.getCommonValues(ent),
++				englishName: I18nZhTwContent.getCanonicalName(ent),
+ 				facilityType,
+ 				level: ent.level || 0,
+ 				prerequisite: ent._slPrereq,
+diff --git a/js/book.js b/js/book.js
+index 5587baa..d1ab10b 100644
+--- a/js/book.js
++++ b/js/book.js
+@@ -23,8 +23,8 @@ async function onJsonLoad (data) {
+ 
+ 	BookUtil.bookIndex = data?.book || [];
+ 
+-	veEs(`#page__subtitle`).vee.txt(`Select a book from the list on the left`);
+-	veEs(`.book-loading-message`).vee.txt(`Select a book to begin`);
++	veEs(`#page__subtitle`).vee.txt(UiUtil.getTranslatedText("Select a book from the list on the left"));
++	veEs(`.book-loading-message`).vee.txt(UiUtil.getTranslatedText("Select a book to begin"));
+ 
+ 	BookUtil.bookIndexPrerelease = (await PrereleaseUtil.pGetBrewProcessed())?.book || [];
+ 	BookUtil.bookIndexBrew = (await BrewUtil2.pGetBrewProcessed())?.book || [];
+diff --git a/js/filter-bastions.js b/js/filter-bastions.js
+index c81188c..dba0ada 100644
+--- a/js/filter-bastions.js
++++ b/js/filter-bastions.js
+@@ -5,24 +5,26 @@ class PageFilterBastions extends PageFilterBase {
+ 		super();
+ 
+ 		this._typeFilter = new Filter({
+-			header: "Type",
++			header: "類型",
+ 			items: ["basic", "special"],
+-			displayFn: it => it.toTitleCase(),
++			displayFn: it => I18nZhTwContent.getFacilityType(it),
+ 			deselFn: (it) => it === "basic",
+ 		});
+ 		this._levelFilter = new RangeFilter({
+-			header: "Level",
++			header: "等級",
+ 			isLabelled: true,
+ 			labels: ["\u2014", ...Array.from({length: 20}, (_, i) => i + 1)],
+-			labelDisplayFn: n => n === "\u2014" ? "None" : n,
++			labelDisplayFn: n => n === "\u2014" ? "無" : n,
+ 		});
+ 		this._prereqFilter = new Filter({
+-			header: "Prerequisite",
++			header: "先決條件",
+ 			items: [...FilterCommon.PREREQ_FILTER_ITEMS],
++			displayFn: it => I18nZhTwContent.getFilterLabel(it),
+ 		});
+ 		this._miscFilter = new Filter({
+-			header: "Miscellaneous",
++			header: "其他",
+ 			items: ["Has Images", "Has Info"],
++			displayFn: it => I18nZhTwContent.getFilterLabel(it),
+ 			isMiscFilter: true,
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+ 		});
+@@ -40,7 +42,7 @@ class PageFilterBastions extends PageFilterBase {
+ 		if (isExcluded) return;
+ 
+ 		this._sourceFilter.addItem(ent._fSources);
+-		this._typeFilter.addItem(ent.type);
++		this._typeFilter.addItem(ent.facilityType);
+ 		this._levelFilter.addItem(ent.level);
+ 		this._prereqFilter.addItem(ent._fPrereq);
+ 		this._miscFilter.addItem(ent._fMisc);
+diff --git a/js/filter-bestiary.js b/js/filter-bestiary.js
+index a7de736..b497f6f 100644
+--- a/js/filter-bestiary.js
++++ b/js/filter-bestiary.js
+@@ -40,9 +40,9 @@ class PageFilterBestiary extends PageFilterBase {
+ 		return SortUtil.ascSortLower(a, b);
+ 	}
+ 
+-	static _getDamageTagDisplayText (tag) { return Parser.dmgTypeToFull(tag).toTitleCase(); }
+-	static _getConditionDisplayText (uid) { return uid.split("|")[0].toTitleCase(); }
+-	static _getAbilitySaveDisplayText (abl) { return `${abl.uppercaseFirst()} Save`; }
++	static _getDamageTagDisplayText (tag) { return globalThis.I18nZhTwContent?.getDamageType(tag) || Parser.dmgTypeToFull(tag).toTitleCase(); }
++	static _getConditionDisplayText (uid) { return globalThis.I18nZhTwContent?.getCondition(uid) || uid.split("|")[0].toTitleCase(); }
++	static _getAbilitySaveDisplayText (abl) { return globalThis.I18nZhTwContent ? `${globalThis.I18nZhTwContent.getAbility(abl)}豁免` : `${abl.uppercaseFirst()} Save`; }
+ 	// endregion
+ 
+ 	/* -------------------------------------------- */
+@@ -88,11 +88,11 @@ class PageFilterBestiary extends PageFilterBase {
+ 				Parser.SZ_GARGANTUAN,
+ 				Parser.SZ_VARIES,
+ 			],
+-			displayFn: Parser.sizeAbvToFull,
++			displayFn: size => globalThis.I18nZhTwContent?.getSizeFull(size) || Parser.sizeAbvToFull(size),
+ 			itemSortFn: null,
+ 		});
+ 		this._speedFilter = new RangeFilter({header: "Speed", min: 30, max: 30, suffix: " ft"});
+-		this._speedTypeFilter = new Filter({header: "Speed Type", items: [...Parser.SPEED_MODES, "hover"], displayFn: StrUtil.uppercaseFirst});
++		this._speedTypeFilter = new Filter({header: "Speed Type", items: [...Parser.SPEED_MODES, "hover"], displayFn: it => globalThis.I18nZhTwContent?.localizeSpeedText(it) || StrUtil.uppercaseFirst(it)});
+ 		this._speedFilterWalk = new RangeFilter({header: "Walk", min: 30, max: 30, suffix: " ft"});
+ 		this._speedFilterBurrow = new RangeFilter({header: "Burrow", min: 30, max: 30, suffix: " ft"});
+ 		this._speedFilterClimb = new RangeFilter({header: "Climb", min: 30, max: 30, suffix: " ft"});
+@@ -119,7 +119,7 @@ class PageFilterBestiary extends PageFilterBase {
+ 		this._typeFilter = new Filter({
+ 			header: "Type",
+ 			items: [...Parser.MON_TYPES],
+-			displayFn: StrUtil.toTitleCase.bind(StrUtil),
++			displayFn: it => globalThis.I18nZhTwContent?.getCreatureType(it) || StrUtil.toTitleCase(it),
+ 			itemSortFn: SortUtil.ascSortLower,
+ 		});
+ 		this._tagFilter = new Filter({header: "Tag", displayFn: StrUtil.toTitleCase.bind(StrUtil)});
+@@ -133,90 +133,90 @@ class PageFilterBestiary extends PageFilterBase {
+ 		this._alignmentFilter = new Filter({
+ 			header: "Alignment",
+ 			items: ["L", "NX", "C", "G", "NY", "E", "N", "U", "A", "No Alignment"],
+-			displayFn: alignment => Parser.alignmentAbvToFull(alignment).toTitleCase(),
++			displayFn: alignment => globalThis.I18nZhTwContent?.localizeMonsterMetaText(Parser.alignmentAbvToFull(alignment)) || Parser.alignmentAbvToFull(alignment).toTitleCase(),
+ 			itemSortFn: null,
+ 		});
+ 		this._languageFilter = new Filter({
+ 			header: "Languages",
+-			displayFn: (k) => Parser.monLanguageTagToFull(k).toTitleCase(),
++			displayFn: k => globalThis.I18nZhTwContent?.getLanguage(Parser.monLanguageTagToFull(k)) || Parser.monLanguageTagToFull(k).toTitleCase(),
+ 			umbrellaItems: ["X", "XX"],
+ 			umbrellaExcludes: ["CS"],
+ 		});
+ 		this._damageTypeFilterBase = new Filter({
+ 			header: "Damage Inflicted by Traits/Actions",
+ 			displayFn: this.constructor._getDamageTagDisplayText,
+-			displayFnMini: tag => `Deals ${this.constructor._getDamageTagDisplayText(tag)} (Trait/Action)`,
++			displayFnMini: tag => globalThis.I18nZhTwContent ? `造成${this.constructor._getDamageTagDisplayText(tag)}（特質／動作）` : `Deals ${this.constructor._getDamageTagDisplayText(tag)} (Trait/Action)`,
+ 			items: Object.keys(Parser.DMGTYPE_JSON_TO_FULL),
+ 		});
+ 		this._damageTypeFilterLegendary = new Filter({
+ 			header: "Damage Inflicted by Lair Actions/Regional Effects",
+ 			displayFn: this.constructor._getDamageTagDisplayText,
+-			displayFnMini: tag => `Deals ${this.constructor._getDamageTagDisplayText(tag)} (Lair/Regional)`,
++			displayFnMini: tag => globalThis.I18nZhTwContent ? `造成${this.constructor._getDamageTagDisplayText(tag)}（巢穴／區域）` : `Deals ${this.constructor._getDamageTagDisplayText(tag)} (Lair/Regional)`,
+ 			items: Object.keys(Parser.DMGTYPE_JSON_TO_FULL),
+ 		});
+ 		this._damageTypeFilterSpells = new Filter({
+ 			header: "Damage Inflicted by Spells",
+ 			displayFn: this.constructor._getDamageTagDisplayText,
+-			displayFnMini: tag => `Deals ${this.constructor._getDamageTagDisplayText(tag)} (Spell)`,
++			displayFnMini: tag => globalThis.I18nZhTwContent ? `造成${this.constructor._getDamageTagDisplayText(tag)}（法術）` : `Deals ${this.constructor._getDamageTagDisplayText(tag)} (Spell)`,
+ 			items: Object.keys(Parser.DMGTYPE_JSON_TO_FULL),
+ 		});
+ 		this._damageTypeFilter = new MultiFilter({header: "Damage Inflicted", filters: [this._damageTypeFilterBase, this._damageTypeFilterLegendary, this._damageTypeFilterSpells]});
+ 		this._conditionsInflictedFilterBase = new Filter({
+ 			header: "Conditions Inflicted by Traits/Actions",
+ 			displayFn: this.constructor._getConditionDisplayText,
+-			displayFnMini: uid => `Inflicts ${this.constructor._getConditionDisplayText(uid)} (Trait/Action)`,
++			displayFnMini: uid => globalThis.I18nZhTwContent ? `造成${this.constructor._getConditionDisplayText(uid)}（特質／動作）` : `Inflicts ${this.constructor._getConditionDisplayText(uid)} (Trait/Action)`,
+ 			items: [...Parser.CONDITIONS],
+ 		});
+ 		this._conditionsInflictedFilterLegendary = new Filter({
+ 			header: "Conditions Inflicted by Lair Actions/Regional Effects",
+ 			displayFn: this.constructor._getConditionDisplayText,
+-			displayFnMini: uid => `Inflicts ${this.constructor._getConditionDisplayText(uid)} (Lair/Regional)`,
++			displayFnMini: uid => globalThis.I18nZhTwContent ? `造成${this.constructor._getConditionDisplayText(uid)}（巢穴／區域）` : `Inflicts ${this.constructor._getConditionDisplayText(uid)} (Lair/Regional)`,
+ 			items: [...Parser.CONDITIONS],
+ 		});
+ 		this._conditionsInflictedFilterSpells = new Filter({
+ 			header: "Conditions Inflicted by Spells",
+ 			displayFn: this.constructor._getConditionDisplayText,
+-			displayFnMini: uid => `Inflicts ${this.constructor._getConditionDisplayText(uid)} (Spell)`,
++			displayFnMini: uid => globalThis.I18nZhTwContent ? `造成${this.constructor._getConditionDisplayText(uid)}（法術）` : `Inflicts ${this.constructor._getConditionDisplayText(uid)} (Spell)`,
+ 			items: [...Parser.CONDITIONS],
+ 		});
+ 		this._conditionsInflictedFilter = new MultiFilter({header: "Conditions Inflicted", filters: [this._conditionsInflictedFilterBase, this._conditionsInflictedFilterLegendary, this._conditionsInflictedFilterSpells]});
+ 		this._savingThrowForcedFilterBase = new Filter({
+ 			header: "Saving Throws Required by Traits/Actions",
+ 			displayFn: this.constructor._getAbilitySaveDisplayText,
+-			displayFnMini: abl => `Requires ${this.constructor._getAbilitySaveDisplayText(abl)} (Trait/Action)`,
++			displayFnMini: abl => globalThis.I18nZhTwContent ? `要求${this.constructor._getAbilitySaveDisplayText(abl)}（特質／動作）` : `Requires ${this.constructor._getAbilitySaveDisplayText(abl)} (Trait/Action)`,
+ 			items: Parser.ABIL_ABVS.map(abl => Parser.attAbvToFull(abl).toLowerCase()),
+ 			itemSortFn: null,
+ 		});
+ 		this._savingThrowForcedFilterLegendary = new Filter({
+ 			header: "Saving Throws Required by Lair Actions/Regional Effects",
+ 			displayFn: this.constructor._getAbilitySaveDisplayText,
+-			displayFnMini: abl => `Requires ${this.constructor._getAbilitySaveDisplayText(abl)} (Lair/Regional)`,
++			displayFnMini: abl => globalThis.I18nZhTwContent ? `要求${this.constructor._getAbilitySaveDisplayText(abl)}（巢穴／區域）` : `Requires ${this.constructor._getAbilitySaveDisplayText(abl)} (Lair/Regional)`,
+ 			items: Parser.ABIL_ABVS.map(abl => Parser.attAbvToFull(abl).toLowerCase()),
+ 			itemSortFn: null,
+ 		});
+ 		this._savingThrowForcedFilterSpells = new Filter({
+ 			header: "Saving Throws Required by Spells",
+ 			displayFn: this.constructor._getAbilitySaveDisplayText,
+-			displayFnMini: abl => `Requires ${this.constructor._getAbilitySaveDisplayText(abl)} (Spell)`,
++			displayFnMini: abl => globalThis.I18nZhTwContent ? `要求${this.constructor._getAbilitySaveDisplayText(abl)}（法術）` : `Requires ${this.constructor._getAbilitySaveDisplayText(abl)} (Spell)`,
+ 			items: Parser.ABIL_ABVS.map(abl => Parser.attAbvToFull(abl).toLowerCase()),
+ 			itemSortFn: null,
+ 		});
+ 		this._savingThrowForcedFilter = new MultiFilter({header: "Saving Throw Required", filters: [this._savingThrowForcedFilterBase, this._savingThrowForcedFilterLegendary, this._savingThrowForcedFilterSpells]});
+ 		this._senseFilter = new Filter({
+ 			header: "Senses",
+-			displayFn: (it) => Parser.monSenseTagToFull(it).toTitleCase(),
++			displayFn: it => globalThis.I18nZhTwContent?.localizeMonsterMetaText(Parser.monSenseTagToFull(it)) || Parser.monSenseTagToFull(it).toTitleCase(),
+ 			items: ["B", "D", "SD", "T", "U"],
+ 			itemSortFn: SortUtil.ascSortLower,
+ 		});
+ 		this._passivePerceptionFilter = new RangeFilter({header: "Passive Perception", min: 10, max: 10});
+ 		this._skillFilter = new Filter({
+ 			header: "Skills",
+-			displayFn: (it) => it.toTitleCase(),
++			displayFn: it => globalThis.I18nZhTwContent?.getSkill(it) || it.toTitleCase(),
+ 			items: Object.keys(Parser.SKILL_TO_ATB_ABV),
+ 		});
+ 		this._saveFilter = new Filter({
+ 			header: "Saves",
+-			displayFn: Parser.attAbvToFull,
++			displayFn: it => globalThis.I18nZhTwContent?.getAbility(it) || Parser.attAbvToFull(it),
+ 			items: [...Parser.ABIL_ABVS],
+ 			itemSortFn: null,
+ 		});
+diff --git a/js/filter-items.js b/js/filter-items.js
+index 8ec936d..5e7421a 100644
+--- a/js/filter-items.js
++++ b/js/filter-items.js
+@@ -39,8 +39,10 @@ class PageFilterEquipment extends PageFilterBase {
+ 
+ 	static _getMasteryDisplay (mastery) {
+ 		const {name, source} = DataUtil.proxy.unpackUid("itemMastery", mastery, "itemMastery");
+-		if (SourceUtil.isSiteSource(source)) return name.toTitleCase();
+-		return `${name.toTitleCase()} (${Parser.sourceJsonToAbv(source)})`;
++		const ent = MiscUtil.get(Renderer.item._masteryMap, source.toLowerCase(), name.toLowerCase());
++		const displayName = globalThis.I18nZhTwContent?.getDisplayName(ent) || name.toTitleCase();
++		if (SourceUtil.isSiteSource(source)) return displayName;
++		return `${displayName} (${Parser.sourceJsonToAbv(source)})`;
+ 	}
+ 
+ 	constructor ({filterOpts = null} = {}) {
+@@ -60,13 +62,13 @@ class PageFilterEquipment extends PageFilterBase {
+ 			...(filterOpts?.["Category"] || {}),
+ 		});
+ 		this._costFilter = FilterCommon.getCostFilter();
+-		this._weightFilter = new RangeFilter({header: "Weight", min: 0, max: 100, isAllowGreater: true, suffix: " lb."});
++		this._weightFilter = new RangeFilter({header: "Weight", min: 0, max: 100, isAllowGreater: true, suffix: globalThis.I18nZhTwContent ? " 磅" : " lb."});
+ 		this._focusFilter = new Filter({header: "Spellcasting Focus", items: [...Parser.ITEM_SPELLCASTING_FOCUS_CLASSES]});
+-		this._damageTypeFilter = new Filter({header: "Weapon Damage Type", displayFn: it => Parser.dmgTypeToFull(it).uppercaseFirst(), itemSortFn: (a, b) => SortUtil.ascSortLower(Parser.dmgTypeToFull(a.item), Parser.dmgTypeToFull(b.item))});
++		this._damageTypeFilter = new Filter({header: "Weapon Damage Type", displayFn: it => globalThis.I18nZhTwContent?.getDamageType(it) || Parser.dmgTypeToFull(it).uppercaseFirst(), itemSortFn: (a, b) => SortUtil.ascSortLower(Parser.dmgTypeToFull(a.item), Parser.dmgTypeToFull(b.item))});
+ 		this._damageDiceFilter = new Filter({header: "Weapon Damage Dice", items: ["1", "1d4", "1d6", "1d8", "1d10", "1d12", "2d6"], itemSortFn: (a, b) => PageFilterEquipment._sortDamageDice(a, b)});
+ 		this._acFilter = new RangeFilter({header: "Armor Class", displayFn: it => it === 0 ? "None" : it});
+-		this._rangeFilterNormal = new RangeFilter({header: "Normal", displayFn: it => it === 0 ? "None" : `${it} ft.`});
+-		this._rangeFilterLong = new RangeFilter({header: "Long", displayFn: it => it === 0 ? "None" : `${it} ft.`});
++		this._rangeFilterNormal = new RangeFilter({header: "Normal", displayFn: it => it === 0 ? (globalThis.I18nZhTwContent ? "無" : "None") : `${it}${globalThis.I18nZhTwContent ? " 尺" : " ft."}`});
++		this._rangeFilterLong = new RangeFilter({header: "Long", displayFn: it => it === 0 ? (globalThis.I18nZhTwContent ? "無" : "None") : `${it}${globalThis.I18nZhTwContent ? " 尺" : " ft."}`});
+ 		this._rangeFilter = new MultiFilter({header: "Range", filters: [this._rangeFilterNormal, this._rangeFilterLong]});
+ 		this._miscFilter = new Filter({
+ 			header: "Miscellaneous",
+@@ -74,7 +76,7 @@ class PageFilterEquipment extends PageFilterBase {
+ 			isMiscFilter: true,
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+ 		});
+-		this._poisonTypeFilter = new Filter({header: "Poison Type", items: ["ingested", "injury", "inhaled", "contact"], displayFn: StrUtil.toTitleCase.bind(StrUtil)});
++		this._poisonTypeFilter = new Filter({header: "Poison Type", items: ["ingested", "injury", "inhaled", "contact"], displayFn: it => globalThis.I18nZhTwContent?.getItemPoisonType(it) || StrUtil.toTitleCase(it)});
+ 		this._masteryFilter = new Filter({header: "Mastery", displayFn: this.constructor._getMasteryDisplay.bind(this)});
+ 	}
+ 
+@@ -115,7 +117,7 @@ class PageFilterEquipment extends PageFilterBase {
+ 	static mutateForFilters (item) {
+ 		this._mutateForFilters_commonSources(item, {isIncludeBaseSource: true});
+ 
+-		item._fProperties = item.property ? item.property.map(p => Renderer.item.getProperty(p?.uid || p)?.name).filter(Boolean) : [];
++		item._fProperties = item.property ? item.property.map(p => globalThis.I18nZhTwContent?.getDisplayName(Renderer.item.getProperty(p?.uid || p)) || Renderer.item.getProperty(p?.uid || p)?.name).filter(Boolean) : [];
+ 
+ 		this._mutateForFilters_commonMisc(item);
+ 		if (item._isItemGroup) item._fMisc.push("Item Group");
+@@ -319,7 +321,7 @@ class PageFilterItems extends PageFilterEquipment {
+ 	constructor (opts) {
+ 		super(opts);
+ 
+-		this._tierFilter = new Filter({header: "Tier", items: ["none", "minor", "major"], itemSortFn: null, displayFn: StrUtil.toTitleCase.bind(StrUtil)});
++		this._tierFilter = new Filter({header: "Tier", items: ["none", "minor", "major"], itemSortFn: null, displayFn: it => globalThis.I18nZhTwContent?.getItemTier(it) || StrUtil.toTitleCase(it)});
+ 		this._attachedSpellsFilter = new SearchableFilter({header: "Attached Spells", displayFn: (it) => it.split("|")[0].toTitleCase(), itemSortFn: SortUtil.ascSortLower});
+ 		this._lootTableFilter = new Filter({
+ 			header: "Found On",
+@@ -333,7 +335,7 @@ class PageFilterItems extends PageFilterEquipment {
+ 			header: "Rarity",
+ 			items: [...Parser.ITEM_RARITIES],
+ 			itemSortFn: null,
+-			displayFn: StrUtil.toTitleCase.bind(StrUtil),
++			displayFn: it => globalThis.I18nZhTwContent?.getItemRarity(it) || StrUtil.toTitleCase(it),
+ 		});
+ 		this._attunementFilter = new Filter({header: "Attunement", items: [...PageFilterItems._FILTER_BASE_ITEMS_ATTUNEMENT], itemSortFn: PageFilterItems._sortAttunementFilter});
+ 		this._bonusFilter = new Filter({
+diff --git a/js/index.js b/js/index.js
+index a6e7958..02cf6ba 100644
+--- a/js/index.js
++++ b/js/index.js
+@@ -21,7 +21,7 @@ class IndexPage {
+ 			.forEach(lnk => lnk.vee.attr("href", `${lnk.vee.attr("href")}?v=${VERSION_NUMBER}_${Date.now()}`));
+ 
+ 		window.__cmp2 = () => {
+-			alert("This only works on a live version of the site!");
++			alert(UiUtil.getTranslatedText("This only works on a live version of the site!"));
+ 		};
+ 	}
+ 
+diff --git a/js/items.js b/js/items.js
+index 765db56..1986b32 100644
+--- a/js/items.js
++++ b/js/items.js
+@@ -415,7 +415,7 @@ class ItemsPage extends ListPage {
+ 		FilterBox.selectFirstVisible(this._dataList);
+ 	}
+ 
+-	_tabTitleStats = "Item";
++	_tabTitleStats = UiUtil.getTranslatedText("Item");
+ 
+ 	_renderStats_doBuildStatsTab ({ent}) {
+ 		this._pgContent.vee.empty().vee.appends(RenderItems.getRenderedItem(ent));
+@@ -521,8 +521,8 @@ class ItemsPage extends ListPage {
+ 		super._addData(data);
+ 
+ 		// Populate table labels
+-		veEs(`h3.ele-mundane span.side-label`).vee.txt("Mundane");
+-		veEs(`h3.ele-magic span.side-label`).vee.txt("Magic");
++		veEs(`h3.ele-mundane span.side-label`).vee.txt(UiUtil.getTranslatedText("Mundane"));
++		veEs(`h3.ele-magic span.side-label`).vee.txt(UiUtil.getTranslatedText("Magic"));
+ 	}
+ 
+ 	_addListItem (listItem) {
+diff --git a/js/langdemo.js b/js/langdemo.js
+index 3d229ac..4025db8 100644
+--- a/js/langdemo.js
++++ b/js/langdemo.js
+@@ -116,7 +116,7 @@ class LangDemoUi {
+ 		const ctx = LangDemoUi._metasContext
+ 			.mergeMap(it => ({[it.iptName.vee.val().trim()]: Number(it.iptVal.vee.val()) || 0}));
+ 		const result = await parsed.pEvl(ctx, LangDemoUi.RESOLVER);
+-		if (result.isCancelled) dispOutResult.vee.txt("Cancelled!");
++		if (result.isCancelled) dispOutResult.vee.txt(UiUtil.getTranslatedText("Cancelled!"));
+ 		else dispOutResult.vee.txt(result.val == null ? `(null)` : result.val);
+ 	}
+ }
+diff --git a/js/lifegen.js b/js/lifegen.js
+index a4eef14..2120b92 100644
+--- a/js/lifegen.js
++++ b/js/lifegen.js
+@@ -782,7 +782,7 @@ async function pSectSiblings () {
+ 			}))}</div>`);
+ 		}
+ 	} else {
+-		siblings.vee.html("You are an only child.");
++		siblings.vee.html(UiUtil.getTranslatedText("You are an only child."));
+ 	}
+ }
+ 
+diff --git a/js/render-bastions.js b/js/render-bastions.js
+index 6c09c24..60d7e06 100644
+--- a/js/render-bastions.js
++++ b/js/render-bastions.js
+@@ -27,7 +27,7 @@ class _RenderFacilitiesImplBase extends RenderPageImplBase {
+ 
+ 	_getCommonHtmlParts_prerequisites ({ent}) {
+ 		if (ent.level == null) return "";
+-		return `<tr><td colspan="6" class="ve-pb-2 ve-pt-0"><i>Level ${ent.level} Bastion Facility</i></td></tr>`;
++		return `<tr><td colspan="6" class="ve-pb-2 ve-pt-0"><i>${ent.level}級堡壘設施</i></td></tr>`;
+ 	}
+ 
+ 	/* ----- */
+diff --git a/js/render.js b/js/render.js
+index dbdb287..8c38cd7 100644
+--- a/js/render.js
++++ b/js/render.js
+@@ -2077,6 +2077,12 @@ globalThis.Renderer = function () {
+ 		const fromPlugins = this._applyPlugins_useFirst("string_basic", {textStack, meta, options}, {input: str});
+ 		if (fromPlugins) return void (textStack[0] += fromPlugins);
+ 
++		const i18n = globalThis.I18nZhTwSite;
++		if (i18n) {
++			const [, prefix = "", text = str, suffix = ""] = /^(\s*)([\s\S]*?)(\s*)$/u.exec(str) || [];
++			if (i18n.hasEnglish(text)) str = `${prefix}${i18n.tEnglish(text)}${suffix}`;
++		}
++
+ 		textStack[0] += str;
+ 	};
+ 
+@@ -5470,7 +5476,7 @@ Renderer.utils = class {
+ 				if (!promises.length) return;
+ 
+ 				// region Sadly we cannot cancel or delay the print event, so, show a blocking alert
+-				alert(`All content must be loaded prior to printing. Please cancel the print and wait a few moments for loading to complete!`);
++				alert(UiUtil.getTranslatedText("All content must be loaded prior to printing. Please cancel the print and wait a few moments for loading to complete!"));
+ 
+ 				Promise.all(promises)
+ 					.then(() => {
+@@ -12808,7 +12814,7 @@ Renderer.item = class {
+ 	/* -------------------------------------------- */
+ 
+ 	static getPropertyName (ent) {
+-		return ent.name || (ent.entries || ent.entriesTemplate)[0]?.name || "Unknown";
++		return ent._displayName || ent.name || (ent.entries || ent.entriesTemplate)[0]?.name || "Unknown";
+ 	}
+ 
+ 	static _propertyMap = {};
+@@ -15645,7 +15651,8 @@ Renderer.deck = class {
+ Renderer.facility = class {
+ 	static _getFacilityRenderableEntriesMeta_space ({ent}) {
+ 		if (!ent.space) return null;
+-		return ent.space.map(spc => Renderer.facility._getSpaceEntry(spc, {isIncludeCostTime: ent.facilityType === "basic"})).joinConjunct(", ", " or ");
++		const entries = ent.space.map(spc => Renderer.facility._getSpaceEntry(spc, {isIncludeCostTime: ent.facilityType === "basic"}));
++		return globalThis.I18nZhTwContent ? entries.join("或") : entries.joinConjunct(", ", " or ");
+ 	}
+ 
+ 	static _getFacilityRenderableEntriesMeta_hirelings ({ent}) {
+@@ -15653,16 +15660,19 @@ Renderer.facility = class {
+ 
+ 		const out = ent.hirelings
+ 			.map(hire => {
+-				const ptSpace = hire.space ? ` {@style (${hire.space.toTitleCase()})|muted}` : "";
++				const space = globalThis.I18nZhTwContent?.getFacilitySpace(hire.space) || hire.space?.toTitleCase();
++				const ptSpace = hire.space ? ` {@style (${space})|muted}` : "";
+ 
+-				if (hire.exact != null) return `${hire.exact}${ptSpace}`;
+-				if (hire.min != null && hire.max != null) return `${hire.min}\u2013${hire.max}${ptSpace}`;
+-				if (hire.min != null) return `${hire.min}+ (see below${ptSpace ? ";" : ""}${ptSpace})`;
++				if (hire.exact != null) return `${hire.exact}${globalThis.I18nZhTwContent ? "名" : ""}${ptSpace}`;
++				if (hire.min != null && hire.max != null) return `${hire.min}\u2013${hire.max}${globalThis.I18nZhTwContent ? "名" : ""}${ptSpace}`;
++				if (hire.min != null) return globalThis.I18nZhTwContent
++					? `${hire.min}名以上（詳見下文${ptSpace ? "；" : ""}${ptSpace}）`
++					: `${hire.min}+ (see below${ptSpace ? ";" : ""}${ptSpace})`;
+ 
+ 				return null;
+ 			})
+ 			.filter(Boolean)
+-			.joinConjunct(", ", " or ");
++			.join(globalThis.I18nZhTwContent ? "或" : ", ");
+ 
+ 		if (out) return out;
+ 		return null;
+@@ -15670,7 +15680,8 @@ Renderer.facility = class {
+ 
+ 	static _getFacilityRenderableEntriesMeta_orders ({ent}) {
+ 		if (!ent.orders) return null;
+-		return ent.orders.map(it => it.toTitleCase()).joinConjunct(", ", " or ");
++		const orders = ent.orders.map(it => globalThis.I18nZhTwContent?.getFacilityOrder(it) || it.toTitleCase());
++		return globalThis.I18nZhTwContent ? orders.join("或") : orders.joinConjunct(", ", " or ");
+ 	}
+ 
+ 	static getFacilityRenderableEntriesMeta (ent) {
+@@ -15679,24 +15690,24 @@ Renderer.facility = class {
+ 		if (ent.prerequisite) {
+ 			entsList.push({
+ 				type: "item",
+-				name: `Prerequisite:`,
+-				entry: Renderer.utils.prerequisite.getEntry(ent.prerequisite, {styleHint: "one", isSkipPrefix: true}),
++				name: globalThis.I18nZhTwContent ? "先決條件：" : "Prerequisite:",
++				entry: Renderer.utils.prerequisite.getHtml(ent.prerequisite, {styleHint: "one", isSkipPrefix: true}),
+ 			});
+ 		} else if (ent.facilityType !== "basic") {
+-			entsList.push({type: "item", name: `Prerequisite:`, entry: "None"});
++			entsList.push({type: "item", name: globalThis.I18nZhTwContent ? "先決條件：" : "Prerequisite:", entry: globalThis.I18nZhTwContent ? "無" : "None"});
+ 		}
+ 
+ 		const entrySpace = this._getFacilityRenderableEntriesMeta_space({ent});
+-		if (entrySpace) entsList.push({type: "item", name: `Space:`, entry: entrySpace});
++		if (entrySpace) entsList.push({type: "item", name: globalThis.I18nZhTwContent ? "空間：" : "Space:", entry: entrySpace});
+ 
+ 		const entryHirelings = this._getFacilityRenderableEntriesMeta_hirelings({ent});
+-		if (entryHirelings) entsList.push({type: "item", name: `Hirelings:`, entry: entryHirelings});
++		if (entryHirelings) entsList.push({type: "item", name: globalThis.I18nZhTwContent ? "僱工：" : "Hirelings:", entry: entryHirelings});
+ 
+ 		const entryOrders = this._getFacilityRenderableEntriesMeta_orders({ent});
+-		if (entryOrders) entsList.push({type: "item", name: `Order${ent.orders.length !== 1 ? "s" : ""}:`, entry: entryOrders});
++		if (entryOrders) entsList.push({type: "item", name: globalThis.I18nZhTwContent ? "指令：" : `Order${ent.orders.length !== 1 ? "s" : ""}:`, entry: entryOrders});
+ 
+ 		return {
+-			entryLevel: ent.level ? `{@i Level ${ent.level} Bastion Facility}` : null,
++			entryLevel: ent.level ? `{@i ${globalThis.I18nZhTwContent ? `${ent.level}級堡壘設施` : `Level ${ent.level} Bastion Facility`}}` : null,
+ 			entriesDescription: [
+ 				entsList.length
+ 					? {
+@@ -15732,14 +15743,14 @@ Renderer.facility = class {
+ 		const sq = Renderer.facility._SPACE_TO_SQUARES[spc];
+ 
+ 		const ptAdditional = [
+-			sq ? `{@tip ${sq} sq|${sq} squares}` : null,
++			sq ? (globalThis.I18nZhTwContent ? `{@tip ${sq}格|${sq}個方格}` : `{@tip ${sq} sq|${sq} squares}`) : null,
+ 			Renderer.facility._getSpaceEntry_getPriceTimeEntry({spc, isIncludeCostTime}),
+ 		]
+ 			.filter(Boolean)
+ 			.join("; ");
+ 		const ptSuffix = ptAdditional ? ` {@style [${ptAdditional}]|muted;small}` : "";
+ 
+-		return [spc.toTitleCase(), ptSuffix].filter(Boolean).join(" ");
++		return [globalThis.I18nZhTwContent?.getFacilitySpace(spc) || spc.toTitleCase(), ptSuffix].filter(Boolean).join(" ");
+ 	}
+ 
+ 	static _getSpaceEntry_getPriceTimeEntry ({spc, isIncludeCostTime}) {
+@@ -15749,8 +15760,8 @@ Renderer.facility = class {
+ 
+ 		const {cost, time} = costTimeInfo;
+ 
+-		const ptTxt = `${cost} GP, ${time} days`;
+-		const ptTipBasic = `${cost} GP and ${time} days to add`;
++		const ptTxt = globalThis.I18nZhTwContent ? `${cost} GP、${time}天` : `${cost} GP, ${time} days`;
++		const ptTipBasic = globalThis.I18nZhTwContent ? `新增需花費${cost} GP與${time}天` : `${cost} GP and ${time} days to add`;
+ 
+ 		const spcPrev = Renderer.facility._SPACE_PROGRESSION[Renderer.facility._SPACE_PROGRESSION.indexOf(spc) - 1];
+ 		const costTimeInfoPrev = Renderer.facility._SPACE_TO_COST_TIME_BASIC[spcPrev];
+@@ -15758,7 +15769,9 @@ Renderer.facility = class {
+ 
+ 		const {cost: costPrev, time: timePrev} = costTimeInfoPrev;
+ 
+-		return `{@tip ${ptTxt}|${ptTipBasic}, or, ${cost - costPrev} GP and ${time - timePrev} days to expand from a ${spcPrev.toTitleCase()} facility}`;
++		return globalThis.I18nZhTwContent
++			? `{@tip ${ptTxt}|${ptTipBasic}；或花費${cost - costPrev} GP與${time - timePrev}天，從${globalThis.I18nZhTwContent.getFacilitySpace(spcPrev)}設施擴建}`
++			: `{@tip ${ptTxt}|${ptTipBasic}, or, ${cost - costPrev} GP and ${time - timePrev} days to expand from a ${spcPrev.toTitleCase()} facility}`;
+ 	}
+ 
+ 	/* -------------------------------------------- */
+diff --git a/js/utils-dataloader/utils-dataloader-dataloader.js b/js/utils-dataloader/utils-dataloader-dataloader.js
+index 9c1af04..5eadc79 100644
+--- a/js/utils-dataloader/utils-dataloader-dataloader.js
++++ b/js/utils-dataloader/utils-dataloader-dataloader.js
+@@ -143,8 +143,10 @@ class DataTypeLoaderSingleSource extends DataTypeLoader {
+ 	_getSiteIdent ({pageClean, sourceClean}) { return this._filename; }
+ 
+ 	async _pGetSiteData ({pageClean, sourceClean}) {
+-		const data = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/${this._filename}`);
+-		return I18nZhTwRules.pApplyToData(data, {filenames: [this._filename]});
++		let data = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/${this._filename}`);
++		data = await I18nZhTwRules.pApplyToData(data, {filenames: [this._filename]});
++		if (!globalThis.I18nZhTwContent?.pApplyDataFile) return data;
++		return globalThis.I18nZhTwContent.pApplyDataFile({file: this._filename, data});
+ 	}
+ }
+ 
+diff --git a/js/utils.js b/js/utils.js
+index 77e3a59..74c358a 100644
+--- a/js/utils.js
++++ b/js/utils.js
+@@ -9658,7 +9658,7 @@ if (!globalThis.IS_VTT && typeof window !== "undefined") {
+ 					const tgt = wrp.vee.closest(".cancer__anchor")?.vee.find(".cancer__disp-cancer");
+ 					if (tgt) {
+ 						anyFound = true;
+-						tgt.vee.css({display: "flex"}).vee.txt("Advertisements");
++						tgt.vee.css({display: "flex"}).vee.txt(UiUtil.getTranslatedText("Advertisements"));
+ 						clearInterval(iv);
+ 					}
+ 				}, 250);

@@ -187,6 +187,26 @@
 			RP: "聲望福利",
 		};
 
+		static _FACILITY_TYPES = {
+			basic: "基礎",
+			special: "特殊",
+		};
+
+		static _FACILITY_SPACES = {
+			cramped: "狹小",
+			roomy: "寬敞",
+			vast: "廣闊",
+		};
+
+		static _FACILITY_ORDERS = {
+			craft: "製造",
+			empower: "強化",
+			harvest: "收穫",
+			recruit: "招募",
+			research: "研究",
+			trade: "貿易",
+		};
+
 		static _FILTER_LABELS = {
 			"Ability": "屬性",
 			"Ability Bonus": "屬性加值",
@@ -467,6 +487,8 @@
 			["monster", "bestiary"],
 			["monsterFluff", "bestiary"],
 			["legendaryGroup", "bestiary"],
+			["facility", "bastions"],
+			["facilityFluff", "bastions"],
 		]);
 
 		static _FILE_TO_PROPS = new Map([
@@ -483,6 +505,8 @@
 			["magicvariants.json", ["magicvariant"]],
 			["fluff-items.json", ["itemFluff"]],
 			["bestiary/legendarygroups.json", ["legendaryGroup"]],
+			["bastions.json", ["facility"]],
+			["fluff-bastions.json", ["facilityFluff"]],
 		]);
 
 		static _CONTENT_KEYS = new Set([
@@ -755,6 +779,10 @@
 			for (const key of ["entries", "entriesHigherLevel", "additionalEntries", "entriesTemplate"]) {
 				if (!(key in canonical) || !(key in localized)) continue;
 				out[key] = this._overlayContentValue({canonical: canonical[key], localized: localized[key]});
+			}
+
+			if (prop.endsWith("Fluff") && canonical.images && localized.images) {
+				out.images = this._overlayContentValue({canonical: canonical.images, localized: localized.images});
 			}
 
 			if (prop === "background" && canonical.startingEquipment && localized.startingEquipment) {
@@ -1069,6 +1097,18 @@
 			return this._FILTER_LABELS[label] || label || "";
 		}
 
+		static getFacilityType (type) {
+			return this._FACILITY_TYPES[`${type || ""}`.toLowerCase()] || type || "未知";
+		}
+
+		static getFacilitySpace (space) {
+			return this._FACILITY_SPACES[`${space || ""}`.toLowerCase()] || space || "";
+		}
+
+		static getFacilityOrder (order) {
+			return this._FACILITY_ORDERS[`${order || ""}`.toLowerCase()] || order || "";
+		}
+
 		static _replaceVisibleText (text, replacements) {
 			const replacePart = part => replacements.reduce((out, [pattern, replacement]) => out.replace(pattern, replacement), part);
 			if (!text.includes("<")) return replacePart(text);
@@ -1080,12 +1120,31 @@
 
 		static localizeAbilityText (text) {
 			if (typeof text !== "string") return text;
+			const counts = {one: "一", two: "二", three: "三", four: "四", five: "五", six: "六"};
 			const replacements = [
 				[/Ability Scores?/gi, "屬性值"],
 				[/Choose one of:/gi, "選擇其一："],
+				[/\bFrom\s+(.+?)\s+choose\s+/gi, "從$1中選擇"],
+				[/\bChoose\s+(one|two|three|four|five|six)\s+different\s+([+−-]\s*\d+)/gi, (_, count, amount) => `選擇${counts[count.toLowerCase()] || count}個不同屬性，各 ${amount}`],
+				[/\bChoose\s+any\s+(one|two|three|four|five|six|\d+)\s+unique\s+([+−-]\s*\d+)/gi, (_, count, amount) => `任選${counts[count.toLowerCase()] || count}個不同屬性，各 ${amount}`],
+				[/;\s*choose\s+any\s+other\s+(one|two|three|four|five|six|\d+)\s+unique\s+([+−-]\s*\d+)/gi, (_, count, amount) => `；再選${counts[count.toLowerCase()] || count}個其他不同屬性，各 ${amount}`],
+				[/\bChoose\s+any\s+other\s+(one|two|three|four|five|six|\d+)\s+unique\s+([+−-]\s*\d+)/gi, (_, count, amount) => `選擇${counts[count.toLowerCase()] || count}個其他不同屬性，各 ${amount}`],
+				[/\b(one|two|three|four|five|six|\d+)\s+unique\s+([+−-]\s*\d+)/gi, (_, count, amount) => `${counts[count.toLowerCase()] || count}個不同屬性，各 ${amount}`],
+				[/;\s*choose\s+any\s+other\s+/gi, "；再選任一其他屬性 "],
+				[/\bChoose\s+any\s+other\s+/gi, "選擇任一其他屬性 "],
+				[/\bChoose\s+any\s+/gi, "選擇任一屬性 "],
+				[/\bone\s+other\s+ability\s+to\s+increase\s+by\s+(\d+)/gi, "另一個屬性 +$1"],
+				[/\bone\s+other\s+ability\s+to\s+decrease\s+by\s+(\d+)/gi, "另一個屬性 -$1"],
+				[/\bone\s+ability\s+to\s+increase\s+by\s+(\d+)/gi, "一個屬性 +$1"],
+				[/\bone\s+ability\s+to\s+decrease\s+by\s+(\d+)/gi, "一個屬性 -$1"],
+				[/\bAny combination\b/gi, "任意組合"],
 				[/Any Other/gi, "任一其他屬性"],
 				[/Origin\s*\(Any\)/gi, "出身（任意）"],
 				[/Any(?=\s*[+−-]\s*\d)/gi, "任一屬性"],
+				[/\bAny\b/gi, "任意"],
+				[/\bChoose\b/gi, "選擇"],
+				[/\bunique\b/gi, "個不同屬性，各"],
+				[/\bdifferent\b/gi, "個不同屬性，各"],
 				[/Origin/gi, "出身"],
 				[/Lineage/gi, "血統"],
 				[/None/gi, "無"],
@@ -1095,6 +1154,10 @@
 				[/Intelligence|\bInt\b/gi, "智力"],
 				[/Wisdom|\bWis\b/gi, "感知"],
 				[/Charisma|\bCha\b/gi, "魅力"],
+				[/,\s*and\s+/gi, "、"],
+				[/\band\b/gi, "及"],
+				[/\bor\b/gi, "或"],
+				[/\bfrom\b/gi, "取自"],
 			];
 			return this._replaceVisibleText(text, replacements);
 		}
@@ -1116,6 +1179,13 @@
 		static localizeSpeedText (text) {
 			if (typeof text !== "string") return text;
 			return this._replaceVisibleText(text, [
+				[/\bwalk(?:ing)?\s+equal(?:\s+to)?\s+your\s+walking\s+speed\b/gi, "步行速度等同於你的步行速度"],
+				[/\bclimb(?:ing)?\s+equal(?:\s+to)?\s+your\s+walking\s+speed\b/gi, "攀爬速度等同於你的步行速度"],
+				[/\bfly(?:ing)?\s+equal(?:\s+to)?\s+your\s+walking\s+speed\b/gi, "飛行速度等同於你的步行速度"],
+				[/\bswim(?:ming)?\s+equal(?:\s+to)?\s+your\s+walking\s+speed\b/gi, "游泳速度等同於你的步行速度"],
+				[/\bburrow(?:ing)?\s+equal(?:\s+to)?\s+your\s+walking\s+speed\b/gi, "掘穴速度等同於你的步行速度"],
+				[/\bequal(?:\s+to)?\s+your\s+walking\s+speed\b/gi, "等同於你的步行速度"],
+				[/\bwalking\s+speed\b/gi, "步行速度"],
 				[/\bwalk(?:ing)?\b/gi, "步行"],
 				[/\bclimb(?:ing)?\b/gi, "攀爬"],
 				[/\bfly(?:ing)?\b/gi, "飛行"],
@@ -1124,6 +1194,9 @@
 				[/\bhover\b/gi, "懸浮"],
 				[/\bft\.(?=\s|[;,]|$)|\bft\b/gi, "尺"],
 				[/\bfeet\b/gi, "尺"],
+				[/\bspeed\b/gi, "速度"],
+				[/\bor\b/gi, "或"],
+				[/\band\b/gi, "及"],
 			]);
 		}
 
@@ -1188,6 +1261,35 @@
 			if (typeof text !== "string") return text;
 			const replacements = [
 				[/Prerequisites?:/gi, "先決條件："],
+				[/Membership in the\s*/gi, "成員資格："],
+				[/Purple Dragon Knights/gi, "紫龍騎士團"],
+				[/Cult of the Dragon/gi, "龍巫教"],
+				[/Emerald Enclave/gi, "翠綠閒庭"],
+				[/Harpers/gi, "豎琴手同盟"],
+				[/Lords['’] Alliance/gi, "領主聯盟"],
+				[/Order of the Gauntlet/gi, "臂鎧騎士團"],
+				[/Red Wizards/gi, "紅袍巫師"],
+				[/Zhentarim/gi, "散塔林會"],
+				[/House Kundarak/gi, "昆達拉克家族"],
+				[/House Lyrandar/gi, "林蘭德家族"],
+				[/House Orien/gi, "歐瑞恩家族"],
+				[/Dragonmarked House/gi, "龍紋家族"],
+				[/Renown\s+(\d+)\+/gi, "聲望$1以上"],
+				[/\bwith any\b/gi, "且屬於任一"],
+				[/\bwith\b/gi, "且屬於"],
+				[/Expertise in a skill/gi, "任一技能專精"],
+				[/Skill Expertise/gi, "技能專精"],
+				[/Proficiency in a skill/gi, "任一技能熟練"],
+				[/Proficiency in the\s*/gi, "熟練："],
+				[/\bskills?\b/gi, "技能"],
+				[/Ability to use an?\s*/gi, "能夠使用"],
+				[/\bas an?\s*/gi, "作為"],
+				[/Arcane Focus/gi, "奧術法器"],
+				[/Druidic Focus/gi, "德魯伊法器"],
+				[/Holy Symbol/gi, "聖徽"],
+				[/Artisan[’']s Tools/gi, "工匠工具"],
+				[/Fighting Style feature/gi, "戰鬥風格特性"],
+				[/Unarmored Defense feature/gi, "無甲防禦特性"],
 				[/\bLvl\s+(\d+)/gi, "$1級"],
 				[/\bLevel\s+(\d+)\+/gi, "$1級以上"],
 				[/\bLevel\s+(\d+)/gi, "$1級"],
@@ -1213,7 +1315,7 @@
 				[/Proficiency/gi, "熟練"],
 				[/Special/gi, "特殊"],
 			];
-			return this.localizeAbilityText(this._replaceVisibleText(text, replacements));
+			return this.localizeSkillText(this.localizeAbilityText(this._replaceVisibleText(text, replacements)));
 		}
 
 		static getDamageType (type) {

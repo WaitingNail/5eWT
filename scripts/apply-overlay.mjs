@@ -11,6 +11,7 @@ const patchPaths = [
 	path.join(projectRoot, "patches", "0003-zh-tw-monsters-runtime.patch"),
 	path.join(projectRoot, "patches", "0004-zh-tw-monster-copy-identity.patch"),
 	path.join(projectRoot, "patches", "0005-zh-tw-character-options-and-item-list-runtime.patch"),
+	path.join(projectRoot, "patches", "0006-zh-tw-small-fragments-and-bastions.patch"),
 ];
 const copyRoots = [
   "requirements-zh-tw.txt",
@@ -68,4 +69,4 @@ if (!canGitApply(patchPaths.at(-1), ["--reverse"])) {
 	}
 }
 
-console.log("Applied zh-TW interface, Class, rules, spells, character-options, items, and monsters overlay; assets were refreshed.");
+console.log("Applied zh-TW interface, Class, rules, spells, character-options, items, monsters, and Bastions overlay; assets were refreshed.");
