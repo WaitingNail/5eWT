@@ -519,7 +519,19 @@ index dbdb287..8c38cd7 100644
  		textStack[0] += str;
  	};
  
-@@ -5470,7 +5476,7 @@ Renderer.utils = class {
+@@ -3213,8 +3219,9 @@ Renderer.getAbilityData._doRenderOuter = function (abObj) {
+ };
+ 
+ Renderer._AbilityData = function ({asText, asTextShort, asCollection, areNegative} = {}) {
+-	this.asText = asText || "";
+-	this.asTextShort = asTextShort || "";
++	const i18n = globalThis.I18nZhTwContent;
++	this.asText = i18n?.localizeAbilityText(asText || "") || asText || "";
++	this.asTextShort = i18n?.localizeAbilityText(asTextShort || "") || asTextShort || "";
+ 	this.asCollection = asCollection || [];
+ 	this.areNegative = areNegative || [];
+ };
+@@ -5470,7 +5477,7 @@ Renderer.utils = class {
  				if (!promises.length) return;
  
  				// region Sadly we cannot cancel or delay the print event, so, show a blocking alert
@@ -528,7 +540,7 @@ index dbdb287..8c38cd7 100644
  
  				Promise.all(promises)
  					.then(() => {
-@@ -12808,7 +12814,7 @@ Renderer.item = class {
+@@ -12808,7 +12815,7 @@ Renderer.item = class {
  	/* -------------------------------------------- */
  
  	static getPropertyName (ent) {
@@ -537,7 +549,7 @@ index dbdb287..8c38cd7 100644
  	}
  
  	static _propertyMap = {};
-@@ -15645,7 +15651,8 @@ Renderer.deck = class {
+@@ -15645,7 +15652,8 @@ Renderer.deck = class {
  Renderer.facility = class {
  	static _getFacilityRenderableEntriesMeta_space ({ent}) {
  		if (!ent.space) return null;
@@ -547,7 +559,7 @@ index dbdb287..8c38cd7 100644
  	}
  
  	static _getFacilityRenderableEntriesMeta_hirelings ({ent}) {
-@@ -15653,16 +15660,19 @@ Renderer.facility = class {
+@@ -15653,16 +15661,19 @@ Renderer.facility = class {
  
  		const out = ent.hirelings
  			.map(hire => {
@@ -572,7 +584,7 @@ index dbdb287..8c38cd7 100644
  
  		if (out) return out;
  		return null;
-@@ -15670,7 +15680,8 @@ Renderer.facility = class {
+@@ -15670,7 +15681,8 @@ Renderer.facility = class {
  
  	static _getFacilityRenderableEntriesMeta_orders ({ent}) {
  		if (!ent.orders) return null;
@@ -582,7 +594,7 @@ index dbdb287..8c38cd7 100644
  	}
  
  	static getFacilityRenderableEntriesMeta (ent) {
-@@ -15679,24 +15690,24 @@ Renderer.facility = class {
+@@ -15679,24 +15691,24 @@ Renderer.facility = class {
  		if (ent.prerequisite) {
  			entsList.push({
  				type: "item",
@@ -614,7 +626,7 @@ index dbdb287..8c38cd7 100644
  			entriesDescription: [
  				entsList.length
  					? {
-@@ -15732,14 +15743,14 @@ Renderer.facility = class {
+@@ -15732,14 +15744,14 @@ Renderer.facility = class {
  		const sq = Renderer.facility._SPACE_TO_SQUARES[spc];
  
  		const ptAdditional = [
@@ -631,7 +643,7 @@ index dbdb287..8c38cd7 100644
  	}
  
  	static _getSpaceEntry_getPriceTimeEntry ({spc, isIncludeCostTime}) {
-@@ -15749,8 +15760,8 @@ Renderer.facility = class {
+@@ -15749,8 +15761,8 @@ Renderer.facility = class {
  
  		const {cost, time} = costTimeInfo;
  
@@ -642,7 +654,7 @@ index dbdb287..8c38cd7 100644
  
  		const spcPrev = Renderer.facility._SPACE_PROGRESSION[Renderer.facility._SPACE_PROGRESSION.indexOf(spc) - 1];
  		const costTimeInfoPrev = Renderer.facility._SPACE_TO_COST_TIME_BASIC[spcPrev];
-@@ -15758,7 +15769,9 @@ Renderer.facility = class {
+@@ -15758,7 +15770,9 @@ Renderer.facility = class {
  
  		const {cost: costPrev, time: timePrev} = costTimeInfoPrev;
  

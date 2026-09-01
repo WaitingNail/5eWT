@@ -29,6 +29,19 @@ test("generated ability and speed fragments are fully localized", () => {
 		I18n.localizeAbilityText("Charisma +2; Choose any other two unique +1"),
 		"魅力 +2；再選二個其他不同屬性，各 +1",
 	);
+
+	const generatedAbility = globalThis.Renderer.getAbilityData([{
+		choose: {
+			weighted: {
+				from: globalThis.Parser.ABIL_ABVS,
+				weights: [1, 1, 1],
+			},
+		},
+	}]);
+	assert.equal(generatedAbility.asText, "選擇三個不同屬性，各 +1");
+	assert.equal(generatedAbility.asTextShort, "任意組合 +1/+1/+1");
+	assert.doesNotMatch(JSON.stringify(generatedAbility), /choose three different/iu);
+
 	assert.equal(
 		I18n.localizeSpeedText("Fly equal to your walking speed"),
 		"飛行速度等同於你的步行速度",
