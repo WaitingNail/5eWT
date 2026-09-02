@@ -10,7 +10,7 @@ export const PATH_SOURCE = path.join(ROOT, "translation/zh-TW/site/messages.json
 export const PATH_DATA = path.join(ROOT, "data/zh-TW/site.json");
 export const PATH_DATA_JS = path.join(ROOT, "js/zh-tw/site-i18n-data.js");
 
-const RE_STABLE_KEY = /^[a-z][A-Za-z0-9-]*(?:\.[a-z][A-Za-z0-9-]*)+$/;
+const RE_STABLE_KEY = /^[a-z][A-Za-z0-9-]*(?:\.[a-z0-9][A-Za-z0-9-]*)+$/;
 const RE_PLACEHOLDER = /\{([A-Za-z][A-Za-z0-9_.-]*)\}/g;
 const RE_HTML = /<\/?[a-z][^>]*>/gi;
 const RE_UNSAFE_HTML = /<\s*script\b|\son[a-z]+\s*=|javascript\s*:/i;
