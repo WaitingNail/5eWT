@@ -70,7 +70,7 @@ assert.ok(copyRecords.length > 0);
 
 const fnLoadJson = DataUtil.loadJSON;
 DataUtil.loadJSON = async url => {
-	const data = readJson(url.replace(/^\\.\\//, ""));
+	const data = readJson(url.replace(/^\.\//, ""));
 	await DataUtil.pDoMetaMerge(`test:${url}`, data, {isSkipMetaMergeCache: true});
 	return data;
 };
