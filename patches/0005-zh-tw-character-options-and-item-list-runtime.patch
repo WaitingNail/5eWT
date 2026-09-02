@@ -1,35 +1,43 @@
-diff --git a/js/utils.js b/js/utils.js
---- a/js/utils.js
-+++ b/js/utils.js
-@@ -4552,6 +4552,17 @@ class _DataUtilPropConfigSingleSource extends _DataUtilPropConfig {
- 	static async loadJSON () { return this.loadRawJSON(); }
+diff --git a/js/filter-items.js b/js/filter-items.js
+index 5fb6a04..8ec936d 100644
+--- a/js/filter-items.js
++++ b/js/filter-items.js
+@@ -602,6 +602,7 @@ class ModalFilterItems extends ModalFilterBase {
  
- 	static async _pLoadAndLocalize ({isUnmerged = false} = {}) {
-+		if (
-+			!isUnmerged
-+			&& ["backgrounds.json", "races.json"].includes(this._FILENAME)
-+			&& globalThis.I18nZhTwContent?.pApplyDataFile
-+		) {
-+			const data = MiscUtil.copyFast(await DataUtil.loadRawJSON(this.getDataUrl()));
-+			const localized = await globalThis.I18nZhTwContent.pApplyDataFile({file: this._FILENAME, data});
-+			await DataUtil.pDoMetaMerge(CryptUtil.uid(), localized, {isSkipMetaMergeCache: true});
-+			return localized;
-+		}
-+
- 		const fnLoad = isUnmerged ? DataUtil.loadRawJSON.bind(DataUtil) : DataUtil.loadJSON.bind(DataUtil);
- 		const data = await fnLoad(this.getDataUrl());
- 		if (!globalThis.I18nZhTwContent?.pApplyDataFile) return data;
+ 		Renderer.item.enhanceItem(item);
+ 		pageFilter.mutateAndAddToFilters(item);
++		const displayName = globalThis.I18nZhTwContent.getDisplayName(item);
+ 
+ 		const eleRow = document.createElement("div");
+ 		eleRow.className = "ve-px-0 ve-w-100 ve-flex-col ve-no-shrink";
+@@ -617,7 +618,7 @@ class ModalFilterItems extends ModalFilterBase {
+ 				<div class="ve-ui-list__btn-inline ve-px-2 ve-no-select" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
+ 			</div>
+ 
+-			<div class="ve-col-5 ve-px-1 ${item._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${item._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${item.name}</div>
++			<div class="ve-col-5 ve-px-1 ${item._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${item._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${displayName}</div>
+ 			<div class="ve-col-5 ve-px-1">${type.uppercaseFirst()}</div>
+ 			<div class="ve-col-1 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(item.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(item.source)}">${source}${Parser.sourceJsonToMarkerHtml(item.source, {isList: true})}</div>
+ 		</div>`;
+@@ -627,11 +628,12 @@ class ModalFilterItems extends ModalFilterBase {
+ 		const listItem = new ListItem(
+ 			itI,
+ 			eleRow,
+-			item.name,
++			displayName,
+ 			{
+ 				source,
+ 				sourceJson: item.source,
+ 				...ListItem.getCommonValues(item),
++				englishName: globalThis.I18nZhTwContent.getCanonicalName(item),
+ 				type,
+ 			},
+ 			{
+diff --git a/js/items.js b/js/items.js
+index d029090..765db56 100644
 --- a/js/items.js
 +++ b/js/items.js
-@@ -1,5 +1,7 @@
- import {RenderItems} from "./render-items.js";
- 
-+const {I18nZhTwContent} = globalThis;
-+
- class ItemsSublistManager extends SublistManager {
- 	constructor () {
- 		super({
-@@ -29,22 +31,22 @@
+@@ -31,22 +31,22 @@ class ItemsSublistManager extends SublistManager {
  	static _getRowTemplate () {
  		return [
  			new SublistCellTemplate({
@@ -56,23 +64,16 @@ diff --git a/js/utils.js b/js/utils.js
  				css: "ve-text-center ve-col-2 ve-pl-1 ve-pr-0",
  				colStyle: "text-center",
  			}),
-@@ -52,8 +54,9 @@
+@@ -54,7 +54,7 @@ class ItemsSublistManager extends SublistManager {
  	}
  
  	pGetSublistItem (item, hash, {count = 1} = {}) {
+-		const displayName = I18nZhTwContent?.getDisplayName(item) || item.name;
 +		const displayName = I18nZhTwContent.getDisplayName(item);
  		const cellsText = [
--			item.name,
-+			displayName,
+ 			displayName,
  			item._l_weight || "\u2014",
- 			item._l_value,
- 		];
-@@ -110,10 +113,11 @@
- 		const listItem = new ListItem(
- 			hash,
- 			ele,
--			item.name,
-+			displayName,
+@@ -117,6 +117,7 @@ class ItemsSublistManager extends SublistManager {
  			{
  				source: Parser.sourceJsonToAbv(item.source),
  				...ListItem.getCommonValues(item),
@@ -80,19 +81,34 @@ diff --git a/js/utils.js b/js/utils.js
  				weight: Parser.weightValueToNumber(item.weight),
  				cost: item.value || 0,
  			},
-@@ -244,9 +248,9 @@
- 			},
+@@ -239,9 +240,9 @@ class ItemsPage extends ListPage {
+ 			dataProps: ["item"],
  
+ 			bookViewOptions: {
+-				nameSingular: "物品",
+-				namePlural: "物品",
+-				pageTitle: "物品書籍檢視",
++				nameSingular: "item",
++				namePlural: "items",
++				pageTitle: "Items Book View",
+ 				propMarkdown: "item",
+ 				isSublistItemsCountable: true,
+ 			},
+@@ -249,7 +250,7 @@ class ItemsPage extends ListPage {
  			tableViewOptions: {
--				title: "Items",
-+				title: "物品",
+ 				title: "物品",
  				colTransforms: {
--					name: UtilsTableview.COL_TRANSFORM_NAME,
+-					name: {name: "名稱", transform: item => I18nZhTwContent?.getDisplayName(item) || item.name},
 +					name: {name: "名稱", transform: (item) => I18nZhTwContent.getDisplayName(item)},
  					source: UtilsTableview.COL_TRANSFORM_SOURCE,
  					page: UtilsTableview.COL_TRANSFORM_PAGE,
  					rarity: {name: "Rarity"},
-@@ -295,6 +299,7 @@
+@@ -294,11 +295,11 @@ class ItemsPage extends ListPage {
+ 
+ 	getListItem (item, itI, isExcluded) {
+ 		const hash = UrlUtil.autoEncodeHash(item);
+-		const displayName = I18nZhTwContent?.getDisplayName(item) || item.name;
+ 
  		if (Renderer.item.isExcluded(item, {hash})) return null;
  		if (item.noDisplay) return null;
  		Renderer.item.enhanceItem(item);
@@ -100,21 +116,7 @@ diff --git a/js/utils.js b/js/utils.js
  
  		this._pageFilter.mutateAndAddToFilters(item, isExcluded);
  
-@@ -313,7 +318,7 @@
- 						href: `#${hash}`,
- 						clazz: "ve-lst__row-border ve-lst__row-inner",
- 						children: [
--							veE({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-pr-1 ve-bold`, txt: item.name}),
-+							veE({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-pr-1 ve-bold`, txt: displayName}),
- 							veE({tag: "span", clazz: `ve-col-4-5 ve-px-1`, txt: type}),
- 							veE({tag: "span", clazz: `ve-col-1-5 ve-px-1 ve-text-center`, txt: item._l_value}),
- 							veE({tag: "span", clazz: `ve-col-1-5 ve-px-1 ve-text-center`, txt: item._l_weight}),
-@@ -331,10 +336,11 @@
- 			const listItem = new ListItem(
- 				itI,
- 				eleLi,
--				item.name,
-+				displayName,
+@@ -339,6 +340,7 @@ class ItemsPage extends ListPage {
  				{
  					source,
  					...ListItem.getCommonValues(item),
@@ -122,21 +124,18 @@ diff --git a/js/utils.js b/js/utils.js
  					type,
  					cost: item.value || 0,
  					weight: Parser.weightValueToNumber(item.weight),
-@@ -358,7 +364,7 @@
- 						href: `#${hash}`,
- 						clazz: "ve-lst__row-border ve-lst__row-inner",
- 						children: [
--							veE({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-bold`, txt: item.name}),
-+							veE({tag: "span", clazz: `ve-col-3-5 ve-pl-0 ve-bold`, txt: displayName}),
- 							veE({tag: "span", clazz: `ve-col-4`, txt: type}),
- 							veE({tag: "span", clazz: `ve-col-1-5 ve-text-center`, txt: item._l_weight}),
- 							veE({tag: "span", clazz: `ve-col-0-6 ve-text-center`, txt: item._attunementCategory !== VeCt.STR_NO_ATTUNEMENT ? "×" : ""}),
-@@ -382,10 +388,11 @@
- 			const listItem = new ListItem(
- 				itI,
- 				eleLi,
--				item.name,
-+				displayName,
+@@ -369,8 +371,8 @@ class ItemsPage extends ListPage {
+ 							veE({
+ 								tag: "span",
+ 								clazz: `ve-col-1-4 ve-text-center ${item.rarity ? `ve-itm__rarity-${item.rarity}` : ""}`,
+-								title: I18nZhTwContent?.getItemRarity(item.rarity) || (item.rarity || "").toTitleCase(),
+-								txt: I18nZhTwContent?.getItemRarityShort(item.rarity) || Parser.itemRarityToShort(item.rarity) || "",
++								title: (item.rarity || "").toTitleCase(),
++								txt: Parser.itemRarityToShort(item.rarity) || "",
+ 							}),
+ 							veE({
+ 								tag: "span",
+@@ -390,6 +392,7 @@ class ItemsPage extends ListPage {
  				{
  					source,
  					...ListItem.getCommonValues(item),
@@ -144,37 +143,45 @@ diff --git a/js/utils.js b/js/utils.js
  					type,
  					rarity: item.rarity,
  					attunement: item._attunementCategory !== VeCt.STR_NO_ATTUNEMENT,
---- a/js/filter-items.js
-+++ b/js/filter-items.js
-@@ -602,6 +602,7 @@
+@@ -412,7 +415,7 @@ class ItemsPage extends ListPage {
+ 		FilterBox.selectFirstVisible(this._dataList);
+ 	}
  
- 		Renderer.item.enhanceItem(item);
- 		pageFilter.mutateAndAddToFilters(item);
-+		const displayName = globalThis.I18nZhTwContent.getDisplayName(item);
+-	_tabTitleStats = "物品";
++	_tabTitleStats = "Item";
  
- 		const eleRow = document.createElement("div");
- 		eleRow.className = "ve-px-0 ve-w-100 ve-flex-col ve-no-shrink";
-@@ -617,7 +618,7 @@
- 				<div class="ve-ui-list__btn-inline ve-px-2 ve-no-select" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
- 			</div>
+ 	_renderStats_doBuildStatsTab ({ent}) {
+ 		this._pgContent.vee.empty().vee.appends(RenderItems.getRenderedItem(ent));
+@@ -518,8 +521,8 @@ class ItemsPage extends ListPage {
+ 		super._addData(data);
  
--			<div class="ve-col-5 ve-px-1 ${item._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${item._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${item.name}</div>
-+			<div class="ve-col-5 ve-px-1 ${item._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${item._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${displayName}</div>
- 			<div class="ve-col-5 ve-px-1">${type.uppercaseFirst()}</div>
- 			<div class="ve-col-1 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(item.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(item.source)}">${source}${Parser.sourceJsonToMarkerHtml(item.source, {isList: true})}</div>
- 		</div>`;
-@@ -627,11 +628,12 @@
- 		const listItem = new ListItem(
- 			itI,
- 			eleRow,
--			item.name,
-+			displayName,
- 			{
- 				source,
- 				sourceJson: item.source,
- 				...ListItem.getCommonValues(item),
-+				englishName: globalThis.I18nZhTwContent.getCanonicalName(item),
- 				type,
- 			},
- 			{
-
+ 		// Populate table labels
+-		veEs(`h3.ele-mundane span.side-label`).vee.txt("非魔法");
+-		veEs(`h3.ele-magic span.side-label`).vee.txt("魔法");
++		veEs(`h3.ele-mundane span.side-label`).vee.txt("Mundane");
++		veEs(`h3.ele-magic span.side-label`).vee.txt("Magic");
+ 	}
+ 
+ 	_addListItem (listItem) {
+diff --git a/js/utils.js b/js/utils.js
+index b768090..77e3a59 100644
+--- a/js/utils.js
++++ b/js/utils.js
+@@ -4551,6 +4551,17 @@ class _DataUtilPropConfigSingleSource extends _DataUtilPropConfig {
+ 	static async loadJSON () { return this.loadRawJSON(); }
+ 
+ 	static async _pLoadAndLocalize ({isUnmerged = false} = {}) {
++		if (
++			!isUnmerged
++			&& ["backgrounds.json", "races.json"].includes(this._FILENAME)
++			&& globalThis.I18nZhTwContent?.pApplyDataFile
++		) {
++			const data = MiscUtil.copyFast(await DataUtil.loadRawJSON(this.getDataUrl()));
++			const localized = await globalThis.I18nZhTwContent.pApplyDataFile({file: this._FILENAME, data});
++			await DataUtil.pDoMetaMerge(CryptUtil.uid(), localized, {isSkipMetaMergeCache: true});
++			return localized;
++		}
++
+ 		const fnLoad = isUnmerged ? DataUtil.loadRawJSON.bind(DataUtil) : DataUtil.loadJSON.bind(DataUtil);
+ 		const data = await fnLoad(this.getDataUrl());
+ 		if (!globalThis.I18nZhTwContent?.pApplyDataFile) return data;
