@@ -29,7 +29,11 @@ jobs:
           node-version: 24
 
       - name: Build and verify the Traditional Chinese site
-        run: npm run setup
+        run: |
+          npm run bootstrap
+          npm run apply
+          node vendor/5etools-src/node/zh-tw/apply-site-i18n-html.mjs
+          npm run verify
 
       - name: Prepare the static site
         run: |
