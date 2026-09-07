@@ -65,6 +65,7 @@ const required = [
 	"node/zh-tw/test-monster-i18n.mjs",
 	"node/zh-tw/test-monster-page-runtime.mjs",
 	"node/zh-tw/validate-monster-translations.mjs",
+	"node/zh-tw/test-small-fragments-and-bastions.mjs",
 ];
 
 for (const relativePath of required) {
@@ -80,7 +81,8 @@ for (const script of [
   "js/variantrules.js",
   "js/quickreference.js",
   "js/bookutils.js",
-  "js/listpage.js",
+	"js/listpage.js",
+	"js/multisource.js",
   "js/render.js",
   "js/render-actions.js",
   "js/render-conditionsdiseases.js",
@@ -95,10 +97,12 @@ for (const script of [
 	"js/filter-feats.js",
 	"js/filter-optionalfeatures.js",
 	"js/filter-races.js",
+	"js/filter-items.js",
 	"js/filter/filter/filter-filter-ability-score.js",
 	"js/optionalfeatures.js",
 	"js/races.js",
 	"js/render-races.js",
+	"js/bastions.js",
 	"js/items.js",
 	"js/bestiary.js",
 	"js/render-bestiary.js",
@@ -133,5 +137,6 @@ runNode("node/zh-tw/test-item-page-runtime.mjs");
 runNode("node/zh-tw/validate-monster-translations.mjs");
 runNode("node/zh-tw/test-monster-i18n.mjs");
 runNode("node/zh-tw/test-monster-page-runtime.mjs");
+runNode("node/zh-tw/test-small-fragments-and-bastions.mjs");
 execFileSync("git", ["diff", "--check"], {cwd: upstreamRoot, stdio: "inherit"});
 console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, items, and monsters overlay verification passed.");

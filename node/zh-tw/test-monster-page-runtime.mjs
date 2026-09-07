@@ -26,6 +26,8 @@ const localized = await I18n.pApplyEntities({
 
 const dragon = localized.find(it => it.name === "Adult Black Dragon" && it.source === "MM");
 Renderer.monster.updateParsed(dragon);
+assert.equal(I18n.getBilingualName(dragon), "成年黑龍（Adult Black Dragon）");
+assert.equal(Renderer.utils.getBilingualName(dragon), "成年黑龍（Adult Black Dragon）");
 const dragonEntries = Renderer.monster.getSubEntries(dragon, {renderer: Renderer.get()});
 assert.ok(dragonEntries.entsTrait.some(it => it.name === "水陸兩棲"));
 assert.ok(dragonEntries.entsAction.some(it => it.name === "多重攻擊"));
@@ -96,12 +98,16 @@ assert.match(metadata, /火焰/u);
 assert.match(metadata, /中毒/u);
 
 const bestiarySource = readText("js/bestiary.js");
+const multisourceSource = readText("js/multisource.js");
 const rendererSource = readText("js/render-bestiary.js");
 const utilsSource = readText("js/utils.js");
 assert.match(bestiarySource, /_displayName/u);
 assert.match(bestiarySource, /怪物圖鑑/u);
 assert.match(bestiarySource, /資料卡/u);
 assert.match(bestiarySource, /傳奇動作/u);
+assert.match(bestiarySource, /fnDefaultSourceSel/u, "bestiary must default to a bounded set of primary sources");
+assert.match(bestiarySource, /maxInitialSources: 12/u);
+assert.match(multisourceSource, /storedActiveSources\?\.length > this\._maxInitialSources/u);
 assert.match(rendererSource, /_displayAc/u);
 assert.match(rendererSource, /_displayLanguages/u);
 assert.match(rendererSource, /傳奇動作/u);

@@ -47,6 +47,8 @@ const allPurposeTool = itemData.item.find(it => it.name === "+1 All-Purpose Tool
 Renderer.item.enhanceItem(allPurposeTool, {styleHint: "classic"});
 assert.equal(allPurposeTool.name, "+1 All-Purpose Tool");
 assert.equal(allPurposeTool._displayName, "+1 萬能工具");
+assert.equal(I18n.getBilingualName(allPurposeTool), "+1 萬能工具（+1 All-Purpose Tool）");
+assert.equal(Renderer.utils.getBilingualName(allPurposeTool), "+1 萬能工具（+1 All-Purpose Tool）");
 assert.match(allPurposeTool._entryType, /奇物/u);
 assert.match(allPurposeTool._entryType, /施法法器/u);
 assert.equal(allPurposeTool._attunement, "（需要同調；由奇械師）");
@@ -71,11 +73,13 @@ assert.doesNotMatch(propertyText, /versatile/iu);
 
 const itemsPageSource = readText("js/items.js");
 const itemModalSource = readText("js/filter-items.js");
-assert.match(itemsPageSource, /const displayName = I18nZhTwContent\.getDisplayName\(item\)/u);
+const rendererSource = readText("js/render.js");
+assert.match(itemsPageSource, /const displayName = I18nZhTwContent\.getBilingualName\(item\)/u);
 assert.equal((itemsPageSource.match(/txt: displayName/g) || []).length, 2, "both mundane and magic item lists must render localized names");
 assert.match(itemsPageSource, /englishName: I18nZhTwContent\.getCanonicalName\(item\)/u);
 assert.match(itemModalSource, /\$\{displayName\}<\/div>/u);
 assert.match(itemModalSource, /englishName: globalThis\.I18nZhTwContent\.getCanonicalName\(item\)/u);
+assert.match(rendererSource, /const name = Renderer\.utils\.getBilingualName\(ent\)/u);
 
 console.log("Item page integration tests: PASS");
 console.log("Canonical hashes retained; localized lists, metadata, attunement, variants, properties, and prose rendered.");

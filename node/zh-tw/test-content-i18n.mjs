@@ -56,7 +56,9 @@ assert.equal(localized[0].name, "Acid Splash");
 assert.equal(localized[0]._displayName, "酸液飛濺");
 assert.equal(I18n.getCanonicalName(localized[0]), "Acid Splash");
 assert.equal(I18n.getDisplayName(localized[0]), "酸液飛濺");
+assert.equal(I18n.getBilingualName(localized[0]), "酸液飛濺（Acid Splash）");
 assert.match(localized[0].entries[0], /你擲出一顆酸液球/u);
+assert.doesNotMatch(localized[0].entries[0], /Acid Splash/u, "descriptive prose must remain Chinese-only");
 assert.match(localized[0].entries[0], /\{@damage 1d6\}/u);
 assert.strictEqual(I18n.getCanonicalEntity(localized[0]), canonicalPhb.spell[0]);
 
@@ -99,6 +101,7 @@ const [missingFallback] = await I18n.pApplyEntities({
 	fnLoad: async () => null,
 });
 assert.deepEqual(missingFallback, canonicalPhb.spell[0], "missing locale data must safely fall back to English");
+assert.equal(I18n.getBilingualName(missingFallback), "Acid Splash");
 
 const index = readJson("data/zh-TW/spells/index.json");
 let spellCount = 0;

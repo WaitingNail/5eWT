@@ -2,6 +2,10 @@ import assert from "node:assert/strict";
 
 import {I18nZhTwClass} from "../../js/zh-tw/class-i18n.js";
 
+assert.equal(I18nZhTwClass.getBilingualName({name: "戰士", ENG_name: "Fighter"}), "戰士（Fighter）");
+assert.equal(I18nZhTwClass.getBilingualShortName({shortName: "戰鬥大師", ENG_shortName: "Battle Master"}), "戰鬥大師（Battle Master）");
+assert.equal(I18nZhTwClass.getBilingualName({name: "Fighter"}), "Fighter");
+
 const localized = I18nZhTwClass.localizeSourceHtml(
 	`PHB, page 1. Available in the <span title="Systems Reference Document (5.2)">SRD 5.2.1</span> and the Basic Rules (5.5e/2024). Reprinted as Wizard in PHB`,
 );

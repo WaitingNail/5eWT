@@ -18,6 +18,29 @@ export class I18nZhTwClass {
 		return entity?.ENG_shortName || entity?.shortName || this.getCanonicalName(entity);
 	}
 
+	static _getBilingualName ({displayName, canonicalName}) {
+		displayName = `${displayName || ""}`.trim();
+		canonicalName = `${canonicalName || ""}`.trim();
+		if (!displayName) return canonicalName;
+		if (!canonicalName || displayName.toLowerCase() === canonicalName.toLowerCase()) return displayName;
+		if (displayName.endsWith(`（${canonicalName}）`) || displayName.endsWith(` (${canonicalName})`)) return displayName;
+		return `${displayName}（${canonicalName}）`;
+	}
+
+	static getBilingualName (entity) {
+		return this._getBilingualName({
+			displayName: entity?._displayName || entity?.name,
+			canonicalName: this.getCanonicalName(entity),
+		});
+	}
+
+	static getBilingualShortName (entity, {displayName = null} = {}) {
+		return this._getBilingualName({
+			displayName: displayName || entity?._displayShortName || entity?.shortName || entity?._displayName || entity?.name,
+			canonicalName: this.getCanonicalShortName(entity),
+		});
+	}
+
 	static localizeSourceHtml (html) {
 		return html
 			.replaceAll("<b>Source:</b>", "<b>來源：</b>")

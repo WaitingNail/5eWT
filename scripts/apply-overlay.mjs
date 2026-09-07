@@ -12,6 +12,7 @@ const patchPaths = [
 	path.join(projectRoot, "patches", "0004-zh-tw-monster-copy-identity.patch"),
 	path.join(projectRoot, "patches", "0005-zh-tw-character-options-and-item-list-runtime.patch"),
 	path.join(projectRoot, "patches", "0006-zh-tw-small-fragments-and-bastions.patch"),
+	path.join(projectRoot, "patches", "0007-zh-tw-bilingual-names-and-bestiary-loading.patch"),
 ];
 const copyRoots = [
   "requirements-zh-tw.txt",
@@ -69,4 +70,10 @@ if (!canGitApply(patchPaths.at(-1), ["--reverse"])) {
 	}
 }
 
-console.log("Applied zh-TW interface, Class, rules, spells, character-options, items, monsters, and Bastions overlay; assets were refreshed.");
+execFileSync(
+	process.execPath,
+	[path.join(upstreamRoot, "node", "zh-tw", "apply-site-i18n-html.mjs")],
+	{cwd: upstreamRoot, stdio: "inherit"},
+);
+
+console.log("Applied zh-TW interface, bilingual entity names, Class, rules, spells, character-options, items, monsters, and Bastions overlay; assets were refreshed.");

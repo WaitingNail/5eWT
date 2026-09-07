@@ -132,6 +132,7 @@ test("all canonical Bastion facilities receive Traditional Chinese names and con
 	const archive = data.facility.find(ent => ent.name === "Archive" && ent.source === "XDMG");
 	assert.equal(archive.name, "Archive", "canonical identity must remain stable");
 	assert.equal(archive._displayName, "檔案館");
+	assert.equal(I18n.getBilingualName(archive), "檔案館（Archive）");
 	assert.match(JSON.stringify(archive.entries), /研究：有益學識/u);
 	assert.match(JSON.stringify(archive.entries), /\{@spell Legend Lore\|XPHB\|通曉傳奇\}/u);
 
@@ -180,7 +181,7 @@ test("Bastion list, filter, and direct data-loader paths use the localized displ
 		readFile(new URL("js/utils-dataloader/utils-dataloader-dataloader.js", PUBLIC_DIR), "utf8"),
 	]);
 
-	assert.match(pageSource, /I18nZhTwContent\.getDisplayName\(ent\)/u);
+	assert.match(pageSource, /I18nZhTwContent\.getBilingualName\(ent\)/u);
 	assert.match(pageSource, /englishName: I18nZhTwContent\.getCanonicalName\(ent\)/u);
 	assert.match(pageSource, /pageTitle: "堡壘設施列印檢視"/u);
 	assert.match(filterSource, /I18nZhTwContent\.getFacilityType/u);

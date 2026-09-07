@@ -160,6 +160,8 @@ assert.equal(action.entries[1].type, "entries", "nested structural types must re
 assert.strictEqual(I18nZhTwRules.getCanonicalEntity(action), canonical.action[0]);
 assert.equal(Object.keys(action).includes("_i18nCanonical"), false, "canonical backup must not leak into serialization");
 assert.equal(I18nZhTwRules.getNameSearchText(action), "攻擊 Attack");
+assert.equal(I18nZhTwRules.getBilingualName(action), "攻擊（Attack）");
+assert.equal(I18nZhTwRules.getBilingualName(canonical.action[0]), "Attack");
 
 const condition2014 = localized.condition[0];
 const condition2024 = localized.condition[1];
@@ -253,7 +255,7 @@ assert.match(sourceDataloader, /"generated\/gendata-variantrules\.json"/u, "gene
 
 for (const pageFile of ["actions.js", "conditionsdiseases.js", "variantrules.js"]) {
 	const sourcePage = fs.readFileSync(new URL(`../../js/${pageFile}`, import.meta.url), "utf8");
-	assert.match(sourcePage, /getDisplayName\(/u, `${pageFile} does not render the Traditional Chinese display name`);
+	assert.match(sourcePage, /getBilingualName\(/u, `${pageFile} does not render the bilingual entity name`);
 	assert.match(sourcePage, /englishName:/u, `${pageFile} does not index the canonical English name for search`);
 }
 assert.ok(fs.readFileSync(new URL("../../js/actions.js", import.meta.url), "utf8").includes("englishTime"), "Actions English time is not indexed for search");

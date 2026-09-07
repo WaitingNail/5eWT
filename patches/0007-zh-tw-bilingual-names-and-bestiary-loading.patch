@@ -1,0 +1,569 @@
+--- a/js/items.js
++++ b/js/items.js
+@@ -54,7 +54,7 @@
+ 	}
+ 
+ 	pGetSublistItem (item, hash, {count = 1} = {}) {
+-		const displayName = I18nZhTwContent.getDisplayName(item);
++		const displayName = I18nZhTwContent.getBilingualName(item);
+ 		const cellsText = [
+ 			displayName,
+ 			item._l_weight || "\u2014",
+@@ -250,7 +250,7 @@
+ 			tableViewOptions: {
+ 				title: "物品",
+ 				colTransforms: {
+-					name: {name: "名稱", transform: (item) => I18nZhTwContent.getDisplayName(item)},
++					name: {name: "名稱", transform: (item) => I18nZhTwContent.getBilingualName(item)},
+ 					source: UtilsTableview.COL_TRANSFORM_SOURCE,
+ 					page: UtilsTableview.COL_TRANSFORM_PAGE,
+ 					rarity: {name: "Rarity"},
+@@ -299,7 +299,7 @@
+ 		if (Renderer.item.isExcluded(item, {hash})) return null;
+ 		if (item.noDisplay) return null;
+ 		Renderer.item.enhanceItem(item);
+-		const displayName = I18nZhTwContent.getDisplayName(item);
++		const displayName = I18nZhTwContent.getBilingualName(item);
+ 
+ 		this._pageFilter.mutateAndAddToFilters(item, isExcluded);
+ 
+--- a/js/spells.js
++++ b/js/spells.js
+@@ -39,7 +39,7 @@
+ 	}
+ 
+ 	pGetSublistItem (spell, hash) {
+-		const displayName = I18nZhTwContent.getDisplayName(spell);
++		const displayName = I18nZhTwContent.getBilingualName(spell);
+ 		const school = I18nZhTwContent.getSpellSchoolAndSubschools(spell.school, spell.subschools);
+ 		const time = PageFilterSpells.getTblTimeStr(spell.time[0]);
+ 		const concentration = spell._isConc ? "×" : "";
+@@ -332,7 +332,7 @@
+ 		this._seenHashes.add(hash);
+ 
+ 		const isExcluded = ExcludeUtil.isExcluded(hash, "spell", spell.source);
+-		const displayName = I18nZhTwContent.getDisplayName(spell);
++		const displayName = I18nZhTwContent.getBilingualName(spell);
+ 
+ 		this._pageFilter.mutateAndAddToFilters(spell, isExcluded);
+ 
+--- a/js/feats.js
++++ b/js/feats.js
+@@ -29,7 +29,7 @@
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
+-		const displayName = I18nZhTwContent.getDisplayName(it);
++		const displayName = I18nZhTwContent.getBilingualName(it);
+ 		const categoryDisplay = I18nZhTwContent.getFeatCategory(it.category || "Other");
+ 		const cellsText = [
+ 			displayName,
+@@ -97,7 +97,7 @@
+ 
+ 		const source = Parser.sourceJsonToAbv(feat.source);
+ 		const hash = UrlUtil.autoEncodeHash(feat);
+-		const displayName = I18nZhTwContent.getDisplayName(feat);
++		const displayName = I18nZhTwContent.getBilingualName(feat);
+ 		const categoryDisplay = I18nZhTwContent.getFeatCategory(feat.category || "Other");
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+--- a/js/backgrounds.js
++++ b/js/backgrounds.js
+@@ -24,7 +24,7 @@
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
+-		const name = I18nZhTwContent.getDisplayName(it);
++		const name = I18nZhTwContent.getBilingualName(it);
+ 		const skills = it._skillDisplay;
+ 		const cellsText = [
+ 			name,
+@@ -86,7 +86,7 @@
+ 		const eleLi = document.createElement("div");
+ 		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
+ 
+-		const name = I18nZhTwContent.getDisplayName(bg);
++		const name = I18nZhTwContent.getBilingualName(bg);
+ 		const hash = UrlUtil.autoEncodeHash(bg);
+ 		const source = Parser.sourceJsonToAbv(bg.source);
+ 
+--- a/js/optionalfeatures.js
++++ b/js/optionalfeatures.js
+@@ -40,7 +40,7 @@
+ 		const prerequisite = I18nZhTwContent.localizeRulesText(Renderer.utils.prerequisite.getHtml(it.prerequisite, {isListMode: true, keyOptions: {level: {isNameOnly: true}}}));
+ 		const level = Renderer.optionalfeature.getListPrerequisiteLevelText(it.prerequisite);
+ 		const levelDisplay = level === "\u2014" ? level : `${level}級`;
+-		const displayName = I18nZhTwContent.getDisplayName(it);
++		const displayName = I18nZhTwContent.getBilingualName(it);
+ 		const cellsText = [
+ 			displayName,
+ 			new SublistCell({title: it._dFeatureType.join(", "), text: it._lFeatureType}),
+@@ -115,7 +115,7 @@
+ 		const prerequisite = I18nZhTwContent.localizeRulesText(Renderer.utils.prerequisite.getHtml(it.prerequisite, {isListMode: true, keyOptions: {level: {isNameOnly: true}}}));
+ 		const level = Renderer.optionalfeature.getListPrerequisiteLevelText(it.prerequisite);
+ 		const levelDisplay = level === "\u2014" ? level : `${level}級`;
+-		const displayName = I18nZhTwContent.getDisplayName(it);
++		const displayName = I18nZhTwContent.getBilingualName(it);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-col-0-3 ve-px-0 ve-flex-vh-center ve-lst__btn-toggle-expand ve-self-flex-stretch ve-no-select">[+]</span>
+--- a/js/races.js
++++ b/js/races.js
+@@ -25,7 +25,7 @@
+ 
+ 	pGetSublistItem (race, hash) {
+ 		const {sizeText, sizeShortText} = PageFilterRaces.getSizeDisplayInfo(race.size);
+-		const displayName = I18nZhTwContent.getDisplayName(race);
++		const displayName = I18nZhTwContent.getBilingualName(race);
+ 
+ 		const cellsText = [
+ 			displayName,
+@@ -111,7 +111,7 @@
+ 		const {sizeText, sizeShortText} = PageFilterRaces.getSizeDisplayInfo(race.size);
+ 
+ 		const source = Parser.sourceJsonToAbv(race.source);
+-		const displayName = I18nZhTwContent.getDisplayName(race);
++		const displayName = I18nZhTwContent.getBilingualName(race);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-col-0-4 ve-px-0 ve-flex-vh-center ve-lst__btn-toggle-expand ve-self-flex-stretch ve-no-select">[+]</span>
+--- a/js/bestiary.js
++++ b/js/bestiary.js
+@@ -105,7 +105,7 @@
+ 	}
+ 
+ 	async pGetSublistItem (mon, hash, {count = 1, customHashId = null, initialData} = {}) {
+-		const name = mon._displayName || mon.name;
++		const name = I18nZhTwContent?.getBilingualName(mon) || mon.name;
+ 		const type = _BestiaryUtil.getListDisplayType(mon);
+ 		const cr = mon._pCr;
+ 		const hashBase = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY](mon);
+@@ -324,11 +324,13 @@
+ 
+ 	constructor () {
+ 		const pFnGetFluff = Renderer.monster.pGetFluff.bind(Renderer.monster);
++		const fnDefaultSourceSel = source => [Parser.SRC_MM, Parser.SRC_XMM].includes(source);
+ 
+ 		super({
+ 			pageFilter: new PageFilterBestiary({
+ 				sourceFilterOpts: {
+ 					pFnOnChange: (...args) => this._pLoadSource(...args),
++					selFn: fnDefaultSourceSel,
+ 				},
+ 			}),
+ 
+@@ -361,7 +363,7 @@
+ 			tableViewOptions: {
+ 				title: "怪物圖鑑",
+ 				colTransforms: {
+-					name: {name: "名稱", transform: mon => I18nZhTwContent?.getDisplayName(mon) || mon.name},
++					name: {name: "名稱", transform: mon => I18nZhTwContent?.getBilingualName(mon) || mon.name},
+ 					source: {...UtilsTableview.COL_TRANSFORM_SOURCE, name: "來源"},
+ 					page: {...UtilsTableview.COL_TRANSFORM_PAGE, name: "頁碼"},
+ 					size: {name: "體型", transform: size => I18nZhTwContent?.localizeMonsterMetaText(Renderer.utils.getRenderedSize(size)) || Renderer.utils.getRenderedSize(size)},
+@@ -435,6 +437,8 @@
+ 			propEntryData: "monster",
+ 
+ 			propLoader: "monster",
++			fnDefaultSourceSel,
++			maxInitialSources: 12,
+ 
+ 			listSyntax: new ListSyntaxBestiary({fnGetDataList: () => this._dataList, pFnGetFluff}),
+ 		});
+@@ -475,7 +479,7 @@
+ 
+ 	getListItem (mon, mI) {
+ 		const hash = UrlUtil.autoEncodeHash(mon);
+-		const displayName = I18nZhTwContent?.getDisplayName(mon) || mon.name;
++		const displayName = I18nZhTwContent?.getBilingualName(mon) || mon.name;
+ 		if (this._seenHashes.has(hash)) return null;
+ 		this._seenHashes.add(hash);
+ 
+--- a/js/bastions.js
++++ b/js/bastions.js
+@@ -27,7 +27,7 @@
+ 	}
+ 
+ 	pGetSublistItem (ent, hash) {
+-		const displayName = I18nZhTwContent.getDisplayName(ent);
++		const displayName = I18nZhTwContent.getBilingualName(ent);
+ 		const facilityType = I18nZhTwContent.getFacilityType(ent.facilityType);
+ 
+ 		const cellsText = [
+@@ -87,7 +87,7 @@
+ 			tableViewOptions: {
+ 				title: "堡壘設施",
+ 				colTransforms: {
+-					name: {name: "名稱", transform: ent => I18nZhTwContent.getDisplayName(ent)},
++					name: {name: "名稱", transform: ent => I18nZhTwContent.getBilingualName(ent)},
+ 					source: UtilsTableview.COL_TRANSFORM_SOURCE,
+ 					page: UtilsTableview.COL_TRANSFORM_PAGE,
+ 					_level: {name: "等級", transform: ent => ent.level || ""},
+@@ -121,7 +121,7 @@
+ 
+ 		const hash = UrlUtil.autoEncodeHash(ent);
+ 		const source = Parser.sourceJsonToAbv(ent.source);
+-		const displayName = I18nZhTwContent.getDisplayName(ent);
++		const displayName = I18nZhTwContent.getBilingualName(ent);
+ 		const facilityType = I18nZhTwContent.getFacilityType(ent.facilityType);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+--- a/js/actions.js
++++ b/js/actions.js
+@@ -21,7 +21,7 @@
+ 	pGetSublistItem (it, hash) {
+ 		const time = it.time ? it.time.map(tm => PageFilterActions.getTimeText(tm)).join("/") : "\u2014";
+ 		const englishTime = it.time ? it.time.map(tm => typeof tm === "string" ? tm : Parser.getTimeToFull(tm)).join("/") : "\u2014";
+-		const displayName = I18nZhTwRules.getDisplayName(it);
++		const displayName = I18nZhTwRules.getBilingualName(it);
+ 		const cellsText = [displayName, time];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+@@ -85,7 +85,7 @@
+ 		const hash = UrlUtil.autoEncodeHash(it);
+ 		const time = it.time ? it.time.map(tm => PageFilterActions.getTimeText(tm)).join("/") : "\u2014";
+ 		const englishTime = it.time ? it.time.map(tm => typeof tm === "string" ? tm : Parser.getTimeToFull(tm)).join("/") : "\u2014";
+-		const displayName = I18nZhTwRules.getDisplayName(it);
++		const displayName = I18nZhTwRules.getBilingualName(it);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-col-0-3 ve-px-0 ve-flex-vh-center ve-lst__btn-toggle-expand ve-self-flex-stretch ve-no-select">[+]</span>
+--- a/js/conditionsdiseases.js
++++ b/js/conditionsdiseases.js
+@@ -18,7 +18,7 @@
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
+-		const displayName = I18nZhTwRules.getDisplayName(it);
++		const displayName = I18nZhTwRules.getBilingualName(it);
+ 		const displayType = it._displayType || PageFilterConditionsDiseases.getDisplayProp(it.type || it.__prop);
+ 		const cellsText = [displayType, displayName];
+ 
+@@ -84,7 +84,7 @@
+ 
+ 		const source = Parser.sourceJsonToAbv(it.source);
+ 		const hash = UrlUtil.autoEncodeHash(it);
+-		const displayName = I18nZhTwRules.getDisplayName(it);
++		const displayName = I18nZhTwRules.getBilingualName(it);
+ 		const displayType = it._displayType || PageFilterConditionsDiseases.getDisplayProp(it.type || it.__prop);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+--- a/js/variantrules.js
++++ b/js/variantrules.js
+@@ -19,7 +19,7 @@
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
+-		const displayName = I18nZhTwRules.getDisplayName(it);
++		const displayName = I18nZhTwRules.getBilingualName(it);
+ 		const ruleTypeDisplay = it.ruleType ? I18nZhTwRules.getRuleTypeDisplay(it.ruleType) : "\u2014";
+ 		const cellsText = [displayName, ruleTypeDisplay];
+ 
+@@ -90,7 +90,7 @@
+ 
+ 		const source = Parser.sourceJsonToAbv(rule.source);
+ 		const hash = UrlUtil.autoEncodeHash(rule);
+-		const displayName = I18nZhTwRules.getDisplayName(rule);
++		const displayName = I18nZhTwRules.getBilingualName(rule);
+ 		const ruleTypeDisplay = rule.ruleType ? I18nZhTwRules.getRuleTypeDisplay(rule.ruleType) : "\u2014";
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+--- a/js/render.js
++++ b/js/render.js
+@@ -3354,6 +3354,15 @@
+ 		return it.sourceSub ? ` \u2014 ${it.sourceSub}` : "";
+ 	}
+ 
++	static getBilingualName (ent) {
++		const displayName = `${ent?._displayName || ent?.name || ""}`.trim();
++		const canonicalName = `${ent?._i18nCanonical?.name || ent?.ENG_name || ent?.name || ""}`.trim();
++		if (!displayName) return canonicalName;
++		if (!canonicalName || displayName.toLowerCase() === canonicalName.toLowerCase()) return displayName;
++		if (displayName.endsWith(`（${canonicalName}）`) || displayName.endsWith(` (${canonicalName})`)) return displayName;
++		return `${displayName}（${canonicalName}）`;
++	}
++
+ 	/**
+ 	 * @param ent Entity to render the name row for.
+ 	 * @param [opts] Options object.
+@@ -3371,7 +3380,7 @@
+ 
+ 		if (opts.htmlControlRhs && typeof opts.htmlControlRhs !== "string") throw new Error(`Non-string passed as "htmlControlRhs"!`);
+ 
+-		const name = ent._displayName || ent.name;
++		const name = Renderer.utils.getBilingualName(ent);
+ 		const pageLinkPart = SourceUtil.getAdventureBookSourceHref(ent.source, ent.page);
+ 
+ 		let dataPart = `data-name="${name.qq()}"`;
+@@ -7663,25 +7672,29 @@
+ 	static getDisplayNamedClassFeatureEntry (ent, {styleHint = null} = {}) {
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
+-		if (styleHint === "classic" || !ent.level || !ent.name) return ent;
+-		return {_displayName: `等級 ${ent.level}：${ent._displayName || ent.name}`, ...ent};
++		if (!ent.name) return ent;
++		const displayName = Renderer.utils.getBilingualName(ent);
++		if (styleHint === "classic" || !ent.level) return {...ent, _displayName: displayName};
++		return {...ent, _displayName: `等級 ${ent.level}：${displayName}`};
+ 	}
+ 
+ 	static getDisplayNamedSubclassFeatureEntry (ent, {styleHint = null, isEditionMismatch = false} = {}) {
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
++		const cpy = MiscUtil.copyFast(ent);
++		if (ent.name) cpy._displayName = Renderer.utils.getBilingualName(ent);
++
+ 		// N.b.: enabled for "classic" style to support viewing "one" classes in "classic" view...
+-		if (/* styleHint === "classic" || */!ent.level || !ent.entries?.length) return ent;
++		if (/* styleHint === "classic" || */!ent.level || !ent.entries?.length) return cpy;
+ 		// ...unless edition mismatch, as this suggests (a) existing text, and (b), features which may have
+ 		//   their levels otherwise mis-labelled.
+-		if (isEditionMismatch) return ent;
++		if (isEditionMismatch) return cpy;
+ 
+-		const cpy = MiscUtil.copyFast(ent);
+ 		cpy.entries = cpy.entries
+ 			.map(ent => {
+ 				if (ent.type !== "entries" || !ent.name) return ent;
+ 				if (!ent.level) return ent;
+-				return {_displayName: `等級 ${ent.level}：${ent._displayName || ent.name}`, ...ent};
++				return {...ent, _displayName: `等級 ${ent.level}：${Renderer.utils.getBilingualName(ent)}`};
+ 			});
+ 		return cpy;
+ 	}
+--- a/js/classes.js
++++ b/js/classes.js
+@@ -291,7 +291,7 @@
+ 	static getBtnTitleSubclass (sc) {
+ 		const titlePartReprint = sc.isReprinted ? "（此子職業已有較新來源的再版版本）" : "";
+ 		const sourcePart = I18nZhTwClass.localizeSourceHtml(Renderer.utils.getSourceAndPageText(sc));
+-		return `${sc.name}${sc.ENG_name ? `（${sc.ENG_name}）` : ""}；來源：${sourcePart}${titlePartReprint}`;
++		return `${I18nZhTwClass.getBilingualName(sc)}；來源：${sourcePart}${titlePartReprint}`;
+ 	}
+ 
+ 	static getBaseShortName (sc) {
+@@ -626,7 +626,7 @@
+ 			if (target._ !== ixToLoad) {
+ 				Hist.lastLoadedId = ixToLoad;
+ 				const cls = this._dataList[ixToLoad];
+-				document.title = `${cls ? cls.name : "職業"} - 5etools`;
++				document.title = `${cls ? I18nZhTwClass.getBilingualName(cls) : "職業"} - 5etools`;
+ 				this._updateSelected();
+ 				target._ = ixToLoad;
+ 			} else {
+@@ -927,7 +927,7 @@
+ 	getListItem (cls, clsI, isExcluded) {
+ 		const hash = UrlUtil.autoEncodeHash(cls);
+ 		const source = Parser.sourceJsonToAbv(cls.source);
+-		const displayName = `${cls.name}${cls.ENG_name ? ` (${cls.ENG_name})` : ""}`;
++		const displayName = I18nZhTwClass.getBilingualName(cls);
+ 
+ 		const lnk = veT`<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-bold ve-col-8 ve-pl-0 ve-pr-1">${displayName}</span>
+@@ -1244,7 +1244,7 @@
+ 		veT`<table class="ve-cls-tbl shadow-big ve-w-100 ve-mb-2">
+ 			<tbody>
+ 			<tr><th class="ve-tbl-border" colspan="999"></th></tr>
+-			<tr><th class="ve-text-left ve-cls-tbl__disp-name" colspan="999">${cls.name}</th></tr>
++			<tr><th class="ve-text-left ve-cls-tbl__disp-name" colspan="999">${I18nZhTwClass.getBilingualName(cls)}</th></tr>
+ 			<tr>
+ 				<th colspan="3"></th> <!-- spacer to match the 3 default cols (level, prof, features) -->
+ 				${elesTblGroupHeaders}
+@@ -1357,7 +1357,7 @@
+ 				.map((it, ixFeature) => {
+ 					const featureId = `${ixLvl}-${ixFeature}`;
+ 
+-					const lnk = veT`<a>${it._displayNameTable || it._displayName || it.name}</a>`
++					const lnk = veT`<a>${it._displayNameTable || I18nZhTwClass.getBilingualName(it)}</a>`
+ 						.vee.onn("click", () => {
+ 							this._lastScrollFeature = null;
+ 							this._state.feature = null;
+@@ -1843,7 +1843,8 @@
+ 		const dispSource = veT`<div class="ve-ml-1" title="${Parser.sourceJsonToFull(sc.source)}">(${Parser.sourceJsonToAbv(sc.source)})</div>`;
+ 		const hkSourcesVisible = () => {
+ 			const displayName = this._state.isShowScSources ? ClassesPage.getBaseShortName(sc) : sc.shortName;
+-			dispName.vee.txt(`${displayName}${sc.ENG_shortName ? ` (${sc.ENG_shortName})` : ""}`);
++			const canonicalName = I18nZhTwClass.getCanonicalShortName(sc);
++			dispName.vee.txt(displayName.toLowerCase() === canonicalName.toLowerCase() ? displayName : `${displayName}（${canonicalName}）`);
+ 			dispSource.vee.toggle(!!this._state.isShowScSources);
+ 		};
+ 		this._addHookBase("isShowScSources", hkSourcesVisible);
+@@ -2214,7 +2215,7 @@
+ 				if (this._state.isViewActiveScComp) await this._subclassComparisonView.pOpen();
+ 				else {
+ 					this._subclassComparisonView.teardown();
+-					document.title = `${cls ? cls.name : "職業"} - 5etools`;
++					document.title = `${cls ? I18nZhTwClass.getBilingualName(cls) : "職業"} - 5etools`;
+ 				}
+ 			} finally {
+ 				this._unlock("sc-comparison");
+@@ -2237,7 +2238,7 @@
+ 				if (this._state.isViewActiveBook) await this._classBookView.pOpen();
+ 				else {
+ 					this._classBookView.teardown();
+-					document.title = `${cls ? cls.name : "職業"} - 5etools`;
++					document.title = `${cls ? I18nZhTwClass.getBilingualName(cls) : "職業"} - 5etools`;
+ 				}
+ 			} finally {
+ 				this._unlock("view-book");
+@@ -2895,7 +2896,9 @@
+ 		cls.subclasses
+ 			.filter(sc => !ClassesPage.isSubclassExcluded_(cls, sc))
+ 			.forEach((sc, i) => {
+-				const name = sc.isReprinted ? `${ClassesPage.getBaseShortName(sc)} (${Parser.sourceJsonToAbv(sc.source)})` : sc.shortName;
++				const nameBase = sc.isReprinted ? ClassesPage.getBaseShortName(sc) : sc.shortName;
++				const nameBilingual = I18nZhTwClass.getBilingualShortName(sc, {displayName: nameBase});
++				const name = sc.isReprinted ? `${nameBilingual} (${Parser.sourceJsonToAbv(sc.source)})` : nameBilingual;
+ 				const activeClassName = UtilClassesPage.getSubclassDisplayClassButton({displayType: UtilClassesPage.getSubclassDisplayType(cls, sc)});
+ 				const stateKey = UrlUtil.getStateKeySubclass(sc);
+ 
+--- a/js/multisource.js
++++ b/js/multisource.js
+@@ -2,13 +2,15 @@
+ 
+ /** @abstract */
+ class ListPageMultiSource extends ListPage {
+-	constructor ({propLoader, ...rest}) {
++	constructor ({propLoader, fnDefaultSourceSel = null, maxInitialSources = null, ...rest}) {
+ 		super({
+ 			...rest,
+ 			isLoadDataAfterFilterInit: true,
+ 		});
+ 
+ 		this._propLoader = propLoader;
++		this._fnDefaultSourceSel = fnDefaultSourceSel || PageFilterBase.defaultSourceSelFn;
++		this._maxInitialSources = maxInitialSources;
+ 		this._loadedSources = {};
+ 		this._lastFilterValues = null;
+ 	}
+@@ -35,7 +37,7 @@
+ 
+ 	async _pForceLoadDefaultSources () {
+ 		const defaultSources = Object.keys(this._loadedSources)
+-			.filter(s => PageFilterBase.defaultSourceSelFn(s));
++			.filter(s => this._fnDefaultSourceSel(s));
+ 		await Promise.all(defaultSources.map(src => this._pLoadSource(src, "yes")));
+ 	}
+ 
+@@ -96,11 +98,15 @@
+ 			.forEach(src => this._loadedSources[src] = {source: src, loaded: false});
+ 
+ 		// collect a list of sources to load
+-		const defaultSel = [...siteSourcesAvail].filter(s => PageFilterBase.defaultSourceSelFn(s));
++		const defaultSel = [...siteSourcesAvail].filter(s => this._fnDefaultSourceSel(s));
++		const storedActiveSources = await this._filterBox.pGetStoredActiveSources();
++		const initialActiveSources = this._maxInitialSources != null && storedActiveSources?.length > this._maxInitialSources
++			? defaultSel
++			: storedActiveSources || defaultSel;
+ 
+ 		const userSel = [
+ 			// Selected in filter
+-			...await this._filterBox.pGetStoredActiveSources() || defaultSel,
++			...initialActiveSources,
+ 			// From entities in sublist
+ 			...await this._sublistManager.pGetSelectedSources() || [],
+ 			// From current link
+--- a/js/filter-races.js
++++ b/js/filter-races.js
+@@ -289,7 +289,7 @@
+ 		const abilityDisplay = _I18N_ZH_TW_RACES.localizeAbilityText(ability.asTextShort);
+ 		const size = (race.size || [Parser.SZ_VARIES]).map(sz => _I18N_ZH_TW_RACES.getSizeFull(sz)).join("/");
+ 		const source = Parser.sourceJsonToAbv(race.source);
+-		const displayName = _I18N_ZH_TW_RACES.getDisplayName(race);
++		const displayName = _I18N_ZH_TW_RACES.getBilingualName(race);
+ 
+ 		eleRow.innerHTML = `<div class="ve-w-100 ve-flex-vh-center ve-lst__row-border veapp__list-row ve-no-select ve-lst__wrp-cells">
+ 			<div class="ve-col-0-5 ve-pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="ve-no-events">` : `<input type="checkbox" class="ve-no-events">`}</div>
+--- a/js/filter-optionalfeatures.js
++++ b/js/filter-optionalfeatures.js
+@@ -250,7 +250,7 @@
+ 		const prerequisite = _I18N_ZH_TW_OPTIONAL_FEATURES.localizeRulesText(Renderer.utils.prerequisite.getHtml(optfeat.prerequisite, {isListMode: true, keyOptions: {level: {isNameOnly: true}}}));
+ 		const level = Renderer.optionalfeature.getListPrerequisiteLevelText(optfeat.prerequisite);
+ 		const levelDisplay = level === "\u2014" ? level : `${level}級`;
+-		const displayName = _I18N_ZH_TW_OPTIONAL_FEATURES.getDisplayName(optfeat);
++		const displayName = _I18N_ZH_TW_OPTIONAL_FEATURES.getBilingualName(optfeat);
+ 
+ 		eleRow.innerHTML = `<div class="ve-w-100 ve-flex-vh-center ve-lst__row-border veapp__list-row ve-no-select ve-lst__wrp-cells">
+ 			<div class="ve-col-0-5 ve-pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="ve-no-events">` : `<input type="checkbox" class="ve-no-events">`}</div>
+--- a/js/filter-backgrounds.js
++++ b/js/filter-backgrounds.js
+@@ -177,7 +177,7 @@
+ 
+ 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BACKGROUNDS](bg);
+ 		const source = Parser.sourceJsonToAbv(bg.source);
+-		const displayName = _I18N_ZH_TW_BACKGROUNDS.getDisplayName(bg);
++		const displayName = _I18N_ZH_TW_BACKGROUNDS.getBilingualName(bg);
+ 
+ 		eleRow.innerHTML = `<div class="ve-w-100 ve-flex-vh-center ve-lst__row-border veapp__list-row ve-no-select ve-lst__wrp-cells">
+ 			<div class="ve-col-0-5 ve-pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="ve-no-events">` : `<input type="checkbox" class="ve-no-events">`}</div>
+--- a/js/filter-feats.js
++++ b/js/filter-feats.js
+@@ -206,7 +206,7 @@
+ 
+ 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_FEATS](feat);
+ 		const source = Parser.sourceJsonToAbv(feat.source);
+-		const displayName = _I18N_ZH_TW_FEATS.getDisplayName(feat);
++		const displayName = _I18N_ZH_TW_FEATS.getBilingualName(feat);
+ 		const categoryDisplay = _I18N_ZH_TW_FEATS.getFeatCategory(feat.category || "Other");
+ 
+ 		eleRow.innerHTML = `<div class="ve-w-100 ve-flex-vh-center ve-lst__row-border veapp__list-row ve-no-select ve-lst__wrp-cells">
+--- a/js/filter-spells.js
++++ b/js/filter-spells.js
+@@ -661,7 +661,7 @@
+ 
+ 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_SPELLS](spell);
+ 		const source = Parser.sourceJsonToAbv(spell.source);
+-		const displayName = I18nZhTwContent.getDisplayName(spell);
++		const displayName = I18nZhTwContent.getBilingualName(spell);
+ 		const levelText = PageFilterSpells.getTblLevelStr(spell);
+ 		const time = PageFilterSpells.getTblTimeStr(spell.time[0]);
+ 		const school = I18nZhTwContent.getSpellSchoolAndSubschools(spell.school, spell.subschools);
+--- a/js/filter-items.js
++++ b/js/filter-items.js
+@@ -40,7 +40,7 @@
+ 	static _getMasteryDisplay (mastery) {
+ 		const {name, source} = DataUtil.proxy.unpackUid("itemMastery", mastery, "itemMastery");
+ 		const ent = MiscUtil.get(Renderer.item._masteryMap, source.toLowerCase(), name.toLowerCase());
+-		const displayName = globalThis.I18nZhTwContent?.getDisplayName(ent) || name.toTitleCase();
++		const displayName = globalThis.I18nZhTwContent?.getBilingualName(ent) || name.toTitleCase();
+ 		if (SourceUtil.isSiteSource(source)) return displayName;
+ 		return `${displayName} (${Parser.sourceJsonToAbv(source)})`;
+ 	}
+@@ -117,7 +117,7 @@
+ 	static mutateForFilters (item) {
+ 		this._mutateForFilters_commonSources(item, {isIncludeBaseSource: true});
+ 
+-		item._fProperties = item.property ? item.property.map(p => globalThis.I18nZhTwContent?.getDisplayName(Renderer.item.getProperty(p?.uid || p)) || Renderer.item.getProperty(p?.uid || p)?.name).filter(Boolean) : [];
++		item._fProperties = item.property ? item.property.map(p => globalThis.I18nZhTwContent?.getBilingualName(Renderer.item.getProperty(p?.uid || p)) || Renderer.item.getProperty(p?.uid || p)?.name).filter(Boolean) : [];
+ 
+ 		this._mutateForFilters_commonMisc(item);
+ 		if (item._isItemGroup) item._fMisc.push("Item Group");
+@@ -604,7 +604,7 @@
+ 
+ 		Renderer.item.enhanceItem(item);
+ 		pageFilter.mutateAndAddToFilters(item);
+-		const displayName = globalThis.I18nZhTwContent.getDisplayName(item);
++		const displayName = globalThis.I18nZhTwContent.getBilingualName(item);
+ 
+ 		const eleRow = document.createElement("div");
+ 		eleRow.className = "ve-px-0 ve-w-100 ve-flex-col ve-no-shrink";
+--- a/js/utils.js
++++ b/js/utils.js
+@@ -4620,8 +4620,15 @@
+ 		// stat blocks. Apply the zh-TW sidecar to each raw source before resolving
+ 		// those copies, so inherited traits/actions are assembled in Chinese too.
+ 		if (!isUnmerged && ["monster", "monsterFluff"].includes(this._PROP) && globalThis.I18nZhTwContent?.pApplyEntities) {
+-			const json = MiscUtil.copyFast(await DataUtil.loadRawJSON(url));
+-			let data = (json[this._PROP] || []).filter(MultiSourceUtil.isEntityIndexKeyMatch.bind(this, indexKey, this._PROP));
++			const [jsonRaw] = await Promise.all([
++				DataUtil.loadRawJSON(url),
++				globalThis.I18nZhTwContent.pPreloadEntityFile?.({prop: this._PROP, file}),
++			]);
++			const json = Object.fromEntries(
++				Object.entries(jsonRaw)
++					.map(([key, value]) => [key, key === this._PROP ? value : MiscUtil.copyFast(value)]),
++			);
++			let data = (jsonRaw[this._PROP] || []).filter(MultiSourceUtil.isEntityIndexKeyMatch.bind(this, indexKey, this._PROP));
+ 			data = await globalThis.I18nZhTwContent.pApplyEntities({prop: this._PROP, file, entities: data});
+ 			json[this._PROP] = data;
+ 			await DataUtil.pDoMetaMerge(CryptUtil.uid(), json, {isSkipMetaMergeCache: true});

@@ -252,6 +252,15 @@ export class I18nZhTwRules {
 		return entity?._displayName || entity?.name || "";
 	}
 
+	static getBilingualName (entity) {
+		const displayName = `${this.getDisplayName(entity)}`.trim();
+		const canonicalName = `${this.getCanonicalName(entity)}`.trim();
+		if (!displayName) return canonicalName;
+		if (!canonicalName || displayName.toLowerCase() === canonicalName.toLowerCase()) return displayName;
+		if (displayName.endsWith(`（${canonicalName}）`) || displayName.endsWith(` (${canonicalName})`)) return displayName;
+		return `${displayName}（${canonicalName}）`;
+	}
+
 	static getNameSearchText (entity) {
 		return [...new Set([this.getDisplayName(entity), this.getCanonicalName(entity)].filter(Boolean))].join(" ");
 	}

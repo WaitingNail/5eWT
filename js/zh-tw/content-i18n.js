@@ -607,6 +607,12 @@
 			return this._pFileCache.get(cacheKey);
 		}
 
+		static async pPreloadEntityFile ({prop, file}) {
+			const folder = this._PROP_TO_FOLDER.get(prop);
+			if (!folder || typeof file !== "string") return null;
+			return this._pLoadFile({folder, file});
+		}
+
 		static _getLocalizedIndex ({prop, sidecar}) {
 			const out = new Map();
 			for (const entity of sidecar?.[prop] || []) {
@@ -930,6 +936,15 @@
 
 		static getDisplayName (entity) {
 			return entity?._displayName || entity?.name || "";
+		}
+
+		static getBilingualName (entity) {
+			const displayName = `${this.getDisplayName(entity)}`.trim();
+			const canonicalName = `${this.getCanonicalName(entity)}`.trim();
+			if (!displayName) return canonicalName;
+			if (!canonicalName || displayName.toLowerCase() === canonicalName.toLowerCase()) return displayName;
+			if (displayName.endsWith(`（${canonicalName}）`) || displayName.endsWith(` (${canonicalName})`)) return displayName;
+			return `${displayName}（${canonicalName}）`;
 		}
 
 		static _renderSpellText (text, {isPlainText = false} = {}) {
