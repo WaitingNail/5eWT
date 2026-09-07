@@ -1,0 +1,10 @@
+diff --git a/js/render-dice.js b/js/render-dice.js
+--- a/js/render-dice.js
++++ b/js/render-dice.js
+@@ -2307,5 +2307,5 @@ Renderer.dice = class {
+ };
+ 
+ if (!globalThis.IS_VTT && typeof window !== "undefined") {
+-	window.addEventListener("load", Renderer.dice._pInit);
++	window.addEventListener("load", () => Renderer.dice._pInit());
+ }

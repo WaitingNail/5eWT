@@ -74,12 +74,13 @@ assert.equal(
 );
 assert.equal(i18n.t("export.image-title", "Image Export - {name}", {name: "攻擊"}), "圖片匯出－攻擊");
 
-const [bookModeSource, listPageSource, listUtilSource, bookUtilSource, rendererSource] = await Promise.all([
+const [bookModeSource, listPageSource, listUtilSource, bookUtilSource, rendererSource, diceRendererSource] = await Promise.all([
 	fs.readFile(path.join(ROOT, "js/utils.js"), "utf8"),
 	fs.readFile(path.join(ROOT, "js/listpage.js"), "utf8"),
 	fs.readFile(path.join(ROOT, "js/utils-list.js"), "utf8"),
 	fs.readFile(path.join(ROOT, "js/bookutils.js"), "utf8"),
 	fs.readFile(path.join(ROOT, "js/render.js"), "utf8"),
+	fs.readFile(path.join(ROOT, "js/render-dice.js"), "utf8"),
 ]);
 assert.ok(bookModeSource.includes(`_getLocalizedText({english: "Two (book style)"})`));
 assert.ok(bookModeSource.includes(`_getLocalizedText({english: this._pageTitle})`));
@@ -91,6 +92,10 @@ assert.ok(listPageSource.includes(`UiUtil.getTranslatedText("Source Data")`));
 assert.ok(listUtilSource.includes(`UiUtil.getTranslatedText(comp._state.manager_loader_isExpanded ? "Collapse Preview" : "Expand Preview")`));
 assert.ok(bookUtilSource.includes(`this._t("Copied link!")`));
 assert.ok(rendererSource.includes(`this._t("Open as Popup Window")`));
+assert.ok(
+	diceRendererSource.includes(`window.addEventListener("load", () => Renderer.dice._pInit())`),
+	"the dice roller load handler must preserve the Renderer.dice receiver",
+);
 
 const unsafeHotkey = `<img src=x onerror="alert(1)">&'`;
 assert.equal(

@@ -106,6 +106,7 @@ for (const script of [
 	"js/items.js",
 	"js/bestiary.js",
 	"js/render-bestiary.js",
+	"js/render-dice.js",
 	"js/render-items.js",
 	"js/utils.js",
 	"js/utils-list.js",
