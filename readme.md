@@ -15,6 +15,8 @@
 - 清單、篩選、書籍檢視、來源視窗與 Quick Reference 均可顯示繁中；名稱與正文同時支援繁中／英文搜尋。
 - 英文 `name`、source、UID、URL hash、篩選值與 inline tag lookup 保持 canonical。
 
+- CoS《施特拉德的詛咒》：26個章節／附錄區塊、5,882個可顯示文字欄位、684個朗讀框；沿用既有全站譯名，支援中英標題／搜尋與原英文連結。詳見 `reports/zh-tw-cos-audit.md`。
+
 ## 一鍵套用
 
 套用預建翻譯只需要 Node.js 24 與 Git；重新匯入外部初稿時才需要 Python 3。
@@ -65,3 +67,5 @@ npm run verify
 ## 私人使用限制
 
 Class 初稿參考來源未找到清楚的再利用授權聲明；規則、法術與角色選項初稿依 CC BY-NC-SA 4.0 使用並已附署名。內容包含非 SRD 書籍資料，只應留在私人 repository 自用。請勿發布至公開 GitHub Pages、公開 Release、公開 fork 或其他公開下載位置。私人 repository 本身不會擴張你對原作內容的授權。
+
+本次發布確認：2026-09-12，使用者在確認現有倉庫與 GitHub Pages 為公開狀態後，明確指示發布 CoS 翻譯。本次部署依該指示執行，來源署名與權利資訊保留；詳見 `reports/zh-tw-cos-audit.md`。

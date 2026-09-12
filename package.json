@@ -1,21 +1,21 @@
 {
-  "name": "5ewt-zh-tw-overlay",
-	"version": "2.33.3-zh-tw.15",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "bootstrap": "node scripts/bootstrap-upstream.mjs",
-    "apply": "node scripts/apply-overlay.mjs",
-    "verify": "node scripts/verify-overlay.mjs",
-    "setup": "npm run bootstrap && npm run apply && npm run verify",
-    "extract:classes": "node scripts/run-extract-classes.mjs",
-    "import:classes": "python vendor/5etools-src/node/zh-tw/import-full-class-translations.py",
-    "build:class-locale": "node vendor/5etools-src/node/zh-tw/build-class-locale.mjs",
-    "import:rules": "python vendor/5etools-src/node/zh-tw/import-core-rules.py",
-    "build:site-locale": "node vendor/5etools-src/node/zh-tw/build-site-locale.mjs",
-    "test:classes": "node vendor/5etools-src/node/zh-tw/test-class-i18n.mjs && node vendor/5etools-src/node/zh-tw/test-class-body-i18n.mjs && node vendor/5etools-src/node/zh-tw/test-class-body-i18n-full.mjs && node vendor/5etools-src/node/zh-tw/test-class-page-runtime.mjs",
-    "validate:classes": "node vendor/5etools-src/node/zh-tw/validate-full-class-translations.mjs",
-    "test:site": "node vendor/5etools-src/node/zh-tw/test-site-i18n.mjs",
+	"name": "5ewt-zh-tw-overlay",
+	"version": "2.33.3-zh-tw.16",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"bootstrap": "node scripts/bootstrap-upstream.mjs",
+		"apply": "node scripts/apply-overlay.mjs",
+		"verify": "node scripts/verify-overlay.mjs",
+		"setup": "npm run bootstrap && npm run apply && npm run verify",
+		"extract:classes": "node scripts/run-extract-classes.mjs",
+		"import:classes": "python vendor/5etools-src/node/zh-tw/import-full-class-translations.py",
+		"build:class-locale": "node vendor/5etools-src/node/zh-tw/build-class-locale.mjs",
+		"import:rules": "python vendor/5etools-src/node/zh-tw/import-core-rules.py",
+		"build:site-locale": "node vendor/5etools-src/node/zh-tw/build-site-locale.mjs",
+		"test:classes": "node vendor/5etools-src/node/zh-tw/test-class-i18n.mjs && node vendor/5etools-src/node/zh-tw/test-class-body-i18n.mjs && node vendor/5etools-src/node/zh-tw/test-class-body-i18n-full.mjs && node vendor/5etools-src/node/zh-tw/test-class-page-runtime.mjs",
+		"validate:classes": "node vendor/5etools-src/node/zh-tw/validate-full-class-translations.mjs",
+		"test:site": "node vendor/5etools-src/node/zh-tw/test-site-i18n.mjs",
 		"test:rules": "node vendor/5etools-src/node/zh-tw/test-rules-i18n.mjs && node vendor/5etools-src/node/zh-tw/test-quick-reference-i18n.mjs",
 		"validate:rules": "node vendor/5etools-src/node/zh-tw/validate-core-rules.mjs",
 		"test:spells": "node vendor/5etools-src/node/zh-tw/test-content-i18n.mjs",
@@ -31,6 +31,8 @@
 		"test:small-fragments": "node vendor/5etools-src/node/zh-tw/test-small-fragments-and-bastions.mjs",
 		"test:cults-boons": "node vendor/5etools-src/node/zh-tw/test-cults-boons-i18n.mjs",
 		"test:reference-pages": "node vendor/5etools-src/node/zh-tw/test-reference-pages-i18n.mjs",
-		"serve": "npm --prefix vendor/5etools-src run serve:dev"
-  }
+		"serve": "npm --prefix vendor/5etools-src run serve:dev",
+		"test:cos": "node vendor/5etools-src/node/zh-tw/test-adventure-cos-i18n.mjs",
+		"import:cos": "python node/zh-tw/import-adventure-cos.py"
+	}
 }

@@ -58,6 +58,8 @@ const required = [
 	"data/zh-TW/reference-pages/languages.json",
 	"data/zh-TW/reference-pages/fluff-languages.json",
 	"data/zh-TW/reference-pages/deities.json",
+	"data/zh-TW/adventures/adventure-cos.json",
+	"js/zh-tw/adventure-i18n.js",
 	"js/zh-tw/class-i18n.js",
 	"js/zh-tw/class-body-i18n.js",
 	"js/zh-tw/site-i18n.js",
@@ -175,5 +177,6 @@ runNode("node/zh-tw/test-monster-page-runtime.mjs");
 runNode("node/zh-tw/test-small-fragments-and-bastions.mjs");
 runNode("node/zh-tw/test-cults-boons-i18n.mjs");
 runNode("node/zh-tw/test-reference-pages-i18n.mjs");
+runNode("node/zh-tw/test-adventure-cos-i18n.mjs");
 execFileSync("git", ["diff", "--check"], {cwd: upstreamRoot, stdio: "inherit"});
-console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, items, monsters, Bastions, cults/boons, and reference-page overlay verification passed.");
+console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, items, monsters, Bastions, cults/boons, reference-page, and Curse of Strahd adventure overlay verification passed.");

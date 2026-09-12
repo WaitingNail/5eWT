@@ -1,0 +1,31 @@
+diff --git a/js/bookutils.js b/js/bookutils.js
+--- a/js/bookutils.js
++++ b/js/bookutils.js
+@@ -1,4 +1,5 @@
+ import {RenderMap} from "./render-map.js";
++import {I18nZhTwAdventure} from "./zh-tw/adventure-i18n.js";
+ import {OmnisearchUtilsUi} from "./omnisearch/omnisearch-utils-ui.js";
+ 
+ export class BookUtil {
+@@ -778,7 +779,20 @@
+ 	}
+ 
+ 	static async _pLoadChapter (fromIndex, bookId, hashParts, homebrewData, wrpContents) {
+-		const data = homebrewData || BookUtil.referenceData || (await DataUtil.loadJSON(`${BookUtil.baseDataUrl}${bookId.toLowerCase()}.json`));
++		let data = homebrewData || BookUtil.referenceData || (await DataUtil.loadJSON(`${BookUtil.baseDataUrl}${bookId.toLowerCase()}.json`));
++
++		if (!BookUtil.referenceId) {
++			BookUtil.referenceI18n = null;
++			if (BookUtil.contentType === "adventure" && !homebrewData) {
++				const view = await I18nZhTwAdventure.pGetView({bookId, canonical: data, index: fromIndex});
++				if (view) {
++					data = view.dataDocument;
++					fromIndex = view.index;
++					BookUtil.referenceI18n = view.adapter;
++					veEs(`#page__title`).vee.txt(fromIndex.name);
++				}
++			}
++		}
+ 
+ 		const isInitialLoad = BookUtil.curRender.curBookId !== bookId;
+ 
