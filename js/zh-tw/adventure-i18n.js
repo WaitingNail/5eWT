@@ -1,16 +1,19 @@
 import {I18nZhTwQuickReference} from "./quick-reference-i18n.js";
 
-/** CoS display adapter. Canonical headings/IDs remain usable in old URLs. */
+/** Adventure display adapter. Canonical headings/IDs remain usable in old URLs. */
 export class I18nZhTwAdventure {
-	static _loadPromise = null;
+	static _loadPromises = new Map();
+	static _supportedBooks = new Set(["cos", "hotdq", "rot"]);
 	static _visibleKeys = new Set([
 		"name", "caption", "title", "label", "by", "text", "quote", "author",
 		"entries", "entry", "items", "footnotes", "headerEntries", "footerEntries",
 		"colLabels", "rowLabels", "rows", "row", "tables", "default", "columns", "images",
 	]);
 
-	static async pLoad ({fnLoad = null} = {}) {
-		const url = `${globalThis.Renderer?.get?.().baseUrl || ""}data/zh-TW/adventures/adventure-cos.json`;
+	static async pLoad ({bookId = "cos", fnLoad = null} = {}) {
+		bookId = `${bookId}`.toLowerCase();
+		if (!this._supportedBooks.has(bookId)) return null;
+		const url = `${globalThis.Renderer?.get?.().baseUrl || ""}data/zh-TW/adventures/adventure-${bookId}.json`;
 		const load = async () => {
 			try {
 				if (fnLoad) return await fnLoad({url});
@@ -18,29 +21,31 @@ export class I18nZhTwAdventure {
 				if (!response.ok) throw new Error(`HTTP ${response.status}`);
 				return await response.json();
 			} catch (error) {
-				console.warn("[zh-TW CoS] Translation unavailable; using English.", error);
+				console.warn(`[zh-TW ${bookId}] Translation unavailable; using English.`, error);
 				return null;
 			}
 		};
 		if (fnLoad) return load();
-		return this._loadPromise ||= load();
+		if (!this._loadPromises.has(bookId)) this._loadPromises.set(bookId, load());
+		return this._loadPromises.get(bookId);
 	}
 
 	static async pGetView ({bookId, canonical, index, fnLoad = null}) {
-		if (`${bookId}`.toLowerCase() !== "cos" || index?.id?.toLowerCase() !== "cos") return null;
-		const localized = await this.pLoad({fnLoad});
+		bookId = `${bookId}`.toLowerCase();
+		if (!this._supportedBooks.has(bookId) || index?.id?.toLowerCase() !== bookId) return null;
+		const localized = await this.pLoad({bookId, fnLoad});
 		if (!localized) return null;
 		try {
 			return this.createLocalizedView({canonical, localized, index});
 		} catch (error) {
-			console.warn("[zh-TW CoS] Translation does not match this source; using English.", error);
+			console.warn(`[zh-TW ${bookId}] Translation does not match this source; using English.`, error);
 			return null;
 		}
 	}
 
 	static createLocalizedView ({canonical, localized, index}) {
 		if (localized?._meta?.upstreamTag !== "v2.33.3" || localized?.adventure?.id !== index.id) {
-			throw new Error("CoS translation identity/version mismatch");
+			throw new Error("Adventure translation identity/version mismatch");
 		}
 		const displayByCanonical = new Map();
 		const topCanonicalByDisplay = new Map();

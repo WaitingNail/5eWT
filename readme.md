@@ -16,6 +16,7 @@
 - 英文 `name`、source、UID、URL hash、篩選值與 inline tag lookup 保持 canonical。
 
 - CoS《施特拉德的詛咒》：26個章節／附錄區塊、5,882個可顯示文字欄位、684個朗讀框；沿用既有全站譯名，支援中英標題／搜尋與原英文連結。詳見 `reports/zh-tw-cos-audit.md`。
+- HotDQ《龍後的寶山》與RoT《提亞馬特的崛起》：共30個章節／附錄區塊、5,028個文字欄位、128個朗讀框；統一跨書譯名，支援中英標題／搜尋與原連結。詳見 `reports/zh-tw-tyranny-audit.md`。
 
 ## 一鍵套用
 

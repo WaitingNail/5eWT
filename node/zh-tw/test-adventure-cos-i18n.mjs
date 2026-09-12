@@ -151,7 +151,7 @@ try {
 } finally {
 	globalThis.fetch = originalFetch;
 	DataUtil.loadJSON = originalLoad;
-	I18nZhTwAdventure._loadPromise = null;
+	I18nZhTwAdventure._loadPromises.clear();
 }
 
 let calls = 0;
