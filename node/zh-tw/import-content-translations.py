@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Build guarded zh-TW sidecars for translated 5etools entity data.
 
-Supported groups are ``spells``, ``character-options``, ``items``, ``monsters``, ``cults-boons``, and
-``reference-pages``. Every localized
+Supported groups are ``spells``, ``character-options``, ``items``, ``monsters``, ``cults-boons``,
+``reference-pages``, and ``craft-pages``. Every localized
 entity is paired to the pinned v2.33.3 English entity by canonical name and
 source. The output retains all mechanical and identity fields from English,
 while replacing only renderer-visible prose. Inline-reference targets are
@@ -521,6 +521,26 @@ ITEM_NUMERIC_EQUIVALENT_CONTEXTS: dict[str, str] = {
 	"bestiary/fluff-bestiary-mtf.json/monsterFluff/157/entries/0/entries/1/entries/0": "two dozen is faithfully rendered as 24",
 	"bestiary/fluff-bestiary-oota.json/monsterFluff/6/entries/0/entries/0/entries/4/entries/0": "one hundred and fifty is faithfully rendered as 150",
 	"bestiary/legendarygroups.json/legendaryGroup/153/regionalEffects/1/items/0": "1 in 20 is faithfully rendered as 1/20",
+}
+
+CRAFT_NUMERIC_EQUIVALENT_CONTEXTS: dict[str, str] = {
+	"vehicles.json/vehicle/4/movement/0/hpNote": "減少5尺 faithfully preserves the -5 ft. speed modifier",
+	"vehicles.json/vehicle/10/movement/0/hpNote": "減少5尺 faithfully preserves the -5 ft. speed modifier",
+	"vehicles.json/vehicle/10/movement/1/hpNote": "減少10尺 faithfully preserves the -10 ft. speed modifier",
+	"vehicles.json/vehicle/12/movement/0/hpNote": "減少5尺 faithfully preserves the -5 ft. speed modifier",
+	"vehicles.json/vehicle/12/movement/1/hpNote": "減少5尺 faithfully preserves the -5 ft. speed modifier",
+	"vehicles.json/vehicle/15/movement/0/hpNote": "減少5尺 faithfully preserves the -5 ft. speed modifier",
+	"vehicles.json/vehicle/15/movement/1/hpNote": "減少10尺 faithfully preserves the -10 ft. speed modifier",
+	"vehicles.json/vehicle/18/movement/0/hpNote": "減少5尺 faithfully preserves the -5 ft. speed modifier",
+	"vehicles.json/vehicle/23/movement/0/hpNote": "減少5尺 faithfully preserves the -5 ft. speed modifier",
+	"vehicles.json/vehicle/37/movement/0/hpNote": "減少5尺 faithfully preserves the -5 ft. speed modifier",
+	"vehicles.json/vehicle/37/movement/1/hpNote": "減少10尺 faithfully preserves the -10 ft. speed modifier",
+	"fluff-vehicles.json/vehicleFluff/10/entries/0/entries/3/entries/0": "written eighty is faithfully rendered as 80",
+	"fluff-vehicles.json/vehicleFluff/10/entries/0/entries/5/entries/1/items/1/entry": "written thirty-two is faithfully rendered as 32",
+	"recipes.json/recipe/15/instructions/1": "1分半鐘 faithfully renders 1½ minutes",
+	"recipes.json/recipe/201/instructions/2": "the translated prose resolves an upstream missing quantity word while preserving 1½ tablespoons",
+	"recipes.json/recipe/220/noteCook/0": "14½ is a single mixed-number quantity",
+	"homecrafts.json/crochetPattern/8/abbreviations/0/items/2/entries/0": "one finished stitch explains the three-stitch decrease",
 }
 
 
@@ -1300,6 +1320,7 @@ class MonsterLocalizer(ContentLocalizer):
 				out[key] = self._localize_notes(english_value, translated[key], f"{context}/{key}", category)
 		return out
 
+
 	def _localize_copy_mods(self, english, translated, context: str, category: str):
 		if isinstance(english, list):
 			if not isinstance(translated, list):
@@ -1344,9 +1365,306 @@ class MonsterLocalizer(ContentLocalizer):
 		return out
 
 
+class CraftPageLocalizer(MonsterLocalizer):
+	"""Translate vehicles, recipes, and home-craft patterns without changing mechanics."""
+
+	_NUMERIC_LITERAL_RE = re.compile(
+		r"(?<![A-Za-z0-9])(?:\d+\s+\d+\s*/\s*\d+|\d+[¼½¾⅓⅔⅛⅜⅝⅞]|[¼½¾⅓⅔⅛⅜⅝⅞]|\d+\s*/\s*\d+|\d+(?:\.\d+)?)(?![A-Za-z0-9])"
+	)
+
+	_EXACT_TEXT_TRANSLATIONS = {
+		# Recipe quotations and attributions.
+		"Volo's Guide To The Sword Coast": "《沃羅的劍灣指南》（Volo's Guide to the Sword Coast）",
+		"Dragons of Autumn Twilight": "《秋暮之巨龍》（Dragons of Autumn Twilight）",
+		"Renegade Wizards": "《叛逆法師》（Renegade Wizards）",
+		"The Crystal Shard": "《碎魔晶》（The Crystal Shard）",
+		"Streams of Silver": "《白銀溪流》（Streams of Silver）",
+		# Crochet labels which are functional headings rather than prose.
+		"hdc dec:": "半長針減針：",
+		"hdc inc:": "半長針加針：",
+		"Dcdec:": "長針減針：",
+		"Dcinc:": "長針加針：",
+		"Dc3tog:": "三針長針併針：",
+		"Tr:": "長長針：",
+		"Fdc:": "基礎長針：",
+		"Fsc:": "基礎短針：",
+		"Fpdc:": "前柱長針：",
+		"Fptr:": "前柱長長針：",
+		"Bpdc:": "後柱長針：",
+		"Sk st:": "跳針：",
+		"2dec in 3sc:": "以三短針作兩次減針：",
+		"Vstitch:": "V 形針：",
+		"Gauge is not critical for this project.": "本作品不要求精確的針目密度。",
+		# Repeated map labels.
+		"Unlabeled Version": "無標籤版本",
+		"Player Version": "玩家版本",
+		"Galley Ship": "加萊船",
+		"Smaller Ships": "較小型船艦",
+		"Sailing Ship": "帆船",
+		"Warship": "戰船",
+		# Home-craft instructional image captions.
+		"Side Strip with ring attached.": "已接上圓環的側條。",
+		"Borders of the bracers.": "護腕的邊框。",
+		"Borders of the bracers with eyelets.": "帶扣眼的護腕邊框。",
+		"Pin the Muzzle to the Head.": "將口鼻部別在頭部上。",
+		"Pin the Nose to the Muzzle.": "將鼻子別在口鼻部上。",
+		"Pin the Eyelids to the Head.": "將眼瞼別在頭部上。",
+		"Make a petal-like shape for the Tentacle Heads.": "將觸手頭塑成花瓣狀。",
+		"This is what the wire should look like after assembling Tentacles Rows 2–5.": "完成觸手第 2–5 行後，鐵絲應呈現此形狀。",
+		"Add a stitch to close up the Tentacle.": "補一針將觸手收合。",
+		"Attaching scales to the Cowl.": "將鱗片接到兜帽上。",
+		"Attaching the rest of the scales.": "接上其餘鱗片。",
+		"Bobbles in tail.": "尾部的爆米花針。",
+		"This is what the bag Strap will look like after Row 2.": "提袋背帶完成第 2 行後應呈現此形狀。",
+		"{@note Follow this pattern after Round 10.}": "{@note 完成第 10 圈後，請依照此圖樣。}",
+		"Subrow 94A, showing 20th sc marked with blue stitch marker.": "第 94A 子行；第 20 個 sc 已用藍色記號圈標出。",
+		"Start of Subrow 94B, showing hook inserted into marked stitch with ch12 left on inside of Body.": "第 94B 子行起始；鉤針插入標記針目，ch12 留在身體內側。",
+		"End of Subrow 94B, showing 12sc (starting from marked stitch) and 14ch.": "第 94B 子行末端；顯示由標記針目開始的 12sc 與 14ch。",
+		"Start of 94C, showing chains inside.": "第 94C 子行起始；顯示內側的鎖針。",
+		"These two photos show what your work should look like at the end of Rnd 94.": "這兩張照片顯示第 94 圈完成時作品應有的外觀。",
+		"Abjuration": "防護",
+		"Necromancy": "死靈",
+		"Illusion": "幻術",
+		"Enchantment": "惑控",
+		"Evocation": "塑能",
+		"Transmutation": "變化",
+		"Conjuration": "咒法",
+		"Divination": "預言",
+		"Sketch the design on the stabilizer.": "在穩定襯布上描出圖案。",
+		"Once you've filled in the design, wash away the stabilizer.": "填滿圖案後，將穩定襯布洗去。",
+		"Create 2 semicircles on either side of the central design.": "在中央圖案兩側各做一個半圓。",
+	}
+
+	_IMAGE_TITLE_REPLACEMENTS = {
+		"Bombard Deck Plans": "炮艦甲板平面圖",
+		"Damselfly Ship Deck Plans": "豆娘船甲板平面圖",
+		"Flying Fish Ship Deck Plans": "飛魚船甲板平面圖",
+		"Hammerhead Ship Deck Plans": "錘頭船甲板平面圖",
+		"Lamprey Ship Deck Plans": "七鰓鰻船甲板平面圖",
+		"Living Ship Deck Plans": "活體船甲板平面圖",
+		"Nautiloid Deck Plans": "螺殼艦甲板平面圖",
+		"Nightspider Deck Plans": "夜蛛船甲板平面圖",
+		"Scorpion Ship Deck Plans": "蠍子船甲板平面圖",
+		"Shrike Ship Deck Plans": "伯勞船甲板平面圖",
+		"Space Galleon Deck Plans": "太空蓋倫帆船甲板平面圖",
+		"Squid Ship Deck Plans": "魷魚船甲板平面圖",
+		"Star Moth Deck Plans": "星蛾船甲板平面圖",
+		"Strider Airship Map": "闊步者飛空艇地圖",
+		"Turtle Ship Deck Plans": "龜船甲板平面圖",
+		"Tyrant Ship Deck Plans": "暴君船甲板平面圖",
+		"Wasp Ship Deck Plans": "胡蜂船甲板平面圖",
+	}
+
+	_CROCHET_COLOR_REPLACEMENTS = {
+		"Alfalfa": "苜蓿綠",
+		"Aruba Sea": "阿魯巴海藍",
+		"Black": "黑色",
+		"Burgundy": "酒紅色",
+		"Café Latte": "拿鐵色",
+		"Canary": "金絲雀黃",
+		"Coffee": "咖啡色",
+		"Cotton Candy": "棉花糖粉",
+		"Dove Heather": "鴿灰混色",
+		"Freesia": "小蒼蘭黃",
+		"Jade": "翡翠綠",
+		"Medium Thyme": "百里香綠",
+		"Orange": "橘色",
+		"Plum": "梅紫色",
+		"Primrose": "報春花黃",
+		"Red": "紅色",
+		"Silver": "銀色",
+		"Sky": "天藍色",
+		"White": "白色",
+	}
+
+	_CONTEXT_TEXT_REPAIRS = {
+		"recipes.json/recipe/2/instructions/4": (
+			("100°C", "200°F"),
+			("2小時30分鐘", "2¼小時"),
+		),
+		"recipes.json/recipe/64/instructions/6": (("1 1/2湯匙", "1½湯匙"),),
+		"recipes.json/recipe/74/instructions/1": (("1/3杯", "⅓杯"),),
+		"recipes.json/recipe/91/instructions/3": (("1 1/2茶匙", "1½茶匙"),),
+		"recipes.json/recipe/162/instructions/4": (("1分半鐘", "1½分鐘"),),
+		"recipes.json/recipe/165/instructions/0": (("約1.5杯沸水", "約1¼杯沸水"),),
+		"recipes.json/recipe/193/instructions/0": (("2分半鐘", "2½分鐘"),),
+		"recipes.json/recipe/205/instructions/4": (("1分半鐘", "1½分鐘"),),
+		"recipes.json/recipe/220/noteCook/0": (("14.5盎司", "14½盎司"),),
+		"recipes.json/recipe/225/instructions/2": (
+			("在中火上，將大約2茶匙", "在一個 12 吋厚底平底鍋（最好是鑄鐵鍋）中以中火加熱大約2茶匙"),
+		),
+		"recipes.json/recipe/237/instructions/5/entries/0": (("1分半鐘", "1½分鐘"),),
+		"homecrafts.json/crochetPattern/1/instructions/4/entries/0/items/18": (
+			(
+				"[第4章，從鉤針數第2針開始，2引拔針，1短針，在嘴部跳1針，2引拔針]重複直到圍繞嘴部完成所有針目。",
+				"[ch4，從鉤針數第2針開始，2slst、sc、在嘴部跳一針、2slst]，重複至繞嘴部一整圈。",
+			),
+		),
+		"homecrafts.json/crochetPattern/8/abbreviations/0/items/2/entries/0": (
+			("長針3針並1針", "將3個 dc 合併鉤成1針"),
+		),
+	}
+
+	_EXTRA_VISIBLE_KEYS = {
+		# Vehicles
+		"actionStation",
+		"capCargo",
+		"capCrewNote",
+		"control",
+		"dimensions",
+		"hull",
+		"movement",
+		"other",
+		"station",
+		"terrain",
+		"weapon",
+		# Recipes
+		"alias",
+		"allergenGroups",
+		"dishTypes",
+		"equipment",
+		"ingredients",
+		"instructions",
+		"makes",
+		"noteCook",
+		"serves",
+		# Home crafts
+		"abbreviations",
+		"finishing",
+		"gauge",
+		"hooks",
+		"notions",
+		"notes",
+		"patternType",
+		"size",
+		"sizeNote",
+		"stitches",
+		"yarn",
+	}
+
+	_TEXT_REPLACEMENTS = (
+		("英尺", "尺"),
+		("英寸", "吋"),
+		("英里", "哩"),
+		("釐米", "公分"),
+		("厘米", "公分"),
+		("華氏度", "°F"),
+		("攝氏度", "°C"),
+		("NPC", "非玩家角色"),
+		("不粘", "不沾"),
+		("土豆", "馬鈴薯"),
+		("黃油", "奶油"),
+		("西蘭花", "青花菜"),
+		("連線", "連接"),
+	)
+
+	@classmethod
+	def _cleanup_text(cls, value: str) -> str:
+		value = cls._EXACT_TEXT_TRANSLATIONS.get(value, cls._IMAGE_TITLE_REPLACEMENTS.get(value, value))
+		for source, replacement in cls._TEXT_REPLACEMENTS:
+			value = value.replace(source, replacement)
+		return value
+
+	@classmethod
+	def _restore_numeric_literals(cls, english: str, localized: str) -> str:
+		"""Restore canonical recipe quantities when the source rounded or mistranslated them."""
+		def get_visible_literals(value: str) -> list[str]:
+			parts = []
+			last = 0
+			for match in re.finditer(r"\{@[^}]+\}|\{=[^}]+\}", value):
+				parts.extend(found.group(0) for found in cls._NUMERIC_LITERAL_RE.finditer(value[last:match.start()]))
+				last = match.end()
+			parts.extend(found.group(0) for found in cls._NUMERIC_LITERAL_RE.finditer(value[last:]))
+			return parts
+
+		canonical = get_visible_literals(english)
+		translated = get_visible_literals(localized)
+		if not canonical or len(canonical) != len(translated):
+			return localized
+		if any(value.startswith(("-", "−")) for value in canonical):
+			return localized
+
+		canonical_iter = iter(canonical)
+		parts = []
+		last = 0
+		for protected in re.finditer(r"\{@[^}]+\}|\{=[^}]+\}", localized):
+			segment = localized[last:protected.start()]
+			segment = cls._NUMERIC_LITERAL_RE.sub(lambda _: next(canonical_iter), segment)
+			parts.extend((segment, protected.group(0)))
+			last = protected.end()
+		parts.append(cls._NUMERIC_LITERAL_RE.sub(lambda _: next(canonical_iter), localized[last:]))
+		out = "".join(parts)
+
+		if "°F" in english:
+			out = re.sub(r"(?<=\d)\s*(?:°C|攝氏度)", "°F", out)
+		if "°C" in english:
+			out = re.sub(r"(?<=\d)\s*(?:°F|華氏度)", "°C", out)
+		return out
+
+	@classmethod
+	def _cleanup_crochet_text(cls, value: str) -> str:
+		for english, localized in sorted(cls._CROCHET_COLOR_REPLACEMENTS.items(), key=lambda pair: len(pair[0]), reverse=True):
+			value = value.replace(f"({english})", f"（{localized}）")
+		replacements = (
+			(r"\bStarting in the marked stitch,\s*", "從標記針目開始，"),
+			(r"\bchange to (?=\{@b )", "換成線色"),
+			(r"\bat the end of Rnd\s+(\d+)", r"於第\1圈結束時"),
+			(r"\bFasten off with a short yarn tail\b", "收線並留下短線尾"),
+			(r"\bFasten off\b", "收線"),
+			(r"\bSlst to close\b", "以 slst 引拔收合"),
+			(r"\bch(\d+) and do not turn\b", r"ch\1，不翻面"),
+			(r"\bch(\d+) and turn\b", r"ch\1，翻面"),
+			(r"\bturn\b", "翻面"),
+			(r"\bin (?:the )?same st(?:itch)?\b", "於同一針"),
+			(r"\bin (?:the )?next(?: st(?:itch)?)?\b", "於下一針"),
+			(r"\bin ring\b", "入環"),
+			(r"\baround\b", "整圈"),
+			(r"\bSkip the slst\b", "跳過 slst"),
+			(r"\bto first st\b", "與第一針引拔"),
+			(r"\binto the first sc of Rnd\s+(\d+)\b", r"鉤入第\1圈的第一個 sc"),
+			(r"\bin\b", "於"),
+		)
+		for pattern, replacement in replacements:
+			value = re.sub(pattern, replacement, value, flags=re.IGNORECASE)
+		return value
+
+	def translate_name(self, english: str, translated: str, category: str) -> str:
+		return self._cleanup_text(super().translate_name(english, translated, category))
+
+	def localize_string(self, english: str, translated: str, context: str) -> str:
+		translated = self._cleanup_text(self.normalize_text(translated))
+		for source, replacement in self._CONTEXT_TEXT_REPAIRS.get(context, ()):
+			if source not in translated:
+				raise ValueError(f"Stale craft-page source repair at {context}: {source!r} not found")
+			translated = translated.replace(source, replacement)
+			self.report["sourceRepairsApplied"].append({"context": context, "from": source, "to": replacement})
+		if context.startswith("recipes.json/"):
+			translated = self._restore_numeric_literals(english, translated)
+		if context.startswith("homecrafts.json/"):
+			translated = self._cleanup_crochet_text(translated)
+		out = super().localize_string(english, translated, context)
+		return self._cleanup_text(out)
+
+	def localize_node(self, english, translated, context: str, category: str, matcher=None):
+		out = super().localize_node(english, translated, context, category, matcher)
+		if not isinstance(english, dict) or not isinstance(translated, dict) or not isinstance(out, dict):
+			return out
+
+		for key in sorted(self._EXTRA_VISIBLE_KEYS):
+			if key not in english or key not in translated:
+				continue
+			out[key] = self._localize_visible_tree(
+				english[key],
+				translated[key],
+				f"{context}/{key}",
+				category,
+			)
+		return out
+
+
 def parse_args() -> argparse.Namespace:
 	parser = argparse.ArgumentParser()
-	parser.add_argument("group", choices=("spells", "character-options", "items", "monsters", "cults-boons", "reference-pages"))
+	parser.add_argument("group", choices=("spells", "character-options", "items", "monsters", "cults-boons", "reference-pages", "craft-pages"))
 	parser.add_argument(
 		"--source-dir",
 		type=Path,
@@ -1480,6 +1798,20 @@ def get_group_config(group: str) -> dict:
 			"sharedProps": {},
 			"reportName": "reference-pages-import-report.json",
 		}
+	if group == "craft-pages":
+		return {
+			"folder": "craft-pages",
+			"specs": [
+				("vehicles.json", ("vehicle", "vehicleUpgrade")),
+				("fluff-vehicles.json", ("vehicleFluff",)),
+				("recipes.json", ("recipe",)),
+				("fluff-recipes.json", ("recipeFluff",)),
+				("homecrafts.json", ("crochetPattern",)),
+				("fluff-homecrafts.json", ("crochetPatternFluff",)),
+			],
+			"sharedProps": {},
+			"reportName": "craft-pages-import-report.json",
+		}
 	raise ValueError(f"Unsupported content group: {group}")
 
 
@@ -1604,6 +1936,37 @@ _VISIBLE_DIRECT_KEYS = CORE.DIRECT_VISIBLE_KEYS | {
 	"symbolImg",
 	"title",
 	"worshipers",
+	"actionStation",
+	"capCargo",
+	"capCrewNote",
+	"control",
+	"dimensions",
+	"hull",
+	"movement",
+	"other",
+	"station",
+	"terrain",
+	"weapon",
+	"alias",
+	"allergenGroups",
+	"dishTypes",
+	"equipment",
+	"ingredients",
+	"instructions",
+	"makes",
+	"noteCook",
+	"serves",
+	"abbreviations",
+	"finishing",
+	"gauge",
+	"hooks",
+	"notions",
+	"notes",
+	"patternType",
+	"size",
+	"sizeNote",
+	"stitches",
+	"yarn",
 }
 
 
@@ -1669,6 +2032,9 @@ def finalize_qa(localizer) -> dict:
 		if item.get("context") in ITEM_NUMERIC_EQUIVALENT_CONTEXTS:
 			is_equivalent = True
 			reason = ITEM_NUMERIC_EQUIVALENT_CONTEXTS[item["context"]]
+		elif item.get("context") in CRAFT_NUMERIC_EQUIVALENT_CONTEXTS:
+			is_equivalent = True
+			reason = CRAFT_NUMERIC_EQUIVALENT_CONTEXTS[item["context"]]
 		else:
 			is_equivalent, reason = CORE.classify_numeric_difference(item)
 		annotated = {**item, "reason": reason}
@@ -1682,11 +2048,31 @@ def finalize_qa(localizer) -> dict:
 		parts = [part.strip() for part in item.get("english", "").split(",")]
 		return len(parts) >= 5 and all(re.fullmatch(r"[A-Z][A-Za-z'’ -]*", part) for part in parts)
 
+	def is_person_attribution(item: dict) -> bool:
+		if not item.get("context", "").endswith(("/by", "/credit")):
+			return False
+		return re.fullmatch(r"[—–-]?[A-Z][A-Za-zÀ-ž.'’ -]*(?:\s*&\s*[A-Z][A-Za-zÀ-ž.'’ -]*)?", item.get("english", "")) is not None
+
+	def is_crochet_notation(item: dict) -> bool:
+		if not item.get("context", "").startswith("homecrafts.json/"):
+			return False
+		visible = CORE.strip_inline_tags(item.get("english", ""))
+		visible = re.sub(
+			r"(?<![A-Za-z])(?:sc|hdc|dc|tr|ch|slst|inc|dec|blo|flo|fdc|fsc|fpdc|fptr|bpdc|sk|st|puff|dblpuff|dc3tog|htc|tog|rnd)\d*(?![A-Za-z])",
+			"",
+			visible,
+			flags=re.IGNORECASE,
+		)
+		visible = re.sub(r"[\d\s.,;:+×xX()\[\]/–—-]+", "", visible)
+		return not re.search(r"[A-Za-z]", visible)
+
 	def is_intentional_untranslated(item: dict) -> bool:
 		english = item.get("english", "")
 		return (
 			CORE.is_intentional_untranslated(item)
 			or is_proper_name_list(item)
+			or is_person_attribution(item)
+			or is_crochet_notation(item)
 			or english == "optional"
 			or item.get("context") == "bestiary/fluff-bestiary-mabjov.json/monsterFluff/21/entries/1/entries/0"
 			or re.fullmatch(r"\{\{[^{}]+\}\}(?:\s*\([^)]*\))?", english) is not None
@@ -1696,7 +2082,12 @@ def finalize_qa(localizer) -> dict:
 	intentional = [
 		{
 			**item,
-			"reason": "proper-name list retained" if is_proper_name_list(item) else "mechanical/numeric text retained",
+			"reason": (
+				"proper-name list retained" if is_proper_name_list(item)
+				else "creator attribution retained" if is_person_attribution(item)
+				else "standard crochet notation retained" if is_crochet_notation(item)
+				else "mechanical/numeric text retained"
+			),
 		}
 		for item in untranslated_raw
 		if is_intentional_untranslated(item)
@@ -1733,6 +2124,7 @@ def main() -> None:
 		else CharacterOptionLocalizer() if args.group == "character-options"
 		else CultBoonLocalizer() if args.group == "cults-boons"
 		else ReferencePageLocalizer() if args.group == "reference-pages"
+		else CraftPageLocalizer() if args.group == "craft-pages"
 		else ContentLocalizer()
 	)
 

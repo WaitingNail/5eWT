@@ -1,0 +1,1137 @@
+--- a/js/vehicles.js
++++ b/js/vehicles.js
+@@ -4,12 +4,12 @@
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Type",
++				name: "類型",
+ 				css: "ve-col-8 ve-pl-0 ve-pr-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-4 ve-pl-1 ve-pr-0",
+ 				colStyle: "",
+ 			}),
+@@ -18,9 +18,10 @@
+ 
+ 	pGetSublistItem (it, hash) {
+ 		const displayType = it.vehicleType
+-			? [Parser.vehicleTypeToFull(it.vehicleType)]
+-			: (it.upgradeType || []).map(t => Parser.vehicleUpgradeTypeToFull(t));
+-		const cellsText = [displayType.join(", ").qq(), it.name];
++			? [I18nZhTwContent.getVehicleType(it.vehicleType, {isBilingual: true})]
++			: (it.upgradeType || []).map(t => I18nZhTwContent.getVehicleUpgradeType(t, {isBilingual: true}));
++		const displayName = I18nZhTwContent.getBilingualName(it);
++		const cellsText = [displayType.join("、").qq(), displayName];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+ 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+@@ -33,7 +34,7 @@
+ 		const listItem = new ListItem(
+ 			hash,
+ 			ele,
+-			it.name,
++			displayName,
+ 			{
+ 				...ListItem.getCommonValues(it),
+ 				vehicleType: it.vehicleType,
+@@ -65,9 +66,9 @@
+ 			dataProps: ["vehicle", "vehicleUpgrade"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "vehicle",
+-				namePlural: "vehicles",
+-				pageTitle: "Vehicles Book View",
++				nameSingular: "載具",
++				namePlural: "載具",
++				pageTitle: "載具書籍檢視",
+ 			},
+ 
+ 			listSyntax: new ListSyntaxVehicles({fnGetDataList: () => this._dataList, pFnGetFluff}),
+@@ -88,19 +89,20 @@
+ 		const source = Parser.sourceJsonToAbv(it.source);
+ 		const hash = UrlUtil.autoEncodeHash(it);
+ 		const displayType = it.vehicleType
+-			? [Parser.vehicleTypeToFull(it.vehicleType)]
+-			: (it.upgradeType || []).map(t => Parser.vehicleUpgradeTypeToFull(t));
++			? [I18nZhTwContent.getVehicleType(it.vehicleType, {isBilingual: true})]
++			: (it.upgradeType || []).map(t => I18nZhTwContent.getVehicleUpgradeType(t, {isBilingual: true}));
++		const displayName = I18nZhTwContent.getBilingualName(it);
+ 
+ 		eleLi.innerHTML = `<a href="#${UrlUtil.autoEncodeHash(it)}" class="ve-lst__row-border ve-lst__row-inner">
+-			<span class="ve-col-6 ve-pl-0 ve-pr-1 ve-text-center">${displayType.join(", ").qq()}</span>
+-			<span class="ve-bold ve-col-4 ve-px-1">${it.name}</span>
++			<span class="ve-col-6 ve-pl-0 ve-pr-1 ve-text-center">${displayType.join("、").qq()}</span>
++			<span class="ve-bold ve-col-4 ve-px-1">${displayName}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
+ 		</a>`;
+ 
+ 		const listItem = new ListItem(
+ 			vhI,
+ 			eleLi,
+-			it.name,
++			displayName,
+ 			{
+ 				source,
+ 				...ListItem.getCommonValues(it),
+--- a/js/filter-vehicles.js
++++ b/js/filter-vehicles.js
+@@ -5,32 +5,33 @@
+ 		super();
+ 
+ 		this._vehicleTypeFilter = new Filter({
+-			header: "Vehicle Type",
++			header: "載具類型",
+ 			items: [],
+-			displayFn: Parser.vehicleTypeToFull,
++			displayFn: it => I18nZhTwContent.getVehicleType(it, {isBilingual: true}),
+ 			isSortByDisplayItems: true,
+ 		});
+ 		this._upgradeTypeFilter = new Filter({
+-			header: "Upgrade Type",
++			header: "升級類型",
+ 			items: [],
+-			displayFn: Parser.vehicleUpgradeTypeToFull,
++			displayFn: it => I18nZhTwContent.getVehicleUpgradeType(it, {isBilingual: true}),
+ 			isSortByDisplayItems: true,
+ 		});
+ 		this._typeFilter = new MultiFilter({
+-			header: "Type",
++			header: "類型",
+ 			filters: [this._vehicleTypeFilter, this._upgradeTypeFilter],
+ 		});
+ 		this._costFilter = FilterCommon.getCostFilter();
+-		this._terrainFilter = new Filter({header: "Terrain", items: ["land", "sea", "air"], displayFn: StrUtil.uppercaseFirst});
+-		this._speedFilter = new RangeFilter({header: "Speed"});
+-		this._acFilter = new RangeFilter({header: "Armor Class"});
+-		this._hpFilter = new RangeFilter({header: "Hit Points"});
+-		this._hpFilter = new RangeFilter({header: "Hit Points"});
+-		this._creatureCapacityFilter = new RangeFilter({header: "Creature Capacity"});
++		this._terrainFilter = new Filter({header: "地形", items: ["land", "sea", "air"], displayFn: it => I18nZhTwContent.getVehicleTerrain(it, {isBilingual: true})});
++		this._speedFilter = new RangeFilter({header: "速度"});
++		this._acFilter = new RangeFilter({header: "護甲等級"});
++		this._hpFilter = new RangeFilter({header: "生命值"});
++		this._hpFilter = new RangeFilter({header: "生命值"});
++		this._creatureCapacityFilter = new RangeFilter({header: "生物容量"});
+ 		this._miscFilter = new Filter({
+-			header: "Miscellaneous",
++			header: "雜項",
+ 			items: ["Legacy", "Has Images", "Has Info", "Has Token"],
+ 			isMiscFilter: true,
++			displayFn: I18nZhTwContent.getFilterLabel.bind(I18nZhTwContent),
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+ 		});
+ 	}
+--- a/js/recipes.js
++++ b/js/recipes.js
+@@ -8,12 +8,12 @@
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-9 ve-pl-0 ve-pr-1",
+ 				colStyle: "",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Type",
++				name: "類別",
+ 				css: "ve-col-3 ve-text-center ve-pl-1 ve-pr-0",
+ 				colStyle: "text-center",
+ 			}),
+@@ -22,8 +22,9 @@
+ 
+ 	async pGetSublistItem (itRaw, hash, {customHashId = null} = {}) {
+ 		const it = await Renderer.hover.pApplyCustomHashId(UrlUtil.getCurrentPage(), itRaw, customHashId);
+-		const name = it._displayName || it.name;
+-		const cellsText = [name, it.type || "\u2014"];
++		const name = I18nZhTwContent.getBilingualName(it);
++		const displayType = it.type ? I18nZhTwContent.getRecipeType(it.type, {isBilingual: true}) : "\u2014";
++		const cellsText = [name, displayType];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+ 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+@@ -39,7 +40,7 @@
+ 			name,
+ 			{
+ 				...ListItem.getCommonValues(it),
+-				type: it.type,
++				type: displayType,
+ 			},
+ 			{
+ 				hash,
+@@ -69,9 +70,9 @@
+ 			dataProps: ["recipe"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "recipe",
+-				namePlural: "recipes",
+-				pageTitle: "Recipes Book View",
++				nameSingular: "配方",
++				namePlural: "配方",
++				pageTitle: "配方書籍檢視",
+ 			},
+ 
+ 			listSyntax: new ListSyntaxRecipes({fnGetDataList: () => this._dataList, pFnGetFluff}),
+@@ -86,22 +87,27 @@
+ 
+ 		const source = Parser.sourceJsonToAbv(ent.source);
+ 		const hash = UrlUtil.autoEncodeHash(ent);
++		const displayName = I18nZhTwContent.getBilingualName(ent);
++		const displayType = ent.type ? I18nZhTwContent.getRecipeType(ent.type, {isBilingual: true}) : "\u2014";
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+-			<span class="ve-col-6 ve-bold ve-pl-0 ve-pr-1">${ent.name}</span>
+-			<span class="ve-col-4 ve-px-1 ve-text-center">${ent.type || "\u2014"}</span>
++			<span class="ve-col-6 ve-bold ve-pl-0 ve-pr-1">${displayName}</span>
++			<span class="ve-col-4 ve-px-1 ve-text-center">${displayType}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
+ 		</a>`;
+ 
+ 		const listItem = new ListItem(
+ 			rpI,
+ 			eleLi,
+-			ent.name,
++			displayName,
+ 			{
+ 				source,
+ 				...ListItem.getCommonValues(ent),
+-				type: ent.type,
+-				alias: PageFilterRecipes.getListAliases(ent),
++				type: displayType,
++				alias: [
++					...PageFilterRecipes.getListAliases(ent),
++					...(ent._displayAlias || []),
++				],
+ 			},
+ 			{
+ 				hash,
+@@ -115,13 +121,13 @@
+ 		return listItem;
+ 	}
+ 
+-	_tabTitleStats = "Recipe";
++	_tabTitleStats = "配方";
+ 
+ 	_renderStats_doBuildStatsTab ({ent, scaleFactor = null}) {
+ 		if (scaleFactor != null) ent = Renderer.recipe.getScaledRecipe(ent, scaleFactor);
+ 
+ 		const selScaleFactor = veT`
+-			<select title="Scale Recipe" class="ve-form-control ve-input-xs form-control--minimal ve-popwindow__hidden">
++			<select title="縮放配方" class="ve-form-control ve-input-xs form-control--minimal ve-popwindow__hidden">
+ 				${[0.5, 1, 2, 3, 4].map(it => `<option value="${it}" ${(scaleFactor || 1) === it ? "selected" : ""}>×${it}</option>`)}
+ 			</select>`
+ 			.vee.onn("change", () => {
+--- a/js/filter-recipes.js
++++ b/js/filter-recipes.js
+@@ -15,35 +15,35 @@
+ 		super();
+ 
+ 		this._typeFilter = new Filter({
+-			header: "Category",
+-			displayFn: StrUtil.toTitleCase.bind(StrUtil),
++			header: "類別",
++			displayFn: it => I18nZhTwContent.getRecipeType(it, {isBilingual: true}),
+ 			itemSortFn: SortUtil.ascSortLower,
+ 		});
+ 		this._dishTypeFilter = new Filter({
+-			header: "Dish Type",
+-			displayFn: StrUtil.toTitleCase.bind(StrUtil),
++			header: "菜餚類型",
++			displayFn: it => I18nZhTwContent.getRecipeDishType(it, {isBilingual: true}),
+ 			itemSortFn: SortUtil.ascSortLower,
+ 		});
+-		this._servesFilter = new RangeFilter({header: "Serves", min: 1, max: 1});
+-		this._timeFilterTotal = new RangeFilter({header: "Total", min: 10, max: 60, displayFn: time => Parser.getMinutesToFull(time, {isShort: true}), displayFnTooltip: Parser.getMinutesToFull});
+-		this._timeFilterPreparation = new RangeFilter({header: "Preparation", min: 10, max: 60, displayFn: time => Parser.getMinutesToFull(time, {isShort: true}), displayFnTooltip: Parser.getMinutesToFull});
+-		this._timeFilterCooking = new RangeFilter({header: "Cooking", min: 10, max: 60, displayFn: time => Parser.getMinutesToFull(time, {isShort: true}), displayFnTooltip: Parser.getMinutesToFull});
++		this._servesFilter = new RangeFilter({header: "份量", min: 1, max: 1});
++		this._timeFilterTotal = new RangeFilter({header: "總計", min: 10, max: 60, displayFn: time => I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(time, {isShort: true})), displayFnTooltip: time => I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(time))});
++		this._timeFilterPreparation = new RangeFilter({header: "準備", min: 10, max: 60, displayFn: time => I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(time, {isShort: true})), displayFnTooltip: time => I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(time))});
++		this._timeFilterCooking = new RangeFilter({header: "烹調", min: 10, max: 60, displayFn: time => I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(time, {isShort: true})), displayFnTooltip: time => I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(time))});
+ 		this._timeFilter = new MultiFilter({
+-			header: "Time",
++			header: "時間",
+ 			filters: [this._timeFilterTotal, this._timeFilterPreparation, this._timeFilterCooking],
+ 		});
+ 		this._dietFilter = new Filter({
+-			header: "Diet",
++			header: "飲食類型",
+ 			displayFn: PageFilterRecipes._dietToFull,
+ 			itemSortFn: SortUtil.ascSortLower,
+ 		});
+ 		this._allergensFilter = new Filter({
+-			header: "Allergens",
+-			displayFn: StrUtil.toTitleCase.bind(StrUtil),
++			header: "過敏原",
++			displayFn: it => I18nZhTwContent.getRecipeAllergen(it, {isBilingual: true}),
+ 			itemSortFn: SortUtil.ascSortLower,
+ 		});
+ 		this._miscFilter = new Filter({
+-			header: "Miscellaneous",
++			header: "雜項",
+ 			items: ["Legacy"],
+ 			isMiscFilter: true,
+ 			displayFn: PageFilterRecipes._miscTagToFull,
+@@ -146,8 +146,14 @@
+ 		);
+ 	}
+ 
+-	static _dietToFull (diet) { return PageFilterRecipes._DIET_TO_FULL[diet] || diet; }
+-	static _miscTagToFull (tag) { return PageFilterRecipes._MISC_TAG_TO_FULL[tag] || tag; }
++	static _dietToFull (diet) { return I18nZhTwContent.getRecipeDiet(PageFilterRecipes._DIET_TO_FULL[diet] || diet, {isBilingual: true}); }
++	static _miscTagToFull (tag) {
++		return ({
++			alcohol: "含酒精（Contains Alcohol）",
++			feast: "宴席菜餚（Feast Dish）",
++			Legacy: "舊版（Legacy）",
++		})[tag] || PageFilterRecipes._MISC_TAG_TO_FULL[tag] || tag;
++	}
+ }
+ 
+ globalThis.PageFilterRecipes = PageFilterRecipes;
+--- a/js/render-recipes.js
++++ b/js/render-recipes.js
+@@ -31,13 +31,13 @@
+ 
+ 				${(ptMakes || ptServes) ? veT`<div class="ve-flex-v-center">${ptMakes || ptServes}${wrpSelScaleFactor}</div>` : ""}
+ 				${(ptMakes && ptServes) ? ptServes : ""}
+-				${!(ptMakes || ptServes) && opts.selScaleFactor ? veT`<div class="ve-mb-2">Scale: ${opts.selScaleFactor}</div>` : ""}
++				${!(ptMakes || ptServes) && opts.selScaleFactor ? veT`<div class="ve-mb-2">縮放倍率：${opts.selScaleFactor}</div>` : ""}
+ 
+ 				<div class="ve-rd-plaintext__wrp-sidebar ${ptMakes || ptServes || opts.selScaleFactor ? "ve-mt-1" : ""}">${Renderer.get().render(entriesMeta.entryIngredients, 0)}</div>
+ 
+-				${entriesMeta.entryEquipment ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">Equipment</div><div>${Renderer.get().render(entriesMeta.entryEquipment)}</div></div>` : ""}
++				${entriesMeta.entryEquipment ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">器具（Equipment）</div><div>${Renderer.get().render(entriesMeta.entryEquipment)}</div></div>` : ""}
+ 
+-				${entriesMeta.entryCooksNotes ? `<div class="ve-w-100 ve-flex-col ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">Cook's Notes</div><div class="ve-italic">${Renderer.get().render(entriesMeta.entryCooksNotes)}</div></div>` : ""}
++				${entriesMeta.entryCooksNotes ? `<div class="ve-w-100 ve-flex-col ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">廚師註記（Cook's Notes）</div><div class="ve-italic">${Renderer.get().render(entriesMeta.entryCooksNotes)}</div></div>` : ""}
+ 			</div>
+ 
+ 			<div class="ve-w-66 ve-pr-3 ve-pl-5 ve-rd-plaintext__wrp-primary">
+--- a/js/homecrafts.js
++++ b/js/homecrafts.js
+@@ -4,16 +4,16 @@
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Type",
++				name: "類型",
+ 				css: "ve-col-2 ve-pl-0 ve-pr-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-7 ve-px-1",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Category",
++				name: "類別",
+ 				css: "ve-col-3 ve-pl-1 ve-pr-0 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+@@ -21,13 +21,14 @@
+ 	}
+ 
+ 	pGetSublistItem (ent, hash) {
+-		const type = Parser.getPropDisplayName(ent.__prop);
++		const type = I18nZhTwContent.getHomecraftType(ent.__prop, {isBilingual: true});
+ 		const typeShort = PageFilterHomeCrafts.getTypeAbbreviation(ent.__prop);
+-		const category = (ent.patternType || "Unknown").toTitleCase();
++		const category = I18nZhTwContent.getHomecraftPatternType(ent.patternType, {isBilingual: true});
++		const displayName = I18nZhTwContent.getBilingualName(ent);
+ 
+ 		const cellsText = [
+ 			new SublistCell({text: typeShort, title: type}),
+-			ent.name,
++			displayName,
+ 			category,
+ 		];
+ 
+@@ -42,7 +43,7 @@
+ 		const listItem = new ListItem(
+ 			hash,
+ 			ele,
+-			ent.name,
++			displayName,
+ 			{
+ 				...ListItem.getCommonValues(ent),
+ 				category,
+@@ -72,9 +73,9 @@
+ 			dataProps: ["crochetPattern"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "crochet pattern",
+-				namePlural: "crochet patterns",
+-				pageTitle: "Crochet Patterns Book View",
++				nameSingular: "鉤織圖樣",
++				namePlural: "鉤織圖樣",
++				pageTitle: "鉤織圖樣書籍檢視",
+ 			},
+ 		});
+ 	}
+@@ -87,13 +88,14 @@
+ 
+ 		const hash = UrlUtil.autoEncodeHash(ent);
+ 		const source = Parser.sourceJsonToAbv(ent.source);
+-		const type = Parser.getPropDisplayName(ent.__prop);
++		const type = I18nZhTwContent.getHomecraftType(ent.__prop, {isBilingual: true});
+ 		const typeShort = PageFilterHomeCrafts.getTypeAbbreviation(ent.__prop);
+-		const category = (ent.patternType || "Unknown").toTitleCase();
++		const category = I18nZhTwContent.getHomecraftPatternType(ent.patternType, {isBilingual: true});
++		const displayName = I18nZhTwContent.getBilingualName(ent);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-col-1-5 ve-pl-0 ve-pr-1 ve-text-center" title="${type.qq()}">${typeShort}</span>
+-			<span class="ve-col-5 ve-bold ve-px-1">${ent.name}</span>
++			<span class="ve-col-5 ve-bold ve-px-1">${displayName}</span>
+ 			<span class="ve-col-3-5 ve-px-1 ve-text-center">${category}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
+ 		</a>`;
+@@ -101,7 +103,7 @@
+ 		const listItem = new ListItem(
+ 			ixEnt,
+ 			eleLi,
+-			ent.name,
++			displayName,
+ 			{
+ 				source,
+ 				...ListItem.getCommonValues(ent),
+@@ -133,9 +135,9 @@
+ 				if (hasAnyFluff) wrpType.vee.addClass("ve-mb-1").vee.insertBefore(this._wrpTabs);
+ 				else wrpType.vee.addClass("ve-pl-7p").vee.prependTo(this._wrpTabs);
+ 
+-				veT`<span class="ve-roller">${Parser.getPropDisplayName(ent.__prop)}</span>`
++				veT`<span class="ve-roller">${I18nZhTwContent.getHomecraftType(ent.__prop, {isBilingual: true})}</span>`
+ 					.vee.onn("click", () => {
+-						this._filterBox.setFromValues({"Type": {[ent.__prop]: 1}});
++						this._filterBox.setFromValues({"類型": {[ent.__prop]: 1}});
+ 						this.handleFilterChange();
+ 					})
+ 					.vee.appendTo(wrpType);
+--- a/js/filter-homecrafts.js
++++ b/js/filter-homecrafts.js
+@@ -26,30 +26,30 @@
+ 		super();
+ 
+ 		this._typeFilter = new Filter({
+-			header: "Type",
++			header: "類型",
+ 			items: ["crochetPattern"],
+-			displayFn: it => Parser.getPropDisplayName(it),
++			displayFn: it => I18nZhTwContent.getHomecraftType(it, {isBilingual: true}),
+ 		});
+ 		this._categoryFilter = new Filter({
+-			header: "Category",
++			header: "類別",
+ 			items: ["amigurumi", "wearable", "household item"],
+-			displayFn: it => it.toTitleCase(),
++			displayFn: it => I18nZhTwContent.getHomecraftPatternType(it, {isBilingual: true}),
+ 		});
+ 		this._skillLevelFilter = new Filter({
+-			header: "Skill Level",
++			header: "難度",
+ 			items: [...PageFilterHomeCrafts._SKILL_LEVELS],
+-			displayFn: it => Parser.crochetPatternSkilLevelToFull(it),
++			displayFn: it => I18nZhTwContent.getHomecraftSkillLevel(it, {isBilingual: true}),
+ 			itemSortFn: PageFilterHomeCrafts._ascSortSkillLevelFilter.bind(PageFilterHomeCrafts),
+ 		});
+-		this._sizeFilterWidth = new RangeFilter({header: "Width", min: 1, max: 10, suffix: " in."});
+-		this._sizeFilterHeight = new RangeFilter({header: "Height", min: 1, max: 10, suffix: " in."});
++		this._sizeFilterWidth = new RangeFilter({header: "寬度", min: 1, max: 10, suffix: " 吋"});
++		this._sizeFilterHeight = new RangeFilter({header: "高度", min: 1, max: 10, suffix: " 吋"});
+ 		this._sizesFilter = new MultiFilter({
+-			header: "Sizes",
++			header: "尺寸",
+ 			filters: [this._sizeFilterWidth, this._sizeFilterHeight],
+ 			isAddDropdownToggle: true,
+ 		});
+ 		this._hookFilter = new Filter({
+-			header: "Hook",
++			header: "鉤針",
+ 			displayFn: sizeMm => {
+ 				const asMm = `${sizeMm.toFixed(2)} mm`;
+ 
+@@ -60,12 +60,13 @@
+ 			},
+ 		});
+ 		this._designerFilter = new Filter({
+-			header: "Designer",
++			header: "設計者",
+ 		});
+ 		this._miscFilter = new Filter({
+-			header: "Miscellaneous",
++			header: "雜項",
+ 			items: ["Has Images", "Has Info"],
+ 			isMiscFilter: true,
++			displayFn: I18nZhTwContent.getFilterLabel.bind(I18nZhTwContent),
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+ 		});
+ 	}
+--- a/js/render-homecrafts.js
++++ b/js/render-homecrafts.js
+@@ -45,7 +45,7 @@
+ 	_getCommonHtmlParts_skillLevelDesignedBy ({ent, renderer, entriesMeta}) {
+ 		const {entrySkillLevel, entryDesignedBy} = entriesMeta;
+ 		return `<tr><td colspan="6" class="ve-pb-3 ve-pt-0">
+-			<i>Skill Level: ${renderer.render(entrySkillLevel)}.${entryDesignedBy ? ` Designed by ${renderer.render(entryDesignedBy)}.` : ""}</i>
++			<i>難度（Skill Level）：${renderer.render(entrySkillLevel)}。${entryDesignedBy ? ` 設計者（Designed by）：${renderer.render(entryDesignedBy)}。` : ""}</i>
+ 		</td></tr>`;
+ 	}
+ 
+@@ -77,7 +77,7 @@
+ 		if (!entriesMeasurements?.length) return "";
+ 
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Finished Measurements</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">完成尺寸（Finished Measurements）</h5>
+ 			${entriesMeasurements.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+@@ -87,7 +87,7 @@
+ 	_getCommonHtmlParts_yarn ({ent, renderer}) {
+ 		if (!ent.yarn?.length) return "";
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Yarn</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">紗線（Yarn）</h5>
+ 			${ent.yarn.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+@@ -98,7 +98,7 @@
+ 		const {entriesHooks} = entriesMeta;
+ 
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Hooks</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">鉤針（Hooks）</h5>
+ 			${entriesHooks.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+@@ -108,7 +108,7 @@
+ 	_getCommonHtmlParts_notions ({ent, renderer}) {
+ 		if (!ent.notions?.length) return "";
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Notions</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">配件（Notions）</h5>
+ 			${ent.notions.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+@@ -118,7 +118,7 @@
+ 	_getCommonHtmlParts_gauge ({ent, renderer}) {
+ 		if (!ent.gauge?.length) return "";
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Gauge</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">針目密度（Gauge）</h5>
+ 			${ent.gauge.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+@@ -128,7 +128,7 @@
+ 	_getCommonHtmlParts_stitches ({ent, renderer}) {
+ 		if (!ent.stitches?.length) return "";
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Special Stitches</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">特殊針法（Special Stitches）</h5>
+ 			${ent.stitches.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+@@ -138,7 +138,7 @@
+ 	_getCommonHtmlParts_abbreviations ({ent, renderer}) {
+ 		if (!ent.abbreviations?.length) return "";
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Special Abbreviations</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">特殊縮寫（Special Abbreviations）</h5>
+ 			${ent.abbreviations.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+@@ -148,7 +148,7 @@
+ 	_getCommonHtmlParts_notes ({ent, renderer}) {
+ 		if (!ent.notes?.length) return "";
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Notes</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">註記（Notes）</h5>
+ 			${ent.notes.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+@@ -158,7 +158,7 @@
+ 	_getCommonHtmlParts_finishing ({ent, renderer}) {
+ 		if (!ent.finishing?.length) return "";
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Finishing</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">收尾（Finishing）</h5>
+ 			${ent.finishing.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+--- a/js/render.js
++++ b/js/render.js
+@@ -9613,40 +9613,40 @@
+ 
+ 	static getObjectRenderableEntriesMeta (ent) {
+ 		return {
+-			entrySize: `{@i ${ent.objectType !== "GEN" ? `${Renderer.utils.getRenderedSize(ent.size)} ${ent.creatureType ? Parser.monTypeToFullObj(ent.creatureType).asText : "object"}` : `Variable size object`}}`,
++			entrySize: `{@i ${ent.objectType !== "GEN" ? `${Renderer.utils.getRenderedSize(ent.size)} ${ent.creatureType ? Parser.monTypeToFullObj(ent.creatureType).asText : "物件（Object）"}` : `尺寸可變物件（Variable Size Object）`}}`,
+ 
+ 			entryCreatureCapacity: ent.capCrew != null || ent.capPassenger != null
+-				? `{@b Creature Capacity:} ${Renderer.vehicle.getShipCreatureCapacity(ent)}`
++				? `{@b 生物容量（Creature Capacity）：} ${Renderer.vehicle.getShipCreatureCapacity(ent)}`
+ 				: null,
+ 			entryCargoCapacity: ent.capCargo != null
+-				? `{@b Cargo Capacity:} ${Renderer.vehicle.getShipCargoCapacity(ent)}`
++				? `{@b 載貨量（Cargo Capacity）：} ${Renderer.vehicle.getShipCargoCapacity(ent)}`
+ 				: null,
+ 			entryArmorClass: ent.ac != null
+-				? `{@b Armor Class:} ${ent.ac.special ?? ent.ac}`
++				? `{@b 護甲等級（Armor Class）：} ${ent.ac.special ?? ent.ac}`
+ 				: null,
+ 			entryHitPoints: ent.hp != null
+-				? `{@b Hit Points:} ${ent.hp.special ?? ent.hp}`
++				? `{@b 生命值（Hit Points）：} ${ent.hp.special ?? ent.hp}`
+ 				: null,
+ 			entrySpeed: ent.speed != null
+-				? `{@b Speed:} ${Parser.getSpeedString(ent)}`
++				? `{@b 速度（Speed）：} ${Parser.getSpeedString(ent)}`
+ 				: null,
+ 			entryAbilityScores: Parser.ABIL_ABVS.some(ab => ent[ab] != null)
+-				? `{@b Ability Scores:} ${Parser.ABIL_ABVS.filter(ab => ent[ab] != null).map(ab => `${ab.toUpperCase()}\u00A0${Renderer.utils.getAbilityRollerEntry(ent, ab)}`).join(", ")}`
++				? `{@b 屬性值（Ability Scores）：} ${Parser.ABIL_ABVS.filter(ab => ent[ab] != null).map(ab => `${ab.toUpperCase()}\u00A0${Renderer.utils.getAbilityRollerEntry(ent, ab)}`).join("、")}`
+ 				: null,
+ 			entryDamageImmunities: ent.immune != null
+-				? `{@b Damage Immunities:} ${Parser.getFullImmRes(ent.immune)}`
++				? `{@b 傷害免疫（Damage Immunities）：} ${Parser.getFullImmRes(ent.immune)}`
+ 				: null,
+ 			entryDamageResistances: ent.resist
+-				? `{@b Damage Resistances:} ${Parser.getFullImmRes(ent.resist)}`
++				? `{@b 傷害抗性（Damage Resistances）：} ${Parser.getFullImmRes(ent.resist)}`
+ 				: null,
+ 			entryDamageVulnerabilities: ent.vulnerable
+-				? `{@b Damage Vulnerabilities:} ${Parser.getFullImmRes(ent.vulnerable)}`
++				? `{@b 傷害易傷（Damage Vulnerabilities）：} ${Parser.getFullImmRes(ent.vulnerable)}`
+ 				: null,
+ 			entryConditionImmunities: ent.conditionImmune
+-				? `{@b Condition Immunities:} ${Parser.getFullCondImm(ent.conditionImmune, {isEntry: true})}`
++				? `{@b 狀態免疫（Condition Immunities）：} ${Parser.getFullCondImm(ent.conditionImmune, {isEntry: true})}`
+ 				: null,
+ 			entrySenses: ent.senses
+-				? `{@b Senses:} ${Renderer.utils.getSensesEntry(ent.senses)}`
++				? `{@b 感官（Senses）：} ${Renderer.utils.getSensesEntry(ent.senses)}`
+ 				: null,
+ 		};
+ 	}
+@@ -14302,16 +14302,16 @@
+ 	static getVehicleRenderableEntriesMeta (ent) {
+ 		return {
+ 			entryDamageVulnerabilities: ent.vulnerable
+-				? `{@b Damage Vulnerabilities} ${Parser.getFullImmRes(ent.vulnerable)}`
++				? `{@b 傷害易傷（Damage Vulnerabilities）} ${Parser.getFullImmRes(ent.vulnerable)}`
+ 				: null,
+ 			entryDamageResistances: ent.resist
+-				? `{@b Damage Resistances} ${Parser.getFullImmRes(ent.resist)}`
++				? `{@b 傷害抗性（Damage Resistances）} ${Parser.getFullImmRes(ent.resist)}`
+ 				: null,
+ 			entryDamageImmunities: ent.immune
+-				? `{@b Damage Immunities} ${Parser.getFullImmRes(ent.immune)}`
++				? `{@b 傷害免疫（Damage Immunities）} ${Parser.getFullImmRes(ent.immune)}`
+ 				: null,
+ 			entryConditionImmunities: ent.conditionImmune
+-				? `{@b Condition Immunities} ${Parser.getFullCondImm(ent.conditionImmune, {isEntry: true})}`
++				? `{@b 狀態免疫（Condition Immunities）} ${Parser.getFullCondImm(ent.conditionImmune, {isEntry: true})}`
+ 				: null,
+ 		};
+ 	}
+@@ -14352,32 +14352,32 @@
+ 			const entriesOtherOthers = (ent.other || []).filter(it => it.name !== "Actions");
+ 
+ 			const ptDimensionsTerrain = [
+-				ent.terrain ? ent.terrain.joinConjunct(", ", " and ") : null,
+-				ent.dimensions ? ent.dimensions.join(" by ") : null,
++				ent.terrain ? ent.terrain.map(it => I18nZhTwContent.getVehicleTerrain(it, {isBilingual: true})).join("、") : null,
++				ent.dimensions ? ent.dimensions.join(" × ") : null,
+ 			]
+ 				.filter(Boolean)
+ 				.join("; ");
+ 
+ 			return {
+-				entrySizeDimensions: `{@i ${Parser.sizeAbvToFull(ent.size)} vehicle${ptDimensionsTerrain ? ` (${ptDimensionsTerrain})` : ""}}`,
++				entrySizeDimensions: `{@i ${Parser.sizeAbvToFull(ent.size)}載具（Vehicle）${ptDimensionsTerrain ? `（${ptDimensionsTerrain}）` : ""}}`,
+ 				entryCreatureCapacity: ent.capCrew != null || ent.capPassenger != null
+-					? `{@b Creature Capacity} ${Renderer.vehicle.getShipCreatureCapacity(ent)}`
++					? `{@b 生物容量（Creature Capacity）} ${Renderer.vehicle.getShipCreatureCapacity(ent)}`
+ 					: null,
+ 				entryCargoCapacity: ent.capCargo != null
+-					? `{@b Cargo Capacity} ${Renderer.vehicle.getShipCargoCapacity(ent)}`
++					? `{@b 載貨量（Cargo Capacity）} ${Renderer.vehicle.getShipCargoCapacity(ent)}`
+ 					: null,
+ 				entryTravelPace: ent.pace != null
+-					? `{@b Travel Pace} ${ent.pace} miles per hour (${ent.pace * 24} miles per day)`
++					? `{@b 旅行步調（Travel Pace）} 每小時 ${ent.pace} 哩（每日 ${ent.pace * 24} 哩）`
+ 					: null,
+ 				entryTravelPaceNote: ent.pace != null
+-					? `[{@b Speed} ${ent.pace * 10} ft.]`
++					? `[{@b 速度（Speed）} ${ent.pace * 10} 尺]`
+ 					: null,
+ 				entryTravelPaceNoteTitle: ent.pace != null
+ 					? VetoolsConfig.get("styleSwitcher", "style") === "classic"
+-						? `Based on "Special Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_DMG)} p242`
+-						: `Based on "Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_XDMG)} p39`
++						? `依據「特殊旅行步調（Special Travel Pace）」；${Parser.sourceJsonToAbv(Parser.SRC_DMG)} 第 242 頁`
++						: `依據「旅行步調（Travel Pace）」；${Parser.sourceJsonToAbv(Parser.SRC_XDMG)} 第 39 頁`
+ 					: null,
+-				entryInitiative: ent.initiative ? `{@b Initiative} {@initiative ${ent.initiative}}` : null,
++				entryInitiative: ent.initiative ? `{@b 先攻（Initiative）} {@initiative ${ent.initiative}}` : null,
+ 
+ 				entriesOtherActions: entriesOtherActions.length ? entriesOtherActions : null,
+ 				entriesOtherOthers: entriesOtherOthers.length ? entriesOtherOthers : null,
+@@ -14391,7 +14391,7 @@
+ 				items: [
+ 					{
+ 						type: "item",
+-						name: `Locomotion (${loc.mode})`,
++						name: `推進方式（Locomotion）（${I18nZhTwContent.getVehicleTerrain(loc.mode, {isBilingual: true})}）`,
+ 						entries: loc.entries,
+ 					},
+ 				],
+@@ -14405,7 +14405,7 @@
+ 				items: [
+ 					{
+ 						type: "item",
+-						name: `Speed (${spd.mode})`,
++						name: `速度（Speed）（${I18nZhTwContent.getVehicleTerrain(spd.mode, {isBilingual: true})}）`,
+ 						entries: spd.entries,
+ 					},
+ 				],
+@@ -14423,10 +14423,10 @@
+ 		static getSectionHpEntriesMeta_ ({entry, isEach = false}) {
+ 			return {
+ 				entryArmorClass: entry.ac
+-					? `{@b Armor Class} ${entry.ac}`
++					? `{@b 護甲等級（Armor Class）} ${entry.ac}`
+ 					: null,
+ 				entryHitPoints: entry.hp
+-					? `{@b Hit Points} ${entry.hp}${isEach ? ` each` : ""}${entry.dt ? ` (damage threshold ${entry.dt})` : ""}${entry.hpNote ? `; ${entry.hpNote}` : ""}`
++					? `{@b 生命值（Hit Points）} ${entry.hp}${isEach ? `（每個）` : ""}${entry.dt ? `（傷害閾值（Damage Threshold）${entry.dt}）` : ""}${entry.hpNote ? `；${entry.hpNote}` : ""}`
+ 					: null,
+ 			};
+ 		}
+@@ -14449,7 +14449,7 @@
+ 		static getControlSection_ (renderer, control) {
+ 			if (!control) return "";
+ 			return `
+-				<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">Control: ${control.name}</h3></td></tr>
++				<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">操控裝置（Control）：${I18nZhTwContent.getBilingualName(control)}</h3></td></tr>
+ 				<tr><td colspan="6" class="ve-stats__sect-row-inner">
+ 				${Renderer.vehicle.ship.getSectionHpPart_(renderer, control)}
+ 				<div class="ve-rd__b--1">${renderer.render({entries: control.entries})}</div>
+@@ -14471,7 +14471,7 @@
+ 			if (!move) return "";
+ 
+ 			return `
+-				<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">${move.isControl ? `Control and ` : ""}Movement: ${move.name}</h3></td></tr>
++				<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">${move.isControl ? `操控與移動（Control and Movement）` : `移動（Movement）`}：${I18nZhTwContent.getBilingualName(move)}</h3></td></tr>
+ 				<tr><td colspan="6" class="ve-stats__sect-row-inner">
+ 				${Renderer.vehicle.ship.getSectionHpPart_(renderer, move)}
+ 				${(move.locomotion || []).map(entry => Renderer.vehicle.ship._getMovementSection_getLocomotionSection({renderer, entry})).join("")}
+@@ -14482,7 +14482,7 @@
+ 
+ 		static getWeaponSection_ (renderer, weap) {
+ 			return `
+-				<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">Weapons: ${weap.name}${weap.count ? ` (${weap.count})` : ""}</h3></td></tr>
++				<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">武器（Weapons）：${I18nZhTwContent.getBilingualName(weap)}${weap.count ? `（${weap.count}）` : ""}</h3></td></tr>
+ 				<tr><td colspan="6" class="ve-stats__sect-row-inner">
+ 				${Renderer.vehicle.ship.getSectionHpPart_(renderer, weap, !!weap.count)}
+ 				${renderer.render({entries: weap.entries})}
+@@ -14492,7 +14492,7 @@
+ 
+ 		static getOtherSection_ (renderer, oth) {
+ 			return `
+-				<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">${oth.name}</h3></td></tr>
++				<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">${I18nZhTwContent.getBilingualName(oth)}</h3></td></tr>
+ 				<tr><td colspan="6" class="ve-stats__sect-row-inner">
+ 				${Renderer.vehicle.ship.getSectionHpPart_(renderer, oth)}
+ 				${renderer.render({entries: oth.entries})}
+@@ -14526,7 +14526,7 @@
+ 					if (!pace) return null;
+ 
+ 					const asNum = Parser.vulgarToNumber(pace);
+-					return `{@tip ${isMulti && mode !== "walk" ? `${mode} ` : ""}${pace} mph|${asNum * 24} miles per day}`;
++					return `{@tip ${isMulti && mode !== "walk" ? `${I18nZhTwContent.getVehicleTerrain(mode, {isBilingual: true})} ` : ""}每小時 ${pace} 哩|每日 ${asNum * 24} 哩}`;
+ 				})
+ 				.filter(Boolean)
+ 				.join(", ");
+@@ -14538,12 +14538,12 @@
+ 				: "\u2014";
+ 
+ 			return {
+-				entryAc: `{@b Armor Class:} ${ptAc}`,
+-				entryCargo: `{@b Cargo:} ${ent.capCargo ? `${ent.capCargo} ton${ent.capCargo === 1 ? "" : "s"}` : "\u2014"}`,
+-				entryHitPoints: `{@b Hit Points:} ${ent.hull?.hp ?? "\u2014"}`,
+-				entryCrew: `{@b Crew:} ${ent.capCrew ?? "\u2014"}${ent.capCrewNote ? ` ${ent.capCrewNote}` : ""}`,
+-				entryDamageThreshold: `{@b Damage Threshold:} ${ent.hull?.dt ?? "\u2014"}`,
+-				entryCost: `{@b Cost:} ${ent.cost != null ? Parser.vehicleCostToFull(ent) : "\u2014"}`,
++				entryAc: `{@b 護甲等級（Armor Class）：} ${ptAc}`,
++				entryCargo: `{@b 載貨量（Cargo）：} ${ent.capCargo ? `${ent.capCargo} 噸` : "\u2014"}`,
++				entryHitPoints: `{@b 生命值（Hit Points）：} ${ent.hull?.hp ?? "\u2014"}`,
++				entryCrew: `{@b 船員（Crew）：} ${ent.capCrew ?? "\u2014"}${ent.capCrewNote ? ` ${ent.capCrewNote}` : ""}`,
++				entryDamageThreshold: `{@b 傷害閾值（Damage Threshold）：} ${ent.hull?.dt ?? "\u2014"}`,
++				entryCost: `{@b 費用（Cost）：} ${ent.cost != null ? Parser.vehicleCostToFull(ent) : "\u2014"}`,
+ 				entryPacePt: this._getRenderableEntriesMeta_getPtPace(ent),
+ 			};
+ 		}
+@@ -14560,10 +14560,10 @@
+ 				: "\u2014";
+ 
+ 			return {
+-				entrySize: ptSize ? `{@i ${ptSize} Object}` : null,
+-				entryArmorClass: `{@b Armor Class:} ${entry.ac == null ? "\u2014" : entry.ac}`,
+-				entryHitPoints: `{@b Hit Points:} ${entry.hp == null ? "\u2014" : entry.hp}`,
+-				entryCost: `{@b Cost:} ${ptCosts}`,
++				entrySize: ptSize ? `{@i ${ptSize}物件（Object）}` : null,
++				entryArmorClass: `{@b 護甲等級（Armor Class）：} ${entry.ac == null ? "\u2014" : entry.ac}`,
++				entryHitPoints: `{@b 生命值（Hit Points）：} ${entry.hp == null ? "\u2014" : entry.hp}`,
++				entryCost: `{@b 費用（Cost）：} ${ptCosts}`,
+ 			};
+ 		}
+ 
+@@ -14621,10 +14621,10 @@
+ 						],
+ 						[
+ 							entryDamageThreshold,
+-							`{@b Keel/Beam:} ${(ent.dimensions || ["\u2014"]).join("/")}`,
++							`{@b 龍骨／船寬（Keel/Beam）：} ${(ent.dimensions || ["\u2014"]).join("／")}`,
+ 						],
+ 						[
+-							`{@b Speed:} ${ptSpeedPace}`,
++							`{@b 速度（Speed）：} ${ptSpeedPace}`,
+ 							entryCost,
+ 						],
+ 					],
+@@ -14644,7 +14644,7 @@
+ 			const isMultiple = entry.count != null && entry.count > 1;
+ 
+ 			return {
+-				entryName: `${isMultiple ? `${entry.count} ` : ""}${entry.name}${entry.crew ? ` (Crew: ${entry.crew}${isMultiple ? " each" : ""})` : ""}`,
++				entryName: `${isMultiple ? `${entry.count} 座` : ""}${I18nZhTwContent.getBilingualName(entry)}${entry.crew ? `（船員（Crew）：${entry.crew}${isMultiple ? "，每座" : ""}）` : ""}`,
+ 			};
+ 		}
+ 
+@@ -14684,14 +14684,14 @@
+ 						],
+ 						[
+ 							entryHitPoints,
+-							`{@b Passengers:} ${ent.capPassenger ? ent.capPassenger : "\u2014"}`,
++							`{@b 乘客（Passengers）：} ${ent.capPassenger ? ent.capPassenger : "\u2014"}`,
+ 						],
+ 						[
+ 							entryDamageThreshold,
+ 							entryCargo,
+ 						],
+ 						[
+-							`{@b Speed:} ${ptPaceSpeed}`,
++							`{@b 速度（Speed）：} ${ptPaceSpeed}`,
+ 							entryCost,
+ 						],
+ 					],
+@@ -14711,7 +14711,7 @@
+ 			const isMultiple = entry.count != null && entry.count > 1;
+ 
+ 			return {
+-				entryName: `${entry.name}${isMultiple ? ` (${entry.count})` : ""}`,
++				entryName: `${I18nZhTwContent.getBilingualName(entry)}${isMultiple ? `（${entry.count}）` : ""}`,
+ 			};
+ 		}
+ 
+@@ -14725,12 +14725,12 @@
+ 		return Parser.ABIL_ABVS.some(it => veh[it] != null) ? `<tr><td colspan="6">
+ 			<table class="ve-w-100 ve-summary stripe-even-table">
+ 				<tr>
+-					<th class="ve-col-2 ve-text-center">STR</th>
+-					<th class="ve-col-2 ve-text-center">DEX</th>
+-					<th class="ve-col-2 ve-text-center">CON</th>
+-					<th class="ve-col-2 ve-text-center">INT</th>
+-					<th class="ve-col-2 ve-text-center">WIS</th>
+-					<th class="ve-col-2 ve-text-center">CHA</th>
++					<th class="ve-col-2 ve-text-center">力量（STR）</th>
++					<th class="ve-col-2 ve-text-center">敏捷（DEX）</th>
++					<th class="ve-col-2 ve-text-center">體質（CON）</th>
++					<th class="ve-col-2 ve-text-center">智力（INT）</th>
++					<th class="ve-col-2 ve-text-center">感知（WIS）</th>
++					<th class="ve-col-2 ve-text-center">魅力（CHA）</th>
+ 				</tr>
+ 				<tr>
+ 					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "str")}</td>
+@@ -14762,7 +14762,7 @@
+ 	}
+ 
+ 	static _getTraitSection (renderer, veh) {
+-		return veh.trait ? `<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">Traits</h3></td></tr>
++		return veh.trait ? `<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">特性（Traits）</h3></td></tr>
+ 		<tr><td colspan="6" class="ve-pt-2 ve-pb-2">
+ 		${Renderer.monster.getOrderedTraits(veh, renderer).map(it => it.rendered || renderer.render(it, 2)).join("")}
+ 		</td></tr>` : "";
+@@ -14782,10 +14782,10 @@
+ 			${Renderer.vehicle.ship.getCrewCargoPaceSection_(ent, {entriesMetaShip})}
+ 			${Renderer.vehicle._getAbilitySection(ent)}
+ 			${Renderer.vehicle._getResImmVulnSection(ent, {entriesMeta})}
+-			${ent.action ? Renderer.vehicle.ship.getSectionTitle_("Actions") : ""}
++			${ent.action ? Renderer.vehicle.ship.getSectionTitle_("動作（Actions）") : ""}
+ 			${ent.action ? `<tr><td colspan="6" class="ve-stats__sect-row-inner">${Renderer.vehicle.ship.getActionPart_(renderer, ent)}</td></tr>` : ""}
+ 			${(entriesMetaShip.entriesOtherActions || []).map(Renderer.vehicle.ship.getOtherSection_.bind(this, renderer)).join("")}
+-			${ent.hull ? `${Renderer.vehicle.ship.getSectionTitle_("Hull")}
++			${ent.hull ? `${Renderer.vehicle.ship.getSectionTitle_("船體（Hull）")}
+ 			<tr><td colspan="6" class="ve-stats__sect-row-inner">
+ 			${Renderer.vehicle.ship.getSectionHpPart_(renderer, ent.hull)}
+ 			</td></tr>` : ""}
+@@ -14799,13 +14799,13 @@
+ 
+ 	static getShipCreatureCapacity (veh) {
+ 		return [
+-			veh.capCrew ? `${veh.capCrew} crew` : null,
+-			veh.capPassenger ? `${veh.capPassenger} passenger${veh.capPassenger === 1 ? "" : "s"}` : null,
+-		].filter(Boolean).join(", ");
++			veh.capCrew ? `${veh.capCrew} 名船員` : null,
++			veh.capPassenger ? `${veh.capPassenger} 名乘客` : null,
++		].filter(Boolean).join("、");
+ 	}
+ 
+ 	static getShipCargoCapacity (veh) {
+-		return typeof veh.capCargo === "string" ? veh.capCargo : `${veh.capCargo} ton${veh.capCargo === 1 ? "" : "s"}`;
++		return typeof veh.capCargo === "string" ? veh.capCargo : `${veh.capCargo} 噸`;
+ 	}
+ 
+ 	static _getRenderedString_spelljammer (veh, opts) {
+@@ -14848,25 +14848,25 @@
+ 			const dexMod = Parser.getAbilityModNumber(ent.dex);
+ 
+ 			const ptDtMt = [
+-				ent.hp.dt != null ? `damage threshold ${ent.hp.dt}` : null,
+-				ent.hp.mt != null ? `mishap threshold ${ent.hp.mt}` : null,
++				ent.hp.dt != null ? `傷害閾值（Damage Threshold）${ent.hp.dt}` : null,
++				ent.hp.mt != null ? `事故閾值（Mishap Threshold）${ent.hp.mt}` : null,
+ 			]
+ 				.filter(Boolean)
+-				.join(", ");
++				.join("、");
+ 
+-			const ptAc = ent.ac ?? dexMod === 0 ? `19` : `${19 + dexMod} (19 while motionless)`;
++			const ptAc = ent.ac ?? dexMod === 0 ? `19` : `${19 + dexMod}（靜止時為 19）`;
+ 
+ 			return {
+-				entrySizeWeight: `{@i ${Parser.sizeAbvToFull(ent.size)} vehicle (${ent.weight.toLocaleStringVe()} lb.)}`,
+-				entryCreatureCapacity: `{@b Creature Capacity} ${Renderer.vehicle.getInfwarCreatureCapacity(ent)}`,
+-				entryCargoCapacity: `{@b Cargo Capacity} ${Parser.weightToFull(ent.capCargo)}`,
+-				entryArmorClass: `{@b Armor Class} ${ptAc}`,
+-				entryHitPoints: `{@b Hit Points} ${ent.hp.hp}${ptDtMt ? ` (${ptDtMt})` : ""}`,
+-				entrySpeed: `{@b Speed} ${ent.speed} ft.`,
+-				entrySpeedNote: `[{@b Travel Pace} ${Math.floor(ent.speed / 10)} miles per hour (${Math.floor(ent.speed * 24 / 10)} miles per day)]`,
++				entrySizeWeight: `{@i ${Parser.sizeAbvToFull(ent.size)}載具（Vehicle）（${ent.weight.toLocaleStringVe()} 磅）}`,
++				entryCreatureCapacity: `{@b 生物容量（Creature Capacity）} ${Renderer.vehicle.getInfwarCreatureCapacity(ent)}`,
++				entryCargoCapacity: `{@b 載貨量（Cargo Capacity）} ${Parser.weightToFull(ent.capCargo)}`,
++				entryArmorClass: `{@b 護甲等級（Armor Class）} ${ptAc}`,
++				entryHitPoints: `{@b 生命值（Hit Points）} ${ent.hp.hp}${ptDtMt ? `（${ptDtMt}）` : ""}`,
++				entrySpeed: `{@b 速度（Speed）} ${ent.speed} 尺`,
++				entrySpeedNote: `[{@b 旅行步調（Travel Pace）} 每小時 ${Math.floor(ent.speed / 10)} 哩（每日 ${Math.floor(ent.speed * 24 / 10)} 哩）]`,
+ 				entrySpeedNoteTitle: VetoolsConfig.get("styleSwitcher", "style") === "classic"
+-					? `Based on "Special Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_DMG)} p242`
+-					: `Based on "Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_XDMG)} p39`,
++					? `依據「特殊旅行步調（Special Travel Pace）」；${Parser.sourceJsonToAbv(Parser.SRC_DMG)} 第 242 頁`
++					: `依據「旅行步調（Travel Pace）」；${Parser.sourceJsonToAbv(Parser.SRC_XDMG)} 第 39 頁`,
+ 			};
+ 		}
+ 	};
+@@ -14881,7 +14881,7 @@
+ 		const ptActionStation = Renderer.monster.getCompactRenderedStringSection({
+ 			ent,
+ 			renderer,
+-			title: "Action Stations",
++			title: "動作站（Action Stations）",
+ 			key: "actionStation",
+ 			depth: 2,
+ 			styleHint: opts.styleHint,
+@@ -14889,7 +14889,7 @@
+ 		const ptReaction = Renderer.monster.getCompactRenderedStringSection({
+ 			ent,
+ 			renderer,
+-			title: "Reactions",
++			title: "反應（Reactions）",
+ 			key: "reaction",
+ 			depth: 2,
+ 			styleHint: opts.styleHint,
+@@ -14912,7 +14912,7 @@
+ 	}
+ 
+ 	static getInfwarCreatureCapacity (veh) {
+-		return `${veh.capCreature} Medium creatures`;
++		return `${veh.capCreature} 個中型（Medium）生物`;
+ 	}
+ 
+ 	static pGetFluff (veh) {
+@@ -14936,7 +14936,7 @@
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
+ 		const summary = [
+-			ent.upgradeType ? ent.upgradeType.map(t => Parser.vehicleUpgradeTypeToFull(t)) : null,
++			ent.upgradeType ? ent.upgradeType.map(t => I18nZhTwContent.getVehicleUpgradeType(t, {isBilingual: true})) : null,
+ 			ent.prerequisite ? Renderer.utils.prerequisite.getEntry(ent.prerequisite, {styleHint}) : null,
+ 		]
+ 			.filter(Boolean)
+@@ -14947,7 +14947,7 @@
+ 				? `{@i ${summary}}`
+ 				: null,
+ 			entryCost: ent.cost != null
+-				? `{@b Cost:} ${Parser.itemValueToFullMultiCurrency({value: ent.cost}, {styleHint})}`
++				? `{@b 費用（Cost）：} ${Parser.itemValueToFullMultiCurrency({value: ent.cost}, {styleHint})}`
+ 				: null,
+ 		};
+ 	}
+@@ -15195,23 +15195,28 @@
+ 			.filter(prop => ent.time[prop])
+ 			.map((prop, i, arr) => {
+ 				const val = ent.time[prop];
++				const propDisplay = ({
++					total: "總計（Total）",
++					preparation: "準備（Preparation）",
++					cooking: "烹調（Cooking）",
++				})[prop] || I18nZhTwContent.getBilingualValue(prop.toTitleCase(), prop.toTitleCase());
+ 
+ 				const ptsTime = (
+ 					val.min != null && val.max != null
+ 						? [
+-							Parser.getMinutesToFull(val.min),
+-							Parser.getMinutesToFull(val.max),
++							I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(val.min)),
++							I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(val.max)),
+ 						]
+-						: [Parser.getMinutesToFull(val)]
++						: [I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(val))]
+ 				);
+ 
+ 				const suffix = MiscUtil.findCommonSuffix(ptsTime, {isRespectWordBoundaries: true});
+ 				const ptTime = ptsTime
+ 					.map(it => !suffix.length ? it : it.slice(0, -suffix.length))
+-					.join(" to ");
++					.join("至");
+ 
+ 				return {
+-					entryName: `{@b {@style ${prop.toTitleCase()} Time:|small-caps}}`,
++					entryName: `{@b {@style ${propDisplay}時間：|small-caps}}`,
+ 					entryContent: `${ptTime}${suffix}`,
+ 				};
+ 			});
+@@ -15220,10 +15225,10 @@
+ 	static getRecipeRenderableEntriesMeta (ent) {
+ 		return {
+ 			entryMakes: ent.makes
+-				? `{@b {@style Makes|small-caps}} ${ent._scaleFactor ? `${ent._scaleFactor}× ` : ""}${ent.makes}`
++				? `{@b {@style 成品量（Makes）|small-caps}} ${ent._scaleFactor ? `${ent._scaleFactor}× ` : ""}${ent.makes}`
+ 				: null,
+ 			entryServes: ent.serves
+-				? `{@b {@style Serves|small-caps}} ${ent.serves.min ?? ent.serves.exact}${ent.serves.min != null ? " to " : ""}${ent.serves.max ?? ""}${ent.serves.note ? ` ${ent.serves.note}` : ""}`
++				? `{@b {@style 份量（Serves）|small-caps}} ${ent.serves.min ?? ent.serves.exact}${ent.serves.min != null ? "至" : ""}${ent.serves.max ?? ""}${ent.serves.note ? ` ${ent.serves.note}` : ""}`
+ 				: null,
+ 			entryMetasTime: Renderer.recipe._getEntryMetasTime(ent),
+ 			entryIngredients: {entries: ent._fullIngredients},
+@@ -15260,9 +15265,9 @@
+ 
+ 				<div class="ve-rd-plaintext__wrp-sidebar ${ptMakes || ptServes ? "ve-mt-1" : ""}">${Renderer.get().render(entriesMeta.entryIngredients, 0)}</div>
+ 
+-				${entriesMeta.entryEquipment ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">Equipment</div><div>${Renderer.get().render(entriesMeta.entryEquipment)}</div></div>` : ""}
++				${entriesMeta.entryEquipment ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">器具（Equipment）</div><div>${Renderer.get().render(entriesMeta.entryEquipment)}</div></div>` : ""}
+ 
+-				${entriesMeta.entryCooksNotes ? `<div class="ve-w-100 ve-flex-col ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">Cook's Notes</div><div class="ve-italic">${Renderer.get().render(entriesMeta.entryCooksNotes)}</div></div>` : ""}
++				${entriesMeta.entryCooksNotes ? `<div class="ve-w-100 ve-flex-col ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">廚師註記（Cook's Notes）</div><div class="ve-italic">${Renderer.get().render(entriesMeta.entryCooksNotes)}</div></div>` : ""}
+ 			</div>
+ 
+ 			<div class="ve-pl-2 ve-flex-2 ve-rd-plaintext__wrp-primary ve-overflow-x-auto">
+@@ -15396,7 +15401,7 @@
+ 			if (cpyR.serves.exact) cpyR.serves.exact *= scaleFactor;
+ 		}
+ 
+-		cpyR._displayName = `${cpyR.name} (×${scaleFactor})`;
++		cpyR._displayName = `${I18nZhTwContent.getBilingualName(r)}（×${scaleFactor}）`;
+ 		cpyR._scaleFactor = scaleFactor;
+ 
+ 		return cpyR;
+@@ -15545,9 +15550,9 @@
+ 			...(ent.size || [])
+ 				.flatMap(szInfo => {
+ 					return [
+-						szInfo.name ? `{@style ${szInfo.name}|small-caps}` : null,
+-						szInfo.width ? `{@b Width:} ${szInfo.width.entry}` : null,
+-						szInfo.height ? `{@b Height:} ${szInfo.height.entry}` : null,
++						szInfo.name ? `{@style ${I18nZhTwContent.getBilingualName(szInfo)}|small-caps}` : null,
++						szInfo.width ? `{@b 寬度（Width）：} ${szInfo.width.entry}` : null,
++						szInfo.height ? `{@b 高度（Height）：} ${szInfo.height.entry}` : null,
+ 					]
+ 						.filter(Boolean);
+ 				}),
+@@ -15558,9 +15563,9 @@
+ 
+ 	static _getCrochetPatternRenderableEntriesMeta_getHookEntry ({hookSize}) {
+ 		const dispUs = Parser.crochetHookMmToUs(hookSize);
+-		const ptMm = `${hookSize} mm crochet hook`;
++		const ptMm = `${hookSize} 公釐鉤針（mm Crochet Hook）`;
+ 		if (!dispUs) return ptMm;
+-		return `US ${dispUs} / ${ptMm}`;
++		return `美規（US）${dispUs}／${ptMm}`;
+ 	}
+ 
+ 	static _getCrochetPatternRenderableEntriesMeta_entriesHooks ({ent}) {
+@@ -15571,7 +15576,7 @@
+ 				}
+ 
+ 				return [
+-					`{@style ${hookInfo.name}|small-caps}`,
++					`{@style ${I18nZhTwContent.getBilingualName(hookInfo)}|small-caps}`,
+ 					...hookInfo.hooks
+ 						.map(hookSize => this._getCrochetPatternRenderableEntriesMeta_getHookEntry({hookSize})),
+ 				]
+@@ -15581,7 +15586,7 @@
+ 
+ 	static getCrochetPatternRenderableEntriesMeta (ent) {
+ 		return {
+-			entrySkillLevel: Parser.crochetPatternSkilLevelToFull(ent.level),
++			entrySkillLevel: I18nZhTwContent.getHomecraftSkillLevel(ent.level, {isBilingual: true}),
+ 			entryDesignedBy: ent.designers ? ent.designers.joinConjunct(", ", " and ") : null,
+ 			entriesMeasurements: this._getCrochetPatternRenderableEntriesMeta_entriesMeasurements({ent}),
+ 			entriesHooks: this._getCrochetPatternRenderableEntriesMeta_entriesHooks({ent}),
+@@ -15598,29 +15603,29 @@
+ 		${Renderer.utils.getNameTr(ent, {page: UrlUtil.PG_HOMECRAFTS})}
+ 
+ 		<tr><td colspan="6">
+-			<i>Skill Level: ${renderer.render(entrySkillLevel)}.${entryDesignedBy ? ` Designed by ${renderer.render(entryDesignedBy)}.` : ""}</i></td>
++			<i>難度（Skill Level）：${renderer.render(entrySkillLevel)}。${entryDesignedBy ? ` 設計者（Designed by）：${renderer.render(entryDesignedBy)}。` : ""}</i></td>
+ 		</td></tr>
+ 
+ 		<tr><td colspan="6">
+ 		<div class="ve-flex ve-w-100 ve-rd-plaintext__wrp-root">
+ 			<div class="ve-flex-1 ve-flex-col ve-br-1p ve-pr-2">
+-				${entriesMeasurements?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Finished Measurements</div><div>${entriesMeasurements.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}</div></div>` : ""}
++				${entriesMeasurements?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">完成尺寸（Finished Measurements）</div><div>${entriesMeasurements.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}</div></div>` : ""}
+ 
+-				${ent.yarn?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Yarn</div><div>${renderer.render({entries: ent.yarn})}</div></div>` : ""}
++				${ent.yarn?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">紗線（Yarn）</div><div>${renderer.render({entries: ent.yarn})}</div></div>` : ""}
+ 
+-				${entriesHooks?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Hooks</div><div>${renderer.render({entries: entriesHooks})}</div></div>` : ""}
++				${entriesHooks?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">鉤針（Hooks）</div><div>${renderer.render({entries: entriesHooks})}</div></div>` : ""}
+ 
+-				${ent.notions?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Notions</div><div>${renderer.render({entries: ent.notions})}</div></div>` : ""}
++				${ent.notions?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">配件（Notions）</div><div>${renderer.render({entries: ent.notions})}</div></div>` : ""}
+ 
+-				${ent.gauge?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Gauge</div><div>${renderer.render({entries: ent.gauge})}</div></div>` : ""}
++				${ent.gauge?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">針目密度（Gauge）</div><div>${renderer.render({entries: ent.gauge})}</div></div>` : ""}
+ 
+-				${ent.stitches?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Special Stitches</div><div>${renderer.render({entries: ent.stitches})}</div></div>` : ""}
++				${ent.stitches?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">特殊針法（Special Stitches）</div><div>${renderer.render({entries: ent.stitches})}</div></div>` : ""}
+ 
+-				${ent.abbreviations?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Special Abbreviations</div><div>${renderer.render({entries: ent.abbreviations})}</div></div>` : ""}
++				${ent.abbreviations?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">特殊縮寫（Special Abbreviations）</div><div>${renderer.render({entries: ent.abbreviations})}</div></div>` : ""}
+ 
+-				${ent.notes?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Notes</div><div>${renderer.render({entries: ent.notes})}</div></div>` : ""}
++				${ent.notes?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">註記（Notes）</div><div>${renderer.render({entries: ent.notes})}</div></div>` : ""}
+ 
+-				${ent.finishing?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Finishing</div><div>${renderer.render({entries: ent.finishing})}</div></div>` : ""}
++				${ent.finishing?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">收尾（Finishing）</div><div>${renderer.render({entries: ent.finishing})}</div></div>` : ""}
+ 			</div>
+ 
+ 			<div class="ve-pl-2 ve-flex-2 ve-rd-plaintext__wrp-primary ve-overflow-x-auto">

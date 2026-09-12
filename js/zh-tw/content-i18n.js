@@ -248,6 +248,118 @@
 			secret: "秘密",
 		};
 
+		static _VEHICLE_TYPES = {
+			SHIP: ["船艦", "Ship"],
+			SPELLJAMMER: ["魔法船", "Spelljammer Ship"],
+			ELEMENTAL_AIRSHIP: ["元素飛空艇", "Elemental Airship"],
+			INFWAR: ["煉獄戰爭機械", "Infernal War Machine"],
+			CREATURE: ["生物", "Creature"],
+			OBJECT: ["物件", "Object"],
+		};
+
+		static _VEHICLE_UPGRADE_TYPES = {
+			"SHP:H": ["船艦升級：船體", "Ship Upgrade, Hull"],
+			"SHP:M": ["船艦升級：移動", "Ship Upgrade, Movement"],
+			"SHP:W": ["船艦升級：武器", "Ship Upgrade, Weapon"],
+			"SHP:F": ["船艦升級：船首像", "Ship Upgrade, Figurehead"],
+			"SHP:O": ["船艦升級：其他", "Ship Upgrade, Miscellaneous"],
+			"IWM:W": ["煉獄戰爭機械變體：武器", "Infernal War Machine Variant, Weapon"],
+			"IWM:A": ["煉獄戰爭機械升級：裝甲", "Infernal War Machine Upgrade, Armor"],
+			"IWM:G": ["煉獄戰爭機械升級：裝置", "Infernal War Machine Upgrade, Gadget"],
+		};
+
+		static _VEHICLE_TERRAINS = {
+			land: "陸地",
+			sea: "海上",
+			air: "空中",
+			space: "太空",
+			water: "水上",
+			magical: "魔法",
+		};
+
+		static _RECIPE_TYPES = {
+			Dwarven: "矮人料理",
+			"Elixir/Ale": "靈藥／麥酒",
+			Elven: "精靈料理",
+			Halfling: "半身人料理",
+			Human: "人類料理",
+			"Lost in Realmspace": "迷失晶壁系",
+			"One-Eyed Jax": "獨眼傑克斯",
+			Ravenloft: "鴉閣",
+			Sigil: "印記城",
+			Solamnia: "索蘭尼亞",
+			"The Driftwood Tavern": "浮木酒館",
+			"The Feywild": "妖精荒野",
+			"The Gilded Horseshoe": "鎏金馬蹄酒館",
+			"The Halfway Inn": "半途旅店",
+			"The Hearth": "爐邊酒館",
+			"The Hissing Stones": "嘶鳴石酒館",
+			"The Low Lantern": "低垂提燈酒館",
+			"The Moonstone Mask": "月石面具酒館",
+			"The Pink Flumph Theater": "粉紅浮空鰩劇院",
+			"The Rock of Bral": "布拉爾之岩",
+			"The Yawning Portal": "大呵欠傳送門酒館",
+			"Uncommon Cuisine": "非凡料理",
+		};
+
+		static _RECIPE_DISH_TYPES = {
+			appetizer: "開胃菜",
+			bread: "麵包",
+			cocktail: "雞尾酒",
+			dessert: "甜點",
+			drink: "飲品",
+			entree: "主菜",
+			libation: "酒飲",
+			pastry: "糕點",
+			salad: "沙拉",
+			side: "配菜",
+			snack: "點心",
+			soup: "湯品",
+			sweet: "甜食",
+		};
+
+		static _RECIPE_ALLERGENS = {
+			celery: "芹菜",
+			crustaceans: "甲殼類",
+			eggs: "蛋類",
+			fish: "魚類",
+			gluten: "麩質",
+			lupin: "羽扇豆",
+			milk: "乳製品",
+			molluscs: "軟體動物",
+			mustard: "芥末",
+			nuts: "堅果",
+			peanuts: "花生",
+			sesame: "芝麻",
+			soya: "大豆",
+			sulphites: "亞硫酸鹽",
+		};
+
+		static _RECIPE_DIETS = {
+			V: ["純素", "Vegan"],
+			C: ["素食", "Vegetarian"],
+			X: ["雜食", "Omni"],
+			Vegan: ["純素", "Vegan"],
+			Vegetarian: ["素食", "Vegetarian"],
+			Omni: ["雜食", "Omni"],
+		};
+
+		static _HOMECRAFT_TYPES = {
+			crochetPattern: ["鉤織圖樣", "Crochet Pattern"],
+		};
+
+		static _HOMECRAFT_PATTERN_TYPES = {
+			amigurumi: "鉤針玩偶",
+			"household item": "居家用品",
+			wearable: "穿戴用品",
+		};
+
+		static _HOMECRAFT_SKILL_LEVELS = {
+			B: ["初級", "Beginner"],
+			I: ["中級", "Intermediate"],
+			A: ["進階", "Advanced"],
+		};
+
 		static _ALIGNMENTS = {
 			L: "守序",
 			NX: "中立（守序／混亂軸）",
@@ -261,6 +373,10 @@
 		};
 
 		static _languageScriptTranslations = new Map();
+		static _recipeMetadataTranslations = {
+			dishTypes: new Map(),
+			allergenGroups: new Map(),
+		};
 		static _deityMetadataTranslations = {
 			pantheon: new Map(),
 			category: new Map(),
@@ -300,6 +416,7 @@
 			"Fly": "飛行",
 			"Grants Additional Spells": "賦予額外法術",
 			"Grants Piety Features": "賦予虔信特性",
+			"Has Token": "有標記",
 			"Has Fonts": "有字型",
 			"Has Images": "有圖片",
 			"Has Info": "有資訊",
@@ -562,6 +679,13 @@
 			["languageScript", "reference-pages"],
 			["languageFluff", "reference-pages"],
 			["deity", "reference-pages"],
+			["vehicle", "craft-pages"],
+			["vehicleUpgrade", "craft-pages"],
+			["vehicleFluff", "craft-pages"],
+			["recipe", "craft-pages"],
+			["recipeFluff", "craft-pages"],
+			["crochetPattern", "craft-pages"],
+			["crochetPatternFluff", "craft-pages"],
 		]);
 
 		static _FILE_TO_PROPS = new Map([
@@ -588,6 +712,12 @@
 			["languages.json", ["language", "languageScript"]],
 			["fluff-languages.json", ["languageFluff"]],
 			["deities.json", ["deity"]],
+			["vehicles.json", ["vehicle", "vehicleUpgrade"]],
+			["fluff-vehicles.json", ["vehicleFluff"]],
+			["recipes.json", ["recipe"]],
+			["fluff-recipes.json", ["recipeFluff"]],
+			["homecrafts.json", ["crochetPattern"]],
+			["fluff-homecrafts.json", ["crochetPatternFluff"]],
 		]);
 
 		static _CONTENT_KEYS = new Set([
@@ -614,6 +744,51 @@
 			"tables",
 			"default",
 			"columns",
+			"action",
+			"actionStation",
+			"acFrom",
+			"burrow",
+			"capCargo",
+			"capCrewNote",
+			"climb",
+			"condition",
+			"control",
+			"costs",
+			"dimensions",
+			"fly",
+			"height",
+			"hull",
+			"movement",
+			"other",
+			"reaction",
+			"speed",
+			"station",
+			"swim",
+			"trait",
+			"walk",
+			"weapon",
+			"width",
+			"alias",
+			"allergenGroups",
+			"dishTypes",
+			"equipment",
+			"ingredients",
+			"instructions",
+			"makes",
+			"noteCook",
+			"serves",
+			"abbreviations",
+			"finishing",
+			"gauge",
+			"hooks",
+			"notions",
+			"notes",
+			"patternType",
+			"size",
+			"sizeNote",
+			"stitches",
+			"yarn",
+			"hpNote",
 		]);
 
 		static _pFileCache = new Map();
@@ -944,7 +1119,10 @@
 				out[key] = this._overlayContentValue({
 					canonical: canonical[key],
 					localized: localized[key],
-					isBilingualNames: ["cult", "boon", "charoption", "reward", "language", "deity"].includes(prop) && key === "entries",
+					isBilingualNames: [
+						"cult", "boon", "charoption", "reward", "language", "deity",
+						"vehicleFluff", "recipeFluff", "crochetPatternFluff",
+					].includes(prop) && key === "entries",
 				});
 			}
 
@@ -988,6 +1166,62 @@
 				}
 				if (canonical.symbolImg && localized.symbolImg) {
 					out.symbolImg = this._overlayContentValue({canonical: canonical.symbolImg, localized: localized.symbolImg});
+				}
+			}
+
+			if (["vehicle", "vehicleUpgrade", "recipe", "crochetPattern"].includes(prop)) {
+				const contentKeys = {
+					vehicle: [
+						"actionStation", "capCargo", "capCrewNote", "control", "dimensions", "hull",
+						"movement", "other", "speed", "station", "weapon", "action", "trait", "reaction",
+					],
+					vehicleUpgrade: ["entries"],
+					recipe: ["equipment", "ingredients", "instructions", "makes", "noteCook", "serves"],
+					crochetPattern: [
+						"abbreviations", "finishing", "gauge", "hooks", "notions", "notes", "size",
+						"sizeNote", "stitches", "yarn", "instructions",
+					],
+				}[prop];
+				for (const key of contentKeys) {
+					if (!(key in canonical) || !(key in localized)) continue;
+					out[key] = this._overlayContentValue({
+						canonical: canonical[key],
+						localized: localized[key],
+						isBilingualNames: true,
+					});
+				}
+			}
+
+			if (prop === "recipe") {
+				for (const key of ["alias", "allergenGroups", "dishTypes"]) {
+					if (!(key in canonical) || !(key in localized)) continue;
+					out[`_display${key[0].toUpperCase()}${key.slice(1)}`] = this._overlayContentValue({
+						canonical: canonical[key],
+						localized: localized[key],
+					});
+				}
+			}
+
+			if (prop === "crochetPattern" && "patternType" in canonical && "patternType" in localized) {
+				out._displayPatternType = this._overlayContentValue({
+					canonical: canonical.patternType,
+					localized: localized.patternType,
+				});
+			}
+
+			if (prop === "vehicle") {
+				for (const [key, displayKey] of [
+					["ac", "_displayAc"],
+					["hp", "_displayHp"],
+					["speed", "_displaySpeed"],
+					["languages", "_displayLanguages"],
+					["vulnerable", "_displayVulnerable"],
+					["resist", "_displayResist"],
+					["immune", "_displayImmune"],
+					["conditionImmune", "_displayConditionImmune"],
+				]) {
+					if (!(key in canonical) || !(key in localized)) continue;
+					out[displayKey] = this._copy(localized[key]);
 				}
 			}
 
@@ -1120,6 +1354,18 @@
 				}
 			}
 
+			if (file === "recipes.json") {
+				for (const recipe of out.recipe || []) {
+					for (const prop of Object.keys(this._recipeMetadataTranslations)) {
+						this._registerMetadataTranslation(
+							this._recipeMetadataTranslations[prop],
+							recipe[prop],
+							this.getDisplayField(recipe, prop),
+						);
+					}
+				}
+			}
+
 			if (file === "items.json" && out.item?.length && out.itemGroup?.length) {
 				const byName = new Map();
 				for (const item of out.item) {
@@ -1169,7 +1415,11 @@
 			const canonicalName = `${this.getCanonicalName(entity)}`.trim();
 			if (!displayName) return canonicalName;
 			if (!canonicalName || displayName.toLowerCase() === canonicalName.toLowerCase()) return displayName;
-			if (displayName.endsWith(`（${canonicalName}）`) || displayName.endsWith(` (${canonicalName})`)) return displayName;
+			if (
+				displayName.endsWith(`（${canonicalName}）`)
+				|| displayName.endsWith(` (${canonicalName})`)
+				|| displayName.includes(`（${canonicalName}）`)
+			) return displayName;
 			return `${displayName}（${canonicalName}）`;
 		}
 
@@ -1439,6 +1689,76 @@
 			if (`${value}`.toLowerCase() === "none") return isBilingual ? "無（None）" : "無";
 			const localized = this._deityMetadataTranslations[prop]?.get(`${value}`.toLowerCase()) || value;
 			return isBilingual ? this.getBilingualValue(value, localized) : localized;
+		}
+
+		static _getPairValue (pair, fallback, {isBilingual = false} = {}) {
+			if (!pair) return fallback || "";
+			const [localized, canonical] = pair;
+			return isBilingual ? this.getBilingualValue(canonical, localized) : localized;
+		}
+
+		static getVehicleType (type, {isBilingual = false} = {}) {
+			return this._getPairValue(this._VEHICLE_TYPES[type], type, {isBilingual});
+		}
+
+		static getVehicleUpgradeType (type, {isBilingual = false} = {}) {
+			return this._getPairValue(this._VEHICLE_UPGRADE_TYPES[type], type, {isBilingual});
+		}
+
+		static getVehicleTerrain (terrain, {isBilingual = false} = {}) {
+			const localized = this._VEHICLE_TERRAINS[`${terrain || ""}`.toLowerCase()] || terrain || "";
+			const canonical = terrain ? `${terrain}`.replace(/^./, char => char.toUpperCase()) : "";
+			return isBilingual ? this.getBilingualValue(canonical, localized) : localized;
+		}
+
+		static getRecipeType (type, {isBilingual = false} = {}) {
+			const localized = this._RECIPE_TYPES[type] || type || "";
+			return isBilingual ? this.getBilingualValue(type, localized) : localized;
+		}
+
+		static getRecipeDishType (dishType, {isBilingual = false} = {}) {
+			const localized = this._recipeMetadataTranslations.dishTypes.get(`${dishType || ""}`.toLowerCase())
+				|| this._RECIPE_DISH_TYPES[`${dishType || ""}`.toLowerCase()]
+				|| dishType
+				|| "";
+			const canonical = dishType ? `${dishType}`.replace(/^./, char => char.toUpperCase()) : "";
+			return isBilingual ? this.getBilingualValue(canonical, localized) : localized;
+		}
+
+		static getRecipeAllergen (allergen, {isBilingual = false} = {}) {
+			const localized = this._recipeMetadataTranslations.allergenGroups.get(`${allergen || ""}`.toLowerCase())
+				|| this._RECIPE_ALLERGENS[`${allergen || ""}`.toLowerCase()]
+				|| allergen
+				|| "";
+			const canonical = allergen ? `${allergen}`.replace(/^./, char => char.toUpperCase()) : "";
+			return isBilingual ? this.getBilingualValue(canonical, localized) : localized;
+		}
+
+		static getRecipeDiet (diet, {isBilingual = false} = {}) {
+			return this._getPairValue(this._RECIPE_DIETS[diet], diet, {isBilingual});
+		}
+
+		static getHomecraftType (prop, {isBilingual = false} = {}) {
+			return this._getPairValue(this._HOMECRAFT_TYPES[prop], prop, {isBilingual});
+		}
+
+		static getHomecraftPatternType (patternType, {isBilingual = false} = {}) {
+			const localized = this._HOMECRAFT_PATTERN_TYPES[`${patternType || ""}`.toLowerCase()] || patternType || "未知";
+			const canonical = patternType ? `${patternType}`.replace(/^./, char => char.toUpperCase()) : "Unknown";
+			return isBilingual ? this.getBilingualValue(canonical, localized) : localized;
+		}
+
+		static getHomecraftSkillLevel (level, {isBilingual = false} = {}) {
+			return this._getPairValue(this._HOMECRAFT_SKILL_LEVELS[level], level, {isBilingual});
+		}
+
+		static localizeDurationText (text) {
+			if (typeof text !== "string") return text;
+			return text
+				.replace(/\bdays?\b/gi, "天")
+				.replace(/\b(?:hours?|hrs?|hr)\b/gi, "小時")
+				.replace(/\b(?:minutes?|mins?|min)\b/gi, "分鐘")
+				.replace(/\b(?:seconds?|secs?|sec)\b/gi, "秒");
 		}
 
 		static getAlignment (alignment, {isBilingual = true, isAbbreviation = false} = {}) {

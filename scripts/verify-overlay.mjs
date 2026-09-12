@@ -21,6 +21,9 @@ const required = [
 	"rewards.html",
 	"languages.html",
 	"deities.html",
+	"vehicles.html",
+	"recipes.html",
+	"homecrafts.html",
 	"data/zh-TW/class.json",
 	"data/zh-TW/class/index.json",
 	"data/zh-TW/site.json",
@@ -62,6 +65,13 @@ const required = [
 	"data/zh-TW/adventures/adventure-hotdq.json",
 	"data/zh-TW/adventures/adventure-rot.json",
 	"js/zh-tw/adventure-i18n.js",
+	"data/zh-TW/craft-pages/index.json",
+	"data/zh-TW/craft-pages/vehicles.json",
+	"data/zh-TW/craft-pages/fluff-vehicles.json",
+	"data/zh-TW/craft-pages/recipes.json",
+	"data/zh-TW/craft-pages/fluff-recipes.json",
+	"data/zh-TW/craft-pages/homecrafts.json",
+	"data/zh-TW/craft-pages/fluff-homecrafts.json",
 	"js/zh-tw/class-i18n.js",
 	"js/zh-tw/class-body-i18n.js",
 	"js/zh-tw/site-i18n.js",
@@ -88,6 +98,7 @@ const required = [
 	"node/zh-tw/test-small-fragments-and-bastions.mjs",
 	"node/zh-tw/test-cults-boons-i18n.mjs",
 	"node/zh-tw/test-reference-pages-i18n.mjs",
+	"node/zh-tw/test-craft-pages-i18n.mjs",
 ];
 
 for (const relativePath of required) {
@@ -145,6 +156,14 @@ for (const script of [
 	"js/deities.js",
 	"js/filter-deities.js",
 	"js/render-deities.js",
+	"js/vehicles.js",
+	"js/filter-vehicles.js",
+	"js/recipes.js",
+	"js/filter-recipes.js",
+	"js/render-recipes.js",
+	"js/homecrafts.js",
+	"js/filter-homecrafts.js",
+	"js/render-homecrafts.js",
 	"js/utils.js",
 	"js/utils-list.js",
 	"js/utils-dataloader/utils-dataloader-dataloader.js",
@@ -181,5 +200,6 @@ runNode("node/zh-tw/test-cults-boons-i18n.mjs");
 runNode("node/zh-tw/test-reference-pages-i18n.mjs");
 runNode("node/zh-tw/test-adventure-cos-i18n.mjs");
 runNode("node/zh-tw/test-adventure-tyranny-i18n.mjs");
+runNode("node/zh-tw/test-craft-pages-i18n.mjs");
 execFileSync("git", ["diff", "--check"], {cwd: upstreamRoot, stdio: "inherit"});
-console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, items, monsters, Bastions, cults/boons, reference-page, and CoS/Tyranny of Dragons adventure overlay verification passed.");
+console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, items, monsters, Bastions, cults/boons, reference pages, CoS/Tyranny of Dragons adventures, vehicles, recipes, and homecrafts overlay verification passed.");
