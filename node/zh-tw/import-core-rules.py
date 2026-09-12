@@ -220,6 +220,16 @@ EXACT_VISIBLE_TRANSLATIONS = {
 	"Varies": "依情況而定",
 }
 
+PROJECT_TERM_REPLACEMENTS = (
+	("護手令會（Order of the Gauntlet）", "鐵手套教團"),
+	("臂鎧教團Order of the Gauntlet", "鐵手套教團"),
+	("The Order of the Gauntlet", "鐵手套教團"),
+	("Order of the Gauntlet", "鐵手套教團"),
+	("臂鎧騎士團", "鐵手套教團"),
+	("臂鎧教團", "鐵手套教團"),
+	("護手令會", "鐵手套教團"),
+)
+
 # Small, source-specific repairs for omissions or ambiguous notation in the
 # pinned translation.  They run after canonical tag reconciliation and are
 # guarded by the exact context path, making each change auditable.
@@ -839,6 +849,8 @@ class Localizer:
 	def localize_string(self, english: str, translated: str, context: str) -> str:
 		self.register_tag_translations(english, translated)
 		out = self.reconcile_tags(english, self.normalize_text(translated), context)
+		for source, replacement in PROJECT_TERM_REPLACEMENTS:
+			out = out.replace(source, replacement)
 		for source, replacement in POST_RECONCILE_REPLACEMENTS.get(context, ()):
 			if source not in out:
 				raise ValueError(f"Stale core-rules source repair at {context}: {source!r} not found")

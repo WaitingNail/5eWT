@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build guarded zh-TW sidecars for translated 5etools entity data.
 
-Supported groups are ``spells``, ``character-options``, ``items``, and ``monsters``. Every localized
+Supported groups are ``spells``, ``character-options``, ``items``, ``monsters``, and ``cults-boons``. Every localized
 entity is paired to the pinned v2.33.3 English entity by canonical name and
 source. The output retains all mechanical and identity fields from English,
 while replacing only renderer-visible prose. Inline-reference targets are
@@ -292,6 +292,17 @@ CHARACTER_OPTION_EXACT_REPAIRS: dict[str, tuple[tuple[str, str], ...]] = {
 
 ITEM_EXACT_REPAIRS: dict[str, tuple[tuple[str, str], ...]] = {}
 
+CULT_BOON_TRANSLATION_OVERRIDES: dict[str, str] = {
+	"cultsboons.json/cult/1/entries/0/entries/0": (
+		"邪教徒以其30尺內一個能看見的生物為目標。目標必須成功通過一次{@dc 15}體質豁免，"
+		"否則受到16（{@damage 3d10}）點暗蝕傷害，並陷入{@condition poisoned||中毒}狀態1分鐘。"
+		"{@condition poisoned||中毒}的目標可以在其每個回合結束時重複進行該豁免，成功時終止自己身上的效應。"
+	),
+	"cultsboons.json/boon/6/ability/entry": "體質屬性值獲得至多+8的加值，智力、感知與魅力屬性值受到等量減值",
+	"cultsboons.json/boon/9/ability/entry": "智力或感知屬性值，或兩者皆獲得至多+4的加值",
+	"cultsboons.json/boon/11/ability/entry": "體質屬性值獲得至多+4的加值，智力、感知與魅力屬性值受到等量減值",
+}
+
 ITEM_TRANSLATION_OVERRIDES: dict[str, str] = {
 	"items.json/item/97/entries/6/colLabels/1": "上",
 	"items.json/item/98/entries/5/colLabels/1": "上",
@@ -501,9 +512,28 @@ ITEM_NUMERIC_EQUIVALENT_CONTEXTS: dict[str, str] = {
 class ContentLocalizer(CORE.Localizer):
 	_SLOT_ABOVE_RE = re.compile(r"for each slot level above (\d+)(?:st|nd|rd|th)", re.IGNORECASE)
 	_FULLWIDTH_NUMBER_TRANSLATION = str.maketrans("０１２３４５６７８９", "0123456789")
+	_PROJECT_TERM_REPLACEMENTS = (
+		("護手令會（Order of the Gauntlet）", "鐵手套教團"),
+		("臂鎧教團Order of the Gauntlet", "鐵手套教團"),
+		("The Order of the Gauntlet", "鐵手套教團"),
+		("Order of the Gauntlet", "鐵手套教團"),
+		("臂鎧騎士團", "鐵手套教團"),
+		("臂鎧教團", "鐵手套教團"),
+		("護手令會", "鐵手套教團"),
+	)
+
+	@classmethod
+	def _apply_project_terms(cls, value: str) -> str:
+		for source, replacement in cls._PROJECT_TERM_REPLACEMENTS:
+			value = value.replace(source, replacement)
+		return value
+
+	def translate_name(self, english: str, translated: str, category: str) -> str:
+		return self._apply_project_terms(super().translate_name(english, translated, category))
 
 	def localize_string(self, english: str, translated: str, context: str) -> str:
-		translation_overrides = {**ITEM_TRANSLATION_OVERRIDES, **MONSTER_TRANSLATION_OVERRIDES}
+		translated = self._apply_project_terms(translated)
+		translation_overrides = {**ITEM_TRANSLATION_OVERRIDES, **MONSTER_TRANSLATION_OVERRIDES, **CULT_BOON_TRANSLATION_OVERRIDES}
 		if context.startswith("bestiary/") and english in MONSTER_TEXT_OVERRIDES:
 			translation_overrides[context] = MONSTER_TEXT_OVERRIDES[english]
 		if context in translation_overrides:
@@ -549,6 +579,77 @@ class ContentLocalizer(CORE.Localizer):
 			})
 
 		return super().localize_string(english, translated, context)
+
+
+class CultBoonLocalizer(ContentLocalizer):
+	"""Translate the extra summary fields rendered above cult and boon entries."""
+	_EXTRA_VISIBLE_KEYS = {"goal", "cultists", "signatureSpells", "ability"}
+	_TEXT_REPLACEMENTS = (
+		("惡魔恩惠", "惡魔恩賜"),
+		("恩惠", "恩賜"),
+		("英尺", "尺"),
+		("英里", "哩"),
+		("NPC", "非玩家角色"),
+		("粘液", "黏液"),
+		("粘稠", "黏稠"),
+		("魔法地", "以魔法"),
+		("攻擊骰", "攻擊檢定"),
+		("豁免檢定", "豁免"),
+		("成功透過一次", "成功通過一次"),
+		("成功透過一個", "成功通過一次"),
+		("成功透過這樣的", "成功通過該"),
+		("惡魔教派", "魔鬼教派"),
+		("奈瑟斯的要求", "內薩斯之命"),
+		("內瑟斯的要求", "內薩斯之命"),
+		("巴爾澤佈", "巴爾澤布"),
+		("巴爾澤布林", "巴爾澤布"),
+		("格萊西雅", "格萊西亞"),
+		("萊維思圖斯", "萊維斯圖斯"),
+		("萊維斯塔斯", "萊維斯圖斯"),
+		("馬曼", "瑪門"),
+		("絕對追跡者", "精準追獵"),
+		("加爾·沙特克（Gar Shatterkeel）", "加爾·沙特克"),
+		("奧赫德拉（Olhydra）", "奧莉德拉"),
+		("Vanifer", "瓦尼弗"),
+		("Yan-C-Bin", "延西冰"),
+		("Aerisi", "艾瑞西"),
+		("Evereska", "埃弗拉斯卡"),
+		("仙女座", "妖精荒野"),
+		("想象", "想像"),
+	)
+
+	@classmethod
+	def _cleanup_text(cls, value: str) -> str:
+		for source, replacement in cls._TEXT_REPLACEMENTS:
+			value = value.replace(source, replacement)
+		return value
+
+	def translate_name(self, english: str, translated: str, category: str) -> str:
+		return self._cleanup_text(super().translate_name(english, translated, category))
+
+	def localize_string(self, english: str, translated: str, context: str) -> str:
+		out = self._cleanup_text(super().localize_string(english, translated, context))
+		if context.endswith("/signatureSpells/entry"):
+			out = re.sub(r"[（(]([1-9])級(法術)?[）)]", r"（\1環\2）", out)
+			out = re.sub(r"\((戲法|[1-9]環(?:法術)?)\)", r"（\1）", out).replace(", ", "、")
+		return out
+
+	def localize_node(self, english, translated, context: str, category: str, matcher=None):
+		out = super().localize_node(english, translated, context, category, matcher)
+		if not isinstance(english, dict) or not isinstance(translated, dict) or not isinstance(out, dict):
+			return out
+
+		for key in self._EXTRA_VISIBLE_KEYS:
+			if key not in english or key not in translated:
+				continue
+			out[key] = super().localize_node(
+				english[key],
+				translated[key],
+				f"{context}/{key}",
+				category,
+				matcher,
+			)
+		return out
 
 
 class CharacterOptionLocalizer(ContentLocalizer):
@@ -1000,7 +1101,7 @@ class MonsterLocalizer(ContentLocalizer):
 
 def parse_args() -> argparse.Namespace:
 	parser = argparse.ArgumentParser()
-	parser.add_argument("group", choices=("spells", "character-options", "items", "monsters"))
+	parser.add_argument("group", choices=("spells", "character-options", "items", "monsters", "cults-boons"))
 	parser.add_argument(
 		"--source-dir",
 		type=Path,
@@ -1112,6 +1213,13 @@ def get_group_config(group: str) -> dict:
 			"sharedProps": {},
 			"reportName": "monster-import-report.json",
 		}
+	if group == "cults-boons":
+		return {
+			"folder": "cults-boons",
+			"specs": [("cultsboons.json", ("cult", "boon"))],
+			"sharedProps": {},
+			"reportName": "cults-boons-import-report.json",
+		}
 	raise ValueError(f"Unsupported content group: {group}")
 
 
@@ -1217,6 +1325,10 @@ _VISIBLE_DIRECT_KEYS = CORE.DIRECT_VISIBLE_KEYS | {
 	"nameSuffix",
 	"nameRemove",
 	*MONSTER_DISPLAY_KEYS,
+	"goal",
+	"cultists",
+	"signatureSpells",
+	"ability",
 }
 
 
@@ -1344,6 +1456,7 @@ def main() -> None:
 		ItemLocalizer() if args.group == "items"
 		else MonsterLocalizer() if args.group == "monsters"
 		else CharacterOptionLocalizer() if args.group == "character-options"
+		else CultBoonLocalizer() if args.group == "cults-boons"
 		else ContentLocalizer()
 	)
 

@@ -1,0 +1,126 @@
+diff --git a/js/cultsboons.js b/js/cultsboons.js
+--- a/js/cultsboons.js
++++ b/js/cultsboons.js
+@@ -22,7 +22,8 @@ class CultsBoonsSublistManager extends SublistManager {
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
+-		const cellsText = [it._lType, it._lSubType, it.name];
++		const displayName = Renderer.utils.getBilingualName(it);
++		const cellsText = [it._lType, it._lSubType, displayName];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+ 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+@@ -35,7 +36,7 @@ class CultsBoonsSublistManager extends SublistManager {
+ 		const listItem = new ListItem(
+ 			hash,
+ 			ele,
+-			it.name,
++			displayName,
+ 			{
+ 				...ListItem.getCommonValues(it),
+ 				type: it._lType,
+@@ -55,7 +56,10 @@ class CultsBoonsPage extends ListPage {
+ 	constructor () {
+ 		const pageFilter = new PageFilterCultsBoons();
+ 		super({
+-			dataSource: "data/cultsboons.json",
++			dataSource: async () => I18nZhTwContent.pApplyDataFile({
++				file: "cultsboons.json",
++				data: await DataUtil.loadJSON("data/cultsboons.json"),
++			}),
+ 
+ 			pageFilter,
+ 
+@@ -72,8 +76,9 @@ class CultsBoonsPage extends ListPage {
+ 	getListItem (it, bcI, isExcluded) {
+ 		this._pageFilter.mutateAndAddToFilters(it, isExcluded);
+ 
+-		it._lType = it.__prop === "cult" ? "Cult" : "Boon";
+-		it._lSubType = it.type || "\u2014";
++		it._lType = it.__prop === "cult" ? "邪教" : "恩賜";
++		it._lSubType = I18nZhTwContent.getCultBoonType(it.type) || "\u2014";
++		const displayName = Renderer.utils.getBilingualName(it);
+ 
+ 		const eleLi = document.createElement("div");
+ 		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
+@@ -84,14 +89,14 @@ class CultsBoonsPage extends ListPage {
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-col-2 ve-text-center ve-pl-0">${it._lType}</span>
+ 			<span class="ve-col-2 ve-px-1 ve-text-center">${it._lSubType}</span>
+-			<span class="ve-bold ve-col-6 ve-px-1">${it.name}</span>
++			<span class="ve-bold ve-col-6 ve-px-1">${displayName}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
+ 		</a>`;
+ 
+ 		const listItem = new ListItem(
+ 			bcI,
+ 			eleLi,
+-			it.name,
++			displayName,
+ 			{
+ 				source,
+ 				...ListItem.getCommonValues(it),
+diff --git a/js/filter-cultsboons.js b/js/filter-cultsboons.js
+--- a/js/filter-cultsboons.js
++++ b/js/filter-cultsboons.js
+@@ -7,10 +7,12 @@ class PageFilterCultsBoons extends PageFilterBase {
+ 		this._typeFilter = new Filter({
+ 			header: "Type",
+ 			items: ["Boon, Demonic", "Cult"],
++			displayFn: it => ({"Boon, Demonic": "恩賜，惡魔", "Cult": "邪教"})[it] || it,
+ 		});
+ 		this._subtypeFilter = new Filter({
+ 			header: "Subtype",
+ 			items: [],
++			displayFn: it => I18nZhTwContent.getCultBoonType(it),
+ 		});
+ 		this._miscFilter = new Filter({
+ 			header: "Miscellaneous",
+diff --git a/js/render.js b/js/render.js
+--- a/js/render.js
++++ b/js/render.js
+@@ -9757,7 +9757,7 @@ Renderer.cultboon = class {
+ 		if (ent.goal) {
+ 			fauxList.items.push({
+ 				type: "item",
+-				name: "Goals:",
++				name: "目標：",
+ 				entry: ent.goal.entry,
+ 			});
+ 		}
+@@ -9765,14 +9765,14 @@ Renderer.cultboon = class {
+ 		if (ent.cultists) {
+ 			fauxList.items.push({
+ 				type: "item",
+-				name: "Typical Cultists:",
++				name: "典型邪教徒：",
+ 				entry: ent.cultists.entry,
+ 			});
+ 		}
+ 		if (ent.signatureSpells) {
+ 			fauxList.items.push({
+ 				type: "item",
+-				name: "Signature Spells:",
++				name: "招牌法術：",
+ 				entry: ent.signatureSpells.entry,
+ 			});
+ 		}
+@@ -9796,7 +9796,7 @@ Renderer.cultboon = class {
+ 		if (ent.ability) {
+ 			benefits.items.push({
+ 				type: "item",
+-				name: "Ability Score Adjustment:",
++				name: "屬性值調整：",
+ 				entry: ent.ability ? ent.ability.entry : "None",
+ 			});
+ 		}
+@@ -9804,7 +9804,7 @@ Renderer.cultboon = class {
+ 		if (ent.signatureSpells) {
+ 			benefits.items.push({
+ 				type: "item",
+-				name: "Signature Spells:",
++				name: "招牌法術：",
+ 				entry: ent.signatureSpells ? ent.signatureSpells.entry : "None",
+ 			});
+ 		}

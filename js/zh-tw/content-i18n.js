@@ -207,6 +207,13 @@
 			trade: "貿易",
 		};
 
+		static _CULT_BOON_TYPES = {
+			Demonic: "惡魔",
+			Diabolical: "魔鬼",
+			"Elder Evil": "遠古邪物",
+			Elemental: "元素",
+		};
+
 		static _FILTER_LABELS = {
 			"Ability": "屬性",
 			"Ability Bonus": "屬性加值",
@@ -489,6 +496,8 @@
 			["legendaryGroup", "bestiary"],
 			["facility", "bastions"],
 			["facilityFluff", "bastions"],
+			["cult", "cults-boons"],
+			["boon", "cults-boons"],
 		]);
 
 		static _FILE_TO_PROPS = new Map([
@@ -507,6 +516,7 @@
 			["bestiary/legendarygroups.json", ["legendaryGroup"]],
 			["bastions.json", ["facility"]],
 			["fluff-bastions.json", ["facilityFluff"]],
+			["cultsboons.json", ["cult", "boon"]],
 		]);
 
 		static _CONTENT_KEYS = new Set([
@@ -623,23 +633,44 @@
 			return out;
 		}
 
-		static _overlayContentValue ({canonical, localized}) {
+		static _getBilingualEntryName ({canonical, localized}) {
+			const splitSuffix = name => {
+				const matchTag = /^(.*?)(\s*\{@recharge(?: [^}]*)?\})$/u.exec(name);
+				if (matchTag) return {base: matchTag[1].trim(), suffix: matchTag[2].trimStart(), kind: "tag"};
+
+				const matchParenthetical = /^(.*?)(\s*(?:\([^()]+\)|（[^（）]+）))$/u.exec(name);
+				if (matchParenthetical) return {base: matchParenthetical[1].trim(), suffix: matchParenthetical[2].trimStart(), kind: "parenthetical"};
+
+				return {base: name.trim(), suffix: "", kind: null};
+			};
+
+			const canonicalParts = splitSuffix(canonical);
+			const localizedParts = splitSuffix(localized);
+			if (canonicalParts.kind && localizedParts.kind) {
+				return `${localizedParts.base}（${canonicalParts.base}）${localizedParts.suffix}`;
+			}
+
+			return `${localized}（${canonical}）`;
+		}
+
+		static _overlayContentValue ({canonical, localized, isBilingualNames = false}) {
 			if (typeof canonical === "string") return typeof localized === "string" ? localized : canonical;
 			if (canonical == null || typeof canonical !== "object") return canonical;
 
 			if (Array.isArray(canonical)) {
 				if (!Array.isArray(localized) || canonical.length !== localized.length) return this._copy(canonical);
-				return canonical.map((child, ix) => this._overlayContentValue({canonical: child, localized: localized[ix]}));
+				return canonical.map((child, ix) => this._overlayContentValue({canonical: child, localized: localized[ix], isBilingualNames}));
 			}
 
 			if (!localized || typeof localized !== "object" || Array.isArray(localized)) return this._copy(canonical);
 			const out = {...canonical};
 			if (typeof canonical.name === "string" && typeof localized.name === "string" && canonical.name !== localized.name) {
 				out.ENG_name = canonical.name;
+				if (isBilingualNames) out._displayName = this._getBilingualEntryName({canonical: canonical.name, localized: localized.name});
 			}
 			for (const key of this._CONTENT_KEYS) {
 				if (!(key in canonical) || !(key in localized)) continue;
-				out[key] = this._overlayContentValue({canonical: canonical[key], localized: localized[key]});
+				out[key] = this._overlayContentValue({canonical: canonical[key], localized: localized[key], isBilingualNames});
 			}
 			return out;
 		}
@@ -784,7 +815,18 @@
 
 			for (const key of ["entries", "entriesHigherLevel", "additionalEntries", "entriesTemplate"]) {
 				if (!(key in canonical) || !(key in localized)) continue;
-				out[key] = this._overlayContentValue({canonical: canonical[key], localized: localized[key]});
+				out[key] = this._overlayContentValue({
+					canonical: canonical[key],
+					localized: localized[key],
+					isBilingualNames: ["cult", "boon"].includes(prop) && key === "entries",
+				});
+			}
+
+			if (["cult", "boon"].includes(prop)) {
+				for (const key of ["goal", "cultists", "signatureSpells", "ability"]) {
+					if (!(key in canonical) || !(key in localized)) continue;
+					out[key] = this._overlayContentValue({canonical: canonical[key], localized: localized[key]});
+				}
 			}
 
 			if (prop.endsWith("Fluff") && canonical.images && localized.images) {
@@ -1124,6 +1166,10 @@
 			return this._FACILITY_ORDERS[`${order || ""}`.toLowerCase()] || order || "";
 		}
 
+		static getCultBoonType (type) {
+			return this._CULT_BOON_TYPES[type] || type || "";
+		}
+
 		static _replaceVisibleText (text, replacements) {
 			const replacePart = part => replacements.reduce((out, [pattern, replacement]) => out.replace(pattern, replacement), part);
 			if (!text.includes("<")) return replacePart(text);
@@ -1282,7 +1328,7 @@
 				[/Emerald Enclave/gi, "翠綠閒庭"],
 				[/Harpers/gi, "豎琴手同盟"],
 				[/Lords['’] Alliance/gi, "領主聯盟"],
-				[/Order of the Gauntlet/gi, "臂鎧騎士團"],
+				[/Order of the Gauntlet/gi, "鐵手套教團"],
 				[/Red Wizards/gi, "紅袍巫師"],
 				[/Zhentarim/gi, "散塔林會"],
 				[/House Kundarak/gi, "昆達拉克家族"],

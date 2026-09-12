@@ -16,6 +16,7 @@ const required = [
 	"backgrounds.html",
 	"feats.html",
 	"optionalfeatures.html",
+	"cultsboons.html",
 	"data/zh-TW/class.json",
 	"data/zh-TW/class/index.json",
 	"data/zh-TW/site.json",
@@ -43,6 +44,8 @@ const required = [
 	"data/zh-TW/bestiary/bestiary-xmm.json",
 	"data/zh-TW/bestiary/fluff-bestiary-mm.json",
 	"data/zh-TW/bestiary/legendarygroups.json",
+	"data/zh-TW/cults-boons/index.json",
+	"data/zh-TW/cults-boons/cultsboons.json",
 	"js/zh-tw/class-i18n.js",
 	"js/zh-tw/class-body-i18n.js",
 	"js/zh-tw/site-i18n.js",
@@ -67,6 +70,7 @@ const required = [
 	"node/zh-tw/test-monster-page-runtime.mjs",
 	"node/zh-tw/validate-monster-translations.mjs",
 	"node/zh-tw/test-small-fragments-and-bastions.mjs",
+	"node/zh-tw/test-cults-boons-i18n.mjs",
 ];
 
 for (const relativePath of required) {
@@ -109,6 +113,9 @@ for (const script of [
 	"js/render-bestiary.js",
 	"js/render-dice.js",
 	"js/render-items.js",
+	"js/cultsboons.js",
+	"js/filter-cultsboons.js",
+	"js/render-cultsboons.js",
 	"js/utils.js",
 	"js/utils-list.js",
 	"js/utils-dataloader/utils-dataloader-dataloader.js",
@@ -141,5 +148,6 @@ runNode("node/zh-tw/validate-monster-translations.mjs");
 runNode("node/zh-tw/test-monster-i18n.mjs");
 runNode("node/zh-tw/test-monster-page-runtime.mjs");
 runNode("node/zh-tw/test-small-fragments-and-bastions.mjs");
+runNode("node/zh-tw/test-cults-boons-i18n.mjs");
 execFileSync("git", ["diff", "--check"], {cwd: upstreamRoot, stdio: "inherit"});
-console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, items, and monsters overlay verification passed.");
+console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, items, monsters, Bastions, and cults/boons overlay verification passed.");
