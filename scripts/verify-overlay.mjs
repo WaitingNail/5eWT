@@ -99,6 +99,7 @@ const required = [
 	"node/zh-tw/test-cults-boons-i18n.mjs",
 	"node/zh-tw/test-reference-pages-i18n.mjs",
 	"node/zh-tw/test-craft-pages-i18n.mjs",
+	"node/zh-tw/test-deployed-image-root.mjs",
 ];
 
 for (const relativePath of required) {
@@ -201,5 +202,6 @@ runNode("node/zh-tw/test-reference-pages-i18n.mjs");
 runNode("node/zh-tw/test-adventure-cos-i18n.mjs");
 runNode("node/zh-tw/test-adventure-tyranny-i18n.mjs");
 runNode("node/zh-tw/test-craft-pages-i18n.mjs");
+runNode("node/zh-tw/test-deployed-image-root.mjs");
 execFileSync("git", ["diff", "--check"], {cwd: upstreamRoot, stdio: "inherit"});
-console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, items, monsters, Bastions, cults/boons, reference pages, CoS/Tyranny of Dragons adventures, vehicles, recipes, and homecrafts overlay verification passed.");
+console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, items, monsters, Bastions, cults/boons, reference pages, CoS/Tyranny of Dragons adventures, vehicles, recipes, homecrafts, and deployed image-root verification passed.");

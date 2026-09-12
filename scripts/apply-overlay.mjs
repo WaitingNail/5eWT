@@ -76,10 +76,24 @@ if (!canGitApply(patchPaths.at(-1), ["--reverse"])) {
 	}
 }
 
+const deployedImageRoot = "https://raw.githubusercontent.com/WaitingNail/5eWT-img/main/";
+const utilsPath = path.join(upstreamRoot, "js", "utils.js");
+const utilsSource = fs.readFileSync(utilsPath, "utf8");
+const imageRootAssignment = /globalThis\.DEPLOYED_IMG_ROOT\s*=\s*(?:undefined|["'][^"']*["']);/g;
+const imageRootMatches = [...utilsSource.matchAll(imageRootAssignment)];
+if (imageRootMatches.length !== 1) {
+	throw new Error(`Expected one DEPLOYED_IMG_ROOT assignment in ${path.relative(projectRoot, utilsPath)}, found ${imageRootMatches.length}.`);
+}
+const utilsLocalized = utilsSource.replace(
+	imageRootAssignment,
+	`globalThis.DEPLOYED_IMG_ROOT = "${deployedImageRoot}";`,
+);
+if (utilsLocalized !== utilsSource) fs.writeFileSync(utilsPath, utilsLocalized);
+
 execFileSync(
 	process.execPath,
 	[path.join(upstreamRoot, "node", "zh-tw", "apply-site-i18n-html.mjs")],
 	{cwd: upstreamRoot, stdio: "inherit"},
 );
 
-console.log("Applied zh-TW interface, bilingual entity names, Class, rules, spells, character-options, items, monsters, Bastions, cults/boons, reference pages, adventures, vehicles, recipes, and homecrafts overlay; assets were refreshed.");
+console.log(`Applied zh-TW interface, bilingual entity names, Class, rules, spells, character-options, items, monsters, Bastions, cults/boons, reference pages, adventures, vehicles, recipes, and homecrafts overlay; images use ${deployedImageRoot}`);
