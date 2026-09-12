@@ -51,6 +51,7 @@ const required = [
 	"js/zh-tw/content-i18n.js",
 	"node/zh-tw/test-class-i18n.mjs",
 	"node/zh-tw/test-class-body-i18n-full.mjs",
+	"node/zh-tw/test-class-page-runtime.mjs",
 	"node/zh-tw/test-site-i18n.mjs",
 	"node/zh-tw/test-rules-i18n.mjs",
 	"node/zh-tw/test-quick-reference-i18n.mjs",
@@ -123,6 +124,7 @@ runNode("node/zh-tw/validate-glossary.mjs");
 runNode("node/zh-tw/test-class-i18n.mjs");
 runNode("node/zh-tw/test-class-body-i18n.mjs");
 runNode("node/zh-tw/test-class-body-i18n-full.mjs");
+runNode("node/zh-tw/test-class-page-runtime.mjs");
 runNode("node/zh-tw/validate-full-class-translations.mjs");
 runNode("node/zh-tw/apply-site-i18n-html.mjs", "--check");
 runNode("node/zh-tw/test-site-i18n.mjs");

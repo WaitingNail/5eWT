@@ -68,8 +68,19 @@ assert.match(specificVariant._entryType, /\{@item Longsword\|PHB\|長劍\}/iu);
 assert.match(Renderer.item.getRenderedEntries(specificVariant), /魔法武器/u);
 
 const propertyText = Renderer.item.getRenderedDamageAndProperties(longsword)[1];
-assert.match(propertyText, /多用/u);
-assert.doesNotMatch(propertyText, /versatile/iu);
+assert.match(propertyText, /多用（Versatile）/u);
+
+const dagger = baseData.baseitem.find(it => it.name === "Dagger" && it.source === "XPHB");
+Renderer.item.enhanceItem(dagger, {styleHint: "one"});
+const daggerProperties = Renderer.item.getRenderedDamageAndProperties(dagger)[1];
+const daggerEntries = Renderer.item.getRenderedEntries(dagger);
+const daggerMastery = Renderer.item.getRenderedMastery(dagger);
+assert.match(daggerProperties, /靈巧（Finesse）/u);
+assert.match(daggerEntries, /靈巧（Finesse）/u);
+assert.match(daggerEntries, /使用一把靈巧武器發動攻擊時/u);
+assert.doesNotMatch(daggerEntries, /When making an attack with a Finesse weapon/u);
+assert.match(daggerEntries, /精通：迅擊（Nick）/u);
+assert.match(daggerMastery, /迅擊（Nick）/u);
 
 const itemsPageSource = readText("js/items.js");
 const itemModalSource = readText("js/filter-items.js");

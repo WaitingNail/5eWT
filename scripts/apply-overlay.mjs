@@ -14,6 +14,7 @@ const patchPaths = [
 	path.join(projectRoot, "patches", "0006-zh-tw-small-fragments-and-bastions.patch"),
 	path.join(projectRoot, "patches", "0007-zh-tw-bilingual-names-and-bestiary-loading.patch"),
 	path.join(projectRoot, "patches", "0008-zh-tw-dice-init-binding.patch"),
+	path.join(projectRoot, "patches", "0009-zh-tw-subclass-and-item-entry-headings.patch"),
 ];
 const copyRoots = [
   "requirements-zh-tw.txt",

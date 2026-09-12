@@ -34,6 +34,32 @@ assert.equal(bodyReport.missingEntityUids.length, 0);
 assert.equal(bodyReport.skippedFields.length, 0);
 assert.equal(getIdentitySnapshot(), identityBefore, "Body translation must preserve every canonical identity/reference field");
 
+const subclassFeaturesByUid = new Map(data.subclassFeature.map(feature => [
+	I18nZhTwClassBody.normalizeUid(I18nZhTwClassBody.getCanonicalUid(feature, "subclassFeature"), "subclassFeature"),
+	feature,
+]));
+const battleMaster = data.subclassFeature.find(feature => (
+	feature.name === "Battle Master"
+	&& feature.source === "XPHB"
+	&& feature.subclassShortName === "Battle Master"
+	&& feature.level === 3
+));
+assert.ok(battleMaster, "Missing XPHB Battle Master level-3 feature");
+const battleMasterRefs = battleMaster.entries.filter(entry => entry?.type === "refSubclassFeature");
+assert.equal(battleMasterRefs.length, 3, "Battle Master level-3 child feature references were lost");
+const resolveSubclassFeature = ref => subclassFeaturesByUid.get(I18nZhTwClassBody.normalizeUid(ref.subclassFeature, "subclassFeature"));
+const combatSuperiority = resolveSubclassFeature(battleMasterRefs.find(ref => ref.subclassFeature.startsWith("Combat Superiority|")));
+assert.ok(combatSuperiority, "Battle Master Combat Superiority reference did not resolve");
+assert.match(combatSuperiority.entries[0], /戰鬥技巧/u);
+assert.doesNotMatch(combatSuperiority.entries[0], /combat techniques/iu);
+const knowYourEnemy = data.subclassFeature.find(feature => (
+	feature.name === "Know Your Enemy"
+	&& feature.source === "XPHB"
+	&& feature.subclassShortName === "Battle Master"
+));
+assert.match(knowYourEnemy.entries[0], /長處和短處/u);
+assert.doesNotMatch(knowYourEnemy.entries[0], /strengths and weaknesses/iu);
+
 const fluffIndex = JSON.parse(await fs.readFile("data/class/fluff-index.json", "utf8"));
 const fluffFiles = await Promise.all(
 	Object.values(fluffIndex)

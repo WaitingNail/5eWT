@@ -1,0 +1,158 @@
+diff --git a/js/classes.js b/js/classes.js
+--- a/js/classes.js
++++ b/js/classes.js
+@@ -375,12 +375,13 @@
+ 		]);
+ 		await ExcludeUtil.pInitialise();
+ 		OmnisearchUtilsUi.addScrollTopFloat();
+-		const [data] = await Promise.all([
+-			DataUtil.class.loadJSON(),
++		const [rawData] = await Promise.all([
++			DataUtil.class.loadRawJSON(),
+ 			I18nZhTwClass.pLoad(),
+ 			I18nZhTwClassBody.pLoad(),
+ 		]);
+-		I18nZhTwClassBody.applyToData(data);
++		I18nZhTwClassBody.applyToData(rawData);
++		const data = await DataUtil.class.loadJSON();
+ 		I18nZhTwClass.applyToData(data);
+ 
+ 		const iptSearch = veE(document.getElementById("lst__search"));
+diff --git a/js/render.js b/js/render.js
+--- a/js/render.js
++++ b/js/render.js
+@@ -7683,6 +7683,7 @@
+ 
+ 		const cpy = MiscUtil.copyFast(ent);
+ 		if (ent.name) cpy._displayName = Renderer.utils.getBilingualName(ent);
++		this._mutDisplayNamedSubclassFeatureEntryNames(cpy.entries);
+ 
+ 		// N.b.: enabled for "classic" style to support viewing "one" classes in "classic" view...
+ 		if (/* styleHint === "classic" || */!ent.level || !ent.entries?.length) return cpy;
+@@ -7699,6 +7700,19 @@
+ 		return cpy;
+ 	}
+ 
++	static _mutDisplayNamedSubclassFeatureEntryNames (value) {
++		if (Array.isArray(value)) {
++			value.forEach(it => this._mutDisplayNamedSubclassFeatureEntryNames(it));
++			return;
++		}
++		if (!value || typeof value !== "object") return;
++
++		if (value.name) value._displayName = Renderer.utils.getBilingualName(value);
++		Object.entries(value)
++			.filter(([key]) => !["name", "ENG_name", "_displayName"].includes(key))
++			.forEach(([, child]) => this._mutDisplayNamedSubclassFeatureEntryNames(child));
++	}
++
+ 	/* -------------------------------------------- */
+ 
+ 	static getWalkerFilterDereferencedFeatures () {
+@@ -12336,7 +12350,10 @@
+ 
+ 		const ptNote = property.note ? ` (${property.note})` : "";
+ 
+-		const displayName = pFull._displayName || pFull.name;
++		const displayName = Renderer.utils.getBilingualName(pFull);
++		const displayNameLower = pFull.ENG_name
++			? Renderer.utils.getBilingualName({...pFull, _displayName: (pFull._displayName || pFull.name).toLowerCase()})
++			: displayName.toLowerCase();
+ 		if (!pFull.template) return `${displayName}${ptNote}`;
+ 
+ 		const toRender = Renderer.utils.applyTemplate(
+@@ -12349,7 +12366,7 @@
+ 				},
+ 				mapCustom: {
+ 					"prop_name": displayName.replace(/-/g, "\u2011"),
+-					"prop_name_lower": displayName.replace(/-/g, "\u2011").toLowerCase(),
++					"prop_name_lower": displayNameLower.replace(/-/g, "\u2011"),
+ 				},
+ 				mapCustomFns: {
+ 					"item.dmg1": () => Renderer.item._getTaggedDamage(item.dmg1, {renderer}),
+@@ -12507,8 +12524,10 @@
+ 			isSkipPrefix ? "" : "精通：",
+ 			item.mastery
+ 				.map(info => {
+-					if (!info.uid) return renderer.render(`{@itemMastery ${info}}`);
+-					return renderer.render(`{@itemMastery ${info.uid}} {@style (${info.note})|small}`);
++					const mastery = Renderer.item._getMastery(info.uid || info);
++					const rendered = renderer.render(`{@itemMastery ${mastery.name}|${mastery.source}|${Renderer.utils.getBilingualName(mastery)}}`);
++					if (!info.uid) return rendered;
++					return `${rendered} ${renderer.render(`{@style (${info.note})|small}`)}`;
+ 				})
+ 				.join(", "),
+ 		]
+@@ -12840,6 +12859,8 @@
+ 
+ 		const cpy = MiscUtil.copyFast(ent);
+ 		cpy.name = Renderer.item.getPropertyName(ent);
++		const canonicalName = ent.ENG_name || ent._i18nCanonical?.name || ent.entries?.[0]?.ENG_name || ent._i18nCanonical?.entries?.[0]?.name;
++		if (canonicalName && canonicalName !== cpy.name) cpy.ENG_name ||= canonicalName;
+ 
+ 		MiscUtil.set(this._propertyMap, sourceLookup, abvLookup, cpy);
+ 
+@@ -13592,7 +13613,7 @@
+ 					type: "wrapper",
+ 					wrapped: {
+ 						type: "entries",
+-						name: `精通：${mastery._displayName || mastery.name}`,
++						name: `精通：${Renderer.utils.getBilingualName(mastery)}`,
+ 						source: mastery.source,
+ 						page: mastery.page,
+ 						entries: Renderer.item._enhanceItem_getItemPropertyTypeEntries({item, ent: mastery}),
+@@ -13686,22 +13707,39 @@
+ 	}
+ 
+ 	static _enhanceItem_getItemPropertyTypeEntries ({item, ent}) {
+-		if (!ent.entriesTemplate) return MiscUtil.copyFast(ent.entries);
+-		return MiscUtil
+-			.getWalker({
+-				keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST,
+-			})
+-			.walk(
+-				MiscUtil.copyFast(ent.entriesTemplate),
+-				{
+-					string: (str) => {
+-						return Renderer.utils.applyTemplate(
+-							item,
+-							str,
+-						);
++		const entries = !ent.entriesTemplate
++			? MiscUtil.copyFast(ent.entries)
++			: MiscUtil
++				.getWalker({
++					keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST,
++				})
++				.walk(
++					MiscUtil.copyFast(ent.entriesTemplate),
++					{
++						string: (str) => {
++							return Renderer.utils.applyTemplate(
++								item,
++								str,
++							);
++						},
+ 					},
+-				},
+-			);
++				);
++
++		Renderer.item._mutEntryBilingualNames(entries);
++		return entries;
++	}
++
++	static _mutEntryBilingualNames (value) {
++		if (Array.isArray(value)) {
++			value.forEach(it => Renderer.item._mutEntryBilingualNames(it));
++			return;
++		}
++		if (!value || typeof value !== "object") return;
++
++		if (value.name && value.ENG_name) value._displayName = Renderer.utils.getBilingualName(value);
++		Object.entries(value)
++			.filter(([key]) => !["name", "ENG_name", "_displayName"].includes(key))
++			.forEach(([, child]) => Renderer.item._mutEntryBilingualNames(child));
+ 	}
+ 
+ 	// See: XDMG, p217
