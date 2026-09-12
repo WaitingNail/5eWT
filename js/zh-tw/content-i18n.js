@@ -214,6 +214,60 @@
 			Elemental: "元素",
 		};
 
+		static _CHAROPTION_TYPES = {
+			SG: "超自然贈禮",
+			OF: "可選特性",
+			DG: "黑暗贈禮",
+			"RF:B": "替換特性：背景",
+			CS: "角色祕密",
+			PTH: "道途",
+			"Supernatural Gift": "超自然贈禮",
+			"Optional Feature": "可選特性",
+			"Dark Gift": "黑暗贈禮",
+			"Replacement Feature: Background": "替換特性：背景",
+			"Character Secret": "角色祕密",
+			Path: "道途",
+		};
+
+		static _REWARD_TYPES = {
+			Blessing: "祝福",
+			Boon: "恩賜",
+			Charm: "魔法護咒",
+			Curse: "詛咒",
+			"Draconic Gift": "龍族贈禮",
+			"Fragment of Suffering": "苦難碎片",
+			Inhabitation: "附身",
+			Other: "其他",
+			"Piety Trait": "虔信特質",
+		};
+
+		static _LANGUAGE_TYPES = {
+			standard: "標準",
+			exotic: "奇異",
+			rare: "稀有",
+			secret: "秘密",
+		};
+
+		static _ALIGNMENTS = {
+			L: "守序",
+			NX: "中立（守序／混亂軸）",
+			C: "混亂",
+			G: "善良",
+			NY: "中立（善良／邪惡軸）",
+			E: "邪惡",
+			N: "中立",
+			U: "無陣營",
+			A: "任意陣營",
+		};
+
+		static _languageScriptTranslations = new Map();
+		static _deityMetadataTranslations = {
+			pantheon: new Map(),
+			category: new Map(),
+			domains: new Map(),
+			plane: new Map(),
+		};
+
 		static _FILTER_LABELS = {
 			"Ability": "屬性",
 			"Ability Bonus": "屬性加值",
@@ -245,6 +299,8 @@
 			"Feature Type": "特性類型",
 			"Fly": "飛行",
 			"Grants Additional Spells": "賦予額外法術",
+			"Grants Piety Features": "賦予虔信特性",
+			"Has Fonts": "有字型",
 			"Has Images": "有圖片",
 			"Has Info": "有資訊",
 			"Improved Resting": "強化休息",
@@ -498,6 +554,14 @@
 			["facilityFluff", "bastions"],
 			["cult", "cults-boons"],
 			["boon", "cults-boons"],
+			["charoption", "reference-pages"],
+			["charoptionFluff", "reference-pages"],
+			["reward", "reference-pages"],
+			["rewardFluff", "reference-pages"],
+			["language", "reference-pages"],
+			["languageScript", "reference-pages"],
+			["languageFluff", "reference-pages"],
+			["deity", "reference-pages"],
 		]);
 
 		static _FILE_TO_PROPS = new Map([
@@ -517,6 +581,13 @@
 			["bastions.json", ["facility"]],
 			["fluff-bastions.json", ["facilityFluff"]],
 			["cultsboons.json", ["cult", "boon"]],
+			["charcreationoptions.json", ["charoption"]],
+			["fluff-charcreationoptions.json", ["charoptionFluff"]],
+			["rewards.json", ["reward"]],
+			["fluff-rewards.json", ["rewardFluff"]],
+			["languages.json", ["language", "languageScript"]],
+			["fluff-languages.json", ["languageFluff"]],
+			["deities.json", ["deity"]],
 		]);
 
 		static _CONTENT_KEYS = new Set([
@@ -527,6 +598,7 @@
 			"label",
 			"by",
 			"text",
+			"note",
 			"quote",
 			"author",
 			"entries",
@@ -641,6 +713,9 @@
 				const matchParenthetical = /^(.*?)(\s*(?:\([^()]+\)|（[^（）]+）))$/u.exec(name);
 				if (matchParenthetical) return {base: matchParenthetical[1].trim(), suffix: matchParenthetical[2].trimStart(), kind: "parenthetical"};
 
+				const matchPunctuation = /^(.*?)(\s*[:：.。])$/u.exec(name);
+				if (matchPunctuation) return {base: matchPunctuation[1].trim(), suffix: matchPunctuation[2].trimStart(), kind: "punctuation"};
+
 				return {base: name.trim(), suffix: "", kind: null};
 			};
 
@@ -651,6 +726,31 @@
 			}
 
 			return `${localized}（${canonical}）`;
+		}
+
+		static _getPreparedSidecar ({file, sidecar}) {
+			if (file !== "deities.json" || !sidecar?.deity?.length) return sidecar;
+
+			const out = this._copy(sidecar);
+			const byIdentity = new Map(out.deity.map(ent => [
+				`${ent.ENG_name || ent.name || ""}\u0000${ent.source || ""}`.toLowerCase(),
+				ent,
+			]));
+			const cache = new Map();
+			const resolve = (ent, stack = new Set()) => {
+				if (cache.has(ent)) return cache.get(ent);
+				const identity = `${ent.ENG_name || ent.name || ""}\u0000${ent.source || ""}`.toLowerCase();
+				if (stack.has(identity) || !ent._copy) return ent;
+				const parentKey = `${ent._copy.ENG_name || ent._copy.name || ""}\u0000${ent._copy.source || ""}`.toLowerCase();
+				const parent = byIdentity.get(parentKey);
+				if (!parent) return ent;
+				const resolved = {...resolve(parent, new Set([...stack, identity])), ...ent};
+				cache.set(ent, resolved);
+				return resolved;
+			};
+
+			out.deity = out.deity.map(ent => resolve(ent));
+			return out;
 		}
 
 		static _overlayContentValue ({canonical, localized, isBilingualNames = false}) {
@@ -668,9 +768,35 @@
 				out.ENG_name = canonical.name;
 				if (isBilingualNames) out._displayName = this._getBilingualEntryName({canonical: canonical.name, localized: localized.name});
 			}
+			if (isBilingualNames && typeof canonical.caption === "string" && typeof localized.caption === "string" && canonical.caption !== localized.caption) {
+				out.caption = this._getBilingualEntryName({canonical: canonical.caption, localized: localized.caption});
+			}
 			for (const key of this._CONTENT_KEYS) {
 				if (!(key in canonical) || !(key in localized)) continue;
 				out[key] = this._overlayContentValue({canonical: canonical[key], localized: localized[key], isBilingualNames});
+			}
+			return out;
+		}
+
+		static _overlayPrerequisite ({canonical, localized}) {
+			if (Array.isArray(canonical)) {
+				if (!Array.isArray(localized) || canonical.length !== localized.length) return this._copy(canonical);
+				return canonical.map((child, ix) => this._overlayPrerequisite({canonical: child, localized: localized[ix]}));
+			}
+			if (!canonical || typeof canonical !== "object") return canonical;
+			if (!localized || typeof localized !== "object" || Array.isArray(localized)) return this._copy(canonical);
+
+			const out = {...canonical};
+			if (typeof canonical.name === "string" && typeof localized.name === "string" && canonical.name !== localized.name) {
+				out._displayName = localized.name;
+			}
+			for (const [key, value] of Object.entries(canonical)) {
+				if (!(key in localized)) continue;
+				if (key === "note" && typeof value === "string" && typeof localized[key] === "string") {
+					out[key] = localized[key];
+					continue;
+				}
+				if (value && typeof value === "object") out[key] = this._overlayPrerequisite({canonical: value, localized: localized[key]});
 			}
 			return out;
 		}
@@ -818,7 +944,7 @@
 				out[key] = this._overlayContentValue({
 					canonical: canonical[key],
 					localized: localized[key],
-					isBilingualNames: ["cult", "boon"].includes(prop) && key === "entries",
+					isBilingualNames: ["cult", "boon", "charoption", "reward", "language", "deity"].includes(prop) && key === "entries",
 				});
 			}
 
@@ -826,6 +952,42 @@
 				for (const key of ["goal", "cultists", "signatureSpells", "ability"]) {
 					if (!(key in canonical) || !(key in localized)) continue;
 					out[key] = this._overlayContentValue({canonical: canonical[key], localized: localized[key]});
+				}
+			}
+
+			if (prop === "charoption" && canonical.prerequisite && localized.prerequisite) {
+				out.prerequisite = this._overlayPrerequisite({canonical: canonical.prerequisite, localized: localized.prerequisite});
+			}
+
+			if (prop === "language") {
+				for (const [key, displayKey] of [
+					["dialects", "_displayDialects"],
+					["origin", "_displayOrigin"],
+					["script", "_displayScript"],
+					["typicalSpeakers", "_displayTypicalSpeakers"],
+				]) {
+					if (!(key in canonical) || !(key in localized)) continue;
+					out[displayKey] = this._overlayContentValue({canonical: canonical[key], localized: localized[key]});
+				}
+			}
+
+			if (prop === "deity") {
+				for (const key of [
+					"altNames",
+					"category",
+					"domains",
+					"pantheon",
+					"plane",
+					"province",
+					"symbol",
+					"title",
+					"worshipers",
+				]) {
+					if (!(key in canonical) || !(key in localized)) continue;
+					out[`_display${key[0].toUpperCase()}${key.slice(1)}`] = this._overlayContentValue({canonical: canonical[key], localized: localized[key]});
+				}
+				if (canonical.symbolImg && localized.symbolImg) {
+					out.symbolImg = this._overlayContentValue({canonical: canonical.symbolImg, localized: localized.symbolImg});
 				}
 			}
 
@@ -904,7 +1066,7 @@
 			const folder = this._PROP_TO_FOLDER.get(prop);
 			if (!folder || typeof file !== "string") return this._copy(entities);
 
-			const sidecar = await this._pLoadFile({folder, file, fnLoad});
+			const sidecar = this._getPreparedSidecar({file, sidecar: await this._pLoadFile({folder, file, fnLoad})});
 			const localizedIndex = this._getLocalizedIndex({prop, sidecar});
 			if (!localizedIndex.size) return this._copy(entities);
 
@@ -934,6 +1096,28 @@
 					entities: data[prop],
 					fnLoad: async () => sidecar,
 				});
+			}
+
+			if (file === "languages.json") {
+				for (const language of out.language || []) {
+					if (!language.script) continue;
+					this._registerMetadataTranslation(this._languageScriptTranslations, language.script, language._displayScript);
+				}
+				for (const script of out.languageScript || []) {
+					this._registerMetadataTranslation(this._languageScriptTranslations, script.name, script._displayName);
+				}
+			}
+
+			if (file === "deities.json") {
+				for (const deity of out.deity || []) {
+					for (const prop of Object.keys(this._deityMetadataTranslations)) {
+						this._registerMetadataTranslation(
+							this._deityMetadataTranslations[prop],
+							deity[prop],
+							this.getDisplayField(deity, prop),
+						);
+					}
+				}
 			}
 
 			if (file === "items.json" && out.item?.length && out.itemGroup?.length) {
@@ -987,6 +1171,44 @@
 			if (!canonicalName || displayName.toLowerCase() === canonicalName.toLowerCase()) return displayName;
 			if (displayName.endsWith(`（${canonicalName}）`) || displayName.endsWith(` (${canonicalName})`)) return displayName;
 			return `${displayName}（${canonicalName}）`;
+		}
+
+		static getDisplayField (entity, prop) {
+			if (!entity || !prop) return "";
+			const displayKey = `_display${prop[0].toUpperCase()}${prop.slice(1)}`;
+			return entity[displayKey] ?? entity[prop] ?? "";
+		}
+
+		static getBilingualValue (canonical, localized) {
+			const canonicalText = `${canonical ?? ""}`.trim();
+			const localizedText = `${localized ?? canonicalText}`.trim();
+			if (!localizedText) return canonicalText;
+			if (!canonicalText || localizedText.toLowerCase() === canonicalText.toLowerCase()) return localizedText;
+			if (localizedText.endsWith(`（${canonicalText}）`) || localizedText.endsWith(` (${canonicalText})`)) return localizedText;
+			return `${localizedText}（${canonicalText}）`;
+		}
+
+		static getBilingualValues (canonical, localized, {separator = "、"} = {}) {
+			if (!Array.isArray(canonical)) return this.getBilingualValue(canonical, localized);
+			if (!Array.isArray(localized) || canonical.length !== localized.length) return canonical.join(separator);
+			return canonical.map((value, ix) => this.getBilingualValue(value, localized[ix])).join(separator);
+		}
+
+		static getBilingualField (entity, prop, opts) {
+			return this.getBilingualValues(entity?.[prop], this.getDisplayField(entity, prop), opts);
+		}
+
+		static _registerMetadataTranslation (map, canonical, localized) {
+			if (Array.isArray(canonical)) {
+				if (!Array.isArray(localized) || canonical.length !== localized.length) return;
+				canonical.forEach((value, ix) => this._registerMetadataTranslation(map, value, localized[ix]));
+				return;
+			}
+			if (canonical == null || localized == null) return;
+			const canonicalText = `${canonical}`.trim();
+			const localizedText = `${localized}`.trim();
+			if (!canonicalText || !localizedText || map.has(canonicalText.toLowerCase())) return;
+			map.set(canonicalText.toLowerCase(), localizedText);
 		}
 
 		static _renderSpellText (text, {isPlainText = false} = {}) {
@@ -1168,6 +1390,65 @@
 
 		static getCultBoonType (type) {
 			return this._CULT_BOON_TYPES[type] || type || "";
+		}
+
+		static getCharOptionType (type, {isBilingual = false} = {}) {
+			const raw = Array.isArray(type) ? type[0] : type;
+			const canonical = ({
+				SG: "Supernatural Gift",
+				OF: "Optional Feature",
+				DG: "Dark Gift",
+				"RF:B": "Replacement Feature: Background",
+				CS: "Character Secret",
+				PTH: "Path",
+			})[raw] || raw || "";
+			const localized = this._CHAROPTION_TYPES[raw] || this._CHAROPTION_TYPES[canonical] || canonical;
+			return isBilingual ? this.getBilingualValue(canonical, localized) : localized;
+		}
+
+		static getRewardType (type, {isBilingual = false} = {}) {
+			const localized = this._REWARD_TYPES[type] || type || "";
+			return isBilingual ? this.getBilingualValue(type, localized) : localized;
+		}
+
+		static getLanguageType (type, {isBilingual = false} = {}) {
+			const canonical = type ? `${type}`.replace(/^./, char => char.toUpperCase()) : "";
+			const localized = this._LANGUAGE_TYPES[`${type || ""}`.toLowerCase()] || canonical;
+			return isBilingual ? this.getBilingualValue(canonical, localized) : localized;
+		}
+
+		static getLanguageTypeLabel (type, {isBilingual = true} = {}) {
+			const canonical = type ? `${type}`.replace(/^./, char => char.toUpperCase()) : "";
+			const localized = `${this.getLanguageType(type)}語言`;
+			return isBilingual ? this.getBilingualValue(`${canonical} Language`, localized) : localized;
+		}
+
+		static getLanguageScript (script, {isBilingual = true} = {}) {
+			if (!script) return "—";
+			const localized = this._languageScriptTranslations.get(`${script}`.toLowerCase()) || script;
+			return isBilingual ? this.getBilingualValue(script, localized) : localized;
+		}
+
+		static getDeityMetadataValue (prop, value, {isBilingual = true} = {}) {
+			if (Array.isArray(value)) {
+				return value
+					.map(item => this.getDeityMetadataValue(prop, item, {isBilingual}))
+					.join("、");
+			}
+			if (value == null || value === "") return "—";
+			if (`${value}`.toLowerCase() === "none") return isBilingual ? "無（None）" : "無";
+			const localized = this._deityMetadataTranslations[prop]?.get(`${value}`.toLowerCase()) || value;
+			return isBilingual ? this.getBilingualValue(value, localized) : localized;
+		}
+
+		static getAlignment (alignment, {isBilingual = true, isAbbreviation = false} = {}) {
+			if (!Array.isArray(alignment) || !alignment.length) return "—";
+			const localized = alignment.map(value => this._ALIGNMENTS[value] || value).join("");
+			if (!isBilingual) return localized;
+			const english = isAbbreviation
+				? alignment.join("")
+				: alignment.map(value => root.Parser?.alignmentAbvToFull?.(value)?.toTitleCase?.() || value).join(" ");
+			return this.getBilingualValue(english, localized);
 		}
 
 		static _replaceVisibleText (text, replacements) {

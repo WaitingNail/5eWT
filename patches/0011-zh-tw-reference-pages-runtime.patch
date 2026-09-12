@@ -1,0 +1,639 @@
+diff --git a/js/charcreationoptions.js b/js/charcreationoptions.js
+--- a/js/charcreationoptions.js
++++ b/js/charcreationoptions.js
+@@ -17,7 +17,8 @@
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
+-		const cellsText = [it.name, it._fOptionType];
++		const displayName = Renderer.utils.getBilingualName(it);
++		const cellsText = [it._fOptionTypeDisplay, displayName];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+ 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+@@ -30,7 +31,7 @@
+ 		const listItem = new ListItem(
+ 			hash,
+ 			ele,
+-			it.name,
++			displayName,
+ 			{
+ 				source: Parser.sourceJsonToAbv(it.source),
+ 				...ListItem.getCommonValues(it),
+@@ -59,15 +60,16 @@
+ 			dataProps: ["charoption"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "character creation option",
+-				namePlural: "character creation options",
+-				pageTitle: "Character Creation Options Book View",
++				nameSingular: "角色創建選項",
++				namePlural: "角色創建選項",
++				pageTitle: "角色創建選項書本檢視",
+ 			},
+ 		});
+ 	}
+ 
+ 	getListItem (it, itI, isExcluded) {
+ 		this._pageFilter.mutateAndAddToFilters(it, isExcluded);
++		const displayName = Renderer.utils.getBilingualName(it);
+ 
+ 		const eleLi = document.createElement("div");
+ 		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
+@@ -76,15 +78,15 @@
+ 		const source = Parser.sourceJsonToAbv(it.source);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+-			<span class="ve-col-5 ve-text-center ve-pl-0 ve-pr-1">${it._fOptionType}</span>
+-			<span class="ve-bold ve-col-5 ve-px-1">${it.name}</span>
++			<span class="ve-col-5 ve-text-center ve-pl-0 ve-pr-1">${it._fOptionTypeDisplay}</span>
++			<span class="ve-bold ve-col-5 ve-px-1">${displayName}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)}" title="${Parser.sourceJsonToFull(it.source)} ve-pl-1 ve-pr-0">${source}</span>
+ 		</a>`;
+ 
+ 		const listItem = new ListItem(
+ 			itI,
+ 			eleLi,
+-			it.name,
++			displayName,
+ 			{
+ 				source,
+ 				...ListItem.getCommonValues(it),
+diff --git a/js/rewards.js b/js/rewards.js
+--- a/js/rewards.js
++++ b/js/rewards.js
+@@ -17,7 +17,8 @@
+ 	}
+ 
+ 	pGetSublistItem (reward, hash) {
+-		const cellsText = [reward.type, reward.name];
++		const displayName = Renderer.utils.getBilingualName(reward);
++		const cellsText = [I18nZhTwContent.getRewardType(reward.type, {isBilingual: true}), displayName];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+ 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+@@ -30,7 +31,7 @@
+ 		const listItem = new ListItem(
+ 			hash,
+ 			ele,
+-			reward.name,
++			displayName,
+ 			{
+ 				...ListItem.getCommonValues(reward),
+ 				type: reward.type,
+@@ -58,9 +59,9 @@
+ 			dataProps: ["reward"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "reward",
+-				namePlural: "rewards",
+-				pageTitle: "Rewards Book View",
++				nameSingular: "獎勵",
++				namePlural: "獎勵",
++				pageTitle: "獎勵書本檢視",
+ 			},
+ 
+ 			isPreviewable: true,
+@@ -69,6 +70,8 @@
+ 
+ 	getListItem (reward, rwI, isExcluded) {
+ 		this._pageFilter.mutateAndAddToFilters(reward, isExcluded);
++		const displayName = Renderer.utils.getBilingualName(reward);
++		const displayType = I18nZhTwContent.getRewardType(reward.type, {isBilingual: true});
+ 
+ 		const eleLi = document.createElement("div");
+ 		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
+@@ -78,8 +81,8 @@
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-col-0-3 ve-px-0 ve-flex-vh-center ve-lst__btn-toggle-expand ve-self-flex-stretch ve-no-select">[+]</span>
+-			<span class="ve-col-2 ve-text-center ve-px-1">${reward.type}</span>
+-			<span class="ve-bold ve-col-7-7 ve-px-1">${reward.name}</span>
++			<span class="ve-col-2 ve-text-center ve-px-1">${displayType}</span>
++			<span class="ve-bold ve-col-7-7 ve-px-1">${displayName}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(reward.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(reward.source)}">${source}</span>
+ 		</a>
+ 		<div class="ve-flex ve-hidden ve-relative ve-accordion__wrp-preview">
+@@ -90,7 +93,7 @@
+ 		const listItem = new ListItem(
+ 			rwI,
+ 			eleLi,
+-			reward.name,
++			displayName,
+ 			{
+ 				source,
+ 				...ListItem.getCommonValues(reward),
+diff --git a/js/languages.js b/js/languages.js
+--- a/js/languages.js
++++ b/js/languages.js
+@@ -22,10 +22,11 @@
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
++		const displayName = Renderer.utils.getBilingualName(it);
+ 		const cellsText = [
+-			it.name,
+-			(it.type || "\u2014").uppercaseFirst(),
+-			(it.script || "\u2014").toTitleCase(),
++			displayName,
++			it.type ? I18nZhTwContent.getLanguageType(it.type, {isBilingual: true}) : "\u2014",
++			it.script ? I18nZhTwContent.getLanguageScript(it.script, {isBilingual: true}) : "\u2014",
+ 		];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+@@ -39,7 +40,7 @@
+ 		const listItem = new ListItem(
+ 			hash,
+ 			ele,
+-			it.name,
++			displayName,
+ 			{
+ 				...ListItem.getCommonValues(it),
+ 				type: it.type || "",
+@@ -68,15 +69,18 @@
+ 			dataProps: ["language"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "language",
+-				namePlural: "languages",
+-				pageTitle: "Languages Book View",
++				nameSingular: "語言",
++				namePlural: "語言",
++				pageTitle: "語言書本檢視",
+ 			},
+ 		});
+ 	}
+ 
+ 	getListItem (it, anI, isExcluded) {
+ 		this._pageFilter.mutateAndAddToFilters(it, isExcluded);
++		const displayName = Renderer.utils.getBilingualName(it);
++		const displayType = it.type ? I18nZhTwContent.getLanguageType(it.type, {isBilingual: true}) : "\u2014";
++		const displayScript = it.script ? I18nZhTwContent.getLanguageScript(it.script, {isBilingual: true}) : "\u2014";
+ 
+ 		const eleLi = document.createElement("div");
+ 		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
+@@ -85,16 +89,16 @@
+ 		const hash = UrlUtil.autoEncodeHash(it);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+-			<span class="ve-col-6 ve-bold ve-pl-0 ve-pr-1">${it.name}</span>
+-			<span class="ve-col-2 ve-px-1 ve-text-center">${(it.type || "\u2014").uppercaseFirst()}</span>
+-			<span class="ve-col-2 ve-px-1 ve-text-center">${(it.script || "\u2014").toTitleCase()}</span>
++			<span class="ve-col-6 ve-bold ve-pl-0 ve-pr-1">${displayName}</span>
++			<span class="ve-col-2 ve-px-1 ve-text-center">${displayType}</span>
++			<span class="ve-col-2 ve-px-1 ve-text-center">${displayScript}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
+ 		</a>`;
+ 
+ 		const listItem = new ListItem(
+ 			anI,
+ 			eleLi,
+-			it.name,
++			displayName,
+ 			{
+ 				source,
+ 				...ListItem.getCommonValues(it),
+@@ -121,7 +125,7 @@
+ 	_renderStats_getTabMetasAdditional ({ent}) {
+ 		return [
+ 			new Renderer.utils.TabButton({
+-				label: "Fonts",
++				label: "字型（Fonts）",
+ 				fnPopulate: () => {
+ 					this._pgContent.vee.empty().vee.appends(Renderer.utils.getBorderTr());
+ 					this._pgContent.vee.appends(Renderer.utils.getNameTr(ent));
+@@ -132,7 +136,7 @@
+ 					const allFonts = [...ent.fonts || [], ...ent._fonts || []];
+ 
+ 					if (!allFonts || !allFonts.length) {
+-						td.vee.appends("<i>No fonts available.</i>");
++						td.vee.appends("<i>沒有可用的字型。</i>");
+ 						return;
+ 					}
+ 
+@@ -192,11 +196,11 @@
+ 
+ 					veT`<div class="ve-flex-col ve-w-100">
+ 						${styleFont}
+-						${selFont ? veT`<label class="ve-flex-v-center ve-mb-2"><div class="ve-mr-2">Font:</div>${selFont}</div>` : ""}
++						${selFont ? veT`<label class="ve-flex-v-center ve-mb-2"><div class="ve-mr-2">字型（Font）：</div>${selFont}</div>` : ""}
+ 						${iptSample}
+ 						${ptOutput}
+ 						<hr class="ve-hr-4">
+-						<h5 class="ve-mb-2 ve-mt-0">Downloads</h5>
++						<h5 class="ve-mb-2 ve-mt-0">下載（Downloads）</h5>
+ 						<ul class="ve-pl-5 ve-mb-0">
+ 							${allFonts.map(f => `<li><a href="${f}" target="_blank">${f.split("/").last()}</a></li>`).join("")}
+ 						</ul>
+diff --git a/js/deities.js b/js/deities.js
+--- a/js/deities.js
++++ b/js/deities.js
+@@ -27,9 +27,11 @@
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
+-		const alignment = it.alignment ? it.alignment.join("") : "\u2014";
+-		const domains = it.domains.join(", ");
+-		const cellsText = [it.name, it.pantheon, alignment, domains];
++		const displayName = Renderer.utils.getBilingualName(it);
++		const alignment = I18nZhTwContent.getAlignment(it.alignment, {isAbbreviation: true});
++		const pantheon = I18nZhTwContent.getBilingualField(it, "pantheon");
++		const domains = I18nZhTwContent.getBilingualField(it, "domains");
++		const cellsText = [displayName, pantheon, alignment, domains];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+ 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+@@ -42,7 +44,7 @@
+ 		const listItem = new ListItem(
+ 			hash,
+ 			ele,
+-			it.name,
++			displayName,
+ 			{
+ 				...ListItem.getCommonValues(it),
+ 				pantheon: it.pantheon,
+@@ -70,9 +72,9 @@
+ 			dataProps: ["deity"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "deity",
+-				namePlural: "deities",
+-				pageTitle: "Deities Book View",
++				nameSingular: "神祇",
++				namePlural: "神祇",
++				pageTitle: "神祇書本檢視",
+ 			},
+ 
+ 			listSyntax: new ListSyntaxDeities({fnGetDataList: () => this._dataList}),
+@@ -81,18 +83,20 @@
+ 
+ 	getListItem (ent, dtI, isExcluded) {
+ 		this._pageFilter.mutateAndAddToFilters(ent, isExcluded);
++		const displayName = Renderer.utils.getBilingualName(ent);
+ 
+ 		const eleLi = document.createElement("div");
+ 		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
+ 
+ 		const source = Parser.sourceJsonToAbv(ent.source);
+ 		const hash = UrlUtil.autoEncodeHash(ent);
+-		const alignment = ent.alignment ? ent.alignment.join("") : "\u2014";
+-		const domains = ent.domains.join(", ");
++		const alignment = I18nZhTwContent.getAlignment(ent.alignment, {isAbbreviation: true});
++		const pantheon = I18nZhTwContent.getBilingualField(ent, "pantheon");
++		const domains = I18nZhTwContent.getBilingualField(ent, "domains");
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+-			<span class="ve-bold ve-col-3 ve-pl-0 ve-pr-1">${ent.name}</span>
+-			<span class="ve-col-2 ve-px-1 ve-text-center">${ent.pantheon}</span>
++			<span class="ve-bold ve-col-3 ve-pl-0 ve-pr-1">${displayName}</span>
++			<span class="ve-col-2 ve-px-1 ve-text-center">${pantheon}</span>
+ 			<span class="ve-col-2 ve-px-1 ve-text-center">${alignment}</span>
+ 			<span class="ve-col-3 ve-px-1 ${ent.domains[0] === VeCt.STR_NONE ? `ve-italic` : ""}">${domains}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
+@@ -101,11 +105,11 @@
+ 		const listItem = new ListItem(
+ 			dtI,
+ 			eleLi,
+-			ent.name,
++			displayName,
+ 			{
+ 				source,
+ 				...ListItem.getCommonValues(ent),
+-				title: ent.title || "",
++				title: I18nZhTwContent.getBilingualField(ent, "title"),
+ 				pantheon: ent.pantheon,
+ 				alignment,
+ 				domains,
+diff --git a/js/filter-charcreationoptions.js b/js/filter-charcreationoptions.js
+--- a/js/filter-charcreationoptions.js
++++ b/js/filter-charcreationoptions.js
+@@ -10,7 +10,7 @@
+ 		this._typeFilter = new Filter({
+ 			header: "Feature Type",
+ 			items: [],
+-			displayFn: Parser.charCreationOptionTypeToFull,
++			displayFn: it => I18nZhTwContent.getCharOptionType(it, {isBilingual: true}),
+ 			itemSortFn: PageFilterCharCreationOptions._filterFeatureTypeSort,
+ 		});
+ 		this._miscFilter = new Filter({
+@@ -25,6 +25,7 @@
+ 		this._mutateForFilters_commonSources(it);
+ 
+ 		it._fOptionType = Parser.charCreationOptionTypeToFull(it.optionType);
++		it._fOptionTypeDisplay = I18nZhTwContent.getCharOptionType(it.optionType, {isBilingual: true});
+ 
+ 		this._mutateForFilters_commonMisc(it);
+ 	}
+diff --git a/js/filter-rewards.js b/js/filter-rewards.js
+--- a/js/filter-rewards.js
++++ b/js/filter-rewards.js
+@@ -11,18 +11,20 @@
+ 				"Boon",
+ 				"Charm",
+ 			],
++			displayFn: it => I18nZhTwContent.getRewardType(it, {isBilingual: true}),
+ 		});
+ 		this._rarityFilter = new Filter({
+ 			header: "Rarity",
+ 			items: ["unknown", ...Parser.RARITIES],
+ 			itemSortFn: null,
+-			displayFn: StrUtil.toTitleCase.bind(StrUtil),
++			displayFn: it => I18nZhTwContent.getItemRarity(it),
+ 		});
+ 		this._benefitsFilter = new Filter({
+ 			header: "Benefits",
+ 			items: [
+ 				"Spellcasting",
+ 			],
++			displayFn: it => I18nZhTwContent.getFilterLabel(it),
+ 		});
+ 		this._miscFilter = new Filter({
+ 			header: "Miscellaneous",
+diff --git a/js/filter-languages.js b/js/filter-languages.js
+--- a/js/filter-languages.js
++++ b/js/filter-languages.js
+@@ -4,8 +4,8 @@
+ 	constructor () {
+ 		super();
+ 
+-		this._typeFilter = new Filter({header: "Type", items: ["standard", "exotic", "rare", "secret"], itemSortFn: null, displayFn: StrUtil.uppercaseFirst});
+-		this._scriptFilter = new Filter({header: "Script", displayFn: StrUtil.uppercaseFirst});
++		this._typeFilter = new Filter({header: "Type", items: ["standard", "exotic", "rare", "secret"], itemSortFn: null, displayFn: it => I18nZhTwContent.getLanguageType(it, {isBilingual: true})});
++		this._scriptFilter = new Filter({header: "Script", displayFn: it => I18nZhTwContent.getLanguageScript(it, {isBilingual: true})});
+ 		this._miscFilter = new Filter({
+ 			header: "Miscellaneous",
+ 			items: ["Has Fonts", "Legacy", "Has Images", "Has Info"],
+diff --git a/js/filter-deities.js b/js/filter-deities.js
+--- a/js/filter-deities.js
++++ b/js/filter-deities.js
+@@ -14,22 +14,23 @@
+ 
+ 	constructor () {
+ 		super();
+-		this._pantheonFilter = new Filter({header: "Pantheon", items: []});
+-		this._categoryFilter = new Filter({header: "Category", items: [VeCt.STR_NONE]});
++		this._pantheonFilter = new Filter({header: "Pantheon", items: [], displayFn: it => I18nZhTwContent.getDeityMetadataValue("pantheon", it)});
++		this._categoryFilter = new Filter({header: "Category", items: [VeCt.STR_NONE], displayFn: it => I18nZhTwContent.getDeityMetadataValue("category", it)});
+ 		this._alignmentFilter = new Filter({
+ 			header: "Alignment",
+ 			items: ["L", "NX", "C", "G", "NY", "E", "N"],
+-			displayFn: it => Parser.alignmentAbvToFull(it).toTitleCase(),
++			displayFn: it => I18nZhTwContent.getAlignment([it]),
+ 			itemSortFn: null,
+ 		});
+ 		this._domainFilter = new Filter({
+ 			header: "Domain",
+ 			items: ["Death", "Knowledge", "Life", "Light", "Nature", VeCt.STR_NONE, "Tempest", "Trickery", "War"],
++			displayFn: it => I18nZhTwContent.getDeityMetadataValue("domains", it),
+ 		});
+ 		this._miscFilter = new Filter({
+ 			header: "Miscellaneous",
+ 			items: ["Grants Piety Features", "Has Info", "Has Images", "Reprinted", "Legacy"],
+-			displayFn: StrUtil.uppercaseFirst,
++			displayFn: it => I18nZhTwContent.getFilterLabel(it),
+ 			isMiscFilter: true,
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+ 		});
+diff --git a/js/render.js b/js/render.js
+--- a/js/render.js
++++ b/js/render.js
+@@ -1248,7 +1248,7 @@
+ 	};
+ 
+ 	this._renderInset = function (entry, textStack, meta, options) {
+-		const displayName = entry.name?.trim();
++		const displayName = (entry._displayName || entry.name)?.trim();
+ 
+ 		const dataString = this._renderEntriesSubtypes_getDataString(entry, {isCollapsibleChild: !displayName});
+ 		textStack[0] += `<${this.wrapperTag} class="${this._renderInset_getCssClasses(entry, textStack, meta, options)}" ${dataString}>`;
+@@ -1298,7 +1298,7 @@
+ 	};
+ 
+ 	this._renderInsetReadaloud = function (entry, textStack, meta, options) {
+-		const displayName = entry.name?.trim();
++		const displayName = (entry._displayName || entry.name)?.trim();
+ 
+ 		const dataString = this._renderEntriesSubtypes_getDataString(entry, {isCollapsibleChild: !displayName});
+ 		textStack[0] += `<${this.wrapperTag} class="${this._renderInset_getCssClasses(entry, textStack, meta, options)}" ${dataString}>`;
+@@ -1690,10 +1690,11 @@
+ 	};
+ 
+ 	this._renderItemSubtypes = function (entry, textStack, meta, options) {
++		const displayName = entry._displayName || entry.name;
+ 		this._renderPrefix(entry, textStack, meta, options);
+-		textStack[0] += `<p class="ve-rd__p-list-item" ${entry.name ? `data-roll-name-ancestor="${Renderer.stripTags(entry.name).qq()}"` : ""}>`;
+-		if (entry.name) {
+-			textStack[0] += `<span class="${entry.type === "itemSub" ? "ve-italic" : "ve-bold"} ve-rd__list-item-name">${this.render(entry.name)}${this._renderItemSubtypes_isAddPeriod(entry) ? "." : ""}</span> `;
++		textStack[0] += `<p class="ve-rd__p-list-item" ${displayName ? `data-roll-name-ancestor="${Renderer.stripTags(displayName).qq()}"` : ""}>`;
++		if (displayName) {
++			textStack[0] += `<span class="${entry.type === "itemSub" ? "ve-italic" : "ve-bold"} ve-rd__list-item-name">${this.render(displayName)}${this._renderItemSubtypes_isAddPeriod(entry) ? "." : ""}</span> `;
+ 		}
+ 		if (entry.entry) this._recursiveRender(entry.entry, textStack, meta);
+ 		else if (entry.entries) {
+@@ -1705,7 +1706,8 @@
+ 	};
+ 
+ 	this._renderItemSubtypes_isAddPeriod = function (entry) {
+-		return entry.name && entry.nameDot !== false && !Renderer._INLINE_HEADER_TERMINATORS.has(entry.name[entry.name.length - 1]);
++		const displayName = entry._displayName || entry.name;
++		return displayName && entry.nameDot !== false && !Renderer._INLINE_HEADER_TERMINATORS.has(displayName[displayName.length - 1]);
+ 	};
+ 
+ 	this._renderItem = function (entry, textStack, meta, options) {
+@@ -4453,14 +4455,17 @@
+ 
+ 		static _getEntry_race ({v, isListMode, keyOptions, styleHint}) {
+ 			const parts = v.map((it, i) => {
++				const getRaceName = () => {
++					if (it.displayEntry) return it.displayEntry;
++					const canonicalName = (isListMode || i === 0 || styleHint !== "classic") ? it.name.toTitleCase() : it.name;
++					return it._displayName
++						? I18nZhTwContent.getBilingualValue(canonicalName, it._displayName)
++						: canonicalName;
++				};
+ 				if (isListMode) {
+-					return `${it.name.toTitleCase()}${it.subrace != null ? ` (${it.subrace})` : ""}`;
++					return `${getRaceName()}${it.subrace != null ? ` (${it.subrace})` : ""}`;
+ 				} else {
+-					const raceName = it.displayEntry
+-						? it.displayEntry
+-						: (i === 0 || styleHint !== "classic")
+-							? it.name.toTitleCase()
+-							: it.name;
++					const raceName = getRaceName();
+ 					return `${raceName}${it.subrace != null ? ` (${it.subrace})` : ""}`;
+ 				}
+ 			});
+@@ -8910,9 +8915,10 @@
+ 
+ Renderer.reward = class {
+ 	static getRewardRenderableEntriesMeta (ent) {
++		const i18n = globalThis.I18nZhTwContent;
+ 		const ptSubtitle = [
+-			(ent.type || "").toTitleCase(),
+-			ent.rarity ? ent.rarity.toTitleCase() : "",
++			i18n ? i18n.getRewardType(ent.type, {isBilingual: true}) : (ent.type || "").toTitleCase(),
++			ent.rarity ? (i18n ? i18n.getItemRarity(ent.rarity) : ent.rarity.toTitleCase()) : "",
+ 		]
+ 			.filter(Boolean)
+ 			.join(", ");
+@@ -9504,41 +9510,46 @@
+ Renderer.deity = class {
+ 	static _BASE_PART_TRANSLATORS = {
+ 		"alignment": {
+-			name: "Alignment",
+-			displayFn: (it) => it.map(a => Parser.alignmentAbvToFull(a)).join(" ").toTitleCase(),
++			name: "陣營（Alignment）",
++			displayFn: (it) => I18nZhTwContent.getAlignment(it),
+ 		},
+ 		"pantheon": {
+-			name: "Pantheon",
++			name: "神系（Pantheon）",
++			displayFn: (it, ent) => I18nZhTwContent.getBilingualField(ent, "pantheon"),
+ 		},
+ 		"category": {
+-			name: "Category",
+-			displayFn: it => typeof it === "string" ? it : it.join(", "),
++			name: "類別（Category）",
++			displayFn: (it, ent) => I18nZhTwContent.getBilingualField(ent, "category"),
+ 		},
+ 		"domains": {
+-			name: "Domains",
+-			displayFn: (it) => it.join(", "),
++			name: "領域（Domains）",
++			displayFn: (it, ent) => I18nZhTwContent.getBilingualField(ent, "domains"),
+ 		},
+ 		"province": {
+-			name: "Province",
++			name: "權能（Province）",
++			displayFn: (it, ent) => I18nZhTwContent.getDisplayField(ent, "province"),
+ 		},
+ 		"dogma": {
+-			name: "Dogma",
++			name: "教義（Dogma）",
+ 		},
+ 		"altNames": {
+-			name: "Alternate Names",
+-			displayFn: (it) => it.join(", "),
++			name: "別名（Alternate Names）",
++			displayFn: (it, ent) => I18nZhTwContent.getBilingualField(ent, "altNames"),
+ 		},
+ 		"plane": {
+-			name: "Home Plane",
++			name: "居住位面（Home Plane）",
++			displayFn: (it, ent) => I18nZhTwContent.getBilingualField(ent, "plane"),
+ 		},
+ 		"worshipers": {
+-			name: "Typical Worshipers",
++			name: "典型崇拜者（Typical Worshipers）",
++			displayFn: (it, ent) => I18nZhTwContent.getDisplayField(ent, "worshipers"),
+ 		},
+ 		"symbol": {
+-			name: "Symbol",
++			name: "聖徽（Symbol）",
++			displayFn: (it, ent) => I18nZhTwContent.getDisplayField(ent, "symbol"),
+ 		},
+ 		"favoredWeapons": {
+-			name: "Favored Weapons",
++			name: "偏好武器（Favored Weapons）",
+ 		},
+ 	};
+ 
+@@ -9549,7 +9560,7 @@
+ 					.map(([prop, {name, displayFn}]) => {
+ 						if (ent[prop] == null) return null;
+ 
+-						const displayVal = displayFn ? displayFn(ent[prop]) : ent[prop];
++						const displayVal = displayFn ? displayFn(ent[prop], ent) : ent[prop];
+ 						return {
+ 							name,
+ 							entry: `{@b ${name}:} ${displayVal}`,
+@@ -9572,7 +9583,7 @@
+ 		const entriesMeta = Renderer.deity.getDeityRenderableEntriesMeta(ent);
+ 		return `
+ 			${Renderer.utils.getExcludedTr({entity: ent, dataProp: "deity", page: UrlUtil.PG_DEITIES})}
+-			${Renderer.utils.getNameTr(ent, {suffix: ent.title ? `, ${ent.title.toTitleCase()}` : "", page: UrlUtil.PG_DEITIES})}
++			${Renderer.utils.getNameTr(ent, {suffix: ent.title ? `，${I18nZhTwContent.getBilingualField(ent, "title")}` : "", page: UrlUtil.PG_DEITIES})}
+ 			<tr><td colspan="6">
+ 				${entriesMeta.entriesAttributes.map(entry => `<div class="ve-my-1p">${Renderer.get().render(entry)}</div>`).join("")}
+ 			</td>
+@@ -14969,21 +14980,25 @@
+ Renderer.language = class {
+ 	static getLanguageRenderableEntriesMeta (ent) {
+ 		const hasMeta = ent.typicalSpeakers || ent.script || ent.origin;
++		const i18n = globalThis.I18nZhTwContent;
+ 
+ 		const entriesContent = [];
+ 
+ 		if (ent.entries) entriesContent.push(...ent.entries);
+ 		if (ent.dialects) {
+-			entriesContent.push(`This language is a family which includes the following dialects: ${ent.dialects.sort(SortUtil.ascSortLower).join(", ")}. Creatures that speak different dialects of the same language can communicate with one another.`);
++			const dialects = i18n
++				? i18n.getBilingualValues(ent.dialects, ent._displayDialects)
++				: [...ent.dialects].sort(SortUtil.ascSortLower).join(", ");
++			entriesContent.push(`此語言是一個語族，包含以下方言：${dialects}。使用同一語言之不同方言的生物仍可彼此溝通。`);
+ 		}
+ 
+-		if (!entriesContent.length && !hasMeta) entriesContent.push("{@i No information available.}");
++		if (!entriesContent.length && !hasMeta) entriesContent.push("{@i 沒有可用資訊。}");
+ 
+ 		return {
+-			entryType: ent.type ? `{@i ${ent.type.toTitleCase()} language}` : null,
+-			entryTypicalSpeakers: ent.typicalSpeakers ? `{@b Typical Speakers:} ${ent.typicalSpeakers.join(", ")}` : null,
+-			entryOrigin: ent.origin ? `{@b Origin:} ${ent.origin}` : null,
+-			entryScript: ent.script ? `{@b Script:} ${ent.script}` : null,
++			entryType: ent.type ? `{@i ${i18n ? i18n.getLanguageTypeLabel(ent.type) : `${ent.type.toTitleCase()} language`}}` : null,
++			entryTypicalSpeakers: ent.typicalSpeakers ? `{@b 典型使用者（Typical Speakers）：} ${(ent._displayTypicalSpeakers || ent.typicalSpeakers).join("、")}` : null,
++			entryOrigin: ent.origin ? `{@b 起源（Origin）：} ${i18n ? i18n.getBilingualField(ent, "origin") : ent.origin}` : null,
++			entryScript: ent.script ? `{@b 文字（Script）：} ${i18n ? i18n.getBilingualField(ent, "script") : ent.script}` : null,
+ 			entriesContent: entriesContent.length ? entriesContent : null,
+ 		};
+ 	}
+@@ -15146,8 +15161,8 @@
+ 	}
+ 
+ 	static _OPTION_TYPE_ENTRIES = {
+-		"RF:B": `{@note You may replace the standard feature of your background with this feature.}`,
+-		"CS": `{@note See the {@adventure Character Secrets|IDRotF|0|character secrets} section for more information.}`,
++		"RF:B": `{@note 你可以用此特性取代背景的標準特性。}`,
++		"CS": `{@note 詳情請參閱「{@adventure Character Secrets|IDRotF|0|角色祕密}」章節。}`,
+ 	};
+ 
+ 	static getOptionTypePreText (ent) {
+diff --git a/js/render-deities.js b/js/render-deities.js
+--- a/js/render-deities.js
++++ b/js/render-deities.js
+@@ -5,9 +5,9 @@
+ 		return veT`
+ 			${Renderer.utils.getBorderTr()}
+ 			${Renderer.utils.getExcludedTr({entity: deity, dataProp: "deity"})}
+-			${Renderer.utils.getNameTr(deity, {suffix: deity.title ? `, ${deity.title.toTitleCase()}` : "", page: UrlUtil.PG_DEITIES})}
++			${Renderer.utils.getNameTr(deity, {suffix: deity.title ? `，${I18nZhTwContent.getBilingualField(deity, "title")}` : "", page: UrlUtil.PG_DEITIES})}
+ 			${RenderDeities._getDeityBody(deity)}
+-			${deity.reprinted ? `<tr><td colspan="6"><i class="ve-muted">Note: this deity has been reprinted in a newer publication.</i></td></tr>` : ""}
++			${deity.reprinted ? `<tr><td colspan="6"><i class="ve-muted">註：此神祇已於較新的出版品中重印。</i></td></tr>` : ""}
+ 			${Renderer.utils.getPageTr(deity)}
+ 			${deity.previousVersions ? `
+ 			${Renderer.utils.getDividerTr()}
+@@ -22,10 +22,11 @@
+ 
+ 		const renderStack = [];
+ 		if (deity.entries) {
++			const extensionDisplayName = Renderer.utils.getBilingualName(deity);
+ 			renderer.recursiveRender(
+ 				{
+ 					entries: [
+-						...deity.customExtensionOf ? [`{@note This deity is a custom extension of {@deity ${deity.customExtensionOf}} with additional information from <i title="${Parser.sourceJsonToFull(deity.source).escapeQuotes()}">${Parser.sourceJsonToAbv(deity.source)}</i>.}`] : [],
++						...deity.customExtensionOf ? [`{@note 此神祇是 {@deity ${deity.customExtensionOf}|${extensionDisplayName}} 的自訂擴充，並加入來自 <i title="${Parser.sourceJsonToFull(deity.source).escapeQuotes()}">${Parser.sourceJsonToAbv(deity.source)}</i> 的額外資訊。}`] : [],
+ 						...deity.entries,
+ 					],
+ 				},
+@@ -41,7 +42,7 @@
+ 			${reprintIndex ? `
+ 				<tr><td colspan="6">
+ 				<i class="ve-muted">
+-				${reprintIndex === 1 ? `This deity is a reprint.` : ""} The version below was printed in an older publication (${Parser.sourceJsonToFull(deity.source)}${Renderer.utils.isDisplayPage(deity.page) ? `, page ${deity.page}` : ""}).
++				${reprintIndex === 1 ? `此神祇為重印版本。` : ""} 下列版本刊載於較早的出版品（${Parser.sourceJsonToFull(deity.source)}${Renderer.utils.isDisplayPage(deity.page) ? `，第 ${deity.page} 頁` : ""}）。
+ 				</i>
+ 				</td></tr>
+ 			` : ""}

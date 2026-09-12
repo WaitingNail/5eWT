@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Build guarded zh-TW sidecars for translated 5etools entity data.
 
-Supported groups are ``spells``, ``character-options``, ``items``, ``monsters``, and ``cults-boons``. Every localized
+Supported groups are ``spells``, ``character-options``, ``items``, ``monsters``, ``cults-boons``, and
+``reference-pages``. Every localized
 entity is paired to the pinned v2.33.3 English entity by canonical name and
 source. The output retains all mechanical and identity fields from English,
 while replacing only renderer-visible prose. Inline-reference targets are
@@ -303,6 +304,20 @@ CULT_BOON_TRANSLATION_OVERRIDES: dict[str, str] = {
 	"cultsboons.json/boon/11/ability/entry": "體質屬性值獲得至多+4的加值，智力、感知與魅力屬性值受到等量減值",
 }
 
+REFERENCE_PAGE_TRANSLATION_OVERRIDES: dict[str, str] = {
+	"charcreationoptions.json/charoption/43/entries/2/rows/2/1": "夜行之翼。蝙蝠、飛蛾、貓頭鷹",
+	"charcreationoptions.json/charoption/43/entries/2/rows/5/1": "海中潛伏者。螃蟹、鰻魚、水母",
+	"charcreationoptions.json/charoption/43/entries/2/rows/7/1": "毒性害獸。蠍子、蛇、蜘蛛",
+	"rewards.json/reward/191/entries/1/entries/0": "你的感知檢定具有劣勢。",
+	"rewards.json/reward/273/entries/0/items/5/entry": "宿主的體質屬性值變為23，除非原本已經更高。",
+	"languages.json/language/40/script": "無文字",
+	"languages.json/language/161/script": "無文字",
+	"deities.json/deity/240/entries/0/entries/4/entries/2/entries/1/rows/3/1": "怒火。我即風暴，無可違逆。（混亂）",
+	"deities.json/deity/240/entries/0/entries/4/entries/2/entries/1/rows/4/1": "急躁。無論必須付出什麼代價才能獲得頓悟，我都會去做。（混亂）",
+	"deities.json/deity/371/entries/0/entries/5/entries/2/entries/1/rows/1/1": "熱情。我會追隨自己的內心，也會幫助他人如此行事。（混亂）",
+	"deities.json/deity/371/entries/0/entries/5/entries/2/entries/1/rows/2/1": "抱負。在普羅烽斯的祝福下，我將創造出宏偉之物。（任意）",
+}
+
 ITEM_TRANSLATION_OVERRIDES: dict[str, str] = {
 	"items.json/item/97/entries/6/colLabels/1": "上",
 	"items.json/item/98/entries/5/colLabels/1": "上",
@@ -533,7 +548,12 @@ class ContentLocalizer(CORE.Localizer):
 
 	def localize_string(self, english: str, translated: str, context: str) -> str:
 		translated = self._apply_project_terms(translated)
-		translation_overrides = {**ITEM_TRANSLATION_OVERRIDES, **MONSTER_TRANSLATION_OVERRIDES, **CULT_BOON_TRANSLATION_OVERRIDES}
+		translation_overrides = {
+			**ITEM_TRANSLATION_OVERRIDES,
+			**MONSTER_TRANSLATION_OVERRIDES,
+			**CULT_BOON_TRANSLATION_OVERRIDES,
+			**REFERENCE_PAGE_TRANSLATION_OVERRIDES,
+		}
 		if context.startswith("bestiary/") and english in MONSTER_TEXT_OVERRIDES:
 			translation_overrides[context] = MONSTER_TEXT_OVERRIDES[english]
 		if context in translation_overrides:
@@ -859,6 +879,231 @@ class CharacterOptionLocalizer(ContentLocalizer):
 		return out
 
 
+class ReferencePageLocalizer(CharacterOptionLocalizer):
+	"""Translate renderer-visible fields on the smaller reference list pages.
+
+	Identity, filter, and mechanical fields remain canonical in the browser.  The
+	localized copies of these fields are retained in the sidecar so the runtime
+	can expose them through ``_display*`` properties.
+	"""
+
+	_EXTRA_VISIBLE_KEYS = {
+		# Character creation options
+		"prerequisite",
+		# Languages
+		"dialects",
+		"origin",
+		"script",
+		"typicalSpeakers",
+		# Deities
+		"altNames",
+		"category",
+		"domains",
+		"pantheon",
+		"plane",
+		"province",
+		"symbol",
+		"symbolImg",
+		"title",
+		"worshipers",
+	}
+
+	_PREREQUISITE_VISIBLE_KEYS = {"note"}
+	_SYMBOL_TITLE_TRANSLATIONS = {
+		"The Sovereign Host": "天命諸神",
+		"Symbols Left to Right: Paladine, Branchala, and Habbakuk": "聖徽由左至右：帕拉丁、布蘭查拉與哈巴庫克",
+		"Symbols Left to Right: Takhisis, Chemosh, and Hiddukel": "聖徽由左至右：塔克西絲、凱魔須與西都凱",
+		"Symbols Left to Right: Gilean, Chislev, and Lunitari": "聖徽由左至右：吉立安、奇思洛夫與努林塔瑞",
+		"Symbols Left to Right: Kiri-Jolith, Majere, and Mishakal": "聖徽由左至右：奇力·裘理斯、馬哲裡與米莎凱",
+		"Symbols Left to Right: Morgion, Nuitari, and Sargonnas": "聖徽由左至右：魔吉安、努塔瑞與沙苟納",
+		"Symbols Left to Right: Reorx, Shinare, and Sirrion": "聖徽由左至右：李奧克斯、西那瑞與西瑞安",
+		"Symbol of Solinari": "索林那瑞的聖徽",
+		"The Dark Six": "黑暗六邪神",
+		"Symbol of Zeboim": "賽波音的聖徽",
+		"Symbol of Zivilyn": "亦為林的聖徽",
+	}
+	_TEXT_REPLACEMENTS = (
+		("NPC", "非玩家角色"),
+		("由DM", "由地下城主"),
+		("受DM", "受地下城主"),
+		("態度Attitude", "態度"),
+		("冷漠Indifferent", "冷漠"),
+		("敵對hostile", "敵對"),
+		("青蛙 frog", "青蛙"),
+		("Fekre", "菲克蕾"),
+		("Savnok", "薩弗諾克"),
+		("Sykane", "西卡恩"),
+		("Vaund", "沃恩德"),
+		("Charisma（魅力）", "魅力"),
+		("西凡納斯Silvanus", "西凡納斯"),
+		("(Spell plague)", ""),
+		("(Fugue Plane)", ""),
+		("(Lathander)", ""),
+		("(Moradin)", ""),
+		("(Kelemvor)", ""),
+		("the River Guide", ""),
+		("Tartyx River", ""),
+		("Katabasis", ""),
+		("（the Rivers That Ring the World）", ""),
+		("天界Nyx", "天界星域"),
+		("冥界the Underworld", "冥界"),
+		("赫利歐德Heliod", "赫利歐德"),
+		("厄睿柏斯Erebos", "厄睿柏斯"),
+		("塔薩Thassa", "塔薩"),
+		("清算reckoning", "清算"),
+		("奧內雷卡西斯Oneirrakthys", "奧內雷卡西斯"),
+		("雅睿歐斯的遺失硬幣Athrean Obols", "雅睿歐斯的遺失硬幣"),
+		("索麗希亞Solyssia", "索麗希亞"),
+		("邁勒提斯Meletis", "邁勒提斯"),
+		("飲毒者比亞斯Biaas Poison Drinker", "飲毒者比亞斯"),
+		("半條命的典彥Dianyan Half-Heart", "半命者典彥"),
+		("永世詛咒的薩斯穆迪Hundred-Damned Thasmudyan", "百咒纏身者薩斯穆迪"),
+		("永恆之淞the Everlasting Rime", "永恆之淞"),
+		("冬日殿堂Winter Palace", "冬日殿堂"),
+		("歐呂爾之吻Kisses of Auril", "歐呂爾之吻"),
+		("豎琴手特工Harper agent", "豎琴手特工"),
+		("阿特斯•辛博Artus Cimber", "阿特斯·辛博"),
+		("(Luskan)", ""),
+		("(Winter Palace)", ""),
+		("(wet parades)", ""),
+		("(Kisses of Auril)", ""),
+		("(kiss the lady)", ""),
+		("奧藝Art", "奧藝"),
+		("斯芬克斯sphinx", "斯芬克斯"),
+		("奧法士magistrati", "奧法士"),
+		("魔法博覽會magic fairs", "魔法博覽會"),
+		("巫師協約magebond", "巫師協約"),
+		("受眷者Favored", "受眷者"),
+		("(Halruaa)", ""),
+		("死亡三神the Dead Three", "死亡三神"),
+		("明塔城 city of Mintar", "明塔城"),
+		("御權騎士長Lord Knight Imperceptor", "御權騎士長"),
+		("Ffolk", "弗族"),
+		("（Weave）", ""),
+		("Garl Glittergold", "加爾·閃金"),
+		("Garl", "加爾"),
+		("Moradin", "摩拉丁"),
+		("Arumdina", "阿倫蒂娜"),
+		("Cyrrollalee", "希勞拉妮"),
+		("Ghaunadaur", "關納德"),
+		("Tzunk", "祖恩克"),
+		("謝納戈斯Xenagos", "謝納戈斯"),
+		("艾紫培Elspeth", "艾紫培"),
+		("承陽劍the Godsend", "承陽劍"),
+		("奈西安森林Nessian Wood", "奈西安森林"),
+		("索爾希孟Solsemon", "索爾希孟"),
+		("奧蘭汀Olantin", "奧蘭汀"),
+		("（Thriambion）", ""),
+		("（Iroagonion）", ""),
+		("手足壁壘Bulwark of Brotherhood", "手足壁壘"),
+		("投石者雷基拉Rygyra the Slinger", "投石者雷基拉"),
+		("裂魂者拉克索契Raksolcs Ravage-Soul", "裂魂者拉克索契"),
+		("卡勒門Kalemne", "卡勒門"),
+		("塔穆祖斯Thamuzus", "塔穆祖斯"),
+		("瑟利瑪卡戎Therimakarion", "瑟利瑪卡戎"),
+		("達克拉Dakra", "達克拉"),
+		("奧拉尼亞德Oraniad", "奧拉尼亞德"),
+		("龍化母雞Dragon-hens", "龍化母雞"),
+		("尼索斯Nykthos", "尼索斯"),
+		("尼ykthos", "尼索斯"),
+		("（Remembrance）", ""),
+		("Labelas", "勒比拉斯"),
+		("Seldarine", "席爾德林"),
+		("（illithids）", ""),
+		("（Lolth）", ""),
+		("（Abbathor）", ""),
+		("晨bringers", "晨光使者"),
+		("demarche（男性）或demarchess（女性）", "男祭司或女祭司"),
+		("(Lurue)", ""),
+		("（Veiros）", "（維洛斯）"),
+		("（Deiros）", "（戴洛斯）"),
+		("無底深淵the Abyss", "無底深淵"),
+		("(Tethyr)", ""),
+		("(Tempus)", ""),
+		("(Great Stratagem)", ""),
+		("Vox Machina", "機械之聲"),
+		("Zinzerena", "辛澤瑞娜"),
+		("Malyk", "馬拉克"),
+		("Lolth", "洛斯"),
+		("（drow）", ""),
+	)
+
+	@classmethod
+	def _cleanup_text(cls, value: str) -> str:
+		for source, replacement in cls._TEXT_REPLACEMENTS:
+			value = value.replace(source, replacement)
+		return value
+
+	def translate_name(self, english: str, translated: str, category: str) -> str:
+		return self._cleanup_text(super().translate_name(english, translated, category))
+
+	def localize_string(self, english: str, translated: str, context: str) -> str:
+		if context.endswith("/symbolImg/title") and english in self._SYMBOL_TITLE_TRANSLATIONS:
+			translated = self._SYMBOL_TITLE_TRANSLATIONS[english]
+		return self._cleanup_text(super().localize_string(english, translated, context))
+
+	def _localize_prerequisite(self, english, translated, context: str, category: str):
+		"""Translate prerequisite notes while retaining every selector verbatim."""
+		if isinstance(english, list):
+			if not isinstance(translated, list):
+				return deepcopy(english)
+			return [
+				self._localize_prerequisite(
+					child,
+					translated[ix] if ix < len(translated) else None,
+					f"{context}/{ix}",
+					category,
+				)
+				for ix, child in enumerate(english)
+			]
+		if not isinstance(english, dict) or not isinstance(translated, dict):
+			return deepcopy(english)
+
+		out = deepcopy(english)
+		if isinstance(english.get("name"), str) and isinstance(translated.get("name"), str):
+			out["ENG_name"] = english["name"]
+			out["name"] = self.translate_name(english["name"], translated["name"], category)
+		for key in self._PREREQUISITE_VISIBLE_KEYS:
+			if not isinstance(english.get(key), str) or not isinstance(translated.get(key), str):
+				continue
+			out[key] = self.localize_string(english[key], translated[key], f"{context}/{key}")
+		for key, english_value in english.items():
+			if key in self._PREREQUISITE_VISIBLE_KEYS or key not in translated:
+				continue
+			if isinstance(english_value, (list, dict)):
+				out[key] = self._localize_prerequisite(
+					english_value,
+					translated[key],
+					f"{context}/{key}",
+					category,
+				)
+		return out
+
+	def localize_node(self, english, translated, context: str, category: str, matcher=None):
+		out = super().localize_node(english, translated, context, category, matcher)
+		if not isinstance(english, dict) or not isinstance(translated, dict) or not isinstance(out, dict):
+			return out
+
+		for key in self._EXTRA_VISIBLE_KEYS:
+			if key not in english or key not in translated:
+				continue
+			if key == "prerequisite":
+				out[key] = self._localize_prerequisite(
+					english[key],
+					translated[key],
+					f"{context}/{key}",
+					category,
+				)
+				continue
+			out[key] = self._localize_visible_tree(
+				english[key],
+				translated[key],
+				f"{context}/{key}",
+				category,
+			)
+		return out
+
+
 
 class ItemLocalizer(ContentLocalizer):
 	"""Translate renderer-facing item fields without mutating item identities."""
@@ -1101,7 +1346,7 @@ class MonsterLocalizer(ContentLocalizer):
 
 def parse_args() -> argparse.Namespace:
 	parser = argparse.ArgumentParser()
-	parser.add_argument("group", choices=("spells", "character-options", "items", "monsters", "cults-boons"))
+	parser.add_argument("group", choices=("spells", "character-options", "items", "monsters", "cults-boons", "reference-pages"))
 	parser.add_argument(
 		"--source-dir",
 		type=Path,
@@ -1220,6 +1465,21 @@ def get_group_config(group: str) -> dict:
 			"sharedProps": {},
 			"reportName": "cults-boons-import-report.json",
 		}
+	if group == "reference-pages":
+		return {
+			"folder": "reference-pages",
+			"specs": [
+				("charcreationoptions.json", ("charoption",)),
+				("fluff-charcreationoptions.json", ("charoptionFluff",)),
+				("rewards.json", ("reward",)),
+				("fluff-rewards.json", ("rewardFluff",)),
+				("languages.json", ("language", "languageScript")),
+				("fluff-languages.json", ("languageFluff",)),
+				("deities.json", ("deity",)),
+			],
+			"sharedProps": {},
+			"reportName": "reference-pages-import-report.json",
+		}
 	raise ValueError(f"Unsupported content group: {group}")
 
 
@@ -1329,6 +1589,21 @@ _VISIBLE_DIRECT_KEYS = CORE.DIRECT_VISIBLE_KEYS | {
 	"cultists",
 	"signatureSpells",
 	"ability",
+	"prerequisite",
+	"dialects",
+	"origin",
+	"script",
+	"typicalSpeakers",
+	"altNames",
+	"category",
+	"domains",
+	"pantheon",
+	"plane",
+	"province",
+	"symbol",
+	"symbolImg",
+	"title",
+	"worshipers",
 }
 
 
@@ -1457,6 +1732,7 @@ def main() -> None:
 		else MonsterLocalizer() if args.group == "monsters"
 		else CharacterOptionLocalizer() if args.group == "character-options"
 		else CultBoonLocalizer() if args.group == "cults-boons"
+		else ReferencePageLocalizer() if args.group == "reference-pages"
 		else ContentLocalizer()
 	)
 

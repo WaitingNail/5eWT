@@ -17,6 +17,10 @@ const required = [
 	"feats.html",
 	"optionalfeatures.html",
 	"cultsboons.html",
+	"charcreationoptions.html",
+	"rewards.html",
+	"languages.html",
+	"deities.html",
 	"data/zh-TW/class.json",
 	"data/zh-TW/class/index.json",
 	"data/zh-TW/site.json",
@@ -46,6 +50,14 @@ const required = [
 	"data/zh-TW/bestiary/legendarygroups.json",
 	"data/zh-TW/cults-boons/index.json",
 	"data/zh-TW/cults-boons/cultsboons.json",
+	"data/zh-TW/reference-pages/index.json",
+	"data/zh-TW/reference-pages/charcreationoptions.json",
+	"data/zh-TW/reference-pages/fluff-charcreationoptions.json",
+	"data/zh-TW/reference-pages/rewards.json",
+	"data/zh-TW/reference-pages/fluff-rewards.json",
+	"data/zh-TW/reference-pages/languages.json",
+	"data/zh-TW/reference-pages/fluff-languages.json",
+	"data/zh-TW/reference-pages/deities.json",
 	"js/zh-tw/class-i18n.js",
 	"js/zh-tw/class-body-i18n.js",
 	"js/zh-tw/site-i18n.js",
@@ -71,6 +83,7 @@ const required = [
 	"node/zh-tw/validate-monster-translations.mjs",
 	"node/zh-tw/test-small-fragments-and-bastions.mjs",
 	"node/zh-tw/test-cults-boons-i18n.mjs",
+	"node/zh-tw/test-reference-pages-i18n.mjs",
 ];
 
 for (const relativePath of required) {
@@ -116,6 +129,18 @@ for (const script of [
 	"js/cultsboons.js",
 	"js/filter-cultsboons.js",
 	"js/render-cultsboons.js",
+	"js/charcreationoptions.js",
+	"js/filter-charcreationoptions.js",
+	"js/render-charcreationoptions.js",
+	"js/rewards.js",
+	"js/filter-rewards.js",
+	"js/render-rewards.js",
+	"js/languages.js",
+	"js/filter-languages.js",
+	"js/render-languages.js",
+	"js/deities.js",
+	"js/filter-deities.js",
+	"js/render-deities.js",
 	"js/utils.js",
 	"js/utils-list.js",
 	"js/utils-dataloader/utils-dataloader-dataloader.js",
@@ -149,5 +174,6 @@ runNode("node/zh-tw/test-monster-i18n.mjs");
 runNode("node/zh-tw/test-monster-page-runtime.mjs");
 runNode("node/zh-tw/test-small-fragments-and-bastions.mjs");
 runNode("node/zh-tw/test-cults-boons-i18n.mjs");
+runNode("node/zh-tw/test-reference-pages-i18n.mjs");
 execFileSync("git", ["diff", "--check"], {cwd: upstreamRoot, stdio: "inherit"});
-console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, items, monsters, Bastions, and cults/boons overlay verification passed.");
+console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, items, monsters, Bastions, cults/boons, and reference-page overlay verification passed.");

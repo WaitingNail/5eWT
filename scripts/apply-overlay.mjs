@@ -16,6 +16,7 @@ const patchPaths = [
 	path.join(projectRoot, "patches", "0008-zh-tw-dice-init-binding.patch"),
 	path.join(projectRoot, "patches", "0009-zh-tw-subclass-and-item-entry-headings.patch"),
 	path.join(projectRoot, "patches", "0010-zh-tw-cults-boons-runtime.patch"),
+	path.join(projectRoot, "patches", "0011-zh-tw-reference-pages-runtime.patch"),
 ];
 const copyRoots = [
   "requirements-zh-tw.txt",
@@ -79,4 +80,4 @@ execFileSync(
 	{cwd: upstreamRoot, stdio: "inherit"},
 );
 
-console.log("Applied zh-TW interface, bilingual entity names, Class, rules, spells, character-options, items, monsters, Bastions, and cults/boons overlay; assets were refreshed.");
+console.log("Applied zh-TW interface, bilingual entity names, Class, rules, spells, character-options, items, monsters, Bastions, cults/boons, and reference-page overlay; assets were refreshed.");
