@@ -34,7 +34,7 @@ assert.equal(I18n.getSkill("Animal Handling"), "馴獸");
 assert.equal(I18n.getLanguage("Undercommon"), "地底通用語");
 assert.equal(I18n.localizeAbilityText("Str +2; Any +1"), "力量 +2; 任一屬性 +1");
 assert.equal(I18n.localizeSkillText("Choose two: Arcana, History"), "自選二項：奧秘, 歷史");
-assert.equal(I18n.localizeSpeedText("walk 30 ft., fly 60 ft. (hover)"), "步行 30 尺, 飛行 60 尺 (懸浮)");
+assert.equal(I18n.localizeSpeedText("walk 30 ft., fly 60 ft. (hover)"), "步行 30 尺、飛行 60 尺 (懸浮)");
 assert.equal(
 	I18n.localizeRulesText(`<a href="#strength">Strength</a> Level 4+`),
 	`<a href="#strength">力量</a> 4級以上`,

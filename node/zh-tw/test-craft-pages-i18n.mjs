@@ -118,20 +118,62 @@ test("vehicle mechanics stay canonical while names, prose, and stat headings are
 	assert.equal(galley.movement[0].hp, 100);
 	assert.equal(galley.movement[0]._displayName, "槳（Oars）");
 	assert.match(galley.movement[0].hpNote, /每受到25點傷害/u);
+	assert.equal(galley.weapon[0].name, "Ballistas", "nested canonical vehicle name changed");
 	assert.equal(galley.weapon[0]._displayName, "弩炮（Ballistas）");
+	assert.equal(I18n.getBilingualName(galley.weapon[0]), "弩炮（Ballistas）");
 	assert.match(galley.weapon[0].entries[0], /16 \(\{@damage 3d10\}\) 點穿刺傷害/u);
 
 	const meta = Renderer.vehicle.ship.getVehicleShipRenderableEntriesMeta(galley);
-	assert.match(meta.entrySizeDimensions, /載具（Vehicle）/u);
+	assert.match(meta.entrySizeDimensions, /超巨型（Gargantuan）載具（Vehicle）/u);
 	assert.match(meta.entryCreatureCapacity, /生物容量（Creature Capacity）/u);
 	assert.match(meta.entryCargoCapacity, /載貨量（Cargo Capacity）/u);
 	assert.match(Renderer.vehicle.ship.getWeaponSection_(Renderer.get(), galley.weapon[0]), /武器（Weapons）：弩炮（Ballistas）/u);
+
+	const defensiveMeta = Renderer.vehicle.getVehicleRenderableEntriesMeta(galley);
+	assert.match(defensiveMeta.entryDamageImmunities, /毒素、心靈/u);
+	assert.match(defensiveMeta.entryConditionImmunities, /\{@condition blinded\|\|目盲\}/u);
+	assert.doesNotMatch(defensiveMeta.entryDamageImmunities, /\bpoison\b|\bpsychic\b/iu);
+	const attack = Renderer.get().render("{@atk rw} {@hit 6} 命中，射程120尺。{@h}16點穿刺傷害。");
+	assert.match(attack, /遠端武器攻擊/u);
+	assert.match(attack, /命中：/u);
+	assert.doesNotMatch(attack, /Ranged Weapon Attack|Hit:/iu);
+
+	const bombard = localized.vehicle.find(it => it.name === "Bombard");
+	const bombardMeta = Renderer.vehicle.spelljammer.getRenderableEntriesMeta(bombard);
+	assert.match(JSON.stringify(bombardMeta), /飛行 35 尺/u);
+	assert.doesNotMatch(JSON.stringify(bombardMeta), /\bfly\b|\bft\./iu);
+
+	const demonGrinder = localized.vehicle.find(it => it.name === "Demon Grinder");
+	const demonGrinderMeta = Renderer.vehicle.infwar.getVehicleInfwarRenderableEntriesMeta(demonGrinder);
+	assert.match(demonGrinderMeta.entrySizeWeight, /超巨型（Gargantuan）載具（Vehicle）/u);
+	assert.match(demonGrinderMeta.entryCargoCapacity, /1 噸/u);
+	assert.doesNotMatch(demonGrinderMeta.entryCargoCapacity, /\bton\b|\blb\./iu);
+
+	const apparatus = localized.vehicle.find(it => it.name === "Apparatus of Kwalish");
+	const apparatusMeta = Renderer.object.getObjectRenderableEntriesMeta(apparatus);
+	assert.match(apparatusMeta.entrySpeed, /30 尺、游泳 30 尺/u);
+	assert.match(apparatusMeta.entrySpeed, /若腿未伸展則兩者均為0尺/u);
+	assert.doesNotMatch(apparatusMeta.entrySpeed, /\bwalk\b|\bswim\b|\bft\./iu);
+
 	assert.equal(I18n.getVehicleType("SHIP", {isBilingual: true}), "船艦（Ship）");
 	assert.equal(I18n.getVehicleTerrain("space", {isBilingual: true}), "太空（Space）");
 
 	const upgrade = localized.vehicleUpgrade.find(it => it.name === "Arcane Artillery");
 	assert.equal(I18n.getBilingualName(upgrade), "奧術大炮（Arcane Artillery）");
 	assert.match(Renderer.vehicleUpgrade.getVehicleUpgradeRenderableEntriesMeta(upgrade).entrySummary, /船艦升級：武器（Ship Upgrade, Weapon）/u);
+});
+
+test("vehicle source repairs cover table labels, map titles, and warship prose", () => {
+	const vehicles = readJson(`${FOLDER}/vehicles.json`);
+	assert.equal(vehicles.vehicle[0].entries[4].colLabels[1], "上");
+	assert.equal(vehicles.vehicle[1].entries[4].colLabels[1], "上");
+
+	const fluff = readJson(`${FOLDER}/fluff-vehicles.json`);
+	const warship = fluff.vehicleFluff.find(it => (it.ENG_name || it.name) === "Warship");
+	assert.equal(warship.images[0].title, "戰艦");
+	const warshipText = JSON.stringify(warship.entries);
+	assert.match(warshipText, /戰艦上有兩臺投石機/u);
+	assert.match(warshipText, /10枚投石機石彈/u);
 });
 
 test("recipes preserve amounts and temperatures while rendering bilingual names and headings", async () => {
@@ -224,6 +266,23 @@ test("guarded import report proves complete alignment and preserved mechanics", 
 	]) assert.deepEqual(report.qa[key], [], `${key} is not empty`);
 	assert.equal(report.qa.numericDifferencesRawCount, report.qa.numericEquivalentDifferences.length);
 	assert.ok(report.qa.numericEquivalentDifferences.length > 0);
+
+	const vehicleReport = readJson("translation/zh-TW/craft-pages/generated/vehicle-import-report.json");
+	assert.equal(vehicleReport.status, "pass");
+	assert.deepEqual(vehicleReport.counts, {vehicle: 39, vehicleUpgrade: 31, vehicleFluff: 36});
+	assert.deepEqual(vehicleReport.canonicalFailures, []);
+	for (const key of [
+		"unmatchedEnglishEntities",
+		"unmatchedTranslatedEntities",
+		"arrayShapeMismatches",
+		"typeShapeMismatches",
+		"unmatchedTranslatedTags",
+		"tagCanonicalDifferences",
+		"diceDifferences",
+		"numericUnresolved",
+		"untranslatedVisibleStrings",
+		"tagShapeMismatches",
+	]) assert.deepEqual(vehicleReport.qa[key], [], `vehicle ${key} is not empty`);
 });
 
 test("page shells, lists, filters, and renderers use the zh-TW runtime", () => {
@@ -259,6 +318,8 @@ test("page shells, lists, filters, and renderers use the zh-TW runtime", () => {
 
 	const renderer = readText("js/render.js");
 	assert.match(renderer, /傷害閾值（Damage Threshold）/u);
+	assert.match(renderer, /getFullConditionImmune/u);
+	assert.match(renderer, /getWeightFull/u);
 	assert.match(renderer, /完成尺寸（Finished Measurements）/u);
 	assert.match(renderer, /器具（Equipment）/u);
 });

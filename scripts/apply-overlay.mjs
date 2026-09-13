@@ -19,6 +19,8 @@ const patchPaths = [
 	path.join(projectRoot, "patches", "0011-zh-tw-reference-pages-runtime.patch"),
 	path.join(projectRoot, "patches", "0012-zh-tw-adventure-cos-runtime.patch"),
 	path.join(projectRoot, "patches", "0012-zh-tw-craft-pages-runtime.patch"),
+	path.join(projectRoot, "patches", "0013-zh-tw-psionics-runtime.patch"),
+	path.join(projectRoot, "patches", "0014-zh-tw-vehicle-runtime-completion.patch"),
 ];
 const copyRoots = [
   "requirements-zh-tw.txt",
@@ -96,4 +98,4 @@ execFileSync(
 	{cwd: upstreamRoot, stdio: "inherit"},
 );
 
-console.log(`Applied zh-TW interface, bilingual entity names, Class, rules, spells, character-options, items, monsters, Bastions, cults/boons, reference pages, adventures, vehicles, recipes, and homecrafts overlay; images use ${deployedImageRoot}`);
+console.log(`Applied zh-TW interface, bilingual entity names, Class, rules, spells, character-options, items, monsters, Bastions, cults/boons, reference pages, adventures, vehicles, recipes, homecrafts, and psionics overlay; images use ${deployedImageRoot}`);

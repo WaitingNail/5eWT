@@ -277,6 +277,22 @@
 			magical: "魔法",
 		};
 
+		static _PSIONIC_TYPES = {
+			D: ["靈術", "Discipline"],
+			T: ["靈能天賦", "Talent"],
+			Discipline: ["靈術", "Discipline"],
+			Talent: ["靈能天賦", "Talent"],
+		};
+
+		static _PSIONIC_ORDERS = {
+			Avatar: "具現者修會",
+			Awakened: "覺醒者修會",
+			Immortal: "不朽者修會",
+			Nomad: "漫遊者修會",
+			"Wu Jen": "巫覡修會",
+			None: "無",
+		};
+
 		static _RECIPE_TYPES = {
 			Dwarven: "矮人料理",
 			"Elixir/Ale": "靈藥／麥酒",
@@ -686,6 +702,7 @@
 			["recipeFluff", "craft-pages"],
 			["crochetPattern", "craft-pages"],
 			["crochetPatternFluff", "craft-pages"],
+			["psionic", "psionics"],
 		]);
 
 		static _FILE_TO_PROPS = new Map([
@@ -718,6 +735,7 @@
 			["fluff-recipes.json", ["recipeFluff"]],
 			["homecrafts.json", ["crochetPattern"]],
 			["fluff-homecrafts.json", ["crochetPatternFluff"]],
+			["psionics.json", ["psionic"]],
 		]);
 
 		static _CONTENT_KEYS = new Set([
@@ -789,6 +807,9 @@
 			"stitches",
 			"yarn",
 			"hpNote",
+			"focus",
+			"modes",
+			"submodes",
 		]);
 
 		static _pFileCache = new Map();
@@ -928,13 +949,18 @@
 			return out;
 		}
 
-		static _overlayContentValue ({canonical, localized, isBilingualNames = false}) {
+		static _overlayContentValue ({canonical, localized, isBilingualNames = false, isPreserveCanonicalNames = false}) {
 			if (typeof canonical === "string") return typeof localized === "string" ? localized : canonical;
 			if (canonical == null || typeof canonical !== "object") return canonical;
 
 			if (Array.isArray(canonical)) {
 				if (!Array.isArray(localized) || canonical.length !== localized.length) return this._copy(canonical);
-				return canonical.map((child, ix) => this._overlayContentValue({canonical: child, localized: localized[ix], isBilingualNames}));
+				return canonical.map((child, ix) => this._overlayContentValue({
+					canonical: child,
+					localized: localized[ix],
+					isBilingualNames,
+					isPreserveCanonicalNames,
+				}));
 			}
 
 			if (!localized || typeof localized !== "object" || Array.isArray(localized)) return this._copy(canonical);
@@ -948,7 +974,13 @@
 			}
 			for (const key of this._CONTENT_KEYS) {
 				if (!(key in canonical) || !(key in localized)) continue;
-				out[key] = this._overlayContentValue({canonical: canonical[key], localized: localized[key], isBilingualNames});
+				if (isBilingualNames && isPreserveCanonicalNames && (key === "name" || key === "caption")) continue;
+				out[key] = this._overlayContentValue({
+					canonical: canonical[key],
+					localized: localized[key],
+					isBilingualNames,
+					isPreserveCanonicalNames,
+				});
 			}
 			return out;
 		}
@@ -1122,8 +1154,25 @@
 					isBilingualNames: [
 						"cult", "boon", "charoption", "reward", "language", "deity",
 						"vehicleFluff", "recipeFluff", "crochetPatternFluff",
+						"psionic",
+					].includes(prop) && key === "entries",
+					isPreserveCanonicalNames: [
+						"vehicleFluff", "recipeFluff", "crochetPatternFluff", "psionic",
 					].includes(prop) && key === "entries",
 				});
+			}
+
+			if (prop === "psionic") {
+				if (typeof canonical.focus === "string" && typeof localized.focus === "string") out.focus = localized.focus;
+				if (canonical.modes && localized.modes) {
+					out.modes = this._overlayContentValue({
+						canonical: canonical.modes,
+						localized: localized.modes,
+						isBilingualNames: true,
+						isPreserveCanonicalNames: true,
+					});
+				}
+				if (typeof canonical.order === "string" && typeof localized.order === "string") out._displayOrder = localized.order;
 			}
 
 			if (["cult", "boon"].includes(prop)) {
@@ -1188,6 +1237,7 @@
 						canonical: canonical[key],
 						localized: localized[key],
 						isBilingualNames: true,
+						isPreserveCanonicalNames: true,
 					});
 				}
 			}
@@ -1606,8 +1656,11 @@
 				|| `${language || ""}`.split("|")[0];
 		}
 
-		static getSizeFull (size) {
-			return this._SIZES_FULL[size] || size || "";
+		static getSizeFull (size, {isBilingual = false} = {}) {
+			const localized = this._SIZES_FULL[size] || size || "";
+			if (!isBilingual) return localized;
+			const english = root.Parser?.sizeAbvToFull?.(size) || size || "";
+			return this.getBilingualValue(english, localized);
 		}
 
 		static getSizeShort (size) {
@@ -1711,6 +1764,36 @@
 			return isBilingual ? this.getBilingualValue(canonical, localized) : localized;
 		}
 
+		static getPsionicType (type, {isBilingual = false} = {}) {
+			const [localized, canonical] = this._PSIONIC_TYPES[type] || [type || "", type || ""];
+			return isBilingual ? this.getBilingualValue(canonical, localized) : localized;
+		}
+
+		static getPsionicOrder (order, {isBilingual = false} = {}) {
+			const canonical = order || "None";
+			const localized = this._PSIONIC_ORDERS[canonical] || canonical;
+			return isBilingual ? this.getBilingualValue(canonical, localized) : localized;
+		}
+
+		static getPsionicModeMeta (mode) {
+			if (!mode || typeof mode !== "object") return "";
+			const min = mode.cost?.min;
+			const max = mode.cost?.max;
+			const cost = min == null
+				? ""
+				: `${min === max || max == null ? min : `${min}–${max}`} 靈力點`;
+			const concentration = (() => {
+				if (!mode.concentration) return "";
+				const duration = mode.concentration.duration;
+				const unit = ({round: "輪", rnd: "輪", minute: "分鐘", min: "分鐘", hour: "小時", hr: "小時"})[mode.concentration.unit]
+					|| mode.concentration.unit
+					|| "";
+				return `專注${duration == null ? "" : `，${duration} ${unit}`}`;
+			})();
+			const parts = [cost, concentration].filter(Boolean);
+			return parts.length ? `（${parts.join("；")}）` : "";
+		}
+
 		static getRecipeType (type, {isBilingual = false} = {}) {
 			const localized = this._RECIPE_TYPES[type] || type || "";
 			return isBilingual ? this.getBilingualValue(type, localized) : localized;
@@ -1773,10 +1856,10 @@
 
 		static _replaceVisibleText (text, replacements) {
 			const replacePart = part => replacements.reduce((out, [pattern, replacement]) => out.replace(pattern, replacement), part);
-			if (!text.includes("<")) return replacePart(text);
+			if (!text.includes("<") && !text.includes("{@")) return replacePart(text);
 			return text
-				.split(/(<[^>]*>)/g)
-				.map(part => part.startsWith("<") ? part : replacePart(part))
+				.split(/(<[^>]*>|\{@[^{}]*\})/g)
+				.map(part => part.startsWith("<") || part.startsWith("{@") ? part : replacePart(part))
 				.join("");
 		}
 
@@ -1859,7 +1942,58 @@
 				[/\bspeed\b/gi, "速度"],
 				[/\bor\b/gi, "或"],
 				[/\band\b/gi, "及"],
+				[/,\s*/g, "、"],
 			]);
+		}
+
+		static getSpeedString (entity, {isSkipZeroWalk = false, isLongForm = false} = {}) {
+			if (!entity) return "";
+			const speed = entity._displaySpeed ?? entity.speed;
+			if (speed == null) return "";
+			const rendered = root.Parser?.getSpeedString?.(
+				{...entity, speed},
+				{isSkipZeroWalk, isLongForm},
+			);
+			return this.localizeSpeedText(rendered ?? `${speed}`);
+		}
+
+		static getFullImmRes (entity, prop) {
+			if (!entity || !prop) return "";
+			const displayProp = `_display${prop[0].toUpperCase()}${prop.slice(1)}`;
+			const values = entity[displayProp] ?? entity[prop];
+			if (values == null) return "";
+			const rendered = root.Parser?.getFullImmRes?.(values) ?? `${values}`;
+			return this.localizeMonsterMetaText(rendered);
+		}
+
+		static getFullConditionImmune (entity) {
+			if (!entity) return "";
+			const values = entity._displayConditionImmune ?? entity.conditionImmune;
+			if (values == null) return "";
+			const rendered = root.Parser?.getFullCondImm?.(values, {isEntry: true}) ?? `${values}`;
+			const withDisplays = rendered.replace(/\{@condition ([^{}]+)\}/gi, (match, body) => {
+				const parts = body.split("|");
+				const localized = this.getCondition(parts[0]);
+				if (!localized || localized.toLowerCase() === `${parts[0]}`.toLowerCase()) return match;
+				while (parts.length < 3) parts.push("");
+				parts[2] = localized;
+				return `{@condition ${parts.join("|")}}`;
+			});
+			return this.localizeMonsterMetaText(withDisplays);
+		}
+
+		static localizeWeightText (text) {
+			if (typeof text !== "string") return text;
+			return this._replaceVisibleText(text, [
+				[/\btons?\b/gi, "噸"],
+				[/\blbs?\.(?=\s|[,;)]|$)|\blbs?\b/gi, "磅"],
+				[/\bpounds?\b/gi, "磅"],
+			]);
+		}
+
+		static getWeightFull (weight) {
+			const rendered = root.Parser?.weightToFull?.(weight) ?? `${weight ?? ""}`;
+			return this.localizeWeightText(rendered);
 		}
 
 		static localizeCreatureTypeText (text) {
@@ -1874,6 +2008,7 @@
 		static localizeMonsterMetaText (text) {
 			if (typeof text !== "string") return text;
 			const replacements = [
+				[/,\s*/g, "、"],
 				[/\bgargantuan\b/gi, "超巨型"],
 				[/\bhuge\b/gi, "巨型"],
 				[/\blarge\b/gi, "大型"],

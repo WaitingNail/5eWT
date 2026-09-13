@@ -24,6 +24,7 @@ const required = [
 	"vehicles.html",
 	"recipes.html",
 	"homecrafts.html",
+	"psionics.html",
 	"data/zh-TW/class.json",
 	"data/zh-TW/class/index.json",
 	"data/zh-TW/site.json",
@@ -72,6 +73,10 @@ const required = [
 	"data/zh-TW/craft-pages/fluff-recipes.json",
 	"data/zh-TW/craft-pages/homecrafts.json",
 	"data/zh-TW/craft-pages/fluff-homecrafts.json",
+	"data/zh-TW/psionics/index.json",
+	"data/zh-TW/psionics/psionics.json",
+	"translation/zh-TW/craft-pages/generated/vehicle-import-report.json",
+	"translation/zh-TW/psionics/generated/psionics-import-report.json",
 	"js/zh-tw/class-i18n.js",
 	"js/zh-tw/class-body-i18n.js",
 	"js/zh-tw/site-i18n.js",
@@ -99,6 +104,7 @@ const required = [
 	"node/zh-tw/test-cults-boons-i18n.mjs",
 	"node/zh-tw/test-reference-pages-i18n.mjs",
 	"node/zh-tw/test-craft-pages-i18n.mjs",
+	"node/zh-tw/test-psionics-i18n.mjs",
 	"node/zh-tw/test-deployed-image-root.mjs",
 ];
 
@@ -165,6 +171,9 @@ for (const script of [
 	"js/homecrafts.js",
 	"js/filter-homecrafts.js",
 	"js/render-homecrafts.js",
+	"js/psionics.js",
+	"js/filter-psionics.js",
+	"js/render-psionics.js",
 	"js/utils.js",
 	"js/utils-list.js",
 	"js/utils-dataloader/utils-dataloader-dataloader.js",
@@ -201,7 +210,9 @@ runNode("node/zh-tw/test-cults-boons-i18n.mjs");
 runNode("node/zh-tw/test-reference-pages-i18n.mjs");
 runNode("node/zh-tw/test-adventure-cos-i18n.mjs");
 runNode("node/zh-tw/test-adventure-tyranny-i18n.mjs");
+runNode("node/zh-tw/test-adventure-wdh-i18n.mjs");
 runNode("node/zh-tw/test-craft-pages-i18n.mjs");
+runNode("node/zh-tw/test-psionics-i18n.mjs");
 runNode("node/zh-tw/test-deployed-image-root.mjs");
 execFileSync("git", ["diff", "--check"], {cwd: upstreamRoot, stdio: "inherit"});
-console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, items, monsters, Bastions, cults/boons, reference pages, CoS/Tyranny of Dragons adventures, vehicles, recipes, homecrafts, and deployed image-root verification passed.");
+console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, items, monsters, Bastions, cults/boons, reference pages, CoS/Tyranny of Dragons/Waterdeep: Dragon Heist adventures, vehicles, recipes, homecrafts, psionics, and deployed image-root verification passed.");

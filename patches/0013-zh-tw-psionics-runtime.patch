@@ -1,0 +1,239 @@
+diff --git a/js/filter-psionics.js b/js/filter-psionics.js
+index c04b9b4..cc197f8 100644
+--- a/js/filter-psionics.js
++++ b/js/filter-psionics.js
+@@ -1,22 +1,29 @@
+ "use strict";
+ 
+ class PageFilterPsionics extends PageFilterBase {
+ 	// region static
+ 	static _sortFilterTypes (a, b) {
+ 		a = a.item; b = b.item;
+-		a = Parser.psiTypeToMeta(a);
+-		b = Parser.psiTypeToMeta(b);
+-		return (Number(a.hasOrder) - Number(b.hasOrder)) || SortUtil.ascSortLower(a.full, b.full);
++		const aMeta = Parser.psiTypeToMeta(a);
++		const bMeta = Parser.psiTypeToMeta(b);
++		return (Number(aMeta.hasOrder) - Number(bMeta.hasOrder))
++			|| SortUtil.ascSortLower(I18nZhTwContent.getPsionicType(a), I18nZhTwContent.getPsionicType(b));
+ 	}
+ 	// endregion
+ 
+ 	constructor () {
+ 		super({sourceFilterOpts: {deselFn: () => false}});
+ 
+-		this._typeFilter = new Filter({header: "Type", items: [Parser.PSI_ABV_TYPE_TALENT, Parser.PSI_ABV_TYPE_DISCIPLINE], displayFn: Parser.psiTypeToFull, itemSortFn: PageFilterPsionics._sortFilterTypes});
++		this._typeFilter = new Filter({
++			header: "類型",
++			items: [Parser.PSI_ABV_TYPE_TALENT, Parser.PSI_ABV_TYPE_DISCIPLINE],
++			displayFn: it => I18nZhTwContent.getPsionicType(it, {isBilingual: true}),
++			itemSortFn: PageFilterPsionics._sortFilterTypes,
++		});
+ 		this._orderFilter = new Filter({
+-			header: "Order",
++			header: "修會",
+ 			items: [Parser.PSI_ORDER_NONE],
++			displayFn: it => I18nZhTwContent.getPsionicOrder(it, {isBilingual: true}),
+ 		});
+ 	}
+ 
+diff --git a/js/psionics.js b/js/psionics.js
+index 332facb..6a4a464 100644
+--- a/js/psionics.js
++++ b/js/psionics.js
+@@ -1,20 +1,20 @@
+ "use strict";
+ 
+ class PsionicsSublistManager extends SublistManager {
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-6 ve-pl-0 ve-pr-1",
+ 				colStyle: "",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Type",
++				name: "類型",
+ 				css: "ve-col-3 ve-px-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Order",
++				name: "修會",
+ 				css: "ve-col-3 ve-text-center ve-pl-1 ve-pr-0",
+ 				colStyle: "text-center",
+ 			}),
+@@ -22,16 +24,18 @@ class PsionicsSublistManager extends SublistManager {
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
+-		const typeMeta = Parser.psiTypeToMeta(it.type);
++		const displayName = I18nZhTwContent.getBilingualName(it);
++		const displayType = I18nZhTwContent.getPsionicType(it.type, {isBilingual: true});
++		const displayOrder = I18nZhTwContent.getPsionicOrder(it.order, {isBilingual: true});
+ 		const cellsText = [
+-			it.name,
++			displayName,
+ 			new SublistCell({
+-				text: typeMeta.short,
+-				title: typeMeta.full,
++				text: displayType,
++				title: displayType,
+ 				css: Parser.psiTypeAbvToStyleClass(it.type),
+ 				style: Parser.psiTypeAbvToStylePart(it.type),
+ 			}),
+-			it._fOrder,
++			displayOrder,
+ 		];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+@@ -45,10 +49,11 @@ class PsionicsSublistManager extends SublistManager {
+ 		const listItem = new ListItem(
+ 			hash,
+ 			ele,
+-			it.name,
++			displayName,
+ 			{
+ 				...ListItem.getCommonValues(it),
+-				type: typeMeta.full,
++				englishName: I18nZhTwContent.getCanonicalName(it),
++				type: displayType,
+ 				order: it._fOrder,
+ 			},
+ 			{
+@@ -72,19 +77,19 @@ class PsionicsPage extends ListPage {
+ 			dataProps: ["psionic"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "psionic",
+-				namePlural: "psionics",
+-				pageTitle: "Psionics Book View",
++				nameSingular: "靈能",
++				namePlural: "靈能",
++				pageTitle: "靈能書冊檢視",
+ 				fnPartition: ent => ent.type === "T" ? 0 : 1,
+ 			},
+ 
+ 			tableViewOptions: {
+-				title: "Psionics",
++				title: "靈能",
+ 				colTransforms: {
+-					name: UtilsTableview.COL_TRANSFORM_NAME,
++					name: {name: "名稱", transform: it => I18nZhTwContent.getBilingualName(it)},
+ 					source: UtilsTableview.COL_TRANSFORM_SOURCE,
+ 					page: UtilsTableview.COL_TRANSFORM_PAGE,
+-					_text: {name: "Text", transform: (it) => Renderer.psionic.getBodyHtml(it), flex: 3},
++					_text: {name: "內容", transform: (it) => Renderer.psionic.getBodyHtml(it), flex: 3},
+ 				},
+ 			},
+ 
+@@ -96,9 +101,9 @@ class PsionicsPage extends ListPage {
+ 		return (psionic.modes || [])
+ 			.map(mode => {
+ 				return [
+-					`"${mode.name}"`,
++					`"${I18nZhTwContent.getBilingualName(mode)}"`,
+ 					...(mode.submodes || [])
+-						.map(subMode => `"${subMode.name}"`),
++						.map(subMode => `"${I18nZhTwContent.getBilingualName(subMode)}"`),
+ 				];
+ 			})
+ 			.flat()
+@@ -113,24 +118,27 @@ class PsionicsPage extends ListPage {
+ 
+ 		const source = Parser.sourceJsonToAbv(p.source);
+ 		const hash = UrlUtil.autoEncodeHash(p);
+-		const typeMeta = Parser.psiTypeToMeta(p.type);
++		const displayName = I18nZhTwContent.getBilingualName(p);
++		const displayType = I18nZhTwContent.getPsionicType(p.type, {isBilingual: true});
++		const displayOrder = I18nZhTwContent.getPsionicOrder(p.order, {isBilingual: true});
+ 		const typeClassName = Parser.psiTypeAbvToStyleClass(p.type);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+-			<span class="ve-bold ve-col-6 ve-pl-0 ve-pr-1">${p.name}</span>
+-			<span class="ve-col-2 ve-px-1 ${typeClassName} ve-text-center" ${Parser.psiTypeAbvToStyle(p.type)} title="${typeMeta.full}">${typeMeta.short}</span>
+-			<span class="ve-col-2 ve-px-1 ve-text-center ${p._fOrder === VeCt.STR_NONE ? "ve-italic" : ""}">${p._fOrder}</span>
++			<span class="ve-bold ve-col-6 ve-pl-0 ve-pr-1">${displayName}</span>
++			<span class="ve-col-2 ve-px-1 ${typeClassName} ve-text-center" ${Parser.psiTypeAbvToStyle(p.type)} title="${displayType}">${displayType}</span>
++			<span class="ve-col-2 ve-px-1 ve-text-center ${p._fOrder === VeCt.STR_NONE ? "ve-italic" : ""}">${displayOrder}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(p.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(p.source)}">${source}</span>
+ 		</a>`;
+ 
+ 		const listItem = new ListItem(
+ 			psI,
+ 			eleLi,
+-			p.name,
++			displayName,
+ 			{
+ 				source,
+ 				...ListItem.getCommonValues(p),
+-				type: typeMeta.full,
++				englishName: I18nZhTwContent.getCanonicalName(p),
++				type: displayType,
+ 				order: p._fOrder,
+ 				searchModeList: this.constructor._getHiddenModeList(p),
+ 			},
+diff --git a/js/render.js b/js/render.js
+--- a/js/render.js
++++ b/js/render.js
+@@ -13971,11 +13971,17 @@ Renderer.psionic = class {
+ 	static enhanceMode (mode) {
+ 		if (mode._isEnhanced) return;
+ 
+-		mode.name = [mode.name, Renderer.psionic._enhanceMode_getModeTitleBracketPart({mode: mode})].filter(Boolean).join(" ");
++		mode._displayName = [
++			globalThis.I18nZhTwContent?.getBilingualName(mode) || mode.name,
++			globalThis.I18nZhTwContent?.getPsionicModeMeta(mode) || Renderer.psionic._enhanceMode_getModeTitleBracketPart({mode: mode}),
++		].filter(Boolean).join(" ");
+ 
+ 		if (mode.submodes) {
+ 			mode.submodes.forEach(sm => {
+-				sm.name = [sm.name, Renderer.psionic._enhanceMode_getModeTitleBracketPart({mode: sm})].filter(Boolean).join(" ");
++				sm._displayName = [
++					globalThis.I18nZhTwContent?.getBilingualName(sm) || sm.name,
++					globalThis.I18nZhTwContent?.getPsionicModeMeta(sm) || Renderer.psionic._enhanceMode_getModeTitleBracketPart({mode: sm}),
++				].filter(Boolean).join(" ");
+ 			});
+ 		}
+ 
+@@ -14010,7 +14016,7 @@ Renderer.psionic = class {
+ 		return {
+ 			entryTypeOrder: `{@i ${Renderer.psionic.getTypeOrderString(ent)}}`,
+ 			entryContent: ent.entries ? {entries: ent.entries, type: "entries"} : null,
+-			entryFocus: ent.focus ? `{@b {@i Psychic Focus.}} ${ent.focus}` : null,
++			entryFocus: ent.focus ? `{@b {@i ${globalThis.I18nZhTwContent ? "心靈集中（Psychic Focus）。" : "Psychic Focus."}}} ${ent.focus}` : null,
+ 			entriesModes: ent.modes
+ 				? ent.modes
+ 					.flatMap(mode => Renderer.psionic._getModeEntries(mode))
+@@ -14025,7 +14031,7 @@ Renderer.psionic = class {
+ 		return [
+ 			{
+ 				type: mode.type || "entries",
+-				name: mode.name,
++				name: mode._displayName || mode.name,
+ 				entries: mode.entries,
+ 			},
+ 			mode.submodes ? Renderer.psionic._getSubModesEntry(mode.submodes) : null,
+@@ -14040,14 +14046,19 @@ Renderer.psionic = class {
+ 			items: subModes
+ 				.map(sm => ({
+ 					type: "item",
+-					name: sm.name,
++					name: sm._displayName || sm.name,
+ 					entries: sm.entries,
+ 				})),
+ 		};
+ 	}
+ 
+ 	static getTypeOrderString (psi) {
+ 		const typeMeta = Parser.psiTypeToMeta(psi.type);
++		if (globalThis.I18nZhTwContent) {
++			const type = globalThis.I18nZhTwContent.getPsionicType(psi.type, {isBilingual: true});
++			const order = globalThis.I18nZhTwContent.getPsionicOrder(psi.order, {isBilingual: true});
++			return typeMeta.hasOrder ? `${order} ${type}` : type;
++		}
+ 		// if "isAltDisplay" is true, render as e.g. "Greater Discipline (Awakened)" rather than "Awakened Greater Discipline"
+ 		return typeMeta.hasOrder
+ 			? typeMeta.isAltDisplay ? `${typeMeta.full} (${psi.order})` : `${psi.order} ${typeMeta.full}`

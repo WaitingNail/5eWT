@@ -1,0 +1,175 @@
+diff --git a/js/render.js b/js/render.js
+index 269090e..bba8de8 100644
+--- a/js/render.js
++++ b/js/render.js
+@@ -1677,7 +1677,7 @@ globalThis.Renderer = function () {
+ 		textStack[0] += `<i>${Parser.attackTypeToFull(entry.attackType)}:</i> `;
+ 		const len = entry.attackEntries.length;
+ 		for (let i = 0; i < len; ++i) this._recursiveRender(entry.attackEntries[i], textStack, meta);
+-		textStack[0] += ` <i>Hit:</i> `;
++		textStack[0] += ` <i>${globalThis.I18nZhTwContent ? "命中：" : "Hit:"}</i> `;
+ 		const len2 = entry.hitEntries.length;
+ 		for (let i = 0; i < len2; ++i) this._recursiveRender(entry.hitEntries[i], textStack, meta);
+ 		this._renderSuffix(entry, textStack, meta, options);
+@@ -2206,9 +2206,9 @@ globalThis.Renderer = function () {
+ 			case "@actSaveSuccessOrFail": textStack[0] += `<i>Failure or Success:</i>`; break;
+ 			case "@actTrigger": textStack[0] += `<i>Trigger:</i>`; break;
+ 			case "@actResponse": textStack[0] += `<i>Response${text.includes("d") ? "\u2014" : ":"}</i>`; break;
+-			case "@h": textStack[0] += `<i>Hit:</i> `; break;
+-			case "@m": textStack[0] += `<i>Miss:</i> `; break;
+-			case "@hom": textStack[0] += `<i>Hit or Miss:</i> `; break;
++			case "@h": textStack[0] += `<i>${globalThis.I18nZhTwContent ? "命中：" : "Hit:"}</i> `; break;
++			case "@m": textStack[0] += `<i>${globalThis.I18nZhTwContent ? "未命中：" : "Miss:"}</i> `; break;
++			case "@hom": textStack[0] += `<i>${globalThis.I18nZhTwContent ? "命中或未命中：" : "Hit or Miss:"}</i> `; break;
+ 			case "@color": {
+ 				const [toDisplay, color] = Renderer.splitTagByPipe(text);
+ 				const ptColor = this._renderString_renderTag_getBrewColorPart(color);
+@@ -2799,9 +2799,10 @@ Renderer.applyAllProperties = function (entries, object = null) {
+ };
+ 
+ Renderer.attackTagToFull = function (tagStr, {isRoll = false} = {}) {
++	const isZhTw = !!globalThis.I18nZhTwContent;
+ 	function renderTag (tags) {
+-		const ptType = tags.includes("m") ? "Melee " : tags.includes("r") ? "Ranged " : tags.includes("g") ? "Magical " : tags.includes("a") ? "Area " : "";
+-		const ptMethod = tags.includes("w") ? "Weapon " : tags.includes("s") ? "Spell " : tags.includes("p") ? "Power " : "";
++		const ptType = tags.includes("m") ? (isZhTw ? "近戰" : "Melee ") : tags.includes("r") ? (isZhTw ? "遠端" : "Ranged ") : tags.includes("g") ? (isZhTw ? "魔法" : "Magical ") : tags.includes("a") ? (isZhTw ? "範圍" : "Area ") : "";
++		const ptMethod = tags.includes("w") ? (isZhTw ? "武器" : "Weapon ") : tags.includes("s") ? (isZhTw ? "法術" : "Spell ") : tags.includes("p") ? (isZhTw ? "威能" : "Power ") : "";
+ 		return `${ptType}${ptMethod}`;
+ 	}
+ 
+@@ -2816,7 +2817,9 @@ Renderer.attackTagToFull = function (tagStr, {isRoll = false} = {}) {
+ 			});
+ 		}
+ 	}
+-	return `${tagGroups.map(it => renderTag(it)).join(" or ")}Attack${isRoll ? " Roll" : ""}:`;
++	return isZhTw
++		? `${tagGroups.map(it => renderTag(it)).join("或")}攻擊${isRoll ? "檢定" : ""}：`
++		: `${tagGroups.map(it => renderTag(it)).join(" or ")}Attack${isRoll ? " Roll" : ""}:`;
+ };
+ 
+ Renderer.splitFirstSpace = function (string) {
+@@ -5790,21 +5793,21 @@ Renderer.tag = class {
+ 		tagName = "h";
+ 		isStandalone = true;
+ 
+-		_getStripped (tag, text) { return "Hit: "; }
++		_getStripped (tag, text) { return globalThis.I18nZhTwContent ? "命中：" : "Hit: "; }
+ 	};
+ 
+ 	static TagMissText = class extends this._TagBaseAt {
+ 		tagName = "m";
+ 		isStandalone = true;
+ 
+-		_getStripped (tag, text) { return "Miss: "; }
++		_getStripped (tag, text) { return globalThis.I18nZhTwContent ? "未命中：" : "Miss: "; }
+ 	};
+ 
+ 	static TagHitOrMissText = class extends this._TagBaseAt {
+ 		tagName = "hom";
+ 		isStandalone = true;
+ 
+-		_getStripped (tag, text) { return "Hit or Miss: "; } // I guess they never miss
++		_getStripped (tag, text) { return globalThis.I18nZhTwContent ? "命中或未命中：" : "Hit or Miss: "; } // I guess they never miss
+ 	};
+ 
+ 	static TagAtk = class extends this._TagBaseAt {
+@@ -9612,6 +9615,7 @@ Renderer.object = class {
+ 	];
+ 
+ 	static getObjectRenderableEntriesMeta (ent) {
++		const i18n = globalThis.I18nZhTwContent;
+ 		return {
+ 			entrySize: `{@i ${ent.objectType !== "GEN" ? `${Renderer.utils.getRenderedSize(ent.size)} ${ent.creatureType ? Parser.monTypeToFullObj(ent.creatureType).asText : "物件（Object）"}` : `尺寸可變物件（Variable Size Object）`}}`,
+ 
+@@ -9628,22 +9632,22 @@ Renderer.object = class {
+ 				? `{@b 生命值（Hit Points）：} ${ent.hp.special ?? ent.hp}`
+ 				: null,
+ 			entrySpeed: ent.speed != null
+-				? `{@b 速度（Speed）：} ${Parser.getSpeedString(ent)}`
++				? `{@b 速度（Speed）：} ${i18n?.getSpeedString(ent) || Parser.getSpeedString(ent)}`
+ 				: null,
+ 			entryAbilityScores: Parser.ABIL_ABVS.some(ab => ent[ab] != null)
+ 				? `{@b 屬性值（Ability Scores）：} ${Parser.ABIL_ABVS.filter(ab => ent[ab] != null).map(ab => `${ab.toUpperCase()}\u00A0${Renderer.utils.getAbilityRollerEntry(ent, ab)}`).join("、")}`
+ 				: null,
+ 			entryDamageImmunities: ent.immune != null
+-				? `{@b 傷害免疫（Damage Immunities）：} ${Parser.getFullImmRes(ent.immune)}`
++				? `{@b 傷害免疫（Damage Immunities）：} ${i18n?.getFullImmRes(ent, "immune") || Parser.getFullImmRes(ent.immune)}`
+ 				: null,
+ 			entryDamageResistances: ent.resist
+-				? `{@b 傷害抗性（Damage Resistances）：} ${Parser.getFullImmRes(ent.resist)}`
++				? `{@b 傷害抗性（Damage Resistances）：} ${i18n?.getFullImmRes(ent, "resist") || Parser.getFullImmRes(ent.resist)}`
+ 				: null,
+ 			entryDamageVulnerabilities: ent.vulnerable
+-				? `{@b 傷害易傷（Damage Vulnerabilities）：} ${Parser.getFullImmRes(ent.vulnerable)}`
++				? `{@b 傷害易傷（Damage Vulnerabilities）：} ${i18n?.getFullImmRes(ent, "vulnerable") || Parser.getFullImmRes(ent.vulnerable)}`
+ 				: null,
+ 			entryConditionImmunities: ent.conditionImmune
+-				? `{@b 狀態免疫（Condition Immunities）：} ${Parser.getFullCondImm(ent.conditionImmune, {isEntry: true})}`
++				? `{@b 狀態免疫（Condition Immunities）：} ${i18n?.getFullConditionImmune(ent) || Parser.getFullCondImm(ent.conditionImmune, {isEntry: true})}`
+ 				: null,
+ 			entrySenses: ent.senses
+ 				? `{@b 感官（Senses）：} ${Renderer.utils.getSensesEntry(ent.senses)}`
+@@ -14311,18 +14315,19 @@ Renderer.vehicle = class {
+ 	static CHILD_PROPS = ["movement", "weapon", "station", "other", "action", "trait", "reaction", "control", "actionStation"];
+ 
+ 	static getVehicleRenderableEntriesMeta (ent) {
++		const i18n = globalThis.I18nZhTwContent;
+ 		return {
+ 			entryDamageVulnerabilities: ent.vulnerable
+-				? `{@b 傷害易傷（Damage Vulnerabilities）} ${Parser.getFullImmRes(ent.vulnerable)}`
++				? `{@b 傷害易傷（Damage Vulnerabilities）} ${i18n?.getFullImmRes(ent, "vulnerable") || Parser.getFullImmRes(ent.vulnerable)}`
+ 				: null,
+ 			entryDamageResistances: ent.resist
+-				? `{@b 傷害抗性（Damage Resistances）} ${Parser.getFullImmRes(ent.resist)}`
++				? `{@b 傷害抗性（Damage Resistances）} ${i18n?.getFullImmRes(ent, "resist") || Parser.getFullImmRes(ent.resist)}`
+ 				: null,
+ 			entryDamageImmunities: ent.immune
+-				? `{@b 傷害免疫（Damage Immunities）} ${Parser.getFullImmRes(ent.immune)}`
++				? `{@b 傷害免疫（Damage Immunities）} ${i18n?.getFullImmRes(ent, "immune") || Parser.getFullImmRes(ent.immune)}`
+ 				: null,
+ 			entryConditionImmunities: ent.conditionImmune
+-				? `{@b 狀態免疫（Condition Immunities）} ${Parser.getFullCondImm(ent.conditionImmune, {isEntry: true})}`
++				? `{@b 狀態免疫（Condition Immunities）} ${i18n?.getFullConditionImmune(ent) || Parser.getFullCondImm(ent.conditionImmune, {isEntry: true})}`
+ 				: null,
+ 		};
+ 	}
+@@ -14370,7 +14375,7 @@ Renderer.vehicle = class {
+ 				.join("; ");
+ 
+ 			return {
+-				entrySizeDimensions: `{@i ${Parser.sizeAbvToFull(ent.size)}載具（Vehicle）${ptDimensionsTerrain ? `（${ptDimensionsTerrain}）` : ""}}`,
++				entrySizeDimensions: `{@i ${I18nZhTwContent.getSizeFull(ent.size, {isBilingual: true})}載具（Vehicle）${ptDimensionsTerrain ? `（${ptDimensionsTerrain}）` : ""}}`,
+ 				entryCreatureCapacity: ent.capCrew != null || ent.capPassenger != null
+ 					? `{@b 生物容量（Creature Capacity）} ${Renderer.vehicle.getShipCreatureCapacity(ent)}`
+ 					: null,
+@@ -14611,7 +14616,7 @@ Renderer.vehicle = class {
+ 			} = Renderer.vehicle.spelljammerElementalAirship.getRenderableEntriesMeta(ent);
+ 
+ 			const ptSpeed = ent.speed != null
+-				? Parser.getSpeedString(ent, {isSkipZeroWalk: true})
++				? I18nZhTwContent.getSpeedString(ent, {isSkipZeroWalk: true})
+ 				: "";
+ 
+ 			const ptSpeedPace = [ptSpeed, ptSpeed ? `(${entryPacePt})` : entryPacePt].filter(Boolean).join(" ");
+@@ -14678,7 +14683,7 @@ Renderer.vehicle = class {
+ 			} = Renderer.vehicle.spelljammerElementalAirship.getRenderableEntriesMeta(ent);
+ 
+ 			const ptSpeed = ent.speed != null
+-				? Parser.getSpeedString(ent, {isSkipZeroWalk: true})
++				? I18nZhTwContent.getSpeedString(ent, {isSkipZeroWalk: true})
+ 				: "";
+ 
+ 			const ptPaceSpeed = [entryPacePt, ptSpeed ? `(${ptSpeed})` : null].filter(Boolean).join(" ");
+@@ -14868,9 +14873,9 @@ Renderer.vehicle = class {
+ 			const ptAc = ent.ac ?? dexMod === 0 ? `19` : `${19 + dexMod}（靜止時為 19）`;
+ 
+ 			return {
+-				entrySizeWeight: `{@i ${Parser.sizeAbvToFull(ent.size)}載具（Vehicle）（${ent.weight.toLocaleStringVe()} 磅）}`,
++				entrySizeWeight: `{@i ${I18nZhTwContent.getSizeFull(ent.size, {isBilingual: true})}載具（Vehicle）（${ent.weight.toLocaleStringVe()} 磅）}`,
+ 				entryCreatureCapacity: `{@b 生物容量（Creature Capacity）} ${Renderer.vehicle.getInfwarCreatureCapacity(ent)}`,
+-				entryCargoCapacity: `{@b 載貨量（Cargo Capacity）} ${Parser.weightToFull(ent.capCargo)}`,
++				entryCargoCapacity: `{@b 載貨量（Cargo Capacity）} ${I18nZhTwContent.getWeightFull(ent.capCargo)}`,
+ 				entryArmorClass: `{@b 護甲等級（Armor Class）} ${ptAc}`,
+ 				entryHitPoints: `{@b 生命值（Hit Points）} ${ent.hp.hp}${ptDtMt ? `（${ptDtMt}）` : ""}`,
+ 				entrySpeed: `{@b 速度（Speed）} ${ent.speed} 尺`,
+

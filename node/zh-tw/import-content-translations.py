@@ -2,7 +2,7 @@
 """Build guarded zh-TW sidecars for translated 5etools entity data.
 
 Supported groups are ``spells``, ``character-options``, ``items``, ``monsters``, ``cults-boons``,
-``reference-pages``, and ``craft-pages``. Every localized
+``reference-pages``, ``craft-pages`` (or its ``vehicles`` subset), and ``psionics``. Every localized
 entity is paired to the pinned v2.33.3 English entity by canonical name and
 source. The output retains all mechanical and identity fields from English,
 while replacing only renderer-visible prose. Inline-reference targets are
@@ -1197,8 +1197,10 @@ class MonsterLocalizer(ContentLocalizer):
 
 	_VISIBLE_TREE_CANONICAL_KEYS = CORE.CANONICAL_KEYS | {
 		"ability",
+		"credit",
 		"displayAs",
 		"hidden",
+		"imageType",
 		"slots",
 		"lower",
 		"upper",
@@ -1478,6 +1480,12 @@ class CraftPageLocalizer(MonsterLocalizer):
 	}
 
 	_CONTEXT_TEXT_REPAIRS = {
+		"vehicles.json/vehicle/0/entries/4/colLabels/1": (("Up", "上"),),
+		"vehicles.json/vehicle/1/entries/4/colLabels/1": (("Up", "上"),),
+		"fluff-vehicles.json/vehicleFluff/34/entries/0/entries/4/entries/1/items/0/entry": (
+			("戰艦上有兩臺mangonels", "戰艦上有兩臺投石機"),
+			("10塊mangonel石", "10枚投石機石彈"),
+		),
 		"recipes.json/recipe/2/instructions/4": (
 			("100°C", "200°F"),
 			("2小時30分鐘", "2¼小時"),
@@ -1518,6 +1526,7 @@ class CraftPageLocalizer(MonsterLocalizer):
 		"station",
 		"terrain",
 		"weapon",
+		"images",
 		# Recipes
 		"alias",
 		"allergenGroups",
@@ -1601,6 +1610,7 @@ class CraftPageLocalizer(MonsterLocalizer):
 			out = re.sub(r"(?<=\d)\s*(?:°F|華氏度)", "°C", out)
 		return out
 
+
 	@classmethod
 	def _cleanup_crochet_text(cls, value: str) -> str:
 		for english, localized in sorted(cls._CROCHET_COLOR_REPLACEMENTS.items(), key=lambda pair: len(pair[0]), reverse=True):
@@ -1662,9 +1672,144 @@ class CraftPageLocalizer(MonsterLocalizer):
 		return out
 
 
+class PsionicsLocalizer(MonsterLocalizer):
+	"""Translate psionic disciplines, talents, focuses, modes, and submodes."""
+
+	_EXTRA_VISIBLE_KEYS = {"focus", "modes", "order"}
+	_ORDER_TRANSLATIONS = {
+		"Avatar": "具現者修會",
+		"Awakened": "覺醒者修會",
+		"Immortal": "不朽者修會",
+		"Nomad": "漫遊者修會",
+		"Wu Jen": "巫覡修會",
+	}
+	_LOCKED_TAG_DISPLAY_TRANSLATIONS = {
+		"condition": {
+			"blinded": "目盲", "charmed": "魅惑", "deafened": "耳聾", "exhaustion": "力竭",
+			"frightened": "恐懼", "grappled": "被擒", "incapacitated": "無力", "invisible": "隱形",
+			"paralyzed": "麻痺", "petrified": "石化", "poisoned": "中毒", "prone": "伏地",
+			"restrained": "束縛", "stunned": "震懾", "unconscious": "昏迷",
+		},
+		"skill": {
+			"acrobatics": "特技", "animal handling": "馴獸", "arcana": "奧秘", "athletics": "運動",
+			"deception": "欺瞞", "history": "歷史", "insight": "洞悉", "intimidation": "威嚇",
+			"investigation": "調查", "medicine": "醫藥", "nature": "自然", "perception": "察覺",
+			"performance": "表演", "persuasion": "遊說", "religion": "宗教", "sleight of hand": "巧手",
+			"stealth": "隱匿", "survival": "求生",
+		},
+		"status": {"concentration": "專注"},
+	}
+	_TEXT_REPLACEMENTS = (
+		("感知、感知和魅力", "智力、感知與魅力"),
+		("感知、感知或魅力", "智力、感知或魅力"),
+		("每點精神力點數", "每消耗1點靈力點"),
+		("每點額外精神力點數", "每額外消耗1點靈力點"),
+		("精神力點數", "靈力點"),
+		("精神力點", "靈力點"),
+		("精神點數", "靈力點"),
+		("精神點", "靈力點"),
+		("靈能點數", "靈力點"),
+		("靈能點", "靈力點"),
+		("psi點數", "靈力點"),
+		("psi點", "靈力點"),
+		("一點精神力", "1點靈力點"),
+		("一個精神力", "1點靈力點"),
+		("精神力", "靈力點"),
+		("行走速度", "步行速度"),
+		("在行走時", "步行時"),
+		("英尺", "尺"),
+		("英寸", "吋"),
+		("英里", "哩"),
+		("擴充套件", "擴展"),
+		("觸控", "接觸"),
+		("型別", "類型"),
+		("豁免檢定", "豁免"),
+		("攻擊擲骰", "攻擊檢定"),
+		("攻擊骰", "攻擊檢定"),
+		("傷害骰", "傷害擲骰"),
+		("成功透過一次", "成功通過一次"),
+		("成功透過一個", "成功通過一次"),
+		("未透過投擲", "豁免失敗"),
+		("成功透過投擲", "豁免成功"),
+		("投擲失敗", "豁免失敗"),
+		("投擲成功", "豁免成功"),
+		("恐慌", "恐懼"),
+		("失能", "無力"),
+		("效果", "效應"),
+		("行動", "動作"),
+		("《怪物手冊》", "《怪物圖鑑》"),
+		("怪物手冊", "《怪物圖鑑》"),
+		("屬性方塊", "數據資料"),
+		("屬性塊", "數據資料"),
+		("神秘學者", "秘術師"),
+		("這個學派", "這項靈術"),
+		("這個訓練", "這項靈術"),
+		("這項紀律", "這項靈術"),
+		("酸性傷害", "強酸傷害"),
+		("酸性、", "強酸、"),
+		("應適之盾", "適應護盾"),
+	)
+
+	@classmethod
+	def _cleanup_text(cls, value: str) -> str:
+		for source, replacement in cls._TEXT_REPLACEMENTS:
+			value = value.replace(source, replacement)
+		return value
+
+	def _get_memory_tag_display(self, tag_type: str, en_parts: list[str]) -> str | None:
+		if not en_parts:
+			return None
+		category = CORE.TAG_CATEGORY_ALIASES.get(tag_type, tag_type)
+		canonical = en_parts[0]
+		if display := self._LOCKED_TAG_DISPLAY_TRANSLATIONS.get(tag_type, {}).get(canonical.casefold()):
+			return display
+		for candidate in dict.fromkeys((canonical, canonical.capitalize(), canonical.title())):
+			if display := self.memory.get(candidate, category):
+				return display
+		return None
+
+	def _get_tag_match_score(self, tag_type: str, en_parts: list[str], zh_parts: list[str]) -> int:
+		# The source occasionally reorders same-type tags while translating a
+		# sentence (for example, ``invisible`` and ``blinded``). Match those tags
+		# by the locked glossary display instead of their new sentence position.
+		if locked := self._get_memory_tag_display(tag_type, en_parts):
+			display = self._get_translated_tag_display(tag_type, zh_parts)
+			if self._tag_token_key(locked) == self._tag_token_key(display):
+				return 110
+		return super()._get_tag_match_score(tag_type, en_parts, zh_parts)
+
+	def _get_locked_tag_display(self, tag_type: str, en_parts: list[str], zh_parts: list[str]) -> str:
+		return self._get_memory_tag_display(tag_type, en_parts) or super()._get_locked_tag_display(tag_type, en_parts, zh_parts)
+
+	def translate_name(self, english: str, translated: str, category: str) -> str:
+		return self._cleanup_text(super().translate_name(english, translated, category))
+
+	def localize_string(self, english: str, translated: str, context: str) -> str:
+		return self._cleanup_text(super().localize_string(english, translated, context))
+
+	def localize_node(self, english, translated, context: str, category: str, matcher=None):
+		out = super().localize_node(english, translated, context, category, matcher)
+		if not isinstance(english, dict) or not isinstance(translated, dict) or not isinstance(out, dict):
+			return out
+
+		for key in sorted(self._EXTRA_VISIBLE_KEYS):
+			if key not in english or key not in translated:
+				continue
+			if key == "order":
+				out[key] = self._ORDER_TRANSLATIONS.get(english[key], self._cleanup_text(self.normalize_text(translated[key])))
+				continue
+			out[key] = self._localize_visible_tree(
+				english[key],
+				translated[key],
+				f"{context}/{key}",
+				category,
+			)
+		return out
+
+
 def parse_args() -> argparse.Namespace:
 	parser = argparse.ArgumentParser()
-	parser.add_argument("group", choices=("spells", "character-options", "items", "monsters", "cults-boons", "reference-pages", "craft-pages"))
+	parser.add_argument("group", choices=("spells", "character-options", "items", "monsters", "cults-boons", "reference-pages", "craft-pages", "vehicles", "psionics"))
 	parser.add_argument(
 		"--source-dir",
 		type=Path,
@@ -1811,6 +1956,24 @@ def get_group_config(group: str) -> dict:
 			],
 			"sharedProps": {},
 			"reportName": "craft-pages-import-report.json",
+		}
+	if group == "vehicles":
+		return {
+			"folder": "craft-pages",
+			"specs": [
+				("vehicles.json", ("vehicle", "vehicleUpgrade")),
+				("fluff-vehicles.json", ("vehicleFluff",)),
+			],
+			"sharedProps": {},
+			"reportName": "vehicle-import-report.json",
+			"writeIndex": False,
+		}
+	if group == "psionics":
+		return {
+			"folder": "psionics",
+			"specs": [("psionics.json", ("psionic",))],
+			"sharedProps": {},
+			"reportName": "psionics-import-report.json",
 		}
 	raise ValueError(f"Unsupported content group: {group}")
 
@@ -1967,6 +2130,10 @@ _VISIBLE_DIRECT_KEYS = CORE.DIRECT_VISIBLE_KEYS | {
 	"sizeNote",
 	"stitches",
 	"yarn",
+	"focus",
+	"modes",
+	"submodes",
+	"order",
 }
 
 
@@ -2124,7 +2291,8 @@ def main() -> None:
 		else CharacterOptionLocalizer() if args.group == "character-options"
 		else CultBoonLocalizer() if args.group == "cults-boons"
 		else ReferencePageLocalizer() if args.group == "reference-pages"
-		else CraftPageLocalizer() if args.group == "craft-pages"
+		else CraftPageLocalizer() if args.group in {"craft-pages", "vehicles"}
+		else PsionicsLocalizer() if args.group == "psionics"
 		else ContentLocalizer()
 	)
 
@@ -2228,7 +2396,8 @@ def main() -> None:
 	}
 	if item_chunk_files:
 		index["fileChunks"] = {"items.json": item_chunk_files}
-	write_json(OUTPUT_ROOT / config["folder"] / "index.json", index)
+	if config.get("writeIndex", True):
+		write_json(OUTPUT_ROOT / config["folder"] / "index.json", index)
 
 	report = {
 		"status": status,
