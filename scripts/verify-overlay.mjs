@@ -213,6 +213,7 @@ runNode("node/zh-tw/test-adventure-tyranny-i18n.mjs");
 runNode("node/zh-tw/test-adventure-wdh-i18n.mjs");
 runNode("node/zh-tw/test-craft-pages-i18n.mjs");
 runNode("node/zh-tw/test-psionics-i18n.mjs");
+runNode("node/zh-tw/test-vehicle-psionics-page-loading.mjs");
 runNode("node/zh-tw/test-deployed-image-root.mjs");
 execFileSync("git", ["diff", "--check"], {cwd: upstreamRoot, stdio: "inherit"});
 console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, items, monsters, Bastions, cults/boons, reference pages, CoS/Tyranny of Dragons/Waterdeep: Dragon Heist adventures, vehicles, recipes, homecrafts, psionics, and deployed image-root verification passed.");

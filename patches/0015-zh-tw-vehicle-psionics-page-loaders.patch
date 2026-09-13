@@ -1,0 +1,24 @@
+diff --git a/js/vehicles.js b/js/vehicles.js
+--- a/js/vehicles.js
++++ b/js/vehicles.js
+@@ -57,7 +57,7 @@
+ 		const pFnGetFluff = Renderer.vehicle.pGetFluff.bind(Renderer.vehicle);
+ 
+ 		super({
+-			dataSource: "data/vehicles.json",
++			dataSource: DataUtil.vehicle.loadJSON.bind(DataUtil.vehicle),
+ 
+ 			pFnGetFluff,
+ 
+diff --git a/js/psionics.js b/js/psionics.js
+--- a/js/psionics.js
++++ b/js/psionics.js
+@@ -68,7 +68,7 @@
+ 	constructor () {
+ 		const pageFilter = new PageFilterPsionics();
+ 		super({
+-			dataSource: "data/psionics.json",
++			dataSource: DataUtil.psionic.loadJSON.bind(DataUtil.psionic),
+ 
+ 			pageFilter,
+ 

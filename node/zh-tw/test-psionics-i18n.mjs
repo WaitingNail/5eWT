@@ -34,6 +34,7 @@ test("psionics browser scripts initialize together in one global scope", () => {
 	const context = vm.createContext({
 		I18nZhTwContent: I18n,
 		Parser,
+		DataUtil,
 		PageFilterBase: class {},
 		Filter: class {},
 		ListUiUtil: {ListSyntax: class {}},
