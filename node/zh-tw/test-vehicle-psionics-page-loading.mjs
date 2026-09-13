@@ -53,16 +53,15 @@ function loadPage (pageName) {
 		ListUiUtil: {ListSyntax: class {}},
 		SublistPersistor: class {},
 		SaveManager: class {},
-		UtilsTableview: {},
 		PrereleaseUtil,
 		BrewUtil2,
 		window: {addEventListener: () => {}},
 		veT: (strings, ...values) => strings.reduce((out, part, ix) => out + part + (values[ix] ?? ""), ""),
 	});
-	for (const file of ["js/listpage.js", `js/render-${pageName}.js`, `js/${pageName}.js`]) {
+	for (const file of ["js/utils-tableview.js", "js/listpage.js", `js/render-${pageName}.js`, `js/${pageName}.js`]) {
 		vm.runInContext(readText(file), context, {filename: file});
 	}
-	return {page: context.dbg_page, context};
+	return {page: context.dbg_page, tableview: vm.runInContext("UtilsTableview", context)};
 }
 
 test("the actual vehicles page loads and renders all 39 vehicles and 31 upgrades in Chinese", async () => {
@@ -106,4 +105,22 @@ test("the actual psionics page loads all 52 translated entries and their 179 mod
 	assert.match(html, /專注於這項靈術/u);
 	assert.doesNotMatch(html, /You can alter your body|While focused on this discipline/u);
 	assert.ok(requests.includes("data/zh-TW/psionics/psionics.json"), "page never requested psionic translations");
+});
+
+test("the actual psionics table view renders all 52 bilingual names and Chinese descriptions", async () => {
+	const {page, tableview} = loadPage("psionics");
+	const {psionic} = await page._pOnLoad_pGetData();
+	const rdState = new tableview._RenderState();
+	const html = tableview._getTableHtml({
+		rdState,
+		entities: psionic,
+		...page._tableViewOptions,
+	});
+	assert.equal(rdState.rows.length, 52);
+	for (const [ix, entity] of psionic.entries()) {
+		const expectedName = I18nZhTwContent.getBilingualName(entity);
+		assert.equal(rdState.rows[ix][0], expectedName, `${entity.name}: missing bilingual table name`);
+		assert.ok(html.includes(expectedName), `${entity.name}: name absent from rendered table`);
+		assert.match(rdState.rows[ix][3], /\p{Script=Han}/u, `${entity.name}: table description is English-only`);
+	}
 });
