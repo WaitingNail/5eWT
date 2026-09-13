@@ -3,7 +3,7 @@ import {I18nZhTwQuickReference} from "./quick-reference-i18n.js";
 /** Adventure display adapter. Canonical headings/IDs remain usable in old URLs. */
 export class I18nZhTwAdventure {
 	static _loadPromises = new Map();
-	static _supportedBooks = new Set(["cos", "hotdq", "rot"]);
+	static _supportedBooks = new Set(["cos", "hotdq", "rot", "wdh"]);
 	static _visibleKeys = new Set([
 		"name", "caption", "title", "label", "by", "text", "quote", "author",
 		"entries", "entry", "items", "footnotes", "headerEntries", "footerEntries",

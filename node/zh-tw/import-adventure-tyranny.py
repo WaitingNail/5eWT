@@ -27,18 +27,20 @@ BOOKS = {"hotdq": "HotDQ", "rot": "RoT"}
 
 
 class TyrannyLocalizer(COS.CosLocalizer):
-    def __init__(self, sources, book, site_names):
+    def __init__(self, sources, book, site_names, directory=DIRECTORY):
         CONTENT.ContentLocalizer.__init__(self)
         self.site, self.generic, self.provenance = site_names
         self.book = book
         self.used_terms, self.term_conflicts, self.aliases = {}, [], {}
         self.applied_overrides = set()
-        self.overrides = read(DIRECTORY / "text-overrides.json").get(book, {})
-        self.glossary = read(DIRECTORY / "terminology.json")
+        self.overrides = read(directory / "text-overrides.json").get(book, {})
+        self.glossary = read(directory / "terminology.json")
         self.shared_names = {}
         for source in sources.values():
             self.register_source_names(source)
         for english, candidates in self.source_name_translations.items():
+            if self.glossary.get(english, {}).get("scope") == "heading-only":
+                continue
             existing = self.lookup(english)
             chosen = existing or self.glossary.get(english, {}).get("zh_tw")
             if chosen:
@@ -46,10 +48,12 @@ class TyrannyLocalizer(COS.CosLocalizer):
                     if candidate != chosen and len(candidate) >= 2 and re.search("[\u3400-\u9fff]", candidate):
                         self.aliases[candidate] = chosen
         for english, entry in self.glossary.items():
+            if entry.get("scope") == "heading-only":
+                continue
             for alias in [*entry.get("aliases", []), self.normalize_text(entry["zh_tw"])]:
                 if alias != entry["zh_tw"]:
                     self.aliases[alias] = entry["zh_tw"]
-        self.english_names = {en: entry["zh_tw"] for en, entry in self.glossary.items()}
+        self.english_names = {en: entry["zh_tw"] for en, entry in self.glossary.items() if entry.get("scope") != "heading-only"}
         for source in sources.values():
             for _, value in strings(source):
                 for word in re.findall(r"[A-Za-z][A-Za-z'’-]*(?: [A-Za-z][A-Za-z'’-]*)*", CORE.TAG_RE.sub("", value)):
@@ -133,23 +137,23 @@ class TyrannyLocalizer(COS.CosLocalizer):
                        for part in re.split(r"(\{@[^{}]+})", out))
 
 
-def main():
+def main(*, books=BOOKS, directory=DIRECTORY, localizer_class=TyrannyLocalizer):
     parser = argparse.ArgumentParser()
     parser.add_argument("--source-dir", type=Path, required=True)
     parser.add_argument("--upstream-dir", type=Path, default=ROOT / "vendor/5etools-src")
     args = parser.parse_args()
-    sources = {key: read(args.source_dir / f"data/adventure/adventure-{key}.json") for key in BOOKS}
+    sources = {key: read(args.source_dir / f"data/adventure/adventure-{key}.json") for key in books}
     indexes = read(args.upstream_dir / "data/adventures.json")["adventure"]
     source_indexes = read(args.source_dir / "data/adventures.json")["adventure"]
     site_names = COS.get_site_names()
     shared_names, all_terms, heading_rows = {}, {}, []
     summaries = {}
-    for book, book_id in BOOKS.items():
+    for book, book_id in books.items():
         original = args.upstream_dir / f"data/adventure/adventure-{book}.json"
         if original.read_bytes() != (args.source_dir / f"data-bak/adventure/adventure-{book}.json").read_bytes():
             raise ValueError(f"{book_id}: upstream changed from the pinned source")
         english, source = read(original), sources[book]
-        localizer = TyrannyLocalizer(sources, book, site_names)
+        localizer = localizer_class(sources, book, site_names, directory=directory)
         localizer.shared_names = shared_names
         localizer.register_tag_translations(english, source)
         chapters = localizer.localize_node(english["data"], source["data"], "data")
@@ -178,7 +182,7 @@ def main():
         review = localizer.report
         review["numericReview"] = []
         review["reviewedNumericEquivalences"] = []
-        reviewed = read(DIRECTORY / "reviewed-numeric-equivalences.json").get(book, {})
+        reviewed = read(directory / "reviewed-numeric-equivalences.json").get(book, {})
         for item in review["numericDifferences"]:
             equal, reason = CORE.classify_numeric_difference(item)
             if not equal:
@@ -195,16 +199,16 @@ def main():
         for (context, en), (_, zh) in zip(strings(english), strings(output)):
             if context.endswith("/name"):
                 heading_rows.append([book_id, context, en, zh, "existing-site" if en.casefold() in localizer.generic else "project-proposed"])
-        write(DIRECTORY / f"{book}-import-review.json", review)
+        write(directory / f"{book}-import-review.json", review)
         all_terms.update(localizer.used_terms)
         summaries[book] = {key: len(value) for key, value in review.items()}
-    DIRECTORY.mkdir(parents=True, exist_ok=True)
-    with (DIRECTORY / "site-terminology.csv").open("w", encoding="utf-8", newline="") as f:
+    directory.mkdir(parents=True, exist_ok=True)
+    with (directory / "site-terminology.csv").open("w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f, lineterminator="\n")
         writer.writerow(["category", "english", "source", "zh_tw", "status", "existing_files"])
         for (prop, en, src), zh in sorted(all_terms.items()):
             writer.writerow([prop, en, src, zh, "existing-site", ";".join(sorted(site_names[2][(en.casefold(), zh)]))])
-    with (DIRECTORY / "chapter-labels.csv").open("w", encoding="utf-8", newline="") as f:
+    with (directory / "chapter-labels.csv").open("w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f, lineterminator="\n")
         writer.writerow(["book", "context", "english", "zh_tw", "status"])
         writer.writerows(heading_rows)
