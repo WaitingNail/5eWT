@@ -39,7 +39,7 @@ test("the public data loader localizes every requested utility data file",async(
 			assert.equal(data[prop].length,values.length,`${file}/${prop}`);
 			values.forEach((ent,i)=>{if(!ent?.name)return;assert.equal(data[prop][i].name,ent.name);assert.equal(data[prop][i].source,ent.source);assert.match(data[prop][i]._displayName||"",/\p{Script=Han}/u,`${file}/${prop}/${i} missing name`);});
 		}
-		assert.ok(calls.includes(`data/zh-TW/utility-pages/${file}?v=zh-tw-25`),`${file} sidecar not actually requested`);
+		assert.ok(calls.includes(`data/zh-TW/utility-pages/${file}?v=zh-tw-26`),`${file} sidecar not actually requested`);
 	}
 	assert.equal((await DataUtil.object.loadJSON()).object.length,37);
 	const tables=await DataUtil.table.loadJSON();
@@ -87,10 +87,14 @@ test("names and encounters use bilingual group and option titles without changin
 	for(const[file,prop,renderer]of [["names.json","name",Renderer.names],["encounters.json","encounter",Renderer.encounters]])for(const group of loaded[file][prop])for(const table of group.tables){
 		const ent={...group,...table};delete ent.tables;
 		const hashBefore=UrlUtil.URL_TO_HASH_BUILDER[file==="names.json"?"names.html":"encountergen.html"](ent);
+		const rawGroup=read(`data/${file}`)[prop].find(x=>x.name===group.name&&x.source===group.source);
+		const rawTable=rawGroup.tables[group.tables.indexOf(table)];
+		assert.equal(hashBefore,UrlUtil.URL_TO_HASH_BUILDER[file==="names.json"?"names.html":"encountergen.html"]({...rawGroup,...rawTable}),`${file}/${group.name}: localized URL differs from upstream`);
 		const title=renderer.getDisplayName(ent);
 		assert.match(title,/\p{Script=Han}/u);
 		if (ent.minlvl != null && ent.maxlvl != null) assert.ok(title.includes(`等級 ${ent.minlvl}–${ent.maxlvl}`));
 		assert.equal(typeof renderer.getRenderedString(ent),"string");
+		if(title.includes(`（${ent.name}）`))assert.ok(!renderer.getRenderedString(ent).includes(`${title}（${ent.name}）`), "English group name must not be repeated after an already bilingual title");
 		assert.equal(UrlUtil.URL_TO_HASH_BUILDER[file==="names.json"?"names.html":"encountergen.html"](ent),hashBefore);
 	}
 });

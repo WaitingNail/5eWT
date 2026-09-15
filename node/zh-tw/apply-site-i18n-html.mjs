@@ -212,8 +212,8 @@ function injectLocaleScripts ({html, isSeo, page}) {
 		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/site-i18n-data.js"></script>`,
 		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/site-i18n.js"></script>`,
 		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/content-i18n.js"></script>`,
-		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/utility-ui-data.js?v=zh-tw-25"></script>`,
-		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/utility-pages-i18n.js?v=zh-tw-25"></script>`,
+		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/utility-ui-data.js?v=zh-tw-26"></script>`,
+		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/utility-pages-i18n.js?v=zh-tw-26"></script>`,
 	].join("\n");
 
 	const anchor = isSeo
@@ -249,7 +249,7 @@ function transformPage ({html, page, isSeo, translator}) {
 	out = injectLocaleScripts({html: out, isSeo, page});
 	// These shared/page loaders are often cached from a previous visit. A
 	// release key avoids mixing a translated HTML shell with the old loader.
-	out = out.replace(/(src=["']\/?js\/(?:utils|lifegen|render|render-tables)\.js)(?:\?v=[^"']*)?(["'])/g, "$1?v=zh-tw-25$2");
+	out = out.replace(/(src=["']\/?js\/(?:utils|lifegen|render|render-tables|render-decks|decks|filter-decks)\.js)(?:\?v=[^"']*)?(["'])/g, "$1?v=zh-tw-26$2");
 	out = localizeRedirectShell({html: out, translator});
 	out = translateHtml({html: out, translator});
 	assertCanonicalAttributesUnchanged({before: html, after: out, page});

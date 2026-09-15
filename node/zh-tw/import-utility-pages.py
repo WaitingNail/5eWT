@@ -198,7 +198,8 @@ class Localizer(CONTENT.ContentLocalizer):
             if key in DISPLAY and isinstance(value, str):
                 out[f"_display{key[0].upper()}{key[1:]}"] = self.text(value, zh[key], subctx, heading=True)
             elif key == "caption" and isinstance(value, str):
-                out[key] = self.text(value, zh[key], subctx, heading=True)
+                display_key = "_displayCaption" if ctx.startswith("encounters.json/") else key
+                out[display_key] = self.text(value, zh[key], subctx, heading=True)
             elif isinstance(value, (dict, list)):
                 out[key] = self.walk(value, zh[key], subctx, visible=visible or key in VISIBLE or key in LIFE_TABLES, names=names)
             elif key in VISIBLE:

@@ -13,7 +13,7 @@
 			if (!match || !this.FILES.has(match[1])) return data;
 			const file = match[1];
 			if (!this._cache.has(file)) {
-				const localeUrl = `${path.slice(0, path.lastIndexOf("data/"))}data/zh-TW/utility-pages/${file}?v=zh-tw-25`;
+				const localeUrl = `${path.slice(0, path.lastIndexOf("data/"))}data/zh-TW/utility-pages/${file}?v=zh-tw-26`;
 				this._cache.set(file, (async () => {
 					const response = await fetch(localeUrl);
 					if (!response.ok) throw new Error(`zh-TW utility data failed: ${file} (${response.status})`);
@@ -45,7 +45,7 @@
 		static t (text) { return globalThis.I18nZhTwUtilityMessages?.[text] ?? text; }
 		static field (entity, key) { return entity?.[`_display${key[0].toUpperCase()}${key.slice(1)}`] ?? entity?.[key] ?? ""; }
 		static tableName (entity) {
-			const base = entity.caption || [entity.captionPrefix, this.name(entity), entity.captionSuffix, this.field(entity, "option")].filter(Boolean).join("：");
+			const base = this.field(entity, "caption") || [entity.captionPrefix, this.name(entity), entity.captionSuffix, this.field(entity, "option")].filter(Boolean).join("：");
 			return `${base}${entity.minlvl != null && entity.maxlvl != null ? `（等級 ${entity.minlvl}–${entity.maxlvl}）` : ""}`;
 		}
 	}

@@ -1,0 +1,53 @@
+diff --git a/js/render.js b/js/render.js
+--- a/js/render.js
++++ b/js/render.js
+@@ -3365,7 +3365,7 @@
+ 		const canonicalName = `${ent?._i18nCanonical?.name || ent?.ENG_name || ent?.name || ""}`.trim();
+ 		if (!displayName) return canonicalName;
+ 		if (!canonicalName || displayName.toLowerCase() === canonicalName.toLowerCase()) return displayName;
+-		if (displayName.endsWith(`（${canonicalName}）`) || displayName.endsWith(` (${canonicalName})`)) return displayName;
++		if (displayName.includes(`（${canonicalName}）`) || displayName.endsWith(` (${canonicalName})`)) return displayName;
+ 		return `${displayName}（${canonicalName}）`;
+ 	}
+ 
+diff --git a/js/render-decks.js b/js/render-decks.js
+--- a/js/render-decks.js
++++ b/js/render-decks.js
+@@ -229,7 +229,7 @@
+ 		Renderer.dice.bindOnclickListener(wrpInfo);
+ 
+ 		const btnFlip = imgBack
+-			? veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-px-3" title="Flip Card"><i class="fas fa-rotate"></i> Flip</button>`
++			? veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-px-3" title="翻面"><i class="fas fa-rotate"></i> 翻面</button>`
+ 				.vee.onn("click", evt => {
+ 					evt.stopPropagation();
+ 					wrpCardFlip.classList.toggle("decks-draw__wrp-card-flip--flipped");
+diff --git a/js/decks.js b/js/decks.js
+--- a/js/decks.js
++++ b/js/decks.js
+@@ -214,12 +214,12 @@
+ 			});
+ 
+ 		// region List vs Grid view
+-		const btnViewList = this._compSettings ? veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Card List View"><i class="fas fa-fw fa-list"></i></button>`
++		const btnViewList = this._compSettings ? veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="卡牌清單檢視"><i class="fas fa-fw fa-list"></i></button>`
+ 			.vee.onn("click", () => {
+ 				this._compSettings.pSet("cardLayout", "list").then(null);
+ 			}) : null;
+ 
+-		const btnViewGrid = this._compSettings ? veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Card Grid View"><i class="fas fa-fw fa-grid-2"></i></button>`
++		const btnViewGrid = this._compSettings ? veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="卡牌網格檢視"><i class="fas fa-fw fa-grid-2"></i></button>`
+ 			.vee.onn("click", () => {
+ 				this._compSettings.pSet("cardLayout", "grid").then(null);
+ 			}) : null;
+diff --git a/js/filter-decks.js b/js/filter-decks.js
+--- a/js/filter-decks.js
++++ b/js/filter-decks.js
+@@ -7,6 +7,7 @@
+ 		this._miscFilter = new Filter({
+ 			header: "Miscellaneous",
+ 			items: ["Has Card Art", "Legacy"],
++			displayFn: it => ({"Has Card Art": "附卡牌圖片", "Legacy": "舊版"}[it] || it),
+ 			isMiscFilter: true,
+ 			selFn: it => it === "Has Card Art",
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),

@@ -25,6 +25,7 @@ const patchPaths = [
 	path.join(projectRoot, "patches", "0016-zh-tw-utility-pages-runtime.patch"),
 	path.join(projectRoot, "patches", "0017-zh-tw-utility-results-completion.patch"),
 	path.join(projectRoot, "patches", "0018-zh-tw-utility-display-details.patch"),
+	path.join(projectRoot, "patches", "0019-zh-tw-utility-links-and-card-controls.patch"),
 ];
 const copyRoots = [
   "requirements-zh-tw.txt",
