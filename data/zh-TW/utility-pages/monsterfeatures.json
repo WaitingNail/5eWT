@@ -1,0 +1,212 @@
+{
+	"monsterfeatures": [
+		{
+			"name": "Aggressive",
+			"example": "Orc",
+			"effect": "作為一個附贈動作項，該生物可以向一個它能看見的敵對生物移動至多相當於其速度的距離。",
+			"dpr": "2",
+			"_displayName": "好鬥（Aggressive）",
+			"_displayExample": "獸人（Orc）"
+		},
+		{
+			"name": "Ambusher",
+			"example": "Doppelganger",
+			"effect": "戰鬥開始的第一輪裡，該生物對任何成功{@status surprised||突襲}的生物所發動的攻擊檢定具有優勢。",
+			"attackBonus": "1",
+			"_displayName": "伏擊（Ambusher）",
+			"_displayExample": "變形怪（Doppelganger）"
+		},
+		{
+			"name": "Angelic Weapons",
+			"example": "Deva",
+			"effect": "該生物的武器攻擊帶有魔法。當該生物以任何武器攻擊命中目標時，其武器將額外造成光耀傷害（已包含在攻擊項中）。請輸入它每輪因此造成的額外傷害",
+			"dpr": "trait",
+			"hasNumberParam": true,
+			"_displayName": "天使武器（Angelic Weapons）",
+			"_displayExample": "天神使徒（Deva）"
+		},
+		{
+			"name": "Avoidance",
+			"example": "Demilich",
+			"effect": "該生物在成為某一範圍效應影響物件時，若該效應允許它透過成功的豁免檢定來使傷害減半，則它在該豁免成功時不受傷害，而豁免失敗時只受一半傷害。",
+			"ac": "1",
+			"_displayName": "豁免閃避（Avoidance）",
+			"_displayExample": "半巫妖（Demilich）"
+		},
+		{
+			"name": "Blood Frenzy",
+			"example": "Sahuagin",
+			"effect": "沙華魚人對生命值沒有全滿的生物發動近戰攻擊時，其攻擊檢定具有優勢。",
+			"attackBonus": "4",
+			"_displayName": "血腥狂怒（Blood Frenzy）",
+			"_displayExample": "鯊華魚人（Sahuagin）"
+		},
+		{
+			"name": "Constrict",
+			"example": "Giant Constrictor Snake",
+			"effect": "該生物具有在一次攻擊的同時束縛和(或)擒抱其目標的能力。",
+			"ac": "1",
+			"_displayName": "絞纏（Constrict）",
+			"_displayExample": "巨蟒蛇（Giant Constrictor Snake）"
+		},
+		{
+			"name": "Damage Transfer",
+			"example": "Cloaker",
+			"effect": "該生物附著或者擒抱一個生物時，任何對其造成的傷害減半（向下取整），而另一半傷害則由被附著的生物承受。",
+			"hp": "hp",
+			"dpr": "hpActual * 0.33",
+			"_displayName": "傷害轉嫁（Damage Transfer）",
+			"_displayExample": "斗篷怪（Cloaker）"
+		},
+		{
+			"name": "Enlarge",
+			"example": "Duergar",
+			"effect": "該生物用魔法將自己連同其裝備或攜帶的所有東西一起變得巨大，請輸入它在變巨時每輪造成的額外傷害。",
+			"dpr": "trait",
+			"hasNumberParam": true,
+			"_displayName": "變巨（Enlarge）",
+			"_displayExample": "灰矮人（Duergar）"
+		},
+		{
+			"name": "Frightful Presence",
+			"example": "Ancient Gold Dragon",
+			"effect": "該生物指定周邊範圍內的若干生物，每個目標都必須進行一次感知豁免，豁免失敗者將陷入1分鐘的恐慌狀態。",
+			"hp": "Math.floor((expectedCr <= 10) ? hp * 0.25 : 0)",
+			"_displayName": "駭人威儀（Frightful Presence）",
+			"_displayExample": "遠古金龍（Ancient Gold Dragon）"
+		},
+		{
+			"name": "Heated Body",
+			"example": "Azer",
+			"effect": "在距離它5尺內觸碰或命中該生物將會承受火焰傷害。",
+			"dpr": "trait",
+			"hasNumberParam": true,
+			"_displayName": "灼熱之軀（Heated Body）",
+			"_displayExample": "火矮人（Azer）"
+		},
+		{
+			"name": "Horrifying Visage",
+			"example": "Banshee",
+			"effect": "每個範圍內的非不死生物都必須進行一次感知豁免，豁免失敗將陷入1分鐘的恐慌狀態。",
+			"hp": "Math.floor((expectedCr <= 10) ? hp * 0.25 : 0)",
+			"_displayName": "恐懼面容（Horrifying Visage）",
+			"_displayExample": "報喪妖（Banshee）"
+		},
+		{
+			"name": "Legendary Resistance",
+			"example": "Tarrasque",
+			"effect": "若該生物在豁免檢定中失敗，它可以選擇改為使其成功。請輸入它每天可以使用此特性的次數。",
+			"hp": "((expectedCr >= 0 && expectedCr <= 4) ? 10*trait : ((expectedCr >= 5 && expectedCr <= 10) ? 20*trait : ((expectedCr >= 11) ? 30*trait : 0)))",
+			"hasNumberParam": true,
+			"_displayName": "傳奇抗性（Legendary Resistance）",
+			"_displayExample": "泰拉斯奎（Tarrasque）"
+		},
+		{
+			"name": "Magic Resistance",
+			"example": "Balor",
+			"effect": "該生物為抵抗法術和其它魔法效應而作的豁免檢定具有優勢。",
+			"ac": "2",
+			"_displayName": "魔法抗性（Magic Resistance）",
+			"_displayExample": "巴洛炎魔（Balor）"
+		},
+		{
+			"name": "Martial Advantage",
+			"example": "Hobgoblin",
+			"effect": "當該生物命中一個目標時，當該生物至少有一個未處於失能狀態的隊友距離該目標5尺之內時，則該生物可以對它造成額外傷害。請輸入它每輪因此造成的額外傷害。",
+			"dpr": "trait",
+			"hasNumberParam": true,
+			"_displayName": "成軍優勢（Martial Advantage）",
+			"_displayExample": "大地精（Hobgoblin）"
+		},
+		{
+			"name": "Nimble Escape",
+			"example": "Goblin",
+			"effect": "該生物可以在它的回合以一個附贈動作來採取撤離或躲藏動作。",
+			"ac": "4",
+			"attackBonus": "4",
+			"_displayName": "迅捷逃逸（Nimble Escape）",
+			"_displayExample": "地精（Goblin）"
+		},
+		{
+			"name": "Pack Tactics",
+			"example": "Kobold",
+			"effect": "若該生物有至少一個處於未失能狀態的隊友距離目標5尺時，該生物在對目標進行的攻擊檢定中具有優勢。",
+			"attackBonus": "1",
+			"_displayName": "叢集戰術（Pack Tactics）",
+			"_displayExample": "狗頭人（Kobold）"
+		},
+		{
+			"name": "Parry",
+			"example": "Hobgoblin warlord",
+			"effect": "該生物在一次近戰攻擊將要命中它時，可以使用一個反應以針對該次攻擊使它的AC增加等同於它熟練加值的數值。",
+			"ac": "1",
+			"_displayName": "格擋（Parry）",
+			"_displayExample": "大地精軍閥（Hobgoblin warlord）"
+		},
+		{
+			"name": "Possession",
+			"example": "Ghost",
+			"effect": "該生物可以控制另一名生物，在這段期間它幾乎不會受到任何效果的影響。",
+			"hp": "hp",
+			"_displayName": "附身（Possession）",
+			"_displayExample": "幽魂（Ghost）"
+		},
+		{
+			"name": "Regeneration",
+			"example": "Troll",
+			"effect": "在該生物的回合開始時，它將回復生命值，且直到這個效果被某個方式（通常是透過強酸或火焰傷害）壓制之前都不會被殺死。請輸入它在回合開始時所回覆的生命值。",
+			"hp": "trait*3",
+			"hasNumberParam": true,
+			"_displayName": "復生（Regeneration）",
+			"_displayExample": "巨魔（Troll）"
+		},
+		{
+			"name": "Relentless",
+			"example": "Boar",
+			"effect": "該生物的生命值將要被歸零時，它有機會改為使它的生命值減少至1。",
+			"hp": "((expectedCr >= 0 && expectedCr <= 4) ? 7 : ((expectedCr >= 5 && expectedCr <= 10) ? 14 : ((expectedCr >= 11 && expectedCr <= 16) ? 21 : ((expectedCr >= 17) ? 28 : 0))))",
+			"_displayName": "頑強（Relentless）",
+			"_displayExample": "野豬（Boar）"
+		},
+		{
+			"name": "Shadow Stealth",
+			"example": "Shadow Demon",
+			"effect": "處於微光光照或黑暗中時，該生物可以以一個附贈動作執行{@action Hide||躲藏}動作。",
+			"ac": "4",
+			"_displayName": "幽影隱匿（Shadow Stealth）",
+			"_displayExample": "幽影惡魔（Shadow Demon）"
+		},
+		{
+			"name": "Stench",
+			"example": "Troglodyte",
+			"effect": "任何非該種生物且距離它5尺內的生物都必須進行一次豁免檢定，豁免失敗則陷入中毒狀態。",
+			"ac": "1",
+			"_displayName": "惡臭（Stench）",
+			"_displayExample": "穴蜥人（Troglodyte）"
+		},
+		{
+			"name": "Superior Invisibility",
+			"example": "Pixie",
+			"effect": "該生物可以使用一個動作或附贈動作以使自己變得隱形。",
+			"ac": "2",
+			"_displayName": "強效隱形（Superior Invisibility）",
+			"_displayExample": "皮克精（Pixie）"
+		},
+		{
+			"name": "Undead Fortitude",
+			"example": "Zombie",
+			"effect": "該生物的生命值將要被歸零時，它有機會改為使它的生命值被減少至1。若這個傷害來自光耀屬性，則這個特性無效。",
+			"hp": "((expectedCr >= 0 && expectedCr <= 4) ? 7 : ((expectedCr >= 5 && expectedCr <= 10) ? 14 : ((expectedCr >= 11 && expectedCr <= 16) ? 21 : ((expectedCr >= 17) ? 28 : 0))))",
+			"_displayName": "不死堅韌（Undead Fortitude）",
+			"_displayExample": "喪屍（Zombie）"
+		},
+		{
+			"name": "Web",
+			"example": "Giant Spider",
+			"effect": "這個遠端武器攻擊將在命中時束縛其目標。",
+			"ac": "1",
+			"_displayName": "蛛網（Web）",
+			"_displayExample": "巨蜘蛛（Giant Spider）"
+		}
+	]
+}

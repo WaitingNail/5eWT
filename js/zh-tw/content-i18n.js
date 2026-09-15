@@ -1110,7 +1110,7 @@
 					"mythicHeader",
 				]) {
 					if (!(key in canonical) || !(key in localized)) continue;
-					out[key] = this._copy(localized[key]);
+					out[key] = this._overlayContentValue({canonical: canonical[key], localized: localized[key], isBilingualNames: true});
 				}
 
 				for (const [key, displayKey] of [
@@ -1142,7 +1142,7 @@
 			if (prop === "legendaryGroup") {
 				for (const key of ["lairActions", "regionalEffects", "mythicEncounter", "additionalEntries"]) {
 					if (!(key in canonical) || !(key in localized)) continue;
-					out[key] = this._copy(localized[key]);
+					out[key] = this._overlayContentValue({canonical: canonical[key], localized: localized[key], isBilingualNames: true});
 				}
 			}
 
@@ -2057,6 +2057,19 @@
 		static localizeRulesText (text) {
 			if (typeof text !== "string") return text;
 			const replacements = [
+				[/\ba?\s*Warlock Cantrip That Deals Damage via an Attack Roll\b/gi, "以攻擊擲骰造成傷害的魔契師戲法"],
+				[/\ba?\s*Warlock Cantrip That Deals Damage\b/gi, "可造成傷害的魔契師戲法"],
+				[/\bM\. Armor Trai\./gi, "中甲訓練"],
+				[/\bL\. Armor Trai\./gi, "輕甲訓練"],
+				[/\bH\. Armor Trai\./gi, "重甲訓練"],
+				[/\bMedium Armor Training\b/gi, "中甲訓練"],
+				[/\bLight Armor Training\b/gi, "輕甲訓練"],
+				[/\bHeavy Armor Training\b/gi, "重甲訓練"],
+				[/\bScion of the Outer Planes\b/gi, "外層位面之裔"],
+				[/\bOnly Dragonmark\b/gi, "唯一龍紋"],
+				[/\ba Small race\b/gi, "小型種族"],
+				[/\bDwarf\b/gi, "矮人"],
+				[/\bWarlock\b/gi, "魔契師"],
 				[/Prerequisites?:/gi, "先決條件："],
 				[/Membership in the\s*/gi, "成員資格："],
 				[/Purple Dragon Knights/gi, "紫龍騎士團"],

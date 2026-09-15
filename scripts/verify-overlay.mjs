@@ -25,6 +25,12 @@ const required = [
 	"recipes.html",
 	"homecrafts.html",
 	"psionics.html",
+	"trapshazards.html", "objects.html", "decks.html", "tables.html", "lifegen.html",
+	"encountergen.html", "lootgen.html", "names.html", "crcalculator.html", "statgen.html",
+	"data/zh-TW/utility-pages/index.json",
+	"js/zh-tw/utility-pages-i18n.js",
+	"js/zh-tw/utility-ui-data.js",
+	"node/zh-tw/test-utility-pages-i18n.mjs",
 	"data/zh-TW/class.json",
 	"data/zh-TW/class/index.json",
 	"data/zh-TW/site.json",
@@ -185,6 +191,10 @@ for (const script of [
 	"js/zh-tw/content-i18n.js",
 ]) execFileSync(process.execPath, ["--check", script], {cwd: upstreamRoot, stdio: "inherit"});
 
+const utilityScripts = ["js/zh-tw/utility-pages-i18n.js", "js/zh-tw/utility-ui-data.js", "js/lifegen.js", "js/crcalculator.js", "js/objects.js", "js/trapshazards.js", "js/decks.js", "js/render-decks.js", "js/tablepage.js", "js/tables.js"];
+for (const dir of ["js/lootgen", "js/statgen"]) utilityScripts.push(...fs.readdirSync(path.join(upstreamRoot, dir)).filter(it => it.endsWith(".js")).map(it => `${dir}/${it}`));
+for (const script of utilityScripts) execFileSync(process.execPath, ["--check", script], {cwd: upstreamRoot, stdio: "inherit"});
+
 runNode("node/zh-tw/validate-glossary.mjs");
 runNode("node/zh-tw/test-class-i18n.mjs");
 runNode("node/zh-tw/test-class-body-i18n.mjs");
@@ -216,5 +226,6 @@ runNode("node/zh-tw/test-craft-pages-i18n.mjs");
 runNode("node/zh-tw/test-psionics-i18n.mjs");
 runNode("node/zh-tw/test-vehicle-psionics-page-loading.mjs");
 runNode("node/zh-tw/test-deployed-image-root.mjs");
+runNode("node/zh-tw/test-utility-pages-i18n.mjs");
 execFileSync("git", ["diff", "--check"], {cwd: upstreamRoot, stdio: "inherit"});
 console.log("zh-TW interface, Class, core-rules, Quick Reference, spells, character-options, items, monsters, Bastions, cults/boons, reference pages, CoS/Tyranny of Dragons/Waterdeep: Dragon Heist/Vecna adventures, vehicles, recipes, homecrafts, psionics, and deployed image-root verification passed.");

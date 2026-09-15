@@ -1,0 +1,2851 @@
+diff --git a/js/crcalculator.js b/js/crcalculator.js
+--- a/js/crcalculator.js
++++ b/js/crcalculator.js
+@@ -59,7 +59,7 @@
+ 	// when clicking a row in the "Monster Statistics by Challenge Rating" table
+ 	veEm("#msbcr tr:not(:has(th))").map(ele =>
+ 		ele.vee.onn("click", async function () {
+-			if (!await InputUiUtil.pGetUserBoolean({title: "Reset", htmlDescription: "This will reset the calculator. Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
++			if (!await InputUiUtil.pGetUserBoolean({title: "重設", htmlDescription: "這會重設計算器，確定要繼續嗎？", textYes: "是", textNo: "取消"})) return;
+ 			const [tdCr, , , tdAc, tdHp, tdAtk, tdDpr, tdSave] = this.children;
+ 
+ 			veEs("#expectedcr").vee.val(tdCr.innerHTML.trim());
+@@ -84,7 +84,7 @@
+ 		const effectOnCr = [];
+ 		if (f.hp) effectOnCr.push(`HP: ${f.hp}`);
+ 		if (f.ac) effectOnCr.push(`AC: ${f.ac}`);
+-		if (f.dpr) effectOnCr.push(`DPR: ${f.dpr}`);
++		if (f.dpr) effectOnCr.push(`每輪傷害： ${f.dpr}`);
+ 		if (f.attackBonus) effectOnCr.push(`AB: ${f.attackBonus}`);
+ 
+ 		const numBox = f.hasNumberParam ? `<input type="number" value="0" min="0" class="ve-form-control form-control--minimal crc__mon_feature_num ve-input-xs ve-ml-2">` : "";
+@@ -92,10 +92,10 @@
+ 		wrpMonFeatures.vee.appends(`
+ 			<label class="row crc__mon_feature ve-ui-tip__parent">
+ 				<div class="ve-col-1 crc__mon_feature_wrp_cb">
+-					<input type="checkbox" id="mf-${Parser.stringToSlug(f.name)}" title="${f.name}" data-hp="${f.hp || ""}" data-ac="${f.ac || ""}" data-dpr="${f.dpr || ""}" data-attackbonus="${f.attackBonus || ""}" class="crc__mon_feature_cb">${numBox}
++					<input type="checkbox" id="mf-${Parser.stringToSlug(f.name)}" title="${I18nZhTwUtilities.name(f)}" data-hp="${f.hp || ""}" data-ac="${f.ac || ""}" data-dpr="${f.dpr || ""}" data-attackbonus="${f.attackBonus || ""}" class="crc__mon_feature_cb">${numBox}
+ 				</div>
+-				<div class="ve-col-2">${f.name}</div>
+-				<div class="ve-col-2">${Renderer.get().render(`{@creature ${f.example}}`)}</div>
++				<div class="ve-col-2">${I18nZhTwUtilities.name(f)}</div>
++				<div class="ve-col-2">${Renderer.get().render(`{@creature ${f.example}||${I18nZhTwUtilities.field(f, "example")}}`)}</div>
+ 				<div class="ve-col-7"><span title="${effectOnCr.join(", ")}">${Renderer.get().render(f.effect)}</span></div>
+ 			</label>
+ 		`);
+@@ -160,7 +160,7 @@
+ 	veEm("#monsterfeatures .crc__wrp_mon_features input").map(ele => ele.vee.onn("change", calculateCr));
+ 
+ 	veEs("#crcalc_reset").vee.onClick(async () => {
+-		if (!await InputUiUtil.pGetUserBoolean({title: "Reset", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
++		if (!await InputUiUtil.pGetUserBoolean({title: "重設", htmlDescription: "確定要繼續嗎？", textYes: "是", textNo: "取消"})) return;
+ 		window.location = "";
+ 		parseUrl();
+ 	});
+@@ -299,15 +299,15 @@
+ 	window.location = `#${hashParts.join(",")}`;
+ 
+ 	veEs("#croutput").vee.html(`
+-		<h4>Challenge Rating: ${cr}</h4>
+-		<p>Offensive CR: ${offensiveCR}</p>
+-		<p>Defensive CR: ${defensiveCR}</p>
+-		<p>Proficiency Bonus: +${msbcr.cr[finalCr].pb}</p>
+-		<p>Effective HP: ${effectiveHp} (${hitDice}${hitDiceSize}${conMod < 0 ? "" : "+"}${conMod * hitDice})</p>
+-		<p>Effective AC: ${ac}</p>
+-		<p>Average Damage Per Round: ${effectiveDpr}</p>
+-		<p>${useSaveDc ? "Save DC: " : "Effective Attack Bonus: +"}${attackBonus}</p>
+-		<p>Experience Points: ${Parser.crToXp(msbcr.cr[finalCr]._cr)}</p>
++		<h4>挑戰等級： ${cr}</h4>
++		<p>攻擊挑戰等級： ${offensiveCR}</p>
++		<p>防禦挑戰等級： ${defensiveCR}</p>
++		<p>熟練加值：+${msbcr.cr[finalCr].pb}</p>
++		<p>有效生命值： ${effectiveHp} (${hitDice}${hitDiceSize}${conMod < 0 ? "" : "+"}${conMod * hitDice})</p>
++		<p>有效護甲等級： ${ac}</p>
++		<p>每輪平均傷害： ${effectiveDpr}</p>
++		<p>${useSaveDc ? "豁免 DC： " : "有效攻擊加值：+"}${attackBonus}</p>
++		<p>經驗值： ${Parser.crToXp(msbcr.cr[finalCr]._cr)}</p>
+ 	`);
+ }
+ 
+diff --git a/js/decks.js b/js/decks.js
+--- a/js/decks.js
++++ b/js/decks.js
+@@ -12,7 +12,7 @@
+ 	}
+ 
+ 	pGetSublistItem (ent, hash) {
+-		const cellsText = [ent.name];
++		const cellsText = [I18nZhTwUtilities.name(ent)];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+ 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+@@ -25,7 +25,7 @@
+ 		const listItem = new ListItem(
+ 			hash,
+ 			ele,
+-			ent.name,
++			I18nZhTwUtilities.name(ent),
+ 			{
+ 				...ListItem.getCommonValues(ent),
+ 				alias: PageFilterDecks.getListAliases(ent),
+@@ -143,14 +143,14 @@
+ 		const hash = UrlUtil.autoEncodeHash(ent);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+-			<span class="ve-col-10 ve-bold ve-pl-0 ve-pr-1">${ent.name}</span>
++			<span class="ve-col-10 ve-bold ve-pl-0 ve-pr-1">${I18nZhTwUtilities.name(ent)}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
+ 		</a>`;
+ 
+ 		const listItem = new ListItem(
+ 			anI,
+ 			eleLi,
+-			ent.name,
++			I18nZhTwUtilities.name(ent),
+ 			{
+ 				source,
+ 				...ListItem.getCommonValues(ent),
+@@ -178,20 +178,20 @@
+ 		const wrpControls = veT`<div class="ve-flex ve-mt-auto" data-name="deck-wrp-controls"></div>`
+ 			.vee.prependTo(this._wrpTabs);
+ 
+-		const btnDraw = veT`<button class="ve-btn ve-btn-xs ve-btn-primary ve-bb-0 ve-bbr-0 ve-bbl-0" title="Draw a Card (SHIFT to Skip Replacement; CTRL to Skip Animation)"><i class="fas fa-fw fa-cards"></i></button>`
++		const btnDraw = veT`<button class="ve-btn ve-btn-xs ve-btn-primary ve-bb-0 ve-bbr-0 ve-bbl-0" title="抽牌（按住 SHIFT 不放回；按住 CTRL 略過動畫）"><i class="fas fa-fw fa-cards"></i></button>`
+ 			.vee.onn("click", async evt => {
+ 				const cards = this._compCardState.getUndrawnCards(ent);
+-				if (!cards.length) return JqueryUtil.doToast({content: "All cards have already been drawn!", type: "warning"});
++				if (!cards.length) return JqueryUtil.doToast({content: "所有卡牌皆已抽出！", type: "warning"});
+ 
+ 				const card = RollerUtil.rollOnArray(cards);
+ 				if (!card._isReplacement || evt.shiftKey) await this._compCardState.pDrawCard(ent, card);
+ 
+ 				if (EventUtil.isCtrlMetaKey(evt)) {
+-					const eleChat = veT`<span>Drew card: ${Renderer.get().render(`{@card ${card.name}|${card.set}|${card.source}}`)}</span>`;
++					const eleChat = veT`<span>抽出的卡牌：${Renderer.get().render(`{@card ${card.name}|${card.set}|${card.source}|${I18nZhTwUtilities.name(card)}}`)}</span>`;
+ 
+ 					Renderer.dice.addRoll({
+ 						rolledBy: {
+-							name: ent.name,
++							name: I18nZhTwUtilities.name(ent),
+ 						},
+ 						ele: eleChat,
+ 					});
+@@ -207,10 +207,10 @@
+ 				}
+ 			});
+ 
+-		const btnReset = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Reset Deck"><i class="fas fa-fw fa-rotate-left"></i></button>`
++		const btnReset = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="重設牌組"><i class="fas fa-fw fa-rotate-left"></i></button>`
+ 			.vee.onn("click", async () => {
+ 				await this._compCardState.pResetDeck(ent);
+-				JqueryUtil.doToast("Reset deck!");
++				JqueryUtil.doToast("已重設牌組！");
+ 			});
+ 
+ 		// region List vs Grid view
+diff --git a/js/lifegen.js b/js/lifegen.js
+--- a/js/lifegen.js
++++ b/js/lifegen.js
+@@ -95,7 +95,7 @@
+ 				return resultLast ? resultLast.result : "";
+ 			})();
+ 
+-			out.unshift(`<i><b title="Generated using the random name tables found in Xanathar's Guide to Everything">Name:</b> ${resultFirst.result}${lastName ? ` ${lastName}` : ""}</i>`);
++			out.unshift(`<i><b title="使用《珊娜薩的萬事指南》的隨機姓名表產生">名稱:</b> ${resultFirst.result}${lastName ? ` ${lastName}` : ""}</i>`);
+ 		}
+ 	}
+ 
+@@ -105,12 +105,12 @@
+ 	const cls = rollSuppClass().result;
+ 	const relate = rollSuppRelationship().result;
+ 	const out = [
+-		`<b>Alignment:</b> ${align}`,
+-		opts.isAdventurer ? `<b>Class:</b> ${cls}` : `<b>Occupation:</b> ${occ}`,
+-		`<b>Relationship:</b> ${relate}`,
++		`<b>陣營：</b> ${I18nZhTwUtilities.t(align)}`,
++		opts.isAdventurer ? `<b>職業：</b> ${I18nZhTwUtilities.t(cls)}` : `<b>職業身分：</b> ${I18nZhTwUtilities.t(occ)}`,
++		`<b>關係：</b> ${I18nZhTwUtilities.t(relate)}`,
+ 	];
+ 	if (!opts.isParent) {
+-		out.push(`<b>Status:</b> ${status.result}`);
++		out.push(`<b>狀況：</b> ${status.result}`);
+ 	}
+ 
+ 	if (!opts.isParent) {
+@@ -120,9 +120,9 @@
+ 			else return rollSuppRace().result;
+ 		})() : rollSuppRace().result;
+ 
+-		out.unshift(`<i><b>Species:</b> ${race}</i>`);
++		out.unshift(`<i><b>種族:</b> ${I18nZhTwUtilities.t(race)}</i>`);
+ 		const gender = opts.gender ? opts.gender : rollUnofficialGender().result;
+-		out.unshift(`<i><b>Gender:</b> ${gender}</i>`);
++		out.unshift(`<i><b>性別：</b> ${I18nZhTwUtilities.t(gender)}</i>`);
+ 
+ 		await pAddName(race, gender);
+ 	} else if (opts.race) {
+@@ -177,7 +177,7 @@
+ }
+ 
+ function fmtChoice (str, render) {
+-	const raw = `({@i ${str}})`;
++	const raw = `（{@i ${I18nZhTwUtilities.t(str)}}）`;
+ 	return render ? Renderer.get().render(raw) : raw;
+ }
+ 
+@@ -189,54 +189,54 @@
+ const RACES_UNSELECTABLE = ["Human", "Halfling", "Dragonborn", "Gnome"];
+ 
+ const PARENTS_HALF_ELF = [
+-	{min: 1, max: 5, result: () => { const p = RNG(2); return `One parent ${fmtChoice(p === 1 ? "mother" : "father")} was an elf and the other ${fmtChoice(p === 1 ? "father" : "mother")} was a human.`; }, display: "One parent was an elf and the other was a human.", _races: ["Elf", "Human"]},
+-	{min: 6, result: () => { const p = RNG(2); return `One parent ${fmtChoice(p === 1 ? "mother" : "father")} was an elf and the other ${fmtChoice(p === 1 ? "father" : "mother")} was a half-elf.`; }, display: "One parent was an elf and the other was a half-elf.", _races: ["Elf", "Half-Elf"]},
+-	{min: 7, result: () => { const p = RNG(2); return `One parent ${fmtChoice(p === 1 ? "mother" : "father")} was a human and the other ${fmtChoice(p === 1 ? "father" : "mother")} was a half-elf.`; }, display: "One parent was a human and the other was a half-elf.", _races: ["Half-Elf", "Human"]},
+-	{min: 8, result: "Both parents were half-elves.", _races: ["Half-Elf", "Half-Elf"]},
++	{min: 1, max: 5, result: () => { const p = RNG(2); return `父母其中一方${fmtChoice(p === 1 ? "mother" : "father")}是精靈，另一方${fmtChoice(p === 1 ? "father" : "mother")}是人類。`; }, display: "父母中的一方是精靈，另一方是人類。", _races: ["Elf", "Human"]},
++	{min: 6, result: () => { const p = RNG(2); return `父母其中一方${fmtChoice(p === 1 ? "mother" : "father")}是精靈，另一方${fmtChoice(p === 1 ? "father" : "mother")}是半精靈。`; }, display: "父母中的一方是精靈，另一方是半精靈。", _races: ["Elf", "Half-Elf"]},
++	{min: 7, result: () => { const p = RNG(2); return `父母其中一方${fmtChoice(p === 1 ? "mother" : "father")}是人類，另一方${fmtChoice(p === 1 ? "father" : "mother")}是半精靈。`; }, display: "父母中的一方是人類，另一方是半精靈。", _races: ["Half-Elf", "Human"]},
++	{min: 8, result: "父母雙方都是半精靈。", _races: ["Half-Elf", "Half-Elf"]},
+ ];
+ 
+ const PARENTS_HALF_ORC = [
+-	{min: 1, max: 3, result: () => { const p = RNG(2); return `One parent ${fmtChoice(p === 1 ? "mother" : "father")} was an orc and the other ${fmtChoice(p === 1 ? "father" : "mother")} was a human.`; }, display: "One parent was an orc and the other was a human.", _races: ["Orc", "Human"]},
+-	{min: 4, max: 5, result: () => { const p = RNG(2); return `One parent ${fmtChoice(p === 1 ? "mother" : "father")} was an orc and the other ${fmtChoice(p === 1 ? "father" : "mother")} was a half-orc.`; }, display: "One parent was an orc and the other was a half-orc.", _races: ["Orc", "Half-Orc"]},
+-	{min: 6, max: 7, result: () => { const p = RNG(2); return `One parent ${fmtChoice(p === 1 ? "mother" : "father")} was a human and the other ${fmtChoice(p === 1 ? "father" : "mother")} was a half-orc.`; }, display: "One parent was a human and the other was a half-orc.", _races: ["Human", "Half-Orc"]},
+-	{min: 8, display: "Both parents were half-orcs.", _races: ["Half-Orc", "Half-Orc"]},
++	{min: 1, max: 3, result: () => { const p = RNG(2); return `父母其中一方${fmtChoice(p === 1 ? "mother" : "father")}是獸人，另一方${fmtChoice(p === 1 ? "father" : "mother")}是人類。`; }, display: "父母中的一方是獸人，另一方是人類。", _races: ["Orc", "Human"]},
++	{min: 4, max: 5, result: () => { const p = RNG(2); return `父母其中一方${fmtChoice(p === 1 ? "mother" : "father")}是獸人，另一方${fmtChoice(p === 1 ? "father" : "mother")}是半獸人。`; }, display: "父母中的一方是獸人，另一方是半獸人。", _races: ["Orc", "Half-Orc"]},
++	{min: 6, max: 7, result: () => { const p = RNG(2); return `父母其中一方${fmtChoice(p === 1 ? "mother" : "father")}是人類，另一方${fmtChoice(p === 1 ? "father" : "mother")}是半獸人。`; }, display: "父母中的一方是人類，另一方是半獸人。", _races: ["Human", "Half-Orc"]},
++	{min: 8, display: "父母雙方都是半獸人。", _races: ["Half-Orc", "Half-Orc"]},
+ ];
+ 
+ const PARENTS_TIEFLING = [
+-	{min: 1, max: 4, display: "Both parents were humans, their infernal heritage dormant until you came along.", _races: ["Human", "Human"]},
+-	{min: 5, max: 6, result: () => { const p = RNG(2); return `One parent ${fmtChoice(p === 1 ? "mother" : "father")} was a tiefling and the other ${fmtChoice(p === 1 ? "father" : "mother")} was a human.`; }, display: "One parent was a tiefling and the other was a human.", _races: ["Human", "Tiefling"]},
+-	{min: 7, result: () => { const p = RNG(2); return `One parent ${fmtChoice(p === 1 ? "mother" : "father")} was a tiefling and the other ${fmtChoice(p === 1 ? "father" : "mother")} was a devil.`; }, display: "One parent was a tiefling and the other was a devil.", _races: ["Devil", "Tiefling"]},
+-	{min: 8, result: () => { const p = RNG(2); return `One parent ${fmtChoice(p === 1 ? "mother" : "father")} was a human and the other ${fmtChoice(p === 1 ? "father" : "mother")} was a devil.`; }, display: "One parent was a human and the other was a devil.", _races: ["Human", "Devil"]},
++	{min: 1, max: 4, display: "父母雙方都是人類，他們身上的地獄遺贈一直都在休眠，直到從你身上顯露出來。", _races: ["Human", "Human"]},
++	{min: 5, max: 6, result: () => { const p = RNG(2); return `父母其中一方${fmtChoice(p === 1 ? "mother" : "father")}是提夫林，另一方${fmtChoice(p === 1 ? "father" : "mother")}是人類。`; }, display: "父母中的一方是提夫林，另一方是人類。", _races: ["Human", "Tiefling"]},
++	{min: 7, result: () => { const p = RNG(2); return `父母其中一方${fmtChoice(p === 1 ? "mother" : "father")}是提夫林，另一方${fmtChoice(p === 1 ? "father" : "mother")}是魔鬼。`; }, display: "父母中的一方是提夫林，另一方是魔鬼。", _races: ["Devil", "Tiefling"]},
++	{min: 8, result: () => { const p = RNG(2); return `父母其中一方${fmtChoice(p === 1 ? "mother" : "father")}是人類，另一方${fmtChoice(p === 1 ? "father" : "mother")}是魔鬼。`; }, display: "父母中的一方是人類，另一方是魔鬼。", _races: ["Human", "Devil"]},
+ ];
+ 
+ const BIRTHPLACES = [
+-	{min: 1, max: 50, result: "Home"},
+-	{min: 51, max: 55, result: "Home of a family friend"},
+-	{min: 56, max: 63, result: () => `Home of a healer or midwife ${choose("healer", "midwife")}`, display: "Home of a healer or midwife"},
+-	{min: 64, max: 65, result: () => `Carriage, cart, or wagon ${choose("carriage", "cart", "wagon")}`, display: "Carriage, cart, or wagon"},
+-	{min: 66, max: 68, result: () => `Barn, shed, or other outbuilding ${choose("barn", "shed", "outbuilding")}`, display: "Barn, shed, or other outbuilding"},
+-	{min: 69, max: 70, result: "Cave"},
+-	{min: 71, max: 72, result: "Field"},
+-	{min: 73, max: 74, result: "Forest"},
+-	{min: 75, max: 77, result: "Temple"},
+-	{min: 78, result: "Battlefield"},
+-	{min: 79, max: 80, result: () => `Alley or street ${choose("alley", "street")}`, display: "Alley or street"},
+-	{min: 81, max: 82, result: () => `Brothel, tavern, or inn ${choose("brothel", "tavern", "inn")}`, display: "Brothel, tavern, or inn"},
+-	{min: 83, max: 84, result: () => `Castle, keep, tower, or palace ${choose("castle", "keep", "tower", "palace")}`, display: "Castle, keep, tower, or palace"},
+-	{min: 85, result: () => `Sewer or rubbish heap ${choose("sewer", "rubbish heap")}`, display: "Sewer or rubbish heap"},
+-	{min: 86, max: 88, result: "Among people of a different race"},
+-	{min: 89, max: 91, result: () => `On board a boat or a ship ${choose("boat", "ship")}`, display: "On board a boat or a ship"},
+-	{min: 92, max: 93, result: () => `In a prison or in the headquarters of a secret organization ${choose("prison", "headquarters of a secret organization")}`, display: "In a prison or in the headquarters of a secret organization"},
+-	{min: 94, max: 95, result: "In a sage's laboratory"},
+-	{min: 96, result: "In the Feywild"},
+-	{min: 97, result: "In the Shadowfell"},
+-	{min: 98, result: () => `On the Astral Plane or the Ethereal Plane ${choose("Astral Plane", "Ethereal Plane")}`, display: "On the Astral Plane or the Ethereal Plane"},
+-	{min: 99, result: "On an Inner Plane of your choice"},
+-	{min: 100, result: "On an Outer Plane of your choice"},
++	{min: 1, max: 50, result: "家中"},
++	{min: 51, max: 55, result: "家族朋友的家"},
++	{min: 56, max: 63, result: () => `醫者或助產士的家 ${choose("醫者", "助產士")}`, display: "醫者或助產士的家"},
++	{min: 64, max: 65, result: () => `馬車、手推車或貨車上 ${choose("馬車", "手推車", "貨車")}`, display: "馬車、手推車或貨車上"},
++	{min: 66, max: 68, result: () => `穀倉、棚屋或其他附屬建築 ${choose("穀倉", "棚屋", "附屬建築")}`, display: "穀倉、棚屋或其他附屬建築"},
++	{min: 69, max: 70, result: "洞穴"},
++	{min: 71, max: 72, result: "領域"},
++	{min: 73, max: 74, result: "森林"},
++	{min: 75, max: 77, result: "廟宇"},
++	{min: 78, result: "戰場"},
++	{min: 79, max: 80, result: () => `巷弄或街道 ${choose("巷弄", "街道")}`, display: "巷弄或街道"},
++	{min: 81, max: 82, result: () => `妓院、酒館或旅店 ${choose("妓院", "酒館", "旅店")}`, display: "妓院、酒館或旅店"},
++	{min: 83, max: 84, result: () => `城堡、要塞、高塔或宮殿 ${choose("城堡", "要塞", "高塔", "宮殿")}`, display: "城堡、要塞、高塔或宮殿"},
++	{min: 85, result: () => `下水道或垃圾堆 ${choose("下水道", "垃圾堆")}`, display: "下水道或垃圾堆"},
++	{min: 86, max: 88, result: "在不同種族的人們之間"},
++	{min: 89, max: 91, result: () => `小船或大船上 ${choose("小船", "大船")}`, display: "小船或大船上"},
++	{min: 92, max: 93, result: () => `監獄或秘密組織的總部 ${choose("監獄", "秘密組織的總部")}`, display: "監獄或秘密組織的總部"},
++	{min: 94, max: 95, result: "在智者的實驗室"},
++	{min: 96, result: "在妖精荒野"},
++	{min: 97, result: "在墮影冥界"},
++	{min: 98, result: () => `星界位面或以太位面 ${choose("星界位面", "以太位面")}`, display: "星界位面或以太位面"},
++	{min: 99, result: "在你選擇的一個內層位面"},
++	{min: 100, result: "在一個你自選的外層位面"},
+ ];
+ 
+ function absentParent (parent) {
+-	return GenUtil.getFromTable(ABSENT_PARENT, RNG(4)).result.replace("parent", `$& ${fmtChoice(parent)}</i>`);
++	return GenUtil.getFromTable(ABSENT_PARENT, RNG(4)).result.replace(/(?:一位家長|父母|父親\/母親)/u, I18nZhTwUtilities.t(parent));
+ }
+ 
+ function absentBothParents () {
+@@ -250,69 +250,69 @@
+ 
+ function singleParentOrStep (parent) {
+ 	const p = RNG(2);
+-	return `Single ${parent} or step${parent} ${fmtChoice(p === 1 ? parent : `step${parent}`)}. ${p === 1 ? `${absentParent(otherParent(parent))}` : absentBothParents()}`;
++	return `單親${I18nZhTwUtilities.t(parent)}或${I18nZhTwUtilities.t(`step${parent}`)} ${fmtChoice(p === 1 ? parent : `step${parent}`)}。${p === 1 ? absentParent(otherParent(parent)) : absentBothParents()}`;
+ }
+ 
+ const FAMILY = [
+-	{min: 1, result: () => `None. ${absentBothParents()}`, display: "None"},
+-	{min: 2, result: () => `Institution, such as an asylum. ${absentBothParents()}`, display: "Institution, such as an asylum"},
+-	{min: 3, result: () => `Temple. ${absentBothParents()}`, display: "Temple"},
+-	{min: 4, max: 5, result: () => `Orphanage. ${absentBothParents()}`, display: "Orphanage"},
+-	{min: 6, max: 7, result: () => `Guardian. ${absentBothParents()}`, display: "Guardian"},
+-	{min: 8, max: 15, result: () => `Paternal or maternal aunt, uncle, or both; or extended family such as a tribe or clan ${choose("paternal uncle", "maternal aunt", "paternal uncle and maternal aunt", "extended family such as a tribe or clan")}. ${absentBothParents()}`, display: "Paternal or maternal aunt, uncle, or both; or extended family such as a tribe or clan"},
+-	{min: 16, max: 25, result: () => `Paternal or maternal grandparent(s) ${choose("paternal grandfather", "maternal grandmother", "paternal grandfather and maternal grandmother")}. ${absentBothParents()}`, display: "Paternal or maternal grandparent(s)"},
+-	{min: 26, max: 35, result: () => `Adoptive family (same or different race) ${choose("same race", "different race")}. ${absentBothParents()}`, display: "Adoptive family (same or different race)"},
+-	{min: 36, max: 55, result: () => singleParentOrStep("father"), display: "Single father or stepfather"},
+-	{min: 56, max: 75, result: () => singleParentOrStep("mother"), display: "Single mother or stepmother"},
+-	{min: 76, max: 100, result: "Mother and father"},
++	{min: 1, result: () => `無。 ${absentBothParents()}`, display: "無"},
++	{min: 2, result: () => `收容機構，例如救濟院. ${absentBothParents()}`, display: "收容機構，例如救濟院"},
++	{min: 3, result: () => `神殿。 ${absentBothParents()}`, display: "廟宇"},
++	{min: 4, max: 5, result: () => `孤兒院。 ${absentBothParents()}`, display: "孤兒院"},
++	{min: 6, max: 7, result: () => `監護人。 ${absentBothParents()}`, display: "守護者"},
++	{min: 8, max: 15, result: () => `父方或母方的叔伯舅姨等親屬，或部族、氏族等大家庭 ${choose("叔伯", "姨母", "叔伯與姨母", "部族或氏族等大家庭")}. ${absentBothParents()}`, display: "父方或母方的叔伯舅姨等親屬，或部族、氏族等大家庭"},
++	{min: 16, max: 25, result: () => `父方或母方的祖父母 ${choose("祖父", "外祖母", "祖父與外祖母")}. ${absentBothParents()}`, display: "父方或母方的祖父母"},
++	{min: 26, max: 35, result: () => `收養家庭（相同或不同種族） ${choose("相同種族", "不同種族")}. ${absentBothParents()}`, display: "收養家庭（相同或不同種族）"},
++	{min: 36, max: 55, result: () => singleParentOrStep("father"), display: "單親父親或繼父"},
++	{min: 56, max: 75, result: () => singleParentOrStep("mother"), display: "單親母親或繼母"},
++	{min: 76, max: 100, result: "父親和母親"},
+ ];
+ 
+ const ABSENT_PARENT = [
+-	{min: 1, result: () => `Your parent died (${rollSuppDeath().result.lowercaseFirst()}).`, display: "Your parent died (roll on the {@table Supplemental Tables; Cause of Death|XGE|Cause of Death} supplemental table)."},
+-	{min: 2, result: () => `Your parent was imprisoned, enslaved, or otherwise taken away ${choose("imprisoned", "enslaved", "otherwise taken away")}.`, display: "Your parent was imprisoned, enslaved, or otherwise taken away."},
+-	{min: 3, result: "Your parent abandoned you."},
+-	{min: 4, result: "Your parent disappeared to an unknown fate."},
++	{min: 1, result: () => `你的一位家長去世了（${rollSuppDeath().result.lowercaseFirst()}).`, display: "你的一位家長去世了（擲骰查閱補充表中的{@table Supplemental Tables; Cause of Death|XGE|死因}表）。"},
++	{min: 2, result: () => `你的一位家長遭囚禁、奴役，或因其他原因被帶走 ${choose("遭囚禁", "遭奴役", "因其他原因被帶走")}.`, display: "你的父親/母親被囚禁、奴役或者因為其他情況被帶走。"},
++	{min: 3, result: "你的一位家長拋棄了你。"},
++	{min: 4, result: "你的父母因未知的命運而失蹤。"},
+ ];
+ 
+ const FAMILY_LIFESTYLE = [
+-	{min: 3, result: "Wretched (-40)", "modifier": -40},
+-	{min: 4, max: 5, result: "Squalid (-20)", "modifier": -20},
+-	{min: 6, max: 8, result: "Poor (-10)", "modifier": -10},
+-	{min: 9, max: 12, result: "Modest (+0)", "modifier": 0},
+-	{min: 13, max: 15, result: "Comfortable (+10)", "modifier": 10},
+-	{min: 16, max: 17, result: "Wealthy (+20)", "modifier": 20},
+-	{min: 18, result: "Aristocratic (+40)", "modifier": 40},
++	{min: 3, result: "乞食（-40）", "modifier": -40},
++	{min: 4, max: 5, result: "流浪 (-20)", "modifier": -20},
++	{min: 6, max: 8, result: "貧窮（-10）", "modifier": -10},
++	{min: 9, max: 12, result: "儉樸 (+0)", "modifier": 0},
++	{min: 13, max: 15, result: "舒適（+10）", "modifier": 10},
++	{min: 16, max: 17, result: "富裕（+20）", "modifier": 20},
++	{min: 18, result: "奢華 (+40)", "modifier": 40},
+ ];
+ 
+ const CHILDHOOD_HOME = [
+-	{min: 0, result: "On the streets"},
+-	{min: 1, max: 20, result: "Rundown shack"},
+-	{min: 21, max: 30, result: "No permanent residence; you moved around a lot"},
+-	{min: 31, max: 40, result: () => `Encampment or village ${choose("encampment", "village")} in the wilderness`, display: "Encampment or village in the wilderness"},
+-	{min: 41, max: 50, result: "Apartment in a rundown neighborhood"},
+-	{min: 51, max: 70, result: "Small house"},
+-	{min: 71, max: 90, result: "Large house"},
+-	{min: 91, max: 110, result: "Mansion"},
+-	{min: 111, result: () => `Palace or castle ${choose("palace", "castle")}`, display: "Palace or castle"},
++	{min: 0, result: "街上"},
++	{min: 1, max: 20, result: "破舊棚屋"},
++	{min: 21, max: 30, result: "沒有固定住處，經常搬遷"},
++	{min: 31, max: 40, result: () => `營地或村落${choose("營地", "村落")}，位於荒野中`, display: "野地裡的村莊或者營地"},
++	{min: 41, max: 50, result: "破敗街區的公寓"},
++	{min: 51, max: 70, result: "小型家族"},
++	{min: 71, max: 90, result: "大型家族"},
++	{min: 91, max: 110, result: "修道院"},
++	{min: 111, result: () => `宮殿或城堡 ${choose("宮殿", "城堡")}`, display: "宮殿或城堡"},
+ ];
+ 
+ const CHILDHOOD_MEMORIES = [
+-	{min: 3, result: "I am still haunted by my childhood, when I was treated badly by my peers."},
+-	{min: 4, max: 5, result: "I spent most of my childhood alone, with no close friends."},
+-	{min: 6, max: 8, result: "Others saw me as being different or strange, and so I had few companions."},
+-	{min: 9, max: 12, result: "I had a few close friends and lived an ordinary childhood."},
+-	{min: 13, max: 15, result: "I had several friends, and my childhood was generally a happy one."},
+-	{min: 16, max: 17, result: "I always found it easy to make friends, and I loved being around people."},
+-	{min: 18, result: "Everyone knew who I was, and I had friends everywhere I went."},
++	{min: 3, result: "我至今仍被童年所困擾，那時我被同齡人惡劣對待。"},
++	{min: 4, max: 5, result: "我童年大部分時候都是孤獨一人，沒有親近的朋友。"},
++	{min: 6, max: 8, result: "別人覺得我與眾不同或者非常奇怪，所以我的同伴很少。"},
++	{min: 9, max: 12, result: "我有若干位親近的朋友，普普通通地度過了童年。"},
++	{min: 13, max: 15, result: "我有若干位親近的朋友，普普通通地度過了童年。"},
++	{min: 16, max: 17, result: "我一直很容易交到朋友，也喜歡與人相處。"},
++	{min: 18, result: "每個人都知道我是誰，不管我走到哪裡都有朋友。"},
+ ];
+ 
+ const LIFE_EVENTS_AGE = [
+-	{min: 1, max: 20, "age": () => RNG(20), result: "20 years or younger", "events": 1},
+-	{min: 21, max: 59, "age": () => RNG(10) + 20, result: "21\u201430 years", "events": () => RNG(4)},
+-	{min: 60, max: 69, "age": () => RNG(10) + 30, result: "31\u201440 years", "events": () => RNG(6)},
+-	{min: 70, max: 89, "age": () => RNG(10) + 40, result: "41\u201450 years", "events": () => RNG(8)},
+-	{min: 90, max: 99, "age": () => RNG(10) + 50, result: "51\u201460 years", "events": () => RNG(10)},
+-	{min: 100, "age": () => RNG(690) + 60, result: "61 years or older", "events": () => RNG(12)}, // max age = 750; max elven age
++	{min: 1, max: 20, "age": () => RNG(20), result: "20歲或以下", "events": 1},
++	{min: 21, max: 59, "age": () => RNG(10) + 20, result: "21–30 歲", "events": () => RNG(4)},
++	{min: 60, max: 69, "age": () => RNG(10) + 30, result: "31–40 歲", "events": () => RNG(6)},
++	{min: 70, max: 89, "age": () => RNG(10) + 40, result: "41–50 歲", "events": () => RNG(8)},
++	{min: 90, max: 99, "age": () => RNG(10) + 50, result: "51–60 歲", "events": () => RNG(10)},
++	{min: 100, "age": () => RNG(690) + 60, result: "61歲或以上", "events": () => RNG(12)}, // max age = 750; max elven age
+ ];
+ 
+ async function _pLifeEvtResult (title, rollResult) {
+@@ -339,158 +339,158 @@
+ }
+ 
+ const LIFE_EVENTS = [
+-	{min: 1, max: 10, result: "You suffered a tragedy. Roll on the Tragedies table.", pNextRoll: () => _pLifeEvtResult("Tragedy", rollEvtTragedy())},
+-	{min: 11, max: 20, result: "You gained a bit of good fortune. Roll on the Boons table.", pNextRoll: () => _pLifeEvtResult("Boon", rollEvtBoon())},
+-	{min: 21, max: 30, result: "You fell in love or got married. If you get this result more than once, you can choose to have a child instead. Work with your DM to determine the identity of your love interest.", pNextRoll: async () => _lifeEvtPerson(marriageIndex++ === 0 ? "Spouse" : "Spouse/Child", await getPersonDetails())},
+-	{min: 31, max: 40, result: () => `You made an enemy of an adventurer. Roll a {@dice d6} ${fmtChoice(RNG(6))}. An odd number indicates you are to blame for the rift, and an even number indicates you are blameless. Use the supplemental tables and work with your DM to determine this hostile character's identity and the danger this enemy poses to you.`, display: "You made an enemy of an adventurer. Roll a {@dice d6}. An odd number indicates you are to blame for the rift, and an even number indicates you are blameless. Use the supplemental tables and work with your DM to determine this hostile character's identity and the danger this enemy poses to you.", pNextRoll: async () => _lifeEvtPerson("Enemy", await getPersonDetails({isAdventurer: true}))},
+-	{min: 41, max: 50, result: "You made a friend of an adventurer. Use the supplemental tables and work with your DM to add more detail to this friendly character and establish how your friendship began.", pNextRoll: async () => _lifeEvtPerson("Friend", await getPersonDetails({isAdventurer: true}))},
+-	{min: 51, max: 70, result: () => `You spent time working in a job related to your background. Start the game with an extra {@dice 2d6} ${fmtChoice(RNG(6) + RNG(6))} gp.`, display: "You spent time working in a job related to your background. Start the game with an extra {@dice 2d6} gp."},
+-	{min: 71, max: 75, result: "You met someone important. Use the supplemental tables to determine this character's identity and how this individual feels about you. Work out additional details with your DM as needed to fit this character into your backstory.", pNextRoll: async () => _lifeEvtPerson("Meeting", await getPersonDetails())},
+-	{min: 76, max: 80, result: "You went on an adventure. Roll on the Adventures table to see what happened to you. Work with your DM to determine the nature of the adventure and the creatures you encountered.", pNextRoll: () => _pLifeEvtResult("Adventure", rollEvtAdventure())},
+-	{min: 81, max: 85, result: "You had a supernatural experience. Roll on the Supernatural Events table to find out what it was.", pNextRoll: () => _pLifeEvtResult("Supernatural Experience", rollEvtSupernatural())},
+-	{min: 86, max: 90, result: "You fought in a battle. Roll on the War table to learn what happened to you. Work with your DM to come up with the reason for the battle and the factions involved. It might have been a small conflict between your community and a band of orcs, or it could have been a major battle in a larger war.", pNextRoll: () => _pLifeEvtResult("War", rollEvtWar())},
+-	{min: 91, max: 95, result: "You committed a crime or were wrongly accused of doing so. Roll on the Crime table to determine the nature of the offense and on the Punishment table to see what became of you.", pNextRoll: () => _lifeEvtResultArr("Crime and Punishment", ["Crime", "Punishment"], rollEvtCrime(), rollEvtPunishment())},
+-	{min: 96, max: 99, result: "You encountered something magical. Roll on the Arcane Matters table.", pNextRoll: () => _pLifeEvtResult("Arcane Matter", rollEvtArcaneMatter())},
+-	{min: 100, result: "Something truly strange happened to you. Roll on the Weird Stuff table.", pNextRoll: () => _pLifeEvtResult("Weird Stuff", rollEvtWeird())},
++	{min: 1, max: 10, result: "你被一個悲劇性事件所折磨。對照悲劇事件表格擲骰。", pNextRoll: () => _pLifeEvtResult("悲劇", rollEvtTragedy())},
++	{min: 11, max: 20, result: "你交過一點兒好運。對照恩澤事件表擲骰。", pNextRoll: () => _pLifeEvtResult("恩惠", rollEvtBoon())},
++	{min: 21, max: 30, result: "你墜入愛河或結成婚姻。如果你超過一次骰到這個結果，可以用育有一個孩子來替代。請與DM一同商量決定你的愛慕物件是何許人也。", pNextRoll: async () => _lifeEvtPerson(marriageIndex++ === 0 ? "Spouse" : "Spouse/Child", await getPersonDetails())},
++	{min: 31, max: 40, result: () => `你與一位冒險者結仇。擲一次{@dice d6} ${fmtChoice(RNG(6))}。奇數表示這次決裂應歸咎於你，偶數則表示你並無過錯。使用補充表格，與 DM 一起決定這位敵對角色的身分，以及他對你構成的威脅。`, display: "你與一名冒險者結下了仇隙。擲一顆{@dice d6}，奇數結果代表這仇隙要歸咎與你，偶數結果代表你是無辜的。使用補充表格，和你的DM共同決定這名敵對角色的身份以及這名仇敵會給你造成怎樣的危險。", pNextRoll: async () => _lifeEvtPerson("仇敵", await getPersonDetails({isAdventurer: true}))},
++	{min: 41, max: 50, result: "你交到了一位冒險者朋友。使用補充表格，和你的DM共同為這名友好的角色新增更多細節，並確定你們的友誼是如何開始的。", pNextRoll: async () => _lifeEvtPerson("友誼", await getPersonDetails({isAdventurer: true}))},
++	{min: 51, max: 70, result: () => `你曾從事與背景相關的工作。遊戲開始時，額外獲得{@dice 2d6} ${fmtChoice(RNG(6) + RNG(6))} gp.`, display: "你從事過和你背景相關的工作，開始遊戲時額外增加{@dice 2d6} gp。"},
++	{min: 71, max: 75, result: "你見過某個大人物。使用補充表格來決定這位角色的身份，以及這個個體對你的感覺。和你的DM共同新增必要的細節，來讓這位角色融入你的背景故事。", pNextRoll: async () => _lifeEvtPerson("Meeting", await getPersonDetails())},
++	{min: 76, max: 80, result: "你進行了一次冒險。在冒險表格上擲骰來決定你遭遇了什麼。與你的DM合作確定冒險的性質以及你遇到的生物。", pNextRoll: () => _pLifeEvtResult("冒險", rollEvtAdventure())},
++	{min: 81, max: 85, result: "你曾有過一次超自然的體驗。對照超自然事件表擲骰，看看這是怎樣的經歷。", pNextRoll: () => _pLifeEvtResult("超自然經歷", rollEvtSupernatural())},
++	{min: 86, max: 90, result: "你參加過一場戰鬥。對照戰爭表擲骰看你發生了什麼。和你的DM共同決定戰鬥爆發的原因以及牽涉其中的派系。這可能只是一場你的團隊和一隊獸人之間爆發的小型衝突，也可能是一場大戰中的主要戰役。", pNextRoll: () => _pLifeEvtResult("戰爭", rollEvtWar())},
++	{min: 91, max: 95, result: "你曾犯下罪行，或者背上冤罪。對照罪行表擲骰，決定罪行的種類，然後對照懲罰表擲骰，看看你遭到了什麼懲罰。", pNextRoll: () => _lifeEvtResultArr("犯罪 and 懲罰", ["Crime", "Punishment"], rollEvtCrime(), rollEvtPunishment())},
++	{min: 96, max: 99, result: "你遇到了一些魔法事物。在奧術事項表格上擲骰。", pNextRoll: () => _pLifeEvtResult("奧術事件", rollEvtArcaneMatter())},
++	{min: 100, result: "你遇到了一些十分奇異的事情。對照奇異事件表擲骰。", pNextRoll: () => _pLifeEvtResult("奇異事件", rollEvtWeird())},
+ ];
+ 
+ const LIFE_EVENTS_ADVENTURES = [
+-	{min: 1, max: 10, result: () => `You nearly died. You have nasty scars on your body, and you are missing an ear, {@dice 1d3} ${fmtChoice(RNG(3))} fingers, or {@dice 1d4} ${fmtChoice(RNG(4))} toes.`, display: "You nearly died. You have nasty scars on your body, and you are missing an ear, {@dice 1d3} fingers, or {@dice 1d4} toes."},
+-	{min: 11, max: 20, result: "You suffered a grievous injury. Although the wound healed, it still pains you from time to time."},
+-	{min: 21, max: 30, result: "You were wounded, but in time you fully recovered."},
+-	{min: 31, max: 40, result: "You contracted a disease while exploring a filthy warren. You recovered from the disease, but you have a persistent cough, pockmarks on your skin, or prematurely gray hair."},
+-	{min: 41, max: 50, result: "You were poisoned by a trap or a monster. You recovered, but the next time you must make a saving throw against poison, you make the saving throw with disadvantage."},
+-	{min: 51, max: 60, result: "You lost something of sentimental value to you during your adventure. Remove one trinket from your possessions."},
+-	{min: 61, max: 70, result: "You were terribly frightened by something you encountered and ran away, abandoning your companions to their fate."},
+-	{min: 71, max: 80, result: "You learned a great deal during your adventure. The next time you make an ability check or a saving throw, you have advantage on the roll."},
+-	{min: 81, max: 90, result: () => `You found some treasure on your adventure. You have {@dice 2d6} ${fmtChoice(RNG(6) + RNG(6))} gp left from your share of it.`, display: "You found some treasure on your adventure. You have {@dice 2d6} gp left from your share of it."},
+-	{min: 91, max: 99, result: () => `You found a considerable amount of treasure on your adventure. You have {@dice 1d20 + 50} ${fmtChoice(RNG(20) + 50)} gp left from your share of it.`, display: "You found a considerable amount of treasure on your adventure. You have {@dice 1d20 + 50} gp left from your share of it."},
+-	{min: 100, result: "You came across a common magic item (of the DM's choice)."},
++	{min: 1, max: 10, result: () => `你曾險些喪命，身上留下可怕的疤痕，且失去一隻耳朵、{@dice 1d3} ${fmtChoice(RNG(3))}根手指，或{@dice 1d4} ${fmtChoice(RNG(4))}根腳趾。`, display: "你差點丟了性命。你身上留下了醜陋的傷疤，以及你少了一隻耳朵，{@dice 1d3}根手指，或{@dice 1d4}根腳趾。"},
++	{min: 11, max: 20, result: "你遭受了嚴重的傷害。雖然傷口已經癒合，但它仍然不時讓你感到疼痛。"},
++	{min: 21, max: 30, result: "你曾經受傷，但經過一段時間後已經完全痊癒了。"},
++	{min: 31, max: 40, result: "你在探索一個骯髒擁擠的地方時染上了一種疾病。現在你的病已經治好了，但落下了久咳的毛病，皮膚上留下了許多痘痕，或者頭髮過早的灰白了。"},
++	{min: 41, max: 50, result: "你曾中了某個陷阱或者怪物的毒。你中的毒已經解除了，但下一次你必須進行對抗毒素的豁免檢定時，你在此豁免檢定上具有劣勢。"},
++	{min: 51, max: 60, result: "你在冒險中遺失了某樣寄託了情感的東西。從你的個人財產中移除一件飾品。"},
++	{min: 61, max: 70, result: "你遭遇了某個把你嚇壞了的東西，你落荒而逃，拋下你的同伴，任由他們自生自滅。"},
++	{min: 71, max: 80, result: "你在冒險期間學到了很多東西，下一次進行屬性檢定或者豁免檢定時，你在此檢定上具有優勢。"},
++	{min: 81, max: 90, result: () => `你在冒險中發現一些財寶。分到的財物如今還剩{@dice 2d6} ${fmtChoice(RNG(6) + RNG(6))} gp。`, display: "你在冒險中找到了一些寶藏。分給你的那份目前還剩{@dice 2d6}金幣。"},
++	{min: 91, max: 99, result: () => `你在冒險中發現大量財寶。分到的財物如今還剩{@dice 1d20 + 50} ${fmtChoice(RNG(20) + 50)} gp。`, display: "你在冒險中發現大量財寶。分到的財物如今還剩{@dice 1d20 + 50} gp。"},
++	{min: 100, result: "你找到了一個普通魔法物品（種類由DM決定）。"},
+ ];
+ 
+ const LIFE_EVENTS_ARCANE_MATTERS = [
+-	{min: 1, result: "You were charmed or frightened by a spell."},
+-	{min: 2, result: "You were injured by the effect of a spell."},
+-	{min: 3, result: "You witnessed a powerful spell being cast by a cleric, a druid, a sorcerer, a warlock, or a wizard."},
+-	{min: 4, result: "You drank a potion (of the DM's choice)."},
+-	{min: 5, result: "You found a spell scroll (of the DM's choice) and succeeded in casting the spell it contained."},
+-	{min: 6, result: "You were affected by teleportation magic."},
+-	{min: 7, result: "You turned invisible for a time."},
+-	{min: 8, result: "You identified an illusion for what it was."},
+-	{min: 9, result: "You saw a creature being conjured by magic."},
+-	{min: 10, result: () => `Your fortune was read by a diviner. Roll twice on the Life Events table, but don't apply the results. Instead, the DM picks one event as a portent of your future (which might or might not come true). ${fmtChoice(GenUtil.getFromTable(LIFE_EVENTS, RNG(100)).display || GenUtil.getFromTable(LIFE_EVENTS, RNG(100)).result)} ${fmtChoice(GenUtil.getFromTable(LIFE_EVENTS, RNG(100)).display || GenUtil.getFromTable(LIFE_EVENTS, RNG(100)).result)}`, display: "Your fortune was read by a diviner. Roll twice on the Life Events table, but don't apply the results. Instead, the DM picks one event as a portent of your future (which might or might not come true)."},
++	{min: 1, result: "你曾被法術魅惑或恐慌。"},
++	{min: 2, result: "你曾因某個法術的效果而受傷。"},
++	{min: 3, result: "你曾目擊到一名牧師、德魯伊、術士、魔契師或法師施放一道強大的法術。"},
++	{min: 4, result: "你飲下了一瓶藥劑（種類由DM決定）。"},
++	{min: 5, result: "你找到了一個法術卷軸（種類由DM決定）併成功施放了上面包含的法術。"},
++	{min: 6, result: "你曾被傳送魔法所影響。"},
++	{min: 7, result: "你曾有一段時間處於隱形狀態。"},
++	{min: 8, result: "你曾識破了一個幻影的真面目。"},
++	{min: 9, result: "你曾見到過一個魔法召喚出來的生物。"},
++	{min: 10, result: () => `一位占卜師曾替你算命。擲骰查閱人生事件表兩次，但不套用結果；改由 DM 選擇其中一件事，作為你未來的預兆（不一定會成真）。 ${fmtChoice(GenUtil.getFromTable(LIFE_EVENTS, RNG(100)).display || GenUtil.getFromTable(LIFE_EVENTS, RNG(100)).result)} ${fmtChoice(GenUtil.getFromTable(LIFE_EVENTS, RNG(100)).display || GenUtil.getFromTable(LIFE_EVENTS, RNG(100)).result)}`, display: "一位占卜師曾替你算命。擲骰查閱人生事件表兩次，但不套用結果；改由 DM 選擇其中一件事，作為你未來的預兆（不一定會成真）。"},
+ ];
+ 
+ const LIFE_EVENTS_BOONS = [
+-	{min: 1, result: "A friendly wizard gave you a spell scroll containing one cantrip (of the DM's choice)."},
+-	{min: 2, result: "You saved the life of a commoner, who now owes you a life debt. This individual accompanies you on your travels and performs mundane tasks for you, but will leave if neglected, abused, or imperiled. Determine details about this character by using the supplemental tables and working with your DM."},
+-	{min: 3, result: "You found a {@item riding horse}."},
+-	{min: 4, result: () => `You found some money. You have {@dice 1d20} ${fmtChoice(RNG(20))} gp in addition to your regular starting funds.`, display: "You found some money. You have {@dice 1d20} gp in addition to your regular starting funds."},
+-	{min: 5, result: "A relative bequeathed you a simple weapon of your choice."},
+-	{min: 6, result: () => `You found something interesting. You gain one additional trinket ${fmtChoice(rollTrinket())}.`, display: "You found something interesting. You gain one additional trinket."},
+-	{min: 7, result: "You once performed a service for a local temple. The next time you visit the temple, you can receive healing up to your hit point maximum."},
+-	{min: 8, result: "A friendly alchemist gifted you with a potion of healing or a flask of acid, as you choose."},
+-	{min: 9, result: "You found a treasure map."},
+-	{min: 10, result: () => `A distant relative left you a stipend that enables you to live at the comfortable lifestyle for {@dice 1d20} ${fmtChoice(RNG(20))} years. If you choose to live at a higher lifestyle, you reduce the price of the lifestyle by 2 gp during that time period.`, display: "A distant relative left you a stipend that enables you to live at the comfortable lifestyle for {@dice 1d20} years. If you choose to live at a higher lifestyle, you reduce the price of the lifestyle by 2 gp during that time period."},
++	{min: 1, result: "一位友好的法師給了你一個抄錄著某個戲法（由DM決定）的法術卷軸。"},
++	{min: 2, result: "你曾救過一位平民的性命，現在這個人欠你一條命。這個個體陪伴你旅行併為你處理日常事務，但如果受到冷落、虐待或陷入危險，他就會離開。使用補充表格並與你的DM合作，確定關於此角色的細節。"},
++	{min: 3, result: "你找到一匹{@item riding horse||乘用馬}。"},
++	{min: 4, result: () => `你撿到一些錢。在正常起始資金之外，額外獲得{@dice 1d20} ${fmtChoice(RNG(20))} gp。`, display: "你找到了一筆錢，在你普通起始資金上增加{@dice 1d20} gp。"},
++	{min: 5, result: "一位親屬傳給了你一把簡易武器（武器種類由你選擇）。"},
++	{min: 6, result: () => `你找到有趣的東西，額外獲得一件小飾品：${fmtChoice(rollTrinket())}.`, display: "你找到了有趣的東西。你額外得到一件飾品。"},
++	{min: 7, result: "你曾為本地的神殿完成一項服務。下一次你造訪這個神殿的時候，你可以在此得到治療，回覆至生命值上限。"},
++	{min: 8, result: "一位友好的鍊金師贈送給你一瓶治療藥水或一瓶強酸，具體哪個由你自行選擇。"},
++	{min: 9, result: "你找到了一張藏寶圖。"},
++	{min: 10, result: () => `一位遠親留給你一筆生活費，讓你能維持舒適生活方式{@dice 1d20} ${fmtChoice(RNG(20))}年。若選擇更高水準的生活方式，在此期間其生活費用減少 2 gp。`, display: "一位遠房親戚留給你一份定期資助，足夠讓你過上{@dice 1d20}年舒適水平的生活。如果你選擇更高水平的生活方式，則在這段時間內每天減去2gp的生活開支。"},
+ ];
+ 
+ const LIFE_EVENTS_CRIME = [
+-	{min: 1, result: "Murder"},
+-	{min: 2, result: "Theft"},
+-	{min: 3, result: "Burglary"},
+-	{min: 4, result: "Assault"},
+-	{min: 5, result: "Smuggling"},
+-	{min: 6, result: "Kidnapping"},
+-	{min: 7, result: "Extortion"},
+-	{min: 8, result: "Counterfeiting"},
++	{min: 1, result: "謀殺"},
++	{min: 2, result: "盜竊"},
++	{min: 3, result: "入室行竊"},
++	{min: 4, result: "攻擊"},
++	{min: 5, result: "走私"},
++	{min: 6, result: "綁架"},
++	{min: 7, result: "勒索"},
++	{min: 8, result: "偽造物"},
+ ];
+ 
+ const LIFE_EVENTS_PUNISHMENT = [
+-	{min: 1, max: 3, result: "You did not commit the crime and were exonerated after being accused."},
+-	{min: 4, max: 6, result: "You committed the crime or helped do so, but nonetheless the authorities found you not guilty."},
+-	{min: 7, max: 8, result: "You were nearly caught in the act. You had to flee and are wanted in the community where the crime occurred."},
+-	{min: 9, max: 12, result: () => `You were caught and convicted. You spent time in jail, chained to an oar, or performing hard labor. You served a sentence of {@dice 1d4} years ${fmtChoice(RNG(4))} or succeeded in escaping after that much time.`, display: "You were caught and convicted. You spent time in jail, chained to an oar, or performing hard labor. You served a sentence of {@dice 1d4} years or succeeded in escaping after that much time."},
++	{min: 1, max: 3, result: "你沒有犯下該罪行，在受到指控以後，也被證明無罪。"},
++	{min: 4, max: 6, result: "你確實犯下了該罪行或者協助了該罪行，但儘管如此，當局還是認為你無罪。"},
++	{min: 7, max: 8, result: "你差點被當場抓獲。你必須走開，並在犯罪發生的那個團隊中被通緝。"},
++	{min: 9, max: 12, result: () => `你遭逮捕並定罪，曾入獄、被鎖在船槳旁或服苦役。你服刑{@dice 1d4}年 ${fmtChoice(RNG(4))}，或在經過這麼長的時間後成功逃脫。`, display: "你被抓獲且定罪，關進監獄，被鐵鏈拴在槳位做苦力，或者服了勞役。你服滿了{@dice 1d4}年的刑期，或者在服刑上述年份之後成功越獄。"},
+ ];
+ 
+ const LIFE_EVENTS_SUPERNATURAL = [
+-	{min: 1, max: 5, result: () => `You were ensorcelled by a fey and enslaved for {@dice 1d6} ${fmtChoice(RNG(6))} years before you escaped.`, display: "You were ensorcelled by a fey and enslaved for {@dice 1d6} years before you escaped."},
+-	{min: 6, max: 10, result: "You saw a demon and ran away before it could do anything to you."},
+-	{min: 11, max: 15, result: () => `A devil tempted you. Make a DC 10 Wisdom saving throw. On a failed save, your alignment shifts one step toward evil (if it's not evil already), and you start the game with an additional {@dice 1d20 + 50} ${fmtChoice(RNG(20) + 50)} gp.`, display: "A devil tempted you. Make a DC 10 Wisdom saving throw. On a failed save, your alignment shifts one step toward evil (if it's not evil already), and you start the game with an additional {@dice 1d20 + 50} gp."},
+-	{min: 16, max: 20, result: "You woke up one morning miles from your home, with no idea how you got there."},
+-	{min: 21, max: 30, result: "You visited a holy site and felt the presence of the divine there."},
+-	{min: 31, max: 40, result: "You witnessed a falling red star, a face appearing in the frost, or some other bizarre happening. You are certain that it was an omen of some sort."},
+-	{min: 41, max: 50, result: "You escaped certain death and believe it was the intervention of a god that saved you."},
+-	{min: 51, max: 60, result: "You witnessed a minor miracle."},
+-	{min: 61, max: 70, result: "You explored an empty house and found it to be haunted."},
+-	{min: 71, max: 75, result: () => { const p = RNG(6); return `You were briefly possessed. Roll a {@dice d6} to determine what type of creature possessed you: 1, celestial; 2, devil; 3, demon; 4, fey; 5, elemental; 6, undead ${fmtChoice(`${p}; ${["celestial", "devil", "demon", "fey", "elemental", "undead"][p - 1]}`)}.`; }, display: "You were briefly possessed. Roll a {@dice d6} to determine what type of creature possessed you: 1, celestial; 2, devil; 3, demon; 4, fey; 5, elemental; 6, undead."},
+-	{min: 76, max: 80, result: "You saw a ghost."},
+-	{min: 81, max: 85, result: "You saw a ghoul feeding on a corpse."},
+-	{min: 86, max: 90, result: "A celestial or a fiend visited you in your dreams to give a warning of dangers to come."},
+-	{min: 91, max: 95, result: () => `You briefly visited the Feywild or the Shadowfell ${choose("Feywild", "Shadowfell")}.`, "results": "You briefly visited the Feywild or the Shadowfell."},
+-	{min: 96, max: 100, result: "You saw a portal that you believe leads to another plane of existence."},
++	{min: 1, max: 5, result: () => `你曾被妖精以魔法控制並奴役{@dice 1d6} ${fmtChoice(RNG(6))}年，之後才逃脫。`, display: "你被一個精類迷住了，並且被其奴役了{@dice 1d6}年之後才逃脫。"},
++	{min: 6, max: 10, result: "你看到了一個惡魔，在它對你動手之前你就逃走了。"},
++	{min: 11, max: 15, result: () => `一個魔鬼曾誘惑你。進行一次 DC 10 感知豁免；失敗時，若你並非邪惡陣營，陣營便朝邪惡移動一步，且遊戲開始時額外獲得{@dice 1d20 + 50} ${fmtChoice(RNG(20) + 50)} gp.`, display: "一個魔鬼曾誘惑你。進行一次 DC 10 感知豁免；失敗時，若你並非邪惡陣營，陣營便朝邪惡移動一步，且遊戲開始時額外獲得{@dice 1d20 + 50} gp."},
++	{min: 16, max: 20, result: "某天早上，你在離家好幾裡的地方醒來，至於你是怎麼到那兒的，你完全沒有頭緒。"},
++	{min: 21, max: 30, result: "你曾造訪一處聖地，並感受到那裡的神聖存在顯靈了。"},
++	{min: 31, max: 40, result: "你目擊了一顆墜落的赤紅星星，一張臉出現在寒霜中，或者其他怪異的事情。你確信那是某種形式的預兆。"},
++	{min: 41, max: 50, result: "你曾從某種九死一生的狀況中生還，你相信是某位神的幹預救了你。"},
++	{min: 51, max: 60, result: "你曾見過一個小小的奇蹟。"},
++	{min: 61, max: 70, result: "你曾進入一幢空屋探索，發現那兒鬧鬼。"},
++	{min: 71, max: 75, result: () => { const p = RNG(6); return `你曾短暫遭到附身。擲一次{@dice d6}決定附身的生物種類：1，天界；2，魔鬼；3，惡魔；4，妖精；5，元素；6，不死生物 ${fmtChoice(`${p}；${I18nZhTwUtilities.t(["celestial", "devil", "demon", "fey", "elemental", "undead"][p - 1])}`)}.`; }, display: "你曾短暫遭到附身。擲一次{@dice d6}決定附身的生物種類：1，天界；2，魔鬼；3，惡魔；4，妖精；5，元素；6，不死生物."},
++	{min: 76, max: 80, result: "你見到了一個幽魂。"},
++	{min: 81, max: 85, result: "你見到了一隻食屍鬼在屍體上大快朵頤。"},
++	{min: 86, max: 90, result: "一個天界生物或邪魔在夢中造訪你，警告即將到來的危險。"},
++	{min: 91, max: 95, result: () => `你曾短暫造訪妖精荒野或墮影冥界 ${choose("妖精荒野", "墮影冥界")}.`, "results": "你曾短暫造訪妖精荒野或墮影冥界."},
++	{min: 96, max: 100, result: "你見到了一個傳送門，你相信它通往另一個存在位面。"},
+ ];
+ 
+ const LIFE_EVENTS_TRAGEDIES = [
+-	{min: 1, max: 2, result: () => `A family member or a close friend died. Roll on the {@table Supplemental Tables; Cause of Death|XGE|Cause of Death} supplemental table to find out how.`, display: "A family member or a close friend died. Roll on the Cause of Death supplemental table to find out how.", pNextRoll: () => _pLifeEvtResult("Cause of Death", rollSuppDeath())},
+-	{min: 3, result: "A friendship ended bitterly, and the other person is now hostile to you. The cause might have been a misunderstanding or something you or the former friend did."},
+-	{min: 4, result: "You lost all your possessions in a disaster, and you had to rebuild your life."},
+-	{min: 5, result: () => `You were imprisoned for a crime you didn't commit and spent {@dice 1d6} ${fmtChoice(RNG(6))} years at hard labor, in jail, or shackled to an oar in a slave galley.`, display: "You were imprisoned for a crime you didn't commit and spent {@dice 1d6} years at hard labor, in jail, or shackled to an oar in a slave galley."},
+-	{min: 6, result: "War ravaged your home community, reducing everything to rubble and ruin. In the aftermath, you either helped your town rebuild or moved somewhere else."},
+-	{min: 7, result: "A lover disappeared without a trace. You have been looking for that person ever since."},
+-	{min: 8, result: "A terrible blight in your home community caused crops to fail, and many starved. You lost a sibling or some other family member."},
+-	{min: 9, result: "You did something that brought terrible shame to you in the eyes of your family. You might have been involved in a scandal, dabbled in dark magic, or offended someone important. The attitude of your family members toward you becomes indifferent at best, though they might eventually forgive you."},
+-	{min: 10, result: "For a reason you were never told, you were exiled from your community. You then either wandered in the wilderness for a time or promptly found a new place to live."},
+-	{min: 11, result: () => `A romantic relationship ended. Roll a {@dice d6} ${fmtChoice(RNG(6))}. An odd number means it ended with bad feelings, while an even number means it ended amicably.`, display: "A romantic relationship ended. Roll a {@dice d6}. An odd number means it ended with bad feelings, while an even number means it ended amicably."},
+-	{min: 12, result: () => `A current or prospective romantic partner of yours died. Roll on the {@table Supplemental Tables; Cause of Death|XGE|Cause of Death} supplemental table to find out how. If the result is murder, roll a {@dice d12}. On a 1, you were responsible, whether directly or indirectly.`, display: "A current or prospective romantic partner of yours died. Roll on the {@table Supplemental Tables; Cause of Death|XGE|Cause of Death} supplemental table to find out how. If the result is murder, roll a {@dice d12}. On a 1, you were responsible, whether directly or indirectly.", pNextRoll: () => _pLifeEvtResult("Cause of Death", (() => { const r = RNG(12); const p = GenUtil.getFromTable(SUPP_DEATH, r); return {result: `${p.result}${r === 2 && RNG(12) === 1 ? ` ${fmtChoice("you were responsible")}` : ""}`}; })())},
++	{min: 1, max: 2, result: () => `一位家人或摯友去世。擲骰查閱補充表中的{@table Supplemental Tables; Cause of Death|XGE|死因}表，決定死因。`, display: "一位家庭成員或一位密友去世了。在死因補充表格上擲骰以確定其死因。", pNextRoll: () => _pLifeEvtResult("死亡原因", rollSuppDeath())},
++	{min: 3, result: "一段友情徹底終結了，曾經的朋友現在對你抱有敵意。原因可能是一場誤解，或者是你或你曾經的朋友做的什麼事情。"},
++	{min: 4, result: "你在一場災禍中失去了所有財產，必須重頭開始重建你的人生。"},
++	{min: 5, result: () => `你因未曾犯下的罪行入獄，度過{@dice 1d6} ${fmtChoice(RNG(6))}年的苦役、牢獄生活，或被鎖在奴隸划槳船的船槳旁。`, display: "你因為莫須有的罪名被捕，花費{@dice 1d6}年服苦役、被監禁或者在奴隸船上拴著手銬腳鐐劃槳。"},
++	{min: 6, result: "戰爭蹂躪了你的家鄉，將一切化為殘磚碎瓦。在那之後，你或者幫助你的小鎮重建，或者移居別處。"},
++	{min: 7, result: "你的戀人毫無痕跡地失蹤了。自那以後你就一直在尋找此人。"},
++	{min: 8, result: "你家鄉的團隊遭遇可怕的枯萎術，導致莊稼歉收，許多人捱餓。你失去了一位兄弟姐妹或其他家庭成員。"},
++	{min: 9, result: "你做了某些事情，讓家人視你為奇恥大辱。你可能是被捲入了某項醜聞，與黑暗魔法有染，或者冒犯了什麼大人物。家人對你的態度起碼會轉變為冷漠，哪怕最終他們也許會原諒你。"},
++	{min: 10, result: "出於一個你從未被告知的原因，你被從團隊中流放了。你隨後要麼在野外遊蕩了一段時間，要麼立即找到了一個新的地點居住。"},
++	{min: 11, result: () => `一段戀情結束了。擲一次{@dice d6} ${fmtChoice(RNG(6))}。奇數表示不歡而散，偶數則表示和平分手。`, display: "一段浪漫的戀情終結了。擲一顆{@dice d6}。奇數數值意味著這段關係結束得比較糟糕，而偶數數值意味著這段關係結束得比較友好。"},
++	{min: 12, result: () => `你當時的戀人或可能發展成戀人的對象去世。擲骰查閱補充表中的{@table Supplemental Tables; Cause of Death|XGE|死因}表。若結果為謀殺，擲一次{@dice d12}；若為 1，你對此負有直接或間接的責任。`, display: "你當時的戀人或可能發展成戀人的對象去世。擲骰查閱補充表中的{@table Supplemental Tables; Cause of Death|XGE|死因}表。若結果為謀殺，擲一次{@dice d12}；若為 1，你對此負有直接或間接的責任。", pNextRoll: () => _pLifeEvtResult("死亡原因", (() => { const r = RNG(12); const p = GenUtil.getFromTable(SUPP_DEATH, r); return {result: `${p.result}${r === 2 && RNG(12) === 1 ? ` ${fmtChoice("你對此負有責任")}` : ""}`}; })())},
+ ];
+ 
+ const LIFE_EVENTS_WAR = [
+-	{min: 1, result: "You were knocked out and left for dead. You woke up hours later with no recollection of the battle."},
+-	{min: 2, max: 3, result: "You were badly injured in the fight, and you still bear the awful scars of those wounds."},
+-	{min: 4, result: "You ran away from the battle to save your life, but you still feel shame for your cowardice."},
+-	{min: 5, max: 7, result: "You suffered only minor injuries, and the wounds all healed without leaving scars."},
+-	{min: 8, max: 9, result: "You survived the battle, but you suffer from terrible nightmares in which you relive the experience."},
+-	{min: 10, max: 11, result: "You escaped the battle unscathed, though many of your friends were injured or lost."},
+-	{min: 12, result: "You acquitted yourself well in battle and are remembered as a hero. You might have received a medal for your bravery."},
++	{min: 1, result: "你被打暈了，其他人認為你已經死了所以沒有再管你。好幾個小時以後你醒來，對剛才的戰鬥毫無記憶。"},
++	{min: 2, max: 3, result: "你在戰鬥中受了重傷，直到現在，你身上還bear著那些傷口留下的可怕傷疤。"},
++	{min: 4, result: "你為了保命而從戰場上逃走了，但至今還為自己怯懦的行為感到到羞愧。"},
++	{min: 5, max: 7, result: "你只受了點輕傷，而且那些傷口全都好好的癒合了，沒有留下任何傷疤。"},
++	{min: 8, max: 9, result: "你在戰鬥中倖存了下來，但你在可怕的夢魘中重溫那段經歷。"},
++	{min: 10, max: 11, result: "你毫髮無傷地避過了戰鬥，不過你許多的朋友都受傷或者失蹤了。"},
++	{min: 12, result: "你在戰鬥中表現優異，被視為英雄，或許還被授予了一枚勳章來表彰你的勇氣。"},
+ ];
+ 
+ const LIFE_EVENTS_WEIRD_STUFF = [
+-	{min: 1, result: () => `You were turned into a toad and remained in that form for {@dice 1d4} ${fmtChoice(RNG(4))} weeks.`, display: "You were turned into a toad and remained in that form for {@dice 1d4} weeks."},
+-	{min: 2, result: "You were petrified and remained a stone statue for a time until someone freed you."},
+-	{min: 3, result: () => `You were enslaved by a hag, a satyr, or some other being and lived in that creature's thrall for {@dice 1d6} ${fmtChoice(RNG(6))} years.`, display: "You were enslaved by a hag, a satyr, or some other being and lived in that creature’s thrall for {@dice 1d6} years."},
+-	{min: 4, result: () => `A dragon held you as a prisoner for {@dice 1d4} ${fmtChoice(RNG(4))} months until adventurers killed it.`, display: "A dragon held you as a prisoner for {@dice 1d4} months until adventurers killed it."},
+-	{min: 5, result: "You were taken captive by a race of evil humanoids such as drow, kuo-toa, or quaggoths. You lived as a slave in the Underdark until you escaped."},
+-	{min: 6, result: "You served a powerful adventurer as a hireling. You have only recently left that service. Use the supplemental tables and work with your DM to determine the basic details about your former employer.", pNextRoll: async () => _lifeEvtPerson("Employer", await getPersonDetails({isAdventurer: true}))},
+-	{min: 7, result: () => `You went insane for {@dice 1d6} ${fmtChoice(RNG(6))} years and recently regained your sanity. A tic or some other bit of odd behavior might linger.`, display: "You went insane for {@dice 1d6} years and recently regained your sanity. A tic or some other bit of odd behavior might linger."},
+-	{min: 8, result: "A lover of yours was secretly a silver dragon."},
+-	{min: 9, result: "You were captured by a cult and nearly sacrificed on an altar to the foul being the cultists served. You escaped, but you fear they will find you."},
+-	{min: 10, result: () => `You met a demigod, an archdevil, an archfey, a demon lord, or a titan, ${choose("demigod", "archdevil", "archfey", "demon lord", "titan")} and you lived to tell the tale.`, display: "You met a demigod, an archdevil, an archfey, a demon lord, or a titan, and you lived to tell the tale."},
+-	{min: 11, result: "You were swallowed by a giant fish and spent a month in its gullet before you escaped."},
+-	{min: 12, result: () => `A powerful being granted you a wish, but you squandered it on something frivolous.`, display: "A powerful being granted you a wish, but you squandered it on something frivolous."},
++	{min: 1, result: () => `你曾被變成蟾蜍，維持此形態{@dice 1d4} ${fmtChoice(RNG(4))}週。`, display: "你被變成過一隻蟾蜍並保持這個形態{@dice 1d4}周。"},
++	{min: 2, result: "你曾被石化，維持石像形態一段時間，直到有人解救你。"},
++	{min: 3, result: () => `你曾遭鬼婆、薩堤爾或其他生物奴役，在其掌控下生活了{@dice 1d6} ${fmtChoice(RNG(6))}年。`, display: "你曾遭鬼婆、薩堤爾或其他生物奴役，在其掌控下生活了{@dice 1d6}年。"},
++	{min: 4, result: () => `一條龍曾囚禁你{@dice 1d4} ${fmtChoice(RNG(4))}個月，直到冒險者殺死牠。`, display: "一條龍把你囚禁了{@dice 1d4}個月，直到冒險者們殺掉了那條龍。"},
++	{min: 5, result: "你被某個邪惡的類人生物種族俘虜了，比如卓爾、寇濤魚人或者幽邃熊怪。你在幽暗地域當奴隸直到逃了出來。"},
++	{min: 6, result: "你曾作為一名僱工為一位強大的冒險者服務。你才剛剛結束這份工作。使用補充表格並與你的DM一同決定你這位前僱主的基本資訊。", pNextRoll: async () => _lifeEvtPerson("Employer", await getPersonDetails({isAdventurer: true}))},
++	{min: 7, result: () => `你曾瘋狂了{@dice 1d6} ${fmtChoice(RNG(6))}年，最近才恢復神智；可能仍留有抽搐或其他古怪習慣。`, display: "你發瘋了{@dice 1d6}年，最近才恢復理智。習慣性抽搐或者一點點其他的古怪行為可能還留在你身上。"},
++	{min: 8, result: "你的一位戀人其實是一條銀龍。"},
++	{min: 9, result: "你被一個邪教俘虜了，差點兒被當作犧牲品在祭壇上獻給那些邪教徒侍奉的汙穢存在。你逃出生天，但卻害怕他們會找到你。"},
++	{min: 10, result: () => `你曾遇見半神、大魔鬼、至高妖精、惡魔領主或泰坦，${choose("半神", "大魔鬼", "至高妖精", "惡魔領主", "泰坦")}並活著回來述說這段經歷。`, display: "你遇見過一位半神，一位大魔鬼，一位至高妖精，一位惡魔領主或者一位泰坦，並且活了下來講述這個故事。"},
++	{min: 11, result: "你被一條巨大的魚吞了下去，並且在它的食道里待了整整一個月才逃出來。"},
++	{min: 12, result: () => `某個強大的存在賜給了你一道祈願術，但你把它浪費在無聊的瑣事上了。`, display: "某個強大的存在賜給了你一道祈願術，但你把它浪費在無聊的瑣事上了。"},
+ ];
+ 
+ const SUPP_ALIGNMENT = [
+-	{min: 1, max: 3, result: () => rollOnArray(["Chaotic evil", "Chaotic neutral"]), display: "Chaotic evil (50%) or chaotic neutral (50%)"},
+-	{min: 4, max: 5, result: "Lawful evil"},
+-	{min: 6, max: 8, result: "Neutral evil"},
+-	{min: 9, max: 12, result: "Neutral"},
+-	{min: 13, max: 15, result: "Neutral good"},
+-	{min: 16, max: 17, result: () => rollOnArray(["Lawful good", "Lawful neutral"]), display: "Lawful good (50%) or lawful neutral (50%)"},
+-	{min: 18, result: () => rollOnArray(["Chaotic good", "Chaotic neutral"]), display: "Chaotic good (50%) or chaotic neutral (50%)"},
++	{min: 1, max: 3, result: () => rollOnArray(["Chaotic evil", "Chaotic neutral"]), display: "混亂邪惡（50%）或混亂中立（50%）"},
++	{min: 4, max: 5, result: "守序邪惡"},
++	{min: 6, max: 8, result: "中立邪惡"},
++	{min: 9, max: 12, result: "中立"},
++	{min: 13, max: 15, result: "中立善良"},
++	{min: 16, max: 17, result: () => rollOnArray(["Lawful good", "Lawful neutral"]), display: "守序善良（50%）或守序中立（50%）"},
++	{min: 18, result: () => rollOnArray(["Chaotic good", "Chaotic neutral"]), display: "混亂善良（50%）或混亂中立（50%）"},
+ ];
+ 
+ const SUPP_DEATH = [
+-	{min: 1, result: "Cause unknown"},
+-	{min: 2, result: "Murdered"},
+-	{min: 3, result: "Killed in battle"},
+-	{min: 4, result: "Accident related to class or occupation"},
+-	{min: 5, result: "Accident unrelated to class or occupation"},
+-	{min: 6, max: 7, result: "Natural causes, such as disease or old age"},
+-	{min: 8, result: "Apparent suicide"},
+-	{min: 9, result: () => `Torn apart by an animal or a natural disaster ${choose("animal", "natural disaster")}`, display: "Torn apart by an animal or a natural disaster"},
+-	{min: 10, result: () => "Consumed by a monster"},
+-	{min: 11, result: () => `Executed for a crime or tortured to death ${choose("executed for a crime", "tortured to death")}`, display: "Executed for a crime or tortured to death"},
+-	{min: 12, result: "Bizarre event, such as being hit by a meteorite, struck down by an angry god, or killed by a hatching slaad egg"},
++	{min: 1, result: "死因不明"},
++	{min: 2, result: "謀殺"},
++	{min: 3, result: "戰死"},
++	{min: 4, result: "與職業或者工作有關的事故"},
++	{min: 5, result: "與職業或者工作無關的事故"},
++	{min: 6, max: 7, result: "自然死亡，例如疾病或者年事已高"},
++	{min: 8, result: "自殺身亡"},
++	{min: 9, result: () => `被野獸撕碎或死於天災 ${choose("野獸", "天災")}`, display: "被野獸撕碎或死於天災"},
++	{min: 10, result: () => "被一隻怪物吃掉"},
++	{min: 11, result: () => `因罪行被處決或遭折磨致死 ${choose("因罪行被處決", "遭折磨致死")}`, display: "因罪行被處決或遭折磨致死"},
++	{min: 12, result: "因為某種怪異的原因，比如被隕石砸中，被憤怒的神祇擊殺，或者被正在孵化的史拉蟾卵殺死。"},
+ ];
+ 
+ const SUPP_CLASS = [
+@@ -509,22 +509,22 @@
+ ];
+ 
+ const SUPP_OCCUPATION = [
+-	{min: 1, max: 5, result: "Academic"},
+-	{min: 6, max: 10, result: () => `Adventurer (${rollSuppClass().result})`, display: "Adventurer (roll on the Class table)"},
+-	{min: 11, result: "Aristocrat"},
+-	{min: 12, max: 26, result: () => `Artisan or guild member ${choose("artisan", "guild member")}`, display: "Artisan or guild member"},
+-	{min: 27, max: 31, result: "Criminal"},
+-	{min: 32, max: 36, result: "Entertainer"},
+-	{min: 37, max: 38, result: () => `Exile, hermit, or refugee ${choose("exile", "hermit", "refugee")}`, display: "Exile, hermit, or refugee"},
+-	{min: 39, max: 43, result: () => `Explorer or wanderer ${choose("explorer", "wanderer")}`, display: "Explorer or wanderer"},
+-	{min: 44, max: 55, result: () => `Farmer or herder ${choose("farmer", "herder")}`, display: "Farmer or herder"},
+-	{min: 56, max: 60, result: () => `Hunter or trapper ${choose("hunter", "trapper")}`, display: "Hunter or trapper"},
+-	{min: 61, max: 75, result: "Laborer"},
+-	{min: 76, max: 80, result: "Merchant"},
+-	{min: 81, max: 85, result: () => `Politician or bureaucrat ${choose("politician", "bureaucrat")}`, display: "Politician or bureaucrat"},
+-	{min: 86, max: 90, result: "Priest"},
+-	{min: 91, max: 95, result: "Sailor"},
+-	{min: 96, max: 100, result: "Soldier"},
++	{min: 1, max: 5, result: "學術"},
++	{min: 6, max: 10, result: () => `冒險者（${rollSuppClass().result})`, display: "冒險者（在職業表格上擲骰）"},
++	{min: 11, result: "權貴"},
++	{min: 12, max: 26, result: () => `工匠或公會成員 ${choose("工匠", "公會成員")}`, display: "工匠或公會成員"},
++	{min: 27, max: 31, result: "罪犯"},
++	{min: 32, max: 36, result: "藝人"},
++	{min: 37, max: 38, result: () => `流亡者、隱士或難民 ${choose("流亡者", "隱士", "難民")}`, display: "流亡者、隱士或難民"},
++	{min: 39, max: 43, result: () => `探險家或流浪者 ${choose("探險家", "流浪者")}`, display: "探險家或流浪者"},
++	{min: 44, max: 55, result: () => `農夫或牧人 ${choose("農夫", "牧人")}`, display: "農夫或牧人"},
++	{min: 56, max: 60, result: () => `獵人或捕獸人 ${choose("獵人", "捕獸人")}`, display: "獵人或捕獸人"},
++	{min: 61, max: 75, result: "力工"},
++	{min: 76, max: 80, result: "商人"},
++	{min: 81, max: 85, result: () => `政治人物或官僚 ${choose("政治人物", "官僚")}`, display: "政治人物或官僚"},
++	{min: 86, max: 90, result: "祭司"},
++	{min: 91, max: 95, result: "水手"},
++	{min: 96, max: 100, result: "士兵"},
+ ];
+ 
+ const SUPP_RACE = [
+@@ -534,26 +534,26 @@
+ 	{min: 61, max: 70, result: "Halfling"},
+ 	{min: 71, max: 75, result: "Dragonborn"},
+ 	{min: 76, max: 80, result: "Gnome"},
+-	{min: 81, max: 85, result: "Half-elf"},
+-	{min: 86, max: 90, result: "Half-orc"},
++	{min: 81, max: 85, result: "半精靈"},
++	{min: 86, max: 90, result: "半獸人"},
+ 	{min: 91, max: 95, result: "Tiefling"},
+-	{min: 96, max: 100, result: "DM’s choice"},
++	{min: 96, max: 100, result: "由 DM 決定"},
+ ];
+ 
+ const SUPP_RELATIONSHIP = [
+-	{min: 3, max: 4, result: "Hostile"},
+-	{min: 5, max: 10, result: "Friendly"},
+-	{min: 11, max: 12, result: "Indifferent"},
++	{min: 3, max: 4, result: "敵對"},
++	{min: 5, max: 10, result: "友好"},
++	{min: 11, max: 12, result: "冷漠"},
+ ];
+ 
+ const SUPP_STATUS = [
+-	{min: 3, result: () => { return `Dead (${rollSuppDeath().result.lowercaseFirst()})`; }, display: "Dead (roll on the Cause of Death table)", "dead": true},
+-	{min: 4, max: 5, result: () => `Missing or status unknown ${choose("missing", "status unknown")}`, display: "Missing or status unknown"},
+-	{min: 6, max: 8, result: () => `Alive, but doing poorly due to injury, financial trouble, or relationship difficulties ${choose("injury", "financial trouble", "relationship difficulties")}`, display: "Alive, but doing poorly due to injury, financial trouble, or relationship difficulties"},
+-	{min: 9, max: 12, result: "Alive and well"},
+-	{min: 13, max: 15, result: "Alive and quite successful"},
+-	{min: 16, max: 17, result: "Alive and infamous"},
+-	{min: 18, result: "Alive and famous"},
++	{min: 3, result: () => { return `已故（${rollSuppDeath().result.lowercaseFirst()})`; }, display: "死亡（對照死亡原因表擲骰）", "dead": true},
++	{min: 4, max: 5, result: () => `失蹤或狀況不明 ${choose("失蹤", "狀況不明")}`, display: "失蹤或狀況不明"},
++	{min: 6, max: 8, result: () => `健在，但因傷勢、財務問題或人際困難而處境不佳 ${choose("傷勢", "財務問題", "人際困難")}`, display: "健在，但因傷勢、財務問題或人際困難而處境不佳"},
++	{min: 9, max: 12, result: "健在，狀況良好"},
++	{min: 13, max: 15, result: "在生且很有名望"},
++	{min: 16, max: 17, result: "在生且聲名狼藉"},
++	{min: 18, result: "在生且很有名望"},
+ ];
+ 
+ let classList;
+@@ -581,27 +581,27 @@
+ 	selClass = veEs(`#class`).vee.empty().vee.attr("disabled", false);
+ 	selAge = veEs(`#age`).vee.empty().vee.attr("disabled", false);
+ 
+-	selRace.vee.appends(`<option value="Random" selected>Random</option>`);
+-	selRace.vee.appends(`<option value="Other">Other</option>`);
+-	RACES_SELECTABLE.forEach(r => selRace.vee.appends(`<option value="${r}">${r}</option>`));
+-	RACES_UNSELECTABLE.forEach(r => selRace.vee.appends(`<option class="ve-italic" value="${r}">${r}</option>`));
+-	selCha.vee.appends(`<option value="Random">Random</option>`);
++	selRace.vee.appends(`<option value="Random" selected>隨機</option>`);
++	selRace.vee.appends(`<option value="Other">其他</option>`);
++	RACES_SELECTABLE.forEach(r => selRace.vee.appends(`<option value="${r}">${I18nZhTwUtilities.t(r)}</option>`));
++	RACES_UNSELECTABLE.forEach(r => selRace.vee.appends(`<option class="ve-italic" value="${r}">${I18nZhTwUtilities.t(r)}</option>`));
++	selCha.vee.appends(`<option value="Random">隨機</option>`);
+ 	for (let i = -5; i <= 5; ++i) {
+ 		selCha.vee.appends(`<option value="${i}" ${i === 0 ? "selected" : ""}>${i >= 0 ? "+" : ""}${i}</option>`);
+ 	}
+-	selBg.vee.appends(`<option value="-1" selected>Random</option>`);
+-	bgList.forEach((b, i) => selBg.vee.appends(`<option value="${i}">${b.name}</option>`));
+-	selClass.vee.appends(`<option value="-1" selected>Random</option>`);
+-	classList.forEach((c, i) => selClass.vee.appends(`<option value="${i}">${c.name}</option>`));
++	selBg.vee.appends(`<option value="-1" selected>隨機</option>`);
++	bgList.forEach((b, i) => selBg.vee.appends(`<option value="${i}">${I18nZhTwUtilities.name(b)}</option>`));
++	selClass.vee.appends(`<option value="-1" selected>隨機</option>`);
++	classList.forEach((c, i) => selClass.vee.appends(`<option value="${i}">${I18nZhTwUtilities.name(c)}</option>`));
+ 
+ 	[
+-		{val: "", text: "Random", style: "font-style: normal;"},
+-		{val: "1", text: "20 years or younger", class: "ve-italic"},
++		{val: "", text: "隨機", style: "font-style: normal;"},
++		{val: "1", text: "20歲或以下", class: "ve-italic"},
+ 		{val: "21", text: "21&mdash;30 years", class: "ve-italic"},
+ 		{val: "60", text: "31&mdash;40 years", class: "ve-italic"},
+ 		{val: "70", text: "41&mdash;50 years", class: "ve-italic"},
+ 		{val: "90", text: "51&mdash;60 years", class: "ve-italic"},
+-		{val: "100", text: "61 years or older", class: "ve-italic"},
++		{val: "100", text: "61歲或以上", class: "ve-italic"},
+ 	].forEach(age => selAge.vee.appends(`<option value="${age.val}" ${age.style ? `style="${age.style}"` : ""} ${age.class ? `class="${age.class}"` : ""}>${age.text}</option>`));
+ 
+ 	nameTables = {};
+@@ -670,26 +670,26 @@
+ 	})();
+ 
+ 	const parents = veEs(`#parents`);
+-	const knowParentsStr = knowParents ? "<b>Parents:</b> You know who your parents are or were." : "<b>Parents:</b> You do not know who your parents were.";
++	const knowParentsStr = knowParents ? "<b>父母：</b> 你知道自己的父母是誰。" : "<b>父母：</b> 你不知道自己的父母是誰。";
+ 
+ 	let parentage = null;
+ 	if (knowParents) {
+ 		switch (race.toLowerCase()) {
+ 			case "half-elf": {
+ 				const rolled = GenUtil.getFromTable(PARENTS_HALF_ELF, RNG(8));
+-				parentage = `<b>${race} parents:</b> ${rolled.result}`;
++				parentage = `<b>${I18nZhTwUtilities.t(race)}的父母：</b> ${rolled.result}`;
+ 				parentRaces = rolled._races;
+ 				break;
+ 			}
+ 			case "half-orc": {
+ 				const rolled = GenUtil.getFromTable(PARENTS_HALF_ORC, RNG(8));
+-				parentage = `<b>${race} parents:</b> ${rolled.result}`;
++				parentage = `<b>${I18nZhTwUtilities.t(race)}的父母：</b> ${rolled.result}`;
+ 				parentRaces = rolled._races;
+ 				break;
+ 			}
+ 			case "tiefling": {
+ 				const rolled = GenUtil.getFromTable(PARENTS_TIEFLING, RNG(8));
+-				parentage = `<b>${race} parents:</b> ${rolled.result}`;
++				parentage = `<b>${I18nZhTwUtilities.t(race)}的父母：</b> ${rolled.result}`;
+ 				parentRaces = rolled._races;
+ 				break;
+ 			}
+@@ -700,9 +700,9 @@
+ 	}
+ 
+ 	if (selRace === "Other") {
+-		parents.vee.html(concatSentences(`<b>Species:</b> Other ${fmtChoice(`${race}; generated using the {@table Supplemental Tables; Race|XGE|Supplemental Race} table`, true)}`, knowParentsStr, parentage));
++		parents.vee.html(concatSentences(`<b>種族:</b> 其他 ${fmtChoice(`${I18nZhTwUtilities.t(race)}；使用{@table Supplemental Tables; Race|XGE|補充種族表}產生`, true)}`, knowParentsStr, parentage));
+ 	} else {
+-		parents.vee.html(concatSentences(`<b>Species:</b> ${race}${selRace === "Random" ? ` ${fmtChoice("generated using the {@table Supplemental Tables; Race|XGE|Supplemental Race} table", true)}` : ""}`, knowParentsStr, parentage));
++		parents.vee.html(concatSentences(`<b>種族:</b> ${I18nZhTwUtilities.t(race)}${selRace === "Random" ? ` ${fmtChoice("使用{@table Supplemental Tables; Race|XGE|補充種族表}產生", true)}` : ""}`, knowParentsStr, parentage));
+ 	}
+ 
+ 	if (knowParents) {
+@@ -718,9 +718,9 @@
+ 			race: parentRaces.length > 1 ? parentRaces[1] : parentRaces[0],
+ 			gender: "Male",
+ 		});
+-		parents.vee.appends(veT`<h5>Mother</h5>`);
++		parents.vee.appends(veT`<h5>母親</h5>`);
+ 		parents.vee.appends(`<div>${joinParaList(mum)}</div>`);
+-		parents.vee.appends(veT`<h5>Father</h5>`);
++		parents.vee.appends(veT`<h5>父親</h5>`);
+ 		parents.vee.appends(`<div>${joinParaList(dad)}</div>`);
+ 	}
+ }
+@@ -729,9 +729,9 @@
+ function sectBirthplace () {
+ 	const birthplace = veEs(`#birthplace`);
+ 	const rollBirth = RNG(100);
+-	const birth = `<b>Birthplace:</b> ${GenUtil.getFromTable(BIRTHPLACES, rollBirth).result}`;
+-
+-	const strangeBirth = RNG(100) === 100 ? "A strange event coincided with your birth: the moon briefly turning red, all the milk within a mile spoiling, the water in the area freezing solid in midsummer, all the iron in the home rusting or turning to silver, or some other unusual event of your choice" : "";
++	const birth = `<b>出生地：</b> ${GenUtil.getFromTable(BIRTHPLACES, rollBirth).result}`;
++
++	const strangeBirth = RNG(100) === 100 ? "你出生時恰好發生奇事：月亮短暫變紅、一英里內的牛奶全數變質、盛夏時附近的水全部結冰、家中的鐵全部生鏽或變成白銀，或你選擇的其他異常事件" : "";
+ 	birthplace.vee.html(concatSentences(birth, strangeBirth));
+ }
+ 
+@@ -741,11 +741,11 @@
+ 	function getBirthOrder () {
+ 		const rollBirthOrder = RNG(6) + RNG(6);
+ 		if (rollBirthOrder < 3) {
+-			return "Twin, triplet, or quadruplet";
++			return "雙胞胎、三胞胎或四胞胎";
+ 		} else if (rollBirthOrder < 8) {
+-			return "Older";
++			return "較年長的";
+ 		} else {
+-			return "Younger";
++			return "較年幼的";
+ 		}
+ 	}
+ 
+@@ -771,10 +771,10 @@
+ 
+ 	if (sibCount > 0) {
+ 		siblings.vee.empty();
+-		siblings.vee.appends(`<p>You have ${sibCount} sibling${sibCount > 1 ? "s" : ""}.</p>`);
++		siblings.vee.appends(`<p>你有 ${sibCount} 位兄弟姊妹。</p>`);
+ 		for (let i = 0; i < sibCount; ++i) {
+ 			const siblingType = rollOnArray(["brother", "sister"]);
+-			siblings.vee.appends(`<h5>${getBirthOrder()} sibling ${fmtChoice(siblingType, true)}</h5>`);
++			siblings.vee.appends(`<h5>${getBirthOrder()}兄弟姐妹${fmtChoice(siblingType, true)}</h5>`);
+ 			siblings.vee.appends(veT`<div>${joinParaList(await getPersonDetails({
+ 				gender: siblingType === "brother" ? "Male" : "Female",
+ 				parentRaces: parentRaces,
+@@ -782,7 +782,7 @@
+ 			}))}</div>`);
+ 		}
+ 	} else {
+-		siblings.vee.html(UiUtil.getTranslatedText("You are an only child."));
++		siblings.vee.html(UiUtil.getTranslatedText("你是獨生子女。"));
+ 	}
+ }
+ 
+@@ -796,27 +796,27 @@
+ 
+ 	const family = veEs(`#family`);
+ 	family.vee.empty();
+-	family.vee.appends(veT`<div>${`<b>Family:</b> ${GenUtil.getFromTable(FAMILY, RNG(100)).result}<br>`}</div>`);
++	family.vee.appends(veT`<div>${`<b>家庭：</b> ${GenUtil.getFromTable(FAMILY, RNG(100)).result}<br>`}</div>`);
+ 	let famIndex = 1;
+ 	const btnSuppFam = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-btn-supp-fam no-print"></button>`.vee.onn("click", async () => {
+ 		const supDetails = await getPersonDetails();
+ 		const wrpRes = veT`<div class="life__output-wrp-border ve-p-3 ve-my-2"></div>`;
+-		wrpRes.vee.appends(`<h5 class="ve-mt-0">Family Member Roll ${famIndex++}</h5>`);
++		wrpRes.vee.appends(`<h5 class="ve-mt-0">家庭成員擲骰 ${famIndex++}</h5>`);
+ 		wrpRes.vee.appends(veT`<div>${joinParaList(supDetails)}</div>`);
+ 		btnSuppFam.vee.css({marginBottom: "5px"});
+ 		btnSuppFam.after(wrpRes);
+ 	});
+-	family.vee.appends(`<span class="note">You can roll on the Relationship table to determine how your family members or other important figures in your life feel about you. You can also use the Race, Occupation, and Alignment tables to learn more about the family members or guardians who raised you.</span>`);
++	family.vee.appends(`<span class="note">你可以擲骰查閱關係表，決定家人或生命中的重要人物對你的感受。也可以使用種族、職業身分與陣營表，進一步了解養育你的家人或監護人。</span>`);
+ 	family.vee.appends(btnSuppFam);
+ 
+ 	const rollFamLifestyle = GenUtil.getFromTable(FAMILY_LIFESTYLE, RNG(6) + RNG(6) + RNG(6));
+-	family.vee.appends(veT`<div><b>Family lifestyle:</b> ${rollFamLifestyle.result}<br></div>`);
++	family.vee.appends(veT`<div><b>家庭生活方式：</b> ${rollFamLifestyle.result}<br></div>`);
+ 	const rollFamHome = Math.min(Math.max(RNG(100) + rollFamLifestyle.modifier, 0), 111);
+ 	const rollFamHomeRes = GenUtil.getFromTable(CHILDHOOD_HOME, rollFamHome).result;
+-	family.vee.appends(veT`<div><b>Childhood Home:</b> ${rollFamHomeRes}<br></div>`);
++	family.vee.appends(veT`<div><b>童年住處：</b> ${rollFamHomeRes}<br></div>`);
+ 
+ 	const rollChildMems = Math.min(Math.max(RNG(6) + RNG(6) + RNG(6) + getChaVal(), 3), 18);
+-	family.vee.appends(veT`<div><b>Childhood memories</b>: ${GenUtil.getFromTable(CHILDHOOD_MEMORIES, rollChildMems).result}</div>`);
++	family.vee.appends(veT`<div><b>童年回憶</b>: ${GenUtil.getFromTable(CHILDHOOD_MEMORIES, rollChildMems).result}</div>`);
+ }
+ 
+ // PERSONAL DECISIONS
+@@ -824,8 +824,8 @@
+ 	const personal = veEs(`#personal`).vee.empty();
+ 	const valBg = Number(selBg.vee.val());
+ 	const myBg = valBg === -1 ? rollOnArray(bgList) : bgList[valBg];
+-	personal.vee.appends(veT`<div>${`<b>Background:</b> ${myBg.name}<br>`}</div>`);
+-	personal.vee.appends(veT`<div>${`<b>I became a${addN(myBg.name)} ${myBg.name} because:</b> ${rollOnArray(myBg.reasons)}`}</div>`);
++	personal.vee.appends(veT`<div>${`<b>背景:</b> ${I18nZhTwUtilities.name(myBg)}<br>`}</div>`);
++	personal.vee.appends(veT`<div>${`<b>我之所以成為 ${I18nZhTwUtilities.name(myBg)}，原因是：</b> ${rollOnArray(myBg.reasons)}`}</div>`);
+ }
+ 
+ // CLASS TRAINING
+@@ -833,8 +833,8 @@
+ 	const clss = veEs(`#clss`).vee.empty();
+ 	const valClass = Number(selClass.vee.val());
+ 	const myClass = valClass === -1 ? rollOnArray(classList) : classList[valClass];
+-	clss.vee.appends(veT`<div>${`<b>Class:</b> ${myClass.name}<br>`}</div>`);
+-	clss.vee.appends(veT`<div>${`<b>I became a${addN(myClass.name)} ${myClass.name} because:</b> ${rollOnArray(myClass.reasons)}`}</div>`);
++	clss.vee.appends(veT`<div>${`<b>職業：</b> ${I18nZhTwUtilities.name(myClass)}<br>`}</div>`);
++	clss.vee.appends(veT`<div>${`<b>我之所以成為 ${I18nZhTwUtilities.name(myClass)}，原因是：</b> ${rollOnArray(myClass.reasons)}`}</div>`);
+ }
+ 
+ // LIFE EVENTS
+@@ -842,7 +842,7 @@
+ 	const events = veEs(`#events`).vee.empty();
+ 	marriageIndex = 0;
+ 	const age = GenUtil.getFromTable(LIFE_EVENTS_AGE, Number(selAge.vee.val()) || RNG(100));
+-	events.vee.appends(veT`<div>${`<b>Current age:</b> ${age.result} ${fmtChoice(`${age.age} year${age.age > 1 ? "s" : ""} old`, true)}`}</div>`);
++	events.vee.appends(veT`<div>${`<b>目前年齡：</b> ${age.result} ${fmtChoice(`${age.age}歲`, true)}`}</div>`);
+ 
+ 	for (let i = 0; i < age.events; ++i) {
+ 		const dispResult = veT`<div></div>`;
+@@ -873,12 +873,12 @@
+ 
+ 		doRollAndDisplay();
+ 
+-		const btnReroll = veT`<button class="ve-btn ve-btn-default ve-btn-xxs">Reroll</button>`
++		const btnReroll = veT`<button class="ve-btn ve-btn-default ve-btn-xxs">重擲</button>`
+ 			.vee.onn("click", () => doRollAndDisplay({isScrollIntoView: true}));
+ 
+ 		const wrpEvent = veT`<div class="ve-flex-col">
+ 			<div class="ve-flex-v-center ve-mb-1 ve-mt-2">
+-				<h5 class="ve-my-0 ve-mr-2">Life Event ${i + 1}</h5>
++				<h5 class="ve-my-0 ve-mr-2">人生事件 ${i + 1}</h5>
+ 				${btnReroll}
+ 			</div>
+ 			${dispResult}
+diff --git a/js/lootgen/lootgen-const.js b/js/lootgen/lootgen-const.js
+--- a/js/lootgen/lootgen-const.js
++++ b/js/lootgen/lootgen-const.js
+@@ -1,4 +1,4 @@
+-export const TOOLTIP_NOTHING = `Failed to generate a result! This is normally due to all potential matches being filtered out. You may want to adjust your filters to be more permissive.`;
++export const TOOLTIP_NOTHING = `無法產生結果！通常是因為所有符合條件的項目都被篩除，請放寬篩選條件後重試。`;
+ export const LOOT_TABLES_TYPE__DMG_MAGIC_ITEMS = "DMG_MAGIC_ITEMS";
+ export const LOOT_TABLES_TYPE__XGE_FAUX = "XGE_FAUX";
+ export const LOOT_TABLES_TYPE__XDMG_THEMES = "XDMG_THEMES";
+diff --git a/js/lootgen/lootgen-filter-gemsartobjects.js b/js/lootgen/lootgen-filter-gemsartobjects.js
+--- a/js/lootgen/lootgen-filter-gemsartobjects.js
++++ b/js/lootgen/lootgen-filter-gemsartobjects.js
+@@ -47,15 +47,15 @@
+ 		opts = opts || {};
+ 		super({
+ 			...opts,
+-			modalTitle: `Gem${opts.isRadio ? "" : "s"}/Art Object${opts.isRadio ? "" : "s"}`,
++			modalTitle: `寶石${opts.isRadio ? "" : "s"}／藝術品${opts.isRadio ? "" : "s"}`,
+ 			pageFilter: new PageFilterGemsArtObjects(),
+ 		});
+ 	}
+ 
+ 	_getColumnHeaders () {
+ 		const btnMeta = [
+-			{sort: "name", text: "Name", width: "9"},
+-			{sort: "source", text: "Source", width: "2"},
++			{sort: "name", text: "名稱", width: "9"},
++			{sort: "source", text: "來源", width: "2"},
+ 		];
+ 		return ModalFilterBase._getFilterColumnHeaders(btnMeta);
+ 	}
+diff --git a/js/lootgen/lootgen-generator-dragonhoard.js b/js/lootgen/lootgen-generator-dragonhoard.js
+--- a/js/lootgen/lootgen-generator-dragonhoard.js
++++ b/js/lootgen/lootgen-generator-dragonhoard.js
+@@ -17,25 +17,26 @@
+ 			"dh_dragonAge",
+ 			{
+ 				values: this.constructor._DRAGON_AGES,
++				fnDisplay: value => I18nZhTwUtilities.t(value),
+ 			},
+ 		);
+ 
+ 		const cbIsPreferRandomMagicItems = ComponentUiUtil.getCbBool(this, "dh_isPreferRandomMagicItems");
+ 
+-		const btnRoll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Roll Loot</button>`
++		const btnRoll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">擲骰產生戰利品</button>`
+ 			.vee.onn("click", () => this._dh_pDoHandleClickRollLoot());
+ 
+-		const btnClear = veT`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
++		const btnClear = veT`<button class="ve-btn ve-btn-danger ve-btn-xs">清除結果</button>`
+ 			.vee.onn("click", () => this._outputManager.doClearOutput());
+ 
+ 		veT`<div class="ve-flex-col ve-py-2 ve-px-3">
+ 			<label class="ve-split-v-center ve-mb-2">
+-				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Dragon Age</div>
++				<div class="ve-mr-2 ve-w-66 ve-no-shrink">龍的年齡</div>
+ 				${selDragonAge}
+ 			</label>
+ 
+ 			<label class="ve-split-v-center ve-mb-3">
+-				<div class="ve-mr-2 ve-w-66 ve-no-shrink" title="If selected, random magic items (of a matching rarity and tier) will be preferred over rolling on the standard ${Parser.sourceJsonToAbv(Parser.SRC_DMG).qq()} &quot;Magic Items Table [A-I]&quot; when generating magic items.">Prefer Random Magic Items</div>
++				<div class="ve-mr-2 ve-w-66 ve-no-shrink" title="勾選後，產生魔法物品時，會優先隨機選取相符稀有度與等階的物品，而非使用標準的 ${Parser.sourceJsonToAbv(Parser.SRC_DMG).qq()}「魔法物品表 [A–I]」。">優先隨機選擇魔法物品</div>
+ 				${cbIsPreferRandomMagicItems}
+ 			</label>
+ 
+@@ -46,7 +47,7 @@
+ 
+ 			<hr class="ve-hr-3">
+ 
+-			<div class="ve-small ve-italic">${this._rendererWrapped.er(`Based on the tables and rules in {@book Fizban's Treasury of Dragons|FTD|4|Creating a Hoard}`)}, pages 72.</div>
++			<div class="ve-small ve-italic">${this._rendererWrapped.er(`依據下列書籍的表格與規則： {@book Fizban's Treasury of Dragons|FTD|4|Creating a Hoard}`)}，第 72 頁。</div>
+ 		</div>`.vee.appendTo(tabMeta.wrpTab);
+ 	}
+ 
+@@ -69,8 +70,8 @@
+ 		});
+ 
+ 		const lootOutput = new this._ClsLootGenOutput({
+-			type: `Dragon Hoard: ${this._state.dh_dragonAge}`,
+-			name: `${this._state.dh_dragonAge} Dragon's Hoard`,
++			type: `Dragon Hoard: ${I18nZhTwUtilities.t(this._state.dh_dragonAge)}`,
++			name: `${I18nZhTwUtilities.t(this._state.dh_dragonAge)} Dragon's Hoard`,
+ 			coins,
+ 			gems,
+ 			artObjects,
+@@ -102,7 +103,7 @@
+ 
+ 	_getDefaultState () {
+ 		return {
+-			dh_dragonAge: "Wyrmling",
++			dh_dragonAge: "雛龍",
+ 			dh_isPreferRandomMagicItems: false,
+ 		};
+ 	}
+diff --git a/js/lootgen/lootgen-generator-findtreasure.js b/js/lootgen/lootgen-generator-findtreasure.js
+--- a/js/lootgen/lootgen-generator-findtreasure.js
++++ b/js/lootgen/lootgen-generator-findtreasure.js
+@@ -33,20 +33,20 @@
+ 
+ 		const cbIsHoard = ComponentUiUtil.getCbBool(this, "ft_isHoard");
+ 
+-		const btnRoll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Roll Loot</button>`
++		const btnRoll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">擲骰產生戰利品</button>`
+ 			.vee.onn("click", () => this._ft_pDoHandleClickRollLoot());
+ 
+-		const btnClear = veT`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
++		const btnClear = veT`<button class="ve-btn ve-btn-danger ve-btn-xs">清除結果</button>`
+ 			.vee.onn("click", () => this._outputManager.doClearOutput());
+ 
+ 		veT`<div class="ve-flex-col ve-py-2 ve-px-3">
+ 			<label class="ve-split-v-center ve-mb-2">
+-				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Challenge Rating</div>
++				<div class="ve-mr-2 ve-w-66 ve-no-shrink">挑戰等級</div>
+ 				${selChallenge}
+ 			</label>
+ 
+ 			<label class="ve-split-v-center ve-mb-2">
+-				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Is Treasure Hoard?</div>
++				<div class="ve-mr-2 ve-w-66 ve-no-shrink">產生寶藏儲藏？</div>
+ 				${cbIsHoard}
+ 			</label>
+ 
+@@ -148,7 +148,7 @@
+ 	_source = Parser.SRC_DMG;
+ 
+ 	_getHtmlBasedOn () {
+-		return this._rendererWrapped.er(`Based on the tables and rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|7|Treasure Tables}, pages 133-149.`);
++		return this._rendererWrapped.er(`依據下列書籍的表格與規則： the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|7|Treasure Tables}，第 133–149 頁。`);
+ 	}
+ 
+ 	_render_getStgHoardAdditional () { return null; }
+@@ -158,11 +158,11 @@
+ 	}
+ 
+ 	_getHoardLootOutputType () {
+-		return `Treasure Hoard: ${this.constructor._CHALLENGE_RATING_RANGES[this._state.ft_challenge]}`;
++		return `寶藏儲藏： ${this.constructor._CHALLENGE_RATING_RANGES[this._state.ft_challenge]}`;
+ 	}
+ 
+ 	_getHoardLootOutputName () {
+-		return `{@b Hoard} for Challenge Rating {@b ${this.constructor._CHALLENGE_RATING_RANGES[this._state.ft_challenge]}}`;
++		return `{@b 寶藏儲藏}，挑戰等級：{@b ${this.constructor._CHALLENGE_RATING_RANGES[this._state.ft_challenge]}}`;
+ 	}
+ }
+ 
+@@ -178,7 +178,7 @@
+ 	_source = Parser.SRC_XDMG;
+ 
+ 	_getHtmlBasedOn () {
+-		return this._rendererWrapped.er(`Based on the tables and rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_XDMG)}|XDMG} page 120 (&quot;{@book Adventure Rewards|XDMG|3|Adventure Rewards}&quot;) and page 218 (&quot;{@book Random Magic Item Rarity|XDMG|6|Random Magic Item Rarity}&quot;).`);
++		return this._rendererWrapped.er(`依據下列書籍的表格與規則： the {@book ${Parser.sourceJsonToFull(Parser.SRC_XDMG)}|XDMG} page 120 (&quot;{@book Adventure Rewards|XDMG|3|Adventure Rewards}&quot;) and page 218 (&quot;{@book 隨機 Magic Item Rarity|XDMG|6|Random Magic Item Rarity}&quot;).`);
+ 	}
+ 
+ 	_render_getStgHoardAdditional () {
+@@ -193,7 +193,7 @@
+ 
+ 		const stg = veT`<div class="ve-flex-col ve-w-100">
+ 			<label class="ve-split-v-center ve-mb-2">
+-				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Character Level</div>
++				<div class="ve-mr-2 ve-w-66 ve-no-shrink">角色等級</div>
+ 				${selCharacterLevel}
+ 			</label>
+ 		</div>`;
+@@ -208,11 +208,11 @@
+ 	}
+ 
+ 	_getHoardLootOutputType () {
+-		return `Treasure Hoard: ${this.constructor._CHALLENGE_RATING_RANGES[this._state.ft_challenge]}, Character Level ${this.constructor._CHARACTER_LEVEL_RANGES[this._state.ft_characterLevel].label}`;
++		return `寶藏儲藏： ${this.constructor._CHALLENGE_RATING_RANGES[this._state.ft_challenge]}, 角色等級 ${this.constructor._CHARACTER_LEVEL_RANGES[this._state.ft_characterLevel].label}`;
+ 	}
+ 
+ 	_getHoardLootOutputName () {
+-		return `{@b Hoard} for Challenge Rating {@b ${this.constructor._CHALLENGE_RATING_RANGES[this._state.ft_challenge]}} and Character Level {@b ${this.constructor._CHARACTER_LEVEL_RANGES[this._state.ft_characterLevel].label}}`;
++		return `{@b 寶藏儲藏}，挑戰等級：{@b ${this.constructor._CHALLENGE_RATING_RANGES[this._state.ft_challenge]}} and 角色等級 {@b ${this.constructor._CHARACTER_LEVEL_RANGES[this._state.ft_characterLevel].label}}`;
+ 	}
+ 
+ 	_getDefaultState () {
+diff --git a/js/lootgen/lootgen-generator-gemsartobjects.js b/js/lootgen/lootgen-generator-gemsartobjects.js
+--- a/js/lootgen/lootgen-generator-gemsartobjects.js
++++ b/js/lootgen/lootgen-generator-gemsartobjects.js
+@@ -16,27 +16,27 @@
+ 				btnRoll.click();
+ 			});
+ 
+-		const btnRoll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Roll Loot</button>`
++		const btnRoll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">擲骰產生戰利品</button>`
+ 			.vee.onn("click", () => this._goa_pDoHandleClickRollLoot());
+ 
+-		const btnClear = veT`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
++		const btnClear = veT`<button class="ve-btn ve-btn-danger ve-btn-xs">清除結果</button>`
+ 			.vee.onn("click", () => this._outputManager.doClearOutput());
+ 
+ 		veT`<div class="ve-flex-col ve-py-2 ve-px-3">
+-			<h4 class="ve-mt-1 ve-mb-3">Gem/Art Object Generator</h4>
++			<h4 class="ve-mt-1 ve-mb-3">寶石／藝術品產生器</h4>
+ 
+ 			<label class="ve-split-v-center ve-mb-3">
+-				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Include Gems</div>
++				<div class="ve-mr-2 ve-w-66 ve-no-shrink">包含寶石</div>
+ 				${cbIsUseGems}
+ 			</label>
+ 
+ 			<label class="ve-split-v-center ve-mb-3">
+-				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Include Art Objects</div>
++				<div class="ve-mr-2 ve-w-66 ve-no-shrink">包含藝術品</div>
+ 				${cbIsUseArtObjects}
+ 			</label>
+ 
+ 			<label class="ve-split-v-center ve-mb-3">
+-				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Target Gold Amount</div>
++				<div class="ve-mr-2 ve-w-66 ve-no-shrink">目標金額（金幣）</div>
+ 				${iptTargetGoldAmount}
+ 			</label>
+ 
+@@ -47,14 +47,14 @@
+ 
+ 			<hr class="ve-hr-3">
+ 
+-			<div class="ve-small ve-italic">${this._rendererWrapped.er(`This custom generator randomly selects gems/art objects up to the target gold amount.`)}</div>
++			<div class="ve-small ve-italic">${this._rendererWrapped.er(`此自訂產生器會隨機選取寶石與藝術品，直到接近目標金額。`)}</div>
+ 		</div>`.vee.appendTo(tabMeta.wrpTab);
+ 	}
+ 
+ 	async _goa_pDoHandleClickRollLoot () {
+-		if (this._state.gao_targetGoldAmount <= 0) return JqueryUtil.doToast({content: "Please enter a target gold amount!", type: "warning"});
++		if (this._state.gao_targetGoldAmount <= 0) return JqueryUtil.doToast({content: "請輸入目標金額！", type: "warning"});
+ 
+-		if (!this._state.gao_isUseGems && !this._state.gao_isUseArtObjects) return JqueryUtil.doToast({content: `Please select at least one of "Include Gems" and/or "Include Art Objects"`, type: "warning"});
++		if (!this._state.gao_isUseGems && !this._state.gao_isUseArtObjects) return JqueryUtil.doToast({content: `請至少勾選「包含寶石」或「包含藝術品」其中一項。`, type: "warning"});
+ 
+ 		const typeMap = {};
+ 		[{prop: "gems", stateProp: "gao_isUseGems"}, {prop: "artObjects", stateProp: "gao_isUseArtObjects"}]
+@@ -67,7 +67,7 @@
+ 			});
+ 
+ 		const types = Object.keys(typeMap).map(it => Number(it)).sort(SortUtil.ascSort).reverse();
+-		if (this._state.gao_targetGoldAmount < types.last()) return JqueryUtil.doToast({content: `Could not generate any gems/art objects for a gold amount of ${this._state.gao_targetGoldAmount}! Please increase the target gold amount.`, type: "warning"});
++		if (this._state.gao_targetGoldAmount < types.last()) return JqueryUtil.doToast({content: `無法依此金額產生寶石或藝術品：${this._state.gao_targetGoldAmount}！請提高目標金額。`, type: "warning"});
+ 
+ 		// Map of <prop> -> <type> -> {<count>, <breakdown>}
+ 		const generated = {};
+diff --git a/js/lootgen/lootgen-generator-loottables.js b/js/lootgen/lootgen-generator-loottables.js
+--- a/js/lootgen/lootgen-generator-loottables.js
++++ b/js/lootgen/lootgen-generator-loottables.js
+@@ -51,10 +51,10 @@
+ 		};
+ 		this._stateManager.addHookBase("pulseItemsFiltered", hkPulseItem);
+ 
+-		const btnRoll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Roll Loot</button>`
++		const btnRoll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">擲骰產生戰利品</button>`
+ 			.vee.onn("click", () => this._lt_pDoHandleClickRollLoot());
+ 
+-		const btnClear = veT`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
++		const btnClear = veT`<button class="ve-btn ve-btn-danger ve-btn-xs">清除結果</button>`
+ 			.vee.onn("click", () => this._outputManager.doClearOutput());
+ 
+ 		const hrHelp = veT`<hr class="ve-hr-3">`;
+@@ -80,7 +80,7 @@
+ 
+ 		veT`<div class="ve-flex-col ve-py-2 ve-px-3">
+ 			<label class="ve-split-v-center ve-mb-3">
+-				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Table</div>
++				<div class="ve-mr-2 ve-w-66 ve-no-shrink">表格</div>
+ 				${selTable}
+ 			</label>
+ 
+@@ -100,24 +100,24 @@
+ 		const tblMeta = this._lt_tableMetas[ix];
+ 		if (!tblMeta) return "\u2014";
+ 
+-		if (tblMeta.tier && tblMeta.rarity) return `Tier: ${this._lt_tableMetas[ix].tier}; Rarity: ${this._lt_tableMetas[ix].rarity}`;
+-		if (tblMeta.theme && tblMeta.rarity) return `Theme: ${this._lt_tableMetas[ix].theme}; Rarity: ${this._lt_tableMetas[ix].rarity}`;
++		if (tblMeta.tier && tblMeta.rarity) return `等階： ${I18nZhTwUtilities.t(this._lt_tableMetas[ix].tier)}；稀有度： ${I18nZhTwUtilities.t(this._lt_tableMetas[ix].rarity)}`;
++		if (tblMeta.theme && tblMeta.rarity) return `主題： ${I18nZhTwUtilities.t(this._lt_tableMetas[ix].theme)}；稀有度： ${I18nZhTwUtilities.t(this._lt_tableMetas[ix].rarity)}`;
+ 
+ 		return tblMeta.tableEntry.caption;
+ 	}
+ 
+ 	_lt_getRenderedHelp ({tableMeta}) {
+ 		switch (tableMeta.metaType) {
+-			case LOOT_TABLES_TYPE__DMG_MAGIC_ITEMS: return this._rendererWrapped.er(`Based on the tables and rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|7|Treasure Tables}, pages 133-149.`);
+-			case LOOT_TABLES_TYPE__XGE_FAUX: return this._rendererWrapped.er(`Tables auto-generated based on the rules in {@book ${Parser.sourceJsonToFull(Parser.SRC_XGE)} (Choosing Items Piecemeal)|XGE|2|choosing items piecemeal}, pages 135-136.`);
+-			case LOOT_TABLES_TYPE__XDMG_THEMES: return this._rendererWrapped.er(`Based on the tables and rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_XDMG)}|XDMG|6|Random Magic Items}, pages 326-331.`);
++			case LOOT_TABLES_TYPE__DMG_MAGIC_ITEMS: return this._rendererWrapped.er(`依據下列書籍的表格與規則： the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|7|Treasure Tables}，第 133–149 頁。`);
++			case LOOT_TABLES_TYPE__XGE_FAUX: return this._rendererWrapped.er(`依據下列書籍的規則自動產生表格： {@book ${Parser.sourceJsonToFull(Parser.SRC_XGE)} (Choosing Items Piecemeal)|XGE|2|choosing items piecemeal}，第 135–136 頁。`);
++			case LOOT_TABLES_TYPE__XDMG_THEMES: return this._rendererWrapped.er(`依據下列書籍的表格與規則： the {@book ${Parser.sourceJsonToFull(Parser.SRC_XDMG)}|XDMG|6|Random Magic Items}，第 326–331 頁。`);
+ 			default: throw new Error(`Unhandled table meta-type "${tableMeta.metaType}"`);
+ 		}
+ 	}
+ 
+ 	async _lt_pDoHandleClickRollLoot ({isTest = false} = {}) {
+ 		const tableMeta = this._lt_tableMetas[this._state.lt_ixTable];
+-		if (!tableMeta) return JqueryUtil.doToast({type: "warning", content: `Please select a table first!`});
++		if (!tableMeta) return JqueryUtil.doToast({type: "warning", content: `請先選擇表格！`});
+ 
+ 		const lootOutput = new this._ClsLootGenOutput({
+ 			type: `Treasure Table Roll: ${this._lt_pDoHandleClickRollLoot_getTypePart({tableMeta})}`,
+@@ -131,17 +131,17 @@
+ 	_lt_pDoHandleClickRollLoot_getTypePart ({tableMeta}) {
+ 		switch (tableMeta.metaType) {
+ 			case LOOT_TABLES_TYPE__DMG_MAGIC_ITEMS: return tableMeta.tableEntry.caption;
+-			case LOOT_TABLES_TYPE__XGE_FAUX: return `${tableMeta.tier} ${tableMeta.rarity}`;
+-			case LOOT_TABLES_TYPE__XDMG_THEMES: return `${tableMeta.theme} ${tableMeta.rarity}`;
++			case LOOT_TABLES_TYPE__XGE_FAUX: return `${I18nZhTwUtilities.t(tableMeta.tier)} ${I18nZhTwUtilities.t(tableMeta.rarity)}`;
++			case LOOT_TABLES_TYPE__XDMG_THEMES: return `${I18nZhTwUtilities.t(tableMeta.theme)} ${I18nZhTwUtilities.t(tableMeta.rarity)}`;
+ 			default: throw new Error(`Unhandled table meta-type "${tableMeta.metaType}"`);
+ 		}
+ 	}
+ 
+ 	_lt_pDoHandleClickRollLoot_getNamePart ({tableMeta}) {
+ 		switch (tableMeta.metaType) {
+-			case LOOT_TABLES_TYPE__DMG_MAGIC_ITEMS: return `Rolled against {@b {@table ${tableMeta.tableEntry.caption}|${Parser.SRC_DMG}}}`;
+-			case LOOT_TABLES_TYPE__XGE_FAUX: return `Rolled on the table for {@b ${tableMeta.tier} ${tableMeta.rarity}} items`;
+-			case LOOT_TABLES_TYPE__XDMG_THEMES: return `Rolled on the table for {@b ${tableMeta.rarity} ${tableMeta.theme}}`;
++			case LOOT_TABLES_TYPE__DMG_MAGIC_ITEMS: return `擲骰使用：{@b {@table ${tableMeta.tableEntry.caption}|${Parser.SRC_DMG}}}`;
++			case LOOT_TABLES_TYPE__XGE_FAUX: return `擲骰使用的表格：{@b ${I18nZhTwUtilities.t(tableMeta.tier)} ${I18nZhTwUtilities.t(tableMeta.rarity)}}物品`;
++			case LOOT_TABLES_TYPE__XDMG_THEMES: return `擲骰使用的表格：{@b ${I18nZhTwUtilities.t(tableMeta.rarity)} ${I18nZhTwUtilities.t(tableMeta.theme)}}`;
+ 			default: throw new Error(`Unhandled table meta-type "${tableMeta.metaType}"`);
+ 		}
+ 	}
+diff --git a/js/lootgen/lootgen-generator-partyloot.js b/js/lootgen/lootgen-generator-partyloot.js
+--- a/js/lootgen/lootgen-generator-partyloot.js
++++ b/js/lootgen/lootgen-generator-partyloot.js
+@@ -111,7 +111,7 @@
+ 
+ 		const stgDefault = veT`<div class="ve-flex-col ve-w-100">
+ 			<label class="ve-split-v-center ve-mb-2">
+-				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Character Level</div>
++				<div class="ve-mr-2 ve-w-66 ve-no-shrink">角色等級</div>
+ 				${selCharLevel}
+ 			</label>
+ 		</div>`;
+@@ -129,17 +129,17 @@
+ 
+ 		const stgExactLevel = veT`<div class="ve-flex-col ve-w-100">
+ 			<div class="ve-flex-col ve-mb-2">
+-				<div class="ve-mb-2">Character Level</div>
++				<div class="ve-mb-2">角色等級</div>
+ 				${sliderLevel}
+ 			</div>
+ 		</div>`;
+ 		// endregion
+ 
+ 		// region Buttons
+-		const btnRoll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">Roll Loot</button>`
++		const btnRoll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-mr-2">擲骰產生戰利品</button>`
+ 			.vee.onn("click", () => this._pl_pDoHandleClickRollLoot());
+ 
+-		const btnClear = veT`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
++		const btnClear = veT`<button class="ve-btn ve-btn-danger ve-btn-xs">清除結果</button>`
+ 			.vee.onn("click", () => this._outputManager.doClearOutput());
+ 		// endregion
+ 
+@@ -152,9 +152,9 @@
+ 
+ 		veT`<div class="ve-flex-col ve-py-2 ve-px-3">
+ 			<p>
+-				Generates a set of magical items for a party, based on the tables and rules in ${this._rendererWrapped.er(`{@book Xanathar's Guide to Everything|XGE|2|awarding magic items}`)}, pages 135-136.
++				為隊伍產生一組魔法物品，依據下列書籍的表格與規則： ${this._rendererWrapped.er(`{@book Xanathar's Guide to Everything|XGE|2|awarding magic items}`)}，第 135–136 頁。
+ 			</p>
+-			<p><i>If &quot;Exact Level&quot; is selected, the output will include a proportional number of items for any partially-completed tier.</i></p>
++			<p><i>勾選「精確等級」後，尚未完成的等階會按進度比例分配物品數量。</i></p>
+ 
+ 			<hr class="ve-hr-3">
+ 
+@@ -162,12 +162,12 @@
+ 			${stgExactLevel}
+ 
+ 			<label class="ve-split-v-center ve-mb-2">
+-				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Cumulative with Previous Tiers</div>
++				<div class="ve-mr-2 ve-w-66 ve-no-shrink">累計先前等階的物品</div>
+ 				${cbIsCumulative}
+ 			</label>
+ 
+ 			<label class="ve-split-v-center ve-mb-3">
+-				<div class="ve-mr-2 ve-w-66 ve-no-shrink">Is Exact Level</div>
++				<div class="ve-mr-2 ve-w-66 ve-no-shrink">使用精確等級</div>
+ 				${cbIsExactLevel}
+ 			</label>
+ 
+diff --git a/js/lootgen/lootgen-magicitem.js b/js/lootgen/lootgen-magicitem.js
+--- a/js/lootgen/lootgen-magicitem.js
++++ b/js/lootgen/lootgen-magicitem.js
+@@ -11,7 +11,7 @@
+ 			isVerbose = false,
+ 		},
+ 	) {
+-		const btnRerollSpell = veT`<span class="ve-roller render-roller ve-mr-2">[reroll${isVerbose ? ` spell` : ""}]</span>`
++		const btnRerollSpell = veT`<span class="ve-roller render-roller ve-mr-2">[重擲${isVerbose ? `法術` : ""}]</span>`
+ 			.vee.onn("click", evt => evt.preventDefault())
+ 			.vee.onn("click", () => {
+ 				comp._state.spell = RollerUtil.rollOnArray(spells.filter(it => it.level === comp._state.spellLevel));
+@@ -19,7 +19,7 @@
+ 
+ 		const dispSpell = veT`<div class="ve-no-wrap"></div>`;
+ 		comp._addHookBase("spell", () => {
+-			if (!comp._state.spell) return dispSpell.vee.html(`<span class="ve-help-subtle" title="${TOOLTIP_NOTHING.qq()}">(no spell)</span>`);
++			if (!comp._state.spell) return dispSpell.vee.html(`<span class="ve-help-subtle" title="${TOOLTIP_NOTHING.qq()}">（無法術）</span>`);
+ 			dispSpell.vee.html(rendererWrapped.er(`{@spell ${comp._state.spell.name}|${comp._state.spell.source}}`));
+ 		})();
+ 
+@@ -32,7 +32,7 @@
+ 			}
+ 
+ 			dispFilter
+-				.vee.html(`${rendererWrapped.er(`{@filter see all ${Parser.spLevelToFullLevelText(comp._state.spellLevel, {isDash: true})} spells|spells|level=${comp._state.spellLevel}}`)}`)
++				.vee.html(`${rendererWrapped.er(`{@filter 查看所有${comp._state.spellLevel === 0 ? "戲法" : `${comp._state.spellLevel}環法術`}|spells|level=${comp._state.spellLevel}}`)}`)
+ 				.vee.show();
+ 		})();
+ 
+@@ -40,7 +40,7 @@
+ 			<span>(</span>
+ 			${btnRerollSpell}
+ 			${dispSpell}
+-			<span class="ve-muted ve-mx-2 ve-no-wrap">-or-</span>
++			<span class="ve-muted ve-mx-2 ve-no-wrap">或</span>
+ 			${dispFilter}
+ 			<span>)</span>
+ 		</div>`;
+@@ -193,14 +193,14 @@
+ 			const subItems = dataManager.getDataItemsFilteredMatching(row.choose.fromMatching);
+ 			const ptAdditionalText = Object.entries(row.choose.fromMatching)
+ 				.sort(([kA], [kB]) => SortUtil.ascSortLower(kA, kB))
+-				.map(([k, v]) => `${k.toTitleCase()}: ${v.toTitleCase()}`)
++				.map(([k, v]) => `${I18nZhTwUtilities.t(k.toTitleCase())}：${I18nZhTwUtilities.t(v)}`)
+ 				.join(", ");
+ 
+ 			const item = RollerUtil.rollOnArray(subItems);
+ 
+ 			const baseEntry = item
+ 				? `{@item ${DataUtil.proxy.getUidPacked("item", item, "item", {isMaintainCase: true})}}`
+-				: `<span class="ve-help-subtle" title="${TOOLTIP_NOTHING.qq()}">(No item)</span>`;
++				: `<span class="ve-help-subtle" title="${TOOLTIP_NOTHING.qq()}">（無物品）</span>`;
+ 
+ 			return new LootGenMagicItemSubItems({
+ 				dataManager,
+@@ -289,7 +289,7 @@
+ 	) {
+ 		baseEntry = baseEntry || item
+ 			? `{@item ${DataUtil.proxy.getUidPacked("item", item, "item", {isMaintainCase: true})}}`
+-			: `<span class="ve-help-subtle" title="${TOOLTIP_NOTHING.qq()}">(no item)</span>`;
++			: `<span class="ve-help-subtle" title="${TOOLTIP_NOTHING.qq()}">（無物品）</span>`;
+ 
+ 		if (item?.spellScrollLevel != null) {
+ 			return new LootGenMagicItemSpellScroll({
+@@ -471,9 +471,9 @@
+ 
+ 		const isAltModeDefault = this._fnGetIsPreferAltChoose?.();
+ 		const title = this._itemsAltChoose
+-			? isAltModeDefault ? `SHIFT to roll on Magic Item Table ${this._magicItemTable.type}` : `SHIFT to roll ${Parser.getArticle(this._itemsAltChooseDisplayText)} ${this._itemsAltChooseDisplayText} item`
++			? isAltModeDefault ? `按住 SHIFT，依魔法物品表擲骰：${this._magicItemTable.type}` : `按住 SHIFT 以重擲：${Parser.getArticle(this._itemsAltChooseDisplayText)} ${this._itemsAltChooseDisplayText} item`
+ 			: null;
+-		return veT`<span class="ve-roller render-roller" ${title ? `title="${title}"` : ""}>[reroll]</span>`
++		return veT`<span class="ve-roller render-roller" ${title ? `title="${title}"` : ""}>[重擲]</span>`
+ 			.vee.onn("mousedown", evt => evt.preventDefault())
+ 			.vee.onn("click", evt => this._pDoReroll({isAltRoll: isAltModeDefault ? !evt.shiftKey : evt.shiftKey}));
+ 	}
+@@ -508,7 +508,7 @@
+ 
+ 	_getRender_getDispRoll ({prop = "roll", propAdditionalText = "rollAdditionalText"} = {}) {
+ 		const dispRoll = veT`<div class="ve-muted"></div>`;
+-		const hkRoll = () => dispRoll.vee.txt(this._state.isItemsAltChooseRoll ? `(${this._itemsAltChooseDisplayText} item)` : `(Rolled ${this._state[prop]}${this._state[propAdditionalText] || ""})`);
++		const hkRoll = () => dispRoll.vee.txt(this._state.isItemsAltChooseRoll ? `(${this._itemsAltChooseDisplayText} item)` : `（擲出：${this._state[prop]}${this._state[propAdditionalText] || ""})`);
+ 		this._addHookBase(prop, hkRoll);
+ 		hkRoll();
+ 		return dispRoll;
+@@ -630,7 +630,7 @@
+ 			isVerbose: true,
+ 		});
+ 
+-		const btnRerollSubItem = veT`<span class="ve-roller render-roller">[reroll]</span>`
++		const btnRerollSubItem = veT`<span class="ve-roller render-roller">[重擲]</span>`
+ 			.vee.onn("mousedown", evt => evt.preventDefault())
+ 			.vee.onn("click", () => {
+ 				const itemRolled = RollerUtil.rollOnArray(this._subItems);
+@@ -737,7 +737,7 @@
+ 
+ 		const btnReroll = this._getBtnReroll();
+ 
+-		const btnRerollSub = veT`<span class="ve-roller render-roller ve-small ve-self-flex-end">[reroll]</span>`
++		const btnRerollSub = veT`<span class="ve-roller render-roller ve-small ve-self-flex-end">[重擲]</span>`
+ 			.vee.onn("mousedown", evt => evt.preventDefault())
+ 			.vee.onn("click", async () => {
+ 				const {subRowRoll, subRow, subItem} = await LootGenMagicItemTable.pGetSubRollMeta({
+diff --git a/js/lootgen/lootgen-output.js b/js/lootgen/lootgen-output.js
+--- a/js/lootgen/lootgen-output.js
++++ b/js/lootgen/lootgen-output.js
+@@ -32,11 +32,11 @@
+ 
+ 	_getEleTitleSplit () {
+ 		const btnRivet = !globalThis.IS_VTT && ExtensionUtil.ACTIVE
+-			? veT`<button title="Send to Foundry (SHIFT for Temporary Import)" class="no-print ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-send"></span></button>`
++			? veT`<button title="傳送至 Foundry（按住 SHIFT 可暫時匯入）" class="no-print ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-send"></span></button>`
+ 				.vee.onn("click", evt => this._pDoSendToFoundry({isTemp: !!evt.shiftKey}))
+ 			: null;
+ 
+-		const btnDownload = veT`<button title="Download JSON" class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-download glyphicon--top-2p"></span></button>`
++		const btnDownload = veT`<button title="下載 JSON" class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-download glyphicon--top-2p"></span></button>`
+ 			.vee.onn("click", () => this._pDoSaveAsJson());
+ 
+ 		return veT`<div class="ve-btn-group">
+@@ -56,8 +56,8 @@
+ 		const elesParts = [
+ 			this._render_getPtValueSummary(),
+ 			this._render_getPtCoins(),
+-			...this._render_getPtGemsArtObjects({loot: this._gems, name: "gemstones"}),
+-			...this._render_getPtGemsArtObjects({loot: this._artObjects, name: "art objects"}),
++			...this._render_getPtGemsArtObjects({loot: this._gems, name: "寶石"}),
++			...this._render_getPtGemsArtObjects({loot: this._artObjects, name: "藝術品"}),
+ 			this._render_getPtDragonMundaneItems(),
+ 			...this._render_getPtMagicItems(),
+ 		]
+@@ -67,7 +67,7 @@
+ 		this._wrp = veT`<div class="ve-flex-col ve-lootg__wrp-output ve-py-3 ve-px-2 ve-my-2 ve-mr-1">
+ 			${dispTitle}
+ 			${elesParts.length ? veT`<ul>${elesParts}</ul>` : null}
+-			${!elesParts.length ? `<div class="ve-muted ve-help-subtle ve-italic" title="${TOOLTIP_NOTHING.qq()}">(No loot!)</div>` : null}
++			${!elesParts.length ? `<div class="ve-muted ve-help-subtle ve-italic" title="${TOOLTIP_NOTHING.qq()}">（沒有戰利品！）</div>` : null}
+ 		</div>`
+ 			.vee.prependTo(eleParent);
+ 
+@@ -91,7 +91,7 @@
+ 		const toSend = await this._pGetFoundryForm();
+ 		if (isTemp) toSend.isTemp = isTemp;
+ 		if (toSend.currency || toSend.entityInfos) return ExtensionUtil.pDoSend({type: "5etools.lootgen.loot", data: toSend});
+-		JqueryUtil.doToast({content: `Nothing to send!`, type: "warning"});
++		JqueryUtil.doToast({content: `沒有可傳送的內容！`, type: "warning"});
+ 	}
+ 
+ 	async _pDoSaveAsJson () {
+@@ -212,7 +212,7 @@
+ 			this._artObjects?.length ? this._artObjects.map(it => it.type * it.count * 100).sum() : 0,
+ 		].sum();
+ 
+-		return veT`<li class="ve-italic ve-muted">A total of ${(totalValue / 100).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")} worth of coins, art objects, and/or gems, as follows:</li>`;
++		return veT`<li class="ve-italic ve-muted">金幣、藝術品與寶石總價值為 ${(totalValue / 100).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")}，明細如下：</li>`;
+ 	}
+ 
+ 	_render_getPtCoins () {
+@@ -225,7 +225,7 @@
+ 			.map(it => `${this._coins[it].toLocaleStringVe()} ${LootGenUtils.getCoinageLabel(it)}`);
+ 
+ 		return veT`
+-			<li>${(total / 100).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")} in coinage:</li>
++			<li>${(total / 100).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")}的貨幣：</li>
+ 			<ul>
+ 				${breakdown.map(it => `<li>${it}</li>`).join("")}
+ 			</ul>
+@@ -236,7 +236,7 @@
+ 		if (!this._dragonMundaneItems) return null;
+ 
+ 		return veT`
+-			<li>${this._dragonMundaneItems.count} mundane item${this._dragonMundaneItems.count !== 1 ? "s" : ""}:</li>
++			<li>${this._dragonMundaneItems.count}件非魔法物品${this._dragonMundaneItems.count !== 1 ? "s" : ""}:</li>
+ 			<ul>
+ 				${this._dragonMundaneItems.breakdown.map(it => `<li>${it}</li>`).join("")}
+ 			</ul>
+@@ -249,7 +249,7 @@
+ 		return loot.map(lt => {
+ 			const typeNum = isNaN(lt.type);
+ 			return veT`
+-			<li>${(lt.type).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")} ${name} (×${lt.count}; worth ${((lt.type * lt.count)).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")} total):</li>
++			<li>${(lt.type).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")} ${name} (×${lt.count}；價值 ${((lt.type * lt.count)).toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")}）：</li>
+ 			<ul>
+ 				${Object.entries(lt.breakdown).map(([result, count]) => `<li>${this._rendererWrapped.er(result)}${count > 1 ? `, ×${count}` : ""}</li>`).join("")}
+ 			</ul>
+@@ -279,7 +279,7 @@
+ 						.sort(([rarityA], [rarityB]) => SortUtil.ascSortItemRarity(rarityB, rarityA))
+ 						.map(([rarity, lootItems]) => {
+ 							return veT`
+-								<li>${rarity.toTitleCase()} items (×${lootItems.length}):</li>
++								<li>${I18nZhTwUtilities.t(rarity)}物品（×${lootItems.length}）：</li>
+ 								<ul>${lootItems.map(it => it.getRender())}</ul>
+ 							`;
+ 						})
+@@ -288,7 +288,7 @@
+ 					if (!ulsByRarity.length) return null;
+ 
+ 					return veT`
+-						<li>${magicItems.tier.toTitleCase()} items:</li>
++						<li>${I18nZhTwUtilities.t(magicItems.tier)}物品：</li>
+ 						<ul>
+ 							${ulsByRarity}
+ 						</ul>
+@@ -296,7 +296,7 @@
+ 				}
+ 
+ 				return veT`
+-					<li>Magic Items${magicItems.tag ? ` (${this._rendererWrapped.er(magicItems.tag)})` : ""}${(magicItems.count || 0) > 1 ? ` (×${magicItems.count})` : ""}</li>
++					<li>魔法物品${magicItems.tag ? ` (${this._rendererWrapped.er(magicItems.tag)})` : ""}${(magicItems.count || 0) > 1 ? ` (×${magicItems.count})` : ""}</li>
+ 					<ul>${magicItems.breakdown.map(it => it.getRender())}</ul>
+ 				`;
+ 			});
+diff --git a/js/lootgen/lootgen-state.js b/js/lootgen/lootgen-state.js
+--- a/js/lootgen/lootgen-state.js
++++ b/js/lootgen/lootgen-state.js
+@@ -22,7 +22,7 @@
+ 		if (Parser.COIN_ABVS.every(it => this._state[this.getPropsCoins(it).propIsAllowed])) return coins;
+ 
+ 		if (Parser.COIN_ABVS.every(it => !this._state[this.getPropsCoins(it).propIsAllowed])) {
+-			JqueryUtil.doToast({content: "All currencies are disabled! Generated currency has been discarded.", type: "warning"});
++			JqueryUtil.doToast({content: "所有貨幣種類皆已停用！產生的貨幣已捨棄。", type: "warning"});
+ 			return {};
+ 		}
+ 
+diff --git a/js/lootgen/lootgen-ui.js b/js/lootgen/lootgen-ui.js
+--- a/js/lootgen/lootgen-ui.js
++++ b/js/lootgen/lootgen-ui.js
+@@ -234,7 +234,7 @@
+ 						rarity,
+ 						tableEntry,
+ 						table: this._dataManager.getData().magicItems.find(it => it.type === type),
+-						tag: `{@table ${theme} - ${rarity}|XDMG|${theme} - ${rarity}}`,
++						tag: `{@table ${theme} - ${rarity}|XDMG|${I18nZhTwUtilities.t(theme)}－${I18nZhTwUtilities.t(rarity)}}`,
+ 					};
+ 				}),
+ 				...tablesMagicItemsDmg.map(({type, tableEntry}) => {
+@@ -288,8 +288,8 @@
+ 						const isMundane = Renderer.item.isMundane({rarity});
+ 
+ 						const caption = tier === "other"
+-							? `Other ${isMundane ? "mundane" : "magic"} items of ${rarity} rarity`
+-							: `${tier.toTitleCase()}-tier ${isMundane ? "mundane" : "magic"} items of ${rarity} rarity`;
++							? `其他${I18nZhTwUtilities.t(rarity)}${isMundane ? "非魔法" : "魔法"}物品`
++							: `${I18nZhTwUtilities.t(tier)}等階的${I18nZhTwUtilities.t(rarity)}${isMundane ? "非魔法" : "魔法"}物品`;
+ 
+ 						return {
+ 							metaType: LOOT_TABLES_TYPE__XGE_FAUX,
+@@ -332,34 +332,34 @@
+ 		const tabMetasLookup = this._renderTabsDict(
+ 			{
+ 				[this._generatorFindTreasure24.identifier]: new TabUiUtil.TabMeta({
+-					name: "Adventure Rewards by CR ('24)",
+-					title: `Random Treasure by CR (${Parser.sourceJsonToFull(Parser.SRC_XDMG)})`,
++					name: "依挑戰等級產生冒險獎勵（2024）",
++					title: `依挑戰等級產生隨機財寶（${Parser.sourceJsonToFull(Parser.SRC_XDMG)})`,
+ 					hasBorder: true,
+ 					hasBackground: true,
+ 				}),
+ 				[this._generatorFindTreasure.identifier]: new TabUiUtil.TabMeta({
+-					name: "Random Treasure by CR ('14)",
+-					title: `Random Treasure by CR (${Parser.sourceJsonToFull(Parser.SRC_DMG)})`,
++					name: "依挑戰等級產生隨機財寶（2014）",
++					title: `依挑戰等級產生隨機財寶（${Parser.sourceJsonToFull(Parser.SRC_DMG)})`,
+ 					hasBorder: true,
+ 					hasBackground: true,
+ 				}),
+ 				[this._generatorLootTables.identifier]: new TabUiUtil.TabMeta({
+-					name: "Loot Tables",
++					name: "戰利品表",
+ 					hasBorder: true,
+ 					hasBackground: true,
+ 				}),
+ 				[this._generatorPartyLoot.identifier]: new TabUiUtil.TabMeta({
+-					name: "Party Loot",
++					name: "隊伍戰利品",
+ 					hasBorder: true,
+ 					hasBackground: true,
+ 				}),
+ 				[this._generatorDragonHoard.identifier]: new TabUiUtil.TabMeta({
+-					name: "Dragon Hoard",
++					name: "龍的寶藏",
+ 					hasBorder: true,
+ 					hasBackground: true,
+ 				}),
+ 				[this._generatorGemsArtObjects.identifier]: new TabUiUtil.TabMeta({
+-					name: "Gems/Art Objects",
++					name: "寶石／藝術品",
+ 					hasBorder: true,
+ 					hasBackground: true,
+ 				}),
+@@ -369,7 +369,7 @@
+ 					buttons: [
+ 						{
+ 							html: `<span class="glyphicon glyphicon-option-vertical"></span>`,
+-							title: "Options",
++							title: "選項",
+ 							type: "default",
+ 							pFnClick: null, // This is assigned later
+ 						},
+@@ -413,45 +413,45 @@
+ 	_render_tabOptions ({tabMeta}) {
+ 		const menuOthers = ContextUtil.getMenu([
+ 			new ContextUtil.Action(
+-				"Set Random Item Filters",
++				"設定隨機物品篩選",
+ 				() => {
+ 					this._modalFilterItems.handleHiddenOpenButtonClick();
+ 				},
+ 				{
+-					title: `Set the filtering parameters used to determine which items can be randomly rolled for some results. Note that this does not, for example, remove these items from standard loot tables.`,
++					title: `設定隨機結果可選取的物品。請注意，此設定不會移除標準戰利品表中的物品。`,
+ 					fnActionAlt: async (evt) => {
+ 						this._modalFilterItems.handleHiddenResetButtonClick(evt);
+-						JqueryUtil.doToast(`Reset${evt.shiftKey ? " all" : ""}!`);
++						JqueryUtil.doToast(`重設${evt.shiftKey ? " all" : ""}!`);
+ 					},
+ 					textAlt: `<span class="glyphicon glyphicon-refresh"></span>`,
+ 					titleAlt: FILTER_BOX_TITLE_BTN_RESET,
+ 				},
+ 			),
+ 			new ContextUtil.Action(
+-				"Set Random Spell Filters",
++				"設定隨機法術篩選",
+ 				() => {
+ 					this._modalFilterSpells.handleHiddenOpenButtonClick();
+ 				},
+ 				{
+-					title: `Set the filtering parameters used to determine which spells can be randomly rolled for some results.`,
++					title: `設定隨機結果可選取的法術。`,
+ 					fnActionAlt: async (evt) => {
+ 						this._modalFilterSpells.handleHiddenResetButtonClick(evt);
+-						JqueryUtil.doToast(`Reset${evt.shiftKey ? " all" : ""}!`);
++						JqueryUtil.doToast(`重設${evt.shiftKey ? " all" : ""}!`);
+ 					},
+ 					textAlt: `<span class="glyphicon glyphicon-refresh"></span>`,
+ 					titleAlt: FILTER_BOX_TITLE_BTN_RESET,
+ 				},
+ 			),
+ 			new ContextUtil.Action(
+-				"Set Random Gems/Art Objects Filters",
++				"設定隨機寶石／藝術品篩選",
+ 				() => {
+ 					this._modalFilterGemsArtObjects.handleHiddenOpenButtonClick();
+ 				},
+ 				{
+-					title: `Set the filtering parameters used to determine which gems and art objects can be randomly rolled for some results.`,
++					title: `設定隨機結果可選取的寶石與藝術品。`,
+ 					fnActionAlt: async (evt) => {
+ 						this._modalFilterGemsArtObjects.handleHiddenResetButtonClick(evt);
+-						JqueryUtil.doToast(`Reset${evt.shiftKey ? " all" : ""}!`);
++						JqueryUtil.doToast(`重設${evt.shiftKey ? " all" : ""}!`);
+ 					},
+ 					textAlt: `<span class="glyphicon glyphicon-refresh"></span>`,
+ 					titleAlt: FILTER_BOX_TITLE_BTN_RESET,
+@@ -459,7 +459,7 @@
+ 			),
+ 			null,
+ 			new ContextUtil.Action(
+-				"Settings",
++				"設定",
+ 				async () => {
+ 					await this._opts_pDoOpenSettings();
+ 				},
+@@ -478,7 +478,7 @@
+ 	}
+ 
+ 	async _opts_pDoOpenSettings () {
+-		const {eleModalInner} = await UiUtil.pGetShowModal({title: "Settings"});
++		const {eleModalInner} = await UiUtil.pGetShowModal({title: "設定"});
+ 
+ 		const rowsCurrency = Parser.COIN_ABVS
+ 			.map(it => {
+@@ -493,7 +493,7 @@
+ 			});
+ 
+ 		veT(eleModalInner)`
+-			<div class="ve-mb-1" title="Disabled currencies will be converted to equivalent amounts of another currency.">Allowed Currencies:</div>
++			<div class="ve-mb-1" title="停用的貨幣將換算成等值的其他貨幣。">允許的貨幣：</div>
+ 			<div class="ve-pl-4 ve-flex-col">
+ 				${rowsCurrency}
+ 			</div>
+@@ -504,7 +504,7 @@
+ 		const wrpOutputRows = this._outputManager.setWrpOutputRows(veT`<div class="ve-w-100 ve-h-100 ve-flex-col ve-overflow-y-auto ve-smooth-scroll"></div>`);
+ 
+ 		veT`<div class="ve-flex-col ve-w-100 ve-h-100">
+-			<h4 class="ve-my-0"><i>Output</i></h4>
++			<h4 class="ve-my-0"><i>結果</i></h4>
+ 			${wrpOutputRows}
+ 		</div>`
+ 			.vee.appendTo(wrp);
+diff --git a/js/objects.js b/js/objects.js
+--- a/js/objects.js
++++ b/js/objects.js
+@@ -18,7 +18,7 @@
+ 
+ 	pGetSublistItem (it, hash) {
+ 		const size = Renderer.utils.getRenderedSize(it.size);
+-		const cellsText = [it.name, size];
++		const cellsText = [I18nZhTwUtilities.name(it), size];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+ 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+@@ -31,7 +31,7 @@
+ 		const listItem = new ListItem(
+ 			hash,
+ 			ele,
+-			it.name,
++			I18nZhTwUtilities.name(it),
+ 			{
+ 				...ListItem.getCommonValues(it),
+ 				size,
+@@ -86,7 +86,7 @@
+ 		const size = Renderer.utils.getRenderedSize(obj.size);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+-			<span class="ve-bold ve-col-8 ve-pl-0 ve-pr-1">${obj.name}</span>
++			<span class="ve-bold ve-col-8 ve-pl-0 ve-pr-1">${I18nZhTwUtilities.name(obj)}</span>
+ 			<span class="ve-col-2 ve-px-1 ve-text-center">${size}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(obj.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(obj.source)}">${source}</span>
+ 		</a>`;
+@@ -94,7 +94,7 @@
+ 		const listItem = new ListItem(
+ 			obI,
+ 			eleLi,
+-			obj.name,
++			I18nZhTwUtilities.name(obj),
+ 			{
+ 				source,
+ 				...ListItem.getCommonValues(obj),
+diff --git a/js/parser.js b/js/parser.js
+--- a/js/parser.js
++++ b/js/parser.js
+@@ -2780,7 +2780,7 @@
+ };
+ 
+ Parser.trapHazTypeToFull = function (type) {
+-	return Parser._parse_aToB(Parser.TRAP_HAZARD_TYPE_TO_FULL, type);
++	return globalThis.I18nZhTwUtilities?.trapType(type) || Parser._parse_aToB(Parser.TRAP_HAZARD_TYPE_TO_FULL, type);
+ };
+ 
+ Parser.TRAP_HAZARD_TYPE_TO_FULL = {
+diff --git a/js/render-decks.js b/js/render-decks.js
+--- a/js/render-decks.js
++++ b/js/render-decks.js
+@@ -4,17 +4,17 @@
+ 	static SETTINGS = {
+ 		cardLayout: new SettingsUtil.EnumSetting({
+ 			type: "enum",
+-			name: "Card Layout",
+-			help: `The layout to use when displaying cards in a deck.`,
++			name: "卡牌配置",
++			help: `顯示牌組卡牌時使用的排列方式。`,
+ 			defaultVal: "list",
+ 			enumVals: [
+ 				{
+ 					value: "list",
+-					name: "List",
++					name: "清單",
+ 				},
+ 				{
+ 					value: "grid",
+-					name: "Grid",
++					name: "格狀",
+ 				},
+ 			],
+ 		}),
+@@ -24,7 +24,7 @@
+ 		const ptText = Renderer.get()
+ 			.setFirstSection(true)
+ 			.setPartPageExpandCollapseDisabled(true)
+-			.render({name: card.name, entries: Renderer.card.getFullEntries(card, {backCredit: deck?.back?.credit})}, 1);
++			.render({name: I18nZhTwUtilities.name(card), entries: Renderer.card.getFullEntries(card, {backCredit: deck?.back?.credit})}, 1);
+ 		Renderer.get().setPartPageExpandCollapseDisabled(false);
+ 		return ptText;
+ 	}
+@@ -45,19 +45,19 @@
+ 			.map((card, ixCard) => {
+ 				const ptText = this.getCardTextHtml({card});
+ 
+-				const btnMarkDrawn = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Mark Card as Drawn"><i class="fas fa-fw fa-cards"></i></button>`
++				const btnMarkDrawn = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="標記為已抽出"><i class="fas fa-fw fa-cards"></i></button>`
+ 					.vee.onn("click", async evt => {
+ 						evt.stopPropagation();
+ 						await cardStateManager.pDrawCard(ent, card);
+ 					});
+ 
+-				const btnReplace = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Return Card to Deck"><i class="fas fa-arrow-rotate-left"></i></button>`
++				const btnReplace = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="將卡牌放回牌組"><i class="fas fa-arrow-rotate-left"></i></button>`
+ 					.vee.onn("click", async evt => {
+ 						evt.stopPropagation();
+ 						await cardStateManager.pReplaceCard(ent, card);
+ 					});
+ 
+-				const btnViewer = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Open Card Viewer"><span class="glyphicon glyphicon-eye-open"></span></button>`
++				const btnViewer = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="開啟卡牌檢視器"><span class="glyphicon glyphicon-eye-open"></span></button>`
+ 					.vee.onn("click", async evt => {
+ 						evt.stopPropagation();
+ 						try {
+@@ -76,7 +76,7 @@
+ 							${btnViewer}
+ 						</div>
+ 					</div>
+-					${Renderer.get().setFirstSection(true).render({...card.face, title: card.name, altText: card.name})}
++					${Renderer.get().setFirstSection(true).render({...card.face, title: I18nZhTwUtilities.name(card), altText: I18nZhTwUtilities.name(card)})}
+ 				</div>`;
+ 
+ 				const imgFace = wrpFace.vee.find("img");
+@@ -103,7 +103,7 @@
+ 		</div>`;
+ 
+ 		const ptCards = veT`<div class="ve-flex-col">
+-			<h3 class="ve-dnd-font ve-my-0 ve-mb-1 decks__h-cards">Cards</h3>
++			<h3 class="ve-dnd-font ve-my-0 ve-mb-1 decks__h-cards">卡牌</h3>
+ 			${wrpCardRows}
+ 		</div>`;
+ 
+diff --git a/js/render.js b/js/render.js
+--- a/js/render.js
++++ b/js/render.js
+@@ -9626,10 +9626,10 @@
+ 				? `{@b 載貨量（Cargo Capacity）：} ${Renderer.vehicle.getShipCargoCapacity(ent)}`
+ 				: null,
+ 			entryArmorClass: ent.ac != null
+-				? `{@b 護甲等級（Armor Class）：} ${ent.ac.special ?? ent.ac}`
++				? `{@b 護甲等級（Armor Class）：} ${ent._displayAc ?? ent.ac.special ?? ent.ac}`
+ 				: null,
+ 			entryHitPoints: ent.hp != null
+-				? `{@b 生命值（Hit Points）：} ${ent.hp.special ?? ent.hp}`
++				? `{@b 生命值（Hit Points）：} ${ent._displayHp ?? ent.hp.special ?? ent.hp}`
+ 				: null,
+ 			entrySpeed: ent.speed != null
+ 				? `{@b 速度（Speed）：} ${i18n?.getSpeedString(ent) || Parser.getSpeedString(ent)}`
+@@ -9638,7 +9638,7 @@
+ 				? `{@b 屬性值（Ability Scores）：} ${Parser.ABIL_ABVS.filter(ab => ent[ab] != null).map(ab => `${ab.toUpperCase()}\u00A0${Renderer.utils.getAbilityRollerEntry(ent, ab)}`).join("、")}`
+ 				: null,
+ 			entryDamageImmunities: ent.immune != null
+-				? `{@b 傷害免疫（Damage Immunities）：} ${i18n?.getFullImmRes(ent, "immune") || Parser.getFullImmRes(ent.immune)}`
++				? `{@b 傷害免疫（Damage Immunities）：} ${(i18n?.getFullImmRes(ent, "immune") || Parser.getFullImmRes(ent.immune)).replaceAll("Varies (see below)", "不定（見下文）")}`
+ 				: null,
+ 			entryDamageResistances: ent.resist
+ 				? `{@b 傷害抗性（Damage Resistances）：} ${i18n?.getFullImmRes(ent, "resist") || Parser.getFullImmRes(ent.resist)}`
+@@ -9650,7 +9650,7 @@
+ 				? `{@b 狀態免疫（Condition Immunities）：} ${i18n?.getFullConditionImmune(ent) || Parser.getFullCondImm(ent.conditionImmune, {isEntry: true})}`
+ 				: null,
+ 			entrySenses: ent.senses
+-				? `{@b 感官（Senses）：} ${Renderer.utils.getSensesEntry(ent.senses)}`
++				? `{@b 感官（Senses）：} ${globalThis.I18nZhTwUtilities?.field(ent, "senses") || Renderer.utils.getSensesEntry(ent.senses)}`
+ 				: null,
+ 		};
+ 	}
+@@ -9717,25 +9717,25 @@
+ 			const listItems = [
+ 				ent.trigger ? {
+ 					type: "item",
+-					name: "Trigger:",
++					name: "觸發條件（Trigger）：",
+ 					entries: ent.trigger,
+ 				} : null,
+ 				ent.duration ? {
+ 					type: "item",
+-					name: "Duration:",
++					name: "持續時間（Duration）：",
+ 					entries: [
+-						Renderer.generic.getRenderableDurationEntriesMeta(ent.duration, {styleHint}).entryDuration,
++						I18nZhTwContent.getSpellDuration(ent.duration),
+ 					],
+ 				} : null,
+ 				ent.hauntBonus ? {
+ 					type: "item",
+-					name: "Haunt Bonus:",
++					name: "靈異加值（Haunt Bonus）：",
+ 					entry: ent.hauntBonus,
+ 				} : null,
+ 				ent.hauntBonus && !isNaN(ent.hauntBonus) ? {
+ 					type: "item",
+-					name: "Detection:",
+-					entry: `passive Wisdom ({@skill Perception}) score equals or exceeds ${10 + Number(ent.hauntBonus)}`,
++					name: "偵測（Detection）：",
++					entry: `被動感知（{@skill Perception||察覺}）數值達到 ${10 + Number(ent.hauntBonus)} 或以上`,
+ 				} : null,
+ 			]
+ 				.filter(Boolean);
+@@ -9757,7 +9757,7 @@
+ 				// region Shared between simple/complex
+ 				ent.trigger ? {
+ 					type: "entries",
+-					name: "Trigger",
++					name: "觸發條件（Trigger）",
+ 					entries: ent.trigger,
+ 				} : null,
+ 				// endregion
+@@ -9765,7 +9765,7 @@
+ 				// region Simple traps
+ 				ent.effect ? {
+ 					type: "entries",
+-					name: "Effect",
++					name: "效果（Effect）",
+ 					entries: ent.effect,
+ 				} : null,
+ 				// endregion
+@@ -9773,22 +9773,22 @@
+ 				// region Complex traps
+ 				ent.initiative ? {
+ 					type: "entries",
+-					name: "Initiative",
++					name: "先攻（Initiative）",
+ 					entries: Renderer.trap.getTrapInitiativeEntries(ent),
+ 				} : null,
+ 				ent.eActive ? {
+ 					type: "entries",
+-					name: "Active Elements",
++					name: "主動構件（Active Elements）",
+ 					entries: ent.eActive,
+ 				} : null,
+ 				ent.eDynamic ? {
+ 					type: "entries",
+-					name: "Dynamic Elements",
++					name: "變動構件（Dynamic Elements）",
+ 					entries: ent.eDynamic,
+ 				} : null,
+ 				ent.eConstant ? {
+ 					type: "entries",
+-					name: "Constant Elements",
++					name: "持續構件（Constant Elements）",
+ 					entries: ent.eConstant,
+ 				} : null,
+ 				// endregion
+@@ -9796,7 +9796,7 @@
+ 				// region Shared between simple/complex
+ 				ent.countermeasures ? {
+ 					type: "entries",
+-					name: "Countermeasures",
++					name: "應對措施（Countermeasures）",
+ 					entries: ent.countermeasures,
+ 				} : null,
+ 				// endregion
+@@ -9805,7 +9805,7 @@
+ 		};
+ 	}
+ 
+-	static getTrapInitiativeEntries (ent) { return [`The trap acts on ${Parser.trapInitToFull(ent.initiative)}${ent.initiativeNote ? ` (${ent.initiativeNote})` : ""}.`]; }
++	static getTrapInitiativeEntries (ent) { return [`陷阱在先攻計數 ${({1: "10", 2: "20", 3: "20 與 10"})[ent.initiative] || ent.initiative} 時啟動${ent.initiativeNote ? `（${ent.initiativeNote}）` : ""}。`]; }
+ 
+ 	static _getRenderedTrapPart (renderer, ent, {styleHint = null} = {}) {
+ 		const entriesMeta = Renderer.trap.getTrapRenderableEntriesMeta(ent, {styleHint});
+@@ -9860,7 +9860,7 @@
+ 
+ 		return ent.rating
+ 			.map(rating => {
+-				const ptThreat = rating.threat ? rating.threat.toTitleCase() : "";
++				const ptThreat = rating._displayThreat || (rating.threat ? rating.threat.toTitleCase() : "");
+ 
+ 				const ptThreatType = [ptThreat, ptType]
+ 					.filter(Boolean)
+@@ -9876,17 +9876,17 @@
+ 					.join(" ");
+ 			})
+ 			.filter(Boolean)
+-			.joinConjunct(", ", " or ");
++			.joinConjunct("、", "或");
+ 	}
+ 
+ 	static getRenderedTrapHazardRatingPart (rating, {styleHint} = {}) {
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
+-		if (rating.tier) return Parser.tierToFullLevel(rating.tier, {styleHint});
++		if (rating.tier) return `等級 ${Parser._TIER_TO_LEVEL_RANGE[rating.tier]?.join("–") || rating.tier}`;
+ 
+ 		if (rating.level?.min == null || rating.level?.max == null) return "";
+ 
+-		const ptLevelLabel = styleHint === "classic" ? "level" : "Levels";
++		const ptLevelLabel = "等級";
+ 		return `${ptLevelLabel} ${rating.level.min}${rating.level.min !== rating.level.max ? `\u2013${rating.level.max}` : ""}`;
+ 	}
+ 
+@@ -14253,7 +14253,7 @@
+ 
+ Renderer.names = class {
+ 	static getDisplayName (ent) {
+-		return Renderer.table.getConvertedNameTableName(ent, ent);
++		return I18nZhTwUtilities.tableName(ent);
+ 	}
+ 
+ 	static getRenderedString (ent) {
+@@ -14266,7 +14266,7 @@
+ 			group: ent,
+ 			tableRaw: ent,
+ 			fnGetNameCaption: this.getDisplayName.bind(this),
+-			colLabel1: "Name",
++			colLabel1: "姓名",
+ 		});
+ 
+ 		return `
+@@ -14283,7 +14283,7 @@
+ 
+ Renderer.encounters = class {
+ 	static getDisplayName (ent) {
+-		return Renderer.table.getConvertedEncounterTableName(ent, ent);
++		return I18nZhTwUtilities.tableName(ent);
+ 	}
+ 
+ 	static getRenderedString (ent) {
+@@ -14296,7 +14296,7 @@
+ 			group: ent,
+ 			tableRaw: ent,
+ 			fnGetNameCaption: this.getDisplayName.bind(this),
+-			colLabel1: "Encounter",
++			colLabel1: "遭遇",
+ 		});
+ 
+ 		return `
+@@ -15684,12 +15684,13 @@
+ 		const entries = [...ent.entries || []];
+ 		if (ent.suit && (ent.valueName || ent.value)) {
+ 			const suitAndValue = `${((ent.valueName || "") || Parser.numberToText(ent.value)).toTitleCase()} of ${ent.suit.toTitleCase()}`;
+-			if (suitAndValue.toLowerCase() !== ent.name.toLowerCase()) entries.unshift(`{@i ${suitAndValue}}`);
++			const displaySuitAndValue = `${ent._displaySuit || ent.suit}：${ent._displayValueName || ent.valueName || ent.value}`;
++			if (suitAndValue.toLowerCase() !== ent.name.toLowerCase()) entries.unshift(`{@i ${displaySuitAndValue}}`);
+ 		}
+ 
+ 		const ptCredits = [
+-			ent.face?.credit ? `art credit: ${ent.face?.credit}` : null,
+-			(backCredit || ent.back?.credit) ? `art credit (reverse): ${backCredit || ent.back?.credit}` : null,
++			ent.face?.credit ? `繪圖：${ent.face?.credit}` : null,
++			(backCredit || ent.back?.credit) ? `背面繪圖：${backCredit || ent.back?.credit}` : null,
+ 		]
+ 			.filter(Boolean)
+ 			.join(", ")
+diff --git a/js/statgen/statgen-ui-comp-asi.js b/js/statgen/statgen-ui-comp-asi.js
+--- a/js/statgen/statgen-ui-comp-asi.js
++++ b/js/statgen/statgen-ui-comp-asi.js
+@@ -29,13 +29,13 @@
+ 				if (!this._metasAsi[namespace][ix_]) {
+ 					this._parent.state[propMode] = this._parent.state[propMode] || (namespace === "ability" ? "asi" : "feat");
+ 
+-					const btnAsi = namespace !== "ability" ? null : veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-w-50p">ASI</button>`
++					const btnAsi = namespace !== "ability" ? null : veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-w-50p">屬性值提升（ASI）</button>`
+ 						.vee.onn("click", () => {
+ 							this._parent.state[propMode] = "asi";
+ 							this._doPulseThrottled();
+ 						});
+ 
+-					const btnFeat = namespace !== "ability" ? veT`<div class="ve-w-100p ve-text-center">Feat</div>` : veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-w-50p">Feat</button>`
++					const btnFeat = namespace !== "ability" ? veT`<div class="ve-w-100p ve-text-center">專長</div>` : veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-w-50p">專長</button>`
+ 						.vee.onn("click", () => {
+ 							this._parent.state[propMode] = "feat";
+ 							this._doPulseThrottled();
+@@ -192,7 +192,7 @@
+ 				fnsCleanupEnt.push(unhookIxGroup);
+ 				veT`<div class="ve-flex-col ve-mb-2">
+ 					<div class="ve-flex-v-center ve-mb-2">
+-						<div class="ve-mr-2">Feat Set:</div>
++						<div class="ve-mr-2">專長組合：</div>
+ 						${selGroup.vee.addClass("ve-max-w-200p")}
+ 					</div>
+ 				</div>`.vee.appendTo(wrpRows);
+@@ -225,7 +225,7 @@
+ 					hkIxFeat();
+ 
+ 					const row = veT`<div class="ve-flex-v-end ve-py-3 ve-px-1 ve-statgen-asi__row">
+-						<div class="ve-btn-group"><div class="ve-w-100p ve-text-center">Feat</div></div>
++						<div class="ve-btn-group"><div class="ve-w-100p ve-text-center">專長</div></div>
+ 						<div class="ve-vr-4"></div>
+ 						${stgFeat}
+ 					</div>`.vee.appendTo(wrpRowsInner);
+@@ -239,7 +239,7 @@
+ 					hkIxFeat();
+ 
+ 					const row = veT`<div class="ve-flex-v-end ve-py-3 ve-px-1 ve-statgen-asi__row">
+-						<div class="ve-btn-group"><div class="ve-w-100p ve-text-center">Feat</div></div>
++						<div class="ve-btn-group"><div class="ve-w-100p ve-text-center">專長</div></div>
+ 						<div class="ve-vr-4"></div>
+ 						${stgFeat}
+ 					</div>`.vee.appendTo(wrpRowsInner);
+@@ -253,7 +253,7 @@
+ 					hkIxFeat();
+ 
+ 					const row = veT`<div class="ve-flex-v-end ve-py-3 ve-px-1 ve-statgen-asi__row">
+-						<div class="ve-btn-group"><div class="ve-w-100p ve-text-center">${Parser.featCategoryToFull(featSet.anyFromCategory.category)} Feat</div></div>
++						<div class="ve-btn-group"><div class="ve-w-100p ve-text-center">${Parser.featCategoryToFull(featSet.anyFromCategory.category)} 專長</div></div>
+ 						<div class="ve-vr-4"></div>
+ 						${stgFeat}
+ 					</div>`.vee.appendTo(wrpRowsInner);
+@@ -286,7 +286,7 @@
+ 		if (featStatic && propIxFeat) throw new Error(`Cannot combine static feat and feat property!`);
+ 		if (featStatic == null && propIxFeat == null) throw new Error(`Either a static feat or a feat property must be specified!`);
+ 
+-		const btnChooseFeat = featStatic ? null : veT`<button class="ve-btn ve-btn-xxs ve-btn-default ve-mr-2" title="Choose a Feat"><span class="glyphicon glyphicon-search"></span></button>`
++		const btnChooseFeat = featStatic ? null : veT`<button class="ve-btn ve-btn-xxs ve-btn-default ve-mr-2" title="選擇專長"><span class="glyphicon glyphicon-search"></span></button>`
+ 			.vee.onn("click", async () => {
+ 				const selecteds = await this._parent.modalFilterFeats.pGetUserSelection({
+ 					filterExpression: category ? `Category=${category}` : `Category=`,
+@@ -340,7 +340,7 @@
+ 			dispFeat
+ 				.vee.toggleClass("ve-italic", !feat)
+ 				.vee.toggleClass("ve-muted", !feat);
+-			dispFeat.vee.html(feat ? Renderer.get().render(`{@feat ${VetoolsConfig.get("styleSwitcher", "style") === SITE_STYLE__CLASSIC ? feat.name.toLowerCase() : feat.name}|${feat.source}}`) : `(Choose a feat)`);
++			dispFeat.vee.html(feat ? Renderer.get().render(`{@feat ${VetoolsConfig.get("styleSwitcher", "style") === SITE_STYLE__CLASSIC ? feat.name.toLowerCase() : feat.name}|${feat.source}}`) : `（選擇專長）`);
+ 
+ 			this._parent.state[propIxFeatAbility] = 0;
+ 
+@@ -383,7 +383,7 @@
+ 
+ 					// region Static/no choices
+ 					const ptsNoChoose = Parser.ABIL_ABVS.filter(ab => abilitySet[ab]).map(ab => `${Parser.attAbvToFull(ab)} ${UiUtil.intToBonus(abilitySet[ab], {isPretty: true})}`);
+-					stgFeatNoChoice.vee.empty().vee.toggle(ptsNoChoose.length).vee.html(`<div><span class="ve-mr-2">\u2014</span>${ptsNoChoose.join(", ")}</div>`);
++					stgFeatNoChoice.vee.empty().vee.toggle(ptsNoChoose.length).vee.html(`<div><span class="ve-mr-2">—</span>${ptsNoChoose.join(", ")}</div>`);
+ 					// endregion
+ 
+ 					// region Choices
+@@ -406,7 +406,7 @@
+ 						);
+ 						fnsCleanupFeatAbility.push(({isRetainState = false} = {}) => cleanupAsiPicker({isRetainState}));
+ 
+-						stgFeatChooseAsiFrom.vee.appends(`<div><span class="ve-mr-2">\u2014</span>choose ${count > 1 ? `${count} ` : ""}${UiUtil.intToBonus(amount, {isPretty: true})}</div>`);
++						stgFeatChooseAsiFrom.vee.appends(`<div><span class="ve-mr-2">—</span>choose ${count > 1 ? `${count} ` : ""}${UiUtil.intToBonus(amount, {isPretty: true})}</div>`);
+ 
+ 						rowMetas.forEach(meta => {
+ 							meta.cb.vee.onn("change", () => this._doPulseThrottled());
+@@ -419,7 +419,7 @@
+ 					} else if (abilitySet.choose && abilitySet.choose.weighted) {
+ 						// TODO(Future) unsupported, for now
+ 						stgFeatChooseAsiFrom.vee.empty().vee.hide();
+-						stgFeatChooseAsiWeighted.vee.show().vee.html(`<i class="ve-muted">The selected ability score format is currently unsupported. Please check back later!</i>`);
++						stgFeatChooseAsiWeighted.vee.show().vee.html(`<i class="ve-muted">目前尚不支援所選的屬性值格式，請稍後再試。</i>`);
+ 					} else {
+ 						stgFeatChooseAsiFrom.vee.empty().vee.hide();
+ 						stgFeatChooseAsiWeighted.vee.empty().vee.hide();
+@@ -468,7 +468,7 @@
+ 		const getStgEntity = ({title, wrpRows, propEntity, propIxEntity}) => {
+ 			const stg = veT`<div class="ve-flex-col">
+ 				<hr class="ve-hr-3 ve-hr--dotted">
+-				<h4 class="ve-my-2 ve-bold">${title} Feats</h4>
++				<h4 class="ve-my-2 ve-bold">${title} 專長</h4>
+ 				${wrpRows}
+ 			</div>`;
+ 
+@@ -482,16 +482,16 @@
+ 			return stg;
+ 		};
+ 
+-		const stgRace = getStgEntity({title: "Species", wrpRows: wrpRowsRace, propEntity: "race", propIxEntity: "common_ixRace"});
+-
+-		const stgBackground = getStgEntity({title: "Background", wrpRows: wrpRowsBackground, propEntity: "background", propIxEntity: "common_ixBackground"});
++		const stgRace = getStgEntity({title: "種族", wrpRows: wrpRowsRace, propEntity: "race", propIxEntity: "common_ixRace"});
++
++		const stgBackground = getStgEntity({title: "背景", wrpRows: wrpRowsBackground, propEntity: "background", propIxEntity: "common_ixBackground"});
+ 
+ 		const {ipt: iptCountFeatsCustom, wrp: wrpCountFeatsCustom} = ComponentUiUtil.getIptInt(this._parent, "common_cntFeatsCustom", 0, {min: 0, max: MAX_CUSTOM_FEATS, asMeta: true, decorationLeft: "spacer", decorationRight: "ticker"});
+ 		iptCountFeatsCustom.vee.removeClass("ve-text-right").vee.addClass("ve-text-center");
+ 		wrpCountFeatsCustom.vee.addClass("ve-w-100p");
+ 
+ 		veT(wrpAsi)`
+-			<h4 class="ve-my-2 ve-bold">Ability Score Increases</h4>
++			<h4 class="ve-my-2 ve-bold">屬性值提升</h4>
+ 			${this._render_getStageCntAsi()}
+ 			${wrpRowsAsi}
+ 
+@@ -500,9 +500,9 @@
+ 			${stgBackground}
+ 
+ 			<hr class="ve-hr-3 ve-hr--dotted">
+-			<h4 class="ve-my-2 ve-bold">Additional Feats</h4>
++			<h4 class="ve-my-2 ve-bold">額外專長</h4>
+ 			<label class="ve-w-100 ve-flex-v-center ve-mb-2">
+-				<div class="ve-mr-2 ve-no-shrink">Number of additional feats:</div>${wrpCountFeatsCustom}
++				<div class="ve-mr-2 ve-no-shrink">額外專長數量：</div>${wrpCountFeatsCustom}
+ 			</label>
+ 			${wrpRowsCustom}
+ 		`;
+@@ -513,10 +513,10 @@
+ 			const {ipt: iptCountAsi, wrp: wrpCountAsi} = ComponentUiUtil.getIptInt(this._parent, "common_cntAsi", 0, {min: 0, max: 20, asMeta: true, decorationLeft: "spacer", decorationRight: "ticker"});
+ 			iptCountAsi.vee.removeClass("ve-text-right").vee.addClass("ve-text-center");
+ 			wrpCountAsi.vee.addClass("ve-w-100p");
+-			return veT`<label class="ve-w-100 ve-flex-v-center ve-mb-2"><div class="ve-mr-2 ve-no-shrink">Number of Ability Score Increases to apply:</div>${wrpCountAsi}</label>`;
++			return veT`<label class="ve-w-100 ve-flex-v-center ve-mb-2"><div class="ve-mr-2 ve-no-shrink">要套用的屬性值提升次數：</div>${wrpCountAsi}</label>`;
+ 		}
+ 
+-		const out = veT`<div class="ve-w-100 ve-flex-v-center ve-mb-2 ve-italic ve-muted">No ability score increases available.</div>`;
++		const out = veT`<div class="ve-w-100 ve-flex-v-center ve-mb-2 ve-italic ve-muted">沒有可用的屬性值提升。</div>`;
+ 		const hkCntAsis = () => out.vee.toggle(this._parent.state.common_cntAsi === 0);
+ 		this._parent.addHookBase("common_cntAsi", hkCntAsis);
+ 		hkCntAsis();
+diff --git a/js/statgen/statgen-ui-comp-levelone-background.js b/js/statgen/statgen-ui-comp-levelone-background.js
+--- a/js/statgen/statgen-ui-comp-levelone-background.js
++++ b/js/statgen/statgen-ui-comp-levelone-background.js
+@@ -1,8 +1,8 @@
+ import {StatGenUiRenderLevelOneEntityBase} from "./statgen-ui-comp-levelone-entitybase.js";
+ 
+ export class StatGenUiRenderLevelOneBackground extends StatGenUiRenderLevelOneEntityBase {
+-	_title = "Background";
+-	_titleShort = "Backg.";
++	_title = "背景";
++	_titleShort = "背景";
+ 	_propIxEntity = "common_ixBackground";
+ 	_propIxAbilityScoreSet = "common_ixAbilityScoreSetBackground";
+ 	_propData = "_backgrounds";
+diff --git a/js/statgen/statgen-ui-comp-levelone-entitybase.js b/js/statgen/statgen-ui-comp-levelone-entitybase.js
+--- a/js/statgen/statgen-ui-comp-levelone-entitybase.js
++++ b/js/statgen/statgen-ui-comp-levelone-entitybase.js
+@@ -20,7 +20,7 @@
+ 	render () {
+ 		const wrp = veT`<div class="ve-flex"></div>`;
+ 		const wrpOuter = veT`<div class="ve-flex-col">
+-			<div class="ve-my-1 ve-statgen-pb__header ve-statgen-pb__header--group ve-mr-3 ve-text-center ve-italic ve-small ve-help-subtle" title="Ability Score Changes from ${this._title}">${this._titleShort}</div>
++			<div class="ve-my-1 ve-statgen-pb__header ve-statgen-pb__header--group ve-mr-3 ve-text-center ve-italic ve-small ve-help-subtle" title="屬性值調整來源：${this._title}">${this._titleShort}</div>
+ 
+ 			${wrp}
+ 		</div>`;
+@@ -49,8 +49,8 @@
+ 				isAllowNull: true,
+ 				fnDisplay: ix => {
+ 					const r = this._parent[this._propData][ix];
+-					if (!r) return "(Unknown)";
+-					return `${r.name} ${r.source !== Parser.SRC_PHB ? `[${Parser.sourceJsonToAbv(r.source)}]` : ""}`;
++					if (!r) return "（不明）";
++					return `${I18nZhTwUtilities.name(r)} ${r.source !== Parser.SRC_PHB ? `[${Parser.sourceJsonToAbv(r.source)}]` : ""}`;
+ 				},
+ 				asMeta: true,
+ 			},
+@@ -69,7 +69,7 @@
+ 		this._parent[this._propModalFilter].pageFilter.filterBox.on(FILTER_BOX_EVNT_VALCHANGE, () => doApplyFilterToSelEntity());
+ 		doApplyFilterToSelEntity();
+ 
+-		const btnFilterForEntity = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-br-0 ve-pr-2" title="Filter for ${this._title}"><span class="glyphicon glyphicon-filter"></span> Filter</button>`
++		const btnFilterForEntity = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-br-0 ve-pr-2" title="篩選：${this._title}"><span class="glyphicon glyphicon-filter"></span> 篩選</button>`
+ 			.vee.onn("click", async () => {
+ 				const selected = await this._parent[this._propModalFilter].pGetUserSelection();
+ 				if (selected == null || !selected.length) return;
+@@ -84,7 +84,7 @@
+ 			this._parent,
+ 			this._propIsPreview,
+ 			{
+-				html: `<button class="ve-btn ve-btn-xs ve-btn-default" title="Toggle ${this._title} Preview"><span class="glyphicon glyphicon-eye-open"></span></button>`,
++				html: `<button class="ve-btn ve-btn-xs ve-btn-default" title="切換${this._title}預覽"><span class="glyphicon glyphicon-eye-open"></span></button>`,
+ 			},
+ 		);
+ 		const hkBtnPreviewEntity = () => btnPreview.vee.toggle(this._parent._state[this._propIxEntity] != null && ~this._parent._state[this._propIxEntity]);
+@@ -100,14 +100,14 @@
+ 				asMeta: true,
+ 				fnDisplay: ixAbSet => {
+ 					const lst = this._pb_getAbilityList();
+-					if (!lst?.[ixAbSet]) return "(Unknown)";
++					if (!lst?.[ixAbSet]) return "（不明）";
+ 					return Renderer.getAbilityData([lst[ixAbSet]]).asText;
+ 				},
+ 			},
+ 		);
+ 
+ 		const stgAbilityScoreSet = veT`<div class="ve-flex-v-center ve-mb-2">
+-			<div class="ve-mr-2 ve-no-wrap">Ability Score Increase</div>
++			<div class="ve-mr-2 ve-no-wrap">屬性值提升</div>
+ 			<div>${selAbilitySet}</div>
+ 		</div>`;
+ 
+@@ -145,7 +145,7 @@
+ 		const {hrPreview} = this._getHrPreviewMeta();
+ 
+ 		const stgSel = veT`<div class="ve-flex-col ve-mt-3">
+-			<div class="ve-mb-1">Select a ${this._title}</div>
++			<div class="ve-mb-1">選擇一項${this._title}</div>
+ 			<div class="ve-flex-v-center ve-mb-2">
+ 				<div class="ve-flex-v-center ve-btn-group ve-w-100 ve-mr-2">${btnFilterForEntity}${selEntity}</div>
+ 				<div>${btnPreview}</div>
+@@ -183,7 +183,7 @@
+ 			});
+ 
+ 			ptBase = veT`<div class="ve-flex-col ve-mr-3">
+-				<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center">Static</div>
++				<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center">固定</div>
+ 				${wrpsEntity}
+ 			</div>`;
+ 		}
+diff --git a/js/statgen/statgen-ui-comp-levelone-race.js b/js/statgen/statgen-ui-comp-levelone-race.js
+--- a/js/statgen/statgen-ui-comp-levelone-race.js
++++ b/js/statgen/statgen-ui-comp-levelone-race.js
+@@ -1,8 +1,8 @@
+ import {StatGenUiRenderLevelOneEntityBase} from "./statgen-ui-comp-levelone-entitybase.js";
+ 
+ export class StatGenUiRenderLevelOneRace extends StatGenUiRenderLevelOneEntityBase {
+-	_title = "Species";
+-	_titleShort = "Species";
++	_title = "種族";
++	_titleShort = "種族";
+ 	_propIxEntity = "common_ixRace";
+ 	_propIxAbilityScoreSet = "common_ixAbilityScoreSetRace";
+ 	_propData = "_races";
+@@ -60,27 +60,27 @@
+ 			this._parent,
+ 			"common_isShowTashasRules",
+ 			{
+-				html: `<button class="ve-btn ve-btn-xxs ve-btn-default ve-small ve-p-0 ve-statgen-shared__btn-toggle-tashas-rules ve-flex-vh-center" title="Toggle &quot;Customizing Your Origin&quot; Section"><span class="glyphicon glyphicon-eye-open"></span></button>`,
++				html: `<button class="ve-btn ve-btn-xxs ve-btn-default ve-small ve-p-0 ve-statgen-shared__btn-toggle-tashas-rules ve-flex-vh-center" title="展開／收合「自訂出身」段落"><span class="glyphicon glyphicon-eye-open"></span></button>`,
+ 			},
+ 		);
+ 
+ 		const stgTashasControls = veT`<div class="ve-flex-col ve-w-100">
+ 			<label class="ve-flex-v-center ve-mb-1">
+-				<div class="ve-mr-2">Allow Origin Customization</div>
++				<div class="ve-mr-2">允許自訂出身</div>
+ 				${ComponentUiUtil.getCbBool(this._parent, "common_isTashas")}
+ 			</label>
+ 
+ 			<div class="ve-flex">
+-				<div class="ve-small ve-muted ve-italic ve-mr-1">${Renderer.get().render(`An {@variantrule Customizing Your Origin|TCE|optional rule}`)}</div>
++				<div class="ve-small ve-muted ve-italic ve-mr-1">${Renderer.get().render(`一項{@variantrule Customizing Your Origin|TCE|可選規則}`)}</div>
+ 				${btnToggleTashasPin}
+-				<div class="ve-small ve-muted ve-italic ve-ml-1">${Renderer.get().render(`from Tasha's Cauldron of Everything, page 8.`)}</div>
++				<div class="ve-small ve-muted ve-italic ve-ml-1">${Renderer.get().render(`出自《塔莎的萬事大釜》第 8 頁。`)}</div>
+ 			</div>
+ 		</div>`;
+ 		this._parent._addHookBase("common_isAllowTashasRules", () => {
+ 			stgTashasControls.vee.toggle(this._parent._state.common_isAllowTashasRules);
+ 		})();
+ 
+-		const dispTashas = veT`<div class="ve-flex-col"><div class="ve-italic ve-muted">Loading...</div></div>`;
++		const dispTashas = veT`<div class="ve-flex-col"><div class="ve-italic ve-muted">載入中……</div></div>`;
+ 		DataLoader.pCacheAndGet(UrlUtil.PG_VARIANTRULES, Parser.SRC_TCE, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_VARIANTRULES]({name: "Customizing Your Origin", source: Parser.SRC_TCE}))
+ 			.then(rule => {
+ 				veT(dispTashas.vee.empty())`${Renderer.hover.getHoverContent_stats(UrlUtil.PG_VARIANTRULES, rule)}<hr class="ve-hr-3">`;
+diff --git a/js/statgen/statgen-ui-comp-pbrules.js b/js/statgen/statgen-ui-comp-pbrules.js
+--- a/js/statgen/statgen-ui-comp-pbrules.js
++++ b/js/statgen/statgen-ui-comp-pbrules.js
+@@ -24,7 +24,7 @@
+ 		parentComp._addHookBase("pb_isCustom", hkIsCustom);
+ 		hkIsCustom();
+ 
+-		const btnDelete = veT`<button class="ve-btn ve-btn-xxs ve-btn-danger" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`
++		const btnDelete = veT`<button class="ve-btn ve-btn-xxs ve-btn-danger" title="刪除"><span class="glyphicon glyphicon-trash"></span></button>`
+ 			.vee.onn("click", () => {
+ 				if (parentComp.state.pb_rules.length === 1) return; // Never delete the final item
+ 				parentComp.state.pb_rules = parentComp.state.pb_rules.filter(it => it !== entity);
+diff --git a/js/statgen/statgen-ui.js b/js/statgen/statgen-ui.js
+--- a/js/statgen/statgen-ui.js
++++ b/js/statgen/statgen-ui.js
+@@ -259,15 +259,15 @@
+ 
+ 		const iptTabMetas = this._isLevelUp
+ 			? [
+-				new TabUiUtil.TabMeta({name: "Existing", icon: this._isFvttMode ? `fas fa-fw fa-user` : `far fa-fw fa-user`, hasBorder: true}),
++				new TabUiUtil.TabMeta({name: "既有數值", icon: this._isFvttMode ? `fas fa-fw fa-user` : `far fa-fw fa-user`, hasBorder: true}),
+ 				...this._tabMetasAdditional || [],
+ 			]
+ 			: [
+-				this._isFvttMode ? new TabUiUtil.TabMeta({name: "Select...", icon: this._isFvttMode ? `fas fa-fw fa-square` : `far fa-fw fa-square`, hasBorder: true, isNoPadding: this._isFvttMode}) : null,
+-				new TabUiUtil.TabMeta({name: "Roll", icon: this._isFvttMode ? `fas fa-fw fa-dice` : `far fa-fw fa-dice`, hasBorder: true, isNoPadding: this._isFvttMode}),
+-				new TabUiUtil.TabMeta({name: "Standard Array", icon: this._isFvttMode ? `fas fa-fw fa-signal` : `far fa-fw fa-signal-bars`, hasBorder: true, isNoPadding: this._isFvttMode}),
+-				new TabUiUtil.TabMeta({name: "Point Buy", icon: this._isFvttMode ? `fas fa-fw fa-chart-bar` : `far fa-fw fa-chart-bar`, hasBorder: true, isNoPadding: this._isFvttMode}),
+-				new TabUiUtil.TabMeta({name: "Manual", icon: this._isFvttMode ? `fas fa-fw fa-screwdriver-wrench` : `far fa-fw fa-screwdriver-wrench`, hasBorder: true, isNoPadding: this._isFvttMode}),
++				this._isFvttMode ? new TabUiUtil.TabMeta({name: "請選擇……", icon: this._isFvttMode ? `fas fa-fw fa-square` : `far fa-fw fa-square`, hasBorder: true, isNoPadding: this._isFvttMode}) : null,
++				new TabUiUtil.TabMeta({name: "擲骰", icon: this._isFvttMode ? `fas fa-fw fa-dice` : `far fa-fw fa-dice`, hasBorder: true, isNoPadding: this._isFvttMode}),
++				new TabUiUtil.TabMeta({name: "標準陣列", icon: this._isFvttMode ? `fas fa-fw fa-signal` : `far fa-fw fa-signal-bars`, hasBorder: true, isNoPadding: this._isFvttMode}),
++				new TabUiUtil.TabMeta({name: "點數購買", icon: this._isFvttMode ? `fas fa-fw fa-chart-bar` : `far fa-fw fa-chart-bar`, hasBorder: true, isNoPadding: this._isFvttMode}),
++				new TabUiUtil.TabMeta({name: "手動輸入", icon: this._isFvttMode ? `fas fa-fw fa-screwdriver-wrench` : `far fa-fw fa-screwdriver-wrench`, hasBorder: true, isNoPadding: this._isFvttMode}),
+ 				...this._tabMetasAdditional || [],
+ 			].filter(Boolean);
+ 
+@@ -286,7 +286,7 @@
+ 				)
+ 					.vee.addClass("ve-max-w-200p");
+ 				veT`<div class="ve-flex-v-center ve-statgen-shared__wrp-header">
+-					<div class="ve-mr-2"><b>Mode</b></div>
++					<div class="ve-mr-2"><b>模式</b></div>
+ 					${selMode}
+ 				</div>`
+ 					.vee.appendTo(parent);
+@@ -326,7 +326,7 @@
+ 			.vee.onn("change", () => this._rollIptFormula.vee.removeClass("form-control--error"));
+ 
+ 		const lockRoll = new VeLock();
+-		const btnRoll = veT`<button class="ve-btn ve-btn-primary ve-bold">Roll</button>`
++		const btnRoll = veT`<button class="ve-btn ve-btn-primary ve-bold">擲骰</button>`
+ 			.vee.onn("click", async () => {
+ 				try {
+ 					await lockRoll.pLock();
+@@ -336,7 +336,7 @@
+ 				}
+ 			});
+ 
+-		const btnRandom = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mt-2">Randomly Assign</button>`
++		const btnRandom = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mt-2">隨機分配</button>`
+ 			.vee.hide()
+ 			.vee.onn("click", () => {
+ 				const abs = [...Parser.ABIL_ABVS].shuffle();
+@@ -347,7 +347,7 @@
+ 			});
+ 
+ 		const wrpRolled = veT`<div class="ve-flex-v-center ve-mr-auto ve-statgen-rolled__wrp-results ve-py-1"></div>`;
+-		const wrpTotal = veT`<div class="ve-muted ve-small ve-italic ve-text-right ve-pr-1 ve-help-subtle" title="The sum total of the above rolls."></div>`;
++		const wrpTotal = veT`<div class="ve-muted ve-small ve-italic ve-text-right ve-pr-1 ve-help-subtle" title="上方所有擲骰結果的總和。"></div>`;
+ 		const wrpRolledOuter = veT`<div class="ve-flex-col">
+ 			<div class="ve-flex-v-center ve-mb-1"><div class="ve-mr-2">=</div>${wrpRolled}</div>
+ 			${wrpTotal}
+@@ -361,7 +361,7 @@
+ 				const cntPrevRolls = this._state.rolled_rolls.slice(0, i).filter(r => r.total === it.total).length;
+ 				return `<div class="ve-px-3 ve-py-1 ve-help-subtle ve-flex-vh-center" title="${it.text}"><div class="ve-muted">[</div><div class="ve-flex-vh-center ve-statgen-rolled__disp-result">${it.total}${cntPrevRolls ? Parser.numberToSubscript(cntPrevRolls) : ""}</div><div class="ve-muted">]</div></div>`;
+ 			}));
+-			wrpTotal.vee.txt(`Total: ${this._state.rolled_rolls.map(roll => roll.total).sum()}`);
++			wrpTotal.vee.txt(`合計： ${this._state.rolled_rolls.map(roll => roll.total).sum()}`);
+ 		};
+ 		this._addHookBase("rolled_rolls", hkRolled);
+ 		hkRolled();
+@@ -369,9 +369,9 @@
+ 		return veT`<div class="ve-flex-col ve-mb-3 ve-mr-auto">
+ 			<div class="ve-flex ve-mb-2">
+ 				<div class="ve-flex-col ve-flex-h-center ve-mr-3">
+-					<label class="ve-flex-v-center"><div class="ve-mr-2 ve-no-shrink ve-w-100p">Formula:</div>${this._rollIptFormula}</label>
+-
+-					${this._isCharacterMode ? null : veT`<label class="ve-flex-v-center ve-mt-2"><div class="ve-mr-2 ve-no-shrink ve-w-100p">Number of rolls:</div>${iptRollCount}</label>`}
++					<label class="ve-flex-v-center"><div class="ve-mr-2 ve-no-shrink ve-w-100p">骰式：</div>${this._rollIptFormula}</label>
++
++					${this._isCharacterMode ? null : veT`<label class="ve-flex-v-center ve-mt-2"><div class="ve-mr-2 ve-no-shrink ve-w-100p">擲骰次數：</div>${iptRollCount}</label>`}
+ 				</div>
+ 				${btnRoll}
+ 			</div>
+@@ -383,7 +383,7 @@
+ 	}
+ 
+ 	_render_getStgArrayHeader () {
+-		const btnRandom = veT`<button class="ve-btn ve-btn-xs ve-btn-default">Randomly Assign</button>`
++		const btnRandom = veT`<button class="ve-btn ve-btn-xs ve-btn-default">隨機分配</button>`
+ 			.vee.onn("click", () => {
+ 				const abs = [...Parser.ABIL_ABVS].shuffle();
+ 				abs.forEach((ab, i) => {
+@@ -393,7 +393,7 @@
+ 			});
+ 
+ 		return veT`<div class="ve-flex-col ve-mb-3 ve-mr-auto">
+-			<div class="ve-mb-2">Assign these numbers to your abilities as desired:</div>
++			<div class="ve-mb-2">請依需要將下列數值分配到各項屬性：</div>
+ 			<div class="ve-bold ve-mb-2">${StatGenUi._STANDARD_ARRAY.join(", ")}</div>
+ 			<div class="ve-flex">${btnRandom}</div>
+ 		</div>`;
+@@ -401,7 +401,7 @@
+ 
+ 	_render_getStgManualHeader () {
+ 		return veT`<div class="ve-flex-col ve-mb-3 ve-mr-auto">
+-			<div>Enter your desired ability scores in the &quot;Base&quot; column below.</div>
++			<div>請在下方「基礎」欄位輸入所需的屬性值。</div>
+ 		</div>`;
+ 	}
+ 
+@@ -460,10 +460,10 @@
+ 		this._addHookAll("state", hkPoints);
+ 		hkPoints();
+ 
+-		const btnReset = veT`<button class="ve-btn ve-btn-default">Reset</button>`
++		const btnReset = veT`<button class="ve-btn ve-btn-default">重設</button>`
+ 			.vee.onn("click", () => this._doReset());
+ 
+-		const btnRandom = veT`<button class="ve-btn ve-btn-default">Random</button>`
++		const btnRandom = veT`<button class="ve-btn ve-btn-default">隨機</button>`
+ 			.vee.onn("click", () => {
+ 				this._doReset();
+ 
+@@ -502,12 +502,12 @@
+ 				<div class="ve-statgen-pb__cell ve-mr-4 ve-mobile-sm__hidden"></div>
+ 
+ 				<label class="ve-flex-col ve-mr-2">
+-					<div class="ve-mb-1 ve-text-center">Budget</div>
++					<div class="ve-mb-1 ve-text-center">可用點數</div>
+ 					${iptBudget}
+ 				</label>
+ 
+ 				<label class="ve-flex-col ve-mr-2">
+-					<div class="ve-mb-1 ve-text-center">Remain</div>
++					<div class="ve-mb-1 ve-text-center">剩餘點數</div>
+ 					${iptRemaining}
+ 				</label>
+ 			</div>
+@@ -527,7 +527,7 @@
+ 	}
+ 
+ 	_render_getStgPbCustom () {
+-		const btnAddLower = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Add Lower Score</button>`
++		const btnAddLower = veT`<button class="ve-btn ve-btn-default ve-btn-xs">新增更低數值</button>`
+ 			.vee.onn("click", () => {
+ 				const prevSecondLowest = this._state.pb_rules[1];
+ 				const prevLowest = this._state.pb_rules[0];
+@@ -538,7 +538,7 @@
+ 				this._state.pb_rules = [this._getDefaultState_pb_rule(score, cost), ...this._state.pb_rules];
+ 			});
+ 
+-		const btnAddHigher = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Add Higher Score</button>`
++		const btnAddHigher = veT`<button class="ve-btn ve-btn-default ve-btn-xs">新增更高數值</button>`
+ 			.vee.onn("click", () => {
+ 				const prevSecondHighest = this._state.pb_rules.at(-2);
+ 				const prevHighest = this._state.pb_rules.at(-1);
+@@ -549,23 +549,23 @@
+ 				this._state.pb_rules = [...this._state.pb_rules, this._getDefaultState_pb_rule(score, cost)];
+ 			});
+ 
+-		const btnResetRules = veT`<button class="ve-btn ve-btn-danger ve-btn-xs ve-mr-2">Reset</button>`
++		const btnResetRules = veT`<button class="ve-btn ve-btn-danger ve-btn-xs ve-mr-2">重設</button>`
+ 			.vee.onn("click", () => {
+ 				this._state.pb_rules = this._getDefaultStatePointBuyCosts().pb_rules;
+ 			});
+ 
+ 		const menuCustom = ContextUtil.getMenu([
+ 			new ContextUtil.Action(
+-				"Export as Code",
++				"匯出代碼",
+ 				async () => {
+ 					await MiscUtil.pCopyTextToClipboard(this._serialize_pb_rules());
+ 					JqueryUtil.showCopiedEffect(btnContext);
+ 				},
+ 			),
+ 			new ContextUtil.Action(
+-				"Import from Code",
++				"匯入代碼",
+ 				async () => {
+-					const raw = await InputUiUtil.pGetUserString({title: "Enter Code", isCode: true});
++					const raw = await InputUiUtil.pGetUserString({title: "輸入代碼", isCode: true});
+ 					if (raw == null) return;
+ 					const parsed = this._deserialize_pb_rules(raw);
+ 					if (parsed == null) return;
+@@ -579,12 +579,12 @@
+ 							pb_isCustom: true,
+ 						},
+ 					);
+-					JqueryUtil.doToast("Imported!");
++					JqueryUtil.doToast("已匯入！");
+ 				},
+ 			),
+ 		]);
+ 
+-		const btnContext = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Menu"><span class="glyphicon glyphicon-option-vertical"></span></button>`
++		const btnContext = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="選單"><span class="glyphicon glyphicon-option-vertical"></span></button>`
+ 			.vee.onn("click", evt => ContextUtil.pOpenMenu(evt, menuCustom));
+ 
+ 		const stgCustomCostControls = veT`<div class="ve-flex-col ve-mb-auto ve-ml-2 ve-mobile-sm__ml-0 ve-mobile-sm__mt-3">
+@@ -629,15 +629,15 @@
+ 		hkIsCustomReset();
+ 
+ 		return veT`<div class="ve-flex-col">
+-			<h4>Ability Score Point Cost</h4>
++			<h4>屬性值的點數成本</h4>
+ 
+ 			<div class="ve-flex-col">
+ 				<div class="ve-flex ve-mobile-sm__flex-col">
+ 					<div class="ve-flex-col ve-mr-3 ve-mobile-sm__mr-0">
+ 						<div class="ve-flex-v-center ve-mb-1">
+-							<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-bold">Score</div>
+-							<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-bold">Modifier</div>
+-							<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-bold">Point Cost</div>
++							<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-bold">數值</div>
++							<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-bold">調整值</div>
++							<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-bold">點數成本</div>
+ 							<div class="ve-statgen-pb__col-cost-delete"></div>
+ 						</div>
+ 
+@@ -651,7 +651,7 @@
+ 			<hr class="ve-hr-4 ve-mb-2">
+ 
+ 			<label class="ve-flex-v-center">
+-				<div class="ve-mr-2">Custom Rules</div>
++				<div class="ve-mr-2">自訂規則</div>
+ 				${ComponentUiUtil.getCbBool(this, "pb_isCustom")}
+ 			</label>
+ 		</div>`;
+@@ -665,14 +665,14 @@
+ 		return JSON.stringify(out);
+ 	}
+ 
+-	static _DESERIALIZE_MSG_INVALID = "Code was not valid!";
++	static _DESERIALIZE_MSG_INVALID = "代碼無效！";
+ 
+ 	_deserialize_pb_rules (raw) {
+ 		let json;
+ 		try {
+ 			json = JSON.parse(raw);
+ 		} catch (e) {
+-			JqueryUtil.doToast({type: "danger", content: `Failed to decode JSON! ${e.message}`});
++			JqueryUtil.doToast({type: "danger", content: `無法解析 JSON！${e.message}`});
+ 			return null;
+ 		}
+ 
+@@ -755,7 +755,7 @@
+ 		this._addHookActiveTab(hkElesMode);
+ 		// endregion
+ 
+-		const btnResetRolledOrArrayOrManual = veT`<button class="ve-btn ve-btn-default ve-btn-xxs ve-relative ve-statgen-shared__btn-reset" title="Reset"><span class="glyphicon glyphicon-refresh"></span></button>`
++		const btnResetRolledOrArrayOrManual = veT`<button class="ve-btn ve-btn-default ve-btn-xxs ve-relative ve-statgen-shared__btn-reset" title="重設"><span class="glyphicon glyphicon-refresh"></span></button>`
+ 			.vee.onn("click", () => this._doReset());
+ 		const hkRolledOrArray = () => btnResetRolledOrArrayOrManual.vee.toggle(this.ixActiveTab === this._IX_TAB_ROLLED || this.ixActiveTab === this._IX_TAB_ARRAY || this.ixActiveTab === this._IX_TAB_MANUAL);
+ 		this._addHookActiveTab(hkRolledOrArray);
+@@ -906,7 +906,7 @@
+ 		const wrpAsi = this._render_getWrpAsi();
+ 
+ 		stgNone = veT`<div class="ve-flex-col ve-w-100 ve-h-100">
+-			<div class="ve-flex-v-center"><i>Please select a mode.</i></div>
++			<div class="ve-flex-v-center"><i>請選擇模式。</i></div>
+ 		</div>`;
+ 
+ 		stgMain = veT`<div class="ve-flex-col ve-w-100 ve-h-100">
+@@ -928,7 +928,7 @@
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+ 							<div class="ve-my-1 ve-statgen-pb__header"></div>
+-							<div class="ve-my-1 ve-bold ve-statgen-pb__header ve-flex-vh-center">Base</div>
++							<div class="ve-my-1 ve-bold ve-statgen-pb__header ve-flex-vh-center">基礎</div>
+ 							${wrpsBase}
+ 						</div>
+ 
+@@ -937,19 +937,19 @@
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+ 							<div class="ve-my-1 ve-statgen-pb__header"></div>
+-							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center ve-help ve-muted" title="Input any additional/custom bonuses here">User</div>
++							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center ve-help ve-muted" title="在此輸入額外或自訂加值">自訂</div>
+ 							${wrpsUser}
+ 						</div>
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+ 							<div class="ve-my-1 ve-statgen-pb__header"></div>
+-							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center">Total</div>
++							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center">合計</div>
+ 							${metasTotalAndMod.map(it => it.wrpIptTotal)}
+ 						</div>
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+ 							<div class="ve-my-1 ve-statgen-pb__header"></div>
+-							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center" title="Modifier">Mod.</div>
++							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center" title="調整值">調整值</div>
+ 							${metasTotalAndMod.map(it => it.wrpIptMod)}
+ 						</div>
+ 					</div>
+@@ -1015,22 +1015,22 @@
+ 						</div>
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+-							<div class="ve-my-1 ve-bold ve-statgen-pb__header ve-flex-vh-center" title="Current">Curr.</div>
++							<div class="ve-my-1 ve-bold ve-statgen-pb__header ve-flex-vh-center" title="目前">目前</div>
+ 							${wrpsExisting}
+ 						</div>
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+-							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center ve-help ve-muted" title="Input any additional/custom bonuses here">User</div>
++							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center ve-help ve-muted" title="在此輸入額外或自訂加值">自訂</div>
+ 							${wrpsUser}
+ 						</div>
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+-							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center">Total</div>
++							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center">合計</div>
+ 							${metasTotalAndMod.map(it => it.wrpIptTotal)}
+ 						</div>
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+-							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center" title="Modifier">Mod.</div>
++							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center" title="調整值">調整值</div>
+ 							${metasTotalAndMod.map(it => it.wrpIptMod)}
+ 						</div>
+ 					</div>
+@@ -1087,7 +1087,7 @@
+ 				iptTotal
+ 					.vee.val(totalScore)
+ 					.vee.toggleClass("form-control--error", isOverLimit)
+-					.vee.tooltip(isOverLimit ? `In general, you can't increase an ability score above 20.` : "");
++					.vee.tooltip(isOverLimit ? `一般情況下，屬性值不能提高至超過 20。` : "");
+ 				iptMod.vee.val(Parser.getAbilityModifier(totalScore));
+ 
+ 				this._state[exportedStateProp] = totalScore;
+diff --git a/js/statgen/statgen-util-additionalfeats.js b/js/statgen/statgen-util-additionalfeats.js
+--- a/js/statgen/statgen-util-additionalfeats.js
++++ b/js/statgen/statgen-util-additionalfeats.js
+@@ -30,12 +30,12 @@
+ 					const out = [];
+ 
+ 					if (featSet.any) {
+-						out.push(`Choose any${featSet.any > 1 ? ` ${Parser.numberToText(featSet.any)}` : ""}`);
++						out.push(`任選${featSet.any > 1 ? ` ${Parser.numberToText(featSet.any)}` : ""}`);
+ 					}
+ 
+ 					if (featSet.anyFromCategory) {
+ 						const cnt = featSet.anyFromCategory.count || 1;
+-						out.push(`Choose any ${Parser.featCategoryToFull(featSet.anyFromCategory.category)}${cnt > 1 ? ` ${Parser.numberToText(featSet.any)}` : ""}`);
++						out.push(`任選 ${Parser.featCategoryToFull(featSet.anyFromCategory.category)}${cnt > 1 ? ` ${Parser.numberToText(featSet.any)}` : ""}`);
+ 					}
+ 
+ 					this.getUidsStatic(featSet)
+diff --git a/js/tablepage.js b/js/tablepage.js
+--- a/js/tablepage.js
++++ b/js/tablepage.js
+@@ -47,7 +47,7 @@
+ 
+ 		this._btnHeader = veT`<div class="ve-lst__item-group-header ve-mt-3 ve-split-v-center ve-py-1 ve-no-select ve-clickable" title="SHIFT to Toggle All">
+ 			<div class="ve-split-v-center ve-w-100 ve-min-w-0 ve-mr-2">
+-				<div class="ve-bold">${ent.name}</div>
++				<div class="ve-bold">${I18nZhTwUtilities.name(ent)}</div>
+ 				<div class="${Parser.sourceJsonToSourceClassname(ent.source)}" title="${Parser.sourceJsonToFull(ent.source).qq()}">${Parser.sourceJsonToAbv(ent.source)}</div>
+ 			</div>
+ 			${this._dispShowHide}
+diff --git a/js/tables.js b/js/tables.js
+--- a/js/tables.js
++++ b/js/tables.js
+@@ -21,10 +21,10 @@
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
+-		const cellsText = [it.name];
++		const cellsText = [I18nZhTwUtilities.name(it)];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+-			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner" title="${it.name}">
++			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner" title="${I18nZhTwUtilities.name(it)}">
+ 				${this.constructor._getRowCellsHtml({values: cellsText})}
+ 			</a>
+ 		</div>`
+@@ -34,7 +34,7 @@
+ 		const listItem = new ListItem(
+ 			hash,
+ 			ele,
+-			it.name,
++			I18nZhTwUtilities.name(it),
+ 			{
+ 				...ListItem.getCommonValues(it),
+ 				sortName: PageFilterTables.getSortName(it.name),
+@@ -129,7 +129,7 @@
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-col-0-5 ve-px-0 ve-flex-vh-center ve-lst__btn-toggle-expand ve-self-flex-stretch ve-no-select">[+]</span>
+-			<span class="ve-bold ve-col-9-5 ve-px-1">${it.name}</span>
++			<span class="ve-bold ve-col-9-5 ve-px-1">${I18nZhTwUtilities.name(it)}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
+ 		</a>
+ 		<div class="ve-flex ve-hidden ve-relative ve-accordion__wrp-preview">
+@@ -140,7 +140,7 @@
+ 		const listItem = new ListItem(
+ 			tbI,
+ 			eleLi,
+-			it.name,
++			I18nZhTwUtilities.name(it),
+ 			{
+ 				source,
+ 				...ListItem.getCommonValues(it),
+diff --git a/js/trapshazards.js b/js/trapshazards.js
+--- a/js/trapshazards.js
++++ b/js/trapshazards.js
+@@ -18,7 +18,7 @@
+ 
+ 	pGetSublistItem (it, hash) {
+ 		const trapType = Parser.trapHazTypeToFull(it.trapHazType);
+-		const cellsText = [trapType, it.name];
++		const cellsText = [trapType, I18nZhTwUtilities.name(it)];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+ 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+@@ -31,7 +31,7 @@
+ 		const listItem = new ListItem(
+ 			hash,
+ 			ele,
+-			it.name,
++			I18nZhTwUtilities.name(it),
+ 			{
+ 				...ListItem.getCommonValues(it),
+ 				trapType,
+@@ -81,14 +81,14 @@
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-col-3 ve-pl-0 ve-pr-1 ve-text-center">${trapType}</span>
+-			<span class="ve-bold ve-col-7 ve-px-1">${it.name}</span>
++			<span class="ve-bold ve-col-7 ve-px-1">${I18nZhTwUtilities.name(it)}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
+ 		</a>`;
+ 
+ 		const listItem = new ListItem(
+ 			thI,
+ 			eleLi,
+-			it.name,
++			I18nZhTwUtilities.name(it),
+ 			{
+ 				source,
+ 				...ListItem.getCommonValues(it),
+diff --git a/js/utils.js b/js/utils.js
+--- a/js/utils.js
++++ b/js/utils.js
+@@ -4960,7 +4960,8 @@
+ 	}
+ 
+ 	static async loadJSON (url) {
+-		return DataUtil._loadJson(url, {isDoDataMerge: true});
++		const data = await DataUtil._loadJson(url, {isDoDataMerge: true});
++		return globalThis.I18nZhTwUtilities?.pApplyDataFile({url, data}) ?? data;
+ 	}
+ 
+ 	static async loadRawJSON (url, {isBustCache} = {}) {

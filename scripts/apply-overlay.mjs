@@ -22,6 +22,7 @@ const patchPaths = [
 	path.join(projectRoot, "patches", "0013-zh-tw-psionics-runtime.patch"),
 	path.join(projectRoot, "patches", "0014-zh-tw-vehicle-runtime-completion.patch"),
 	path.join(projectRoot, "patches", "0015-zh-tw-vehicle-psionics-page-loaders.patch"),
+	path.join(projectRoot, "patches", "0016-zh-tw-utility-pages-runtime.patch"),
 ];
 const copyRoots = [
   "requirements-zh-tw.txt",
@@ -46,6 +47,10 @@ function copyRecursive (sourcePath, targetPath) {
   }
   fs.mkdirSync(path.dirname(targetPath), {recursive: true});
   fs.copyFileSync(sourcePath, targetPath);
+}
+
+for (const script of ["build-utility-ui-data.mjs", "apply-prior-page-repairs.mjs"]) {
+  execFileSync(process.execPath, [path.join(projectRoot, "node", "zh-tw", script)], {cwd: projectRoot, stdio: "inherit"});
 }
 
 for (const relativePath of copyRoots) {

@@ -23,7 +23,7 @@ const CANONICAL_ATTRIBUTES = [
 ];
 const SKIP_TEXT_TAGS = new Set(["code", "pre", "script", "style", "template", "textarea"]);
 
-const RE_SITE_I18N_SCRIPT = /^[\t ]*<script\b[^>]*\bsrc=(['"])\/?js\/zh-tw\/(?:site-i18n(?:-data)?|content-i18n)\.js\1[^>]*><\/script>[\t ]*(?:\r?\n)?/gimu;
+const RE_SITE_I18N_SCRIPT = /^[\t ]*<script\b[^>]*\bsrc=(['"])\/?js\/zh-tw\/(?:site-i18n(?:-data)?|content-i18n|utility-pages-i18n|utility-ui-data)\.js\1[^>]*><\/script>[\t ]*(?:\r?\n)?/gimu;
 
 function escapeRegexp (value) {
 	return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -211,6 +211,8 @@ function injectLocaleScripts ({html, isSeo, page}) {
 		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/site-i18n-data.js"></script>`,
 		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/site-i18n.js"></script>`,
 		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/content-i18n.js"></script>`,
+		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/utility-ui-data.js"></script>`,
+		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/utility-pages-i18n.js"></script>`,
 	].join("\n");
 
 	const anchor = isSeo
