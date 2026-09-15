@@ -1,0 +1,68 @@
+diff --git a/js/lifegen.js b/js/lifegen.js
+--- a/js/lifegen.js
++++ b/js/lifegen.js
+@@ -597,10 +597,10 @@
+ 	[
+ 		{val: "", text: "隨機", style: "font-style: normal;"},
+ 		{val: "1", text: "20歲或以下", class: "ve-italic"},
+-		{val: "21", text: "21&mdash;30 years", class: "ve-italic"},
+-		{val: "60", text: "31&mdash;40 years", class: "ve-italic"},
+-		{val: "70", text: "41&mdash;50 years", class: "ve-italic"},
+-		{val: "90", text: "51&mdash;60 years", class: "ve-italic"},
++		{val: "21", text: "21–30 歲", class: "ve-italic"},
++		{val: "60", text: "31–40 歲", class: "ve-italic"},
++		{val: "70", text: "41–50 歲", class: "ve-italic"},
++		{val: "90", text: "51–60 歲", class: "ve-italic"},
+ 		{val: "100", text: "61歲或以上", class: "ve-italic"},
+ 	].forEach(age => selAge.vee.appends(`<option value="${age.val}" ${age.style ? `style="${age.style}"` : ""} ${age.class ? `class="${age.class}"` : ""}>${age.text}</option>`));
+ 
+@@ -798,7 +798,7 @@
+ 	family.vee.empty();
+ 	family.vee.appends(veT`<div>${`<b>家庭：</b> ${GenUtil.getFromTable(FAMILY, RNG(100)).result}<br>`}</div>`);
+ 	let famIndex = 1;
+-	const btnSuppFam = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-btn-supp-fam no-print"></button>`.vee.onn("click", async () => {
++	const btnSuppFam = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-my-2 no-print">擲骰產生補充資料</button>`.vee.onn("click", async () => {
+ 		const supDetails = await getPersonDetails();
+ 		const wrpRes = veT`<div class="life__output-wrp-border ve-p-3 ve-my-2"></div>`;
+ 		wrpRes.vee.appends(`<h5 class="ve-mt-0">家庭成員擲骰 ${famIndex++}</h5>`);
+@@ -913,7 +913,7 @@
+ 
+ 	const selAge = veEs(`#age`).vee.onn("change", () => selAge.vee.toggleClass("ve-italic", !!selAge.vee.val()));
+ 
+-	veEs(`#xge_link`).replaceWith(veE({outer: (Renderer.get().render(`{@book Xanathar's Guide to Everything|XGE|1|This Is Your Life}`))}));
++	veEs(`#xge_link`).replaceWith(veE({outer: (Renderer.get().render(`{@book 珊娜薩的萬事指南（Xanathar's Guide to Everything）|XGE|1|This Is Your Life}`))}));
+ 
+ 	window.dispatchEvent(new Event("toolsLoaded"));
+ });
+diff --git a/js/render.js b/js/render.js
+--- a/js/render.js
++++ b/js/render.js
+@@ -1649,6 +1649,7 @@
+ 	};
+ 
+ 	this._renderActions = function (entry, textStack, meta, options) {
++		if (entry._displayName) entry = {...entry, name: entry._displayName};
+ 		const dataString = this._renderEntriesSubtypes_getDataString(entry);
+ 
+ 		if (entry.name != null && Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
+@@ -1674,7 +1675,7 @@
+ 
+ 	this._renderAttack = function (entry, textStack, meta, options) {
+ 		this._renderPrefix(entry, textStack, meta, options);
+-		textStack[0] += `<i>${Parser.attackTypeToFull(entry.attackType)}:</i> `;
++		textStack[0] += `<i>${({MW: "近戰武器攻擊（Melee Weapon Attack）", RW: "遠程武器攻擊（Ranged Weapon Attack）"})[entry.attackType] || Parser.attackTypeToFull(entry.attackType)}：</i> `;
+ 		const len = entry.attackEntries.length;
+ 		for (let i = 0; i < len; ++i) this._recursiveRender(entry.attackEntries[i], textStack, meta);
+ 		textStack[0] += ` <i>${globalThis.I18nZhTwContent ? "命中：" : "Hit:"}</i> `;
+diff --git a/js/render-tables.js b/js/render-tables.js
+--- a/js/render-tables.js
++++ b/js/render-tables.js
+@@ -4,7 +4,7 @@
+ 	static _getPartTableFrom (it) {
+ 		if (it.chapter) {
+ 			return `<tr><td colspan="6">
+-				${Renderer.get().render(`{@note ${it.__prop === "table" ? `This table` : "These tables"} can be found in ${Parser.sourceJsonToFull(it.source)}${Parser.bookOrdinalToAbv(it.chapter.ordinal, {isPreNoSuff: true})}, {@book ${it.chapter.name}|${it.source}|${it.chapter.index}|${it.chapter.name}}.}`)}
++				${Renderer.get().render(`{@note ${it.__prop === "table" ? "本表" : "這組表格"}出自《${Parser.sourceJsonToFull(it.source)}》的「{@book ${it.chapter.name}|${it.source}|${it.chapter.index}|${it.chapter.name}}」。}`)}
+ 			</td></tr>`;
+ 		}
+ 

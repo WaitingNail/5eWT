@@ -81,6 +81,14 @@ class Localizer(CONTENT.ContentLocalizer):
 
     def text(self, en, zh, ctx, *, heading=False):
         zh = self.overrides.get(ctx, zh)
+        domain_name = None
+        if ctx.startswith("objects.json/") and ctx.endswith("/name") and en == "Ram":
+            domain_name = "攻城槌"
+        if ctx.startswith("names.json/") and ctx.endswith("/option"):
+            options = {"Female":"女性", "Male":"男性", "Clan":"氏族", "Duergar Clan":"灰矮人氏族", "Child":"幼名", "Female Adult":"成年女性", "Male Adult":"成年男性", "Family":"姓氏", "Githyanki":"吉斯洋基", "Githzerai":"吉斯澤萊", "Arabic":"阿拉伯", "Celtic":"凱爾特", "Chinese":"中國", "Egyptian":"埃及", "English":"英格蘭", "French":"法國", "German":"德國", "Indian":"印度", "Mesoamerican":"中部美洲", "Japanese":"日本", "Niger-Congo":"尼日－剛果語系", "Norse":"北歐", "Polynesian":"波利尼西亞", "Roman":"羅馬", "Slavic":"斯拉夫", "Spanish":"西班牙", "Greek":"希臘", "General":"通用", "Virtue":"美德之名"}
+            domain_name = "，".join(options[token] for token in en.split(", "))
+        if domain_name:
+            zh = domain_name
         if "/colLabels/" in ctx:
             zh = {"Insult": "辱罵（Insult）", "NPC": "非玩家角色（NPC）", "Encounter": "遭遇（Encounter）", "Attitude": "態度（Attitude）", "Name": "姓名（Name）"}.get(en, zh)
         zh = self.normalize_text(zh)
@@ -136,7 +144,7 @@ class Localizer(CONTENT.ContentLocalizer):
             zh = re.sub(r"^\d+（(\{@dice [^}]+})）", r"\1", zh)
         if en == "1d3 + 2 {@creature noble||nobles} on {@creature riding horse||riding horses} with an escort of 1d10 {@creature guard||guards}":
             zh = "1d3 + 2 名騎著{@creature riding horse||乘用馬}的{@creature noble||貴族}，由 1d10 名{@creature guard||守衛}護送"
-        if heading and ctx not in self.overrides:
+        if heading and ctx not in self.overrides and not domain_name:
             zh = self.translate_name(en, zh, "namedRuleBlock")
         out = self.localize_string(en, zh, ctx)
         self.audit.append({"context": ctx, "english": en, "localized": out, "heading": heading})

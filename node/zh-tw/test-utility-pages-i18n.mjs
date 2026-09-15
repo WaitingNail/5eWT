@@ -23,7 +23,7 @@ globalThis.BrewUtil2={hasSourceJson:()=>false,sourceJsonToStylePart:()=>"",getBr
 globalThis.ExcludeUtil={isExcluded:()=>false};
 globalThis.DataLoader={getAllFromCacheAll:()=>[]};
 const calls=[];
-globalThis.fetch=async url=>{calls.push(url);return {ok:true,status:200,json:async()=>read(url)};};
+globalThis.fetch=async url=>{calls.push(url);return {ok:true,status:200,json:async()=>read(url.split(/[?#]/u)[0])};};
 // Replace transport only. Keep the real public loadJSON, property-specific
 // object/deck loaders, table aggregator, generators, and Renderer code.
 DataUtil._loadJson=async url=>read(url);
@@ -39,7 +39,7 @@ test("the public data loader localizes every requested utility data file",async(
 			assert.equal(data[prop].length,values.length,`${file}/${prop}`);
 			values.forEach((ent,i)=>{if(!ent?.name)return;assert.equal(data[prop][i].name,ent.name);assert.equal(data[prop][i].source,ent.source);assert.match(data[prop][i]._displayName||"",/\p{Script=Han}/u,`${file}/${prop}/${i} missing name`);});
 		}
-		assert.ok(calls.includes(`data/zh-TW/utility-pages/${file}`),`${file} sidecar not actually requested`);
+		assert.ok(calls.includes(`data/zh-TW/utility-pages/${file}?v=zh-tw-25`),`${file} sidecar not actually requested`);
 	}
 	assert.equal((await DataUtil.object.loadJSON()).object.length,37);
 	const tables=await DataUtil.table.loadJSON();
@@ -89,6 +89,7 @@ test("names and encounters use bilingual group and option titles without changin
 		const hashBefore=UrlUtil.URL_TO_HASH_BUILDER[file==="names.json"?"names.html":"encountergen.html"](ent);
 		const title=renderer.getDisplayName(ent);
 		assert.match(title,/\p{Script=Han}/u);
+		if (ent.minlvl != null && ent.maxlvl != null) assert.ok(title.includes(`等級 ${ent.minlvl}–${ent.maxlvl}`));
 		assert.equal(typeof renderer.getRenderedString(ent),"string");
 		assert.equal(UrlUtil.URL_TO_HASH_BUILDER[file==="names.json"?"names.html":"encountergen.html"](ent),hashBefore);
 	}
@@ -106,6 +107,8 @@ test("special object statistics, trap duration, table columns, and audited prior
 	for(const ent of loaded["objects.json"].object){
 		const html=Renderer.object.getRenderedString(ent);
 		assert.doesNotMatch(html,/your artificer level|Varies \(see below\)/);
+		if(ent.name==="Animated Ghaunadaur Statue") assert.match(html,/爪擊（Claw）/);
+		if(ent.name==="Ram") assert.match(html,/攻城槌（Ram）/);
 	}
 	for(const ent of loaded["trapshazards.json"].trap.filter(x=>x.duration)){
 		const html=Renderer.get().render({entries:Renderer.trap.getTrapRenderableEntriesMeta(ent).entriesHeader});
@@ -151,4 +154,8 @@ test("static tool shells include translated instructions, labels, and section he
 	}
 	assert.match(source("lifegen.html"),/雙親（Parents）/);
 	assert.match(source("crcalculator.html"),/豁免<br>DC/);
+	assert.doesNotMatch(source("js/lifegen.js"),/\d+ years|ve-btn-supp-fam/);
+	const human=loaded["names.json"].name.find(x=>x.name==="Human");
+	assert.equal(human.tables.find(x=>x.option==="Roman, Male")._displayOption,"羅馬，男性（Roman, Male）");
+	assert.equal(human.tables.find(x=>x.option==="Spanish, Male")._displayOption,"西班牙，男性（Spanish, Male）");
 });
