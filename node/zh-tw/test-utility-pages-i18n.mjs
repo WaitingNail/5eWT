@@ -143,3 +143,12 @@ test("life generator runs every random-table branch with canonical species and g
 	assert.deepEqual(remaining,[]);
 	for(const gender of ["Male","Female","Other"]){const details=await __lifeTest.getPersonDetails({gender,race:"Human",isParent:false});assert.match(details.join(""),/種族|性別/u);}
 });
+
+test("static tool shells include translated instructions, labels, and section headings",()=>{
+	for(const page of ["lifegen.html","crcalculator.html"]){
+		const html=source(page);
+		assert.doesNotMatch(html,/Charisma Modifier|Based on the tables|NOTE: Text displayed|Enter expected CR|Fill in the HP|A creature's|A monster's|Waiting for calculation|Feature Description/);
+	}
+	assert.match(source("lifegen.html"),/雙親（Parents）/);
+	assert.match(source("crcalculator.html"),/豁免<br>DC/);
+});

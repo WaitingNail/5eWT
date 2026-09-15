@@ -1,0 +1,151 @@
+diff --git a/js/lootgen/lootgen-generator-dragonhoard.js b/js/lootgen/lootgen-generator-dragonhoard.js
+--- a/js/lootgen/lootgen-generator-dragonhoard.js
++++ b/js/lootgen/lootgen-generator-dragonhoard.js
+@@ -71,7 +71,7 @@
+ 
+ 		const lootOutput = new this._ClsLootGenOutput({
+ 			type: `Dragon Hoard: ${I18nZhTwUtilities.t(this._state.dh_dragonAge)}`,
+-			name: `${I18nZhTwUtilities.t(this._state.dh_dragonAge)} Dragon's Hoard`,
++			name: `${I18nZhTwUtilities.t(this._state.dh_dragonAge)}龍的寶藏`,
+ 			coins,
+ 			gems,
+ 			artObjects,
+diff --git a/js/lootgen/lootgen-generator-findtreasure.js b/js/lootgen/lootgen-generator-findtreasure.js
+--- a/js/lootgen/lootgen-generator-findtreasure.js
++++ b/js/lootgen/lootgen-generator-findtreasure.js
+@@ -82,7 +82,7 @@
+ 
+ 		const lootOutput = new this._ClsLootGenOutput({
+ 			type: `Individual Treasure: ${this.constructor._CHALLENGE_RATING_RANGES[this._state.ft_challenge]}`,
+-			name: `{@b Individual Treasure} for challenge rating {@b ${this.constructor._CHALLENGE_RATING_RANGES[this._state.ft_challenge]}}`,
++			name: `挑戰等級 {@b ${this.constructor._CHALLENGE_RATING_RANGES[this._state.ft_challenge]}} 的{@b 個別財寶}`,
+ 			coins,
+ 			rendererWrapped: this._rendererWrapped,
+ 		});
+@@ -148,7 +148,7 @@
+ 	_source = Parser.SRC_DMG;
+ 
+ 	_getHtmlBasedOn () {
+-		return this._rendererWrapped.er(`依據下列書籍的表格與規則： the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|7|Treasure Tables}，第 133–149 頁。`);
++		return this._rendererWrapped.er(`依據{@book 城主指南（2014）|DMG|7|Treasure Tables}的財寶表，第 133–149 頁。`);
+ 	}
+ 
+ 	_render_getStgHoardAdditional () { return null; }
+@@ -178,7 +178,7 @@
+ 	_source = Parser.SRC_XDMG;
+ 
+ 	_getHtmlBasedOn () {
+-		return this._rendererWrapped.er(`依據下列書籍的表格與規則： the {@book ${Parser.sourceJsonToFull(Parser.SRC_XDMG)}|XDMG} page 120 (&quot;{@book Adventure Rewards|XDMG|3|Adventure Rewards}&quot;) and page 218 (&quot;{@book 隨機 Magic Item Rarity|XDMG|6|Random Magic Item Rarity}&quot;).`);
++		return this._rendererWrapped.er(`依據{@book 城主指南（2024）|XDMG}第 120 頁的「{@book 冒險獎勵|XDMG|3|Adventure Rewards}」及第 218 頁的「{@book 隨機魔法物品稀有度|XDMG|6|Random Magic Item Rarity}」。`);
+ 	}
+ 
+ 	_render_getStgHoardAdditional () {
+@@ -212,7 +212,7 @@
+ 	}
+ 
+ 	_getHoardLootOutputName () {
+-		return `{@b 寶藏儲藏}，挑戰等級：{@b ${this.constructor._CHALLENGE_RATING_RANGES[this._state.ft_challenge]}} and 角色等級 {@b ${this.constructor._CHARACTER_LEVEL_RANGES[this._state.ft_characterLevel].label}}`;
++		return `{@b 寶藏儲藏}，挑戰等級：{@b ${this.constructor._CHALLENGE_RATING_RANGES[this._state.ft_challenge]}}，角色等級：{@b ${this.constructor._CHARACTER_LEVEL_RANGES[this._state.ft_characterLevel].label}}`;
+ 	}
+ 
+ 	_getDefaultState () {
+diff --git a/js/lootgen/lootgen-generator-gemsartobjects.js b/js/lootgen/lootgen-generator-gemsartobjects.js
+--- a/js/lootgen/lootgen-generator-gemsartobjects.js
++++ b/js/lootgen/lootgen-generator-gemsartobjects.js
+@@ -107,7 +107,7 @@
+ 
+ 		const lootOutput = new this._ClsLootGenOutput({
+ 			type: `Gems/Art Objects`,
+-			name: `Gems/Art Objects: Roughly ${this._state.gao_targetGoldAmount.toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")}`,
++			name: `寶石／藝術品：約 ${this._state.gao_targetGoldAmount.toLocaleStringVe()} ${LootGenUtils.getCoinageLabel("gp")}`,
+ 			gems,
+ 			artObjects,
+ 			rendererWrapped: this._rendererWrapped,
+diff --git a/js/lootgen/lootgen-generator-loottables.js b/js/lootgen/lootgen-generator-loottables.js
+--- a/js/lootgen/lootgen-generator-loottables.js
++++ b/js/lootgen/lootgen-generator-loottables.js
+@@ -108,9 +108,9 @@
+ 
+ 	_lt_getRenderedHelp ({tableMeta}) {
+ 		switch (tableMeta.metaType) {
+-			case LOOT_TABLES_TYPE__DMG_MAGIC_ITEMS: return this._rendererWrapped.er(`依據下列書籍的表格與規則： the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|7|Treasure Tables}，第 133–149 頁。`);
+-			case LOOT_TABLES_TYPE__XGE_FAUX: return this._rendererWrapped.er(`依據下列書籍的規則自動產生表格： {@book ${Parser.sourceJsonToFull(Parser.SRC_XGE)} (Choosing Items Piecemeal)|XGE|2|choosing items piecemeal}，第 135–136 頁。`);
+-			case LOOT_TABLES_TYPE__XDMG_THEMES: return this._rendererWrapped.er(`依據下列書籍的表格與規則： the {@book ${Parser.sourceJsonToFull(Parser.SRC_XDMG)}|XDMG|6|Random Magic Items}，第 326–331 頁。`);
++			case LOOT_TABLES_TYPE__DMG_MAGIC_ITEMS: return this._rendererWrapped.er(`依據{@book 城主指南（2014）|DMG|7|Treasure Tables}的財寶表，第 133–149 頁。`);
++			case LOOT_TABLES_TYPE__XGE_FAUX: return this._rendererWrapped.er(`依據{@book 珊娜薩的萬事指南：逐件選擇物品|XGE|2|choosing items piecemeal}的規則產生表格，第 135–136 頁。`);
++			case LOOT_TABLES_TYPE__XDMG_THEMES: return this._rendererWrapped.er(`依據{@book 城主指南（2024）|XDMG|6|Random Magic Items}的隨機魔法物品表，第 326–331 頁。`);
+ 			default: throw new Error(`Unhandled table meta-type "${tableMeta.metaType}"`);
+ 		}
+ 	}
+diff --git a/js/lootgen/lootgen-generator-partyloot.js b/js/lootgen/lootgen-generator-partyloot.js
+--- a/js/lootgen/lootgen-generator-partyloot.js
++++ b/js/lootgen/lootgen-generator-partyloot.js
+@@ -213,7 +213,7 @@
+ 			: this.constructor._PARTY_LOOT_LEVEL_RANGES[this._state.pl_charLevel];
+ 		const lootOutput = new this._ClsLootGenOutput({
+ 			type: `Party Loot: Level ${ptLevel}`,
+-			name: `Magic items for a {@b Level ${ptLevel}} Party`,
++			name: `{@b 等級 ${ptLevel}} 隊伍的魔法物品`,
+ 			magicItemsByTable,
+ 			rendererWrapped: this._rendererWrapped,
+ 		});
+diff --git a/js/statgen/statgen-ui-comp-asi.js b/js/statgen/statgen-ui-comp-asi.js
+--- a/js/statgen/statgen-ui-comp-asi.js
++++ b/js/statgen/statgen-ui-comp-asi.js
+@@ -102,7 +102,7 @@
+ 							hkSelected();
+ 
+ 							return veT`<div class="ve-flex-col ve-h-100 ve-mr-2">
+-								<div class="ve-statgen-asi__cell ve-text-center ve-pb-1" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>
++								<div class="ve-statgen-asi__cell ve-text-center ve-pb-1" title="${I18nZhTwUtilities.t(Parser.attAbvToFull(it))}">${it.toUpperCase()}</div>
+ 								<div class="ve-flex-vh-center ve-statgen-asi__cell ve-relative">
+ 									<div class="ve-absolute ve-no-events ve-statgen-asi__disp-plus">+</div>
+ 									${ipt}
+@@ -382,7 +382,7 @@
+ 					}
+ 
+ 					// region Static/no choices
+-					const ptsNoChoose = Parser.ABIL_ABVS.filter(ab => abilitySet[ab]).map(ab => `${Parser.attAbvToFull(ab)} ${UiUtil.intToBonus(abilitySet[ab], {isPretty: true})}`);
++					const ptsNoChoose = Parser.ABIL_ABVS.filter(ab => abilitySet[ab]).map(ab => `${I18nZhTwUtilities.t(Parser.attAbvToFull(ab))} ${UiUtil.intToBonus(abilitySet[ab], {isPretty: true})}`);
+ 					stgFeatNoChoice.vee.empty().vee.toggle(ptsNoChoose.length).vee.html(`<div><span class="ve-mr-2">—</span>${ptsNoChoose.join(", ")}</div>`);
+ 					// endregion
+ 
+@@ -400,7 +400,7 @@
+ 							propFeatAbilityChooseFrom,
+ 							{
+ 								values: abilitySet.choose.from,
+-								fnDisplay: v => `${Parser.attAbvToFull(v)} ${UiUtil.intToBonus(amount, {isPretty: true})}`,
++								fnDisplay: v => `${I18nZhTwUtilities.t(Parser.attAbvToFull(v))} ${UiUtil.intToBonus(amount, {isPretty: true})}`,
+ 								count,
+ 							},
+ 						);
+@@ -412,7 +412,7 @@
+ 							meta.cb.vee.onn("change", () => this._doPulseThrottled());
+ 
+ 							veT`<label class="ve-flex-col ve-no-select">
+-								<div class="ve-flex-vh-center ve-statgen-asi__cell-feat" title="${Parser.attAbvToFull(meta.value)}">${meta.value.toUpperCase()}</div>
++								<div class="ve-flex-vh-center ve-statgen-asi__cell-feat" title="${I18nZhTwUtilities.t(Parser.attAbvToFull(meta.value))}">${meta.value.toUpperCase()}</div>
+ 								<div class="ve-flex-vh-center ve-statgen-asi__cell-feat">${meta.cb}</div>
+ 							</label>`.vee.appendTo(stgFeatChooseAsiFrom);
+ 						});
+diff --git a/js/statgen/statgen-ui.js b/js/statgen/statgen-ui.js
+--- a/js/statgen/statgen-ui.js
++++ b/js/statgen/statgen-ui.js
+@@ -923,7 +923,7 @@
+ 							<div class="ve-my-1 ve-statgen-pb__header"></div>
+ 							<div class="ve-my-1 ve-statgen-pb__header ve-flex-h-right">${btnResetRolledOrArrayOrManual}</div>
+ 
+-							${Parser.ABIL_ABVS.map(it => `<div class="ve-my-1 ve-bold ve-statgen-pb__cell ve-flex-v-center ve-flex-h-right" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>`)}
++							${Parser.ABIL_ABVS.map(it => `<div class="ve-my-1 ve-bold ve-statgen-pb__cell ve-flex-v-center ve-flex-h-right" title="${I18nZhTwUtilities.t(Parser.attAbvToFull(it))}">${it.toUpperCase()}</div>`)}
+ 						</div>
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+@@ -1011,7 +1011,7 @@
+ 						<div class="ve-flex-col ve-mr-3">
+ 							<div class="ve-my-1 ve-statgen-pb__header"></div>
+ 
+-							${Parser.ABIL_ABVS.map(it => `<div class="ve-my-1 ve-bold ve-statgen-pb__cell ve-flex-v-center ve-flex-h-right" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>`)}
++							${Parser.ABIL_ABVS.map(it => `<div class="ve-my-1 ve-bold ve-statgen-pb__cell ve-flex-v-center ve-flex-h-right" title="${I18nZhTwUtilities.t(Parser.attAbvToFull(it))}">${it.toUpperCase()}</div>`)}
+ 						</div>
+ 
+ 						<div class="ve-flex-col ve-mr-3">

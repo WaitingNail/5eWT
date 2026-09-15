@@ -627,5 +627,11 @@ globalThis.I18nZhTwUtilityMessages = Object.freeze({
 	"Type": "類型",
 	"weapon": "武器",
 	"armor": "護甲",
-	"wondrous": "奇物"
+	"wondrous": "奇物",
+	"Strength": "力量",
+	"Dexterity": "敏捷",
+	"Constitution": "體質",
+	"Intelligence": "智力",
+	"Wisdom": "感知",
+	"Charisma": "魅力"
 });

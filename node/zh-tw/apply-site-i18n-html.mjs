@@ -71,7 +71,7 @@ function assertCanonicalAttributesUnchanged ({before, after, page}) {
 	});
 }
 
-function getTranslator (siteI18n) {
+function getTranslator (siteI18n, pageMessages = {}) {
 	const getTranslated = value => {
 		const decoded = decodeHtml(value);
 		const normalized = decoded.replace(/\s+/gu, " ").trim();
@@ -83,6 +83,7 @@ function getTranslator (siteI18n) {
 		];
 
 		for (const candidate of candidates) {
+			if (typeof pageMessages[candidate] === "string") return pageMessages[candidate];
 			const key = siteI18n.english[candidate];
 			const translated = key == null ? null : siteI18n.messages[key];
 			if (typeof translated === "string" && translated.length) return translated;
@@ -239,7 +240,16 @@ function localizeRedirectShell ({html, translator}) {
 
 function transformPage ({html, page, isSeo, translator}) {
 	let out = setDocumentLanguage(html, page);
+	if (page === "crcalculator.html") {
+		for (const [from, to] of Object.entries({"Prof.<br>加值":"熟練<br>加值", "Prof.<br>Bonus":"熟練<br>加值", "Armor<br>Class":"護甲<br>等級", "Hit<br>Points":"生命<br>值", "Attack<br>加值":"攻擊<br>加值", "Attack<br>Bonus":"攻擊<br>加值", "Damage/<br>Round":"每輪<br>傷害", "儲存<br>DC":"豁免<br>DC", "Save<br>DC":"豁免<br>DC"})) out = out.replaceAll(from, to);
+	}
+	if (page === "lifegen.html") {
+		out = out.replace('for="race">Background', 'for="background">Background').replace('for="race">Class', 'for="class">Class');
+	}
 	out = injectLocaleScripts({html: out, isSeo, page});
+	// These shared/page loaders are often cached from a previous visit. A
+	// release key avoids mixing a translated HTML shell with the old loader.
+	out = out.replace(/(src=["']\/?js\/(?:utils|lifegen)\.js)(?:\?v=[^"']*)?(["'])/g, "$1?v=zh-tw-24$2");
 	out = localizeRedirectShell({html: out, translator});
 	out = translateHtml({html: out, translator});
 	assertCanonicalAttributesUnchanged({before: html, after: out, page});
@@ -293,7 +303,7 @@ async function getPagePaths () {
 async function main () {
 	const isCheck = process.argv.includes("--check");
 	const siteI18n = JSON.parse(await fs.readFile(PATH_SITE_I18N, "utf8"));
-	const translator = getTranslator(siteI18n);
+	const pageMessages = JSON.parse(await fs.readFile(path.join(ROOT, "translation/zh-TW/utility-pages/html-translations.json"), "utf8"));
 	const pages = await getPagePaths();
 	const stalePages = [];
 	let changedCount = 0;
@@ -301,7 +311,7 @@ async function main () {
 	for (const page of pages) {
 		const pagePath = path.join(ROOT, page);
 		const html = await fs.readFile(pagePath, "utf8");
-		const transformed = transformPage({html, page, isSeo: page.includes("/"), translator});
+		const transformed = transformPage({html, page, isSeo: page.includes("/"), translator: getTranslator(siteI18n, pageMessages[page])});
 		validatePage({html: transformed, page, isSeo: page.includes("/")});
 
 		if (transformed === html) continue;
