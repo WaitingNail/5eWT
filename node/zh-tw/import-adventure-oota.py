@@ -14,14 +14,15 @@ BOOKS = {"oota": "OotA"}
 
 def apply_site_name_corrections():
     corrections = BASE.read(DIRECTORY / "site-name-corrections.json")
-    path = BASE.ROOT / "data/zh-TW/bestiary/bestiary-oota.json"
-    document = BASE.read(path)
-    for entity in document["monster"]:
-        if correction := corrections.get(entity.get("ENG_name")):
-            if entity["name"] not in (correction["before"], correction["zh_tw"]):
-                raise ValueError(f"Site name changed: {entity['ENG_name']}")
-            entity["name"] = correction["zh_tw"]
-    BASE.write(path, document)
+    for filename, prop in [("bestiary-oota.json", "monster"), ("fluff-bestiary-oota.json", "monsterFluff")]:
+        path = BASE.ROOT / "data/zh-TW/bestiary" / filename
+        document = BASE.read(path)
+        for entity in document[prop]:
+            if correction := corrections.get(entity.get("ENG_name")):
+                if entity["name"] not in (correction["before"], correction["zh_tw"]):
+                    raise ValueError(f"Site name changed: {entity['ENG_name']}")
+                entity["name"] = correction["zh_tw"]
+        BASE.write(path, document)
 
 
 class OotaLocalizer(WDH.WaterdeepLocalizer):
