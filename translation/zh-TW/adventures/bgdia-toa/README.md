@@ -42,3 +42,9 @@ npm run verify
 ```
 
 驗證範圍、主要校訂及限制見 `reports/zh-tw-bgdia-toa-audit.md`。這次完成完整基稿整合及疑點校訂；不是出版等級的全書逐句人工審校。圖片內嵌文字未重繪。本次翻譯分支提交不代表正式站部署。
+
+## 2026-09-25 使用者核准的名稱修訂
+
+Omu → 奧姆；Liara Portyr → 莉亞菈・波特爾；Portyr → 波特爾；Duke Thalamra Vanthampur → 薩納姆娜·范薩普爾公爵；Vanthampur → 范薩普爾。
+
+涵蓋冒險正文、目錄、角色卡、背景敘述及衍生表格，共 360 個文字欄位。`../../approved-project-names.json` 保存核准拼寫，`../../approved-project-name-validation.json` 記錄相對於 e80830c 的逐欄比較：所有變更均為核准名稱，資料結構與其他純量值一致。重新產生分類／術語清單及匯入報告，7 筆因名字而改變的數值等值校驗碼在確認原文不變、譯文只有核准名稱替換後更新。

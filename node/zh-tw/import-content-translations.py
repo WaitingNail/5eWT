@@ -442,6 +442,7 @@ MONSTER_TEXT_OVERRIDES: dict[str, str] = {
 # Vizeran); otherwise these use the project's Taiwan Traditional Chinese
 # transliteration rules.  Machine identifiers intentionally remain unchanged.
 MONSTER_NAME_TRANSLATIONS: dict[str, str] = {
+	"Zorhanna's Simulacrum": "佐哈娜的擬像",
 	"Nintra Siotta": "妮恩特拉·西奧塔",
 	"Ram Sugar": "拉姆·舒格",
 	"Aeshma": "艾什瑪",
@@ -561,7 +562,17 @@ class ContentLocalizer(CORE.Localizer):
 	def _apply_project_terms(cls, value: str) -> str:
 		for source, replacement in cls._PROJECT_TERM_REPLACEMENTS:
 			value = value.replace(source, replacement)
+		# User-approved proper-name spellings survive re-import and OpenCC.
+		# Chinese display aliases cannot alter canonical English tag targets.
+		if not hasattr(cls, "_approved_name_pattern"):
+			terms = json.loads((ROOT / "translation/zh-TW/approved-project-names.json").read_text(encoding="utf-8"))["terms"]
+			cls._approved_name_aliases = {alias: term["zh_tw"] for term in terms for alias in term["aliases"]}
+			cls._approved_name_pattern = re.compile("|".join(re.escape(alias) for alias in sorted(cls._approved_name_aliases, key=len, reverse=True)))
+		value = cls._approved_name_pattern.sub(lambda match: cls._approved_name_aliases[match[0]], value)
 		return value
+
+	def normalize_text(self, value: str) -> str:
+		return self._apply_project_terms(super().normalize_text(value))
 
 	def translate_name(self, english: str, translated: str, category: str) -> str:
 		return self._apply_project_terms(super().translate_name(english, translated, category))
