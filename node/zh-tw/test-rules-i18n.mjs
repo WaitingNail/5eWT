@@ -418,7 +418,7 @@ assert.deepEqual(fullCounts, {
 	conditionFluff: 13,
 	skill: 36,
 	sense: 8,
-	variantrule: 243,
+	variantrule: 245,
 });
 
 console.log("Core rules runtime localization tests passed.");

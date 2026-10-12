@@ -1,9 +1,10 @@
 {
 	"_meta": {
 		"locale": "zh-TW",
-		"upstreamTag": "v2.33.3",
-		"translationSource": "https://shuaishuaidnd.cn/data/class",
-		"conversion": "OpenCC s2twp plus locked project terminology"
+		"upstreamTag": "v2.37.0",
+		"upstreamCommit": "8c026b807fac21862a309379a0c3228a0683198b",
+		"baselineTranslationTag": "v2.33.3",
+		"communityCandidateCommit": "5cc0bbe2c2b241a334e731af4448bdba2168e8bd"
 	},
 	"class": [
 		{
@@ -1864,6 +1865,7 @@
 			"source": "RHW",
 			"className": "Warlock",
 			"classSource": "XPHB",
+			"page": 24,
 			"edition": "one",
 			"additionalSpells": [
 				{
@@ -1898,6 +1900,119 @@
 			"hasFluffImages": true,
 			"ENG_name": "Undead Patron",
 			"ENG_shortName": "Undead"
+		},
+		{
+			"name": "契靈宗主",
+			"shortName": "遺物",
+			"source": "AU",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"page": 13,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"name": "生命領域",
+					"prepared": {
+						"3": [
+							"aid|xphb",
+							"bless|xphb",
+							"cure wounds|xphb",
+							"lesser restoration|xphb"
+						],
+						"5": [
+							"mass healing word|xphb",
+							"revivify|xphb"
+						],
+						"7": [
+							"aura of life|xphb",
+							"death ward|xphb"
+						],
+						"9": [
+							"greater restoration|xphb",
+							"mass cure wounds|xphb"
+						]
+					}
+				},
+				{
+					"name": "光明領域",
+					"prepared": {
+						"3": [
+							"burning hands|xphb",
+							"faerie fire|xphb",
+							"scorching ray|xphb",
+							"see invisibility|xphb"
+						],
+						"5": [
+							"daylight|xphb",
+							"fireball|xphb"
+						],
+						"7": [
+							"arcane eye|xphb",
+							"wall of fire|xphb"
+						],
+						"9": [
+							"flame strike|xphb",
+							"scrying|xphb"
+						]
+					}
+				},
+				{
+					"name": "詭術領域",
+					"prepared": {
+						"3": [
+							"charm person|xphb",
+							"disguise self|xphb",
+							"invisibility|xphb",
+							"pass without trace|xphb"
+						],
+						"5": [
+							"hypnotic pattern|xphb",
+							"nondetection|xphb"
+						],
+						"7": [
+							"confusion|xphb",
+							"dimension door|xphb"
+						],
+						"9": [
+							"dominate person|xphb",
+							"modify memory|xphb"
+						]
+					}
+				},
+				{
+					"name": "戰爭領域",
+					"prepared": {
+						"3": [
+							"guiding bolt|xphb",
+							"magic weapon|xphb",
+							"shield of faith|xphb",
+							"spiritual weapon|xphb"
+						],
+						"5": [
+							"crusader's mantle|xphb",
+							"spirit guardians|xphb"
+						],
+						"7": [
+							"fire shield|xphb",
+							"freedom of movement|xphb"
+						],
+						"9": [
+							"hold monster|xphb",
+							"steel wind strike|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Vestige Patron|Warlock|XPHB|Vestige|AU|3|AU",
+				"Vestige Power|Warlock|XPHB|Vestige|AU|6|AU",
+				"Vestige Recovery|Warlock|XPHB|Vestige|AU|10|AU",
+				"Semblance of Life|Warlock|XPHB|Vestige|AU|14|AU"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Vestige Patron",
+			"ENG_shortName": "Vestige"
 		}
 	],
 	"classFeature": [
@@ -4196,6 +4311,132 @@
 			"ENG_name": "Master of Hexes"
 		},
 		{
+			"name": "契靈宗主",
+			"source": "AU",
+			"page": 13,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Vestige",
+			"subclassSource": "AU",
+			"level": 3,
+			"entries": [
+				"{@i 掌控垂死神祇的殘餘之力}",
+				"你的契約汲取自一位垂死神祇的力量，這一存在曾受無數信徒膜拜，如今卻被拋棄、被遺忘。這位被稱之為契靈的垂死神祇，昔日或許仁慈，或許邪惡，亦或是詭異而不可名狀，但如今的它只被重獲往昔之權柄的渴望所驅使。契靈需要你的協助。為此，祂願與你共享僅存的力量。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Vestige Companion|Warlock|XPHB|Vestige|AU|3|AU"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Vestige Spells|Warlock|XPHB|Vestige|AU|3|AU"
+				}
+			],
+			"ENG_name": "Vestige Patron"
+		},
+		{
+			"name": "契靈夥伴",
+			"source": "AU",
+			"page": 13,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Vestige",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"契靈自你的契約中汲取力量，得以顯化成型。其使用{@creature Vestige Companion|AU|契靈夥伴}資料卡，其生物型別為天族、邪魔或亡靈（在你獲得此特性時選擇）。由你決定契靈的外觀，但無論其形態如何，契靈都會帶有彰顯其超自然起源的特徵。例如，你可以設定你的契靈是一顆銘刻著符印的特大型浮游顱骨、一圈發光的符文，或是一個不斷變幻的抽象幾何體。契靈對你和你的盟友持{@variantrule Friendly [Attitude]|XPHB|友好}態度，並服從你的命令。如果你死亡，其也會隨之消失。",
+				{
+					"type": "entries",
+					"name": "戰鬥中的契靈",
+					"page": 13,
+					"entries": [
+						"在戰鬥中，契靈在你的回合內行動。其可以自主移動或使用其{@variantrule Reaction|XPHB|反應}，但除非你以一個{@variantrule Bonus Action|XPHB|附贈動作}指揮它執行其資料卡中的動作或其他動作，否則其只會執行{@action Dodge|XPHB|閃避}動作。當你執行{@action Attack|XPHB|攻擊}動作時，你也可以放棄其中一次攻擊，轉而指揮契靈執行契靈打擊動作。如果你陷入{@condition Incapacitated|XPHB|無力}狀態，契靈將自行行動，且不再受限於僅能執行{@action Dodge|XPHB|閃避}動作。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "契靈的消逝",
+					"page": 13,
+					"entries": [
+						"當契靈的{@variantrule Hit Points|XPHB|生命值}降至0時，它會消失。你可以花費1分鐘進行某種魔法儀式來再次顯化契靈；它會以{@variantrule Hit Points|XPHB|生命值}全滿的狀態重新出現在你5尺範圍內的一處未佔據空間。你可以以一個{@action Magic|XPHB|魔法}動作將契靈暫時遣散至一處口袋維度。在契靈被暫時遣散期間，你可以以一個{@action Magic|XPHB|魔法}動作使其重新出現在你30尺範圍內的一處未佔據空間。無論契靈是因{@variantrule Hit Points|XPHB|生命值}降至0，還是因進入口袋維度而消失，它都會將其穿戴或攜帶的任何物品留在其原本佔據的空間內。",
+						{
+							"type": "statblock",
+							"tag": "creature",
+							"name": "契靈夥伴",
+							"source": "AU",
+							"page": 14,
+							"style": "narrow"
+						},
+						"每當你完成一次{@variantrule Long Rest|XPHB|長休}後，你能夠以新的形態召喚契靈，它出現在你5尺範圍內的一處未佔據空間。由你選擇它的外觀，並決定它是天族、邪魔還是亡靈。如果契靈已透過此特性顯化，則其形態將轉變為新的樣子。"
+					]
+				}
+			],
+			"ENG_name": "Vestige Companion"
+		},
+		{
+			"name": "契靈法術",
+			"source": "AU",
+			"page": 14,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Vestige",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你{@creature Vestige Companion|AU|契靈夥伴}的魔法確保你始終準備著特定的法術。從下列牧師領域中選擇其一：{@class Cleric|XPHB|牧師}、{@class Cleric|XPHB|牧師}、{@class Cleric|XPHB|牧師}或{@class Cleric|XPHB|牧師}。你所選領域的領域法術對你而言視為魔契師法術。當你到達的魔契師等級等於你所選領域的領域法術表中所列的牧師等級時，你此後就始終準備著這些列出的法術。",
+				"例如，若你為此特性選擇了{@class Cleric|XPHB|牧師}，當你到達魔契師3級時，你便準備了法術{@spell Guiding Bolt|XPHB|光導箭}、{@spell Magic Weapon|XPHB|魔化武器}、{@spell Shield of Faith|XPHB|虔誠護盾}和{@spell Spiritual Weapon|XPHB|靈體武器}。"
+			],
+			"ENG_name": "Vestige Spells"
+		},
+		{
+			"name": "契靈神威",
+			"source": "AU",
+			"page": 14,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Vestige",
+			"subclassSource": "AU",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"現在，每當你完成一次{@variantrule Short Rest|XPHB|短休}或{@variantrule Long Rest|XPHB|長休}，或當你使用你的秘法迴流特性時，你的{@creature Vestige Companion|AU|契靈夥伴}都會恢復其神聖之力的使用次數。此外，當你位於你的{@creature Vestige Companion|AU|契靈夥伴}30尺範圍內時，你對與該契靈相同的傷害型別具有{@variantrule Resistance|XPHB|抗性}。"
+			],
+			"ENG_name": "Vestige Power"
+		},
+		{
+			"name": "契靈復甦",
+			"source": "AU",
+			"page": 14,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Vestige",
+			"subclassSource": "AU",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"當你的{@creature Vestige Companion|AU|契靈夥伴}將要降至0{@variantrule Hit Points|XPHB|生命值}時，你可以執行一個{@variantrule Reaction|XPHB|反應}並消耗一個契約魔法法術位，改為將其{@variantrule Hit Points|XPHB|生命值}變為其{@variantrule Hit Points|XPHB|生命值}上限。隨後，該契靈傳送至其自身30尺範圍內一處你可見的未佔據空間。該特性一經使用，則直至你完成一次{@variantrule Long Rest|XPHB|長休}之前，都無法再次使用。"
+			],
+			"ENG_name": "Vestige Recovery"
+		},
+		{
+			"name": "生命假象",
+			"source": "AU",
+			"page": 14,
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Vestige",
+			"subclassSource": "AU",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"你{@creature Vestige Companion|AU|契靈夥伴}的力量不斷成長，愈發強大。藉助你的力量，其能夠短暫化作更加強大的形態。根據契靈的型別，當契靈位於你90尺範圍內時，你就可以執行一個{@action Magic|XPHB|魔法}動作使其變形，持續1小時，變為以下形態之一：{@b 天界靈魄}（天族契靈；見{@book 玩家手冊|XPHB|9}中的法術{@spell Summon Celestial|XPHB|天界召喚術}）、{@b 邪魔靈魄}（邪魔契靈；見{@book 玩家手冊|XPHB|9}中的法術{@spell Summon Fiend|XPHB|邪魔召喚術}），或{@b 亡靈靈魄}（亡靈契靈；見{@book 玩家手冊|XPHB|9}中的法術{@spell Summon Undead|XPHB|亡靈召喚術}）。該契靈的遊戲資料會被靈魄的資料卡所替換，並且該法術的環階等於你魔契師等級的一半（向下取整；最高九環），但該契靈保留其自身的人格、神聖之力{@variantrule Bonus Action|XPHB|附贈動作}、{@variantrule Hit Points|XPHB|生命值}以及{@variantrule Hit Point Dice|XPHB|生命值骰}。",
+				"該契靈獲得數量等於該靈魄形態{@variantrule Temporary Hit Points|XPHB|臨時生命值}的{@variantrule Hit Points|XPHB|生命值}。如果這些{@variantrule Temporary Hit Points|XPHB|臨時生命值}在1小時後仍有剩餘，其便會消失；並且如果該契靈的{@variantrule Temporary Hit Points|XPHB|臨時生命值}耗盡，此變形將提前結束。",
+				"此特性一經使用，直至完成{@variantrule Long Rest|XPHB|長休}你都無法再次使用。"
+			],
+			"ENG_name": "Semblance of Life"
+		},
+		{
 			"name": "至高妖精",
 			"source": "PHB",
 			"className": "Warlock",
@@ -4265,6 +4506,7 @@
 		{
 			"name": "死靈宗主",
 			"source": "RHW",
+			"page": 24,
 			"className": "Warlock",
 			"classSource": "XPHB",
 			"subclassShortName": "Undead",
@@ -4287,6 +4529,7 @@
 		{
 			"name": "戰慄形態",
 			"source": "RHW",
+			"page": 24,
 			"className": "Warlock",
 			"classSource": "XPHB",
 			"subclassShortName": "Undead",
@@ -4325,6 +4568,7 @@
 		{
 			"name": "死靈法術",
 			"source": "RHW",
+			"page": 24,
 			"className": "Warlock",
 			"classSource": "XPHB",
 			"subclassShortName": "Undead",
@@ -4369,6 +4613,7 @@
 		{
 			"name": "墳冢之觸",
 			"source": "RHW",
+			"page": 24,
 			"className": "Warlock",
 			"classSource": "XPHB",
 			"subclassShortName": "Undead",
@@ -4407,6 +4652,7 @@
 		{
 			"name": "死疽軀殼",
 			"source": "RHW",
+			"page": 25,
 			"className": "Warlock",
 			"classSource": "XPHB",
 			"subclassShortName": "Undead",
@@ -4438,6 +4684,7 @@
 		{
 			"name": "超凡戰慄",
 			"source": "RHW",
+			"page": 25,
 			"className": "Warlock",
 			"classSource": "XPHB",
 			"subclassShortName": "Undead",

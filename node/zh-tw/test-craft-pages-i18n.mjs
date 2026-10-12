@@ -78,8 +78,8 @@ test("all vehicle, recipe, and homecraft records load with bilingual entity name
 	const expected = {
 		"vehicles.json": {vehicle: 39, vehicleUpgrade: 31},
 		"fluff-vehicles.json": {vehicleFluff: 36},
-		"recipes.json": {recipe: 241},
-		"fluff-recipes.json": {recipeFluff: 241},
+		"recipes.json": {recipe: 316},
+		"fluff-recipes.json": {recipeFluff: 316},
 		"homecrafts.json": {crochetPattern: 20},
 		"fluff-homecrafts.json": {crochetPatternFluff: 20},
 	};
@@ -243,8 +243,8 @@ test("guarded import report proves complete alignment and preserved mechanics", 
 		vehicle: 39,
 		vehicleUpgrade: 31,
 		vehicleFluff: 36,
-		recipe: 241,
-		recipeFluff: 241,
+		recipe: 316,
+		recipeFluff: 316,
 		crochetPattern: 20,
 		crochetPatternFluff: 20,
 	});

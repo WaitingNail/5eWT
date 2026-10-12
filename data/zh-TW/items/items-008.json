@@ -1,14 +1,3269 @@
 {
 	"_meta": {
 		"locale": "zh-TW",
-		"upstreamTag": "v2.33.3",
-		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
-		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
-		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
-		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
-		"license": "CC BY-NC-SA 4.0"
+		"upstreamTag": "v2.37.0",
+		"upstreamCommit": "8c026b807fac21862a309379a0c3228a0683198b",
+		"baselineTranslationTag": "v2.33.3",
+		"communityCandidateCommit": "5cc0bbe2c2b241a334e731af4448bdba2168e8bd"
 	},
 	"item": [
+		{
+			"name": "恐懼魔杖",
+			"source": "XDMG",
+			"page": 319,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "WD|XDMG",
+			"rarity": "rare",
+			"reqAttune": true,
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這根魔杖具有7充能。",
+				{
+					"type": "entries",
+					"name": "法術",
+					"entries": [
+						"持握這根魔杖時，你可以從中施展下列表格中的一道法術（豁免{@dc 15}）。施展對應法術所需消耗的充能數如表格所示。",
+						{
+							"type": "table",
+							"colStyles": [
+								"col-10",
+								"col-2 text-center"
+							],
+							"colLabels": [
+								"法術",
+								"消耗充能"
+							],
+							"rows": [
+								[
+									"{@spell Command|XPHB|命令術}（只能命令走開或趴下）",
+									"1"
+								],
+								[
+									"{@spell Fear|XPHB|恐懼術}（範圍改為60尺{@variantrule Cone [Area of Effect]|XPHB|錐狀}）",
+									"3"
+								]
+							]
+						}
+					],
+					"ENG_name": "Spells"
+				},
+				{
+					"type": "entries",
+					"name": "重獲充能",
+					"entries": [
+						"這根魔杖在每日黎明時重獲{@dice 1d6 + 1}已消耗的充能。當充能數耗盡時，骰一次{@dice 1d20}。如果骰值為1，魔杖將化作飛灰並被摧毀。"
+					],
+					"ENG_name": "Regaining Charges"
+				}
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"command|xphb"
+					],
+					"3": [
+						"fear|xphb"
+					]
+				}
+			},
+			"lootTables": [
+				"Arcana - Rare|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Fear"
+		},
+		{
+			"name": "火球魔杖",
+			"source": "DMG",
+			"page": 210,
+			"srd": true,
+			"referenceSources": [
+				"CoA",
+				"OoW",
+				"SKT",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Wand of Fireballs|XDMG"
+			],
+			"type": "WD|DMG",
+			"tier": "major",
+			"rarity": "rare",
+			"reqAttune": "由施法者",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這把魔杖有7發充能。持握此魔杖期間，你可以用一個動作並消耗1發或更多充能以施展{@spell fireball||火球術}法術（豁免{@dc 15}）。消耗1發充能施展3環版本的法術。每多消耗1發充能，法術環階也提升一階。",
+				"該魔杖每天黎明時恢復{@dice 1d6 + 1}發已消耗的充能。如果你消耗了魔杖的最後一發充能，骰一次{@dice d20}。如果骰值為1，魔杖將化為灰燼而毀滅。"
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"fireball"
+					]
+				}
+			},
+			"lootTables": [
+				"Magic Item Table G"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Fireballs"
+		},
+		{
+			"name": "火球魔杖",
+			"source": "XDMG",
+			"page": 319,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "WD|XDMG",
+			"rarity": "rare",
+			"reqAttune": "由施法者",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這根魔杖具有7充能。持握它時，你可以消耗最多3充能從中施展{@spell Fireball|XPHB|火球術}（豁免{@dc 15}）。你可以用1充能施展3環版本的法術；每多消耗1充能，法術的環位就將提升1環。",
+				{
+					"type": "entries",
+					"name": "重獲充能",
+					"entries": [
+						"這根魔杖在每日黎明時重獲{@dice 1d6 + 1}已消耗的充能。當充能數耗盡時，骰一次{@dice 1d20}。如果骰值為1，魔杖將化作飛灰並被摧毀。"
+					],
+					"ENG_name": "Regaining Charges"
+				}
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"fireball|xphb"
+					]
+				}
+			},
+			"lootTables": [
+				"Arcana - Rare|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Fireballs"
+		},
+		{
+			"name": "新鮮魔杖",
+			"source": "AU",
+			"page": 125,
+			"type": "WD|XDMG",
+			"rarity": "uncommon",
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d4 + 1}",
+			"charges": 4,
+			"entries": [
+				"這根魔杖具有4充能，並在每日黎明時恢復{@dice 1d4 + 1}已消耗的充能。持握該魔杖期間，你可以消耗1充能從中施展法術{@spell Purify Food and Drink|XPHB|淨化飲食}。"
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"purify food and drink|xphb"
+					]
+				}
+			},
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Freshness"
+		},
+		{
+			"name": "閃電束魔杖",
+			"source": "DMG",
+			"page": 211,
+			"srd": true,
+			"referenceSources": [
+				"OoW",
+				"RtG",
+				"SKT",
+				"TftYP-THSoT",
+				"WDH"
+			],
+			"reprintedAs": [
+				"Wand of Lightning Bolts|XDMG"
+			],
+			"type": "WD|DMG",
+			"tier": "major",
+			"rarity": "rare",
+			"reqAttune": "由施法者",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這把魔杖有7發充能。持握此魔杖期間，你可以用一個動作並消耗1發或更多充能以施展法術 {@spell lightning bolt||閃電束}（豁免 {@dc 15}）。消耗1發充能，你施放3環版本的法術。每多消耗1發充能，法術環數也增加一階。",
+				"該魔杖每天黎明時恢復{@dice 1d6 + 1}發已消耗的充能。如果你消耗了魔杖的最後一發充能，骰一次{@dice d20}。如果骰值為1，魔杖將化為灰燼而毀滅。"
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"lightning bolt"
+					]
+				}
+			},
+			"lootTables": [
+				"Magic Item Table G"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Lightning Bolts"
+		},
+		{
+			"name": "閃電束魔杖",
+			"source": "XDMG",
+			"page": 320,
+			"srd52": true,
+			"basicRules2024": true,
+			"referenceSources": [
+				"DrDe-ACfaS"
+			],
+			"type": "WD|XDMG",
+			"rarity": "rare",
+			"reqAttune": "由施法者",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這根魔杖具有7充能。持握它時，你可以消耗最多3充能從中施展{@spell Lightning Bolt|XPHB|閃電束} （豁免{@dc 15}）。你可以用1充能施展3環版本的法術；每多消耗1充能，法術的環位就將提升1環。",
+				{
+					"type": "entries",
+					"name": "重獲充能",
+					"entries": [
+						"這根魔杖在每日黎明時重獲{@dice 1d6 + 1}已消耗的充能。當充能數耗盡時，骰一次{@dice 1d20}。如果骰值為1，魔杖將化作飛灰並被摧毀。"
+					],
+					"ENG_name": "Regaining Charges"
+				}
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"lightning bolt|xphb"
+					]
+				}
+			},
+			"lootTables": [
+				"Arcana - Rare|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Lightning Bolts"
+		},
+		{
+			"name": "搜魔魔杖",
+			"source": "DMG",
+			"page": 211,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CoA",
+				"OoW",
+				"PaBTSO",
+				"QftIS",
+				"SDW",
+				"US",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Wand of Magic Detection|XDMG"
+			],
+			"type": "WD|DMG",
+			"tier": "minor",
+			"rarity": "uncommon",
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d3}",
+			"charges": 3,
+			"entries": [
+				"這把魔杖有3發充能。持握此魔杖期間，你可以用一個動作並消耗1發充能以從魔杖中施放{@spell detect magic||偵測魔法}法術。魔杖每天黎明時恢復{@dice 1d3}發已消耗的充能。"
+			],
+			"optionalfeatures": [
+				"replicate magic item|tce"
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"detect magic"
+					]
+				}
+			},
+			"lootTables": [
+				"Magic Item Table B"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Magic Detection"
+		},
+		{
+			"name": "搜魔魔杖",
+			"source": "XDMG",
+			"page": 320,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "WD|XDMG",
+			"rarity": "uncommon",
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d3}",
+			"charges": 3,
+			"entries": [
+				"這根魔杖具有3充能。持握它時，你可以消耗1充能從中施展{@spell Detect Magic|XPHB|偵測魔法}。這根魔杖在每日黎明時重獲{@dice 1d3}已消耗的充能。"
+			],
+			"classFeatures": [
+				"replicate magic item|artificer|efa|2|efa"
+			],
+			"optionalfeatures": [
+				"replicate magic item|tce"
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"detect magic|xphb"
+					]
+				}
+			},
+			"lootTables": [
+				"Arcana - Uncommon|XDMG",
+				"Relics - Uncommon|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Magic Detection"
+		},
+		{
+			"name": "魔法飛彈魔杖",
+			"source": "DMG",
+			"page": 211,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"BGDIA",
+				"HftT",
+				"HoL",
+				"IDRotF",
+				"KftGV",
+				"LMoP",
+				"OoW",
+				"PaBTSO",
+				"PotA",
+				"QftIS",
+				"RMBRE",
+				"SLW",
+				"TftYP-TFoF",
+				"WDH"
+			],
+			"reprintedAs": [
+				"Wand of Magic Missiles|XDMG"
+			],
+			"type": "WD|DMG",
+			"tier": "major",
+			"rarity": "uncommon",
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這把魔杖有7發充能。持握此魔杖期間，你可以用一個動作並消耗1發或更多充能以施展法術{@spell magic missile||魔法飛彈}。消耗1發充能施展1環版本的法術。每多消耗1發充能法術環數也增加一階。",
+				"該魔杖每天黎明時恢復{@dice 1d6 + 1}發已消耗的充能。如果你消耗了魔杖的最後一發充能，骰一次{@dice d20}。如果骰值為1，魔杖將化為灰燼而毀滅。"
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"magic missile"
+					]
+				}
+			},
+			"lootTables": [
+				"Magic Item Table F"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Magic Missiles"
+		},
+		{
+			"name": "魔法飛彈魔杖",
+			"source": "XDMG",
+			"page": 320,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "WD|XDMG",
+			"rarity": "uncommon",
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這根魔杖具有7充能。當持握它時，你可以消耗最多3充能從中施展{@spell Magic Missile|XPHB|魔法飛彈} 。你可以用1充能施展1環版本的法術。每多消耗1充能，法術的環位就將提升1環。",
+				{
+					"type": "entries",
+					"name": "重獲充能",
+					"entries": [
+						"這根魔杖在每日黎明時重獲{@dice 1d6 + 1}已消耗的充能。當充能數耗盡時，骰一次{@dice 1d20}。如果骰值為1，魔杖將化作飛灰並被摧毀。"
+					],
+					"ENG_name": "Regaining Charges"
+				}
+			],
+			"classFeatures": [
+				"replicate magic item|artificer|efa|2|efa"
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"magic missile|xphb"
+					]
+				}
+			},
+			"lootTables": [
+				"Arcana - Uncommon|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Magic Missiles"
+		},
+		{
+			"name": "奧喀斯之杖",
+			"source": "DMG",
+			"page": 227,
+			"referenceSources": [
+				"OotA"
+			],
+			"reprintedAs": [
+				"Wand of Orcus|XDMG"
+			],
+			"baseItem": "mace|phb",
+			"type": "WD|DMG",
+			"typeAlt": "M",
+			"rarity": "artifact",
+			"reqAttune": true,
+			"sentient": true,
+			"weight": 4,
+			"weaponCategory": "simple",
+			"dmg1": "1d6",
+			"dmgType": "B",
+			"bonusWeapon": "+3",
+			"bonusAc": "+3",
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d4 + 3}",
+			"charges": 7,
+			"entries": [
+				"可怕的奧喀斯之杖很少離開{@creature Orcus|MTF|奧喀斯的}的身邊。這件與其創造者一樣邪惡的神器，與惡魔領主有著相同的目標：熄滅所有生靈的生命之火，並將物質位面束縛在亡靈的不死靜止狀態中。{@creature Orcus|MTF|奧喀斯}偶爾會讓魔杖從他手中滑落。當這種情況發生時，它會神奇地出現在其主人感知到有機會實現某個邪惡目標的地方。",
+				"這根魔杖由堅硬如鐵的骨頭製成，頂端鑲嵌著一個魔法變巨的頭骨，曾屬於一位被{@creature Orcus|MTF|奧喀斯}殺死的人類英雄。魔杖能魔法般地改變尺寸以更好地適應使用者的握持。在魔杖存在的地方，植物枯萎、飲品變質、肉體腐爛、害蟲滋生。",
+				"除{@creature Orcus|MTF|奧喀斯}外的任何生物若嘗試同調此杖，必須進行一次{@dc 17}的體質豁免。豁免成功則受到{@damage 10d6}點暗蝕傷害。豁免失敗則死亡並化為{@creature zombie||喪屍}。",
+				"在與其調諧者手中，該法杖可以用作一把魔法{@item mace|phb|硬頭錘}，你在用它發動的攻擊檢定和傷害擲骰獲得+3加值。該法杖在命中時額外造成{@damage 2d12}暗蝕傷害。",
+				{
+					"name": "隨機詞條",
+					"type": "entries",
+					"entries": [
+						"奧喀斯之杖具有下列隨機詞條：",
+						{
+							"type": "list",
+							"items": [
+								"2 {@table Artifact Properties; Minor Beneficial Properties|dmg|次要增益詞條}",
+								"1 {@table Artifact Properties; Major Beneficial Properties|dmg|主要增益詞條}",
+								"2 {@table Artifact Properties; Minor Detrimental Properties|dmg|次要減益詞條}",
+								"1 {@table Artifact Properties; Major Detrimental Properties|dmg|主要減益詞條}"
+							]
+						},
+						"奧喀斯之杖的有害屬性在權杖與{@creature Orcus|MTF|奧喀斯}本人建立感應期間將被抑制。"
+					],
+					"ENG_name": "Random Properties"
+				},
+				{
+					"name": "守護",
+					"type": "entries",
+					"entries": [
+						"持握該法杖期間，你的護甲等級獲得+3加值。"
+					],
+					"ENG_name": "Protection"
+				},
+				{
+					"name": "法術",
+					"type": "entries",
+					"entries": [
+						"該魔杖有7發充能。持握魔杖期間，你可以用一個動作並消耗1發或更多充能以施放以下法術之一（豁免{@dc 18}）：{@spell animate dead||活化死屍}（1充能）、{@spell blight||枯萎術}（2充能）、{@spell circle of death||死亡法陣}（3充能）、{@spell finger of death||死亡一指}（3充能）、{@spell power word kill||律令死亡}（4充能）或{@spell speak with dead||死者交談}（1充能）。魔杖每天黎明時恢復{@dice 1d4 + 3}發已消耗的充能。",
+						"與法杖同調期間，{@creature Orcus|MTF|奧喀斯}或受其祝福的追隨者可以消耗少2發充能（最低為0）來施放法杖的每個法術。"
+					],
+					"ENG_name": "Spells"
+				},
+				{
+					"name": "喚起不死生物",
+					"type": "entries",
+					"entries": [
+						"持握此魔杖期間，你可以用一個動作來召喚{@creature skeleton||骷髏們}和{@creature zombie||喪屍們}，召喚數量由你能分配的500點生命值決定，每個亡靈擁有平均生命值。這些亡靈會從地面魔法般地升起，或以其他方式在你周圍300尺內的無人空間形成，並服從你的命令直到被摧毀或次日黎明，屆時它們會坍塌成無生命的骸骨和腐爛屍體堆。一旦你使用了魔杖的這一屬性，直到次日黎明前都無法再次使用。",
+						"與法杖同調時，{@creature Orcus|MTF|奧喀斯}可以召喚任何種類的亡靈，而不僅僅是骷髏和殭屍。這些亡靈不會在次日黎明時消亡或消失，而是會一直存在直到{@creature Orcus|MTF|奧喀斯}將其解散。"
+					],
+					"ENG_name": "Call Undead"
+				},
+				{
+					"name": "智慧",
+					"type": "entries",
+					"entries": [
+						"奧喀斯之杖是一件具有智慧的混亂邪惡物品，智力為16，感知為12，魅力為16。它具有聽覺和{@sense darkvision||黑暗視覺}，範圍可達120尺。",
+						"這把魔杖能夠透過心靈感應與其持有者交流，並能說、讀和理解深淵語和通用語。"
+					],
+					"ENG_name": "Sentience"
+				},
+				{
+					"name": "個性",
+					"type": "entries",
+					"entries": [
+						"該法杖的目的是協助滿足{@creature Orcus|MTF|奧喀斯的}消滅多元宇宙中一切存在的渴望。法杖冷酷、殘忍、虛無且毫無幽默感。為了推進其主人的目的，法杖會假裝效忠於當前使用者，並許下無意兌現的浮誇承諾，例如發誓協助其使用者推翻{@creature Orcus|MTF|奧喀斯}。"
+					],
+					"ENG_name": "Personality"
+				},
+				{
+					"name": "摧毀法杖",
+					"type": "entries",
+					"entries": [
+						"摧毀奧喀斯之杖需要由裝飾在其頂端的古老英雄頭骨將其帶往正能量位面。為此，必須首先讓這位早已失蹤的英雄復活——鑑於{@creature Orcus|MTF|奧喀斯}已囚禁了英雄的靈魂並將其隱藏並嚴密守衛，這絕非易事。",
+						"將法杖浸入正能量中會導致其破裂並爆炸，但除非滿足上述條件，否則法杖會立即在{@creature Orcus|MTF|奧喀斯的}的無底深淵層面中重新形成。"
+					],
+					"ENG_name": "Destroying the Wand"
+				}
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"animate dead",
+						"speak with dead"
+					],
+					"2": [
+						"blight"
+					],
+					"3": [
+						"circle of death",
+						"finger of death"
+					],
+					"4": [
+						"power word kill"
+					]
+				}
+			},
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Orcus"
+		},
+		{
+			"name": "奧喀斯之杖",
+			"source": "XDMG",
+			"page": 320,
+			"referenceSources": [
+				"DrDe-TWoO"
+			],
+			"baseItem": "mace|xphb",
+			"type": "WD|XDMG",
+			"typeAlt": "M|XPHB",
+			"rarity": "artifact",
+			"reqAttune": true,
+			"sentient": true,
+			"weight": 4,
+			"weaponCategory": "simple",
+			"dmg1": "1d6",
+			"dmgType": "B",
+			"bonusWeapon": "+3",
+			"bonusAc": "+3",
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d4 + 3}",
+			"charges": 7,
+			"entries": [
+				"這根陰森恐怖的魔杖由{@creature Orcus|MPMM|奧喀斯}製作並使用。它不時從其惡魔領主創造者的手中溜走，神奇地出現在惡魔領主感到有機會實現其邪惡目的的地方。",
+				"這根魔杖的頂端鑲嵌著一顆曾屬於一位被奧喀斯所殺的人類英雄的顱骨。魔杖可以魔法般地改變體型以更好地適應使用者的握持。魔杖10尺範圍內的所有{@item Holy Water|XPHB|聖水}都會被摧毀。",
+				"除奧喀斯外，任何生物與魔杖進行同調時，必須進行一次{@dc 17}的體質豁免。豁免成功，則該生物受到{@damage 10d6}暗蝕傷害。豁免失敗，則該生物死亡，若其是類人，則變為一隻{@creature Zombie|XMM|喪屍} 。",
+				{
+					"type": "entries",
+					"name": "魔化武器",
+					"entries": [
+						"你可以將魔杖用作一把魔法{@item Mace|XPHB|硬頭錘}，用魔杖進行的攻擊檢定和傷害擲骰獲得+3加值，魔杖命中時，額外造成{@damage 2d12}暗蝕傷害。"
+					],
+					"ENG_name": "Magic Weapon"
+				},
+				{
+					"type": "entries",
+					"name": "隨機詞條",
+					"entries": [
+						"奧喀斯之杖具有下列隨機詞條：",
+						{
+							"type": "list",
+							"items": [
+								"2項{@table Artifact Properties; Minor Beneficial Properties|XDMG|次要增益}屬性",
+								"1 項{@table Artifact Properties; Major Beneficial Properties|XDMG|主要增益}屬性",
+								"2項{@table Artifact Properties; Minor Detrimental Properties|XDMG|次要減益}屬性",
+								"1項{@table Artifact Properties; Major Detrimental Properties|XDMG|主要減益}屬性"
+							]
+						},
+						"與奧喀斯維持同調期間，魔杖的減益詞條將被抑制。"
+					],
+					"ENG_name": "Random Properties"
+				},
+				{
+					"type": "entries",
+					"name": "守護",
+					"entries": [
+						"持握魔杖時，你的{@variantrule Armor Class|XPHB|護甲等級}獲得+3加值。"
+					],
+					"ENG_name": "Protection"
+				},
+				{
+					"type": "entries",
+					"name": "法術",
+					"entries": [
+						"魔杖具有7充能並在每日黎明時重獲{@dice 1d4 + 3}已消耗的充能。你可以從中施展下表中的法術（豁免{@dc 18}）。表中表明瞭你施展對應的法術需要消耗多少充能。",
+						{
+							"type": "table",
+							"colStyles": [
+								"col-10",
+								"col-2 text-center"
+							],
+							"colLabels": [
+								"法術",
+								"消耗充能"
+							],
+							"rows": [
+								[
+									"{@spell Animate Dead|XPHB|活化死屍}",
+									"1"
+								],
+								[
+									"{@spell Blight|XPHB|枯萎術}",
+									"2"
+								],
+								[
+									"{@spell Circle of Death|XPHB|死亡法陣}",
+									"3"
+								],
+								[
+									"{@spell Finger of Death|XPHB|死亡一指}",
+									"3"
+								],
+								[
+									"{@spell Power Word Kill|XPHB|律令死亡}",
+									"4"
+								],
+								[
+									"{@spell Speak with Dead|XPHB|死者交談}",
+									"1"
+								]
+							]
+						}
+					],
+					"ENG_name": "Spells"
+				},
+				"奧喀斯與受其祝福的追隨者與魔杖維持同調期間，他們施展以上每個法術的充能消耗降低2（最低為0）。",
+				{
+					"type": "entries",
+					"name": "喚起不死生物",
+					"entries": [
+						"持握魔杖期間，你能夠以{@action Magic|XPHB|魔法}動作咒喚15只{@creature Skeleton|XMM|喪屍們}和15具{@creature Zombie|XMM|骷髏們} ，這些亡靈將魔法的自地面中升起或在你300尺內的未佔據空間中生成，它們將服從你的命令，它們被摧毀或次日黎明時，它們會倒塌為一堆無生命的骨頭和腐屍。該詞條一經使用，直至次日黎明你都無法再次使用。",
+						"奧喀斯在持握魔杖期間可以召喚任意種類的亡靈，而非僅僅是喪屍和骷髏。這些亡靈不會在次日黎明消亡，而是存在直至奧喀斯將他們驅散。"
+					],
+					"ENG_name": "Call Undead"
+				},
+				{
+					"type": "entries",
+					"name": "智慧",
+					"entries": [
+						"奧喀斯之杖是一根混亂邪惡的智慧魔杖，智力為16，感知12，魅力16。它具有120尺聽覺及120尺{@sense Darkvision|XPHB|黑暗視覺}。",
+						"奧喀斯之杖說通用語和煉獄語並可以透過心靈感應與持用者交流。"
+					],
+					"ENG_name": "Sentience"
+				},
+				{
+					"type": "entries",
+					"name": "個性",
+					"entries": [
+						"魔杖的目標是滿足奧喀斯殺戮多元宇宙一切的慾望。魔杖殘暴，虛無，且毫無幽默感。",
+						"為了進一步完成奧喀斯的目標，魔杖會假裝忠誠於其現任使用者，甚至給對方許下根本不打算應允的承諾，比如發誓幫助對方推翻奧喀斯本尊。"
+					],
+					"ENG_name": "Personality"
+				},
+				{
+					"type": "entries",
+					"name": "摧毀法杖",
+					"entries": [
+						"要摧毀奧喀斯之杖 ，需要魔杖上骷髏頭的英雄本尊將其帶到正能量位面。要做到這點，必須先讓這位故去已久的英雄重新復活——這並非易事，奧喀斯囚禁了他的靈魂，藏在一個守備森嚴的秘密地點。",
+						"將魔杖浸沒在正能量（例如瀰漫在正位面的正能量）中將導致其崩壞炸裂，但如果無法滿足上述的前提條件，破壞的魔杖將立即在奧喀斯所控制的深淵層域中重新形成。"
+					],
+					"ENG_name": "Destroying the Wand"
+				}
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"animate dead|xphb",
+						"speak with dead|xphb"
+					],
+					"2": [
+						"blight|xphb"
+					],
+					"3": [
+						"circle of death|xphb",
+						"finger of death|xphb"
+					],
+					"4": [
+						"power word kill|xphb"
+					]
+				}
+			},
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Orcus"
+		},
+		{
+			"name": "麻痺魔杖",
+			"source": "DMG",
+			"page": 211,
+			"srd": true,
+			"referenceSources": [
+				"QftIS",
+				"TftYP-AtG"
+			],
+			"reprintedAs": [
+				"Wand of Paralysis|XDMG"
+			],
+			"type": "WD|DMG",
+			"tier": "major",
+			"rarity": "rare",
+			"reqAttune": "由施法者",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這把魔杖有7發充能。持握此魔杖期間，你可以用一個動作並消耗1發充能從魔杖尖端向60尺內一名你能看到的生物射出一道纖細的藍色光線。目標必須成功透過一次{@dc 15}的體質豁免否則{@condition paralyzed||麻痺}1分鐘。目標可以在它的每回合結束時再次嘗試豁免，成功則不再麻痺。",
+				"該魔杖每天黎明時恢復{@dice 1d6 + 1}發已消耗的充能。如果你消耗了魔杖的最後一發充能，骰一次{@dice d20}。如果骰值為1，魔杖將化為灰燼而毀滅。"
+			],
+			"lootTables": [
+				"Magic Item Table G"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Paralysis"
+		},
+		{
+			"name": "麻痺魔杖",
+			"source": "XDMG",
+			"page": 321,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "WD|XDMG",
+			"rarity": "rare",
+			"reqAttune": "由施法者",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這根魔杖具有7充能。持握它時，你可以執行{@action Magic|XPHB|魔法}動作並消耗1充能，從魔杖尖端向位於你60尺內的一個你可見的生物射出一發纖細的藍色光線。目標必須成功透過一次{@dc 15}的體質豁免，否則將陷入{@condition Paralyzed|XPHB|麻痺}狀態一分鐘。目標在其每回合結束時可以重新進行該豁免，豁免成功則終止其身上的該效應。",
+				{
+					"type": "entries",
+					"name": "重獲充能",
+					"entries": [
+						"這根魔杖在每日黎明時重獲{@dice 1d6 + 1}已消耗的充能。當充能數耗盡時，骰一次{@dice 1d20}。如果骰值為1，魔杖將化作飛灰並被摧毀。"
+					],
+					"ENG_name": "Regaining Charges"
+				}
+			],
+			"lootTables": [
+				"Relics - Rare|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Paralysis"
+		},
+		{
+			"name": "變形魔杖",
+			"source": "DMG",
+			"page": 211,
+			"srd": true,
+			"referenceSources": [
+				"CM",
+				"CoS",
+				"WBtW"
+			],
+			"reprintedAs": [
+				"Wand of Polymorph|XDMG"
+			],
+			"type": "WD|DMG",
+			"tier": "major",
+			"rarity": "very rare",
+			"reqAttune": "由施法者",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這根魔杖有7發充能。持握魔杖期間，你可以用一個動作並消耗1發充能以施放{@spell polymorph||變形術}（豁免{@dc 15}）。",
+				"該魔杖每天黎明時恢復{@dice 1d6 + 1}發已消耗的充能。如果你消耗了魔杖的最後一發充能，骰一次{@dice d20}。如果骰值為1，魔杖將化為灰燼而毀滅。"
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"polymorph"
+					]
+				}
+			},
+			"lootTables": [
+				"Magic Item Table H"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Polymorph"
+		},
+		{
+			"name": "變形魔杖",
+			"source": "XDMG",
+			"page": 321,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "WD|XDMG",
+			"rarity": "very rare",
+			"reqAttune": "由施法者",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這根魔杖具有7充能。持握它時，你可以消耗1充能從中施展{@spell Polymorph|XPHB|變形術}（豁免{@dc 15}）。",
+				{
+					"type": "entries",
+					"name": "重獲充能",
+					"entries": [
+						"這根魔杖在每日黎明時重獲{@dice 1d6 + 1}已消耗的充能。當充能數耗盡時，骰一次{@dice 1d20}。如果骰值為1，魔杖將化作飛灰並被摧毀。"
+					],
+					"ENG_name": "Regaining Charges"
+				}
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"polymorph|xphb"
+					]
+				}
+			},
+			"lootTables": [
+				"Arcana - Very Rare|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Polymorph"
+		},
+		{
+			"name": "煙火魔杖",
+			"source": "XDMG",
+			"page": 321,
+			"type": "WD|XDMG",
+			"rarity": "common",
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這根魔杖具有7充能。持握它時，你可以執行{@action Magic|XPHB|魔法}動作並消耗1充能，在離你至多120尺處你可見的一點創造出一束無害的多彩亮光。亮光迸發時會伴隨著300尺之內都能聽見的響亮爆鳴聲。該光芒的亮度如火把一般，但只持續1秒。",
+				{
+					"type": "entries",
+					"name": "重獲充能",
+					"entries": [
+						"這根魔杖在每日黎明時重獲{@dice 1d6 + 1}已消耗的充能。當充能數耗盡時，骰一次{@dice 1d20}。如果骰值為1，魔杖將化作飛灰並被摧毀。"
+					],
+					"ENG_name": "Regaining Charges"
+				}
+			],
+			"lootTables": [
+				"Arcana - Common|XDMG",
+				"Implements - Common|XDMG"
+			],
+			"ENG_name": "Wand of Pyrotechnics"
+		},
+		{
+			"name": "煙火魔杖",
+			"source": "XGE",
+			"page": 140,
+			"referenceSources": [
+				"DIP"
+			],
+			"reprintedAs": [
+				"Wand of Pyrotechnics|XDMG"
+			],
+			"type": "WD|DMG",
+			"tier": "minor",
+			"rarity": "common",
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這根魔杖具有7發充能。持握這把魔杖期間，你可以用一個動作，消耗一發充能創造一束無害且多彩的光亮，令其以60尺內你可見的一點為中心爆發。這段光亮迸發時會伴隨著一陣300尺範圍內都能聽見的響亮爆裂聲。這發光亮如火把之光一般，卻只存一瞬。",
+				"這根魔杖每天黎明恢復{@dice 1d6 + 1}發已消耗的充能。當充能數耗盡時，骰一次{@dice d20}。如果骰值為1，這根魔杖會迸發出一陣無害的煙火表演，並被摧毀。"
+			],
+			"ENG_name": "Wand of Pyrotechnics"
+		},
+		{
+			"name": "愁苦魔杖",
+			"source": "XGE",
+			"page": 140,
+			"referenceSources": [
+				"WBtW"
+			],
+			"type": "WD|DMG",
+			"tier": "minor",
+			"rarity": "common",
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": 3,
+			"charges": 3,
+			"entries": [
+				"這根魔杖具有3發充能。持握這把魔杖期間，你可以用一個動作，消耗其一發充能，以指定周圍30尺範圍內的一個類人生物作為目標。目標必須透過一個{@dc 10}的魅力豁免檢定否則被強制愁眉苦臉一分鐘。",
+				"這根魔杖在每日黎明時會恢復全部已消耗的充能數。當充能數耗盡時，骰一次{@dice d20}。如果骰值為1，這根魔杖會變成一根{@item wand of smiles|xge|歡笑魔杖}。"
+			],
+			"ENG_name": "Wand of Scowls"
+		},
+		{
+			"name": "探秘魔杖",
+			"source": "DMG",
+			"page": 211,
+			"srd": true,
+			"referenceSources": [
+				"BGDIA",
+				"CoA",
+				"CoS",
+				"CRCotN",
+				"DIP",
+				"IMR",
+				"QftIS",
+				"SCC-TMM",
+				"ToA",
+				"WBtW",
+				"WDH",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Wand of Secrets|XDMG"
+			],
+			"type": "WD|DMG",
+			"tier": "minor",
+			"rarity": "uncommon",
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d3}",
+			"charges": 3,
+			"entries": [
+				"這把魔杖有3發充能。持握此魔杖期間，你可以用一個動作並消耗1發充能，如果30尺內有暗門或陷阱，魔杖將跳動著指向離你最近的一個。魔杖每天黎明時恢復{@dice 1d3}發已消耗的充能。"
+			],
+			"optionalfeatures": [
+				"replicate magic item|tce"
+			],
+			"lootTables": [
+				"Magic Item Table B"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Secrets"
+		},
+		{
+			"name": "探秘魔杖",
+			"source": "XDMG",
+			"page": 322,
+			"srd52": true,
+			"basicRules2024": true,
+			"referenceSources": [
+				"DrDe-TWoO",
+				"WttHC"
+			],
+			"type": "WD|XDMG",
+			"rarity": "uncommon",
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d3}",
+			"charges": 3,
+			"entries": [
+				"這根魔杖具有3充能，並在每日黎明時重獲{@dice 1d3}已消耗的充能。持握期間，你可以執行{@action Magic|XPHB|魔法}動作並消耗1充能，此時如果在你60尺記憶體在密門或陷阱，魔杖將跳動著指向離你最近的一個。"
+			],
+			"classFeatures": [
+				"replicate magic item|artificer|efa|2|efa"
+			],
+			"optionalfeatures": [
+				"replicate magic item|tce"
+			],
+			"lootTables": [
+				"Arcana - Uncommon|XDMG",
+				"Implements - Uncommon|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Secrets"
+		},
+		{
+			"name": "沉睡魔杖",
+			"source": "AU",
+			"page": 125,
+			"type": "WD|XDMG",
+			"rarity": "rare",
+			"reqAttune": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"該魔杖具有7充能。持握該魔杖期間，你可以從中施展以下表格中的一道法術。表格標明瞭施展該法術所需的充能消耗。",
+				{
+					"type": "entries",
+					"name": "重獲充能",
+					"entries": [
+						"該魔杖在每日黎明時恢復{@dice 1d6 + 1}已消耗的充能。如果你消耗了魔杖的最後1充能，擲一次{@dice 1d20}。若擲出1，則該魔杖會化為沙土並被摧毀。"
+					]
+				},
+				{
+					"type": "table",
+					"colLabels": [
+						"法術",
+						"消耗充能"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"{@spell Catnap|AU|假寐術}",
+							"3"
+						],
+						[
+							"{@spell Sleep|XPHB|睡眠術}（豁免{@dc 15}）",
+							"1"
+						]
+					]
+				}
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"sleep|xphb"
+					],
+					"3": [
+						"catnap|au"
+					]
+				}
+			},
+			"ENG_name": "Wand of Slumber"
+		},
+		{
+			"name": "歡笑魔杖",
+			"source": "XGE",
+			"page": 140,
+			"referenceSources": [
+				"WBtW"
+			],
+			"type": "WD|DMG",
+			"tier": "minor",
+			"rarity": "common",
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": 3,
+			"charges": 3,
+			"entries": [
+				"這根魔杖具有3發充能。持握這把魔杖期間，你可以用一個動作，消耗其一發充能，以指定周圍30尺範圍內的一個類人生物作為目標。目標必須透過一個{@dc 10}的魅力豁免檢定否則被強制喜笑顏開一分鐘。",
+				"這根魔杖在每日黎明時會恢復全部已消耗的充能數。當充能數耗盡時，骰一次{@dice d20}。如果骰值為1，這根魔杖會變成一根{@item wand of scowls|xge|愁苦魔杖}。"
+			],
+			"ENG_name": "Wand of Smiles"
+		},
+		{
+			"name": "利齒魔杖",
+			"source": "AU",
+			"page": 125,
+			"type": "WD|XDMG",
+			"rarity": "rare",
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d10}",
+			"charges": 10,
+			"entries": [
+				"這根魔杖具有10充能。持握該魔杖期間，你可以執行{@action Magic|XPHB|魔法}動作消耗至多3充能，朝著你所指的方向噴射出一波鋒利的幽靈牙齒。30尺{@variantrule Cone [Area of Effect]|XPHB|錐狀}區域內的每個生物都必須進行一次{@dc 15}的敏捷豁免。擲數量等同於所消耗充能數的d8。若豁免失敗，則生物受到等同於擲出總和的穿刺傷害，並陷入{@condition Poisoned|XPHB|中毒}狀態，直至你的下一回合開始；若豁免成功，則生物僅受到一半傷害。",
+				{
+					"type": "entries",
+					"name": "重獲充能",
+					"entries": [
+						"該魔杖在每日黎明時恢復{@dice 1d10}已消耗的充能。如果你消耗了魔杖的最後1充能，擲一次{@dice 1d20}。若擲出1，則該魔杖會爆炸成無害的碎屑並被摧毀。"
+					]
+				}
+			],
+			"ENG_name": "Wand of Teeth"
+		},
+		{
+			"name": "粘球魔杖",
+			"source": "OotA",
+			"page": 223,
+			"type": "WD|DMG",
+			"rarity": "rare",
+			"reqAttune": true,
+			"weight": 1,
+			"recharge": "midnight",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"由{@creature drow||卓爾}製造的這根細長的黑色魔杖有7次充能。持有它時，你可以使用一次行動消耗其中1次充能，使一小滴粘性物質從尖端射向60尺內的一個生物。對目標進行遠端攻擊檢定，加值等於你的施法能力調整值（或者如果你沒有施法能力調整值，則為智力調整值）加上你的熟練加值。命中時，該物質會在目標上擴充套件並乾燥，目標將被{@condition restrained||束縛}1小時。過了那段時間後，粘性物質會裂開並脫落。",
+				"將一品脫或更多的酒精塗在{@condition restrained||束縛}的生物上可以立即溶解這個球體，使用{@item oil of etherealness||以太化之油}或{@item universal solvent||萬溶劑}也有同樣的效果。如果暴露在陽光下，這個球體也會立即溶解。除非它自然分解，否則沒有其他非魔法過程可以移除這種粘性物質。",
+				"這根魔杖在每天午夜時恢復{@dice 1d6 + 1}個消耗的充能點。如果你消耗了魔杖的最後一個充能點，擲一個{@dice d20}。如果是1，魔杖融化成無害的粘液並被摧毀。",
+				"粘性球魔杖如果在沒有中斷的情況下暴露在陽光下1小時，將會被摧毀。"
+			],
+			"ENG_name": "Wand of Viscid Globs"
+		},
+		{
+			"name": "蛛網魔杖",
+			"source": "DMG",
+			"page": 212,
+			"srd": true,
+			"referenceSources": [
+				"IDRotF",
+				"IMR",
+				"WBtW"
+			],
+			"reprintedAs": [
+				"Wand of Web|XDMG"
+			],
+			"type": "WD|DMG",
+			"tier": "major",
+			"rarity": "uncommon",
+			"reqAttune": "由施法者",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這把魔杖有7發充能。持握此魔杖期間，你可以用一個動作並消耗1發充能以施展法術{@spell web||蛛網術}（豁免{@dc 15}）。",
+				"該魔杖每天黎明時恢復{@dice 1d6 + 1}發已消耗的充能。如果你消耗了魔杖的最後一發充能，骰一次{@dice d20}。如果骰值為1，魔杖將化為灰燼而毀滅。"
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"web"
+					]
+				}
+			},
+			"lootTables": [
+				"Magic Item Table F"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Web"
+		},
+		{
+			"name": "蛛網魔杖",
+			"source": "XDMG",
+			"page": 322,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "WD|XDMG",
+			"rarity": "uncommon",
+			"reqAttune": "由施法者",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這根魔杖具有7充能。持握它時，你可以消耗1充能從中施展{@spell Web|XPHB|蛛網術}（豁免{@dc 13}）。",
+				{
+					"type": "entries",
+					"name": "重獲充能",
+					"entries": [
+						"這根魔杖在每日黎明時重獲{@dice 1d6 + 1}已消耗的充能。當充能數耗盡時，骰一次{@dice 1d20}。如果骰值為1，魔杖將化作飛灰並被摧毀。"
+					],
+					"ENG_name": "Regaining Charges"
+				}
+			],
+			"classFeatures": [
+				"replicate magic item|artificer|efa|2|efa"
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"web|xphb"
+					]
+				}
+			},
+			"lootTables": [
+				"Arcana - Uncommon|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Web"
+		},
+		{
+			"name": "凜冬魔杖",
+			"source": "HotDQ",
+			"page": 94,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 178
+				}
+			],
+			"referenceSources": [
+				"RoT"
+			],
+			"type": "WD|DMG",
+			"rarity": "rare",
+			"reqAttune": true,
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這根魔杖看起來和摸起來都像是一根冰柱。你必須與之同調才能使用它。",
+				"該魔杖有7次充能，用於為其中的法術提供燃料。手持魔杖時，你可以使用一個動作從魔杖中施放以下法術之一，即使你無法施展法術：{@spell ray of frost||冷凍射線}（無充能消耗，或消耗1次充能以5環施放；{@hit 5}以進行遠端法術攻擊命中）、{@spell sleet storm||雪雨暴}（消耗3次充能；法術豁免{@dc 15}）或{@spell ice storm||冰風暴}（消耗4次充能；法術豁免{@dc 15}）。無需任何成分。魔杖每天拂曉時恢復{@dice 1d6 + 1}次已消耗的充能。如果你消耗了魔杖的最後一次充能，擲一次{@dice d20}。若結果為20，魔杖將融化消失，永遠被摧毀。"
+			],
+			"attachedSpells": {
+				"will": [
+					"ray of frost"
+				],
+				"charges": {
+					"3": [
+						"sleet storm"
+					],
+					"4": [
+						"ice storm"
+					]
+				}
+			},
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Winter"
+		},
+		{
+			"name": "驚異魔杖",
+			"source": "DMG",
+			"page": 212,
+			"srd": true,
+			"referenceSources": [
+				"CoA",
+				"CRCotN",
+				"ToA",
+				"ToFW",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Wand of Wonder|XDMG"
+			],
+			"type": "WD|DMG",
+			"tier": "major",
+			"rarity": "rare",
+			"reqAttune": "由施法者",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這把魔杖有7發充能。持握此魔杖期間，你可以用一個動作消耗1發充能並選擇你周圍120尺內的一名生物、一個物件或空間中的一點為目標。骰{@dice d100}然後參考下表決定效應。",
+				"如果魔杖的效應為讓你從魔杖施展一個法術，則該法術的豁免DC為15。如果該法術通常有以尺表示的範圍，則其範圍變為120尺（如果原本不是）。",
+				"如果魔杖的效應覆蓋一個範圍區域，則你必須以目標為中心幷包括它在內。如果魔杖的效應影響多個單位，由DM隨機決定哪些單位受到影響。",
+				"該魔杖每天黎明時恢復{@dice 1d6 + 1}發已消耗的充能。當充能耗盡時，骰一次{@dice d20}。如果骰值為1，魔杖將化為塵埃而毀滅。",
+				{
+					"type": "table",
+					"colLabels": [
+						"{@dice d100}",
+						"效應"
+					],
+					"colStyles": [
+						"col-1 text-center",
+						"col-11"
+					],
+					"rows": [
+						[
+							"01-05",
+							"你施放了{@spell slow||緩慢術}。"
+						],
+						[
+							"06-10",
+							"你施放{@spell faerie fire||妖火}。"
+						],
+						[
+							"11-15",
+							"你被{@condition stunned||震懾}直到你的下一回合開始，感覺剛剛發生了什麼令人驚歎的事。"
+						],
+						[
+							"16-20",
+							"你施放{@spell gust of wind||造風術}。"
+						],
+						[
+							"21-25",
+							"你對目標施放{@spell detect thoughts||偵測思想}。如果你選擇的目標不是生物，則你受到{@damage 1d6}點心靈傷害。"
+						],
+						[
+							"26-30",
+							"你施放{@spell stinking cloud||臭雲術}。"
+						],
+						[
+							"31-33",
+							"以目標為中心半徑60尺的範圍內落下大雨，使該區域變為輕度遮蔽。大雨持續到你的下一回合開始。"
+						],
+						[
+							"34-36",
+							"一隻動物出現在目標附近最近的未被佔據空間內。該動物不受你控制而按其天性行動。投{@dice d100}決定具體出現的動物。骰值為01~25為一隻{@creature rhinoceros||犀牛}，骰值為26~50為一頭{@creature elephant||大象}，骰值為51~100為一隻{@creature rat||老鼠}。"
+						],
+						[
+							"37-46",
+							"你施放{@spell lightning bolt||閃電束}。"
+						],
+						[
+							"47-49",
+							"一片由600只巨大蝴蝶組成的雲霧覆蓋以目標為中心30尺半徑的區域。該區域變為重度遮蔽。蝴蝶將存在10分鐘。"
+						],
+						[
+							"50-53",
+							"你使目標變大，如同你施放了{@spell enlarge/reduce||變巨/縮小術}。如果目標無法被該法術影響，或者你沒有以生物為目標，則你變為法術的目標。"
+						],
+						[
+							"54-58",
+							"你施放了{@spell darkness||黑暗術}。"
+						],
+						[
+							"59-62",
+							"以目標為中心半徑60尺的範圍內長出草。如果該區域原本就生長著草，則草長至原本的十倍長短並保持1分鐘。"
+						],
+						[
+							"63-65",
+							"由DM選擇，一件在任一方向都不超過10尺且未被著裝或攜帶的物件消失並進入以太位面。該物件必須在目標周圍120尺內。"
+						],
+						[
+							"66-69",
+							"你縮小自己，如同對自己施放了{@spell enlarge/reduce||變巨/縮小術}。"
+						],
+						[
+							"70-79",
+							"你施放了{@spell fireball||火球術}。"
+						],
+						[
+							"80-84",
+							"你對自己施放{@spell invisibility||隱形術}。"
+						],
+						[
+							"85-87",
+							"目標長出樹葉。如果你選擇的目標為空間中的一點，則距該點最近的生物身上長出樹葉。除非樹葉被摘下，否則它們將在24小時後變黃並凋落。"
+						],
+						[
+							"88-90",
+							"一股{@dice 1d4 × 10}顆寶石的激流（每顆價值1gp）從魔杖尖端噴出，影響30尺長、5尺寬的線狀區域。每顆寶石造成1點鈍擊傷害，傷害由範圍內的生物均分。"
+						],
+						[
+							"91-95",
+							"一陣多彩的閃光從你身上向30尺半徑範圍內擴散。你和區域內每個能看見的生物必須成功透過一次{@dc 15}的體質豁免否則陷入{@condition blinded||目盲}狀態1分鐘。受影響的生物在自己的每個回合結束時可以重新嘗試豁免，成功則終止效應對自己的影響。"
+						],
+						[
+							"96-97",
+							"目標的皮膚變成亮藍色持續{@dice 1d10}日。如果你選擇的目標為空間中的一點，則距該點最近的生物受此影響。"
+						],
+						[
+							"98-00",
+							"如果你選擇的目標是生物，則它必須進行一次{@dc 15}的體質豁免。如果你選擇的目標不是生物，則你變作為目標且必須進行一次體質豁免。如果目標的豁免結果比DC低出5或低，則它將立即被{@condition petrified||石化}。其他失敗的情況下，目標將被{@condition restrained||束縛}並漸漸變為石頭。當以這種方式被{@condition restrained||束縛}時，目標在自己的下一回合結束時，必須再次進行體質豁免，失敗則被{@condition petrified||石化}，成功則終止效應。此石化效應將一直持續，直到目標被{@spell greater restoration||高等復原術}法術或類似魔法所解救。"
+						]
+					],
+					"data": {
+						"genTables": {
+							"tableName": "Wand of Wonder Effects",
+							"tableInclude": true,
+							"reprintedAs": [
+								"Wand of Wonder Effects|XDMG"
+							]
+						}
+					}
+				}
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"darkness",
+						"detect thoughts",
+						"enlarge/reduce",
+						"faerie fire",
+						"fireball",
+						"gust of wind",
+						"invisibility",
+						"lightning bolt",
+						"slow",
+						"stinking cloud"
+					]
+				}
+			},
+			"lootTables": [
+				"Magic Item Table G"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Wonder"
+		},
+		{
+			"name": "驚異魔杖",
+			"source": "XDMG",
+			"page": 322,
+			"srd52": true,
+			"basicRules2024": true,
+			"referenceSources": [
+				"DrDe-SD"
+			],
+			"type": "WD|XDMG",
+			"rarity": "rare",
+			"reqAttune": true,
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6 + 1}",
+			"charges": 7,
+			"entries": [
+				"這根魔杖具有7充能。持握它時，你可以執行{@action Magic|XPHB|魔法}動作並消耗1充能，並選擇位於你120尺內的一點。那個位置變為由驚異魔杖效應表中骰出的法術或其他魔法效應的源點。從魔杖中施展的法術的豁免DC為15。如果一個法術的最大射程在正常情況下不足120尺，則當被魔杖釋放時其射程變為120尺。若一種效應有多個可選目標，則DM隨機決定其中哪個目標將被效應影響。",
+				{
+					"type": "entries",
+					"name": "重獲充能",
+					"entries": [
+						"這根魔杖在每日黎明時重獲{@dice 1d6 + 1}已消耗的充能。當充能數耗盡時，骰一次{@dice 1d20}。如果骰值為1，魔杖將化作飛灰並被摧毀。"
+					],
+					"ENG_name": "Regaining Charges"
+				},
+				{
+					"type": "table",
+					"caption": "驚異魔杖效應",
+					"srd52": true,
+					"colLabels": [
+						"1d100",
+						"效應"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"01-20",
+							"你在選擇的源點處釋放一個法術。投擲{@dice 1d10}來決定法術：結果{@b 1-2}為{@spell Darkness|XPHB|黑暗術}；結果{@b 3-4}為{@spell Faerie Fire|XPHB|妖火}；結果{@b 5-6}為{@spell Fireball|XPHB|火球術}；結果{@b 7-8}為{@spell Slow|XPHB|緩慢術}；結果{@b 9-10}為{@spell Stinking Cloud|XPHB|臭雲術} 。"
+						],
+						[
+							"21-25",
+							"在選擇的源點處無事發生。取而代之的是，你相信剛剛發生了什麼令人驚歎的事，因此直到你的下個回合開始前，你陷入{@condition Stunned|XPHB|震懾}狀態。"
+						],
+						[
+							"26-30",
+							"你施展{@spell Gust of Wind|XPHB|造風術}。法術創造的{@variantrule Line [Area of Effect]|XPHB|線狀}區域將從你的位置延伸到選擇的源點位置。"
+						],
+						[
+							"31-35",
+							"在選擇的源點處無事發生。取而代之的是，你受到{@damage 1d6}心靈傷害。"
+						],
+						[
+							"36-40",
+							"在以選擇的源點為中心，120尺高，半徑60尺的{@variantrule Cylinder [Area of Effect]|XPHB|柱狀}區域內下起持續1分鐘的暴雨。持續時間內，效應區域處於{@variantrule Lightly Obscured|XPHB|輕度遮蔽}。"
+						],
+						[
+							"41-45",
+							"在以選擇的源點為中心，60尺高，半徑30尺的{@variantrule Cylinder [Area of Effect]|XPHB|柱狀}區域內被一團共600只的巨大蝴蝶填滿。蝴蝶在10分鐘內持續存在，並在持續時間內使效應區域處於{@variantrule Heavily Obscured|XPHB|重度遮蔽}。"
+						],
+						[
+							"46-50",
+							"你釋放{@spell Lightning Bolt|XPHB|閃電束}。法術創造的{@variantrule Line [Area of Effect]|XPHB|線狀}區域將從你的位置延伸到選擇的源點位置。"
+						],
+						[
+							"51-55",
+							"距離選擇的源點最近的生物被變大，如同你對其釋放了{@spell Enlarge/Reduce|XPHB|變巨/縮小術}中的變巨一般。如果目標不是你且目標不受該法術影響，則你將代替成為目標。"
+						],
+						[
+							"56-60",
+							"一個以魔法塑成的生物出現在離源點儘可能近的未佔據空間中。這個生物不受你控制，按照其天性行動且在1小時後或{@variantrule Hit Points|XPHB|生命值}降為0時消失。投擲{@dice 1d4}來決定會出現什麼生物。結果為{@b 1}時，出現一頭{@creature Rhinoceros|XMM|犀牛}；結果為{@b 2}時，出現一頭{@creature Elephant|XMM|大象}；結果為{@b 3-4}時，出現一隻{@creature Rat|XMM|老鼠}。"
+						],
+						[
+							"61-64",
+							"以儘可能靠近選定源點的一點為圓心，草地將覆蓋半徑60尺內的圓形地面。原先已經長在區域內的草將生長至通常的十倍長度並維持1分鐘。"
+						],
+						[
+							"65-68",
+							"DM選擇的一個物件消失並進入以太位面。這個物件必須未被著裝或攜帶，任一邊長不超過10尺，且位於選擇的源點120尺內。如果範圍內沒有符合條件的物件，則無事發生。"
+						],
+						[
+							"69-72",
+							"在選擇的源點處無事發生。取而代之的是你將變小，你對自己釋放了{@spell Enlarge/Reduce|XPHB|變巨/縮小術}中的縮小一般，並在這個狀態持續1分鐘。"
+						],
+						[
+							"73-77",
+							"離選擇的源點最近的生物身上長出樹葉。樹葉將在24小時後變黃並凋落，除非它們被提前摘下。"
+						],
+						[
+							"78-82",
+							"在選擇的源點處無事發生。取而代之的是你的身上迸發出多彩而耀眼的光芒，充斥30尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域。區域內的所有生物需要成功透過一次{@dc 15}的體質豁免否則陷入持續一分鐘的{@condition Blinded|XPHB|目盲}狀態。目標在其每回合結束時可以重新進行這次豁免，豁免成功則終止其身上的效應。"
+						],
+						[
+							"83-87",
+							"在選擇的源點處無事發生。取而代之的是，你對自身施展{@spell Invisibility|XPHB|隱形}。"
+						],
+						[
+							"88-92",
+							"在選擇的源點處無事發生。取而代之的是，一股共計{@dice 1d4 × 10}顆寶石的激流（每顆價值1GP）從法杖的尖端向著選擇的源點處以30尺長，5尺寬的{@variantrule Line [Area of Effect]|XPHB|線狀}區域激射過去。每顆寶石造成1鈍擊傷害，寶石造成的總傷害將平均分配給{@variantrule Line [Area of Effect]|XPHB|線狀}範圍內的所有生物。"
+						],
+						[
+							"93-97",
+							"你以選擇的源點最近的生物為目標釋放{@spell Polymorph|XPHB|變形術}。投擲{@dice 1d4}來決定目標的新形態：結果為{@b 1}時，新形態為{@creature Black Bear|XMM|黑熊}；結果為{@b 2}時，新形態為{@creature Giant Wasp|XMM|巨黃蜂}；結果為{@b 3-4}時，新形態為{@creature Frog|XMM|青蛙} 。"
+						],
+						[
+							"98-00",
+							"離選擇的源點最近的生物進行一次{@dc 15}的體質豁免。失敗時，這個生物陷入{@condition Restrained|XPHB|束縛}狀態並開始轉變為石頭。當被以這種方式{@condition Restrained|XPHB|束縛}時，目標在其下個回合結束時重複該豁免。如豁免透過則結束該效應。如豁免失敗，生物陷入{@condition Petrified|XPHB|石化}狀態來代替{@condition Restrained|XPHB|束縛}狀態。石化將持續至這個生物被{@spell Greater Restoration|XPHB|高等復原術}法術或類似的魔法所釋放。"
+						]
+					],
+					"data": {
+						"genTables": {
+							"tableInclude": true
+						}
+					}
+				}
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"darkness|xphb",
+						"enlarge/reduce|xphb",
+						"faerie fire|xphb",
+						"fireball|xphb",
+						"greater restoration|xphb",
+						"gust of wind|xphb",
+						"invisibility|xphb",
+						"lightning bolt|xphb",
+						"polymorph|xphb",
+						"slow|xphb",
+						"stinking cloud|xphb"
+					]
+				}
+			},
+			"lootTables": [
+				"Arcana - Rare|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wand of Wonder"
+		},
+		{
+			"name": "魔杖插槽",
+			"source": "ERLW",
+			"page": 279,
+			"rarity": "common",
+			"reqAttune": "由戰俑",
+			"reqAttuneTags": [
+				{
+					"race": "warforged|erlw"
+				}
+			],
+			"wondrous": true,
+			"entries": [
+				"一個魔杖插槽固定在你的手臂上，帶給你下列益處：",
+				{
+					"type": "list",
+					"items": [
+						"魔杖插槽在同調期間無法與你分離。",
+						"你能以一個動作，將一柄魔杖插入插槽內。插槽每次只能容納一柄魔杖。",
+						"你可以使用一個附贈動作將魔杖從插槽中縮回或伸出。當魔杖伸出時，你可以如同持有該武器一般來使用它，但你的手仍然保持空閒。"
+					]
+				},
+				"如果插槽內的魔杖需要同調，你必須在使用它之前與魔杖同調。不過，魔杖插槽與插入其中的魔杖在計算同調魔法物品數量時視為一件魔法物品。如果你將魔杖從插槽中移除，那麼你與魔杖的同調將終止。"
+			],
+			"ENG_name": "Wand Sheath"
+		},
+		{
+			"name": "勇氣戰爭號角",
+			"source": "BGG",
+			"page": 117,
+			"baseItem": "horn|phb",
+			"type": "INS",
+			"rarity": "rare",
+			"wondrous": true,
+			"bonusAc": "+1",
+			"entries": [
+				"這根黃銅製的戰爭號角上刻印著戰爭符文，當號角被吹響時，戰爭符文也會閃耀出紫色的光芒。",
+				"你可以以一個附贈動作吹響這根號角。此時，若你正處於恐慌狀態下，你身上的那一狀態將立刻結束。同樣的，你還會在對抗使你陷入恐慌的效應的豁免中具有優勢，這一優勢效應將持續直至你的下一回合開始。",
+				{
+					"type": "entries",
+					"name": "啟用符文",
+					"entries": [
+						"當你吹響號角的同時，你還可以選擇啟用這一符文，用號角吹出一次長音。防護性的魔法將向外擴散，為你周圍30尺範圍內由你選擇的生物帶來增益，你與這些被增益的生物的AC獲得+1加值，持續直至你的下一回合開始前。",
+						"此符文被啟用後，直到次日黎明為止都無法被再度啟用。"
+					],
+					"ENG_name": "Invoking the Rune"
+				}
+			],
+			"ENG_name": "War Horn of Valor"
+		},
+		{
+			"name": "戰馬",
+			"source": "PHB",
+			"page": 157,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Warhorse|XPHB"
+			],
+			"type": "MNT",
+			"rarity": "none",
+			"value": 40000,
+			"carryingCapacity": 540,
+			"speed": 60,
+			"ENG_name": "Warhorse"
+		},
+		{
+			"name": "戰馬",
+			"source": "XPHB",
+			"page": 229,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 40000,
+			"carryingCapacity": 540,
+			"speed": 60,
+			"ENG_name": "Warhorse"
+		},
+		{
+			"name": "保暖菌服",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 4,
+			"value": 1500,
+			"entries": [
+				"當你正著裝保暖菌服時，你對抗極度寒冷影響的豁免檢定自動成功。關於極度寒冷的規則，請見《城主指南》第三章。這套菌服中縫入了一磅的菌菇，可作為食物食用。一旦所有的菌菇被消耗，菌服會變為一套普通的{@item Traveler's Clothes|XPHB|旅行服裝}。"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Warm Fungal Clothing"
+		},
+		{
+			"name": "武者的萬能鑰匙",
+			"source": "BMT",
+			"page": 39,
+			"rarity": "rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"grantsProficiency": true,
+			"bonusWeapon": "+1",
+			"entries": [
+				"這把銀色的骷髏鑰匙摸起來很暖和。若你持握著鑰匙形態的它，便可以用一個動作從鑰匙中施放{@spell Knock||敲擊術}法術。",
+				{
+					"type": "entries",
+					"name": "轉化鑰匙",
+					"entries": [
+						"持握鑰匙期間，你可以用一個附贈動作將其轉變為一把魔法長劍。你熟練於這把劍，並且你用它進行的攻擊檢定和傷害擲骰獲得+1加值。命中目標時，劍會造成{@damage 1d10}點力場傷害。該物品的劍形態持續到你不再持握它或者你用一個附贈動作將其恢復到鑰匙形態為止。",
+						"如果你在該物品處於劍形態時結束對該物品的同調，它會自動恢復到鑰匙形態。"
+					],
+					"ENG_name": "Transforming the Key"
+				}
+			],
+			"attachedSpells": {
+				"will": [
+					"knock"
+				]
+			},
+			"hasFluffImages": true,
+			"ENG_name": "Warrior's Passkey"
+		},
+		{
+			"name": "戰艦",
+			"source": "DMG",
+			"page": 119,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Warship|XPHB"
+			],
+			"type": "SHP",
+			"rarity": "none",
+			"value": 2500000,
+			"crew": 60,
+			"vehAc": 15,
+			"vehHp": 500,
+			"vehDmgThresh": 20,
+			"vehSpeed": 2.5,
+			"capPassenger": 60,
+			"capCargo": 200,
+			"seeAlsoVehicle": [
+				"warship"
+			],
+			"ENG_name": "Warship"
+		},
+		{
+			"name": "戰艦",
+			"source": "XPHB",
+			"page": 230,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "SHP|XPHB",
+			"rarity": "none",
+			"value": 2500000,
+			"crew": 60,
+			"vehAc": 15,
+			"vehHp": 500,
+			"vehDmgThresh": 20,
+			"vehSpeed": 2.5,
+			"capPassenger": 60,
+			"capCargo": 200,
+			"seeAlsoVehicle": [
+				"warship"
+			],
+			"ENG_name": "Warship"
+		},
+		{
+			"name": "黃蜂艦",
+			"source": "AAG",
+			"page": 56,
+			"type": "SPC|AAG",
+			"rarity": "none",
+			"value": 2000000,
+			"crew": 5,
+			"vehAc": 15,
+			"vehHp": 250,
+			"vehDmgThresh": 15,
+			"vehSpeed": 5.5,
+			"capCargo": 10,
+			"entries": [
+				"黃蜂艦是一種輕型木質艦船，能夠安全降落在地面上，但不能降落在水上。 她們對冒險家很有吸引力，因為她們價格實惠且不需要大量的船員。 同時海盜也因其迅捷而喜歡她們。 貴族們喜歡將她們用作飛行遊艇，因為艦船上的貨艙可以很容易地改造成奢華的居住區。",
+				"這種艦船的背部為武器陣地提供了高地，通常會配備一門弩炮。"
+			],
+			"seeAlsoVehicle": [
+				"wasp ship|aag"
+			],
+			"ENG_name": "Wasp Ship"
+		},
+		{
+			"name": "守望頭盔",
+			"source": "CM",
+			"page": 183,
+			"rarity": "very rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"bonusAc": "+1",
+			"entries": [
+				"當你佩戴這個頭盔時，你的護甲等級獲得+1的加成，並且即使你在睡覺時也能保持對周圍環境的警覺，你在依賴視力的感知（{@skill Perception||感知}）檢定上獲得優勢。",
+				"作為附贈動作，你可以從頭盔中施展{@spell see invisibility||識破隱形}法術。一旦使用頭盔的這個屬性，直到下一個黎明之前都不能再次使用。"
+			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"see invisibility"
+					]
+				}
+			},
+			"ENG_name": "Watchful Helm"
+		},
+		{
+			"name": "水袋",
+			"source": "PHB",
+			"page": 153,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"DIP",
+				"TftYP-TSC",
+				"WDH",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Waterskin|XPHB"
+			],
+			"type": "G",
+			"rarity": "none",
+			"weight": 5,
+			"weightNote": "(full)",
+			"value": 20,
+			"entries": [
+				"一個水袋最多可容納4品脫液體。"
+			],
+			"ENG_name": "Waterskin"
+		},
+		{
+			"name": "水袋",
+			"source": "XPHB",
+			"page": 229,
+			"srd52": true,
+			"basicRules2024": true,
+			"referenceSources": [
+				"BQGT",
+				"DrDe-ACfaS"
+			],
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"weightNote": "(full)",
+			"value": 20,
+			"entries": [
+				"水袋具有4品脫容量。如果你喝水不足，你會遭受脫水的危害（見規則詳述）。"
+			],
+			"containerCapacity": {
+				"volume": [
+					0.08
+				]
+			},
+			"ENG_name": "Waterskin"
+		},
+		{
+			"name": "波濤",
+			"source": "DMG",
+			"page": 218,
+			"referenceSources": [
+				"DC",
+				"IMR",
+				"LR",
+				"TftYP-WPM"
+			],
+			"reprintedAs": [
+				"Wave|XDMG"
+			],
+			"baseItem": "trident|phb",
+			"type": "M",
+			"rarity": "legendary",
+			"reqAttune": "由崇拜海神的生物",
+			"sentient": true,
+			"weight": 4,
+			"weaponCategory": "martial",
+			"property": [
+				"T",
+				"V"
+			],
+			"range": "20/60",
+			"dmg1": "1d6",
+			"dmgType": "P",
+			"dmg2": "1d8",
+			"bonusWeapon": "+3",
+			"entries": [
+				"被保管在白浪山地牢中，這把三叉戟是一把精美的武器，上面雕刻著波濤、貝殼和海洋生物的圖案。雖然你必須崇拜一位海神才能調諧這件武器，但波濤欣然接受新的皈依者。",
+				"你用此魔法武器發動的攻擊檢定和傷害擲骰獲得+3加值。如果你用它造成重擊，目標將受到等於其生命值上限一半的額外暗蝕傷害。",
+				"該武器也可作為一把{@item trident of fish command||喚魚三叉戟}和一把{@item weapon of warning||警戒武器}使用。當你持握它時，它可以賦予{@item cap of water breathing||水下呼吸帽}的好處，並且你可以透過選擇效應來將其用作{@item cube of force||力場魔方}，而無需按壓方塊側面來選擇。",
+				{
+					"name": "智慧",
+					"type": "entries",
+					"entries": [
+						"波濤是一把具有智慧的中立陣營武器，其智力為14，感知為10，魅力為18。它具有聽覺和{@sense darkvision||黑暗視覺}，範圍為120尺。",
+						"該武器透過心靈感應與其持有者交流，並能說、讀和理解水族語。它還能與水生動物交談，如同使用{@spell speak with animals||動物交談}法術一般，並透過心靈感應讓持有者參與對話。"
+					],
+					"ENG_name": "Sentience"
+				},
+				{
+					"name": "個性",
+					"type": "entries",
+					"entries": [
+						"當它變得焦躁不安時，波濤有哼唱曲調的習慣，這些曲調從海上勞動號子到海神的聖歌各不相同。",
+						"波濤熱切地渴望將凡人轉化為對一位或多位海神的崇拜，否則就將無信者送往死亡。如果持有者未能在世界上進一步推進該武器的目標，就會產生衝突。這把三叉戟對其鍛造地——一個名為雷鳴熔爐的荒涼島嶼懷有懷舊之情。一位海神在那裡囚禁了一個風暴巨人家庭，而巨人們以對那位神的獻身或反叛的行為鍛造了波濤。",
+						"波濤對其自身的本質和目的懷有一種秘密的疑慮。儘管它對海神們充滿獻身，波濤卻擔心自己註定要帶來某位特定海神的覆滅。這個宿命是波濤可能無法避免的。"
+					],
+					"ENG_name": "Personality"
+				}
+			],
+			"attachedSpells": [
+				"speak with animals"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wave"
+		},
+		{
+			"name": "波濤",
+			"source": "XDMG",
+			"page": 323,
+			"baseItem": "trident|xphb",
+			"type": "M|XPHB",
+			"rarity": "artifact",
+			"reqAttune": true,
+			"sentient": true,
+			"weight": 4,
+			"weaponCategory": "martial",
+			"property": [
+				"T|XPHB",
+				"V|XPHB"
+			],
+			"mastery": [
+				"Topple|XPHB"
+			],
+			"range": "20/60",
+			"dmg1": "1d8",
+			"dmgType": "P",
+			"dmg2": "1d10",
+			"bonusWeapon": "+3",
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d3}",
+			"charges": 3,
+			"entries": [
+				"波濤藏在白羽山的地下城中，這把精緻的三叉戟上面雕有波浪、貝殼和海洋生物的圖案。",
+				"你用此魔法武器進行的攻擊檢定和傷害擲骰獲得+3加值。當你在以此武器進行的攻擊檢定的{@dice d20}中擲出20時，目標額外受到21暗蝕傷害。",
+				"持用波濤期間，你獲得以下增益：",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "戰鬥預備",
+							"entries": [
+								"你能夠進行有{@variantrule Advantage|XPHB|優勢}的{@variantrule Initiative|XPHB|先攻}擲骰。"
+							],
+							"ENG_name": "Combat Ready"
+						},
+						{
+							"type": "item",
+							"name": "水下適應",
+							"entries": [
+								"你身處水下期間，一個空氣泡泡環繞著你的腦袋，令你可以在該環境下如常呼吸。"
+							],
+							"ENG_name": "Underwater Adaptation"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "命令水棲",
+					"entries": [
+						"波濤具有3充能並在每日黎明時重獲{@dice 1d3}充能，當你攜帶波濤時，你可以消耗1充能，對一隻具有{@variantrule Swim Speed|XPHB|游泳速度}的野獸施展{@spell Dominate Beast|XPHB|支配野獸} （豁免{@dc 20}）。"
+					],
+					"ENG_name": "Aquatic Command"
+				},
+				{
+					"type": "entries",
+					"name": "法術無效結界",
+					"entries": [
+						"持握波濤時，你可以從中施展九環版本的法術{@spell Globe of Invulnerability|XPHB|法術無效結界}。該詞條一經使用，直至次日黎明你都無法再次使用。"
+					],
+					"ENG_name": "Globe of Invulnerability"
+				},
+				{
+					"type": "entries",
+					"name": "智慧",
+					"entries": [
+						"濤是一把具有絕對中立陣營的智慧武器，智力為14，感知10，魅力18。它具有120尺聽覺及120尺{@sense Darkvision|XPHB|黑暗視覺}。",
+						"波濤與其持用者透過心靈感應交流，波濤也會說水族語。"
+					],
+					"ENG_name": "Sentience"
+				},
+				{
+					"type": "entries",
+					"name": "個性",
+					"entries": [
+						"波濤熱衷於勸誡凡人信仰海神，並有哼唱船歌的習慣。如果其持用者沒有將波濤的目標傳遍世界，波濤將進行反噬。"
+					],
+					"ENG_name": "Personality"
+				},
+				{
+					"type": "entries",
+					"name": "摧毀波濤",
+					"entries": [
+						"波濤只會在雷鑄島——其被鍛造出來的地方——被摧毀。波濤只能由{@creature storm giant|XMM|風暴巨人}或擁有著風暴巨人力量之人親手熔化。摧毀波濤將激怒一位海神，其將派遣強大的使徒們攻打小島並懲罰將波濤摧毀之人。"
+					],
+					"ENG_name": "Destroying Wave"
+				}
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"dominate beast|xphb"
+					]
+				}
+			},
+			"ENG_name": "Wave"
+		},
+		{
+			"name": "旅人之靴",
+			"source": "BGG",
+			"page": 117,
+			"rarity": "rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"entries": [
+				"這雙靴子使用堅固耐用的布料製成，金色的絲線在兩隻靴子的腳後跟上各縫紉著旅途符文。穿著這對靴子期間，你的步行速度增加10尺，且你進行的感知（{@skill Survival||求生}）檢定具有優勢。",
+				{
+					"type": "entries",
+					"name": "啟用符文",
+					"entries": [
+						"以一個附贈動作，你可以啟用這對靴子上的符文以用其施放{@spell expeditious retreat||腳底抹油}法術。此符文被啟用後，直到次日黎明為止都無法被再度啟用。"
+					],
+					"ENG_name": "Invoking the Runes"
+				}
+			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"expeditious retreat"
+					]
+				}
+			},
+			"ENG_name": "Wayfarer's Boots"
+		},
+		{
+			"name": "開闢者",
+			"source": "TftYP",
+			"page": 229,
+			"referenceSources": [
+				"TftYP-AtG",
+				"TftYP-DiT",
+				"TftYP-TFoF",
+				"TftYP-THSoT",
+				"TftYP-ToH",
+				"TftYP-TSC",
+				"TftYP-WPM"
+			],
+			"baseItem": "greatsword|phb",
+			"type": "M",
+			"rarity": "legendary",
+			"reqAttune": true,
+			"sentient": true,
+			"weight": 6,
+			"weaponCategory": "martial",
+			"property": [
+				"H",
+				"2H"
+			],
+			"dmg1": "2d6",
+			"dmgType": "S",
+			"bonusWeapon": "+1",
+			"entries": [
+				"Waythe是一把獨特的雙手巨劍，最近一次是在一個高階{@creature cloud giant||雲巨人}大使的手中。",
+				"使用此魔法武器進行攻擊和傷害檢定時，你獲得+1加值。當你用它擊中一個巨人類生物時，該巨人額外受到{@damage 2d6}點揮砍傷害，並且它必須透過一次{@dc 15}力量豁免檢定，否則將陷入{@condition prone||倒地}狀態。",
+				"這把劍也具有{@item wand of enemy detection||搜敵魔杖}的功能。它在黎明時恢復所有消耗的充能，並且如果使用最後一個充能也不會有崩潰的風險。",
+				{
+					"name": "智慧",
+					"type": "entries",
+					"entries": [
+						"Waythe是一把具有感知能力的武器，對齊為中立善良，感知為12，感知為2，魅力為14。它具有聽力和{@sense darkvision||黑暗視覺}，範圍可達120尺。",
+						"這把武器能夠說和理解巨人語和通用語，並且能夠與其持有者進行心靈感應交流。"
+					],
+					"ENG_name": "Sentience"
+				},
+				{
+					"name": "個性",
+					"type": "entries",
+					"entries": [
+						"這把劍信仰自由，並允許他人按照自己的意願生活。它對其朋友具有保護性，希望與志同道合的持劍者成為朋友。（善良陣營的角色只需1分鐘即可與劍建立共鳴。）然而，Waythe勇敢到了魯莽的地步，並且會大聲疾呼採取大膽行動。它很可能與邪惡或膽小的持劍者發生衝突。"
+					],
+					"ENG_name": "Personality"
+				}
+			],
+			"ENG_name": "Waythe"
+		},
+		{
+			"name": "詭異水罐",
+			"source": "PotA",
+			"page": 223,
+			"rarity": "rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"entries": [
+				"怪異水箱是一個由吹制玻璃和雕刻青銅製成的十加侖水箱，配有一個揹包式的攜帶裝置，由堅韌的皮革製成。水箱內包含一個{@creature water weird||水詭}。佩戴水箱時，你可以使用一個動作開啟它，讓{@creature water weird||水詭}出現。{@creature water weird||水詭}在行動順序中緊跟在你之後行動，並且它與水箱繫結在一起。",
+				"當你佩戴水箱時，你可以用心靈感應命令{@creature water weird||水詭}（無需動作）。只有當你首先命令{@creature water weird||水詭}收縮回水箱中，或者{@creature water weird||水詭}已死亡時，你才能作為動作關閉水箱。",
+				"如果{@creature water weird||水詭}被殺，水箱將失去其魔法束縛特性，直到它在元素水節點中至少停留24小時。當水箱重新充能時，一個新的{@creature water weird||水詭}將在其中形成。",
+				"水箱的護甲等級為15，有50點生命值，對鈍擊傷害有弱點，並對毒素和心靈傷害免疫。將水箱的生命值減少到0會摧毀它以及其中包含的{@creature water weird||水詭}。"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Weird Tank"
+		},
+		{
+			"name": "諸界之井",
+			"source": "DMG",
+			"page": 213,
+			"srd": true,
+			"referenceSources": [
+				"JttRC",
+				"VEoR"
+			],
+			"reprintedAs": [
+				"Well of Many Worlds|XDMG"
+			],
+			"tier": "major",
+			"rarity": "legendary",
+			"wondrous": true,
+			"entries": [
+				"這塊如絲綢般順滑的精緻黑色布料，摺疊起來只有手帕大小。布料展開後為直徑6尺的圓形蓋布。",
+				"你可以用一個動作展開諸界之井並把它放在堅實表面上，產生一扇通向另一個世界或存在位面的雙向傳送門。每次該物品開啟傳送門時，由DM決定它所連線的地點。你可以用一個動作抓住布料的邊緣把它摺疊起來以關閉開啟的傳送門。一旦諸界之井開啟過傳送門，它在{@dice 1d8}小時內將無法再次啟動。"
+			],
+			"lootTables": [
+				"Magic Item Table I"
+			],
+			"ENG_name": "Well of Many Worlds"
+		},
+		{
+			"name": "諸界之井",
+			"source": "XDMG",
+			"page": 324,
+			"srd52": true,
+			"basicRules2024": true,
+			"rarity": "legendary",
+			"wondrous": true,
+			"entries": [
+				"這塊如絲綢般順滑的精緻黑色布料，摺疊起來只有手帕大小。布料展開後為直徑6尺的圓形蓋布。",
+				"你能夠以一個{@action Magic|XPHB|魔法}動作展開諸界之井，將它佈置在堅實表面上，產生一扇直徑6尺、通向另一個世界或存在位面的圓形雙向傳送門。每次此物品開啟傳送門時，由DM決定它所連線的地方。傳送門保持開啟，直至位於其5尺內的一名生物以一個{@action Magic|XPHB|魔法}動作抓住布料的邊緣把它摺疊起來，來將傳送門關閉。",
+				"諸界之井一經使用，在{@dice 1d8}小時內都無法再次開啟傳送門。"
+			],
+			"lootTables": [
+				"Arcana - Legendary|XDMG"
+			],
+			"ENG_name": "Well of Many Worlds"
+		},
+		{
+			"name": "製作精良的掛毯，長寬各 10 尺",
+			"source": "XDMG",
+			"page": 215,
+			"type": "$A|XDMG",
+			"rarity": "none",
+			"value": 25000,
+			"ENG_name": "Well-made tapestry that is 10 feet by 10 feet"
+		},
+		{
+			"name": "捕鯨船",
+			"source": "FRAiF",
+			"page": 166,
+			"type": "SHP|XPHB",
+			"rarity": "none",
+			"value": 50000,
+			"crew": 6,
+			"vehAc": 13,
+			"vehHp": 100,
+			"vehDmgThresh": 10,
+			"vehSpeed": 3,
+			"capPassenger": 1,
+			"ENG_name": "Whaleboat"
+		},
+		{
+			"name": "小麥",
+			"source": "PHB",
+			"page": 157,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Wheat|XDMG"
+			],
+			"type": "TG",
+			"rarity": "none",
+			"weight": 1,
+			"value": 1,
+			"ENG_name": "Wheat"
+		},
+		{
+			"name": "小麥",
+			"source": "XDMG",
+			"page": 213,
+			"type": "TG|XDMG",
+			"rarity": "none",
+			"weight": 1,
+			"value": 1,
+			"ENG_name": "Wheat"
+		},
+		{
+			"name": "星輪",
+			"source": "AI",
+			"page": 222,
+			"referenceSources": [
+				"OoW"
+			],
+			"rarity": "very rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"bonusSavingThrow": "+1",
+			"entries": [
+				"當你與該元件同調時，你獲得+1感知豁免，並且你可以使用一個動作施放戲法{@spell dancing lights||舞光術}、{@spell guidance||神導術}或{@spell message||傳訊術}。",
+				{
+					"type": "entries",
+					"name": "星辰預兆",
+					"entries": [
+						"當你視野內，處在你半徑60尺內的一個生物進行攻擊鑑定，豁免鑑定或屬性鑑定時，你可以使用一個反應，投一個{@dice d10}，並將結果與該生物鑑定的結果進行相加或相減（由你選擇）。一旦你使用了星輪的這個能力，它在下一次黎明前將無法被再次使用。"
+					],
+					"ENG_name": "Portent of the Stars"
+				},
+				{
+					"type": "entries",
+					"name": "改變重力",
+					"entries": [
+						"你可以使用一個動作對自身施放{@spell fly||飛行術}或正常釋放{@spell levitate||浮空術}（豁免{@dc 15}）。一旦你使用了星輪的這個能力，它在新一天前將無法被再次使用。"
+					],
+					"ENG_name": "Alter Gravity"
+				},
+				{
+					"type": "entries",
+					"name": "六位一體",
+					"entries": [
+						"當此元件未被安裝進{@item Orrery of the Wanderer|AI|位面遊蕩儀}時，它的魔法可能會時斷時續，或是會有無法預測的副作用，這由DM決定。"
+					],
+					"ENG_name": "Part of a Whole"
+				}
+			],
+			"attachedSpells": {
+				"will": [
+					"dancing lights",
+					"guidance",
+					"message"
+				],
+				"daily": {
+					"1e": [
+						"fly",
+						"levitate"
+					]
+				}
+			},
+			"ENG_name": "Wheel of Stars"
+		},
+		{
+			"name": "風水輪",
+			"source": "ERLW",
+			"page": 280,
+			"rarity": "uncommon",
+			"wondrous": true,
+			"entries": [
+				"當安裝在元素帆船或飛艇的船舵上時，這個輪子允許擁有風暴龍紋的生物透過心靈感應控制被束縛在船隻內的元素。",
+				"如果風水輪被安裝在一艘普通的航船上，那麼一位持有風暴龍紋的生物在使用輪子時，可以在船隻周圍創造理想的航行環境，使其速度增加5英里/小時。"
+			],
+			"ENG_name": "Wheel of Wind and Water"
+		},
+		{
+			"name": "征服",
+			"source": "DMG",
+			"page": 218,
+			"referenceSources": [
+				"IMR",
+				"TftYP-WPM"
+			],
+			"reprintedAs": [
+				"Whelm|XDMG"
+			],
+			"baseItem": "warhammer|phb",
+			"type": "M",
+			"rarity": "legendary",
+			"reqAttune": "由矮人",
+			"reqAttuneTags": [
+				{
+					"race": "dwarf"
+				}
+			],
+			"sentient": true,
+			"weight": 2,
+			"weaponCategory": "martial",
+			"property": [
+				"T",
+				"V"
+			],
+			"range": "20/60",
+			"dmg1": "1d8",
+			"dmgType": "B",
+			"dmg2": "1d10",
+			"bonusWeapon": "+3",
+			"entries": [
+				"征服是一柄由矮人鍛造的強大戰錘，在白色尖峰山脈的地牢中遺失。",
+				"你使用此魔法武器發動的攻擊檢定和傷害擲骰獲得+3加值。在你首次用征服進行攻擊檢定後的第二天黎明，你會產生對戶外的恐懼，這種恐懼在你保持與該武器調諧期間持續存在。這導致當你能看到白晝天空時，你的攻擊檢定、豁免和屬性檢定具有劣勢。",
+				{
+					"name": "投擲武器",
+					"type": "entries",
+					"entries": [
+						"征服具有投擲屬性，常規射程為20尺，最大射程為60尺。當你用此武器發動遠端武器攻擊命中時，目標將受到額外的{@damage 1d8}鈍擊傷害，如果目標是巨人，則額外傷害提升為{@damage 2d8}鈍擊傷害。每次你投擲該武器後，它將在攻擊後立即飛回你的手中。如果你沒有空閒的手，武器將落在你的腳邊。"
+					],
+					"ENG_name": "Thrown Weapon"
+				},
+				{
+					"name": "震盪波",
+					"type": "entries",
+					"entries": [
+						"你可以用一個動作以征服打擊地面，並從衝擊點發出一道震盪波。你選擇的位於該點60尺內地面上的每個生物必須成功透過{@dc 15}的體質豁免否則被{@condition stunned||震懾}1分鐘。該生物可以在其每回合結束時再次進行該豁免，豁免成功則終止其身上的相應效應。一旦使用，直到次日黎明前，此後這個屬性都無法再次啟動。"
+					],
+					"ENG_name": "Shock Wave"
+				},
+				{
+					"name": "超然警覺",
+					"type": "entries",
+					"entries": [
+						"當你持握此武器時，它會提醒你30尺內任何密門或隱蔽門的位置。此外，你可以用一個動作透過此武器施放{@spell detect evil and good||偵測善惡}或{@spell locate object||物件定位術}。一旦你施放了其中任一法術，直到次日黎明前你都無法再次透過此武器施放該法術。"
+					],
+					"ENG_name": "Supernatural Awareness"
+				},
+				{
+					"name": "智慧",
+					"type": "entries",
+					"entries": [
+						"\"征服\"是一把具有智慧的守序中立武器，智力為15，感知為12，魅力為15。它具有聽覺和{@sense darkvision||黑暗視覺}，範圍為120尺。",
+						"該武器與其持用者心靈感應交流，並能說、讀、懂矮人語、巨人語和地精語。在戰鬥中使用時，它會用矮人語高喊戰鬥口號。"
+					],
+					"ENG_name": "Sentience"
+				},
+				{
+					"name": "個性",
+					"type": "entries",
+					"entries": [
+						"征服的使命是屠殺巨人和類地精。它還尋求保護矮人免受所有敵人的侵害。如果持有者未能摧毀地精和巨人或未能保護矮人，就會產生衝突。征服與創造它的矮人氏族有著聯絡，該氏族被稱為丹基爾氏族或巨錘氏族。它渴望被歸還給那個氏族。它會不惜一切代價保護那些矮人免受傷害。這把戰錘還承載著一個秘密的恥辱。幾個世紀前，一位名叫克滕米爾的矮人曾英勇地揮舞過它一段時間。但克滕米爾被轉變成了{@creature vampire||吸血鬼}。他的意志足夠強大，以至於讓征服屈從於他的邪惡目的，甚至殺害了自己氏族的成員。"
+					],
+					"ENG_name": "Personality"
+				}
+			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"detect evil and good",
+						"locate object"
+					]
+				}
+			},
+			"hasFluffImages": true,
+			"ENG_name": "Whelm"
+		},
+		{
+			"name": "征服",
+			"source": "XDMG",
+			"page": 324,
+			"baseItem": "warhammer|xphb",
+			"type": "M|XPHB",
+			"rarity": "artifact",
+			"reqAttune": "需矮人或是與矮人腰帶維持同調的生物",
+			"reqAttuneTags": [
+				{
+					"race": "dwarf"
+				}
+			],
+			"sentient": true,
+			"weight": 5,
+			"weaponCategory": "martial",
+			"property": [
+				"T|XPHB",
+				"V|XPHB"
+			],
+			"mastery": [
+				"Push|XPHB"
+			],
+			"range": "60/180",
+			"dmg1": "1d8",
+			"dmgType": "B",
+			"dmg2": "1d10",
+			"bonusWeapon": "+3",
+			"entries": [
+				"征服失落在白羽山的地下城中，它是一把威力巨大的，由矮人鍛造的武器。",
+				"你用此魔法武器進行的攻擊檢定和傷害擲骰獲得+3加值。",
+				{
+					"type": "entries",
+					"name": "猛投",
+					"entries": [
+						"征服者具有{@itemProperty T|XPHB|投擲}詞條，普通射程為60尺，長射程為180尺。當你使用征服者進行遠端攻擊並命中時，目標額外受到{@damage 1d8}點力場傷害；若目標是構裝體、元素或巨人，則額外受到{@damage 4d8}點力場傷害。命中或失手後，武器會立即飛回你手中。"
+					],
+					"ENG_name": "Hurl"
+				},
+				{
+					"type": "entries",
+					"name": "震盪波",
+					"entries": [
+						"你能夠以{@action Magic|XPHB|魔法}動作，用征服重擊地面，從該點發出震盪波。位於你60尺內的每個你選擇的生物必須成功透過一次{@dc 20}的體質豁免，否則陷入{@condition Stunned|XPHB|震懾}狀態，持續1分鐘。豁免失敗的生物在其每個回合結束時重複豁免，成功則終止其身上的該效應。該詞條一經使用，直至次日黎明你都無法再次使用。"
+					],
+					"ENG_name": "Shock Wave"
+				},
+				{
+					"type": "entries",
+					"name": "超然警覺",
+					"entries": [
+						"持握此武器期間，它為你揭示位於你30尺內的密門或隱藏門的位置。此外，你還可以從中施展法術{@spell Detect Evil and Good|XPHB|偵測善惡}或{@spell Locate Object|XPHB|物件定位術} 。一旦你施展任一項法術，直至次日黎明你都無法再次從中施展法術。"
+					],
+					"ENG_name": "Supernatural Awareness"
+				},
+				{
+					"type": "entries",
+					"name": "智慧",
+					"entries": [
+						"征服是一把智慧武器，陣營守序中立，智力為15，感知12，魅力15。它具有120尺聽覺及120尺{@sense Darkvision|XPHB|黑暗視覺}。",
+						"征服與其持用者透過心靈感應交流，征服也會說矮人語、巨人語和地精語。"
+					],
+					"ENG_name": "Sentience"
+				},
+				{
+					"type": "entries",
+					"name": "個性",
+					"entries": [
+						"征服與創造它的矮人氏族緊密的聯絡在一起，該氏族有各種稱呼，如丹吉爾Dankil或稱強錘Mightyhammer氏族。征服渴望回到氏族中。征服的目標是保護矮人。若持有者不認同這個目標則征服將反噬。"
+					],
+					"ENG_name": "Personality"
+				},
+				{
+					"type": "entries",
+					"name": "摧毀征服",
+					"entries": [
+						"征服可以用剛被殺死的{@creature ancient black dragon|XMM|遠古黑龍}的酸性膽汁熔化。另外，強錘矮人氏族的合法領袖也可以在鍛造廠熔化它。"
+					],
+					"ENG_name": "Destroying Whelm"
+				}
+			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"detect evil and good|xphb",
+						"locate object|xphb"
+					]
+				}
+			},
+			"ENG_name": "Whelm"
+		},
+		{
+			"name": "磨刀石",
+			"source": "PHB",
+			"page": 150,
+			"srd": true,
+			"basicRules": true,
+			"type": "G",
+			"rarity": "none",
+			"weight": 1,
+			"value": 1,
+			"ENG_name": "Whetstone"
+		},
+		{
+			"name": "私語罐",
+			"source": "AI",
+			"page": 27,
+			"rarity": "varies",
+			"reqAttune": true,
+			"wondrous": true,
+			"entries": [
+				"第1級時，你將獲得一個私語罐——這是一件普通品質的魔法物品，類似於一個裝滿以太的罐子，並帶有一個長長的軟管。這個罐子用於記錄他人的故事和你自己的觀察，就像一個沒有空間限制的口述筆記本。私語罐可以以說話的速度記錄，並以相同的速度回放記錄的內容。啟用特定錄音的播放需要一個動作。",
+				{
+					"type": "table",
+					"caption": "你的私語罐中記錄的事物",
+					"colLabels": [
+						"d8",
+						"記錄"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"一部幾乎被遺忘的舞臺劇《熱鍋上的斑貓人》唯一的一段現場演出錄音"
+						],
+						[
+							"2",
+							"這個罐子的前主人——也就是上一個知識販子的畢生作品"
+						],
+						[
+							"3",
+							"你曾有過的每個英勇想法，都只是為了掩飾你大多數時候的恐懼"
+						],
+						[
+							"4",
+							"一切，因為每個人早晚都會食言！"
+						],
+						[
+							"5",
+							"你曾經訪問過的所有定居點中排行前七的油炸老鼠肉串店"
+						],
+						[
+							"6",
+							"費倫世界上每個王室血統的完整家譜，無論是現存的還是失落的"
+						],
+						[
+							"7",
+							"你最喜歡的吉姆·黑魔法舞臺表演的逐時回顧"
+						],
+						[
+							"8",
+							"響亮的掌聲，你可以隨意打出"
+						]
+					]
+				},
+				{
+					"type": "entries",
+					"name": "私語全書",
+					"entries": [
+						"同樣在第2級，你的私語罐變成了一個非普通品質的魔法物品，它現在可以接入艾奎茲玄有限責任公司那廣泛的知識庫。以一個附贈動作，你可以向罐子詢問關於某個特定主題的資訊，並進行一次{@dc 15}的智力（{@skill History||歷史}）檢定。成功時，罐子會播放出一段關於該主題的錄音，這段錄音是由另一個艾奎茲玄有限責任公司的知識販子在某個時間某個地方製作的。在那之後，直到次日黎明之前，你無法再次使用私語罐的這個功能。"
+					],
+					"ENG_name": "Whispered Encyclopedia"
+				},
+				{
+					"type": "entries",
+					"name": "私語警告",
+					"entries": [
+						"同樣在第3級，你的私語罐獲得了額外的力量，併成為一件珍稀品質的魔法物品。以一個動作，你可以使罐子發揮{@item wand of enemy detection||搜敵魔杖}的功能，在這種狀態下，它會用耳語告訴你範圍內敵人的方向。一旦你使用了這個能力，直到次日黎明之前，你無法再次使用私語罐的這個功能。"
+					],
+					"ENG_name": "Whispered Warnings"
+				},
+				{
+					"type": "entries",
+					"name": "私語奧術",
+					"entries": [
+						"同樣在第4級時，你的私語罐獲得了更多的魔力。以一個動作對私語罐念出下列法術其中一個的名字，你就可以從罐子中施放該法術：{@spell detect evil and good||偵測善惡}、{@spell detect magic||偵測魔法}、{@spell detect poison and disease||偵測毒性和疾病}、{@spell find traps||尋找陷阱}、{@spell identify||鑑定術}或{@spell locate animals or plants||動植物定位術}。一旦你使用過這個特性，直到次日黎明之前，無法再次使用這個私語罐的這個功能。"
+					],
+					"ENG_name": "Whispered Arcana"
+				}
+			],
+			"attachedSpells": {
+				"daily": {
+					"1": [
+						"detect evil and good",
+						"detect magic",
+						"detect poison and disease",
+						"find traps",
+						"identify",
+						"locate animals or plants"
+					]
+				}
+			},
+			"hasFluffImages": true,
+			"ENG_name": "Whisper Jar"
+		},
+		{
+			"name": "哨棒",
+			"source": "OGA",
+			"page": 4,
+			"type": "INS",
+			"rarity": "unknown",
+			"entries": [
+				"在《{@book 一蛙之下|OGA}》中的{@race grung|OGA|格龍蛙人}被訓練來使用這種新樂器。這是一個帶孔的管狀物，類似於長笛。你可以用它演奏音樂來娛樂，但綠蛙人也會用一根結實的繩子（已附上）揮舞它，以創造出其他綠蛙人能識別的聲音，這樣他們就能知道彼此的大致位置。此外，懂得{@language Thieves' Cant||盜賊黑話}的綠蛙人可以用這種方式使用哨笛進行遠距離交流。"
+			],
+			"ENG_name": "Whistle-Stick"
+		},
+		{
+			"name": "白彩玫瑰",
+			"source": "WBtW",
+			"page": 208,
+			"resist": [
+				"cold"
+			],
+			"detail1": "被霜覆蓋",
+			"rarity": "rare",
+			"wondrous": true,
+			"hasRefs": true,
+			"entries": [
+				"{#itemEntry 色彩玫瑰|WBtW}"
+			],
+			"ENG_name": "White Chromatic Rose"
+		},
+		{
+			"name": "白龍披風",
+			"source": "TftYP",
+			"page": 193,
+			"type": "OTH",
+			"resist": [
+				"cold"
+			],
+			"rarity": "unknown (magic)",
+			"entries": [
+				"穿戴這件披風時，你對寒冷傷害有抗性。"
+			],
+			"ENG_name": "White Dragon Cape"
+		},
+		{
+			"name": "白龍面具",
+			"source": "RoTOS",
+			"page": 4,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 179
+				}
+			],
+			"referenceSources": [
+				"HotDQ",
+				"RoT"
+			],
+			"resist": [
+				"cold"
+			],
+			"rarity": "legendary",
+			"reqAttune": true,
+			"wondrous": true,
+			"grantsLanguage": true,
+			"entries": [
+				"這個閃亮的面具是白色的，帶有淺藍色的高光，頂部是一個帶刺的冠。面具會重新塑形以適應與之共鳴的佩戴者。當你佩戴著面具並與它共鳴時，你可以使用以下屬性。",
+				{
+					"type": "entries",
+					"name": "傷害吸收",
+					"entries": [
+						"你對寒冷傷害有抗性。如果你已經從其他來源對寒冷傷害有抗性，你將對寒冷傷害免疫。如果你已經從其他來源對寒冷傷害免疫，每當你遭受寒冷傷害時，你將不會受到任何傷害，並且恢復等於該型別傷害造成的傷害值一半的生命值。"
+					],
+					"ENG_name": "Damage Absorption"
+				},
+				{
+					"type": "entries",
+					"name": "龍形威嚴",
+					"entries": [
+						"你未著裝護甲時，可以將自己的魅力加值加入你的護甲等級中。"
+					],
+					"ENG_name": "Draconic Majesty"
+				},
+				{
+					"type": "entries",
+					"name": "龍息",
+					"entries": [
+						"若你有本身擁有需要休息充能的吐息武器，則該吐息改為充能 6。"
+					],
+					"ENG_name": "Dragon Breath"
+				},
+				{
+					"type": "entries",
+					"name": "龍之視界",
+					"entries": [
+						"你獲得{@sense darkvision||黑暗視覺}，範圍為60尺，或者如果你已經擁有該感覺，則額外增加60尺。每天一次，你可以獲得{@sense blindsight||盲視}，範圍為30尺，持續5分鐘。"
+					],
+					"ENG_name": "Dragon Sight"
+				},
+				{
+					"type": "entries",
+					"name": "龍言",
+					"entries": [
+						"你可以說並理解龍語。此外，在對白龍進行任何魅力檢定時，你還有優勢。"
+					],
+					"ENG_name": "Dragon Tongue"
+				},
+				{
+					"type": "entries",
+					"name": "傳奇抗性",
+					"entries": [
+						"（每日一次）你進行一次豁免檢定失敗時，可以選擇將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance"
+				},
+				{
+					"type": "entries",
+					"name": "冬日之怒",
+					"entries": [
+						"當你當前的生命值等於或少於你生命值上限的一半時，你的近戰攻擊會額外造成{@damage 1d8}點寒冷傷害。"
+					],
+					"ENG_name": "Winter's Fury"
+				}
+			],
+			"ENG_name": "White Dragon Mask"
+		},
+		{
+			"name": "白龍鱗甲",
+			"source": "DMG",
+			"page": 165,
+			"srd": true,
+			"reprintedAs": [
+				"White Dragon Scale Mail|XDMG"
+			],
+			"type": "MA",
+			"resist": [
+				"cold"
+			],
+			"tier": "major",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"weight": 45,
+			"ac": 14,
+			"bonusAc": "+1",
+			"stealth": true,
+			"entries": [
+				"龍鱗甲是以某一種龍的鱗片製成的護甲。有時候龍會收集自己褪下的鱗片並贈送給類人生物。其他時候，獵人們會小心地剝下並儲存死去龍類的皮。無論哪種情況，龍鱗甲都是非常珍貴的物品。著裝該護甲期間，你的AC獲得+1加值，為對抗龍類的駭人威儀與吐息武器時所作豁免具有優勢，並且你獲得對寒冷傷害的抗性。",
+				"另外，你還可以用一個動作集中精神來魔法感知距你最近的白龍，並得知其相對於你的方向與距離。這條龍必須在你周邊30裡以內。這一特殊動作一經使用，直至次日黎明前都無法被再度使用。"
+			],
+			"ENG_name": "White Dragon Scale Mail"
+		},
+		{
+			"name": "白龍鱗甲",
+			"source": "XDMG",
+			"page": 254,
+			"srd52": true,
+			"basicRules2024": true,
+			"baseItem": "scale mail|xphb",
+			"type": "MA|XPHB",
+			"resist": [
+				"cold"
+			],
+			"detail1": "白",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"weight": 45,
+			"ac": 14,
+			"bonusAc": "+1",
+			"stealth": true,
+			"hasRefs": true,
+			"entries": [
+				"{#itemEntry 龍鱗甲|XDMG}"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "White Dragon Scale Mail"
+		},
+		{
+			"name": "白幽靈蘭種子",
+			"source": "JttRC",
+			"page": 212,
+			"type": "G",
+			"rarity": "none",
+			"entries": [
+				"更罕見的是，這些蘭花會結出一個較小的莢，裡面含有一顆白色的種子。在其各種魔法屬性中，如果將白色種子磨碎並撒在一具屍體上，該屍體將受到{@spell resurrection||復生術}法術的影響。白色幽靈蘭種子如果被食用則沒有效果。"
+			],
+			"miscTags": [
+				"CNS"
+			],
+			"ENG_name": "White Ghost Orchid Seed"
+		},
+		{
+			"name": "荒根",
+			"source": "ToA",
+			"page": 205,
+			"type": "G",
+			"rarity": "unknown",
+			"value": 2500,
+			"entries": [
+				"讓荒根的汁液流入一個{@condition poisoned||中毒}生物的血流中（比如用它摩擦裸露的傷口）能夠讓該生物擺脫{@condition poisoned||中毒}狀態。一條荒根只要被這麼用過一次，就會失去它的功效。"
+			],
+			"ENG_name": "Wildroot"
+		},
+		{
+			"name": "荒宇系儀",
+			"source": "AAG",
+			"page": 23,
+			"referenceSources": [
+				"LoX"
+			],
+			"rarity": "uncommon",
+			"wondrous": true,
+			"entries": [
+				"在荒宇系中，這個便攜奧法裝置會自動跟蹤標記星系中所有恆星、行星、衛星和彗星的位置和其運動軌跡，並在其當前位置上方的空間中投射出所有這些天體的影像。在投影中，一個白色的跳動光點會標明荒宇系儀的當前位置。"
+			],
+			"ENG_name": "Wildspace Orrery"
+		},
+		{
+			"name": "爪之意志（覺醒）",
+			"source": "EGW",
+			"_copy": {
+				"name": "Will of the Talon (Dormant)",
+				"source": "EGW",
+				"_mod": {
+					"entries": {
+						"mode": "insertArr",
+						"index": -1,
+						"items": {
+							"type": "entries",
+							"name": "Awakened",
+							"entries": [
+								"When the war pick reaches an awakened state, it gains the following properties:",
+								{
+									"type": "list",
+									"items": [
+										"The weapon's bonus to attack and damage rolls increases to +2.",
+										"The saving throw DC for the war pick's Breath Weapon property increases to 15, and that property deals {@damage 4d6} damage on a failed save, or half as much damage on a successful one.",
+										"The saving throw DC for the war pick's Frightful Presence property increases to 15.",
+										"While carrying the weapon, you have resistance to acid, cold, fire, lightning, and poison damage."
+									]
+								}
+							]
+						}
+					}
+				},
+				"_preserve": {
+					"page": true,
+					"hasFluffImages": true
+				}
+			},
+			"resist": [
+				"acid",
+				"cold",
+				"fire",
+				"lightning",
+				"poison"
+			],
+			"bonusWeapon": "+2",
+			"ENG_name": "Will of the Talon (Awakened)"
+		},
+		{
+			"name": "爪之意志（休眠）",
+			"source": "EGW",
+			"page": 279,
+			"baseItem": "war pick|PHB",
+			"type": "M",
+			"rarity": "artifact",
+			"reqAttune": true,
+			"sentient": true,
+			"weight": 2,
+			"weaponCategory": "martial",
+			"property": [
+				"Vst|EGW"
+			],
+			"dmg1": "1d8",
+			"dmgType": "P",
+			"grantsLanguage": true,
+			"bonusWeapon": "+1",
+			"entries": [
+				"黑、藍、綠、紅和白色的寶石被雕刻成了龍首之形，裝點在這華麗的黃金戰鎬上，標誌著這把武器引導著提亞馬特之力。",
+				{
+					"type": "entries",
+					"name": "智慧",
+					"entries": [
+						"爪之意志是一把智慧守序邪惡武器，智力為14，感知為15，魅力為19。它的聽覺和{@sense darkvision||黑暗視覺}範圍為120尺。",
+						"這把武器能夠與持有者透過心靈感應進行交流，能夠說、讀和理解通用語、龍語和煉獄語。"
+					],
+					"ENG_name": "Sentience"
+				},
+				{
+					"type": "entries",
+					"name": "個性",
+					"entries": [
+						"一個名叫阿什泰倫的急躁{@creature bone devil||骨魔}寄宿於爪之意志內。這把武器極為貪婪，重視強大的領導力。它要求其擁有者行動果斷，以高壓維持秩序，並總是要求一份合理份額的寶藏作為回報。"
+					],
+					"ENG_name": "Personality"
+				},
+				{
+					"type": "entries",
+					"name": "休眠",
+					"entries": [
+						"該戰鎬在其休眠狀態下將獲得如下增益：",
+						{
+							"type": "list",
+							"items": [
+								"你能說，讀，寫龍語和煉獄語。",
+								"你在用該魔法武器發動攻擊檢定和傷害擲骰時獲得+1加值。",
+								"當你持握戰鎬時，你可以用一個附贈動作造成以下效應：每個距離你30尺內你所指定並且意識到你的生物必須透過一次{@dc 13}的感知豁免，否則對你{@condition frightened||恐慌}1分鐘。每個該生物的回合結束時，它都可以再次進行該豁免，成功則終止其自己身上的該效應。豁免成功或身上的該效應結束的生物，將在接下來的24小時內免疫你的駭人威儀。這項能力直到下次黎明前不能再使用。",
+								"當你持握戰鎬時，你可以使用你的動作撥出破壞性的能量。選擇一種魔爪意志吐息武器表格中的傷害型別。吐息範圍內的每個生物都必須透過一次{@dc 13}的豁免，其豁免型別取決於表格中你所選的型別。豁免失敗者將受到{@damage 3d6}點傷害，豁免成功則傷害減半。"
+							]
+						},
+						"當你使用這把戰鎬釋放出特定傷害型別的吐息武器後，你在下個黎明到來前不能再選擇這種傷害型別。"
+					],
+					"ENG_name": "Dormant"
+				},
+				{
+					"type": "table",
+					"caption": "爪之意志吐息武器",
+					"colStyles": [
+						"col-3",
+						"col-7",
+						"col-3 text-center"
+					],
+					"colLabels": [
+						"傷害型別",
+						"區域",
+						"豁免檢定"
+					],
+					"rows": [
+						[
+							"強酸",
+							"5尺寬，30尺長的線",
+							"敏捷"
+						],
+						[
+							"寒冷",
+							"15尺錐形區域",
+							"體質"
+						],
+						[
+							"火",
+							"15尺錐形區域",
+							"敏捷"
+						],
+						[
+							"閃電",
+							"5尺寬，30尺長的線",
+							"敏捷"
+						],
+						[
+							"毒素",
+							"15尺錐形區域",
+							"體質"
+						]
+					]
+				},
+				{
+					"type": "inset",
+					"name": "背叛神器詞條",
+					"entries": [
+						"叛神武具如同分裂遺物一樣獲得進階。在休眠狀態下，每件這些神器擁有一項{@table Artifact Properties; Minor Beneficial Properties|dmg|次要增益}屬性和一項{@table Artifact Properties; Minor Detrimental Properties|dmg|次要減益}屬性。當神器進入啟用狀態，它獲得一項額外的{@table Artifact Properties; Minor Beneficial Properties|dmg|次要增益}屬性和一項額外的{@table Artifact Properties; Minor Detrimental Properties|dmg|次要減益}屬性。當物品到達超頻狀態時，它獲得一項{@table Artifact Properties; Major Beneficial Properties|dmg|主要增益}屬性。見《城主指南》第7章的\"神器屬性\"獲得更多資訊。"
+					],
+					"ENG_name": "Betrayer Artifact Properties"
+				}
+			],
+			"ENG_name": "Will of the Talon (Dormant)"
+		},
+		{
+			"name": "爪之意志（昇華）",
+			"source": "EGW",
+			"_copy": {
+				"name": "Will of the Talon (Awakened)",
+				"source": "EGW",
+				"_mod": {
+					"entries": {
+						"mode": "insertArr",
+						"index": -1,
+						"items": {
+							"type": "entries",
+							"name": "Exalted",
+							"entries": [
+								"When the war pick reaches an exalted state, it gains the following properties:",
+								{
+									"type": "list",
+									"items": [
+										"The weapon's bonus to attack and damage rolls increases to +3.",
+										"The saving throw DC for the war pick's Breath Weapon property increases to 17, and that property deals {@damage 5d6} damage on a failed save, or half as much damage on a successful one.",
+										"The saving throw DC for the war pick's Frightful Presence property increases to 17."
+									]
+								}
+							]
+						}
+					}
+				},
+				"_preserve": {
+					"page": true,
+					"hasFluffImages": true
+				}
+			},
+			"bonusWeapon": "+3",
+			"ENG_name": "Will of the Talon (Exalted)"
+		},
+		{
+			"name": "柳蔭油",
+			"source": "EGW",
+			"page": 70,
+			"type": "G",
+			"rarity": "none",
+			"value": 3000,
+			"entries": [
+				"這種深藍色的油可以從一種名為柳蔭的稀有植物的果實中提取。一個生物可以花費一個動作將這種油塗抹到另外一個陷入{@condition petrified||石化}狀態不到1分鐘的生物上，該生物的{@condition petrified||石化}狀態將在該生物的下一個回合開始時結束。"
+			],
+			"ENG_name": "Willowshade Oil"
+		},
+		{
+			"name": "造風之扇",
+			"source": "DMG",
+			"page": 213,
+			"srd": true,
+			"referenceSources": [
+				"JttRC"
+			],
+			"reprintedAs": [
+				"Wind Fan|XDMG"
+			],
+			"tier": "major",
+			"rarity": "uncommon",
+			"wondrous": true,
+			"entries": [
+				"持握這把扇子期間，你可以用一個動作施展{@spell gust of wind||造風術}（豁免{@dc 13}）。使用扇子後，在次日{@chance 20}的失敗機率。失敗時，扇子也將被撕裂成無魔法的廢紙。"
+			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"gust of wind"
+					]
+				}
+			},
+			"lootTables": [
+				"Magic Item Table F"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wind Fan"
+		},
+		{
+			"name": "造風之扇",
+			"source": "XDMG",
+			"page": 325,
+			"srd52": true,
+			"basicRules2024": true,
+			"rarity": "uncommon",
+			"wondrous": true,
+			"entries": [
+				"持握這把扇子時，你可以用它施展{@spell Gust of Wind|XPHB|造風術}（豁免{@dc 13}）。在次日黎明之前，隨後每再次使用這把扇子都會累積{@chance 20}的機率失效；如果扇子失效，則其會被撕裂成無用的非魔法碎紙。"
+			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"gust of wind|xphb"
+					]
+				}
+			},
+			"lootTables": [
+				"Arcana - Uncommon|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wind Fan"
+		},
+		{
+			"name": "乘風板",
+			"source": "FRAiF",
+			"page": 247,
+			"otherSources": [
+				{
+					"source": "FRHoF",
+					"page": 134
+				}
+			],
+			"rarity": "rare",
+			"wondrous": true,
+			"value": 400000,
+			"recharge": "dawn",
+			"rechargeAmount": 3,
+			"charges": 3,
+			"entries": [
+				"這件小飾品具有3充能，且在每日黎明時重獲所有已消耗的充能。當你持握該飾品期間，你可以用一個{@action Magic|XPHB|魔法}動作並消耗1充能將該飾品變形成為一個風帆動力個人載具。該載具的大小與和形狀大致與一扇家用門相當，一面10尺高的風帆自其一側延伸而出。變形持續1小時，或在你使用該物品的命令語（無需動作）時提前結束，此時帆板恢復為飾品形態。",
+				"在載具形態下，帆板是一件中型物件，具有以下資料：AC 12；HP 30以及{@variantrule Speed|XPHB|速度} 40尺。帆板會懸浮在所處表面上方几寸處，並且能夠滑翔；它在空中每下降1尺就可以水平移動5尺。帆板和其乘客不會受到墜落傷害。"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Windskiff"
+		},
+		{
+			"name": "風標",
+			"source": "PotA",
+			"page": 224,
+			"baseItem": "spear|phb",
+			"type": "M",
+			"resist": [
+				"lightning"
+			],
+			"rarity": "legendary",
+			"reqAttune": true,
+			"weight": 3,
+			"weaponCategory": "simple",
+			"property": [
+				"T",
+				"V",
+				"F"
+			],
+			"range": "20/60",
+			"dmg1": "1d6",
+			"dmgType": "P",
+			"dmg2": "1d8",
+			"grantsLanguage": true,
+			"bonusWeapon": "+2",
+			"entries": [
+				"一柄銀色的長矛，風帆在其拋光的頭部表面鑲嵌著深色藍寶石。握著它閃亮的柄，這把武器感覺輕如無物，彷彿緊握著一股涼爽、輕柔流動的微風。長矛內含有一絲來自{@creature Yan-C-Bin|PotA|延西冰}的火花，邪惡空氣的王子。",
+				"這把魔法武器具有敏捷武器屬性，並且攻擊和傷害骰有+2的加成。當你用它命中目標時，目標會額外受到{@damage 1d6}點閃電傷害。",
+				{
+					"name": "風元素掌控",
+					"type": "entries",
+					"entries": [
+						"當你持有風帆時，你將獲得以下好處："
+					],
+					"ENG_name": "Air Mastery"
+				},
+				{
+					"type": "list",
+					"items": [
+						"你可以流利地說氣族語。",
+						"你獲得閃電傷害的抗性。",
+						"你可以對 {@creature air elemental||氣元素} 施放 {@spell dominate monster||支配怪物}（豁免 {@dc 17}）。一旦你這樣做，風刃杖不能再次以這種方式使用，直到下一個黎明。"
+					]
+				},
+				{
+					"name": "四重龍捲之歌",
+					"type": "entries",
+					"entries": [
+						"在空氣節點內，你可以進行一個叫做四風之歌的儀式，使用風帆來創造一個{@item devastation orb of air|PotA|毀滅法球(氣)}。一旦你完成了儀式，直到下一個黎明之前，風帆不能再用來進行這個儀式。"
+					],
+					"ENG_name": "Song of the Four Winds"
+				},
+				{
+					"name": "缺陷",
+					"type": "entries",
+					"entries": [
+						"風帆使其持有者變得善變且不可靠。在與這把武器共鳴時，你獲得了以下缺陷：\"我違背誓言和計劃。責任和榮譽對我來說毫無意義。\""
+					],
+					"ENG_name": "Flaw"
+				}
+			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"dominate monster"
+					]
+				}
+			},
+			"hasFluffImages": true,
+			"ENG_name": "Windvane"
+		},
+		{
+			"name": "飛翼之靴",
+			"source": "DMG",
+			"page": 214,
+			"srd": true,
+			"referenceSources": [
+				"RMBRE",
+				"WBtW"
+			],
+			"reprintedAs": [
+				"Winged Boots|XDMG"
+			],
+			"tier": "major",
+			"rarity": "uncommon",
+			"reqAttune": true,
+			"wondrous": true,
+			"modifySpeed": {
+				"equal": {
+					"fly": "walk"
+				}
+			},
+			"entries": [
+				"穿著這雙靴子時，你具有等同於步行速度的飛行速度。你可以用靴子飛行至多4小時，能一次用完或分成數次較短的飛行；每次飛行至少消耗持續時間中的1分鐘。若持續時間耗盡時你仍在飛行，便會以每輪30尺的速度下降，直到著地。",
+				"靴子會在連續未被使用的時間滿12小時後，恢復2小時的飛行能力。"
+			],
+			"optionalfeatures": [
+				"replicate magic item|tce"
+			],
+			"lootTables": [
+				"Magic Item Table F"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Winged Boots"
+		},
+		{
+			"name": "飛翼之靴",
+			"source": "XDMG",
+			"page": 325,
+			"srd52": true,
+			"basicRules2024": true,
+			"rarity": "uncommon",
+			"reqAttune": true,
+			"wondrous": true,
+			"modifySpeed": {
+				"static": {
+					"fly": 30
+				}
+			},
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d4}",
+			"charges": 4,
+			"entries": [
+				"這雙靴子具有4充能，並在每日黎明時恢復{@dice 1d4}已消耗的充能。著裝這雙靴子期間，你能夠以一個{@action Magic|XPHB|魔法}動作消耗1充能，獲得30尺{@variantrule Fly Speed|XPHB|飛行速度}，持續1小時。如果持續時間結束時你正飛行，則你將以每輪30尺的速度下降直至著陸。"
+			],
+			"optionalfeatures": [
+				"replicate magic item|tce"
+			],
+			"lootTables": [
+				"Arcana - Uncommon|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Winged Boots"
+		},
+		{
+			"name": "飛翼斗篷",
+			"source": "DMG",
+			"page": 214,
+			"srd": true,
+			"referenceSources": [
+				"CoA",
+				"JttRC",
+				"LLK"
+			],
+			"reprintedAs": [
+				"Wings of Flying|XDMG"
+			],
+			"tier": "major",
+			"rarity": "rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"modifySpeed": {
+				"static": {
+					"fly": 60
+				}
+			},
+			"entries": [
+				"著裝這件斗篷期間，你可以用一個動作說出它的命令語。這將斗篷轉變為你背上的一對蝙蝠翅膀或鳥類翅膀，持續1小時或直到你再次用一個動作說出命令語。這對翅膀賦予你60尺的飛行速度。當它們消失時，你必須再等待{@dice 1d12}小時才能再次使用它們。"
+			],
+			"lootTables": [
+				"Magic Item Table G"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wings of Flying"
+		},
+		{
+			"name": "飛翼斗篷",
+			"source": "XDMG",
+			"page": 324,
+			"srd52": true,
+			"basicRules2024": true,
+			"rarity": "rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"modifySpeed": {
+				"static": {
+					"fly": 60
+				}
+			},
+			"entries": [
+				"著裝這件斗篷期間，你能夠以一個{@action Magic|XPHB|魔法}動作將斗篷轉變為你背上的一對翅膀。這對翅膀會持續1小時，或直至你使用一個{@action Magic|XPHB|魔法}動作提前結束效應。這對翅膀會賦予你60尺{@variantrule Fly Speed|XPHB|飛行速度}。如果翅膀消失時你仍在空中則你會墜落。翅膀消失後，你在{@dice 1d12}小時內無法再次使用它們。"
+			],
+			"lootTables": [
+				"Arcana - Rare|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Wings of Flying"
+		},
+		{
+			"name": "飛翼服",
+			"source": "PotA",
+			"page": 223,
+			"rarity": "uncommon",
+			"reqAttune": true,
+			"wondrous": true,
+			"modifySpeed": {
+				"static": {
+					"fly": 30
+				}
+			},
+			"charges": 3,
+			"entries": [
+				"這件貼身制服上繡有空氣的象徵，並在手臂、腰部和腿部延伸出類似皮革的片狀物，形成滑翔用的翅膀。一套翼裝有3次充能。當你穿著這套制服時，你可以使用一個附贈動作並消耗1次充能，在著陸前獲得30尺的飛行速度。在你的每個回合結束時，你的海拔下降5尺。如果你在那個回合中沒有至少水平飛行30尺，你的海拔會在你的回合結束時立即降至0尺。當你的海拔降至0尺時，你就會著陸（或墜落），並且你必須再次消耗充能才能再次使用這套制服。",
+				"這套制服在至少在元素空氣節點中花費1小時後，會恢復所有消耗的充能。"
+			],
+			"ENG_name": "Wingwear"
+		},
+		{
+			"name": "冬季偽裝",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 4,
+			"value": 5000,
+			"entries": [
+				"在你穿戴冬季偽裝並處於恰當的環境期間，你在進行敏捷（{@skill Stealth|XPHB|隱匿}）檢定時具有{@variantrule Advantage|XPHB|優勢}。"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Winter Camouflage"
+		},
+		{
+			"name": "凜冬暗噬",
+			"source": "HftT",
+			"page": 4,
+			"baseItem": "greatsword|phb",
+			"type": "M",
+			"rarity": "uncommon",
+			"weight": 6,
+			"weaponCategory": "martial",
+			"property": [
+				"H",
+				"2H"
+			],
+			"dmg1": "2d6",
+			"dmgType": "S",
+			"bonusWeapon": "+1",
+			"entries": [
+				"你使用這把魔法武器進行攻擊和傷害擲骰時具有+1加值。",
+				"這把大劍是由一種未知的黑色金屬製成的。在大多數情況下，它作為一把{@item +1 greatsword||+1 巨劍}。但當用來對抗一個{@creature thessalhydra|HftT|特薩爾蛇蜥}時，它作為一把{@item +3 greatsword||+3 巨劍}。在顛倒世界中，它作為一把+4大劍。"
+			],
+			"ENG_name": "Winter's Dark Bite"
+		},
 		{
 			"name": "巫光風向標",
 			"source": "WBtW",
@@ -213,6 +3468,54 @@
 				"當你使用這把斧頭攻擊植物（普通植物或具有植物型別的生物）或未被穿戴或攜帶的木製物品時，如果命中，攻擊會額外造成{@damage 2d6}點揮砍傷害。"
 			],
 			"ENG_name": "Woodcutter's Axe"
+		},
+		{
+			"name": "工坊破壞球",
+			"source": "AU",
+			"page": 125,
+			"rarity": "very rare",
+			"wondrous": true,
+			"entries": [
+				"當你以{@action Magic|XPHB|魔法}動作啟動這顆直徑3寸的金屬球時，其會以極快的速度移動，在牆壁之間來回反彈，任何試圖抓住它的嘗試都會落空。該圓球會保持啟用，持續1分鐘，或者直至你在其30尺範圍內說出命令語將其解除（無需動作）。該圓球一經使用，則直至下一黎明前，其都無法被再次使用。",
+				"當你啟動該圓球時，以及圓球啟用期間內每個你的回合開始時，該區域內的每個生物都必須進行一次敏捷豁免，豁免失敗者會受到鈍擊傷害。豁免DC與所造成的傷害數值取決於圓球活動區域的近似大小，詳見下表。",
+				"區域內未被穿著或攜帶的非魔法物件同樣會受到該傷害。如果圓球所在的封閉區域大於100尺{@variantrule Cube [Area of Effect]|XPHB|立方}，則其造成的傷害可以忽略不計。如果在一個開闊區域內啟動該圓球，其會以每輪300尺的速度向隨機方向飛離。",
+				{
+					"type": "table",
+					"colLabels": [
+						"區域",
+						"豁免DC",
+						"鈍擊傷害"
+					],
+					"colStyles": [
+						"col-4",
+						"col-4 text-center",
+						"col-4 text-center"
+					],
+					"rows": [
+						[
+							"15尺{@variantrule Cube [Area of Effect]|XPHB|立方}",
+							"18",
+							"{@dice 6d6 + 5}"
+						],
+						[
+							"30尺{@variantrule Cube [Area of Effect]|XPHB|立方}",
+							"17",
+							"{@dice 4d6 + 4}"
+						],
+						[
+							"50尺{@variantrule Cube [Area of Effect]|XPHB|立方}",
+							"15",
+							"{@dice 2d6 + 2}"
+						],
+						[
+							"100尺{@variantrule Cube [Area of Effect]|XPHB|立方}",
+							"14",
+							"{@dice 1d6 + 1}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Workshop Wrecker"
 		},
 		{
 			"name": "稜鏡之冠（覺醒）",

@@ -39,11 +39,11 @@ test("the public data loader localizes every requested utility data file",async(
 			assert.equal(data[prop].length,values.length,`${file}/${prop}`);
 			values.forEach((ent,i)=>{if(!ent?.name)return;assert.equal(data[prop][i].name,ent.name);assert.equal(data[prop][i].source,ent.source);assert.match(data[prop][i]._displayName||"",/\p{Script=Han}/u,`${file}/${prop}/${i} missing name`);});
 		}
-		assert.ok(calls.includes(`data/zh-TW/utility-pages/${file}?v=zh-tw-26`),`${file} sidecar not actually requested`);
+		assert.ok(calls.includes(`data/zh-TW/utility-pages/${file}?v=zh-tw-27`),`${file} sidecar not actually requested`);
 	}
 	assert.equal((await DataUtil.object.loadJSON()).object.length,37);
 	const tables=await DataUtil.table.loadJSON();
-	assert.equal(tables.table.length,2339);
+	assert.equal(tables.table.length,2381);
 	assert.equal(tables.tableGroup.length,22);
 	const decks=await DataUtil.deck.loadRawJSON();
 	assert.equal(decks.deck.length,35);
@@ -132,9 +132,9 @@ test("special object statistics, trap duration, table columns, and audited prior
 
 test("life generator runs every random-table branch with canonical species and gender choices",async()=>{
 	globalThis.window={addEventListener:()=>{}};
-	vm.runInThisContext(source("js/utils-generate.js"),{filename:"js/utils-generate.js"});
+	vm.runInThisContext(source("js/utils-generate.js").replace("export class GenUtil", "class GenUtil"),{filename:"js/utils-generate.js"});
 	const names=[...source("js/lifegen.js").matchAll(/^const ([A-Z_]+) = \[/gm)].map(x=>x[1]);
-	vm.runInThisContext(`${source("js/lifegen.js")}\nnameTables={}; trinketList=${JSON.stringify(loaded["life.json"].lifeTrinket)}; globalThis.__lifeTest={getPersonDetails,fmtChoice,absentParent,singleParentOrStep,${names.join(",")}};`,{filename:"js/lifegen.js"});
+	vm.runInThisContext(`${source("js/lifegen.js").replace(/^import .*;$/gm, "")}\nnameTables={}; trinketList=${JSON.stringify(loaded["life.json"].lifeTrinket)}; globalThis.__lifeTest={getPersonDetails,fmtChoice,absentParent,singleParentOrStep,${names.join(",")}};`,{filename:"js/lifegen.js"});
 	assert.equal(__lifeTest.BIRTHPLACES[0].result,"家中");
 	assert.ok(__lifeTest.RACES_UNSELECTABLE.includes("Halfling"));
 	assert.equal(I.t("Halfling"),"半身人");
@@ -142,7 +142,7 @@ test("life generator runs every random-table branch with canonical species and g
 	const remaining=[];
 	for(const key of names.filter(x=>!x.startsWith("RACES_")))for(const entry of __lifeTest[key]){
 		const result=vm.runInThisContext(`GenUtil.getFromTable(${key},${entry.min})`);
-		if(result.pNextRoll)await result.pNextRoll;
+		if(result.pNextRoll)await result.pNextRoll();
 		if(["SUPP_CLASS","SUPP_RACE"].includes(key))continue;
 		const text=String(result.result||result.display||"").replace(/<[^>]+>/g,"").replace(/（[^）]*）/g,"");
 		if(/\b[A-Za-z]{3,}\s+[A-Za-z]{3,}\s+[A-Za-z]{3,}\b/.test(text))remaining.push({key,text});

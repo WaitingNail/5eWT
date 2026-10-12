@@ -1,12 +1,10 @@
 {
 	"_meta": {
 		"locale": "zh-TW",
-		"upstreamTag": "v2.33.3",
-		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
-		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
-		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
-		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
-		"license": "CC BY-NC-SA 4.0"
+		"upstreamTag": "v2.37.0",
+		"upstreamCommit": "8c026b807fac21862a309379a0c3228a0683198b",
+		"baselineTranslationTag": "v2.33.3",
+		"communityCandidateCommit": "5cc0bbe2c2b241a334e731af4448bdba2168e8bd"
 	},
 	"monster": [
 		{
@@ -2414,7 +2412,7 @@
 				{
 					"name": "變形",
 					"entries": [
-						"德魯伊魔法地變形為一種野獸的形態——北極狐，山羊，雪梟或者狼——或變回類人形態。他所攜帶的裝備會在野獸狀態下被吸收或被攜帶(由德魯伊選擇)。當其死亡時，霜地德魯伊變回原型。除了在上面提到的部分外，德魯伊的資料在各個形態中是相同的。"
+						"德魯伊魔法性地變形為野獸形態——{@creature fox|IDRotF|狐狸}、{@creature mountain goat|IDRotF|高山山羊}、{@creature owl||貓頭鷹}或{@creature wolf||狼}——或變回其類人形態。它所穿戴或攜帶的任何裝備都會被野獸形態吸收或攜帶（由德魯伊選擇）。當它死亡時，它會恢復為類人形態。除了本資料欄中註明的地方外，德魯伊在所有形態下的資料都相同。"
 					],
 					"ENG_name": "Change Shape"
 				}
@@ -3739,6 +3737,48 @@
 			"ENG_name": "Grandolpha Muzgardt"
 		},
 		{
+			"name": "格羅明戈恩",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "IDRotF",
+			"page": 140,
+			"_copy": {
+				"name": "Frost Giant",
+				"source": "MM",
+				"_mod": {
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Multiattack",
+							"items": {
+								"name": "Multiattack",
+								"entries": [
+									"格羅明戈恩進行兩次鐵砧鏈攻擊。"
+								]
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Greataxe",
+							"items": {
+								"name": "Anvil Chain",
+								"entries": [
+									"{@atk mw} {@hit 9} 命中，觸及10尺，單一目標。{@h}25 ({@damage 3d12 + 6}) 鈍擊傷害。"
+								]
+							}
+						}
+					]
+				}
+			},
+			"tokenCredit": "Adam Barker",
+			"tokenCustom": true,
+			"damageTags": [
+				"B"
+			],
+			"hasToken": true,
+			"ENG_name": "Gromin'gorn"
+		},
+		{
 			"name": "貢瓦爾·哈拉格森",
 			"isNpc": true,
 			"isNamedCreature": true,
@@ -3967,14 +4007,6 @@
 							"with": "Hengar",
 							"flags": "i"
 						}
-					],
-					"_": [
-						{
-							"mode": "addSkills",
-							"skills": {
-								"survival": 1
-							}
-						}
 					]
 				}
 			},
@@ -3988,6 +4020,9 @@
 				"N",
 				"G"
 			],
+			"skill": {
+				"survival": "+5"
+			},
 			"languages": [
 				"通用語"
 			],
@@ -6293,7 +6328,7 @@
 				{
 					"name": "冰匕首",
 					"entries": [
-						"{@atk rw} 命中{@hit 5}，觸及5尺或射程20/60尺，單一目標。{@h}5（{@damage 1d4 + 3}）穿刺傷害加5（{@damage 2d4}）寒冷傷害。"
+						"{@atk mw,rw} {@hit 5} 命中，觸及5尺或射程20/60尺，單一目標。{@h}5 ({@damage 1d4 + 3}) 穿刺傷害外加5 ({@damage 2d4}) 寒冷傷害。"
 					],
 					"ENG_name": "Ice Dagger"
 				}

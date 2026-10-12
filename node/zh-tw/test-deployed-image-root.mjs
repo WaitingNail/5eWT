@@ -39,7 +39,7 @@ test("renderer resolves internal media through the configured image root", () =>
 
 test("all craft-page image paths resolve to the image fork", () => {
 	const paths = CRAFT_FLUFF_FILES.flatMap(file => collectInternalImagePaths(JSON.parse(fs.readFileSync(path.join(SITE_ROOT, file), "utf8"))));
-	assert.equal(paths.length, 351);
+	assert.equal(paths.length, 429);
 	for (const imagePath of paths) {
 		assert.ok(!imagePath.startsWith("/"), imagePath);
 		assert.ok(!imagePath.includes(".."), imagePath);

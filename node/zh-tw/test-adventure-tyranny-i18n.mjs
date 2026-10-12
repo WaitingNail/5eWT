@@ -5,7 +5,7 @@ import {fileURLToPath} from "node:url";
 import {I18nZhTwAdventure} from "../../js/zh-tw/adventure-i18n.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const read = file => JSON.parse(fs.readFileSync(path.join(ROOT, file), "utf8"));
+const read = file => { const compatible = file.replace(/^data\/adventure\//, "data/zh-TW/adventures/canonical-v2.33.3/"); const selected = file.startsWith("data/adventure/") && fs.existsSync(path.join(ROOT, compatible)) ? compatible : file; const data = JSON.parse(fs.readFileSync(path.join(ROOT, selected), "utf8")); return data.adventureData?.[0] || data; };
 const indexes = read("data/adventures.json").adventure;
 const books = Object.fromEntries(["hotdq", "rot"].map(id => [id, {
 	canonical: read(`data/adventure/adventure-${id}.json`),
@@ -127,6 +127,7 @@ let rendered, pageTitle;
 globalThis.fetch = async url => {
 	const id = url.match(/adventure-([^.]+)\.json$/)?.[1];
 	assert.ok(allBooks[id], `Wrong translation URL ${url}`);
+	if (url.includes("canonical-v2.33.3/")) return {ok: true, json: async () => allBooks[id].canonical};
 	fetches.push(id);
 	return {ok: true, json: async () => allBooks[id].localized};
 };
@@ -136,6 +137,9 @@ BookUtil._doPopulateContents = () => {};
 BookUtil._showBookContent = (data, index) => { rendered = {data, index}; };
 BookUtil._addSearch = () => {};
 BookUtil.contentType = "adventure";
+BookUtil.propHomebrewData = "adventureData";
+DataLoader.getPropPage = () => "adventure";
+DataLoader.pCacheAndGet = async (_page, _source, hash) => ({adventureData: await DataUtil.loadJSON(`data/adventure/adventure-${hash}.json`)});
 BookUtil.referenceId = null;
 BookUtil.referenceData = null;
 BookUtil.baseDataUrl = "data/adventure/adventure-";

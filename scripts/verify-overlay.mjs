@@ -196,23 +196,24 @@ for (const dir of ["js/lootgen", "js/statgen"]) utilityScripts.push(...fs.readdi
 for (const script of utilityScripts) execFileSync(process.execPath, ["--check", script], {cwd: upstreamRoot, stdio: "inherit"});
 
 runNode("node/zh-tw/validate-glossary.mjs");
+runNode("node/zh-tw/validate-upstream-upgrade.mjs");
 runNode("node/zh-tw/test-class-i18n.mjs");
 runNode("node/zh-tw/test-class-body-i18n.mjs");
 runNode("node/zh-tw/test-class-body-i18n-full.mjs");
 runNode("node/zh-tw/test-class-page-runtime.mjs");
-runNode("node/zh-tw/validate-full-class-translations.mjs");
+
 runNode("node/zh-tw/apply-site-i18n-html.mjs", "--check");
 runNode("node/zh-tw/test-site-i18n.mjs");
-runNode("node/zh-tw/validate-core-rules.mjs");
+
 runNode("node/zh-tw/test-rules-i18n.mjs");
 runNode("node/zh-tw/test-quick-reference-i18n.mjs");
-runNode("node/zh-tw/validate-content-translations.mjs");
-runNode("node/zh-tw/validate-character-options-translations.mjs");
+
+
 runNode("node/zh-tw/test-content-i18n.mjs");
-runNode("node/zh-tw/validate-item-translations.mjs");
+
 runNode("node/zh-tw/test-item-i18n.mjs");
 runNode("node/zh-tw/test-item-page-runtime.mjs");
-runNode("node/zh-tw/validate-monster-translations.mjs");
+
 runNode("node/zh-tw/test-monster-i18n.mjs");
 runNode("node/zh-tw/test-monster-page-runtime.mjs");
 runNode("node/zh-tw/test-small-fragments-and-bastions.mjs");

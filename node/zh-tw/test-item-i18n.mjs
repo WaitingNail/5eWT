@@ -31,16 +31,16 @@ const specs = [
 	["fluff-items.json", ["itemFluff"]],
 ];
 const expectedCounts = {
-	item: 2428,
-	itemGroup: 109,
+	item: 2512,
+	itemGroup: 119,
 	baseitem: 230,
-	itemProperty: 26,
+	itemProperty: 27,
 	itemType: 67,
 	itemTypeAdditionalEntries: 2,
 	itemEntry: 13,
 	itemMastery: 8,
-	magicvariant: 214,
-	itemFluff: 948,
+	magicvariant: 230,
+	itemFluff: 980,
 };
 const actualCounts = {};
 let localizedNames = 0;
@@ -73,7 +73,7 @@ for (const [file, props] of specs) {
 }
 
 assert.deepEqual(actualCounts, expectedCounts);
-assert.equal(localizedNames, 4020);
+assert.equal(localizedNames, 4162);
 
 const canonicalItems = readJson("data/items.json");
 const localizedItems = await I18n.pApplyDataFile({
@@ -103,8 +103,8 @@ globalThis.fetch = async url => {
 };
 I18n._pFileCache.clear();
 const fetchedItems = await I18n.pApplyDataFile({file: "items.json", data: canonicalItems});
-assert.equal(fetchedItems.item.length, 2428);
-assert.equal(fetchedItems.itemGroup.length, 109);
+assert.equal(fetchedItems.item.length, 2512);
+assert.equal(fetchedItems.itemGroup.length, 119);
 assert.equal(fetchedItems.item[0]._displayName, "+1 萬能工具");
 assert.deepEqual(fetchedUrls, [
 	"data/zh-TW/items/index.json",

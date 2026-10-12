@@ -5,28 +5,7 @@ import {fileURLToPath} from "node:url";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const upstreamRoot = path.join(projectRoot, "vendor", "5etools-src");
-const patchPaths = [
-	path.join(projectRoot, "patches", "0001-zh-tw-classes-runtime.patch"),
-	path.join(projectRoot, "patches", "0002-zh-tw-items-runtime.patch"),
-	path.join(projectRoot, "patches", "0003-zh-tw-monsters-runtime.patch"),
-	path.join(projectRoot, "patches", "0004-zh-tw-monster-copy-identity.patch"),
-	path.join(projectRoot, "patches", "0005-zh-tw-character-options-and-item-list-runtime.patch"),
-	path.join(projectRoot, "patches", "0006-zh-tw-small-fragments-and-bastions.patch"),
-	path.join(projectRoot, "patches", "0007-zh-tw-bilingual-names-and-bestiary-loading.patch"),
-	path.join(projectRoot, "patches", "0008-zh-tw-dice-init-binding.patch"),
-	path.join(projectRoot, "patches", "0009-zh-tw-subclass-and-item-entry-headings.patch"),
-	path.join(projectRoot, "patches", "0010-zh-tw-cults-boons-runtime.patch"),
-	path.join(projectRoot, "patches", "0011-zh-tw-reference-pages-runtime.patch"),
-	path.join(projectRoot, "patches", "0012-zh-tw-adventure-cos-runtime.patch"),
-	path.join(projectRoot, "patches", "0012-zh-tw-craft-pages-runtime.patch"),
-	path.join(projectRoot, "patches", "0013-zh-tw-psionics-runtime.patch"),
-	path.join(projectRoot, "patches", "0014-zh-tw-vehicle-runtime-completion.patch"),
-	path.join(projectRoot, "patches", "0015-zh-tw-vehicle-psionics-page-loaders.patch"),
-	path.join(projectRoot, "patches", "0016-zh-tw-utility-pages-runtime.patch"),
-	path.join(projectRoot, "patches", "0017-zh-tw-utility-results-completion.patch"),
-	path.join(projectRoot, "patches", "0018-zh-tw-utility-display-details.patch"),
-	path.join(projectRoot, "patches", "0019-zh-tw-utility-links-and-card-controls.patch"),
-];
+const patchPaths = [path.join(projectRoot, "patches", "0020-zh-tw-v2.37.0-runtime.patch")];
 const copyRoots = [
   "requirements-zh-tw.txt",
   "data/zh-TW",
@@ -77,7 +56,7 @@ const runGitApply = (patchPath, args) => execFileSync("git", ["apply", ...args, 
 // loading and rendering code). If the final patch can be reversed, the whole
 // ordered stack is already present; checking older patches independently would
 // fail because their context has since been extended by the newer patches.
-if (!canGitApply(patchPaths.at(-1), ["--reverse"])) {
+if (!fs.readFileSync(path.join(upstreamRoot, "js/utils.js"), "utf8").includes("// 5eWT zh-TW runtime v2.37.0")) {
 	for (const patchPath of patchPaths) {
 		if (canGitApply(patchPath, [])) {
 			runGitApply(patchPath, []);
@@ -86,6 +65,8 @@ if (!canGitApply(patchPaths.at(-1), ["--reverse"])) {
 		}
 	}
 }
+
+execFileSync(process.execPath, [path.join(upstreamRoot, "node/zh-tw/build-adventure-compatibility.mjs")], {cwd: upstreamRoot, stdio: "inherit"});
 
 const deployedImageRoot = "https://raw.githubusercontent.com/WaitingNail/5eWT-img/main/";
 const utilsPath = path.join(upstreamRoot, "js", "utils.js");

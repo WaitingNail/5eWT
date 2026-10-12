@@ -55,7 +55,7 @@ assert.equal(allPurposeTool._attunement, "（需要同調；由奇械師）");
 assert.match(Renderer.item.getTransformedTypeEntriesMeta({item: allPurposeTool, styleHint: "classic"}).entryTypeRarity, /非普通/u);
 assert.match(Renderer.item.getRenderedEntries(allPurposeTool), /法術豁免DC/u);
 
-const [genericVariants] = Renderer.item._getAndProcGenericVariants(variantData);
+const [genericVariants] = Renderer.item._getAndProcGenericVariants({magicvariant: I18n._getPreparedSidecar({file: "magicvariants.json", sidecar: variantData}).magicvariant});
 const plusOneWeapon = genericVariants.find(it => it.name === "+1 Weapon" && it.inherits.source === "DMG");
 const longsword = baseData.baseitem.find(it => it.name === "Longsword" && it.source === "PHB");
 const specificVariant = Renderer.item._createSpecificVariants_createSpecificVariant(longsword, plusOneWeapon, {});
@@ -86,7 +86,7 @@ const itemsPageSource = readText("js/items.js");
 const itemModalSource = readText("js/filter-items.js");
 const rendererSource = readText("js/render.js");
 assert.match(itemsPageSource, /const displayName = I18nZhTwContent\.getBilingualName\(item\)/u);
-assert.equal((itemsPageSource.match(/txt: displayName/g) || []).length, 2, "both mundane and magic item lists must render localized names");
+assert.match(itemsPageSource, /name: displayName/u, "both lists use localized display names with the new row-renderer API");
 assert.match(itemsPageSource, /englishName: I18nZhTwContent\.getCanonicalName\(item\)/u);
 assert.match(itemModalSource, /\$\{displayName\}<\/div>/u);
 assert.match(itemModalSource, /englishName: globalThis\.I18nZhTwContent\.getCanonicalName\(item\)/u);

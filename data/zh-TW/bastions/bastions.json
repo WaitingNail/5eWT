@@ -1,12 +1,10 @@
 {
 	"_meta": {
 		"locale": "zh-TW",
-		"upstreamTag": "v2.33.3",
-		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
-		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
-		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
-		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
-		"license": "CC BY-NC-SA 4.0"
+		"upstreamTag": "v2.37.0",
+		"upstreamCommit": "8c026b807fac21862a309379a0c3228a0683198b",
+		"baselineTranslationTag": "v2.33.3",
+		"communityCandidateCommit": "5cc0bbe2c2b241a334e731af4448bdba2168e8bd"
 	},
 	"facility": [
 		{
@@ -50,6 +48,7 @@
 		{
 			"name": "遠古祭壇",
 			"source": "RHW",
+			"page": 208,
 			"facilityType": "special",
 			"level": 9,
 			"space": [
@@ -260,7 +259,7 @@
 					"type": "entries",
 					"name": "貿易：補充軍械庫",
 					"entries": [
-						"當你對此設施下達{@book 貿易|XDMG|7|Trade}指令時，你委託設施僱工為軍械庫補充護甲、{@item Shield|XPHB|盾牌}、武器和彈藥。這些裝備會花費你 100 GP ，堡壘內每有一個堡壘衛兵就需要額外花費 100 GP 。如果你的堡壘擁有{@book 鐵匠鋪|XDMG|7|Smithy}，總價格將減半。",
+						"當你對此設施下達{@book 貿易|XDMG|7|Trade}指令時，你委託設施僱員為軍械庫補充護甲、{@item Shield|XPHB|盾牌}、武器和彈藥。這些裝備會花費你 100 GP ，據點內每有一個據點衛兵就需要額外花費 100 GP 。如果你的據點擁有{@facility Smithy|XDMG|鐵匠鋪}，總價格將減半。",
 						"當你的軍械庫補充完畢後，你的堡壘衛兵會更難被殺死。當一個事件迫使你擲骰以決定自己是否失去了一個或更多的堡壘衛兵時（見本章末\"{@book 堡壘事件|XDMG|7|Bastion Events}\"一節），你投擲{@dice 1d8}，而非{@dice d6}。在該事件結束後，無論是否有堡壘衛兵損失，你儲存的裝備都會被消耗。這會導致你的軍械庫失去作用，直至你再次對其下達貿易指令來重新補貨。"
 					],
 					"ENG_name": "Trade: Stock Armory"
@@ -379,6 +378,7 @@
 		{
 			"name": "奇物陳列櫃",
 			"source": "RHW",
+			"page": 208,
 			"facilityType": "special",
 			"level": 9,
 			"space": [
@@ -472,6 +472,42 @@
 				}
 			],
 			"ENG_name": "Cabinet of Curiosities"
+		},
+		{
+			"name": "馬戲帳篷",
+			"source": "AU",
+			"page": 106,
+			"facilityType": "special",
+			"level": 9,
+			"prerequisite": [
+				{
+					"membership": [
+						"幻影馬戲團"
+					]
+				}
+			],
+			"space": [
+				"vast"
+			],
+			"hirelings": [
+				{
+					"exact": 4
+				}
+			],
+			"orders": [
+				"trade"
+			],
+			"entries": [
+				"馬戲帳篷是一個用於音樂、雜技、喜劇或其他旨在愉悅觀眾的表演的場所。帳篷內設有觀眾席。你的僱員是陣營與你相同的{@creature Performer|XMM|演藝者們}。你可以按自己的喜好為他們分配姓名、個性與馬戲節目。",
+				{
+					"type": "entries",
+					"name": "貿易：馬戲演出",
+					"entries": [
+						"當你對此設施下達{@book 貿易|XDMG|7|Trade}指令時，該設施的僱員會將馬戲帳篷變為演出場所，為期7天。在第七天結束時，你分得的收入等於{@dice 2d6 × 10} GP。"
+					]
+				}
+			],
+			"ENG_name": "Circus Tent"
 		},
 		{
 			"name": "構裝體鍛造場",
@@ -850,6 +886,49 @@
 			"ENG_name": "Emerald Enclave Grove"
 		},
 		{
+			"name": "娛樂沙龍",
+			"source": "AU",
+			"page": 84,
+			"facilityType": "special",
+			"level": 5,
+			"prerequisite": [
+				{
+					"membership": [
+						"瑰寶秘社"
+					]
+				}
+			],
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 2
+				}
+			],
+			"orders": [
+				"research"
+			],
+			"entries": [
+				"這間華麗的沙龍以雅緻的壁掛、舒適的躺椅和藏品豐富的吧檯而自豪。",
+				{
+					"type": "entries",
+					"name": "敞開錢袋",
+					"entries": [
+						"你那能言善辯的僱員會說服他人多付一些或少收一些。當你擲骰來決定一次{@book 據點|XDMG|7|Gaining a Bastion}指令或事件所支付或獲得的金幣數量時，你可以擲骰兩次並選擇其中任一結果。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "研究：探悉秘密",
+					"entries": [
+						"當你對此設施下達{@book 研究|XDMG|7|Research}指令時，你指派該設施的僱員款待訊息靈通的人脈，並打聽一隻由你指定、位於你據點50英里內的特定生物。經過7天的工作後，僱員會獲得{@dice 1d4}條關於該生物且並不廣為人知的事實，這些事實可能有趣、令人難堪或頗有用處。僱員還會探明該生物相對於你的強弱（例如該生物的CR是高於、低於還是等於你的等級）。由DM決定，對於極為私密或受到超自然偽裝的生物，你可能只得到有限或錯誤的資訊。"
+					]
+				}
+			],
+			"ENG_name": "Entertainment Salon"
+		},
+		{
 			"name": "遊戲廳",
 			"source": "XDMG",
 			"page": 340,
@@ -988,6 +1067,60 @@
 				}
 			],
 			"ENG_name": "Garden"
+		},
+		{
+			"name": "地熱噴口",
+			"source": "AU",
+			"page": 95,
+			"facilityType": "special",
+			"level": 5,
+			"prerequisite": [
+				{
+					"membership": [
+						"熔爐司守"
+					]
+				}
+			],
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"empower"
+			],
+			"entries": [
+				"地熱噴口從地表深處汲取熱量，以提供能源並驅動簡單的機械。",
+				{
+					"type": "entries",
+					"name": "增強：耐受高溫",
+					"entries": [
+						"當你對此設施下達{@book 增強|XDMG|7|Empower}指令時，在接下來的7天裡，該設施的僱員會傳授一系列冥想技巧，讓角色得以減輕其受到的火焰傷害。在此期間的每一天都在此處訓練至少8小時的任何角色，會在訓練期結束時獲得以下好處：",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "耐熱",
+									"entry": "當你受到火焰傷害時，你可以進行一次{@variantrule Reaction|XPHB|反應}，使該傷害減少{@dice 1d4}加你的等級。此好處持續7天。"
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "熱水",
+					"entries": [
+						"你的基本設施享有一處恆定的可調熱源。例如，餐廳有一張讓食物保溫的暖案，廚房有多個熱度各異的烤爐，臥室有一隻為盥洗溫水的臉盆。"
+					]
+				}
+			],
+			"ENG_name": "Geothermal Vent"
 		},
 		{
 			"name": "溫室",
@@ -1180,8 +1313,97 @@
 			"ENG_name": "Harper Hideout"
 		},
 		{
+			"name": "劫案規劃室",
+			"source": "AU",
+			"page": 102,
+			"facilityType": "special",
+			"level": 9,
+			"prerequisite": [
+				{
+					"membership": [
+						"第九翎羽"
+					]
+				}
+			],
+			"space": [
+				"roomy",
+				"vast"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"research"
+			],
+			"entries": [
+				"這個房間有一張規劃桌、若干代表牆壁或傢俱的縮微地形件，以及在規劃劫案時大有用處的魔法防護、建築與諜報方面的書冊。",
+				{
+					"type": "entries",
+					"name": "探索：偵察",
+					"entries": [
+						"當你對此設施下達{@book 研究|XDMG|7|Research}指令時，你的僱員會派出密探去評估一座位於你據點50英里內的建築。這項工作耗時7天。在第七天結束時，僱員會在規劃桌上提供建築的模型。建築的公共區域會被準確呈現，而私密區域只會被大致呈現。由DM決定，任何被魔法隱藏或由強大守衛保護的區域可能不會被準確呈現，甚至完全不呈現。密探會避開所有生物，因此關於建築內居民的資訊十分稀少。",
+						"該模型會保留至你再次對此設施使用{@book 研究|XDMG|7|Research}指令為止，但如果建築發生變化，模型可能隨時間推移而變得不準確。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "劫案准備",
+					"entries": [
+						"一名使用該模型為盜竊或潛入進行至少8小時準備的角色從以下角色中選擇一項。只要該角色處於模型所描繪建築1英里範圍內，該角色的好處便持續生效，為期7天或直到你再次進行準備為止：",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "打手：",
+									"entry": "魅力（{@skill Intimidation|XPHB|威嚇}）檢定具有{@variantrule Advantage|XPHB|優勢}"
+								},
+								{
+									"type": "item",
+									"name": "門面：",
+									"entry": "魅力（{@skill Deception|XPHB|欺瞞}）檢定具有{@variantrule Advantage|XPHB|優勢}"
+								},
+								{
+									"type": "item",
+									"name": "望風：",
+									"entry": "感知（{@skill Perception|XPHB|感知}）檢定具有{@variantrule Advantage|XPHB|優勢}"
+								},
+								{
+									"type": "item",
+									"name": "醫師：",
+									"entry": "感知（{@skill Medicine|XPHB|醫療}）檢定具有{@variantrule Advantage|XPHB|優勢}"
+								},
+								{
+									"type": "item",
+									"name": "潛行者：",
+									"entry": "敏捷（{@skill Stealth|XPHB|隱匿}）檢定具有{@variantrule Advantage|XPHB|優勢}"
+								},
+								{
+									"type": "item",
+									"name": "竊賊：",
+									"entry": "敏捷（{@skill Sleight of Hand|XPHB|巧手}）檢定具有{@variantrule Advantage|XPHB|優勢}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "擴建設施",
+					"entries": [
+						"你可以花費 2000 GP ，將劫案規劃室擴大為龐大設施。這樣做之後，偵察的範圍增加到500英里，且準備劫案的角色可以選擇兩項角色，同時獲得兩者的好處。"
+					]
+				}
+			],
+			"ENG_name": "Heist Planning Chamber"
+		},
+		{
 			"name": "醫務室",
 			"source": "RHW",
+			"page": 209,
 			"facilityType": "special",
 			"level": 9,
 			"prerequisite": [
@@ -1339,7 +1561,7 @@
 					"type": "entries",
 					"name": "昆達拉克訪問",
 					"entries": [
-						"因為金庫是一個異次元空間，你（且只有你）可以從世界上任何昆達拉克銀行設施訪問其內容。這些銀行遍布{@book 科瓦雷|ERLW|5|Nations of Khorvaire}的城市（以及在{@book 颶臨城，在希恩德瑞克|ERLW|6|Notable Locations|3}）。"
+						"因為金庫是一個異次元空間，你（且只有你）可以從世界上任何昆達拉克銀行設施訪問其內容。這些銀行遍佈{@book 科瓦雷|ERLW|5|Nations of Khorvaire}的城市（以及在{@book 颶臨城，在希恩德瑞克|ERLW|6|Notable Locations|2}）。"
 					],
 					"ENG_name": "Kundarak Access"
 				},
@@ -1436,8 +1658,52 @@
 			"ENG_name": "Library"
 		},
 		{
+			"name": "燈塔",
+			"source": "AU",
+			"page": 110,
+			"facilityType": "special",
+			"level": 9,
+			"prerequisite": [
+				{
+					"membership": [
+						"滄穹先知會"
+					]
+				}
+			],
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"harvest"
+			],
+			"entries": [
+				"這座高聳的燈塔裝有旋轉透鏡，即使在惡劣天氣下，其光芒也能從很遠的距離被看見。你的僱員負責操作與維護機械，並按你的指示點亮或熄滅燈光。",
+				{
+					"type": "entries",
+					"name": "視覺護咒",
+					"entries": [
+						"在燈塔中度過的時光激勵你穿透黑暗。在你的燈塔中度過一次{@variantrule Long Rest|XPHB|長休}後，你獲得{@reward Charm of Darkvision|XDMG|黑暗視覺護咒}（見{@book 城主指南|XDMG}）。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "收穫：照亮財寶",
+					"entries": [
+						"當你對此設施下達{@book 收穫|XDMG|7|Harvest}指令時，你指示該設施的僱員守望周邊區域，尋找遺失或被丟棄的貴重物品。僱員會守望7天。屆時，你可以僱用打撈者去取回你的僱員發現的財寶。你必須花費 100 GP 僱用打撈者，他們會帶回價值{@dice 1d4 × 100} GP 的財寶。"
+					]
+				}
+			],
+			"ENG_name": "Lighthouse"
+		},
+		{
 			"name": "閃電發生器",
 			"source": "RHW",
+			"page": 210,
 			"facilityType": "special",
 			"level": 13,
 			"space": [
@@ -1483,6 +1749,7 @@
 		{
 			"name": "閾限空間",
 			"source": "RHW",
+			"page": 210,
 			"facilityType": "special",
 			"level": 17,
 			"space": [
@@ -1877,6 +2144,58 @@
 			"ENG_name": "Menagerie"
 		},
 		{
+			"name": "太平間",
+			"source": "AU",
+			"page": 91,
+			"facilityType": "special",
+			"level": 5,
+			"prerequisite": [
+				{
+					"membership": [
+						"亡陵誓盟"
+					]
+				}
+			],
+			"space": [
+				"cramped",
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"research"
+			],
+			"entries": [
+				"太平間是存放和研究屍體的場所。你可以在太平間存放最多四具小型或中型屍體。",
+				{
+					"type": "entries",
+					"name": "屍體儲藏室",
+					"entries": [
+						"只要該設施的僱員在場，存放在太平間的每具屍體都會受到{@spell Gentle Repose|XPHB|遺體防腐}法術的影響。如果該設施沒有僱員，或有屍體被移走，該設施的屍體或被移走的屍體將失去此保護，直到被送回一間有僱員的太平間。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "研究：屍體洞察",
+					"entries": [
+						"當你對此設施下達{@book 研究|XDMG|7|Research}指令時，你指示該設施的僱員仔細檢查這些屍體。這項工作耗時7天。在你下次與該僱員交談時，僱員可以告知在場每具屍體的死因，並回答你對每具屍體各一個的問題，如同該僱員對其施展了{@spell Speak with Dead|XPHB|死者交談}法術。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "擴建設施",
+					"entries": [
+						"你可以花費 2000 GP ，將太平間擴大為寬敞設施。這樣做之後，太平間可以存放最多十二具小型或中型屍體，以及最多一具大型屍體。"
+					]
+				}
+			],
+			"hasFluff": true,
+			"ENG_name": "Morgue"
+		},
+		{
 			"name": "博物館",
 			"source": "EFA",
 			"page": 51,
@@ -1916,6 +2235,7 @@
 						"你的博物館包含一件寶藏，當你花費7天研究它並在你的堡壘完成一次長休時，它會給予你一個魔法{@filter 魅惑|rewards|type=charm}（參見{@book 地下城主指南|XDMG|2|Supernatural Gifts}中的\"{@book 超自然贈禮|XDMG}\"）。該魅惑持續7天或直到你使用它。當你仍擁有一個魅惑時，你無法從該設施獲得另一個魅惑。魅惑的效果取決於你博物館中寶藏的起源。你可以選擇以下選項之一（你的DM可能會根據你過去的探險提供更多選項或限制現有選項）：",
 						{
 							"type": "list",
+							"columns": 3,
 							"items": [
 								"{@reward Charm of Argonnessen|EFA|阿貢尼森護咒}",
 								"{@reward Charm of Ashtakala|EFA|阿什塔卡拉護咒}",
@@ -2006,7 +2326,7 @@
 					"type": "entries",
 					"name": "強化：奇異發現",
 					"entries": [
-						"當你對此設施下達{@book 增強|XDMG|7|Empower}指令時，你讓自己或設施僱工在連續7天夜裡探索奇異詭譎的星空之秘。在這段時間結束後，丟一個骰子。如果結果為偶數，那麼一無所獲；如果結果為奇數，那麼某種未知的偉力向你或者你所選的一個與你同一位面的生物贈予了一個護咒。該護咒為下列護咒之一：{@book 黑暗視覺護咒|XDMG|2|Charm of Darkvision}、{@book 英勇護咒|XDMG|2|Charm of Heroism}、{@book 活力護咒|XDMG|2|Charm of Vitality}（詳細描述均見{@book 第三章|XDMG|2}）。"
+						"當你對此設施下達{@book 增強|XDMG|7|Empower}指令時，你讓自己或設施僱員在連續7天夜裡探索奇異詭譎的星空之秘。在這段時間結束後，丟一個骰子。如果結果為偶數，那麼一無所獲；如果結果為奇數，那麼某種未知的偉力向你或者你所選的一個與你同一位面的生物贈予了一個護咒Charm。該護咒為下列護咒之一：{@reward Charm of Darkvision|XDMG|黑暗視覺護咒}、{@reward Charm of Heroism|XDMG|英勇護咒}、{@reward Charm of Vitality|XDMG|活力護咒}（詳細描述均見{@book 第三章|XDMG|2}）。"
 					],
 					"ENG_name": "Empower: Eldritch Discovery"
 				}
@@ -2106,6 +2426,162 @@
 				"每個基礎設施都配有非魔法的家具以及與該設施相配的裝飾。"
 			],
 			"ENG_name": "Parlor"
+		},
+		{
+			"name": "位面門戶",
+			"source": "AU",
+			"page": 98,
+			"facilityType": "special",
+			"level": 17,
+			"prerequisite": [
+				{
+					"membership": [
+						"織界者"
+					],
+					"spellcastingFocus": [
+						"arcane",
+						"holy",
+						"tool"
+					]
+				}
+			],
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"empower"
+			],
+			"entries": [
+				"這個房間的核心是一座刻有銘文的石拱門，其中瀰漫著迷霧與奇光。這座拱門可以連線到其他存在位面。",
+				{
+					"type": "entries",
+					"name": "增強：開啟門戶",
+					"entries": [
+						"當你對此設施下達{@book 增強|XDMG|7|Empower}指令時，你指示該設施的僱員將拱門調諧到另一個存在位面上的某處。調諧拱門需要7天，屆時傳送門開啟。如果你在調諧期間提供一顆價值 5000 GP 或更高的鑽石，傳送門將如同{@spell Gate|XPHB|異界之門}法術一般連線到你在另一位面指定的地點（僅用於傳送，不能用來牽引特定生物），並摧毀該鑽石。如果你沒有提供鑽石，或一位神祇或其他位面統治者阻止了預定傳送門的開啟，則在隨機位面目的地表上隨機決定傳送門的目的地。無論哪種情況，傳送門都會開啟1分鐘。",
+						{
+							"type": "table",
+							"caption": "隨機位面目的地",
+							"colLabels": [
+								"1d100",
+								"目的地"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"01–04",
+									"{@book 無底深淵|XDMG|5|Abyss}"
+								],
+								[
+									"05–08",
+									"{@book 修羅場|XDMG|5|Acheron}"
+								],
+								[
+									"09–12",
+									"{@book 奔放之野|XDMG|5|Arborea}"
+								],
+								[
+									"13–16",
+									"{@book 世外桃源|XDMG|5|Arcadia}"
+								],
+								[
+									"17–20",
+									"{@book 星光位面|XDMG|5|Astral Plane}"
+								],
+								[
+									"21–24",
+									"{@book 萬獸鄉|XDMG|5|Beastlands}"
+								],
+								[
+									"25–28",
+									"{@book 雙生天堂|XDMG|5|Bytopia}"
+								],
+								[
+									"29–32",
+									"{@book 卡瑟利|XDMG|5|Carceri}"
+								],
+								[
+									"33–36",
+									"{@book 氣元素位面|XDMG|5|Elemental Plane of Air}"
+								],
+								[
+									"37–40",
+									"{@book 土元素位面|XDMG|5|Elemental Plane of Earth}"
+								],
+								[
+									"41–44",
+									"{@book 火元素位面|XDMG|5|Elemental Plane of Fire}"
+								],
+								[
+									"45–48",
+									"{@book 水元素位面|XDMG|5|Elemental Plane of Water}"
+								],
+								[
+									"49–52",
+									"{@book 極樂境|XDMG|5|Elysium}"
+								],
+								[
+									"53–56",
+									"{@book 以太位面|XDMG|5|Ethereal Plane}"
+								],
+								[
+									"57–60",
+									"{@book 妖精荒野|XDMG|5|Feywild}"
+								],
+								[
+									"61–64",
+									"{@book 焦炎火獄|XDMG|5|Gehenna}"
+								],
+								[
+									"65–68",
+									"{@book 哈迪斯|XDMG|5|Hades}"
+								],
+								[
+									"69–72",
+									"{@book 混沌海|XDMG|5|Limbo}"
+								],
+								[
+									"73–76",
+									"{@book 機械境|XDMG|5|Mechanus}"
+								],
+								[
+									"77–80",
+									"{@book 天界山|XDMG|5|Mount Celestia}"
+								],
+								[
+									"81–84",
+									"{@book 九層地獄|XDMG|5|Nine Hells}"
+								],
+								[
+									"85–88",
+									"{@book 外域|XDMG|5|Outlands}"
+								],
+								[
+									"89–92",
+									"{@book 喧癲空隧|XDMG|5|Pandemonium}"
+								],
+								[
+									"93–96",
+									"{@book 墮影冥界|XDMG|5|Shadowfell}"
+								],
+								[
+									"97–00",
+									"{@book 伊斯加德|XDMG|5|Ysgard}"
+								]
+							]
+						}
+					]
+				}
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Planar Gateway"
 		},
 		{
 			"name": "酒館",
@@ -2285,6 +2761,7 @@
 		{
 			"name": "渡鴉巢舍",
 			"source": "RHW",
+			"page": 210,
 			"facilityType": "special",
 			"level": 5,
 			"space": [
@@ -2589,8 +3066,52 @@
 			"ENG_name": "Smithy"
 		},
 		{
+			"name": "施粥廚房",
+			"source": "AU",
+			"page": 113,
+			"facilityType": "special",
+			"level": 5,
+			"prerequisite": [
+				{
+					"membership": [
+						"庇護之手"
+					]
+				}
+			],
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"recruit"
+			],
+			"entries": [
+				"這間廚房製作大量食物並供給飢餓的人們。",
+				{
+					"type": "entries",
+					"name": "招募：廚房運營",
+					"entries": [
+						"當你對此設施下達{@book 招募|XDMG|7|Recruit}指令時，你指示你的僱員運營施粥廚房7天。食材花費你 50 GP 。如果你會在{@book 據點事件|XDMG|7|Bastion Events}表的下一次擲骰中失去一名據點衛兵或一名僱員，一位信奉你事業的人會立即接替其位置。你不視為失去了那名據點衛兵或僱員。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "旅行零食",
+					"entries": [
+						"在你的據點中度過一次{@variantrule Long Rest|XPHB|長休}後，你獲得一個魔法{@reward Traveling Snacks|AU|魅惑}，持續7天或直到你使用它為止。此魅惑允許你施展一次{@spell Goodberry|XPHB|神莓術}，無需消耗法術位。"
+					]
+				}
+			],
+			"ENG_name": "Soup Kitchen"
+		},
+		{
 			"name": "精魄寶庫",
 			"source": "RHW",
+			"page": 211,
 			"facilityType": "special",
 			"level": 13,
 			"space": [
@@ -2613,6 +3134,7 @@
 						"在你的精魄寶庫中進行一次長休後，你將獲得以下魔法護咒之一：",
 						{
 							"type": "list",
+							"columns": 3,
 							"items": [
 								"{@reward Charm of Exorcism|RHW|驅魔魅咒}",
 								"{@reward Charm of Malediction|RHW|惡咒魅惑}"
@@ -2723,6 +3245,7 @@
 		{
 			"name": "降神會客廳",
 			"source": "RHW",
+			"page": 210,
 			"facilityType": "special",
 			"level": 5,
 			"space": [
@@ -2865,7 +3388,7 @@
 			],
 			"entries": [
 				"每個堡壘可以擁有多個訓練場。訓練場可以是開放式庭院、體育場、歌舞廳、亦或是精心打造的充滿陷阱和危險的試煉場。它還可能包含固定靶（供武器訓練）、軟墊以及其他裝置。此設施的其中一位僱工是專業教練，其他僱工則是陪練人員。",
-				"當訓練場被加入到你的堡壘時，從{@book 專業教練|XDMG|7|Expert Trainers}表格中選擇一位教練。你可以在每個堡壘回合內更改一次專業教練的類型。",
+				"當訓練場成為你據點的一部分時，從專業教練表格中選擇一名教練。在每個據點回合，你可以用表格中的另一名教練替換該教練。",
 				{
 					"type": "table",
 					"caption": "專業教練",
@@ -2912,6 +3435,50 @@
 			"ENG_name": "Training Area"
 		},
 		{
+			"name": "變化缸",
+			"source": "AU",
+			"page": 88,
+			"facilityType": "special",
+			"level": 5,
+			"prerequisite": [
+				{
+					"membership": [
+						"寰宇黎明使徒會"
+					]
+				}
+			],
+			"space": [
+				"cramped",
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"harvest"
+			],
+			"entries": [
+				"這間實驗室的核心是一口微微冒著熱氣、蘊含變化潛力的缸或大鍋。",
+				{
+					"type": "entries",
+					"name": "收穫：流體嬗變",
+					"entries": [
+						"當你對此設施下達{@book 收穫|XDMG|7|Harvest}指令時，你指示你的僱員將某種物質倒入缸中並將其轉化為其他東西。你必須消耗一瓶普通或非普通藥水，它會在缸中被摧毀。7天結束時，僱員會產出由你選擇的下列之一：一瓶{@item Alchemist's Fire|XPHB|熾火膠}、一劑{@item Antitoxin|XPHB|抗毒劑}、一劑{@item Basic Poison|XPHB|基礎毒藥}，或一瓶由你選擇的普通或非普通藥水。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "擴建設施",
+					"entries": [
+						"你可以花費 2000 GP ，將變化缸擴建為寬敞設施。當你對寬敞的變化缸下達{@book 收穫|XDMG|7|Harvest}指令時，你可以消耗兩瓶普通或非普通藥水。如果這樣做，你的僱員會產出兩種由你選擇的物質而非一種；兩種選擇可以不同。"
+					]
+				}
+			],
+			"ENG_name": "Transmutation Vat"
+		},
+		{
 			"name": "戰利品陳列室",
 			"source": "XDMG",
 			"page": 349,
@@ -2948,7 +3515,7 @@
 								{
 									"type": "item",
 									"name": "研究：",
-									"entry": "飾品收藏。你委託設施僱工尋找一件可能對你有用的飾品。這項工作需要 7 天時間，在這段時間結束時，擲一次骰。若結果為偶數，則僱工沒有找到任何有用的物品；若結果為奇數，則僱工找到了一件魔法物品。在{@book 第七章|XDMG|6|Implements—Common}的{@book 器具—普通|XDMG|6}表格中擲骰以決定你獲得了哪件物品。",
+									"entry": "飾品紀念品。你委託設施的僱員去搜尋一件可能對你有用的飾品。這項工作需要7天。當研究結束時，擲任意一個骰子。如果擲出的數值是奇數，僱員沒有找到任何有用的東西。如果擲出的數值是偶數，僱員找到了一件魔法物品。在{@book 器具 - 普通|XDMG|6|Implements - Common}表格（位於{@book 第七章|XDMG|6}）上擲骰來決定它是什麼。",
 									"ENG_name": "Research:"
 								}
 							]

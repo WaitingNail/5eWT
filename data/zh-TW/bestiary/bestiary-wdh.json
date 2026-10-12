@@ -1,12 +1,10 @@
 {
 	"_meta": {
 		"locale": "zh-TW",
-		"upstreamTag": "v2.33.3",
-		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
-		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
-		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
-		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
-		"license": "CC BY-NC-SA 4.0"
+		"upstreamTag": "v2.37.0",
+		"upstreamCommit": "8c026b807fac21862a309379a0c3228a0683198b",
+		"baselineTranslationTag": "v2.33.3",
+		"communityCandidateCommit": "5cc0bbe2c2b241a334e731af4448bdba2168e8bd"
 	},
 	"monster": [
 		{
@@ -32,7 +30,7 @@
 				{
 					"ac": 18,
 					"from": [
-						"{@item plate armor|phb}"
+						"{@item plate armor|PHB|plate}"
 					]
 				}
 			],
@@ -76,29 +74,19 @@
 					"name": "矮人體魄",
 					"entries": [
 						"阿莫戈進行對抗{@condition poisoned||中毒}的豁免時具有優勢。"
-					],
-					"ENG_name": "Dwarven Resilience"
+					]
 				},
 				{
 					"name": "不屈 (2/日)",
 					"entries": [
 						"阿莫戈可以重擲失敗的豁免檢定。他必須使用重擲的結果。"
-					],
-					"ENG_name": "Indomitable (2/Day)"
+					]
 				},
 				{
 					"name": "回氣 (短休或長休之後充能)",
 					"entries": [
 						"阿莫戈可以使用一個附贈動作恢復20點生命值。"
-					],
-					"ENG_name": "Second Wind (Recharges after a Short or Long Rest)"
-				},
-				{
-					"name": "額外傷害",
-					"entries": [
-						"如果阿莫戈的生命值超過其生命值上限的一半，他每次命中都會額外造成7（{@damage 2d6}）點揮砍傷害。"
-					],
-					"ENG_name": "Extra Damage"
+					]
 				}
 			],
 			"action": [
@@ -112,7 +100,7 @@
 				{
 					"name": "巨斧",
 					"entries": [
-						"{@atk mw} {@hit 9} 命中，觸及5尺，單一目標。{@h}11（{@damage 1d12 + 5}）揮砍傷害。"
+						"{@atk mw} {@hit 9} 命中，觸及 5 尺，一個目標。{@h}11（{@damage 1d12 + 5}）揮砍傷害，如果阿莫戈的生命值超過一半，則額外造成 7（{@damage 2d6}）揮砍傷害。"
 					],
 					"ENG_name": "Greataxe"
 				},
@@ -2495,22 +2483,13 @@
 					"name": "不屈 (2/日)",
 					"entries": [
 						"赫拉巴茲可以重新擲一個他失敗的豁免檢定。他必須使用新的擲骰結果。"
-					],
-					"ENG_name": "Indomitable (2/Day)"
+					]
 				},
 				{
 					"name": "堅韌不屈（長休後充能）",
 					"entries": [
 						"當Hrabbaz的生命值降至0點但並未直接死亡時，他的生命值反而會降至1點。"
-					],
-					"ENG_name": "Relentless Endurance (Recharges after a Long Rest)"
-				},
-				{
-					"name": "額外傷害",
-					"entries": [
-						"只要赫拉巴茲的生命值超過一半，他在所有攻擊中都會額外造成3點（{@damage 1d6}）傷害。"
-					],
-					"ENG_name": "Extra Damage"
+					]
 				}
 			],
 			"action": [
@@ -2524,7 +2503,7 @@
 				{
 					"name": "釘頭錘",
 					"entries": [
-						"{@atk mw} 命中{@hit 8}，觸及5尺，單一目標。{@h}9（{@damage 1d8 + 5}）點穿刺傷害。"
+						"{@atk mw} {@hit 8} 命中，觸及 5 尺，一個目標。{@h}9（{@damage 1d8 + 5}）穿刺傷害，如果哈巴茲的生命值超過一半，則額外造成 3（{@damage 1d6}）穿刺傷害。"
 					],
 					"ENG_name": "Morningstar"
 				}
@@ -5388,6 +5367,7 @@
 				}
 			},
 			"hasToken": true,
+			"hasFluff": true,
 			"hasFluffImages": true,
 			"ENG_name": "Nihiloor"
 		},
@@ -5564,7 +5544,7 @@
 				]
 			},
 			"alignment": [
-				"L",
+				"N",
 				"E"
 			],
 			"ac": [
@@ -8921,6 +8901,15 @@
 						"replace": "the beholder",
 						"with": "Xanathar",
 						"flags": "i"
+					},
+					"resist": {
+						"mode": "appendArr",
+						"items": {
+							"resist": [
+								"force"
+							],
+							"preNote": "While attuned to the ring of force resistance:"
+						}
 					},
 					"trait": {
 						"mode": "prependArr",

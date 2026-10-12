@@ -115,9 +115,9 @@ test("summary rules and all visible prose are localized", async () => {
 	assert.match(baalzebul.signatureSpells.entry, /次級幻象.*1環法術.*魅影之力.*2環法術/u);
 
 	const juiblex = localized.boon.find(it => it.name === "Demonic Boon of Juiblex");
-	assert.equal(juiblex.ability.entry, "體質屬性值獲得至多+8的加值，智力、感知與魅力屬性值受到等量減值");
+	assert.equal(juiblex.abilityEntry, "體質獲得至多 +8 的加值，智力、感知與魅力受到等量減值");
 	const orcus = localized.boon.find(it => it.name === "Demonic Boon of Orcus");
-	assert.equal(orcus.ability.entry, "智力或感知屬性值，或兩者皆獲得至多+4的加值");
+	assert.equal(orcus.abilityEntry, "智力、感知或兩者皆獲得至多 +4 的加值");
 
 	const untranslated = [];
 	const visit = (value, context = "", key = "") => {

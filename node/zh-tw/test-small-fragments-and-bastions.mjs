@@ -126,7 +126,7 @@ test("all canonical Bastion facilities receive Traditional Chinese names and con
 	});
 
 	assert.equal(sidecar.facility.length, canonical.facility.length);
-	assert.equal(data.facility.length, 61);
+	assert.equal(data.facility.length, 70);
 	assert.ok(data.facility.every(ent => /[\p{Script=Han}]/u.test(I18n.getDisplayName(ent))));
 
 	const archive = data.facility.find(ent => ent.name === "Archive" && ent.source === "XDMG");

@@ -35,6 +35,12 @@ export class I18nZhTwAdventure {
 		if (!this._supportedBooks.has(bookId) || index?.id?.toLowerCase() !== bookId) return null;
 		const localized = await this.pLoad({bookId, fnLoad});
 		if (!localized) return null;
+		if (!fnLoad && localized._meta?.upstreamTag === "v2.33.3") {
+			const url = `${globalThis.Renderer?.get?.().baseUrl || ""}data/zh-TW/adventures/canonical-v2.33.3/adventure-${bookId}.json`;
+			const response = await fetch(url);
+			if (!response.ok) throw new Error(`Adventure compatibility snapshot unavailable: ${bookId}`);
+			canonical = await response.json();
+		}
 		try {
 			return this.createLocalizedView({canonical, localized, index});
 		} catch (error) {
@@ -44,7 +50,8 @@ export class I18nZhTwAdventure {
 	}
 
 	static createLocalizedView ({canonical, localized, index}) {
-		if (localized?._meta?.upstreamTag !== "v2.33.3" || localized?.adventure?.id !== index.id) {
+		canonical = canonical.adventureData?.find(it => it.id === index.id) || canonical;
+		if (!["v2.33.3", "v2.37.0"].includes(localized?._meta?.upstreamTag) || localized?.adventure?.id !== index.id) {
 			throw new Error("Adventure translation identity/version mismatch");
 		}
 		const displayByCanonical = new Map();

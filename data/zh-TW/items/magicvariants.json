@@ -1,12 +1,10 @@
 {
 	"_meta": {
 		"locale": "zh-TW",
-		"upstreamTag": "v2.33.3",
-		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
-		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
-		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
-		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
-		"license": "CC BY-NC-SA 4.0"
+		"upstreamTag": "v2.37.0",
+		"upstreamCommit": "8c026b807fac21862a309379a0c3228a0683198b",
+		"baselineTranslationTag": "v2.33.3",
+		"communityCandidateCommit": "5cc0bbe2c2b241a334e731af4448bdba2168e8bd"
 	},
 	"magicvariant": [
 		{
@@ -1077,6 +1075,38 @@
 			"ENG_name": "Adamantine Weapon"
 		},
 		{
+			"name": "全視衛護之刃",
+			"source": "AU",
+			"_copy": {
+				"name": "Resistant Blade of the Guardian",
+				"source": "AU",
+				"_mod": {
+					"inherits.entries": {
+						"mode": "appendArr",
+						"items": {
+							"type": "entries",
+							"name": "All-Seeing",
+							"entries": [
+								"由DM決定，這把武器將完成最後一次進化，成為傳說武器並獲得{@table Magic Item Property Tables; Legendary Magic Item Properties|AU|全知者}詞條。DM決定這代表著聖武士成為了警戒保護的典範。"
+							]
+						}
+					},
+					"inherits.namePrefix": {
+						"mode": "setProp",
+						"value": "All-Seeing "
+					},
+					"inherits.rarity": {
+						"mode": "setProp",
+						"value": "legendary"
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "All-Seeing Blade of the Guardian"
+		},
+		{
 			"name": "屠殺彈藥",
 			"type": "GV|XDMG",
 			"requires": [
@@ -1217,6 +1247,75 @@
 				}
 			},
 			"ENG_name": "Antimagic Armor"
+		},
+		{
+			"name": "水棲逐浪武器",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Rapier",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortsword",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "水棲逐浪",
+				"source": "AU",
+				"page": 129,
+				"rarity": "rare",
+				"reqAttune": true,
+				"propertyAdd": [
+					"Evo|AU"
+				],
+				"bonusWeapon": "+2",
+				"modifySpeed": {
+					"static": {
+						"swim": 30
+					}
+				},
+				"entries": [
+					"這件武器上佈滿海洋主題的圖案，劍身上的波浪蝕刻和皮革護手上繡著的海怪風圖案均在體現這一主題。",
+					{
+						"type": "entries",
+						"name": "藤壺",
+						"entries": [
+							"這把武器的劍格和劍身蝕刻的平坦側面附著藤壺。",
+							"你用此魔法武器進行的攻擊檢定和傷害擲骰獲得+1加值。持握此武器期間，你能以{@action Magic|XPHB|魔法}動作觸碰至多一加侖的液體併為之注入鹽分，例如，你可以將淡水轉化為鹽水。"
+						]
+					},
+					{
+						"type": "entries",
+						"name": "水棲",
+						"entries": [
+							"這把武器刃面的波浪蝕刻散發著光芒，投射出半徑5尺的{@variantrule Bright Light|XPHB|明亮光照}以及額外5尺的{@variantrule Dim Light|XPHB|微光光照}。",
+							"你用此魔法武器進行攻擊檢定和傷害擲骰的加值提升至+2。持握此武器期間，你可以在水下呼吸，且你具有30尺{@variantrule Swim Speed|XPHB|游泳速度}。"
+						]
+					}
+				],
+				"light": [
+					{
+						"bright": 5,
+						"dim": 10
+					}
+				]
+			},
+			"hasFluffImages": true,
+			"ENG_name": "Aquatic Wave-Swept Weapon"
 		},
 		{
 			"name": "臂刃",
@@ -2277,6 +2376,84 @@
 			"ENG_name": "Ascendant Dragon's Wrath Weapon"
 		},
 		{
+			"name": "騰躍逐浪武器",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Rapier",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortsword",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "騰躍逐浪",
+				"source": "AU",
+				"page": 129,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"propertyAdd": [
+					"Evo|AU"
+				],
+				"bonusWeapon": "+3",
+				"modifySpeed": {
+					"static": {
+						"fly": 30,
+						"swim": 30
+					}
+				},
+				"entries": [
+					"這件武器上佈滿海洋主題的圖案，劍身上的波浪蝕刻和皮革護手上繡著的海怪風圖案均在體現這一主題。",
+					{
+						"type": "entries",
+						"name": "藤壺",
+						"entries": [
+							"這把武器的劍格和劍身蝕刻的平坦側面附著藤壺。",
+							"你用此魔法武器進行的攻擊檢定和傷害擲骰獲得+1加值。持握此武器期間，你能以{@action Magic|XPHB|魔法}動作觸碰至多一加侖的液體併為之注入鹽分，例如，你可以將淡水轉化為鹽水。"
+						]
+					},
+					{
+						"type": "entries",
+						"name": "水棲",
+						"entries": [
+							"這把武器刃面的波浪蝕刻散發著光芒，投射出半徑5尺的{@variantrule Bright Light|XPHB|明亮光照}以及額外5尺的{@variantrule Dim Light|XPHB|微光光照}。",
+							"你用此魔法武器進行攻擊檢定和傷害擲骰的加值提升至+2。持握此武器期間，你可以在水下呼吸，且你具有30尺{@variantrule Swim Speed|XPHB|游泳速度}。"
+						]
+					},
+					{
+						"type": "entries",
+						"name": "力量增強",
+						"entries": [
+							"這把武器護手雕飾的海怪圖案鑲嵌著各色寶石碎片。",
+							"你用此魔法武器進行攻擊檢定和傷害擲骰的加值提升至+3。持握此武器期間，你具有30尺{@variantrule Fly Speed|XPHB|飛行速度}；當你使用該{@variantrule Fly Speed|XPHB|飛行速度}時，鹹味的海風託舉你在空中穿梭。"
+						]
+					}
+				],
+				"light": [
+					{
+						"bright": 5,
+						"dim": 10
+					}
+				]
+			},
+			"hasFluffImages": true,
+			"ENG_name": "Ascendant Wave-Swept Weapon"
+		},
+		{
 			"name": "具裝",
 			"type": "GV|DMG",
 			"requires": [
@@ -2303,6 +2480,56 @@
 				]
 			},
 			"ENG_name": "Barding"
+		},
+		{
+			"name": "藤壺逐浪武器",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Rapier",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortsword",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "藤壺逐浪",
+				"source": "AU",
+				"page": 129,
+				"rarity": "uncommon",
+				"reqAttune": true,
+				"propertyAdd": [
+					"Evo|AU"
+				],
+				"bonusWeapon": "+1",
+				"entries": [
+					"這件武器上佈滿海洋主題的圖案，劍身上的波浪蝕刻和皮革護手上繡著的海怪風圖案均在體現這一主題。",
+					{
+						"type": "entries",
+						"name": "藤壺",
+						"entries": [
+							"這把武器的劍格和劍身蝕刻的平坦側面附著藤壺。",
+							"你用此魔法武器進行的攻擊檢定和傷害擲骰獲得+1加值。持握此武器期間，你能以{@action Magic|XPHB|魔法}動作觸碰至多一加侖的液體併為之注入鹽分，例如，你可以將淡水轉化為鹽水。"
+						]
+					}
+				]
+			},
+			"hasFluffImages": true,
+			"ENG_name": "Barnacled Wave-Swept Weapon"
 		},
 		{
 			"name": "狂戰斧",
@@ -2965,6 +3192,29 @@
 			"ENG_name": "Demonbone Polearm"
 		},
 		{
+			"name": "解魔彈藥",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "A|XPHB"
+				},
+				{
+					"type": "AF|XDMG"
+				}
+			],
+			"ammo": true,
+			"inherits": {
+				"namePrefix": "解魔",
+				"source": "AU",
+				"page": 118,
+				"rarity": "uncommon",
+				"entries": [
+					"當目標受到這枚魔法彈藥造成的傷害時，目標身上任何持續生效的三環或更低環階的法術都會結束。一旦該彈藥對目標造成傷害，其便不再具有魔法。"
+				]
+			},
+			"ENG_name": "Dispelling Ammunition"
+		},
+		{
 			"name": "屠龍者",
 			"referenceSources": [
 				"DIP",
@@ -3371,6 +3621,10 @@
 				"otherSources": [
 					{
 						"source": "UtHftLH"
+					},
+					{
+						"source": "HBTD",
+						"page": 13
 					}
 				],
 				"rarity": "very rare",
@@ -4448,6 +4702,29 @@
 			"ENG_name": "Gloomwrought Armor"
 		},
 		{
+			"name": "挑釁彈藥",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "A|XPHB"
+				},
+				{
+					"type": "AF|XDMG"
+				}
+			],
+			"ammo": true,
+			"inherits": {
+				"namePrefix": "挑釁",
+				"source": "AU",
+				"page": 119,
+				"rarity": "uncommon",
+				"entries": [
+					"如果這枚魔法彈藥命中一個生物並造成傷害，則目標需進行一次{@dc 13}的魅力豁免。若豁免失敗，則目標在其下一回合開始前無法執行{@variantrule Reaction|XPHB|反應}，只能氣急敗壞地咆哮和暴怒。彈藥一旦命中目標，便不再具有魔法。"
+				]
+			},
+			"ENG_name": "Goading Ammunition"
+		},
+		{
 			"name": "雷神之錘",
 			"type": "GV|XDMG",
 			"requires": [
@@ -4912,6 +5189,29 @@
 				]
 			},
 			"ENG_name": "Last Stand Armor"
+		},
+		{
+			"name": "汲命之刃",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "martial",
+					"property": "F|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "汲命",
+				"source": "AUD",
+				"page": 118,
+				"rarity": "rare",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"entries": [
+					"這種細長的黑色鐵刃深受賽爾刺客和間諜的歡迎。",
+					"你使用這把魔法武器進行的攻擊檢定和傷害擲骰獲得+1加值。當你使用該武器進行攻擊檢定命中時，目標受到額外{@damage 2d4}暗蝕傷害，且直至其下一回合結束前都無法恢復{@variantrule Hit Points|XPHB|生命值}。如果一個生物因使用該武器的攻擊而降至0{@variantrule Hit Points|XPHB|生命值}，該生物立即死亡，且只能透過{@spell Resurrection|XPHB|復生術}或{@spell True Resurrection|XPHB|完全復生術}法術復活。"
+				]
+			},
+			"ENG_name": "Life-Sapping Blade"
 		},
 		{
 			"name": "活體護甲",
@@ -6118,6 +6418,59 @@
 			"ENG_name": "Polymorph Blade"
 		},
 		{
+			"name": "君威暴君胸甲 (*)",
+			"source": "AU",
+			"_copy": {
+				"name": "Armor of Psychic Resistance",
+				"source": "XDMG",
+				"_mod": {
+					"inherits.basicRules2024": "remove",
+					"inherits.entries": {
+						"mode": "appendArr",
+						"items": {
+							"type": "entries",
+							"name": "Regal",
+							"entries": [
+								"當角色們旅行至一處古戰場時，由DM決定此護甲進化，變為極珍稀品並獲得{@table Magic Item Property Tables; Very Rare Magic Item Properties|AU|尊貴}詞條。隨著角色們的探索，他們會發現與護甲上相匹配的影象。"
+							]
+						}
+					},
+					"inherits.namePrefix": {
+						"mode": "setProp",
+						"value": "Regal "
+					},
+					"inherits.nameSuffix": {
+						"mode": "setProp",
+						"value": " of the Tyrant"
+					},
+					"inherits.page": {
+						"mode": "setProp",
+						"value": 132
+					},
+					"inherits.propertyAdd": {
+						"mode": "appendIfNotExistsArr",
+						"items": "Evo|AU"
+					},
+					"inherits.rarity": {
+						"mode": "setProp",
+						"value": "very rare"
+					},
+					"inherits.source": {
+						"mode": "setProp",
+						"value": "AU"
+					},
+					"inherits.srd52": "remove"
+				}
+			},
+			"requires": [
+				{
+					"name": "Breastplate",
+					"source": "XPHB"
+				}
+			],
+			"ENG_name": "Regal Breastplate of the Tyrant (*)"
+		},
+		{
 			"name": "連射武器",
 			"type": "GV|XDMG",
 			"requires": [
@@ -6146,6 +6499,42 @@
 				]
 			},
 			"ENG_name": "Repeating Shot"
+		},
+		{
+			"name": "抗性衛護之刃",
+			"source": "AU",
+			"_copy": {
+				"name": "Studious Blade of the Guardian",
+				"source": "AU",
+				"_mod": {
+					"inherits.entries": {
+						"mode": "appendArr",
+						"items": {
+							"type": "entries",
+							"name": "Resistant",
+							"entries": [
+								"當這名聖武士挺身保護她的同伴，對抗煉獄眾敵之時，DM決定讓武器再次進化，成為極珍稀物品並獲得{@table Magic Item Property Tables; Very Rare Magic Item Properties|AU|抗性}詞條。DM選擇賦予火焰傷害{@variantrule Resistance|XPHB|抗性}，因為這恰好契合主題。"
+							]
+						}
+					},
+					"inherits.namePrefix": {
+						"mode": "setProp",
+						"value": "Resistant "
+					},
+					"inherits.rarity": {
+						"mode": "setProp",
+						"value": "very rare"
+					},
+					"inherits.resist": {
+						"mode": "appendIfNotExistsArr",
+						"items": "fire"
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "Resistant Blade of the Guardian"
 		},
 		{
 			"name": "回力武器",
@@ -6464,6 +6853,93 @@
 			"ENG_name": "Smoldering Armor"
 		},
 		{
+			"name": "狙擊者手鐲",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Heavy Crossbow",
+					"source": "XPHB"
+				},
+				{
+					"name": "Light Crossbow",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longbow",
+					"source": "XPHB"
+				},
+				{
+					"name": "Musket",
+					"source": "XPHB"
+				},
+				{
+					"name": "Pistol",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortbow",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "狙擊者手鐲",
+				"source": "AUD",
+				"page": 119,
+				"rarity": "common",
+				"reqAttune": true,
+				"entries": [
+					"觸碰該武器期間，你可以執行{@action Magic|XPHB|魔法}動作，將其變形成一隻手鐲，或變回其武器形態。處於手鐲形態時，其無法被用於攻擊。",
+					"當該武器處於武器形態且缺少彈藥時，它會自行生成彈藥：當你用它進行遠端攻擊檢定時，自動創造一枚魔法彈藥。該彈藥在命中或失手目標後的一瞬消失。"
+				]
+			},
+			"ENG_name": "Sniper's Bracelet"
+		},
+		{
+			"name": "燃法護甲",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "燃法",
+				"source": "AUD",
+				"page": 119,
+				"rarity": "very rare",
+				"reqAttune": "由施法者",
+				"reqAttuneTags": [
+					{
+						"spellcasting": true
+					}
+				],
+				"entries": [
+					"刻有奧術符文的溝槽在這件護甲上縱橫交錯，其深受會施法的賽爾騎士青睞。",
+					{
+						"type": "entries",
+						"name": "強力施法",
+						"entries": [
+							"穿著此護甲期間，當你為法術擲傷害時，你可以將傷害骰上的每個1視為2。"
+						]
+					},
+					{
+						"type": "entries",
+						"name": "復甦之力",
+						"entries": [
+							"穿著此護甲期間，當你完成一次{@variantrule Short Rest|XPHB|短休}時，你可以選擇恢復一定數量的已消耗法術位。這些法術位的環階總和必須等於或小於3。例如，你可以恢復一個三環法術位或三個一環法術位。該詞條一經使用，則直至下一黎明前，都無法再次使用。"
+						]
+					}
+				]
+			},
+			"ENG_name": "Spell-Fueling Armor"
+		},
+		{
 			"name": "射星弩",
 			"type": "GV|DMG",
 			"requires": [
@@ -6548,6 +7024,64 @@
 			"ENG_name": "Stirring Dragon's Wrath Weapon"
 		},
 		{
+			"name": "博識衛護之刃",
+			"source": "AU",
+			"_copy": {
+				"name": "Weapon of Warning",
+				"source": "XDMG",
+				"_mod": {
+					"inherits.classFeatures": "remove",
+					"inherits.entries": {
+						"mode": "appendArr",
+						"items": {
+							"type": "entries",
+							"name": "Studious",
+							"entries": [
+								"DM決定讓武器進化為珍稀物品，並賦予其{@table Magic Item Property Tables; Rare Magic Item Properties|AU|博識}詞條，因為這名聖武士提升了調查技能以便更好地應對潛在危險。"
+							]
+						}
+					},
+					"inherits.lootTables": "remove",
+					"inherits.namePrefix": {
+						"mode": "setProp",
+						"value": "Studious "
+					},
+					"inherits.nameSuffix": {
+						"mode": "setProp",
+						"value": " of the Guardian"
+					},
+					"inherits.page": {
+						"mode": "setProp",
+						"value": 132
+					},
+					"inherits.propertyAdd": {
+						"mode": "appendIfNotExistsArr",
+						"items": "Evo|AU"
+					},
+					"inherits.rarity": {
+						"mode": "setProp",
+						"value": "rare"
+					},
+					"inherits.source": {
+						"mode": "setProp",
+						"value": "AU"
+					},
+					"inherits.srd52": "remove"
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"requires": [
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				}
+			],
+			"hasFluffImages": false,
+			"ENG_name": "Studious Blade of the Guardian"
+		},
+		{
 			"name": "冥河之矛",
 			"type": "GV|DMG",
 			"requires": [
@@ -6586,6 +7120,38 @@
 				]
 			},
 			"ENG_name": "Stygian Spear"
+		},
+		{
+			"name": "支配暴君胸甲 (*)",
+			"source": "AU",
+			"_copy": {
+				"name": "Regal Breastplate of the Tyrant (*)",
+				"source": "AU",
+				"_mod": {
+					"inherits.entries": {
+						"mode": "appendArr",
+						"items": {
+							"type": "entries",
+							"name": "Subjugating",
+							"entries": [
+								"角色們的調查將他們引向一座古老的城堡。在那裡，他們遭遇了一名古老殘忍的暴君，他身披戰袍，其上的紋樣與護甲相符。角色們依靠戰士的英勇表現擊敗了這名暴君。DM決定讓護甲進化至傳說並獲得{@table Magic Item Property Tables; Legendary Magic Item Properties|AU|支配}詞條。"
+							]
+						}
+					},
+					"inherits.namePrefix": {
+						"mode": "setProp",
+						"value": "Subjugating "
+					},
+					"inherits.rarity": {
+						"mode": "setProp",
+						"value": "legendary"
+					}
+				},
+				"_preserve": {
+					"page": true
+				}
+			},
+			"ENG_name": "Subjugating Breastplate of the Tyrant (*)"
 		},
 		{
 			"name": "竊命劍",
@@ -6894,7 +7460,7 @@
 			"inherits": {
 				"nameSuffix": " of Vengeance",
 				"source": "XDMG",
-				"page": 206,
+				"page": 314,
 				"rarity": "uncommon",
 				"reqAttune": true,
 				"curse": true,
@@ -7054,6 +7620,190 @@
 			},
 			"hasFluffImages": true,
 			"ENG_name": "Sylvan Talon"
+		},
+		{
+			"name": "賽爾之劍",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "賽爾",
+				"source": "AUD",
+				"page": 121,
+				"rarity": "rare",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d4}",
+				"charges": 4,
+				"entries": [
+					"賽爾之劍常在優秀的賽爾騎士完成訓練時被授予他們。",
+					"你以此魔法武器進行的攻擊檢定和傷害擲骰獲得+1加值。",
+					{
+						"type": "entries",
+						"name": "奧法騎士",
+						"entries": [
+							"該劍具有4充能，並在每日黎明時恢復{@dice 1d4}充能。持握該劍期間，你可以消耗1充能施展以下法術之一（豁免{@dc 15}）：",
+							{
+								"type": "list",
+								"items": [
+									"{@spell Searing Smite|XPHB|熾焰斬}",
+									"{@spell Thunderous Smite|XPHB|雷鳴斬}",
+									"{@spell Wrathful Smite|XPHB|激憤斬}"
+								]
+							}
+						]
+					},
+					{
+						"type": "entries",
+						"name": "復甦戰士",
+						"entries": [
+							"當你持握該劍且{@variantrule Hit Points|XPHB|生命值}降至0但未立即死亡時，你可以改為降至1點{@variantrule Hit Points|XPHB|生命值}。該詞條一經使用，則直至下一黎明前，都無法再次使用。"
+						]
+					}
+				],
+				"attachedSpells": {
+					"charges": {
+						"1": [
+							"searing smite|xphb",
+							"thunderous smite|xphb",
+							"wrathful smite|xphb"
+						]
+					}
+				}
+			},
+			"hasFluffImages": true,
+			"ENG_name": "Thayan Sword"
+		},
+		{
+			"name": "越山護甲",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "越山",
+				"source": "AU",
+				"page": 124,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"bonusAc": "+1",
+				"entries": [
+					"著裝此護甲期間，你的{@variantrule Armor Class|XPHB|護甲等級}獲得{=bonusAc}加值。護甲被施加了魔法，使其看起來像是一件學者或祭司的長袍。",
+					{
+						"type": "entries",
+						"name": "山地行者",
+						"entries": [
+							"著裝此護甲期間，由厚雪、冰層、碎石或灌木叢構成的{@variantrule Difficult Terrain|XPHB|困難地形}不會消耗你額外的移動力。"
+						]
+					},
+					{
+						"type": "entries",
+						"name": "纏握觸鬚",
+						"entries": [
+							"你可以執行{@action Magic|XPHB|魔法}動作啟用該護甲，使其袖口和衣襬的邊緣延伸出絲帶般的觸鬚。",
+							"當該護甲處於啟用期間，你可以使用{@variantrule Bonus Action|XPHB|附贈動作}迫使源自你的20尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內你選擇的每個生物進行一次{@dc 15}的力量豁免。若豁免失敗，則該生物陷入{@condition Grappled|XPHB|被擒}狀態（掙脫{@dc 15}），並被向你直線拉近至多20尺。",
+							"護甲會保持啟用1分鐘，或者直至你執行另一個{@action Magic|XPHB|魔法}動作將其停用。一旦你啟用了護甲，則直至下一黎明前，都無法再次啟用。"
+						]
+					}
+				]
+			},
+			"ENG_name": "Tramontane Armor"
+		},
+		{
+			"name": "詭計武器",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple",
+					"type": "M|XPHB"
+				},
+				{
+					"weaponCategory": "martial",
+					"type": "M|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "詭計",
+				"source": "AUD",
+				"page": 121,
+				"rarity": "common",
+				"entries": [
+					"觸碰該武器期間，你可以執行{@action Magic|XPHB|魔法}動作，將其變形成一件尋常物品，或變回其武器形態。變形為尋常物品期間，其無法被用於攻擊。",
+					"不同的詭計武器會變形為不同的物品。由DM選擇該尋常物品，或透過擲骰下表隨機決定。",
+					{
+						"type": "table",
+						"colLabels": [
+							"{@dice 1d10}",
+							"該武器變形為......"
+						],
+						"colStyles": [
+							"col-2 text-center",
+							"col-10"
+						],
+						"rows": [
+							[
+								"1",
+								"手鐲"
+							],
+							[
+								"2",
+								"梳"
+							],
+							[
+								"3",
+								"柺杖"
+							],
+							[
+								"4",
+								"假幣"
+							],
+							[
+								"5",
+								"髮簪"
+							],
+							[
+								"6",
+								"響鈴"
+							],
+							[
+								"7",
+								"吊墜項鍊"
+							],
+							[
+								"8",
+								"紙牌"
+							],
+							[
+								"9",
+								"羽毛筆"
+							],
+							[
+								"10",
+								"勺子"
+							]
+						]
+					}
+				]
+			},
+			"ENG_name": "Trick Weapon"
 		},
 		{
 			"name": "惡毒 +1 武器",
@@ -7459,6 +8209,7 @@
 				"nameSuffix": " of Warning",
 				"source": "XDMG",
 				"page": 324,
+				"srd52": true,
 				"rarity": "uncommon",
 				"reqAttune": true,
 				"entries": [

@@ -13,7 +13,7 @@
 			if (!match || !this.FILES.has(match[1])) return data;
 			const file = match[1];
 			if (!this._cache.has(file)) {
-				const localeUrl = `${path.slice(0, path.lastIndexOf("data/"))}data/zh-TW/utility-pages/${file}?v=zh-tw-26`;
+				const localeUrl = `${path.slice(0, path.lastIndexOf("data/"))}data/zh-TW/utility-pages/${file}?v=zh-tw-27`;
 				this._cache.set(file, (async () => {
 					const response = await fetch(localeUrl);
 					if (!response.ok) throw new Error(`zh-TW utility data failed: ${file} (${response.status})`);
@@ -30,7 +30,9 @@
 			}
 			// Each caller gets a fresh object: deck reference expansion, table
 			// conversion, and generator state must not mutate the cached locale.
-			return this._merge(data, JSON.parse(JSON.stringify(await this._cache.get(file))));
+			const localized = JSON.parse(JSON.stringify(await this._cache.get(file)));
+			delete localized._meta;
+			return this._merge(data, localized);
 		}
 		static _merge (raw, localized) {
 			if (Array.isArray(localized)) return localized.map((value, i) => this._merge(raw?.[i], value));

@@ -1,9 +1,10 @@
 {
 	"_meta": {
 		"locale": "zh-TW",
-		"upstreamTag": "v2.33.3",
-		"translationSource": "https://shuaishuaidnd.cn/data/class",
-		"conversion": "OpenCC s2twp plus locked project terminology"
+		"upstreamTag": "v2.37.0",
+		"upstreamCommit": "8c026b807fac21862a309379a0c3228a0683198b",
+		"baselineTranslationTag": "v2.33.3",
+		"communityCandidateCommit": "5cc0bbe2c2b241a334e731af4448bdba2168e8bd"
 	},
 	"class": [
 		{
@@ -1053,6 +1054,9 @@
 			"className": "Fighter",
 			"classSource": "PHB",
 			"page": 28,
+			"reprintedAs": [
+				"Arcane Archer|Fighter|XPHB|AU"
+			],
 			"edition": "classic",
 			"additionalSpells": [
 				{
@@ -1107,6 +1111,9 @@
 			"source": "XGE",
 			"className": "Fighter",
 			"classSource": "XPHB",
+			"reprintedAs": [
+				"Arcane Archer|Fighter|XPHB|AU"
+			],
 			"_copy": {
 				"name": "Arcane Archer",
 				"source": "XGE",
@@ -1939,6 +1946,59 @@
 			"hasFluffImages": true,
 			"ENG_name": "Banneret",
 			"ENG_shortName": "Banneret"
+		},
+		{
+			"name": "魔射手",
+			"shortName": "魔射手",
+			"source": "AU",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"page": 9,
+			"edition": "one",
+			"spellcastingAbility": "int",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							"druidcraft|xphb#c"
+						]
+					}
+				},
+				{
+					"known": {
+						"3": [
+							"prestidigitation|xphb#c"
+						]
+					}
+				}
+			],
+			"optionalfeatureProgression": [
+				{
+					"name": "奧術射擊",
+					"featureType": [
+						"AS"
+					],
+					"progression": {
+						"3": 2,
+						"7": 3,
+						"10": 4,
+						"15": 5,
+						"18": 6
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Arcane Archer|Fighter|XPHB|Arcane Archer|AU|3|AU",
+				"Curving Shot|Fighter|XPHB|Arcane Archer|AU|7|AU",
+				"Magical Ammunition|Fighter|XPHB|Arcane Archer|AU|7|AU",
+				"Ever-Ready Shot|Fighter|XPHB|Arcane Archer|AU|10|AU",
+				"Indomitable Teleport|Fighter|XPHB|Arcane Archer|AU|15|AU",
+				"Masterful Shots|Fighter|XPHB|Arcane Archer|AU|18|AU"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Arcane Archer",
+			"ENG_shortName": "Arcane Archer"
 		}
 	],
 	"classFeature": [
@@ -4606,6 +4666,266 @@
 				"必須完成一次長休才能再次使用該特性。"
 			],
 			"ENG_name": "Strength before Death"
+		},
+		{
+			"name": "魔射手",
+			"source": "AU",
+			"page": 9,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 3,
+			"entries": [
+				"{@i 以附魔之矢，施魔法之要}",
+				"魔射手深研獨特的精靈箭術，將魔法融入箭擊，產生超自然效應。幾個世紀以來，其他種族也學會了這一箭技，並將其擴充套件到更多種類的遠端武器，同時也將箭技應用在戰鬥外的冒險之中。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Archer Lore|Fighter|XPHB|Arcane Archer|AU|3|AU"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Shot|Fighter|XPHB|Arcane Archer|AU|3|AU"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Shot Options|Fighter|XPHB|Arcane Archer|AU|3|AU"
+				}
+			],
+			"ENG_name": "Arcane Archer"
+		},
+		{
+			"name": "魔射手學識",
+			"source": "AU",
+			"page": 9,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你學習了魔法理論和自然的隱秘，賦予你以下增益。",
+				{
+					"type": "entries",
+					"name": "戲法",
+					"page": 9,
+					"entries": [
+						"你知曉戲法{@spell Druidcraft|XPHB|德魯伊伎倆}或{@spell Prestidigitation|XPHB|魔法伎倆}其一，智力是你施展該戲法的施法屬性。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "技能",
+					"page": 9,
+					"entries": [
+						"你獲得{@skill Arcana|XPHB|奧秘}和{@skill Nature|XPHB|自然}技能的熟練。若你已熟練於其中之一，你改為獲得一個你選擇的1級戰士其他可學技能的熟練（或在熟練於二者時獲得兩個1級戰士其他可學技能的熟練）。"
+					]
+				}
+			],
+			"ENG_name": "Arcane Archer Lore"
+		},
+		{
+			"name": "秘法射擊",
+			"source": "AU",
+			"page": 9,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你學會瞭如何用射術釋放特殊的魔法效應。",
+				"你自{@filter 奧術射擊選項|optionalfeatures|feature type=AS|source=AU}中習得兩種由你選擇的奧術射擊選項。當你的戰士等級到達7級、10級、15級和18級時，你均可習得一種新的奧術射擊選項，同時你也可以將你已知的選項替換為另一種。",
+				{
+					"type": "entries",
+					"name": "使用奧術射擊",
+					"page": 9,
+					"entries": [
+						"每回合一次，當你使用具有{@itemProperty AF|XDMG|彈藥}詞條的武器發動遠端攻擊時，你可以將一種奧術射擊選項賦予此次攻擊。除非某選項不涉及到攻擊檢定，否則你在命中一名生物並對其造成傷害時決定是否使用該選項。",
+						"你可以使用該特性的次數等於你的智力調整值（至少1次）。當你完成{@variantrule Short Rest|XPHB|短休}或{@variantrule Long Rest|XPHB|長休}時，重獲所有已消耗的使用次數。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "奧術射擊骰",
+					"page": 9,
+					"entries": [
+						"奧術射擊選項依賴你的奧術射擊骰，你的奧術射擊骰為{@dice d6}。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "豁免檢定",
+					"page": 9,
+					"entries": [
+						"若某個奧術射擊選項要求進行豁免，其DC等於8加你的智力調整值加你的{@variantrule Proficiency|XPHB|熟練}。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "隨級提升",
+					"page": 9,
+					"entries": [
+						"當你到達一定的戰士等級時，你的奧術射擊骰將會改變。10級變{@dice d8}，15級變{@dice d10}，18級變{@dice d12}。"
+					]
+				}
+			],
+			"ENG_name": "Arcane Shot"
+		},
+		{
+			"name": "秘法射擊選項",
+			"source": "AU",
+			"page": 9,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"奧術射擊特性讓你在特定等級為其選擇選項。這些選項如下所示，以首字母順序排列。",
+				{
+					"type": "options",
+					"count": 2,
+					"entries": [
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Banishing Shot|AU"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Beguiling Shot|AU"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Bursting Shot|AU"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Enfeebling Shot|AU"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Grasping Shot|AU"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Piercing Shot|AU"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Seeking Shot|AU"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Shadow Shot|AU"
+						}
+					]
+				}
+			],
+			"ENG_name": "Arcane Shot Options"
+		},
+		{
+			"name": "曲射",
+			"source": "AU",
+			"page": 9,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"你學會瞭如何將偏離的彈藥引向新的目標。若你使用具有{@itemProperty AF|XDMG|彈藥}詞條的武器進行遠端攻擊檢定時失手，你能以{@variantrule Bonus Action|XPHB|附贈動作}在攻擊失手後立即使該次射擊偏折向一名新的目標。這個新目標必須是一名位於武器射程內並且位於該次攻擊原目標60尺內的你可見的生物。對新目標進行一次攻擊檢定。"
+			],
+			"ENG_name": "Curving Shot"
+		},
+		{
+			"name": "注魔彈",
+			"source": "AU",
+			"page": 9,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"你學會了給你的彈藥注入魔法效應。你能以一個{@action Magic|XPHB|魔法}動作為一枚非魔法彈藥注入以下其中一種魔法效應，並將其射向你武器射程內一處你可見的固體表面。當該彈藥命中表面時，其魔法效應被啟用，且在效果持續期間，彈藥會附著在其命中的表面上；你可以以一個{@action Magic|XPHB|魔法}動作取下一枚附著的彈藥，提前結束該效應。當效應結束時，該彈藥將被摧毀。",
+				"此特性一經使用，直至完成{@variantrule Short Rest|XPHB|短休}或{@variantrule Long Rest|XPHB|長休}你都無法再次使用。你也可以消耗一次回氣使用次數（無需動作）重置此特性的使用權。",
+				{
+					"type": "entries",
+					"name": "暗幕彈",
+					"page": 9,
+					"entries": [
+						"魔法陰影充滿一個源自彈藥的15尺{@variantrule Emanation [Area of Effect]|XPHB|光環}，持續1分鐘。{@variantrule Emanation [Area of Effect]|XPHB|光環}內的非魔法火焰被熄滅，且{@variantrule Emanation [Area of Effect]|XPHB|光環}內的生物在進行感知（{@skill Perception|XPHB|感知}）檢定時承受-5減值，其{@variantrule Passive Perception|XPHB|被動察覺}也承受-5減值。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "解鎖彈",
+					"page": 9,
+					"entries": [
+						"源自彈藥的15尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內爆發出一陣魔法能量。彈藥還會發出一聲響亮的敲擊聲，其聲響最遠300尺內都能聽見。{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內任何被一把非魔法鎖具鎖住的物件其鎖具會被解開，被卡死的物件會被鬆開，被閂住的物件會被開啟。若此類物件被多種鎖具鎖住，則只有其中一把鎖會被開啟。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "蔓生彈",
+					"page": 10,
+					"entries": [
+						"從彈藥處長出一段120尺長的藤蔓，你和其他生物其後可以在藤蔓上攀爬，藤蔓將在10分鐘後枯萎。"
+					]
+				}
+			],
+			"ENG_name": "Magical Ammunition"
+		},
+		{
+			"name": "常備射擊",
+			"source": "AU",
+			"page": 10,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"當你投擲{@variantrule Initiative|XPHB|先攻}時，你恢復一次奧術射擊使用次數。"
+			],
+			"ENG_name": "Ever-Ready Shot"
+		},
+		{
+			"name": "不屈傳送",
+			"source": "AU",
+			"page": 10,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"你掌握的魔法讓你逃離險境。當你使用不屈特性且該次豁免檢定成功時，你能傳送至多60尺至一處你可見的未佔據空間。"
+			],
+			"ENG_name": "Indomitable Teleport"
+		},
+		{
+			"name": "宗師射術",
+			"source": "AU",
+			"page": 10,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcane Archer",
+			"subclassSource": "AU",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"你在射擊過程中始終保持著機敏。當一名你可見的生物對你進行攻擊檢定並失手時，你能以{@variantrule Reaction|XPHB|反應}向遠離攻擊者的方向移動至多等於你{@variantrule Speed|XPHB|速度}一半的距離，且不會因此引發{@action opportunity attack|XPHB|藉機攻擊}。其後作為該{@variantrule Reaction|XPHB|反應}的一部分，若攻擊者還處在你的武器射程範圍內，你可以對其進行一次遠端攻擊檢定。"
+			],
+			"ENG_name": "Masterful Shots"
 		},
 		{
 			"name": "旗將",

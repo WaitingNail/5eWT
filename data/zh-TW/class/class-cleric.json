@@ -1,9 +1,10 @@
 {
 	"_meta": {
 		"locale": "zh-TW",
-		"upstreamTag": "v2.33.3",
-		"translationSource": "https://shuaishuaidnd.cn/data/class",
-		"conversion": "OpenCC s2twp plus locked project terminology"
+		"upstreamTag": "v2.37.0",
+		"upstreamCommit": "8c026b807fac21862a309379a0c3228a0683198b",
+		"baselineTranslationTag": "v2.33.3",
+		"communityCandidateCommit": "5cc0bbe2c2b241a334e731af4448bdba2168e8bd"
 	},
 	"class": [
 		{
@@ -1722,6 +1723,9 @@
 			"className": "Cleric",
 			"classSource": "PHB",
 			"page": 125,
+			"reprintedAs": [
+				"Arcana|Cleric|XPHB|AU"
+			],
 			"edition": "classic",
 			"additionalSpells": [
 				{
@@ -1791,6 +1795,9 @@
 			"source": "SCAG",
 			"className": "Cleric",
 			"classSource": "XPHB",
+			"reprintedAs": [
+				"Arcana|Cleric|XPHB|AU"
+			],
 			"_copy": {
 				"name": "Arcana Domain",
 				"source": "SCAG",
@@ -2932,6 +2939,7 @@
 			"source": "RHW",
 			"className": "Cleric",
 			"classSource": "XPHB",
+			"page": 19,
 			"edition": "one",
 			"additionalSpells": [
 				{
@@ -2966,6 +2974,71 @@
 			"hasFluffImages": true,
 			"ENG_name": "Grave Domain",
 			"ENG_shortName": "Grave"
+		},
+		{
+			"name": "奧秘領域",
+			"shortName": "奧秘",
+			"source": "AU",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"page": 8,
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							{
+								"choose": "level=0|class=Wizard",
+								"count": 2
+							}
+						]
+					},
+					"prepared": {
+						"3": [
+							"detect magic|xphb",
+							"magic missile|xphb",
+							"magic weapon|xphb",
+							"nystul's magic aura|xphb"
+						],
+						"5": [
+							"counterspell|xphb",
+							"dispel magic|xphb"
+						],
+						"7": [
+							"arcane eye|xphb",
+							"leomund's secret chest|xphb"
+						],
+						"9": [
+							"bigby's hand|xphb",
+							"teleportation circle|xphb"
+						],
+						"17": [
+							{
+								"choose": "level=6|class=Wizard"
+							},
+							{
+								"choose": "level=7|class=Wizard"
+							},
+							{
+								"choose": "level=8|class=Wizard"
+							},
+							{
+								"choose": "level=9|class=Wizard"
+							}
+						]
+					},
+					"ability": "wis"
+				}
+			],
+			"subclassFeatures": [
+				"Arcana Domain|Cleric|XPHB|Arcana|AU|3|AU",
+				"Dispelling Recovery|Cleric|XPHB|Arcana|AU|6|AU",
+				"Magical Mastery|Cleric|XPHB|Arcana|AU|17|AU"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Arcana Domain",
+			"ENG_shortName": "Arcana"
 		}
 	],
 	"classFeature": [
@@ -3664,12 +3737,18 @@
 					"type": "entries",
 					"entries": [
 						{
-							"type": "refClassFeature",
-							"classFeature": "Divine Strike|Cleric|XPHB|7"
-						},
-						{
-							"type": "refClassFeature",
-							"classFeature": "Potent Spellcasting|Cleric|XPHB|7"
+							"type": "options",
+							"count": 1,
+							"entries": [
+								{
+									"type": "refClassFeature",
+									"classFeature": "Divine Strike|Cleric|XPHB|7"
+								},
+								{
+									"type": "refClassFeature",
+									"classFeature": "Potent Spellcasting|Cleric|XPHB|7"
+								}
+							]
 						}
 					]
 				}
@@ -7154,6 +7233,203 @@
 			"ENG_name": "Keeper of Souls"
 		},
 		{
+			"name": "奧秘領域",
+			"source": "AU",
+			"page": 8,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"entries": [
+				"{@i 增幅你的魔法之力}",
+				"魔法充盈於整個多元宇宙之中，既帶來了毀滅，也帶來了創生。奧秘領域的牧師將魔法知識視作一件需要他們分享的禮物，而非用於攫取私利的工具。",
+				"奧秘領域相關的神明對魔法的秘密與潛力有著深刻的理解。這些神明通常也與知識、秘密或力量有聯絡。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcana Domain Spells|Cleric|XPHB|Arcana|AU|3|AU"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Modify Magic|Cleric|XPHB|Arcana|AU|3|AU"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Student of Arcana|Cleric|XPHB|Arcana|AU|3|AU"
+				}
+			],
+			"ENG_name": "Arcana Domain"
+		},
+		{
+			"name": "奧秘領域法術",
+			"source": "AU",
+			"page": 8,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你與此神聖領域的連結使你始終準備著特定的法術。當你到達奧秘領域法術表中特定的牧師等級時，你就始終準備著表中對應的法術。",
+				{
+					"type": "table",
+					"caption": "奧秘領域法術",
+					"page": 8,
+					"colLabels": [
+						"牧師等級",
+						"準備法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Detect Magic|XPHB|偵測魔法}，{@spell Magic Missile|XPHB|魔法飛彈}，{@spell Magic Weapon|XPHB|魔化武器}，{@spell Nystul's Magic Aura|XPHB|涅斯圖魔法靈光}"
+						],
+						[
+							"5",
+							"{@spell Counterspell|XPHB|法術反制}，{@spell Dispel Magic|XPHB|解除魔法}"
+						],
+						[
+							"7",
+							"{@spell Arcane Eye|XPHB|秘法眼}, {@spell Leomund's Secret Chest|XPHB|李歐蒙秘藏箱}"
+						],
+						[
+							"9",
+							"{@spell Bigby's Hand|XPHB|畢格比之手}，{@spell Teleportation Circle|XPHB|傳送法陣}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Arcana Domain Spells"
+		},
+		{
+			"name": "調整魔法",
+			"source": "AU",
+			"page": 8,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你可以在施展法術時用引導神力改動它。當你施展一道法術時，你可以消耗你的一次引導神力次數並選擇如下方式中的一種，以修改那道法術（無需動作）：",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Fortifying Spell|Cleric|XPHB|Arcana|AU|3|AU"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tenacious Spell|Cleric|XPHB|Arcana|AU|3|AU"
+				}
+			],
+			"ENG_name": "Modify Magic"
+		},
+		{
+			"name": "奧秘學者",
+			"source": "AU",
+			"page": 8,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "魔法學識",
+					"page": 8,
+					"entries": [
+						"你獲得{@skill Arcana|XPHB|奧秘}技能或一項從牧師1級可用技能中選擇的技能的熟練。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "戲法",
+					"page": 8,
+					"entries": [
+						"你習得由你選擇的兩道{@filter 法師戲法|spells|level=0|class=Wizard}。每當你獲得一個牧師等級時，你都可以將這些戲法中的一道替換為另一道{@filter 法師戲法|spells|level=0|class=Wizard}。"
+					]
+				}
+			],
+			"ENG_name": "Student of Arcana"
+		},
+		{
+			"name": "鞏固法術",
+			"source": "AU",
+			"page": 8,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity",
+				"amount": 1
+			},
+			"entries": [
+				"此法術的其中一個目標獲得等於{@dice 2d8}加你的牧師等級的{@variantrule Temporary Hit Points|XPHB|臨時生命值}。"
+			],
+			"ENG_name": "Fortifying Spell"
+		},
+		{
+			"name": "穩固法術",
+			"source": "AU",
+			"page": 8,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity",
+				"amount": 1
+			},
+			"entries": [
+				"當你施展一道迫使生物進行豁免檢定的法術，且一個你可見的生物在那個豁免檢定上成功時，擲{@dice 1d6}，並從該目標對抗此法術效應的第一次豁免檢定中減去該骰值。"
+			],
+			"ENG_name": "Tenacious Spell"
+		},
+		{
+			"name": "驅法復原",
+			"source": "AU",
+			"page": 9,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"在你使用法術位施展了一道恢復生物{@variantrule Hit Points|XPHB|生命值}或終止生物身上狀態的法術時，作為該動作、{@variantrule Bonus Action|XPHB|附贈動作}或{@variantrule Reaction|XPHB|反應}的一部分，你可以立即無需消耗法術位地施展{@spell Dispel Magic|XPHB|解除魔法}。",
+				"此特性一經使用，直至完成{@variantrule Short Rest|XPHB|短休}或{@variantrule Long Rest|XPHB|長休}你都無法再次使用。你也可以消耗一次引導神力次數（無需動作）來重置它的使用權。"
+			],
+			"ENG_name": "Dispelling Recovery"
+		},
+		{
+			"name": "奧術精通",
+			"source": "AU",
+			"page": 9,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Arcana",
+			"subclassSource": "AU",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"你習得四道{@filter 法師法術|spells|level=6;7;8;9|class=Wizard}，分別為六、七、八以及九環各一道。此後，你始終準備著這些法術。每當你獲得一個牧師等級時，你都可以將這些法術中的一道替換為同環階的另一道{@filter 法師法術|spells|level=6;7;8;9|class=Wizard}。"
+			],
+			"ENG_name": "Magical Mastery"
+		},
+		{
 			"name": "引導神力:死亡之觸",
 			"source": "DMG",
 			"className": "Cleric",
@@ -7847,6 +8123,7 @@
 		{
 			"name": "凡命循環",
 			"source": "RHW",
+			"page": 19,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7877,6 +8154,7 @@
 		{
 			"name": "墳墓領域",
 			"source": "RHW",
+			"page": 19,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7904,6 +8182,7 @@
 		{
 			"name": "墳墓領域法術",
 			"source": "RHW",
+			"page": 19,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7947,6 +8226,7 @@
 		{
 			"name": "往墓之途",
 			"source": "RHW",
+			"page": 19,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7965,6 +8245,7 @@
 		{
 			"name": "死之門的哨衛",
 			"source": "RHW",
+			"page": 20,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7980,6 +8261,7 @@
 		{
 			"name": "司命神使",
 			"source": "RHW",
+			"page": 20,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Grave",
@@ -7992,7 +8274,7 @@
 					"type": "entries",
 					"name": "增強死靈術",
 					"entries": [
-						"當你施展一道以單一生物為目標的五環或更低的死靈學派法術，或者當你施展來自{@book 墳墓領域法術表格|RHW|1|Grave Domain Spells}中的法術時，你可以消耗一次引導神力的使用次數，在施法距離內指定第二個生物為目標。如果該法術需要有標明價值或被消耗的材料成分，你必須為每個目標提供材料成分。"
+						"當你施放一個5環或更低環階、屬於死靈學派、且以單一生物為目標的法術時，或者當你施放一個來自{@subclassFeature Grave Domain Spells|Cleric|XPHB|Grave|RHW|3|RHW|墳墓領域法術}的法術時，你可以消耗一次引導神力使用次數，以法術範圍內的第二個生物為目標。如果該法術需要昂貴或消耗性的材料成分，你必須為每個目標提供材料成分。"
 					],
 					"ENG_name": "Enhanced Necromancy"
 				},

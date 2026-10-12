@@ -120,5 +120,16 @@ assert.ok(
 	"monster sidecars must be applied before resolving _copy inheritance",
 );
 
+
+const auCanonical = readJson("data/bestiary/bestiary-au.json");
+const auLocalized = await I18n.pApplyEntities({prop: "monster", file: "bestiary-au.json", entities: auCanonical.monster, fnLoad: async () => readJson("data/zh-TW/bestiary/bestiary-au.json")});
+for (const monster of auLocalized.filter(it => it.hp?.special)) {
+	const raw = auCanonical.monster.find(it => it.name === monster.name);
+	assert.deepEqual(monster.hp, raw.hp, "variable HP mechanics must remain canonical");
+	assert.match(monster._displayHp.special, /\p{Script=Han}/u);
+	assert.doesNotMatch(monster._displayHp.special, /spell level|Warlock level|Brute only/u);
+}
+assert.match(rendererSource, /special: mon\._displayHp\?\.special \?\? mon\.hp\.special/u);
+
 console.log("Monster page integration tests: PASS");
 console.log("Localized list labels, stat metadata, spellcasting, actions, legendary text, and canonical rule values render correctly.");

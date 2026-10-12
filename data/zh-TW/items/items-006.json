@@ -1,14 +1,2168 @@
 {
 	"_meta": {
 		"locale": "zh-TW",
-		"upstreamTag": "v2.33.3",
-		"upstreamCommit": "e5f3e77b303a92df10487207857200245e71957c",
-		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
-		"translationSourceCommit": "46b15d04f548c23c526084deae078e3568500349",
-		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
-		"license": "CC BY-NC-SA 4.0"
+		"upstreamTag": "v2.37.0",
+		"upstreamCommit": "8c026b807fac21862a309379a0c3228a0683198b",
+		"baselineTranslationTag": "v2.33.3",
+		"communityCandidateCommit": "5cc0bbe2c2b241a334e731af4448bdba2168e8bd"
 	},
 	"item": [
+		{
+			"name": "光耀抗性戒指",
+			"source": "XDMG",
+			"page": 294,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "RG|XDMG",
+			"resist": [
+				"radiant"
+			],
+			"detail1": "黃玉",
+			"rarity": "rare",
+			"hasRefs": true,
+			"entries": [
+				"{#itemEntry 抗性戒指|XDMG}"
+			],
+			"ENG_name": "Ring of Radiant Resistance"
+		},
+		{
+			"name": "赤紅狂怒戒指",
+			"source": "CRCotN",
+			"page": 214,
+			"type": "RG|DMG",
+			"conditionImmune": [
+				"paralyzed",
+				"restrained"
+			],
+			"rarity": "very rare",
+			"reqAttune": true,
+			"modifySpeed": {
+				"equal": {
+					"swim": "walk"
+				}
+			},
+			"entries": [
+				"這枚戒指中有一條釕合金條紋。佩戴戒指時，你獲得以下好處：",
+				{
+					"type": "list",
+					"items": [
+						"你可以在水中呼吸。",
+						"你的游泳速度等同於你的步行速度。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "月蝕狂怒",
+					"entries": [
+						"作為一個附贈動作，你可以使用戒指獲得以下好處，持續時間為1分鐘，或者直到你處於{@condition incapacitated||失能}狀態：",
+						{
+							"type": "list",
+							"items": [
+								"你進行力量檢定和力量豁免時具有優勢。",
+								"當你命中攻擊時，你可以將熟練加值加到傷害骰上。",
+								"困難地形不會額外消耗你的移動力，並且你對{@condition paralyzed||麻痺}（麻痺）和{@condition restrained||束縛}（受限）狀態免疫。"
+							]
+						},
+						"直到你完成一次長休後，你才能再次使用這枚戒指的這個屬性。"
+					],
+					"ENG_name": "Ruidium Rage"
+				},
+				{
+					"type": "entries",
+					"name": "月蝕腐化",
+					"entries": [
+						"當你使用戒指的瑞狄姆狂怒屬性時，你必須進行一次{@dc 20}魅力豁免檢定。若檢定失敗，你將獲得1層{@condition exhaustion||力竭}。如果你尚未受到瑞狄姆腐化的影響，當此次檢定失敗時，你會被腐化。"
+					],
+					"ENG_name": "Ruidium Corruption"
+				},
+				{
+					"type": "entries",
+					"name": "如果月蝕礦被摧毀",
+					"entries": [
+						"如果阿波西昂被殺死或得到救贖，艾桑椎亞中的所有釕合金會立即被摧毀，紅怒之戒會變成一個{@item ring of free action||自由行動戒指}。"
+					],
+					"ENG_name": "If Ruidium Is Destroyed"
+				}
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Red Fury"
+		},
+		{
+			"name": "再生戒指",
+			"source": "DMG",
+			"page": 191,
+			"srd": true,
+			"referenceSources": [
+				"CoS",
+				"ToFW"
+			],
+			"reprintedAs": [
+				"Ring of Regeneration|XDMG"
+			],
+			"type": "RG|DMG",
+			"tier": "major",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"entries": [
+				"佩戴這枚戒指期間，只要你尚有至少1點生命值，你就能每10分鐘恢復{@dice 1d6}的生命值。即使你失去了一部分肢體，只要你能在{@dice 1d6 + 1}日內時刻保持至少有1點生命值，你失去的肢體也會重新長出並恢復原有的功能。"
+			],
+			"lootTables": [
+				"Magic Item Table H"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Regeneration"
+		},
+		{
+			"name": "再生戒指",
+			"source": "XDMG",
+			"page": 294,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "RG|XDMG",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"entries": [
+				"著裝此戒指期間，如果你至少擁有1{@variantrule Hit Points|XPHB|生命值}，則你每10分鐘恢復{@dice 1d6}{@variantrule Hit Points|XPHB|生命值}。如果你失去了一部分肢體，這枚戒指會使你失去的部位自行再生。只要你在{@dice 1d6 + 1}天的時間裡全程保有至少1{@variantrule Hit Points|XPHB|生命值}，該部位就會在這段時間後恢復原有的功能。"
+			],
+			"lootTables": [
+				"Arcana - Very Rare|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Regeneration"
+		},
+		{
+			"name": "流星戒指",
+			"source": "DMG",
+			"page": 192,
+			"srd": true,
+			"referenceSources": [
+				"CM",
+				"CoA",
+				"CRCotN",
+				"LoX",
+				"TftYP-AtG",
+				"VEoR",
+				"WBtW"
+			],
+			"reprintedAs": [
+				"Ring of Shooting Stars|XDMG"
+			],
+			"type": "RG|DMG",
+			"tier": "major",
+			"rarity": "very rare",
+			"reqAttune": "在夜晚的戶外",
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6}",
+			"charges": 6,
+			"entries": [
+				"佩戴這枚戒指期間，只要你處於在微光或黑暗環境下，你就可以隨意利用戒指施展 {@spell dancing lights||舞光術} 與 {@spell light||光亮術} 。利用戒指施展這些法術需要一個動作。",
+				"該戒指擁有6發充能用於以下其他屬性。戒指每天黎明時恢復{@dice 1d6}發已消耗的充能。",
+				{
+					"name": "妖火",
+					"type": "entries",
+					"entries": [
+						"你可以消耗1發充能作為一個動作，用戒指施放 {@spell faerie fire||妖火}。"
+					],
+					"ENG_name": "Faerie Fire"
+				},
+				{
+					"name": "球型閃電",
+					"type": "entries",
+					"entries": [
+						"你可以消耗2發充能以一個動作創造1~4個直徑3尺的閃電球。你創造的閃電球越多，單個閃電球的威力就越小。",
+						"每個球型閃電將出現在你周圍120尺內你能看見的未被佔據的空間內。它們將存在1分鐘，或在你對其的{@status concentration||專注於}（如同專注於法術）結束時提前消失。每個球型閃電都會散發出30尺半徑的微光光照。",
+						"以一個附贈動作，你可以讓所有閃電球各移動至多30尺距離，但這些閃電球不能以此離開你周圍120尺範圍。當某個除你以外的生物來到距離閃電球5尺內時，該閃電球將向該生物釋放閃電然後消失。該生物必須進行一次{@dc 15}的敏捷豁免。豁免失敗時，該生物將根據你創造的閃電球數量承受相應閃電傷害。（4個球 = {@damage 2d4}，3個球 = {@damage 2d6}，2個球 = {@damage 5d4}，1個球 = {@damage 4d12}）"
+					],
+					"ENG_name": "Ball Lightning"
+				},
+				{
+					"name": "流星",
+					"type": "entries",
+					"entries": [
+						"你可以用一個動作消耗1到3發充能。每消耗1發充能，你從戒指向60尺內一個你能看見的點發射一顆發光微粒。該點15尺立方範圍內的每個生物都會被火花籠罩，必須進行一次{@dc 15}的敏捷豁免，豁免失敗則受到{@damage 5d4}火焰傷害，豁免成功則只受一半傷害。"
+					],
+					"ENG_name": "Shooting Stars"
+				}
+			],
+			"light": [
+				{
+					"dim": 30
+				}
+			],
+			"attachedSpells": {
+				"will": [
+					"dancing lights",
+					"light"
+				],
+				"charges": {
+					"1": [
+						"faerie fire"
+					]
+				}
+			},
+			"lootTables": [
+				"Magic Item Table H"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Shooting Stars"
+		},
+		{
+			"name": "流星戒指",
+			"source": "XDMG",
+			"page": 294,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "RG|XDMG",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6}",
+			"charges": 6,
+			"entries": [
+				"你可以從戒指中施展{@spell Dancing Lights|XPHB|舞光術}或{@spell Light|XPHB|光亮術}。",
+				"這枚戒指具有6充能，並在每日黎明時重獲{@dice 1d6}已消耗的充能。你可以消耗充能以使用以下詞條。",
+				{
+					"type": "entries",
+					"name": "妖火",
+					"entries": [
+						"你可以消耗1充能以從戒指中施展{@spell Faerie Fire|XPHB|妖火} 。"
+					],
+					"ENG_name": "Faerie Fire"
+				},
+				{
+					"type": "entries",
+					"name": "球狀閃電",
+					"entries": [
+						"你可以消耗2充能，以一個{@action Magic|XPHB|魔法}動作創造至多四個3尺直徑的閃電球體。",
+						"每個球體都出現於120尺內你可見的未佔據空間中。只要你為它們維持{@status Concentration|XPHB|專注}，球體就能持續存在至多1分鐘。每個球體都會散發出半徑30尺的{@variantrule Dim Light|XPHB|微光光照}。",
+						"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以移動每個球體至多30尺，但球體和你的距離不得超過120尺。球體初次進入一個除你以外的，未處於{@variantrule Cover|XPHB|掩護}後的生物5尺內時，球體對那個生物放出閃電並消失。該生物進行一次{@dc 15}的敏捷豁免。豁免失敗時，生物受到基於你創造出的球體數量的閃電傷害，如下表所示。豁免成功時，生物受到的傷害減半。",
+						{
+							"type": "table",
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"colLabels": [
+								"球體數量",
+								"閃電傷害"
+							],
+							"rows": [
+								[
+									"1",
+									"{@damage 4d12}"
+								],
+								[
+									"2",
+									"{@damage 5d4}"
+								],
+								[
+									"3",
+									"{@damage 2d6}"
+								],
+								[
+									"4",
+									"{@damage 2d4}"
+								]
+							]
+						}
+					],
+					"ENG_name": "Lightning Spheres"
+				},
+				{
+					"type": "entries",
+					"name": "流星",
+					"entries": [
+						"以一個{@action Magic|XPHB|魔法}動作 ，你可以消耗1至3充能。每一發你消耗的充能都會變為一粒發光塵埃，從戒指處向著你60尺內的一點發射。以該點為源點，15尺{@variantrule Cube [Area of Effect]|XPHB|立方}內的所有生物將沐浴在火花之中，並進行一次{@dc 15}的敏捷豁免，失敗則受到{@damage 5d4}點光耀傷害，成功則傷害減半。"
+					],
+					"ENG_name": "Shooting Stars"
+				}
+			],
+			"light": [
+				{
+					"dim": 30
+				}
+			],
+			"attachedSpells": {
+				"will": [
+					"dancing lights|xphb",
+					"light|xphb"
+				],
+				"charges": {
+					"1": [
+						"faerie fire|xphb"
+					]
+				}
+			},
+			"lootTables": [
+				"Arcana - Very Rare|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Shooting Stars"
+		},
+		{
+			"name": "儲法戒指",
+			"source": "DMG",
+			"page": 192,
+			"srd": true,
+			"referenceSources": [
+				"CM",
+				"CoA",
+				"DSotDQ",
+				"TftYP-TFoF",
+				"TftYP-WPM"
+			],
+			"reprintedAs": [
+				"Ring of Spell Storing|XDMG"
+			],
+			"type": "RG|DMG",
+			"tier": "major",
+			"rarity": "rare",
+			"reqAttune": true,
+			"entries": [
+				"這枚戒指會儲存對其施展的法術，將它們儲存起來，直至同調的著裝者使用。這枚戒指同時可以儲存環階總和最多為5的法術。被發現時，戒指中已儲存了由DM選擇的共{@dice 1d6 - 1}環階的法術。",
+				"任何生物都可以在施展一個1環到5環法術時接觸戒指以將該法術儲存在戒指中。該法術不會立即生效，而是被儲存在戒指中。如果戒指無法儲存該法術，則它將被浪費而不產生任何效應。施展法術所使用的法術位環階決定該法術在戒指中佔用的空間。",
+				"佩戴這枚戒指期間，你可以施放其中儲存的任何法術。該法術使用原施法者的法術位環階、法術豁免DC、法術攻擊加值和施法屬性，但除這些之外，該法術仍視為由你施放。從戒指中施放的法術不再儲存於其中，釋放其原本佔用的空間。"
+			],
+			"lootTables": [
+				"Magic Item Table G"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Spell Storing"
+		},
+		{
+			"name": "儲法戒指",
+			"source": "XDMG",
+			"page": 295,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "RG|XDMG",
+			"rarity": "rare",
+			"reqAttune": true,
+			"entries": [
+				"這枚戒指會儲存對其施展的法術，將它們儲存起來，直至同調的著裝者使用。這枚戒指同時可以儲存環階總和最多為5的法術。被發現時，戒指中已儲存了由DM選擇的共{@dice 1d6 - 1}環階的法術。",
+				"任何生物都可以向戒指記憶體入一至五環的法術，這需要施法者在施法的同時觸碰該戒指。此時法術會被儲存進戒指，不產生任何其他效果。如果戒指無法承載這道法術，則法術會被消耗並不產生任何效果。施展法術時使用的法術位決定其佔用戒指中的多少空間。",
+				"著裝此戒指期間，你可以施展任何其中儲存的法術。這道法術使用原施法者的環階，法術豁免DC，法術攻擊加值與施法屬性，但其他方面將如同你施展了法術一般處理。戒指中的法術一經施展即消失，釋放它原本佔用的空間。"
+			],
+			"lootTables": [
+				"Arcana - Rare|XDMG",
+				"Relics - Rare|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Spell Storing"
+		},
+		{
+			"name": "法術反轉戒指",
+			"source": "DMG",
+			"page": 193,
+			"srd": true,
+			"referenceSources": [
+				"TftYP-WPM"
+			],
+			"reprintedAs": [
+				"Ring of Spell Turning|XDMG"
+			],
+			"type": "RG|DMG",
+			"tier": "major",
+			"rarity": "legendary",
+			"reqAttune": true,
+			"entries": [
+				"佩戴這枚戒指期間，你在對抗任何僅選取你為目標的法術（不包括你處於法術影響區域內的情況）時所進行的豁免具有優勢。此外，若你豁免骰出了20且該法術的環階為7環或更低，則該法術將不會對你產生任何效應，並轉為以原施法者為目標，使用原施法者的法術位環階、法術豁免DC、攻擊加值和施法屬性。"
+			],
+			"lootTables": [
+				"Magic Item Table I"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Spell Turning"
+		},
+		{
+			"name": "法術反轉戒指",
+			"source": "XDMG",
+			"page": 295,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "RG|XDMG",
+			"rarity": "legendary",
+			"reqAttune": true,
+			"entries": [
+				"著裝此戒指期間，你為對抗法術所進行的豁免具有{@variantrule Advantage|XPHB|優勢}。若你對抗不超過七環的法術進行的豁免檢定成功，該法術將不會對你產生任何效應；若該法術僅以你為目標且不會創造區域效應，你能夠以{@variantrule Reaction|XPHB|反應}將該法術朝其施法者反彈回去。原施法者必須進行一次豁免檢定對抗該法術，該豁免使用原施法者自己的法術豁免DC。"
+			],
+			"lootTables": [
+				"Arcana - Legendary|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Spell Turning"
+		},
+		{
+			"name": "善泳戒指",
+			"source": "DMG",
+			"page": 193,
+			"srd": true,
+			"referenceSources": [
+				"CM",
+				"CRCotN",
+				"GoS",
+				"PotA",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Ring of Swimming|XDMG"
+			],
+			"type": "RG|DMG",
+			"tier": "minor",
+			"rarity": "uncommon",
+			"modifySpeed": {
+				"static": {
+					"swim": 40
+				}
+			},
+			"entries": [
+				"佩戴這枚戒指期間，你獲得40尺游泳速度。"
+			],
+			"lootTables": [
+				"Magic Item Table B"
+			],
+			"ENG_name": "Ring of Swimming"
+		},
+		{
+			"name": "善泳戒指",
+			"source": "XDMG",
+			"page": 295,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "RG|XDMG",
+			"rarity": "uncommon",
+			"modifySpeed": {
+				"static": {
+					"swim": 40
+				}
+			},
+			"entries": [
+				"著裝此戒指期間，你獲得40尺{@variantrule Swim Speed|XPHB|游泳速度}。"
+			],
+			"classFeatures": [
+				"replicate magic item|artificer|efa|2|efa"
+			],
+			"lootTables": [
+				"Implements - Uncommon|XDMG"
+			],
+			"ENG_name": "Ring of Swimming"
+		},
+		{
+			"name": "心靈遙控戒指",
+			"source": "DMG",
+			"page": 193,
+			"srd": true,
+			"referenceSources": [
+				"CM",
+				"KftGV"
+			],
+			"reprintedAs": [
+				"Ring of Telekinesis|XDMG"
+			],
+			"type": "RG|DMG",
+			"tier": "major",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"entries": [
+				"佩戴這枚戒指期間，你可以隨意施放{@spell telekinesis||心靈遙控}法術，但只能以未被著裝或攜帶的物件為目標。"
+			],
+			"attachedSpells": {
+				"will": [
+					"telekinesis"
+				]
+			},
+			"lootTables": [
+				"Magic Item Table H"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Telekinesis"
+		},
+		{
+			"name": "心靈遙控戒指",
+			"source": "XDMG",
+			"page": 295,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "RG|XDMG",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"entries": [
+				"著裝此戒指期間，你可以從中施展{@spell Telekinesis|XPHB|心靈遙控}。"
+			],
+			"attachedSpells": {
+				"will": [
+					"telekinesis|xphb"
+				]
+			},
+			"lootTables": [
+				"Arcana - Very Rare|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Telekinesis"
+		},
+		{
+			"name": "時間救贖之戒",
+			"source": "EGW",
+			"page": 269,
+			"type": "RG|DMG",
+			"rarity": "rare",
+			"reqAttune": true,
+			"entries": [
+				"當你佩戴這枚灰色水晶戒指時死亡，你會消隱並重新出現在你離開空間5尺內的一個未佔據空間（或最近的未佔據空間）。你獲得等於{@dice 3d6} + 你的體質調整值的生命值。如果你的生命值上限低於你恢復的生命值數量，你的生命值上限提升到類似數值。如果你有任何等級的{@condition exhaustion||力竭}，你的{@condition exhaustion||力竭}等級減少1。戒指使用一次後，會化為灰塵並被摧毀。"
+			],
+			"ENG_name": "Ring of Temporal Salvation"
+		},
+		{
+			"name": "複製之戒",
+			"source": "CoA",
+			"page": 268,
+			"type": "RG|DMG",
+			"rarity": "legendary",
+			"reqAttune": true,
+			"entries": [
+				"你獲得了從盟友那裡引導能量以施放法術的能力，即使你通常不能這樣做。當你60尺範圍內的盟友施放了一個你通常不能施放的法術，並且該法術需要10金幣或更少的材料成分時，你可以使用反應來施放那個法術。以這種方式施放時，法術是使用你盟友的法術施放能力、法術豁免DC和法術攻擊加值（視需要而定）。你決定這個克隆法術的目標，如法術描述中指定的那樣，法術源自你。在你使用這個能力之後，你的盟友直到完成一次長休前不能再施放這個法術。"
+			],
+			"ENG_name": "Ring of the Copycat"
+		},
+		{
+			"name": "演說家之戒",
+			"source": "PaBTSO",
+			"page": 219,
+			"type": "RG|DMG",
+			"rarity": "uncommon",
+			"reqAttune": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6}",
+			"charges": 6,
+			"entries": [
+				"這枚戒指有6次充能。當你佩戴它時，你可以消耗其中1次充能，以便讓自己的聲音在1英里範圍內的所有生物都能清晰地聽到，無論是否有幹擾聲音，持續時間為1分鐘。魔法沉默、1尺厚的石頭、1英寸厚的普通金屬、一層薄鉛板或3尺厚的木頭可以阻擋這種投射。如果你在投射聲音時使用的是聽眾不理解的語言，你可以使生物理解你在說什麼。你必須能看到這些生物才能使它們理解。戒指每天黎明時分恢復{@dice 1d6}次消耗的充能。"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of the Orator"
+		},
+		{
+			"name": "公羊戒指",
+			"source": "DMG",
+			"page": 193,
+			"srd": true,
+			"referenceSources": [
+				"CM",
+				"CRCotN",
+				"IDRotF"
+			],
+			"reprintedAs": [
+				"Ring of the Ram|XDMG"
+			],
+			"type": "RG|DMG",
+			"tier": "major",
+			"rarity": "rare",
+			"reqAttune": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d3}",
+			"charges": 3,
+			"entries": [
+				"這枚戒指具有3發充能，每天黎明時分它會恢復{@dice 1d3}發已消耗的充能。佩戴這枚戒指期間，你可以用一個動作並消耗1~3發充能以用其向著你周圍60尺範圍內的可見生物發起一次遠端法術攻擊。戒指會製造出一個公羊頭的幻影，其攻擊加值為+7。命中時，每消耗1發充能，目標將受到{@damage 2d10}力場傷害並被向著遠離同調者的方向推離5尺。",
+				"作為另一種用法，你還可以用動作並消耗1~3發戒指充能，讓戒指去破壞周圍60尺內一件你能看到，且未被著裝或攜帶的物件。每消耗1發充能，戒指就在破壞物品所做的力量檢定中獲得+5的加值。"
+			],
+			"optionalfeatures": [
+				"replicate magic item|tce"
+			],
+			"lootTables": [
+				"Magic Item Table G"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of the Ram"
+		},
+		{
+			"name": "公羊戒指",
+			"source": "XDMG",
+			"page": 296,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "RG|XDMG",
+			"rarity": "rare",
+			"reqAttune": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d3}",
+			"charges": 3,
+			"entries": [
+				"這枚戒指具有3充能，且在每日黎明時重獲{@dice 1d3}已消耗的充能。著裝此戒指期間，你可以執行{@action Magic|XPHB|魔法}動作並消耗1至3充能，對60尺內的一個可見生物進行一次遠端法術攻擊。戒指創造出一個靈體公羊腦袋並進行具有+7加值的攻擊檢定。命中時，你每消耗1充能，目標就會受到{@damage 2d10}點力場傷害並且從你的方向被推離5尺。",
+				"作為另一種用法，你可以執行{@action Magic|XPHB|魔法}動作並消耗1至3充能，以嘗試破壞一件60尺內你可見且未被著裝或攜帶的非魔法性的物體。戒指將進行力量檢定，你每消耗1充能，此檢定便具有+5加值。"
+			],
+			"classFeatures": [
+				"replicate magic item|artificer|efa|2|efa"
+			],
+			"optionalfeatures": [
+				"replicate magic item|tce"
+			],
+			"lootTables": [
+				"Armaments - Rare|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of the Ram"
+		},
+		{
+			"name": "三願戒指",
+			"source": "DMG",
+			"page": 193,
+			"srd": true,
+			"referenceSources": [
+				"ToFW"
+			],
+			"reprintedAs": [
+				"Ring of Three Wishes|XDMG"
+			],
+			"type": "RG|DMG",
+			"tier": "major",
+			"rarity": "legendary",
+			"entries": [
+				"佩戴這枚戒指期間，你可以用一個動作消耗其3發充能中的1發來從戒指中施放{@spell wish||祈願術}法術。當你使用最後一發充能時，這枚戒指變為非魔法戒指。"
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"wish"
+					]
+				}
+			},
+			"lootTables": [
+				"Magic Item Table I"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Three Wishes"
+		},
+		{
+			"name": "三願戒指",
+			"source": "XDMG",
+			"page": 296,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "RG|XDMG",
+			"rarity": "legendary",
+			"entries": [
+				"這枚戒指具有3充能；著裝此戒指期間，你可以消耗1充能，從中施展{@spell Wish|XPHB|祈願術}。充能耗盡時，此戒指變為非魔法的。"
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"wish|xphb"
+					]
+				}
+			},
+			"lootTables": [
+				"Arcana - Legendary|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Three Wishes"
+		},
+		{
+			"name": "雷鳴抗性戒指",
+			"source": "DMG",
+			"page": 192,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Ring of Thunder Resistance|XDMG"
+			],
+			"type": "RG|DMG",
+			"resist": [
+				"thunder"
+			],
+			"detail1": "尖晶石",
+			"tier": "major",
+			"rarity": "rare",
+			"reqAttune": true,
+			"hasRefs": true,
+			"entries": [
+				"{#itemEntry 抗性戒指}"
+			],
+			"ENG_name": "Ring of Thunder Resistance"
+		},
+		{
+			"name": "雷鳴抗性戒指",
+			"source": "XDMG",
+			"page": 294,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "RG|XDMG",
+			"resist": [
+				"thunder"
+			],
+			"detail1": "尖晶石",
+			"rarity": "rare",
+			"hasRefs": true,
+			"entries": [
+				"{#itemEntry 抗性戒指|XDMG}"
+			],
+			"ENG_name": "Ring of Thunder Resistance"
+		},
+		{
+			"name": "變節之戒",
+			"source": "CoA",
+			"page": 269,
+			"type": "RG|DMG",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"recharge": "restLong",
+			"rechargeAmount": 3,
+			"charges": 3,
+			"entries": [
+				"這枚戒指有3次使用次數。佩戴這枚戒指時，當你受到傷害時，你可以使用反應消耗一次使用次數，並將該傷害轉移到60尺內的任意生物（可能包括盟友）。完成一次長休後，所有使用次數會恢復。"
+			],
+			"ENG_name": "Ring of Treachery"
+		},
+		{
+			"name": "真言戒指",
+			"source": "WDH",
+			"page": 192,
+			"type": "RG|DMG",
+			"rarity": "uncommon",
+			"reqAttune": true,
+			"entries": [
+				"佩戴這枚戒指時，你在感知（{@skill Insight||洞悉}）檢定上具有優勢，以判斷某人是否在對你說謊。"
+			],
+			"ENG_name": "Ring of Truth Telling"
+		},
+		{
+			"name": "溫暖戒指",
+			"source": "DMG",
+			"page": 193,
+			"srd": true,
+			"referenceSources": [
+				"CoS",
+				"IDRotF",
+				"JttRC",
+				"SLW",
+				"WDH"
+			],
+			"reprintedAs": [
+				"Ring of Warmth|XDMG"
+			],
+			"type": "RG|DMG",
+			"resist": [
+				"cold"
+			],
+			"tier": "major",
+			"rarity": "uncommon",
+			"reqAttune": true,
+			"entries": [
+				"佩戴這枚戒指期間，你具有寒冷傷害的抗性。此外，你自身及你著裝或攜帶的物件都不會受到至低-50華氏度的低溫影響。"
+			],
+			"lootTables": [
+				"Magic Item Table F"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Warmth"
+		},
+		{
+			"name": "溫暖戒指",
+			"source": "XDMG",
+			"page": 296,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "RG|XDMG",
+			"resist": [
+				"cold"
+			],
+			"rarity": "uncommon",
+			"reqAttune": true,
+			"entries": [
+				"著裝此戒指期間，當你受到寒冷傷害時，戒指將你所受的傷害減少{@dice 2d8}。",
+				"此外，著裝此戒指期間，你以及你著裝和攜帶的任何東西都不會被0華氏度及以下的溫度所傷害。"
+			],
+			"lootTables": [
+				"Implements - Uncommon|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Warmth"
+		},
+		{
+			"name": "命令水元素戒指",
+			"source": "DMG",
+			"page": 190,
+			"srd": true,
+			"reprintedAs": [
+				"Ring of Elemental Command (Water)|XDMG"
+			],
+			"type": "RG|DMG",
+			"tier": "major",
+			"rarity": "legendary",
+			"reqAttune": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d4 + 1}",
+			"charges": 5,
+			"entries": [
+				"佩戴這枚戒指時，你對來自水元素位面的元素生物發動攻擊檢定時具有優勢，且它們對你發動的攻擊檢定具有劣勢。另外，你還可以獲得基於水元素位面的屬性。",
+				"這枚戒指有5發充能。它每天黎明時恢復{@dice 1d4 + 1}發已消耗的充能。從戒指施放的法術其豁免DC為17。",
+				"你可以消耗戒指的2發充能對一隻{@creature water elemental||水元素}施放{@spell dominate monster||支配怪物}。另外，你可以在任何液體表面站立或移動，如同在堅實的地面上一般。你還可以理解並說出水族語。",
+				"與戒指同調期間，若你協助殺死了一隻{@creature water elemental||水元素}，則戒指將為你提供以下額外的屬性：",
+				{
+					"type": "list",
+					"items": [
+						"你可以在水下呼吸，並獲得等同於你步行速度的游泳速度。",
+						"你可以利用戒指施放以下法術，消耗必要的充能數：{@spell create or destroy water||造水術/枯水術}（1充能）、{@spell control water||操控水體}（3充能）、{@spell ice storm||冰風暴}（2充能）或{@spell wall of ice||冰牆術}（3充能）。"
+					]
+				}
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"create or destroy water"
+					],
+					"2": [
+						"dominate monster",
+						"ice storm"
+					],
+					"3": [
+						"control water",
+						"wall of ice"
+					]
+				}
+			},
+			"lootTables": [
+				"Magic Item Table I"
+			],
+			"ENG_name": "Ring of Water Elemental Command"
+		},
+		{
+			"name": "水上行走戒指",
+			"source": "DMG",
+			"page": 193,
+			"srd": true,
+			"referenceSources": [
+				"IMR",
+				"OotA",
+				"SLW"
+			],
+			"reprintedAs": [
+				"Ring of Water Walking|XDMG"
+			],
+			"type": "RG|DMG",
+			"tier": "major",
+			"rarity": "uncommon",
+			"entries": [
+				"佩戴這枚戒指期間，你可以在任何液體的表面上站立或移動，如同在堅實地面上一般。"
+			],
+			"optionalfeatures": [
+				"replicate magic item|tce"
+			],
+			"lootTables": [
+				"Magic Item Table F"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Water Walking"
+		},
+		{
+			"name": "水上行走戒指",
+			"source": "XDMG",
+			"page": 296,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "RG|XDMG",
+			"rarity": "uncommon",
+			"entries": [
+				"著裝此戒指期間，你可以從中施展{@spell Water Walk|XPHB|水上行走}，但目標只能為自身。"
+			],
+			"classFeatures": [
+				"replicate magic item|artificer|efa|2|efa"
+			],
+			"optionalfeatures": [
+				"replicate magic item|tce"
+			],
+			"attachedSpells": {
+				"will": [
+					"water walk|xphb"
+				]
+			},
+			"lootTables": [
+				"Relics - Uncommon|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Water Walking"
+		},
+		{
+			"name": "凜冬戒指",
+			"source": "ToA",
+			"page": 207,
+			"referenceSources": [
+				"SKT"
+			],
+			"type": "RG|DMG",
+			"immune": [
+				"cold"
+			],
+			"rarity": "artifact",
+			"reqAttune": true,
+			"sentient": true,
+			"weight": 1,
+			"recharge": "dawn",
+			"rechargeAmount": 12,
+			"charges": 12,
+			"entries": [
+				"{@creature Artus Cimber|ToA|阿圖斯·辛貝爾}擁有這一物品已經超過一個世紀了。冬之戒是一枚黃金戒指，會根據佩戴者的手指尺寸改變大小並緊密貼合。一層薄霜覆於戒指外層，正常的溫度無法將其融化。該戒指摸上去冰冷刺骨，並在剛開始佩戴時讓佩戴的手失去知覺，但同調完成後該冰冷就再也感覺不到。",
+				"冬之戒擁有智慧，會嘗試控制任何佩戴它的生物（見《城主指南》第七章中的\"智慧魔法物品\"一節）。如果它成功了，它會控制佩戴者對周圍的一切人與物造成嚴重傷害，並會試圖挑起敵人的怒火，無情地引導它的佩戴者走向毀滅。",
+				{
+					"type": "entries",
+					"name": "智慧",
+					"entries": [
+						"冬之戒是一枚混亂邪惡的智慧戒指，智力14，感知14，魅力17。這枚指環透過向攜帶者或佩戴者傳輸情感進行溝通，它擁有60尺的正常聽力及視力。這枚戒指渴求毀滅，喜歡不分場合向其他人施加傷害。"
+					],
+					"ENG_name": "Sentience"
+				},
+				{
+					"type": "entries",
+					"name": "迴避偵測",
+					"entries": [
+						"冬之戒無視一切試圖透過魔法定位它的嘗試。無論戒指本身還是其佩戴者都無法被預言法術定位，也無法透過魔法預言道具進行觀察。"
+					],
+					"ENG_name": "Nondetection"
+				},
+				{
+					"type": "entries",
+					"name": "時間凍結",
+					"entries": [
+						"只要你帶著戒指，你就不會自然老去。這一效應類似於假死狀態，戒指被移除並不會導致你避過的時間立刻回饋給你。該戒指並不能使佩戴者無視魔法或超自然的老化效果，比如{@creature ghost||幽魂}的恐懼面容。"
+					],
+					"ENG_name": "Frozen Time"
+				},
+				{
+					"type": "entries",
+					"name": "冷凍免疫",
+					"entries": [
+						"當完成同調並佩戴戒指時，你免疫寒冷傷害，也不會再因任何極度嚴寒而承受力竭狀態（見《城主指南》第五章）。"
+					],
+					"ENG_name": "Cold Immunity"
+				},
+				{
+					"type": "entries",
+					"name": "魔法",
+					"entries": [
+						"冬之戒擁有12發充能，並在每天黎明時恢復所有充能。戴著戒指時，你可以使用一定數量的充能發動如下特性：",
+						{
+							"type": "list",
+							"items": [
+								"你可以用一個動作花費一發充能，指定300尺內你可以看見的一點，降低以該點為中心、半徑120尺球形區域內的氣溫。這片區域內的氣溫會每分鐘下降20H，最低可以降至-30H。一旦氣溫降至32H以下，區域內的物件表面就會形成冰面和霜凍。這一效應永久保持，直至你使用戒指以一個動作結束該效應，結束後該區域的氣溫會每分鐘回升10H，直至正常。",
+								"你可以透過消耗一定數量的充能用戒指施放如下法術（法術豁免{@dc 17}）：{@spell Bigby's hand||畢格比之手}（2發充能，該巨手由冰霜構成，免疫寒冷傷害，使用金剛拳時造成鈍擊傷害而非力場傷害），{@spell cone of cold||寒冰錐}（2發充能），冰化術（3發充能，類似{@spell flesh to stone||石化術}效應，但會將目標變為具有石質密度和耐久度的冰塊），{@spell ice storm||冰風暴}（2發充能），{@spell Otiluke's freezing sphere||歐提路克冰封法球}（3發充能），{@spell sleet storm||雪雨暴}（1發充能），{@spell spike growth||荊棘叢生}（1發充能；棘刺由冰構成）或者{@spell wall of ice||冰牆術}（2發充能）。",
+								"你可以用一個動作花費一定數量的充能創造一個無生命的冰制物件（2發充能）或是具有生命的冰霜生物（4發充能）。該冰制物品不具有任何可以活動的部件，且必須能夠容納於邊長10尺的方格中，同時具有金屬或石頭的密度與耐久度（由你決定）。冰霜生物必須以CR 2或更低的野獸為模板。該冰霜生物具有原模板野獸的資料，但有如下變更：該生命的種類為構裝生物，具有火焰易傷，免疫寒冷和毒素傷害，並免疫下列狀態：{@condition charmed||魅惑}、{@condition exhaustion||力竭}、{@condition frightened||恐慌}、{@condition paralyzed||麻痺}、{@condition petrified||石化}及{@condition poisoned||中毒}。該冰霜生物只遵從創造者的指令。該冰制物件或冰霜生物會出現在你60尺內一處未佔據空間。它會在24小時後或生命值歸零時融化成一灘正常的水。在極度炎熱條件下，它會每分鐘失去5（{@dice 1d10}）點生命值。在必要情況下，用《城主指南》第八章的指引來決定無生命物件的生命值。"
+							]
+						}
+					],
+					"ENG_name": "Magic"
+				},
+				{
+					"type": "entries",
+					"name": "其他詞條",
+					"entries": [
+						"根據傳言，冬之戒具有一些只能由一個不會被戒指破壞其意志的邪惡存在才能發動的特性。霜巨人始終相信這枚戒指可以凍結整個世界，而一個侍奉卡林珊總督的{@creature djinni||氣巨靈}層宣揚這枚戒指可以用於召喚並控制白龍，也可以用於控制強大的冰之原初者ice primordial克瑞歐納克斯Cryonax。"
+					],
+					"ENG_name": "Other Properties"
+				},
+				{
+					"type": "entries",
+					"name": "摧毀戒指",
+					"entries": [
+						"這枚戒指近乎不可摧毀，即便最強烈的魔法高溫也能被它抵抗。如果它被戴在最強大的至高妖精，也就是夏之女王的手上，那麼這枚戒指將會融化並被永遠摧毀。"
+					],
+					"ENG_name": "Destroying the Ring"
+				}
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"sleet storm",
+						"spike growth"
+					],
+					"2": [
+						"bigby's hand",
+						"cone of cold",
+						"ice storm",
+						"wall of ice"
+					],
+					"3": [
+						"flesh to stone",
+						"otiluke's freezing sphere"
+					]
+				}
+			},
+			"hasFluffImages": true,
+			"ENG_name": "Ring of Winter"
+		},
+		{
+			"name": "X射線戒指",
+			"source": "DMG",
+			"page": 193,
+			"srd": true,
+			"referenceSources": [
+				"BGDIA",
+				"TftYP-WPM",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Ring of X-ray Vision|XDMG"
+			],
+			"type": "RG|DMG",
+			"tier": "major",
+			"rarity": "rare",
+			"reqAttune": true,
+			"entries": [
+				"佩戴這枚戒指期間，你可以用一個動作說出它的命令語。當你這樣做時，你可以看到實體物件內部或穿透它看到後方，持續1分鐘。此視覺的半徑為30尺。對你而言，該半徑內的實體物件呈現透明狀態且不會阻礙光線透過。此視覺可以穿透1尺厚的石頭、1寸厚的普通金屬、或至多3尺厚的木頭或泥土。更厚的物質會阻擋此視覺，薄鉛板也是如此。",
+				"若你想在完成一次長休前再次啟動這枚戒指，你就必須成功透過一次{@dc 15}的體質豁免才能這麼做，且若你豁免失敗，你將提升一級{@condition exhaustion||力竭}。"
+			],
+			"lootTables": [
+				"Magic Item Table G"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of X-ray Vision"
+		},
+		{
+			"name": "X射線戒指",
+			"source": "XDMG",
+			"page": 296,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "RG|XDMG",
+			"rarity": "rare",
+			"reqAttune": true,
+			"entries": [
+				"著裝此戒指期間，你可以執行{@action Magic|XPHB|魔法}動作以獲得範圍30尺的X射線視覺，持續1分鐘。對你來說，半徑內的固態物件變為透明，並且不會阻礙光線透過。這種視覺可以穿透1尺厚的石頭，1寸厚的常見金屬或最多3尺厚的木頭或泥土。更厚的物質或一張薄鉛片會阻擋這種視覺。",
+				"每當你在完成一次{@variantrule Long Rest|XPHB|長休}前再次使用這枚戒指時，你必須成功透過一次{@dc 15}的體質豁免，否則獲得1級{@condition Exhaustion|XPHB|力竭}。"
+			],
+			"lootTables": [
+				"Arcana - Rare|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Ring of X-ray Vision"
+		},
+		{
+			"name": "勁敵硬幣",
+			"source": "XDMG",
+			"page": 296,
+			"rarity": "common",
+			"wondrous": true,
+			"recharge": "dawn",
+			"rechargeAmount": 1,
+			"charges": 1,
+			"entries": [
+				"這枚金幣的兩面均飾有一個生物的浮雕。這兩個被描繪的生物必須為彼此知名的對手或敵人。例如，一枚勁敵硬幣的一面可能是{@book 伊格薇爾伏|XDMG|8|Iggwilv}，而另一面是{@book 魔鄧肯|XDMG|8|Mordenkainen}；或者一面是{@book 溫戈爾|XDMG|8|Venger}，另一面是{@book 提亞馬特|XDMG|8|Tiamat}。其中一個人物在硬幣的正面，另一個在反面。",
+				"這枚硬幣具有1充能，並在每日黎明時重獲已消耗的充能。你可以使用一個{@action Magic|XPHB|魔法}動作拋擲這枚硬幣，並消耗其充能。擲一枚任意骰子來確定硬幣是正面朝上（若結果為偶數）還是反面朝上（若結果為奇數）。此結果決定了硬幣產生的效應：",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "正面",
+							"entries": [
+								"以位於你60尺內一個你可見的生物為目標。目標進行一次{@dc 13}的感知豁免：如果豁免失敗，目標會受到{@damage 2d4}心靈傷害，並在其下一回合結束前進行的下一次攻擊檢定中具有{@variantrule Disadvantage|XPHB|劣勢}；豁免成功則目標僅受半傷。"
+							],
+							"ENG_name": "Heads"
+						},
+						{
+							"type": "item",
+							"name": "背面",
+							"entries": [
+								"你受到{@damage 1d4}心靈傷害。"
+							],
+							"ENG_name": "Tails"
+						}
+					]
+				}
+			],
+			"lootTables": [
+				"Arcana - Common|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Rival Coin"
+		},
+		{
+			"name": "法袍",
+			"source": "XPHB",
+			"page": 228,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 4,
+			"value": 100,
+			"entries": [
+				"長袍通常具有特別的職業或儀式意義。有些活動和場合僅允許穿著帶有特定顏色或符號的長袍的人參與。"
+			],
+			"ENG_name": "Robe"
+		},
+		{
+			"name": "百眼法袍",
+			"source": "DMG",
+			"page": 193,
+			"srd": true,
+			"referenceSources": [
+				"CM",
+				"CoA",
+				"OotA",
+				"RtG",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Robe of Eyes|XDMG"
+			],
+			"tier": "major",
+			"rarity": "rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"entries": [
+				"這件長袍上繪滿了眼睛的圖案。著裝這件長袍期間，你獲得以下增益：",
+				{
+					"type": "list",
+					"items": [
+						"這件斗篷讓你可以看到所有的方向，並且你在依賴視覺進行的感知（{@skill Perception||感知}）檢定具有優勢。",
+						"你獲得120尺{@sense darkvision||黑暗視覺}。",
+						"在120尺的範圍內，你可以看到任何{@condition invisible||隱形}的生物與物件，以及看到以太位面的事物。"
+					]
+				},
+				"長袍上的眼睛圖案無法閉合或是轉移視線。即使你閉上你自己的眼睛或移開視線，穿著此法袍期間你依然會被視為並未閉上眼睛或移開視線。",
+				"對法袍施展{@spell light||光亮術}或在你周圍5尺內施展{@spell daylight||晝明術}將使你陷入{@condition blinded||目盲}狀態1分鐘。在你的每回合結束時，你可以進行一次體質豁免（對{@spell light||光亮術}時DC為{@dc 11}，對{@spell daylight||晝明術}時DC為{@dc 15}），成功則終止你身上的目盲狀態。"
+			],
+			"lootTables": [
+				"Magic Item Table G"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Robe of Eyes"
+		},
+		{
+			"name": "百眼法袍",
+			"source": "XDMG",
+			"page": 297,
+			"srd52": true,
+			"basicRules2024": true,
+			"rarity": "rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"entries": [
+				"這件長袍上繪滿了眼睛的圖案。著裝這件長袍期間，你獲得以下增益：",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "全域視野",
+							"entries": [
+								"你在依賴視覺的感知（{@skill Perception|XPHB|感知}）檢定中具有{@variantrule Advantage|XPHB|優勢}。"
+							],
+							"ENG_name": "All-Around Vision"
+						},
+						{
+							"type": "item",
+							"name": "特殊感官",
+							"entries": [
+								"你具有120尺的{@sense Darkvision|XPHB|黑暗視覺}和{@sense Truesight|XPHB|真實視覺}。"
+							],
+							"ENG_name": "Special Senses"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "缺點",
+					"entries": [
+						"對法袍施展{@spell Light|XPHB|光亮術}或在其周圍5尺內施展{@spell Daylight|XPHB|晝明術}將使你陷入{@condition Blinded|XPHB|目盲}，持續1分鐘。在你的每個回合結束時，你可以進行一次體質豁免（對光亮術時{@dc 11}，對晝明術時{@dc 15}），成功則終止你身上的該效應。"
+					],
+					"ENG_name": "Drawbacks"
+				}
+			],
+			"lootTables": [
+				"Arcana - Rare|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Robe of Eyes"
+		},
+		{
+			"name": "虹光法袍",
+			"source": "DMG",
+			"page": 194,
+			"srd": true,
+			"referenceSources": [
+				"CM",
+				"LRDT",
+				"ToA"
+			],
+			"reprintedAs": [
+				"Robe of Scintillating Colors|XDMG"
+			],
+			"tier": "major",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d3}",
+			"charges": 3,
+			"entries": [
+				"這件長袍有3發充能，並在每天黎明時恢復{@dice 1d3}發已消耗的充能。著裝這件長袍期間，你可以用一個動作並消耗1發充能，讓長袍顯現不斷變幻的炫目色彩直到你的下回合結束。在此期間，長袍提供30尺的明亮光照和額外30尺的微光光照。能看到你的生物對你發動的攻擊檢定具有劣勢。另外，在長袍效應啟用時，任何處於明亮光照區域內且能看到你的生物必須成功透過一次{@dc 15}的感知豁免否則陷入{@condition stunned||震懾}狀態直到效應結束。"
+			],
+			"light": [
+				{
+					"bright": 30,
+					"dim": 60
+				}
+			],
+			"lootTables": [
+				"Magic Item Table H"
+			],
+			"ENG_name": "Robe of Scintillating Colors"
+		},
+		{
+			"name": "虹光法袍",
+			"source": "XDMG",
+			"page": 297,
+			"srd52": true,
+			"basicRules2024": true,
+			"rarity": "very rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d3}",
+			"charges": 3,
+			"entries": [
+				"這件長袍具有3充能，並每日黎明時重獲{@dice 1d3}已消耗的充能。著裝這件長袍期間，你可以使用一個{@action Magic|XPHB|魔法}動作並消耗1充能，讓長袍不斷變幻出各種耀眼的色彩圖案，持續至你的下個回合結束。在此期間，長袍提供30尺{@variantrule Bright Light|XPHB|明亮光照}和額外30尺{@variantrule Dim Light|XPHB|微光光照}，能看到你的生物對你發動的攻擊檢定具有{@variantrule Disadvantage|XPHB|劣勢}。此外，長袍效應啟用期間，任何處於長袍產生的{@variantrule Bright Light|XPHB|明亮光照}區域內且可以看到你的生物必須進行一次{@dc 15}的感知豁免，豁免失敗則陷入{@condition Stunned|XPHB|震懾}狀態，直到長袍的效應終止。"
+			],
+			"light": [
+				{
+					"bright": 30,
+					"dim": 60
+				}
+			],
+			"lootTables": [
+				"Arcana - Very Rare|XDMG"
+			],
+			"ENG_name": "Robe of Scintillating Colors"
+		},
+		{
+			"name": "蛇袍",
+			"source": "SKT",
+			"page": 236,
+			"rarity": "uncommon",
+			"reqAttune": true,
+			"wondrous": true,
+			"entries": [
+				"蛇袍是一種時髦的絲綢服裝，在富有的貴族和已經隱退的刺客中很流行。長袍上裝飾著{@dice 1d4 + 3}個風格化的蛇紋，顏色鮮豔。",
+				"在你的回合中，以一個附贈動作，你可以把長袍上的一條蛇變成一條{@creature giant poisonous snake||巨毒蛇}。蛇立刻從長袍上落下，滑至你身邊一片未佔據空間，並依照你的先攻數值行動。蛇能分辨出友好的生物和敵對的生物，並攻擊後者。蛇會在1小時後，或當蛇的生命值降至0時，或當你遣散它（無需花費任何動作）時伴隨著一股無害的煙霧消失。一旦被取下，蛇就不能再回到長袍上。當袍子上所有的蛇都被取下時，該長袍變成一件沒有魔法的衣服。"
+			],
+			"ENG_name": "Robe of Serpents"
+		},
+		{
+			"name": "星辰法袍",
+			"source": "DMG",
+			"page": 194,
+			"srd": true,
+			"referenceSources": [
+				"CoA",
+				"VEoR"
+			],
+			"reprintedAs": [
+				"Robe of Stars|XDMG"
+			],
+			"tier": "major",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"bonusSavingThrow": "+1",
+			"rechargeAmount": "{@dice 1d6}",
+			"charges": 6,
+			"entries": [
+				"這件黑色或深藍色的長袍上點綴著白色或銀色的星星。著裝這件長袍時，你的豁免具有+1加值。",
+				"長袍的前襟附近有六枚較大的星。著裝這件長袍時，你可以用一個動作取下其中一顆並以之施放{@spell magic missile||魔法飛彈}作為5環法術。每日黃昏時分，{@dice 1d6}顆已消耗的星將重新出現在法袍上。",
+				"著裝這件長袍時，你可以用一個動作使你和你身上著裝或攜帶的物件一起進入星界。之後，你可以再用一個動作回到你原本所在的位面，此時你出現在之前佔據的空間。如果該空間已被佔據，則你出現在最近的未佔據空間。"
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"magic missile#5"
+					]
+				}
+			},
+			"lootTables": [
+				"Magic Item Table H"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Robe of Stars"
+		},
+		{
+			"name": "星辰法袍",
+			"source": "XDMG",
+			"page": 297,
+			"srd52": true,
+			"basicRules2024": true,
+			"rarity": "very rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"bonusSavingThrow": "+1",
+			"rechargeAmount": "{@dice 1d6}",
+			"charges": 6,
+			"entries": [
+				"這件黑色或深藍色的長袍上點綴著白色或銀色的星星。著裝這件長袍期間，你的豁免具有+1加值。",
+				"法袍的前襟附近有六枚較大的星星。著裝這件長袍期間，你可以使用一個{@action Magic|XPHB|魔法}動作消耗其中一顆星星，以此施展五環版本的{@spell Magic Missile|XPHB|魔法飛彈}。每日黃昏時分，{@dice 1d6}顆被消耗的星星將重新出現在法袍上。",
+				"著裝這件長袍期間，你可以用一個{@action Magic|XPHB|魔法}動作使你和你著裝或攜帶的物件一起進入星界，直至你再次使用一個{@action Magic|XPHB|魔法}動作回到你原本所在的位面。此時你出現在自己之前佔據的空間中，如果該空間已被佔據，則你出現在最近的未佔據空間。"
+			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"magic missile|xphb#5"
+					]
+				}
+			},
+			"lootTables": [
+				"Arcana - Very Rare|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Robe of Stars"
+		},
+		{
+			"name": "盛夏法袍",
+			"source": "TftYP",
+			"page": 229,
+			"referenceSources": [
+				"TftYP-AtG",
+				"TftYP-DiT",
+				"TftYP-TFoF",
+				"TftYP-THSoT",
+				"TftYP-ToH",
+				"TftYP-TSC",
+				"TftYP-WPM"
+			],
+			"resist": [
+				"cold"
+			],
+			"rarity": "rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"weight": 1,
+			"entries": [
+				"這件優雅的服裝由紅色、橙色和金色的細布製成。當你穿著這件長袍時，你對寒冷傷害有抗性。此外，你會感到舒適，就像天氣是溫暖宜人的日子一樣，所以你不會受到天氣極端溫度的不良影響。"
+			],
+			"ENG_name": "Robe of Summer"
+		},
+		{
+			"name": "賽爾奧術法袍",
+			"source": "AUD",
+			"page": 119,
+			"rarity": "very rare",
+			"reqAttune": "由術士、魔契師或法師",
+			"reqAttuneTags": [
+				{
+					"class": "sorcerer"
+				},
+				{
+					"class": "warlock"
+				},
+				{
+					"class": "wizard"
+				}
+			],
+			"wondrous": true,
+			"bonusSpellAttack": "+1",
+			"bonusSpellSaveDc": "+1",
+			"focus": [
+				"術士",
+				"魔契師",
+				"法師"
+			],
+			"entries": [
+				"神秘的符號裝飾著這件深紅色法袍。穿著該法袍期間，你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "戰鬥法師",
+					"entries": [
+						"你的法術豁免DC和法術攻擊加值各增加1。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "強化魔法",
+					"entries": [
+						"當你為法術擲傷害時，你可以將傷害骰上的每個1視為2。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "施法法器",
+					"entries": [
+						"你可以將該法袍作為施展你法術的{@variantrule Spellcasting Focus|XPHB|施法法器}。"
+					]
+				}
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Robe of Thayan Arcana"
+		},
+		{
+			"name": "大法師法袍",
+			"source": "DMG",
+			"page": 194,
+			"srd": true,
+			"referenceSources": [
+				"WBtW"
+			],
+			"reprintedAs": [
+				"Robe of the Archmagi|XDMG"
+			],
+			"tier": "major",
+			"rarity": "legendary",
+			"reqAttune": "由術士、魔契師或法師",
+			"reqAttuneTags": [
+				{
+					"class": "sorcerer"
+				},
+				{
+					"class": "warlock"
+				},
+				{
+					"class": "wizard"
+				}
+			],
+			"wondrous": true,
+			"bonusSpellAttack": "+2",
+			"bonusSpellSaveDc": "+2",
+			"entries": [
+				"這件典雅的長袍由白色、灰色或黑色的精製布料製成，並飾有銀色的符文。法袍的顏色與它被創造時所對應的陣營一致。白色法袍為善良陣營而制，灰色為中立陣營，黑色為邪惡陣營。你無法與和你陣營不符的大法師法袍同調。",
+				"著裝這件長袍時，你獲得下列增益：",
+				{
+					"type": "list",
+					"items": [
+						"不著裝護甲時，你的基礎護甲等級為15+你的敏捷調整值。",
+						"你對抗法術和其他魔法效果時作的豁免檢定具有優勢。",
+						"你的法術豁免DC和法術攻擊加值均提升2。"
+					]
+				}
+			],
+			"lootTables": [
+				"Magic Item Table I"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Robe of the Archmagi"
+		},
+		{
+			"name": "大法師法袍",
+			"source": "XDMG",
+			"page": 298,
+			"srd52": true,
+			"basicRules2024": true,
+			"rarity": "legendary",
+			"reqAttune": "由術士、魔契師或法師",
+			"reqAttuneTags": [
+				{
+					"class": "sorcerer"
+				},
+				{
+					"class": "warlock"
+				},
+				{
+					"class": "wizard"
+				}
+			],
+			"wondrous": true,
+			"bonusSpellAttack": "+2",
+			"bonusSpellSaveDc": "+2",
+			"entries": [
+				"這件典雅的長袍由精美的布料製成，並以符文裝飾。",
+				"著裝此長袍時，你獲得下列增益：",
+				{
+					"type": "entries",
+					"name": "護甲",
+					"entries": [
+						"若你未著裝護甲，你的基礎{@variantrule Armor Class|XPHB|護甲等級}為15+你的敏捷調整值。"
+					],
+					"ENG_name": "Armor"
+				},
+				{
+					"type": "entries",
+					"name": "魔法抗性",
+					"entries": [
+						"你對抗法術和其他魔法效應時進行的豁免檢定具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Magic Resistance"
+				},
+				{
+					"type": "entries",
+					"name": "戰法師",
+					"entries": [
+						"你的法術豁免DC和法術攻擊加值均提升2。"
+					],
+					"ENG_name": "War Mage"
+				}
+			],
+			"lootTables": [
+				"Arcana - Legendary|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Robe of the Archmagi"
+		},
+		{
+			"name": "雜貨法袍",
+			"source": "DMG",
+			"page": 195,
+			"srd": true,
+			"referenceSources": [
+				"CoS",
+				"LoX",
+				"SKT"
+			],
+			"reprintedAs": [
+				"Robe of Useful Items|XDMG"
+			],
+			"tier": "minor",
+			"rarity": "uncommon",
+			"wondrous": true,
+			"entries": [
+				"這件長袍上打著各種顏色和形狀的補丁。穿著這件長袍期間，你可以用一個動作撕下一塊補丁，令補丁變成它象徵的物件或生物。當最後一塊補丁被移除後，長袍將變為一件普通的衣物。",
+				"雜貨法袍有著如下補丁各兩個：",
+				{
+					"type": "list",
+					"items": [
+						"匕首",
+						"牛眼提燈（裝滿燃料且點燃）",
+						"鋼面鏡",
+						"10尺長杆",
+						"麻繩（長50尺，盤繞狀態）",
+						"麻袋"
+					]
+				},
+				"另外，雜貨法袍還有{@dice 4d4}個其他補丁。由DM選擇補丁對應的物品，或由DM隨機決定。",
+				{
+					"type": "table",
+					"colLabels": [
+						"{@dice d100}",
+						"補丁"
+					],
+					"colStyles": [
+						"col-1 text-center",
+						"col-11"
+					],
+					"rows": [
+						[
+							"01-08",
+							"裝有100 gp的袋子"
+						],
+						[
+							"09-15",
+							"價值500GP的銀櫃（高1尺，寬、深各6寸）"
+						],
+						[
+							"16-22",
+							"鐵門（寬最多10尺、高最大10尺，且你選擇的一面裝有門閂），你可將其安置在一處你觸及內的開口處，它將自動改變形狀貼合開口並設定鉸鏈。"
+						],
+						[
+							"23-30",
+							"10枚寶石，每枚價值100GP"
+						],
+						[
+							"31-44",
+							"木梯（24尺長）"
+						],
+						[
+							"45-51",
+							"一隻帶鞍囊的{@creature riding horse||乘用馬}"
+						],
+						[
+							"52-59",
+							"陷坑（每邊10尺的立方），你可以將其佈置在你周圍10尺內的地面上"
+						],
+						[
+							"60-68",
+							"4 {@item potion of healing||治療藥水}"
+						],
+						[
+							"69-75",
+							"{@item Rowboat||划艇}（12尺長）"
+						],
+						[
+							"76-83",
+							"包含一個1環至3環法術的法術卷軸"
+						],
+						[
+							"84-90",
+							"2 {@creature mastiff||獒犬}"
+						],
+						[
+							"91-96",
+							"窗戶（2尺×4尺，最多2尺深），你可將其佈置在一處你能觸及的垂直表面上。"
+						],
+						[
+							"97-00",
+							"{@item Portable ram|phb|行動式攻城錘}"
+						]
+					]
+				}
+			],
+			"lootTables": [
+				"Magic Item Table B"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Robe of Useful Items"
+		},
+		{
+			"name": "雜貨法袍",
+			"source": "XDMG",
+			"page": 298,
+			"srd52": true,
+			"basicRules2024": true,
+			"rarity": "uncommon",
+			"wondrous": true,
+			"entries": [
+				"這件長袍上打著各種顏色和形狀的補丁。著裝這件長袍期間，你可以使用一個{@action Magic|XPHB|魔法}動作拆下其中一塊補丁，使其變成它所代表的物件或生物。當長袍上的所有補丁都被拆下後，它將變為一件平凡的衣物。",
+				"雜貨法袍有著如下補丁各兩個：",
+				{
+					"type": "list",
+					"items": [
+						"{@item Bullseye Lantern|XPHB|牛眼提燈}（裝滿燃料且點燃）",
+						"{@item Dagger|XPHB|匕首}",
+						"{@item Mirror|XPHB|鏡子}",
+						"{@item Pole|XPHB|長杆}",
+						"{@item Rope|XPHB|繩索}（捲起）",
+						"{@item Sack|XPHB|麻袋}"
+					]
+				},
+				"此外，雜貨法袍還有{@dice 4d4}個其他補丁。由DM選擇補丁種類或透過在下表中擲骰以隨機決定補丁種類。",
+				{
+					"type": "table",
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"colLabels": [
+						"1d100",
+						"補丁"
+					],
+					"rows": [
+						[
+							"01-08",
+							"裝有100 gp的袋子"
+						],
+						[
+							"09-15",
+							"價值500GP的銀櫃（高1尺，寬、深各6寸）"
+						],
+						[
+							"16-22",
+							"鐵門（寬最多10尺、高最大10尺，且你選擇的一面裝有門閂），你可將其安置在一處你觸及內的開口處，它將自動改變形狀貼合開口並設定鉸鏈。"
+						],
+						[
+							"23-30",
+							"10枚寶石，每枚價值100GP"
+						],
+						[
+							"31-44",
+							"木梯（24尺長）"
+						],
+						[
+							"45-51",
+							"一匹{@creature Riding Horse|XMM|乘用馬}，配有一個乘坐{@item Riding Saddle|XPHB|乘用鞍座}"
+						],
+						[
+							"52-59",
+							"露天陷坑（10尺{@variantrule Cube [Area of Effect]|XPHB|立方}），你可將其佈置在你周邊10尺範圍內的地面上"
+						],
+						[
+							"60-68",
+							"4 {@item Potion of Healing|XDMG|治療藥水}"
+						],
+						[
+							"69-75",
+							"{@item Rowboat|XPHB|划艇}（12尺長）"
+						],
+						[
+							"76-83",
+							"記載有一道一環、二環或三環法術（由你選擇）的{@item Spell Scroll|XDMG|法術卷軸}"
+						],
+						[
+							"84-90",
+							"2 {@creature Mastiff|XMM|獒犬}"
+						],
+						[
+							"91-96",
+							"窗戶（2尺×4尺，最多2尺深），你可將其佈置在一處你能觸及的垂直表面上。"
+						],
+						[
+							"97-00",
+							"{@item Portable Ram|XPHB|行動式攻城錘}"
+						]
+					]
+				}
+			],
+			"lootTables": [
+				"Arcana - Uncommon|XDMG",
+				"Implements - Uncommon|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Robe of Useful Items"
+		},
+		{
+			"name": "長袍",
+			"source": "PHB",
+			"page": 150,
+			"srd": true,
+			"basicRules": true,
+			"reprintedAs": [
+				"Robe|XPHB"
+			],
+			"type": "G",
+			"rarity": "none",
+			"weight": 4,
+			"value": 100,
+			"ENG_name": "Robes"
+		},
+		{
+			"name": "機器人控制器",
+			"source": "QftIS",
+			"page": 193,
+			"type": "G",
+			"rarity": "none",
+			"age": "futuristic",
+			"charges": 3,
+			"entries": [
+				"這個小型手持裝置有一個玻璃面板，配有一個對你的觸控有反應的發光顯示屏。",
+				"控制器由裝置記憶體儲的{@item energy cell||能量電池}提供動力。在裝置中放置一個充滿電的{@item energy cell||能量電池}可以給裝置提供3次充電。",
+				"作為動作，當你持有這個裝置時，你可以消耗其中1點充能來產生以下效果之一：",
+				{
+					"name": "控制",
+					"type": "entries",
+					"entries": [
+						"你選擇的一個位於你60英尺範圍內的構裝體必須進行一次{@dc 15}感知豁免檢定，失敗則獲得{@condition charmed||魅惑}狀態，持續1分鐘。當以這種方式{@condition charmed||魅惑}時，構裝體會服從你的口頭命令，並且你和該構裝體可以透過裝置遠端交流。每當{@condition charmed||魅惑}的構裝體受到傷害時，它可以重複進行豁免檢定，成功則結束此效果。"
+					],
+					"ENG_name": "Control"
+				},
+				{
+					"name": "擾亂",
+					"type": "entries",
+					"entries": [
+						"你選擇在30尺範圍內的構裝生物必須成功透過一次{@dc 15}感知豁免，否則將陷入{@condition incapacitated||失能}狀態，持續1分鐘。處於{@condition incapacitated||失能}狀態的構裝生物在其回合結束時可以重複進行豁免，成功則結束該效果。"
+					],
+					"ENG_name": "Disrupt"
+				},
+				{
+					"name": "更換電池",
+					"type": "entries",
+					"entries": [
+						"只要裝置還有剩餘電量，其{@item energy cell||能量電池}就不能被移除。一旦裝置電量為0，您可以透過一個動作或一個附贈動作將{@item energy cell||能量電池}替換為新的電池。"
+					],
+					"ENG_name": "Replacing the Energy Cell"
+				}
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Robot Controller"
+		},
+		{
+			"name": "吸收權杖",
+			"source": "DMG",
+			"page": 195,
+			"srd": true,
+			"reprintedAs": [
+				"Rod of Absorption|XDMG"
+			],
+			"type": "RD|DMG",
+			"tier": "major",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"weight": 2,
+			"entries": [
+				"持握這把權杖期間，你可以用反應來吸收一個僅以你為目標（而非影響你所在的區域）的法術。被吸收的法術不產生效應，但其能量（而非法術本身）被權杖吸收。這股能量的環階與該法術被施展時的環階相同。吸收權杖從製成到毀滅只能儲存共50環的能量。吸收滿50環能量後，它將無法再吸收法術。如果權杖無法吸收某個以你為目標的法術，則權杖對該法術不產生任何效應。",
+				"與吸收權杖同調時，你將瞭解到權杖已經吸收過多少能量，以及它現時儲存了多少法術能量。",
+				"如果你是一名施法者，當你持握吸收權杖時，你可以將權杖中儲存的能量轉化為法術位並用以施展你自己準備或知曉的法術。你只能創造與你自身法術位等級相同或更低的法術位，最高不超過5環。你使用權杖中儲存的等級代替自身法術位，但其他方面如常施法。例如，你可以使用權杖中儲存的3個等級作為一個3環法術位。",
+				"新發現的權杖通常已經儲存了{@dice 1d10}環法術能量。無法繼續吸收法術能量且沒有能量剩餘的吸收權杖將失去魔法。"
+			],
+			"lootTables": [
+				"Magic Item Table H"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Rod of Absorption"
+		},
+		{
+			"name": "吸收權杖",
+			"source": "XDMG",
+			"page": 299,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "RD|XDMG",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"weight": 2,
+			"entries": [
+				"持握這根權杖期間，你可以執行{@variantrule Reaction|XPHB|反應}應來吸收一道僅以你為目標且不會創造範圍效應的法術。被吸收的法術將被解除，且法術的能量（而非法術本身）將被儲存進權杖中。這些能量與該法術施展時的環階相同。被解除的法術消散且無效，而施展法術時使用的任何資源都將浪費掉。這根權杖在其被製造出來後最多能吸收並儲存共計50環的能量。當權杖已經吸收了50環的能量後，它將無法再吸收法術。如果你被一道權杖無法儲存的法術所選為目標，那麼權杖將不會對其產生影響。",
+				"當你與權杖同調時，你會知曉權杖已經吸收過多少環的能量，以及它當前儲存了多少環的法術能量。",
+				"持握此權杖期間，如果你是一名施法者，則你可以將權杖中儲存的能量轉化為法術位並用其施展你已準備的法術或已知的法術。此法可轉化出的法術位其環階不超過你擁有的最高法術位環階，且最高為五環。你需要如常施展該法術，只是你消耗的是權杖儲存的法術能量而非自己的法術位。例如，你可以將權杖儲存的3環能量作為一個3環法術位使用。",
+				"新發現的吸收權杖通常已經儲存了{@dice 1d10}環的法術能量。一根無法再吸收法術且其中沒有剩餘能量的吸收權杖將變為非魔法的權杖。"
+			],
+			"lootTables": [
+				"Arcana - Very Rare|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Rod of Absorption"
+		},
+		{
+			"name": "警示權杖",
+			"source": "DMG",
+			"page": 196,
+			"srd": true,
+			"reprintedAs": [
+				"Rod of Alertness|XDMG"
+			],
+			"type": "RD|DMG",
+			"tier": "major",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"weight": 2,
+			"bonusAc": "+1",
+			"bonusSavingThrow": "+1",
+			"entries": [
+				"這把權杖頂端有尖刺狀凸起，並具有以下屬性。",
+				{
+					"name": "警覺",
+					"type": "entries",
+					"entries": [
+						"持握這把權杖時，你進行的感知（{@skill Perception||感知}）檢定和先攻檢定具有優勢。"
+					],
+					"ENG_name": "Alertness"
+				},
+				{
+					"name": "法術",
+					"type": "entries",
+					"entries": [
+						"持握這把權杖期間，你可以用一個動作施放以下法術之一：{@spell detect evil and good||偵測善惡}、{@spell detect magic||偵測魔法}、{@spell detect poison and disease||偵測毒性和疾病}或{@spell see invisibility||識破隱形}。"
+					],
+					"ENG_name": "Spells"
+				},
+				{
+					"name": "防護靈光",
+					"type": "entries",
+					"entries": [
+						"以一個動作，你可以將權杖的柄端插入地面，隨後權杖的頭部會散發出60尺半徑的明亮光照和額外60尺的微光光照。在這片明亮光照中，你和任何對你友好的生物在AC和豁免上獲得+1加值，並且可以感知到同樣處於明亮光照中的任何{@condition invisible||隱形}敵對生物的位置。",
+						"權杖頂部停止發光，且此效應在10分鐘後，或當一名生物用一個動作將權杖從地面拔起時結束。此後直到次日黎明前，該屬性都無法再次啟動。"
+					],
+					"ENG_name": "Protective Aura"
+				}
+			],
+			"light": [
+				{
+					"bright": 60,
+					"dim": 120
+				}
+			],
+			"attachedSpells": {
+				"will": [
+					"detect evil and good",
+					"detect magic",
+					"detect poison and disease",
+					"see invisibility"
+				]
+			},
+			"lootTables": [
+				"Magic Item Table H"
+			],
+			"ENG_name": "Rod of Alertness"
+		},
+		{
+			"name": "警示權杖",
+			"source": "XDMG",
+			"page": 299,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "RD|XDMG",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"weight": 2,
+			"bonusAc": "+1",
+			"bonusSavingThrow": "+1",
+			"entries": [
+				"這根權杖具有以下詞條：",
+				{
+					"type": "entries",
+					"name": "警覺",
+					"entries": [
+						"當你持握此權杖時，你在感知（{@skill Perception|XPHB|感知}）檢定和{@variantrule Advantage|XPHB|優勢}擲骰上具有{@variantrule Initiative|XPHB|先攻}。"
+					],
+					"ENG_name": "Alertness"
+				},
+				{
+					"type": "entries",
+					"name": "法術",
+					"entries": [
+						"當你持握此權杖時，你可以透過它施放以下法術：",
+						{
+							"type": "list",
+							"items": [
+								"{@spell Detect Evil and Good|XPHB|偵測善惡}",
+								"{@spell Detect Magic|XPHB|偵測魔法}",
+								"{@spell Detect Poison and Disease|XPHB|偵測毒性和疾病}",
+								"{@spell See Invisibility|XPHB|識破隱形}"
+							]
+						}
+					],
+					"ENG_name": "Spells"
+				},
+				{
+					"type": "entries",
+					"name": "防護靈光",
+					"entries": [
+						"以一個{@action Magic|XPHB|魔法}動作，你可以將權杖的柄端插入地面，此時權杖的頂部將發出60尺半徑的{@variantrule Bright Light|XPHB|明亮光照}和額外60尺{@variantrule Dim Light|XPHB|微光光照}。身處權杖發出的{@variantrule Bright Light|XPHB|明亮光照}中時，你與你的盟友在{@variantrule Armor Class|XPHB|護甲等級}和豁免中獲得+1加值，並且可以感知到同樣處於此{@variantrule Bright Light|XPHB|明亮光照}中的任何{@condition Invisible|XPHB|隱形}生物的位置。",
+						"最多10分鐘後或直至一個生物執行{@action Magic|XPHB|魔法}動作將權杖從地面拔出後，權杖頂部會停止發光並結束這個效應。該詞條一經使用，直至次日黎明前你都無法再次使用。"
+					],
+					"ENG_name": "Protective Aura"
+				}
+			],
+			"light": [
+				{
+					"bright": 60,
+					"dim": 120
+				}
+			],
+			"attachedSpells": {
+				"will": [
+					"detect evil and good|xphb",
+					"detect magic|xphb",
+					"detect poison and disease|xphb",
+					"see invisibility|xphb"
+				]
+			},
+			"lootTables": [
+				"Relics - Very Rare|XDMG"
+			],
+			"ENG_name": "Rod of Alertness"
+		},
+		{
+			"name": "地獄火焰權杖",
+			"source": "BMT",
+			"page": 37,
+			"type": "RD|DMG",
+			"resist": [
+				"fire",
+				"necrotic"
+			],
+			"rarity": "very rare",
+			"reqAttune": "由施法者",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
+			"entries": [
+				"發光的餘燼繞著這根黑色權杖的凸緣頭部旋轉。",
+				"這把權杖可以用作奧術法器。持握這根權杖期間，你獲得以下增益：",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "煉獄抗性",
+							"entries": [
+								"你獲得對火焰和暗蝕傷害的抗性。"
+							],
+							"ENG_name": "Hellish Resistance"
+						},
+						{
+							"type": "item",
+							"name": "灼熱叱喝",
+							"entries": [
+								"你可以用權杖施放{@spell Hellish Rebuke||煉獄叱喝}法術（4環版本）（豁免{@dc 16}）。一旦你使用權杖施放該法術，直到下次黎明前權杖不能再次施放該法術。"
+							],
+							"ENG_name": "Searing Rebuke"
+						},
+						{
+							"type": "item",
+							"name": "硫磺浪湧",
+							"entries": [
+								"當你施放造成火焰或暗蝕傷害的法術時，你可以使用權杖來使其傷害擲骰直接取最高值而無需擲骰。此項屬性一經使用，直到下次黎明前不能再次使用。"
+							],
+							"ENG_name": "Surge of Brimstone"
+						}
+					]
+				}
+			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"hellish rebuke"
+					]
+				}
+			},
+			"ENG_name": "Rod of Hellish Flames"
+		},
+		{
+			"name": "王者權杖",
+			"source": "DMG",
+			"page": 196,
+			"srd": true,
+			"referenceSources": [
+				"BGDIA",
+				"WDMM"
+			],
+			"reprintedAs": [
+				"Rod of Lordly Might|XDMG"
+			],
+			"baseItem": "mace|phb",
+			"type": "RD|DMG",
+			"typeAlt": "M",
+			"tier": "major",
+			"rarity": "legendary",
+			"reqAttune": true,
+			"weight": 2,
+			"bonusWeapon": "+3",
+			"entries": [
+				"這把權杖頂端有凸緣，它還是一把魔法硬頭錘，用它發動的攻擊檢定和傷害擲骰獲得+3加值。權杖的柄上排列著六個不同的按鈕，用來啟動權杖的相應屬性。它還有其他三種屬性，其細節如下。",
+				{
+					"name": "六個按鈕",
+					"type": "entries",
+					"entries": [
+						"你可以用一個附贈動作按下權杖六個按鈕之一。某個按鈕的效應將一直生效，直到你按下另一個按鈕，或再次按下同一個按鈕為止。再次按下同一按鈕將使權杖變回通常形態。",
+						"如果你按下按鈕1，權杖將變為一把{@item flame tongue||焰舌}，被烈焰覆蓋的刀刃從權杖沒有凸起的一端伸出（你選擇劍的型別）。",
+						"如果你按下按鈕2，權杖頂端的凸起折下，並伸展出兩片新月般的斧刃，將權杖變為一把魔法戰斧，你用它發動的攻擊檢定和傷害擲骰獲得+3加值。",
+						"如果你按下按鈕3，權杖頂端的凸起折下，頂端伸出矛尖，柄伸長至6尺，將權杖變為一把魔法矛。你用它發動的攻擊檢定和傷害擲骰獲得+3加值。",
+						"如果你按下按鈕4，權杖將變為一根爬杆，長度由你設定但不能超過50尺。在花崗巖一般堅硬的表面上，爬杆尾部的巖釘和頂部的三個爪鉤可以固定住爬杆。爬杆上每隔1尺向兩側伸展出一根3寸長的把手，構成一架梯子。爬杆最多可以承受4000磅的重量。如果超重或是失去固定點，則爬杆將會變回權杖。",
+						"如果你按下按鈕5，權杖將變為一把手持式衝撞錘，並賦予其使用者在破壞門、路障或其他障礙時進行的力量檢定+10加值。",
+						"如果你按下按鈕6，權杖將變回或維持通常形態，並指出地磁北極。（如果權杖所在的地點並沒有地磁北極的概念，則此屬性無效。）權杖還會讓你瞭解到自己在地下的深度或在地上的高度。"
+					],
+					"ENG_name": "Six Buttons"
+				},
+				{
+					"name": "吸取生命",
+					"type": "entries",
+					"entries": [
+						"當你用權杖發動近戰攻擊命中一生物時，你可以迫使目標進行一次{@dc 17}的體質豁免。如果豁免失敗，則目標將受額外{@damage 4d6}點暗蝕傷害，而你獲得等於該暗蝕傷害值一半的生命值。此後直到次日黎明前，該屬性都無法再次啟動。"
+					],
+					"ENG_name": "Drain Life"
+				},
+				{
+					"name": "麻痺",
+					"type": "entries",
+					"entries": [
+						"當你用權杖發動近戰攻擊命中一名生物時，你可以迫使目標進行一次{@dc 17}的力量豁免。如果豁免失敗，目標將{@condition paralyzed||麻痺}1分鐘。目標可以在它的每輪結束時再次嘗試該豁免，成功則終止其身上的相應效應。直到次日黎明前，此後這個屬性都無法再次啟動。"
+					],
+					"ENG_name": "Paralyze"
+				},
+				{
+					"name": "驚駭",
+					"type": "entries",
+					"entries": [
+						"持握此權杖期間，你可以用一個動作強迫你30尺內每個你能看見的生物進行一次{@dc 17}的感知豁免。若失敗，目標對你{@condition frightened||恐慌}1分鐘。一個{@condition frightened||恐慌}的目標可以在它的每回合結束時再次嘗試豁免，成功則自身身上的該效應結束。該屬性直到下一個黎明前無法再次使用。"
+					],
+					"ENG_name": "Terrify"
+				}
+			],
+			"lootTables": [
+				"Magic Item Table I"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Rod of Lordly Might"
+		},
+		{
+			"name": "王者權杖",
+			"source": "XDMG",
+			"page": 300,
+			"srd52": true,
+			"basicRules2024": true,
+			"type": "RD|XDMG",
+			"rarity": "legendary",
+			"reqAttune": true,
+			"weight": 2,
+			"bonusWeapon": "+3",
+			"entries": [
+				"這把權杖頂端有尖刺狀凸起，其可以被用作一把魔法硬頭錘。你用此魔法武器進行的攻擊檢定和傷害擲骰獲得+3加值。王者權杖的杖柄上排列著六個不同的按鈕，用來啟動權杖的相應屬性，它還有三個額外詞條。詞條的描述見下文：",
+				{
+					"type": "entries",
+					"name": "按鈕",
+					"entries": [
+						"你能夠以一個{@variantrule Bonus Action|XPHB|附贈動作}按壓下列按鈕之一。按鈕的效應將持續生效，直至你按壓另一個按鈕或再次按壓同一個按鈕。再次按壓同一個按鈕將使權杖變回通常形態。",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "按鈕1",
+									"entries": [
+										"烈焰覆蓋的刀刃從權杖凸緣的另一端伸出。火焰發出半徑40尺的{@variantrule Bright Light|XPHB|明亮光照}以及額外40尺的{@variantrule Dim Light|XPHB|微光光照}，劍刃可以被用作一柄魔法長劍或短劍（由你選擇），命中時額外造成{@damage 2d6}火焰傷害。"
+									],
+									"ENG_name": "Button 1"
+								},
+								{
+									"type": "item",
+									"name": "按鈕2",
+									"entries": [
+										"權杖凸緣頭向下摺疊，彈出兩片月牙狀斧刃，這使得權杖變為一柄魔法戰斧。你用此魔法武器進行的攻擊檢定和傷害擲骰獲得+3加值。"
+									],
+									"ENG_name": "Button 2"
+								},
+								{
+									"type": "item",
+									"name": "按鈕3",
+									"entries": [
+										"權杖凸緣頭向下摺疊，杖柄頂端彈出矛尖，杖柄伸長至6尺，將權杖變為一把魔法矛。你用此魔法武器進行的攻擊檢定和傷害擲骰獲得+3加值。"
+									],
+									"ENG_name": "Button 3"
+								},
+								{
+									"type": "item",
+									"name": "按鈕4",
+									"entries": [
+										"權杖將變為一根至多50尺長的爬杆（長度由你指定），但權杖的按鈕仍在你觸及內。在花崗巖一般堅硬的表面上，爬杆尾部的巖釘和頂部的三個爪鉤可以固定住爬杆。爬杆上每隔1尺向側面伸展出一根3寸長的水平杆，構成一架梯子。爬杆最多可以承受4000磅的重量。如果超重或是失去固定點，則爬杆將會變回權杖。"
+									],
+									"ENG_name": "Button 4"
+								},
+								{
+									"type": "item",
+									"name": "按鈕5",
+									"entries": [
+										"權杖將變為一把手持式攻城錘。用它破壞門、路障或其他障礙時，持用者進行的力量（{@skill Athletics|XPHB|運動}）檢定獲得+10加值。"
+									],
+									"ENG_name": "Button 5"
+								},
+								{
+									"type": "item",
+									"name": "按鈕 6",
+									"entries": [
+										"權杖將變回或維持通常形態，並指出地磁北極。（如果權杖所在的地點並沒有地磁北極的概念，則此功能無效。）權杖還會讓你瞭解到自己在地下的大致深度或在地上的高度。"
+									],
+									"ENG_name": "Button 6"
+								}
+							]
+						}
+					],
+					"ENG_name": "Buttons"
+				},
+				{
+					"type": "entries",
+					"name": "吸取生命",
+					"entries": [
+						"當你以權杖發動的近戰攻擊命中一名生物時，你可以迫使目標進行一次{@dc 17}的體質豁免。豁免失敗則目標額外受到{@damage 4d6}暗蝕傷害，而你恢復等於此暗蝕傷害值一半的{@variantrule Hit Points|XPHB|生命值}。該詞條一經使用，直至次日黎明你都無法再次使用。"
+					],
+					"ENG_name": "Drain Life"
+				},
+				{
+					"type": "entries",
+					"name": "麻痺",
+					"entries": [
+						"當你以權杖發動的近戰攻擊命中一名生物時，你可以迫使目標進行一次{@dc 17}的體質豁免。豁免失敗則目標陷入{@condition Paralyzed|XPHB|麻痺}狀態，持續1分鐘。目標在其每回合結束時都可以重新豁免，豁免成功則結束該效應。該詞條一經使用，直至次日黎明你都無法再次使用。"
+					],
+					"ENG_name": "Paralyze"
+				},
+				{
+					"type": "entries",
+					"name": "驚駭",
+					"entries": [
+						"持握此權杖期間，你能夠以一個{@action Magic|XPHB|魔法}動作迫使位於你30尺內你可見的每名生物進行一次{@dc 17}的感知豁免。豁免失敗則目標將陷入{@condition Frightened|XPHB|恐懼}狀態，持續1分鐘。陷入{@condition Frightened|XPHB|恐懼}狀態的目標在其每回合結束時都可以重新豁免，豁免成功則結束其身上的該效應。該詞條一經使用，直至次日黎明你都無法再次使用。"
+					],
+					"ENG_name": "Terrify"
+				}
+			],
+			"light": [
+				{
+					"bright": 40,
+					"dim": 80
+				}
+			],
+			"lootTables": [
+				"Armaments - Legendary|XDMG"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Rod of Lordly Might"
+		},
 		{
 			"name": "復生權杖",
 			"source": "DMG",
@@ -66,18 +2220,7 @@
 			"basicRules2024": true,
 			"type": "RD|XDMG",
 			"rarity": "legendary",
-			"reqAttune": "需牧師，德魯伊或聖武士",
-			"reqAttuneTags": [
-				{
-					"class": "cleric"
-				},
-				{
-					"class": "druid"
-				},
-				{
-					"class": "paladin"
-				}
-			],
+			"reqAttune": true,
 			"weight": 2,
 			"recharge": "dawn",
 			"rechargeAmount": 1,
@@ -651,7 +2794,7 @@
 				"龍骨船和划艇用於湖泊與河流。如果順流而下，將水流速度（通常為3英里每小時）新增到船隻的速度上。這些船隻無法在顯著的水流中逆流划行，但可以由岸上的役畜拉向上游。一艘划艇重100磅，以防冒險者需要將其攜帶過陸地。"
 			],
 			"seeAlsoVehicle": [
-				"Rowboat"
+				"rowboat"
 			],
 			"ENG_name": "Rowboat"
 		},
@@ -674,7 +2817,7 @@
 			"vehSpeed": 1.5,
 			"capPassenger": 3,
 			"seeAlsoVehicle": [
-				"Rowboat"
+				"rowboat"
 			],
 			"ENG_name": "Rowboat"
 		},
@@ -1304,7 +3447,7 @@
 		{
 			"name": "鐵騎馬鞍",
 			"source": "XDMG",
-			"page": 199,
+			"page": 302,
 			"rarity": "uncommon",
 			"wondrous": true,
 			"entries": [
@@ -1347,7 +3490,6 @@
 			"name": "藏紅花",
 			"source": "XDMG",
 			"page": 213,
-			"srd52": true,
 			"type": "TG|XDMG",
 			"rarity": "none",
 			"weight": 1,
@@ -1595,7 +3737,7 @@
 			"capPassenger": 20,
 			"capCargo": 100,
 			"seeAlsoVehicle": [
-				"Sailing Ship"
+				"sailing ship"
 			],
 			"ENG_name": "Sailing Ship"
 		},
@@ -1619,7 +3761,7 @@
 			"capPassenger": 20,
 			"capCargo": 100,
 			"seeAlsoVehicle": [
-				"Sailing Ship"
+				"sailing ship"
 			],
 			"ENG_name": "Sailing Ship"
 		},
@@ -1670,7 +3812,6 @@
 			"name": "鹽",
 			"source": "XDMG",
 			"page": 213,
-			"srd52": true,
 			"type": "TG|XDMG",
 			"rarity": "none",
 			"weight": 1,
@@ -1892,6 +4033,64 @@
 			],
 			"hasFluffImages": true,
 			"ENG_name": "Scarab of Protection"
+		},
+		{
+			"name": "猩紅法術書",
+			"source": "AUD",
+			"page": 119,
+			"rarity": "rare",
+			"reqAttune": "由法師",
+			"reqAttuneTags": [
+				{
+					"class": "wizard"
+				}
+			],
+			"wondrous": true,
+			"entries": [
+				"不規則的紅色碎布覆蓋著這本飽經風霜的書冊。與此物品同調期間，你可以將其用作一本法術書和一件{@item Arcane Focus|XPHB|奧術法器}。",
+				{
+					"type": "entries",
+					"name": "奧法氣力",
+					"entries": [
+						"當你使用你的奧術回想特性時，你還恢復等同於{@dice 2d6}加你法師等級一半（向下取整）數值的{@variantrule Hit Points|XPHB|生命值}。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "改良法術回憶",
+					"entries": [
+						"當你使用你的記憶法術特性時，你可以額外將一道你為施法特性所準備的一環或更高環階的法師法術，替換為另一道抄錄於此書中的一環或更高環階法術。"
+					]
+				}
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Scarlet Spellbook"
+		},
+		{
+			"name": "學者定心鐲",
+			"source": "AU",
+			"page": 122,
+			"rarity": "rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"entries": [
+				"這隻沉重的魔法手鐲能使你的心智免受潛在幹擾的影響。佩戴此手鐲期間，你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "深邃學識",
+					"entries": [
+						"當你執行{@action Study|XPHB|研究}動作，並使用一項你擁有熟練的技能進行智力檢定時，你可以將{@dice d20}擲骰中9或更低的結果視為10。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "心無旁騖",
+					"entries": [
+						"當你為維持{@status Concentration|XPHB|專注}而進行的體質豁免失敗時，你可以執行{@variantrule Reaction|XPHB|反應}將其改為成功。該詞條一經使用，則直至下一黎明前，都無法再次使用。"
+					]
+				}
+			],
+			"ENG_name": "Scholar's Anchoring Bangle"
 		},
 		{
 			"name": "學者套組",
@@ -2116,7 +4315,7 @@
 				"蠍艦是老派的金屬戰艦，但其受歡迎程度經久不衰，究其原因主要是她們的泛用性。鉸接式支腿使蠍艦能夠安全降落在地面上，並以30尺的步行速度穿過堅實地面。然而，這艘艦船不能漂浮在水面上。在頂層甲板上裝有一門弩炮，而尾部的末端裝有一門投石機。這艘艦船的兩個爪子在戰鬥中的效率相對較低，但當爪子抓住一個生物時，很快就可以讓它無法行動。"
 			],
 			"seeAlsoVehicle": [
-				"Scorpion Ship|AAG"
+				"scorpion ship|aag"
 			],
 			"ENG_name": "Scorpion Ship"
 		},
@@ -2824,6 +5023,20 @@
 			"ENG_name": "Secondhand Steal Trinket"
 		},
 		{
+			"name": "守秘人頭飾",
+			"source": "AU",
+			"page": 122,
+			"rarity": "rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"entries": [
+				"這頂頭飾能讓佩戴者抹去其記憶中關於生平某段經歷或特定事件的任何資訊。對於那些擔憂魔法師以魔法窺探其心智的人來說，其非常有用。",
+				"佩戴這頂頭飾期間，你可以執行{@action Magic|XPHB|魔法}動作指定一個觸發條件，例如\"在我離開這座神廟後\"或\"當我施展法術{@spell Animate Dead|XPHB|活化死屍}時\"。在接下來的24小時內，如果該觸發條件發生，則頭飾會抹除你從選擇該觸發條件的時刻起，直至觸發條件發生期間的所有記憶。除了法術{@spell Wish|XPHB|祈願術}外，沒有任何魔法能夠恢復你這段時間的記憶。該詞條一經使用，則直至下一黎明前，都無法再次使用。"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Secret Keeper's Circlet"
+		},
+		{
 			"name": "索敵飛鏢",
 			"source": "PotA",
 			"page": 223,
@@ -2845,6 +5058,58 @@
 				"當飛鏢到達目標時，目標必須成功透過一個{@dc 16}敏捷豁免擲骰，否則將受到{@damage 1d4}穿刺傷害和{@damage 3d4}閃電傷害。隨後，飛鏢的魔法效果被消耗，它變成了一支普通的飛鏢。"
 			],
 			"ENG_name": "Seeker Dart"
+		},
+		{
+			"name": "滄穹先知會飾品",
+			"source": "AU",
+			"page": 109,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"entries": [
+				{
+					"type": "table",
+					"caption": "滄穹先知會飾品",
+					"page": 109,
+					"colLabels": [
+						"{@dice 1d6}",
+						"飾品"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"一塊浮木，天然的紋路盤結拼出了你的名字"
+						],
+						[
+							"2",
+							"一個風向袋"
+						],
+						[
+							"3",
+							"一張陌生海岸的潮汐表"
+						],
+						[
+							"4",
+							"一卷海藻，上面用章魚墨汁寫著神秘的符號"
+						],
+						[
+							"5",
+							"一枚來自燈塔旋轉機構的小齒輪"
+						],
+						[
+							"6",
+							"四片形狀奇特的白羽毛，拼在一起能組成一個完美的三角形"
+						]
+					]
+				}
+			],
+			"miscTags": [
+				"TT"
+			],
+			"ENG_name": "Seers of Sea and Sky Trinket"
 		},
 		{
 			"name": "瑟寇拉尊像",
@@ -3771,11 +6036,62 @@
 			"name": "綿羊",
 			"source": "XDMG",
 			"page": 213,
-			"srd52": true,
 			"type": "TG|XDMG",
 			"rarity": "none",
 			"value": 200,
 			"ENG_name": "Sheep"
+		},
+		{
+			"name": "庇護之手飾品",
+			"source": "AU",
+			"page": 113,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"entries": [
+				{
+					"type": "table",
+					"caption": "庇護之手飾品",
+					"page": 113,
+					"colLabels": [
+						"{@dice 1d6}",
+						"飾品"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"一小罐緩解皮疹的潤膚露"
+						],
+						[
+							"2",
+							"一份陌生治療神祇的傳教冊子"
+						],
+						[
+							"3",
+							"一張孩子畫的畫，畫著一對微笑的父母"
+						],
+						[
+							"4",
+							"一件一頭是叉、一頭是勺的餐具"
+						],
+						[
+							"5",
+							"一小袋甜香料"
+						],
+						[
+							"6",
+							"一個上發條的玩具士兵，手持一面大盾"
+						]
+					]
+				}
+			],
+			"miscTags": [
+				"TT"
+			],
+			"ENG_name": "Sheltering Hands Trinket"
 		},
 		{
 			"name": "盾衛護符",
@@ -3985,7 +6301,8 @@
 					"source": "UtHftLH"
 				},
 				{
-					"source": "HBTD"
+					"source": "HBTD",
+					"page": 10
 				}
 			],
 			"baseItem": "shield|xphb",
@@ -4102,7 +6419,7 @@
 			"bonusAc": "+2",
 			"entries": [
 				"持有這個盾牌時，你的AC值會增加+2。這個加成是盾牌正常AC加成之外的額外加成。",
-				"盾牌上面雕刻著象徵銀龍騎士團（見{@adventure {@i 斯特拉德的詛咒}, 第7章|CoS|7|銀龍騎士團}）的銀龍紋章。這面盾牌會一直對持有者低語來提醒危險，持有者只要沒有{@condition incapacitated||失能}便會在先攻值上獲得+2加值。",
+				"盾牌上面雕刻著象徵銀龍騎士團（見{@adventure {@i 斯特拉德的詛咒}, 第7章|CoS|8|銀龍騎士團}）的銀龍紋章。這面盾牌會一直對持有者低語來提醒危險，持有者只要沒有{@condition incapacitated||失能}便會在先攻值上獲得+2加值。",
 				"盾牌由木材或金屬製成，單手攜帶。使用盾牌可以增加2點護甲等級（AC）。你一次只能從一面盾牌中獲益。"
 			],
 			"ENG_name": "Shield of the Silver Dragon"
@@ -4286,7 +6603,7 @@
 				"伯勞艦上的標準武器包括三門弩炮——一門在艏樓，一門在頂層甲板的中間，一門在艦船尾。在危急情況下，該艦的加固船首可用作穿刺撞角。"
 			],
 			"seeAlsoVehicle": [
-				"Shrike Ship|AAG"
+				"shrike ship|aag"
 			],
 			"ENG_name": "Shrike Ship"
 		},
@@ -4336,7 +6653,6 @@
 			"name": "絲綢",
 			"source": "XDMG",
 			"page": 213,
-			"srd52": true,
 			"type": "TG|XDMG",
 			"rarity": "none",
 			"weight": 1,
@@ -4568,7 +6884,6 @@
 			"name": "銀",
 			"source": "XDMG",
 			"page": 213,
-			"srd52": true,
 			"type": "TG|XDMG",
 			"rarity": "none",
 			"weight": 1,
@@ -5012,7 +7327,7 @@
 			"wondrous": true,
 			"recharge": "dawn",
 			"entries": [
-				"作為動作，你可以揮舞這張卡牌並用其施放{@spell Spirit of Death|BMT|死神靈魄}（見{@book 第七章|BMT|6|Spirit of Death}）作為6環法術（法術攻擊加值{@hit 9}，豁免{@dc 17}）。這一特性一經使用，直到次日黎明之前無法再次使用。"
+				"以一個動作，你可以揮舞這張卡牌，並使用它來施放一個6環的{@spell Spirit of Death|BMT|死神靈魄}法術（法術攻擊加值{@hit 9}，豁免{@dc 17}）。此屬性一旦使用，直到下一個黎明前都無法再次使用。"
 			],
 			"attachedSpells": {
 				"daily": {
@@ -5551,6 +7866,35 @@
 			"ENG_name": "Soap"
 		},
 		{
+			"name": "繁花催眠權杖",
+			"source": "AU",
+			"page": 127,
+			"_copy": {
+				"name": "Flowering Blossom Rod",
+				"source": "AU",
+				"_mod": {
+					"property": {
+						"mode": "appendIfNotExistsArr",
+						"items": "Evo|AU"
+					},
+					"entries": {
+						"mode": "appendArr",
+						"items": {
+							"type": "entries",
+							"name": "Somniferous",
+							"entries": [
+								"權杖的整體都簇生繁花。",
+								"持握此權杖期間，你能以{@action Magic|XPHB|魔法}動作在源自你的30尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內釋放一團誘發睡眠的花粉。該{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內你選擇的生物必須成功透過一次{@dc 17}的體質豁免，否則陷入{@condition Unconscious|XPHB|昏迷}狀態，持續1小時。無法睡眠的生物（例如精靈）或是{@variantrule Immunity|XPHB|免疫}{@condition Exhaustion|XPHB|力竭}狀態的生物自動成功於此豁免。若目標受到傷害或位於目標5尺內的生物以其動作搖醒目標，目標身上的該效應結束。一旦此權杖產生此效應，直至下一黎明其都無法再如此做。"
+							]
+						}
+					}
+				}
+			},
+			"rarity": "very rare",
+			"hasFluffImages": true,
+			"ENG_name": "Somniferous Blossom Rod"
+		},
+		{
 			"name": "軟體鹽",
 			"source": "EGW",
 			"page": 152,
@@ -5570,6 +7914,7 @@
 			"name": "術法望遠鏡",
 			"source": "XMtS",
 			"page": 19,
+			"type": "OTH",
 			"rarity": "unknown (magic)",
 			"entries": [
 				"這個精緻的黃銅{@item spyglass|phb|望遠鏡}擁有複雜的透鏡機制。透過這個魔法望遠鏡觀察的生物在進行感知（{@skill Perception||感知}）檢定時具有優勢，以發現可見的事物。此外，使用者在透過望遠鏡觀察時可以檢視魔法光環，就像受到{@spell detect magic||偵測魔法}法術的效果一樣。"
@@ -5735,7 +8080,7 @@
 				"太空帆船是在荒宇和眾星之海航行的眾多艦船中的中流砥柱。太空帆船可以輕易當作普通航海帆船使用，因為她們可以像同其名稱一樣降落在水上並航行，因此她們可以航行到陸地世界的港口而不會引起過多關注。和普通的加利恩帆船一樣，太空帆船並不是為了降落在地面上而建造的（她的龍骨會導致她側翻）。該艦的標準武器包括兩門前置弩炮和一門後置投石機。"
 			],
 			"seeAlsoVehicle": [
-				"Space Galleon|AAG"
+				"space galleon|aag"
 			],
 			"ENG_name": "Space Galleon"
 		},
@@ -6063,6 +8408,66 @@
 			"ENG_name": "Spell Bottle"
 		},
 		{
+			"name": "法術成分戒指",
+			"source": "AU",
+			"page": 123,
+			"type": "RG|XDMG",
+			"rarity": "common",
+			"entries": [
+				"這枚鋼製戒指設有一個隱秘的空腔，內襯著神秘的銘文。作為{@action Magic|XPHB|魔法}動作，選擇一道你已準備的、需要材料成分的法術；其所需的材料成分必須未標明價格，且不會被該法術消耗。你將該法術的材料成分儲存在戒指的空腔內。",
+				"每當你施展該所選法術時，只要你佩戴著這枚戒指，你就無需空出一隻手來拿取其材料成分。該戒指同一時間只能容納一道法術的材料成分。"
+			],
+			"ENG_name": "Spell Component Ring"
+		},
+		{
+			"name": "法術決鬥者的戰利品",
+			"source": "AU",
+			"page": 123,
+			"rarity": "rare",
+			"reqAttune": "由施法者",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
+			"wondrous": true,
+			"entries": [
+				"這隻乾枯的手或爪子系在一根皮繩上，可以作為項鍊或手鍊佩戴。佩戴該戰利品期間，你獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "解魔之觸",
+					"entries": [
+						"當你使用近戰法術攻擊命中一個生物時，你可以啟用戰利品，作為該次攻擊的一部分施展法術{@spell Dispel Magic|XPHB|解除魔法}，以被命中的生物為目標。該詞條一經使用，則直至下一黎明前，都無法再次使用。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "援助之手",
+					"entries": [
+						"當你使用法術位施展法術時，你可以無需任何姿勢成分地來施展該法術。"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "法師之手",
+					"entries": [
+						"你可以從該戰利品施展戲法{@spell Mage Hand|XPHB|法師之手}。"
+					]
+				}
+			],
+			"attachedSpells": {
+				"will": [
+					"mage hand|xphb"
+				],
+				"daily": {
+					"1e": [
+						"dispel magic|xphb"
+					]
+				}
+			},
+			"ENG_name": "Spell Duelist's Trophy"
+		},
+		{
 			"name": "法術寶石（琥珀）",
 			"source": "OotA",
 			"page": 223,
@@ -6130,1964 +8535,6 @@
 				"地底侏儒創造了這些魔法寶石，並將創造過程保密。"
 			],
 			"ENG_name": "Spell Gem (Diamond)"
-		},
-		{
-			"name": "法術寶石（玉）",
-			"source": "OotA",
-			"page": 223,
-			"otherSources": [
-				{
-					"source": "IMR",
-					"page": 95
-				}
-			],
-			"rarity": "very rare",
-			"reqAttune": "optional",
-			"wondrous": true,
-			"entries": [
-				"玉法術寶石可以包含任意職業法術列表中的一個法術。當你瞭解寶石的屬性時，你會意識到這個法術。持有寶石時，如果你知道這個法術或者這個法術在你的職業法術列表上，你可以作為一個動作從寶石中施展它。這樣做不需要任何材料，也不需要調諧。然後法術會從寶石中消失。",
-				"如果這個法術的等級高於你通常能施放的等級，你必須使用你的施法能力進行屬性檢定，以確定你是否成功施放了它。難度等級等於10加上法術的等級。如果檢定失敗，法術會從寶石中消失，沒有其他效果。",
-				"一個翡翠法術寶石可以儲存最高5環的法術。從法術寶石中施展的法術的豁免DC為17，攻擊加值為 {@hit 9}。",
-				"如果你與寶石共鳴並且它是空的，你可以將法術注入寶石。這樣做時，你需要在握住寶石的同時施放法術。法術會被儲存在寶石中，而不是產生任何效果。施放法術必須需要1個動作或1分鐘或更長時間，並且法術的等級不能高於寶石的最大等級。如果法術屬於防護學派，並且需要消耗材料成分，你必須提供它們，但它們的價值可以是正常價值的一半。",
-				"一旦寶石被注入了法術，它就不能再次被注入，直到下一個黎明。",
-				"地底侏儒創造了這些魔法寶石，並將創造過程保密。"
-			],
-			"ENG_name": "Spell Gem (Jade)"
-		},
-		{
-			"name": "法術寶石（青金石）",
-			"source": "OotA",
-			"page": 223,
-			"otherSources": [
-				{
-					"source": "IMR",
-					"page": 95
-				}
-			],
-			"referenceSources": [
-				"IMR"
-			],
-			"rarity": "uncommon",
-			"reqAttune": "optional",
-			"wondrous": true,
-			"entries": [
-				"青金石法術寶石可以包含任意職業法術列表中的一個法術。當你瞭解寶石的屬性時，你會意識到這個法術。持有寶石時，如果你知道這個法術或者這個法術在你的職業法術列表上，你可以作為一個動作從寶石中施展它。這樣做不需要任何材料，也不需要調諧。然後法術會從寶石中消失。",
-				"如果這個法術的等級高於你通常能施放的等級，你必須使用你的施法能力進行屬性檢定，以確定你是否成功施放了它。難度等級等於10加上法術的等級。如果檢定失敗，法術會從寶石中消失，沒有其他效果。",
-				"一顆青金石法術寶石可以儲存最高1環法術。從法術寶石中施放的法術具有13的豁免DC和{@hit 5}的攻擊加值。",
-				"如果你與寶石共鳴並且它是空的，你可以將法術注入寶石。這樣做時，你需要在握住寶石的同時施放法術。法術會被儲存在寶石中，而不是產生任何效果。施放法術必須需要1個動作或1分鐘或更長時間，並且法術的等級不能高於寶石的最大等級。如果法術屬於防護學派，並且需要消耗材料成分，你必須提供它們，但它們的價值可以是正常價值的一半。",
-				"一旦寶石被注入了法術，它就不能再次被注入，直到下一個黎明。",
-				"地底侏儒創造了這些魔法寶石，並將創造過程保密。"
-			],
-			"ENG_name": "Spell Gem (Lapis lazuli)"
-		},
-		{
-			"name": "法術寶石（黑曜石）",
-			"source": "OotA",
-			"page": 223,
-			"otherSources": [
-				{
-					"source": "IMR",
-					"page": 95
-				}
-			],
-			"rarity": "uncommon",
-			"reqAttune": "optional",
-			"wondrous": true,
-			"entries": [
-				"黑曜石法術寶石可以包含任意職業法術列表中的一個戲法。當你瞭解寶石的屬性時，你會意識到這個法術。持有寶石時，如果你知道這個法術或者這個法術在你的職業法術列表上，你可以作為一個動作從寶石中施展它。這樣做不需要任何材料，也不需要調諧。然後法術會從寶石中消失。",
-				"如果這個法術的等級高於你通常能施放的等級，你必須使用你的施法能力進行屬性檢定，以確定你是否成功施放了它。難度等級等於10加上法術的等級。如果檢定失敗，法術會從寶石中消失，沒有其他效果。",
-				"一顆黑曜石法術寶石僅能儲存戲法。從該法術寶石中釋放的戲法的豁免DC為13，攻擊加值為 {@hit 5}。",
-				"如果你與寶石共鳴並且它是空的，你可以將法術注入寶石。這樣做時，你需要在握住寶石的同時施放法術。法術會被儲存在寶石中，而不是產生任何效果。施放法術必須需要1個動作或1分鐘或更長時間，並且法術的等級不能高於寶石的最大等級。如果法術屬於防護學派，並且需要消耗材料成分，你必須提供它們，但它們的價值可以是正常價值的一半。",
-				"一旦寶石被注入了法術，它就不能再次被注入，直到下一個黎明。",
-				"地底侏儒創造了這些魔法寶石，並將創造過程保密。"
-			],
-			"ENG_name": "Spell Gem (Obsidian)"
-		},
-		{
-			"name": "法術寶石（石英）",
-			"source": "OotA",
-			"page": 223,
-			"otherSources": [
-				{
-					"source": "IMR",
-					"page": 95
-				}
-			],
-			"referenceSources": [
-				"IMR"
-			],
-			"rarity": "rare",
-			"reqAttune": "optional",
-			"wondrous": true,
-			"entries": [
-				"一塊石英法術寶石可以包含任何職業法術列表中的一個法術。當你瞭解寶石的屬性時，你會意識到這個法術。持有寶石時，如果你知道這個法術或者法術在你的職業法術列表上，你可以作為一個動作從寶石中施放這個法術。這樣做不需要任何材料，也不需要調諧。然後法術會從寶石中消失。",
-				"如果這個法術的等級高於你通常能施放的等級，你必須使用你的施法能力進行屬性檢定，以確定你是否成功施放了它。難度等級等於10加上法術的等級。如果檢定失敗，法術會從寶石中消失，沒有其他效果。",
-				"一塊石英法術寶石可以儲存最高2環的法術。從法術寶石中施放的法術具有13的豁免DC和{@hit 5}的攻擊加值。",
-				"如果你與寶石共鳴並且它是空的，你可以將法術注入寶石。這樣做時，你需要在握住寶石的同時施放法術。法術會被儲存在寶石中，而不是產生任何效果。施放法術必須需要1個動作或1分鐘或更長時間，並且法術的等級不能高於寶石的最大等級。如果法術屬於防護學派，並且需要消耗材料成分，你必須提供它們，但它們的價值可以是正常價值的一半。",
-				"一旦寶石被注入了法術，它就不能再次被注入，直到下一個黎明。",
-				"地底侏儒創造了這些魔法寶石，並將創造過程保密。"
-			],
-			"ENG_name": "Spell Gem (Quartz)"
-		},
-		{
-			"name": "法術寶石（紅寶石）",
-			"source": "OotA",
-			"page": 223,
-			"otherSources": [
-				{
-					"source": "IMR",
-					"page": 95
-				}
-			],
-			"rarity": "legendary",
-			"reqAttune": "optional",
-			"wondrous": true,
-			"entries": [
-				"一塊紅寶石法術寶石可以包含任何職業法術列表中的一個法術。當你瞭解寶石的屬性時，你會意識到這個法術。持有寶石時，如果你知道這個法術或者法術在你的職業法術列表上，你可以作為一個動作從寶石中施放這個法術。這樣做不需要任何材料，也不需要調諧。然後法術會從寶石中消失。",
-				"如果這個法術的等級高於你通常能施放的等級，你必須使用你的施法能力進行屬性檢定，以確定你是否成功施放了它。難度等級等於10加上法術的等級。如果檢定失敗，法術會從寶石中消失，沒有其他效果。",
-				"一顆紅寶石法術寶石可以儲存最高8環的法術。從法術寶石中施放的法術具有18的豁免DC和{@hit 10}的攻擊加值。",
-				"如果你與寶石共鳴並且它是空的，你可以將法術注入寶石。這樣做時，你需要在握住寶石的同時施放法術。法術會被儲存在寶石中，而不是產生任何效果。施放法術必須需要1個動作或1分鐘或更長時間，並且法術的等級不能高於寶石的最大等級。如果法術屬於防護學派，並且需要消耗材料成分，你必須提供它們，但它們的價值可以是正常價值的一半。",
-				"一旦寶石被注入了法術，它就不能再次被注入，直到下一個黎明。",
-				"地底侏儒創造了這些魔法寶石，並將創造過程保密。"
-			],
-			"ENG_name": "Spell Gem (Ruby)"
-		},
-		{
-			"name": "法術寶石（星紅寶石）",
-			"source": "OotA",
-			"page": 223,
-			"otherSources": [
-				{
-					"source": "IMR",
-					"page": 95
-				}
-			],
-			"rarity": "legendary",
-			"reqAttune": "optional",
-			"wondrous": true,
-			"entries": [
-				"一塊星紅寶石法術寶石可以包含任何職業法術列表中的一個法術。當你瞭解寶石的屬性時，你會意識到這個法術。持有寶石時，如果你知道這個法術或者法術在你的職業法術列表上，你可以作為一個動作從寶石中施放這個法術。這樣做不需要任何材料，也不需要調諧。然後法術會從寶石中消失。",
-				"如果這個法術的等級高於你通常能施放的等級，你必須使用你的施法能力進行屬性檢定，以確定你是否成功施放了它。難度等級等於10加上法術的等級。如果檢定失敗，法術會從寶石中消失，沒有其他效果。",
-				"一顆星紅寶石法術寶石可以儲存最高至7環的法術。從法術寶石中施放的法術具有18的豁免DC和{@hit 10}的攻擊加值。",
-				"如果你與寶石共鳴並且它是空的，你可以將法術注入寶石。這樣做時，你需要在握住寶石的同時施放法術。法術會被儲存在寶石中，而不是產生任何效果。施放法術必須需要1個動作或1分鐘或更長時間，並且法術的等級不能高於寶石的最大等級。如果法術屬於防護學派，並且需要消耗材料成分，你必須提供它們，但它們的價值可以是正常價值的一半。",
-				"一旦寶石被注入了法術，它就不能再次被注入，直到下一個黎明。",
-				"地底侏儒創造了這些魔法寶石，並將創造過程保密。"
-			],
-			"ENG_name": "Spell Gem (Star ruby)"
-		},
-		{
-			"name": "法術寶石（黃玉）",
-			"source": "OotA",
-			"page": 223,
-			"otherSources": [
-				{
-					"source": "IMR",
-					"page": 95
-				}
-			],
-			"rarity": "very rare",
-			"reqAttune": "optional",
-			"wondrous": true,
-			"entries": [
-				"一塊黃寶石法術寶石可以包含任何職業法術列表中的一個法術。當你瞭解寶石的屬性時，你會意識到這個法術。持有寶石時，如果你知道這個法術或者法術在你的職業法術列表上，你可以作為一個動作從寶石中施放這個法術。這樣做不需要任何材料，也不需要調諧。然後法術會從寶石中消失。",
-				"如果這個法術的等級高於你通常能施放的等級，你必須使用你的施法能力進行屬性檢定，以確定你是否成功施放了它。難度等級等於10加上法術的等級。如果檢定失敗，法術會從寶石中消失，沒有其他效果。",
-				"一顆黃玉法術寶石可以儲存最高6環的法術。從法術寶石中施展的法術其豁免DC為17且攻擊加值為{@hit 10}。",
-				"如果你與寶石共鳴並且它是空的，你可以將法術注入寶石。這樣做時，你需要在握住寶石的同時施放法術。法術會被儲存在寶石中，而不是產生任何效果。施放法術必須需要1個動作或1分鐘或更長時間，並且法術的等級不能高於寶石的最大等級。如果法術屬於防護學派，並且需要消耗材料成分，你必須提供它們，但它們的價值可以是正常價值的一半。",
-				"一旦寶石被注入了法術，它就不能再次被注入，直到下一個黎明。",
-				"地底侏儒創造了這些魔法寶石，並將創造過程保密。"
-			],
-			"ENG_name": "Spell Gem (Topaz)"
-		},
-		{
-			"name": "法術卷軸(1環)",
-			"source": "DMG",
-			"page": 200,
-			"srd": true,
-			"basicRules": true,
-			"referenceSources": [
-				"CoA",
-				"PaBTSO",
-				"ToA"
-			],
-			"reprintedAs": [
-				"Spell Scroll (Level 1)|XDMG"
-			],
-			"type": "SC|DMG",
-			"tier": "minor",
-			"rarity": "common",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果該法術屬於你的職業法術列表，則你可以閱讀該卷軸並施放其法術且無需提供任何材料成分。否則你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術正常的施法時間。法術施展過後，卷軸上的文字將隨之消散，卷軸本身也將化作塵土。施法被打斷時，卷軸並不會因此消失。",
-				"假如卷軸記載的法術在你職業的法術列表內，但其環階超過了你目前能施放的水平，則你必須以你的施法屬性透過一次屬性檢定，DC為11。如果檢定失敗，則卷軸上記載的法術將消失而不生效。",
-				"法術施展後，卷軸上的字跡消散，卷軸本身化為塵埃。",
-				"從該卷軸施放的法術其豁免DC為13且攻擊加值為{@hit 5}。",
-				"法師法術卷軸上的法術可以如同抄錄法術書上的法術一般被抄錄。當從法術卷軸上抄錄法術時，抄錄者必須成功透過一次{@dc 11}的智力（{@skill Arcana||奧秘}）檢定。如果檢定成功，則法術被成功抄錄。無論檢定成功與否，法術卷軸都將被摧毀。"
-			],
-			"spellScrollLevel": 1,
-			"lootTables": [
-				"Magic Item Table A"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Spell Scroll (1st Level)"
-		},
-		{
-			"name": "法術卷軸(2環)",
-			"source": "DMG",
-			"page": 201,
-			"srd": true,
-			"basicRules": true,
-			"referenceSources": [
-				"CoA",
-				"DoSI",
-				"LMoP",
-				"PaBTSO"
-			],
-			"reprintedAs": [
-				"Spell Scroll (Level 2)|XDMG"
-			],
-			"type": "SC|DMG",
-			"tier": "minor",
-			"rarity": "uncommon",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果該法術屬於你的職業法術列表，則你可以閱讀該卷軸並施放其法術且無需提供任何材料成分。否則你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術正常的施法時間。法術施展過後，卷軸上的文字將隨之消散，卷軸本身也將化作塵土。施法被打斷時，卷軸並不會因此消失。",
-				"如果該法術在你職業的法術列表內，但其環階超過了你目前能施放的水平，則你必須以你的施法屬性透過一次屬性檢定以確定你是否成功施放該法術。DC為12。如果檢定失敗，則卷軸上記載的法術將消失而不生效。",
-				"法術施展後，卷軸上的字跡消散，卷軸本身化為塵埃。",
-				"從該卷軸施放的法術其豁免DC為13且攻擊加值為{@hit 5}。",
-				"法師法術卷軸上的法術可以像抄錄法術書上的法術一般被抄錄。抄錄卷軸上的法術時，抄錄者必須成功透過一次{@dc 12}的智力（{@skill Arcana||奧秘}）檢定。如果檢定成功，則法術被成功抄錄。無論檢定成功與否，法術卷軸都將被摧毀。"
-			],
-			"spellScrollLevel": 2,
-			"lootTables": [
-				"Magic Item Table A",
-				"Magic Item Table B"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Spell Scroll (2nd Level)"
-		},
-		{
-			"name": "法術卷軸(3環)",
-			"source": "DMG",
-			"page": 202,
-			"srd": true,
-			"basicRules": true,
-			"referenceSources": [
-				"CoA",
-				"LMoP",
-				"PaBTSO"
-			],
-			"reprintedAs": [
-				"Spell Scroll (Level 3)|XDMG"
-			],
-			"type": "SC|DMG",
-			"tier": "minor",
-			"rarity": "uncommon",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果該法術屬於你的職業法術列表，則你可以閱讀該卷軸並施放其法術且無需提供任何材料成分。否則你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術正常的施法時間。法術施展過後，卷軸上的文字將隨之消散，卷軸本身也將化作塵土。施法被打斷時，卷軸並不會因此消失。",
-				"如果該法術在你職業的法術列表內，但其環階超過了你目前能施放的水平，則你必須以你的施法屬性透過一次屬性檢定，DC為13。如果檢定失敗，則卷軸上記載的法術將消失而不生效。",
-				"法術施展後，卷軸上的字跡消散，卷軸本身化為塵埃。",
-				"從該卷軸施放的法術其豁免DC為15且攻擊加值為{@hit 7}。",
-				"法師法術卷軸上的法術可以像抄錄法術書上的法術一般被抄錄。當從法術卷軸上抄錄法術時，抄錄者必須成功透過一次{@dc 13}的智力（{@skill Arcana||奧秘}）檢定。如果檢定成功，則法術被成功抄錄。無論檢定成功與否，法術卷軸都將被摧毀。"
-			],
-			"spellScrollLevel": 3,
-			"lootTables": [
-				"Magic Item Table B"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Spell Scroll (3rd Level)"
-		},
-		{
-			"name": "法術卷軸(4環)",
-			"source": "DMG",
-			"page": 203,
-			"srd": true,
-			"basicRules": true,
-			"referenceSources": [
-				"CoA",
-				"PaBTSO",
-				"ToFW"
-			],
-			"reprintedAs": [
-				"Spell Scroll (Level 4)|XDMG"
-			],
-			"type": "SC|DMG",
-			"tier": "minor",
-			"rarity": "rare",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果該法術屬於你的職業法術列表，則你可以閱讀該卷軸並施放其法術且無需提供任何材料成分。否則你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術正常的施法時間。法術施展過後，卷軸上的文字將隨之消散，卷軸本身也將化作塵土。施法被打斷時，卷軸並不會因此消失。",
-				"如果該法術在你職業的法術列表內，但其環階超過了你目前能施放的水平，則你必須以你的施法屬性透過一次屬性檢定以確定你是否成功施放該法術。DC為14。如果檢定失敗，則卷軸上記載的法術將消失而不生效。",
-				"法術施展後，卷軸上的字跡消散，卷軸本身化為塵埃。",
-				"從該卷軸施放的法術其豁免DC為15且攻擊加值為{@hit 7}。",
-				"法師法術卷軸上的法術可以如同抄錄法術書上的法術一般被抄錄。當從法術卷軸上抄錄法術時，抄錄者必須成功透過一次{@dc 14}的智力（{@skill Arcana||奧秘}）檢定。如果檢定成功，則法術被成功抄錄。無論檢定成功與否，法術卷軸都將被摧毀。"
-			],
-			"spellScrollLevel": 4,
-			"lootTables": [
-				"Magic Item Table C"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Spell Scroll (4th Level)"
-		},
-		{
-			"name": "法術卷軸(5環)",
-			"source": "DMG",
-			"page": 204,
-			"srd": true,
-			"basicRules": true,
-			"referenceSources": [
-				"CoA",
-				"PaBTSO"
-			],
-			"reprintedAs": [
-				"Spell Scroll (Level 5)|XDMG"
-			],
-			"type": "SC|DMG",
-			"tier": "minor",
-			"rarity": "rare",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果該法術屬於你的職業法術列表，則你可以閱讀該卷軸並施放其法術且無需提供任何材料成分。否則你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術正常的施法時間。法術施展過後，卷軸上的文字將隨之消散，卷軸本身也將化作塵土。施法被打斷時，卷軸並不會因此消失。",
-				"如果該法術在你職業的法術列表內，但其環階超過了你目前能施放的水平，則你必須以你的施法屬性透過一次屬性檢定，DC為15。如果檢定失敗，則卷軸上記載的法術將消失而不生效。",
-				"法術施展後，卷軸上的字跡消散，卷軸本身化為塵埃。",
-				"從該卷軸施放的法術其豁免DC為17且攻擊加值為{@hit 9}。",
-				"法師法術卷軸上的法術可以像抄錄法術書上的法術一般被抄錄。當從法術卷軸上抄錄法術時，抄錄者必須成功透過一次{@dc 15}的智力（{@skill Arcana||奧秘}）檢定。如果檢定成功，則法術被成功抄錄。無論檢定成功與否，法術卷軸都將被摧毀。"
-			],
-			"spellScrollLevel": 5,
-			"lootTables": [
-				"Magic Item Table C"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Spell Scroll (5th Level)"
-		},
-		{
-			"name": "法術卷軸(6環)",
-			"source": "DMG",
-			"page": 205,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Spell Scroll (Level 6)|XDMG"
-			],
-			"type": "SC|DMG",
-			"tier": "minor",
-			"rarity": "very rare",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果該法術屬於你的職業法術列表，則你可以閱讀該卷軸並施放其法術且無需提供任何材料成分。否則你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術正常的施法時間。法術施展過後，卷軸上的文字將隨之消散，卷軸本身也將化作塵土。施法被打斷時，卷軸並不會因此消失。",
-				"如果該法術在你職業的法術列表內，但其環階超過了你目前能施放的水平，則你必須以你的施法屬性透過一次屬性檢定，DC為16。如果檢定失敗，則卷軸上記載的法術將消失而不生效。",
-				"法術施展後，卷軸上的字跡消散，卷軸本身化為塵埃。",
-				"從該卷軸施放的法術其豁免DC為17且攻擊加值為{@hit 9}。",
-				"法師法術卷軸上的法術可以像抄錄法術書上的法術一般被抄錄。抄錄卷軸上的法術時，抄錄者必須成功透過一次{@dc 16}的智力（{@skill Arcana||奧秘}）檢定。如果檢定成功，則法術被成功抄錄。無論檢定成功與否，法術卷軸都將被摧毀。"
-			],
-			"spellScrollLevel": 6,
-			"lootTables": [
-				"Magic Item Table D"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Spell Scroll (6th Level)"
-		},
-		{
-			"name": "法術卷軸(7環)",
-			"source": "DMG",
-			"page": 206,
-			"srd": true,
-			"basicRules": true,
-			"referenceSources": [
-				"PaBTSO"
-			],
-			"reprintedAs": [
-				"Spell Scroll (Level 7)|XDMG"
-			],
-			"type": "SC|DMG",
-			"tier": "minor",
-			"rarity": "very rare",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果該法術屬於你的職業法術列表，則你可以閱讀該卷軸並施放其法術且無需提供任何材料成分。否則你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術正常的施法時間。法術施展過後，卷軸上的文字將隨之消散，卷軸本身也將化作塵土。施法被打斷時，卷軸並不會因此消失。",
-				"假如卷軸記載的法術在你職業的法術列表內，但其環階超過了你目前能施放的水平，則你必須以你的施法屬性透過一次屬性檢定，DC為17。如果檢定失敗，則卷軸上記載的法術將消失而不生效。",
-				"法術施展後，卷軸上的字跡消散，卷軸本身化為塵埃。",
-				"從該卷軸施放的法術其豁免DC為18且攻擊加值為{@hit 10}。",
-				"法師法術卷軸上的法術可以像抄錄法術書上的法術一般被抄錄。抄錄卷軸上的法術時，抄錄者必須成功透過一次{@dc 17}的智力（{@skill Arcana||奧秘}）檢定。如果檢定成功，則法術被成功抄錄。無論檢定成功與否，法術卷軸都將被摧毀。"
-			],
-			"spellScrollLevel": 7,
-			"lootTables": [
-				"Magic Item Table D"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Spell Scroll (7th Level)"
-		},
-		{
-			"name": "法術卷軸(8環)",
-			"source": "DMG",
-			"page": 207,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Spell Scroll (Level 8)|XDMG"
-			],
-			"type": "SC|DMG",
-			"tier": "minor",
-			"rarity": "very rare",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果該法術屬於你的職業法術列表，則你可以閱讀該卷軸並施放其法術且無需提供任何材料成分。否則你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術正常的施法時間。法術施展過後，卷軸上的文字將隨之消散，卷軸本身也將化作塵土。施法被打斷時，卷軸並不會因此消失。",
-				"如果該法術在你職業的法術列表內，但其環階超過了你目前能施放的水平，則你必須以你的施法屬性透過一次屬性檢定，DC為18。如果檢定失敗，則卷軸上記載的法術將消失而不生效。",
-				"法術施展後，卷軸上的字跡消散，卷軸本身化為塵埃。",
-				"從該卷軸施放的法術其豁免DC為18且攻擊加值為{@hit 10}。",
-				"法師法術卷軸上的法術可以像抄錄法術書上的法術一般被抄錄。當從法術卷軸上抄錄法術時，抄錄者必須成功透過一次{@dc 18}的智力（{@skill Arcana||奧秘}）檢定。如果檢定成功，則法術被成功抄錄。無論檢定成功與否，法術卷軸都將被摧毀。"
-			],
-			"spellScrollLevel": 8,
-			"lootTables": [
-				"Magic Item Table D",
-				"Magic Item Table E"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Spell Scroll (8th Level)"
-		},
-		{
-			"name": "法術卷軸(9環)",
-			"source": "DMG",
-			"page": 208,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Spell Scroll (Level 9)|XDMG"
-			],
-			"type": "SC|DMG",
-			"tier": "minor",
-			"rarity": "legendary",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果該法術屬於你的職業法術列表，則你可以閱讀該卷軸並施放其法術且無需提供任何材料成分。否則你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術正常的施法時間。法術施展過後，卷軸上的文字將隨之消散，卷軸本身也將化作塵土。施法被打斷時，卷軸並不會因此消失。",
-				"假如卷軸記載的法術在你職業的法術列表內，但其環階超過了你目前能施放的水平，則你必須以你的施法屬性透過一次屬性檢定，DC為19。如果檢定失敗，則卷軸上記載的法術將消失而不生效。",
-				"法術施展後，卷軸上的字跡消散，卷軸本身化為塵埃。",
-				"從該卷軸施放的法術其豁免DC為19且攻擊加值為{@hit 11}。",
-				"法師可以如同抄錄法術書上的法術一般，抄錄記載在法術卷軸上的法師法術。抄錄卷軸上的法術時，抄錄者必須成功透過一次{@dc 19}的智力（{@skill Arcana||奧秘}）檢定。如果檢定成功，則法術被成功抄錄。無論檢定成功與否，抄錄後，法術卷軸都將被摧毀。"
-			],
-			"spellScrollLevel": 9,
-			"lootTables": [
-				"Magic Item Table E"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Spell Scroll (9th Level)"
-		},
-		{
-			"name": "法術卷軸 (戲法)",
-			"source": "DMG",
-			"page": 199,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Spell Scroll (Cantrip)|XDMG"
-			],
-			"type": "SC|DMG",
-			"tier": "minor",
-			"rarity": "common",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果該法術屬於你的職業法術列表，則你可以閱讀該卷軸並施放其法術且無需提供任何材料成分。否則你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術正常的施法時間。法術施展過後，卷軸上的文字將隨之消散，卷軸本身也將化作塵土。施法被打斷時，卷軸並不會因此消失。",
-				"如果該法術在你職業的法術列表內，但其環階超過了你目前能施放的水平，則你必須以你的施法屬性透過一次屬性檢定以確定你是否成功施放該法術。DC為10。如果檢定失敗，則卷軸上記載的法術將消失而不生效。",
-				"法術施展後，卷軸上的字跡消散，卷軸本身化為塵埃。",
-				"從該卷軸施放的法術其豁免DC為13且攻擊加值為{@hit 5}。"
-			],
-			"spellScrollLevel": 0,
-			"lootTables": [
-				"Magic Item Table A"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Spell Scroll (Cantrip)"
-		},
-		{
-			"name": "法術卷軸 (戲法)",
-			"source": "XDMG",
-			"page": 305,
-			"srd52": true,
-			"basicRules2024": true,
-			"otherSources": [
-				{
-					"source": "XPHB",
-					"page": 228
-				}
-			],
-			"type": "SC|XPHB",
-			"rarity": "common",
-			"value": 3000,
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果這道法術在你的法術列表中，則你可以閱讀該卷軸並施展其法術且無需任何材料成分；否則，你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術的正常施法時間。法術一經施展，卷軸本身就會化作塵土。如果施法被打斷，則卷軸不會消失。",
-				"如果這道法術在你的法術列表中，但其環階高於你當前能施展的水平，則你必須使用你的施法屬性進行一次屬性檢定，以決定是否可以施展這道法術，{@dc 10}+這道法術的環階。如果檢定失敗，則卷軸上記載的法術會消失，並且不會產生任何效果。",
-				"如果法術需要進行豁免檢定或攻擊檢定，法術豁免DC為13，攻擊加值為{@hit 5}。"
-			],
-			"spellScrollLevel": 0,
-			"lootTables": [
-				"Arcana - Common|XDMG",
-				"Relics - Common|XDMG"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Spell Scroll (Cantrip)"
-		},
-		{
-			"name": "法術卷軸（一環）",
-			"source": "XDMG",
-			"page": 305,
-			"srd52": true,
-			"basicRules2024": true,
-			"otherSources": [
-				{
-					"source": "XPHB",
-					"page": 228
-				}
-			],
-			"type": "SC|XPHB",
-			"rarity": "common",
-			"value": 5000,
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果這道法術在你的法術列表中，則你可以閱讀該卷軸並施展其法術且無需任何材料成分；否則，你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術的正常施法時間。法術一經施展，卷軸本身就會化作塵土。如果施法被打斷，則卷軸不會消失。",
-				"如果這道法術在你的法術列表中，但其環階高於你當前能施展的水平，則你必須使用你的施法屬性進行一次{@dc 11}的屬性檢定，以決定是否可以施展這道法術。如果檢定失敗，則卷軸上記載的法術會消失，並且不會產生任何效果。",
-				"如果法術需要進行豁免檢定或攻擊檢定，法術豁免DC為13，攻擊加值為{@hit 5}。",
-				{
-					"type": "entries",
-					"name": "將卷軸抄錄入法術書",
-					"entries": [
-						"法師法術卷軸上的法術可以被抄寫到法術書中。當以這種方式抄寫一個1環法術時，抄寫者必須透過一個{@dc 11}智力（{@skill Arcana|XPHB|奧秘}）的檢定。如果檢定成功，法術被抄寫下來。無論檢定成功與否，這個法術卷軸都會被銷燬。"
-					],
-					"ENG_name": "Copying a Scroll into a Spellbook"
-				}
-			],
-			"spellScrollLevel": 1,
-			"lootTables": [
-				"Arcana - Common|XDMG",
-				"Relics - Common|XDMG"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Spell Scroll (Level 1)"
-		},
-		{
-			"name": "法術卷軸（二環）",
-			"source": "XDMG",
-			"page": 305,
-			"srd52": true,
-			"basicRules2024": true,
-			"type": "SC|XPHB",
-			"rarity": "uncommon",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果這道法術在你的法術列表中，則你可以閱讀該卷軸並施展其法術且無需任何材料成分；否則，你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術的正常施法時間。法術一經施展，卷軸本身就會化作塵土。如果施法被打斷，則卷軸不會消失。",
-				"如果這道法術在你的法術列表中，但其環階高於你當前能施展的水平，則你必須使用你的施法屬性進行一次{@dc 12}的屬性檢定，以決定是否可以施展這道法術。如果檢定失敗，則卷軸上記載的法術會消失，並且不會產生任何效果。",
-				"如果法術需要進行豁免檢定或攻擊檢定，法術豁免DC為13，攻擊加值為{@hit 5}。",
-				{
-					"type": "entries",
-					"name": "將卷軸抄錄入法術書",
-					"entries": [
-						"法師法術卷軸上的法術可以被抄錄到法術書中。當一個2環法術以這種方式被抄錄時，抄錄者必須透過一次 {@dc 12} 智力（{@skill Arcana|XPHB|奧秘}）檢定。如果檢定成功，法術被成功抄錄。無論檢定成功與否，法術卷軸都會被摧毀。"
-					],
-					"ENG_name": "Copying a Scroll into a Spellbook"
-				}
-			],
-			"spellScrollLevel": 2,
-			"lootTables": [
-				"Arcana - Uncommon|XDMG",
-				"Relics - Uncommon|XDMG"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Spell Scroll (Level 2)"
-		},
-		{
-			"name": "法術卷軸（三環）",
-			"source": "XDMG",
-			"page": 305,
-			"srd52": true,
-			"basicRules2024": true,
-			"referenceSources": [
-				"HotB"
-			],
-			"type": "SC|XPHB",
-			"rarity": "uncommon",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果這道法術在你的法術列表中，則你可以閱讀該卷軸並施展其法術且無需任何材料成分；否則，你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術的正常施法時間。法術一經施展，卷軸本身就會化作塵土。如果施法被打斷，則卷軸不會消失。",
-				"如果這道法術在你的法術列表中，但其環階高於你當前能施展的水平，則你必須使用你的施法屬性進行一次{@dc 13}的屬性檢定，以決定是否可以施展這道法術。如果檢定失敗，則卷軸上記載的法術會消失，並且不會產生任何效果。",
-				"如果法術需要進行豁免投擲或攻擊檢定，法術豁免DC為15，攻擊加值為{@hit 7}。",
-				{
-					"type": "entries",
-					"name": "將卷軸抄錄入法術書",
-					"entries": [
-						"法師法術卷軸上的法術可以抄錄到法術書中。當以此方式抄錄一個3環法術時，抄錄者必須成功透過一次 {@dc 13} 智力（{@skill Arcana|XPHB|奧秘}）檢定。檢定成功後，法術被抄錄。無論檢定成功與否，法術卷軸都會被銷燬。"
-					],
-					"ENG_name": "Copying a Scroll into a Spellbook"
-				}
-			],
-			"spellScrollLevel": 3,
-			"lootTables": [
-				"Arcana - Uncommon|XDMG",
-				"Relics - Uncommon|XDMG"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Spell Scroll (Level 3)"
-		},
-		{
-			"name": "法術卷軸（四環）",
-			"source": "XDMG",
-			"page": 305,
-			"srd52": true,
-			"basicRules2024": true,
-			"type": "SC|XPHB",
-			"rarity": "rare",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果這道法術在你的法術列表中，則你可以閱讀該卷軸並施展其法術且無需任何材料成分；否則，你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術的正常施法時間。法術一經施展，卷軸本身就會化作塵土。如果施法被打斷，則卷軸不會消失。",
-				"如果這道法術在你的法術列表中，但其環階高於你當前能施展的水平，則你必須使用你的施法屬性進行一次{@dc 14}的屬性檢定，以決定是否可以施展這道法術。如果檢定失敗，則卷軸上記載的法術會消失，並且不會產生任何效果。",
-				"如果法術需要進行豁免投擲或攻擊檢定，法術豁免DC為15，攻擊加值為{@hit 7}。",
-				{
-					"type": "entries",
-					"name": "將卷軸抄錄入法術書",
-					"entries": [
-						"法術卷軸上的法師法術可以被複制到法術書中。當以這種方式複製一個4環法術時，複製者必須在一次{@dc 14}智力（{@skill Arcana|XPHB|奧秘}）檢定中成功。在成功的檢定後，該法術被複制。無論檢定成功還是失敗，法術卷軸都會被銷燬。"
-					],
-					"ENG_name": "Copying a Scroll into a Spellbook"
-				}
-			],
-			"spellScrollLevel": 4,
-			"lootTables": [
-				"Arcana - Rare|XDMG",
-				"Relics - Rare|XDMG"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Spell Scroll (Level 4)"
-		},
-		{
-			"name": "法術卷軸（五環）",
-			"source": "XDMG",
-			"page": 305,
-			"srd52": true,
-			"basicRules2024": true,
-			"type": "SC|XPHB",
-			"rarity": "rare",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果這道法術在你的法術列表中，則你可以閱讀該卷軸並施展其法術且無需任何材料成分；否則，你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術的正常施法時間。法術一經施展，卷軸本身就會化作塵土。如果施法被打斷，則卷軸不會消失。",
-				"如果這道法術在你的法術列表中，但其環階高於你當前能施展的水平，則你必須使用你的施法屬性進行一次{@dc 15}的屬性檢定，以決定是否可以施展這道法術。如果檢定失敗，則卷軸上記載的法術會消失，並且不會產生任何效果。",
-				"如果法術需要進行豁免投擲或攻擊檢定，法術豁免DC為17，攻擊加值為{@hit 9}。",
-				{
-					"type": "entries",
-					"name": "將卷軸抄錄入法術書",
-					"entries": [
-						"法術卷軸上的法師法術可以被複制到法術書中。當以這種方式複製一個5環法術時，複製者必須成功透過一個{@dc 15}智力（{@skill Arcana|XPHB|奧秘}）檢定。如果檢定成功，法術被複制。無論檢定成功與否，法術卷軸都會被銷燬。"
-					],
-					"ENG_name": "Copying a Scroll into a Spellbook"
-				}
-			],
-			"spellScrollLevel": 5,
-			"lootTables": [
-				"Arcana - Rare|XDMG",
-				"Relics - Rare|XDMG"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Spell Scroll (Level 5)"
-		},
-		{
-			"name": "法術卷軸（六環）",
-			"source": "XDMG",
-			"page": 305,
-			"srd52": true,
-			"basicRules2024": true,
-			"type": "SC|XPHB",
-			"rarity": "very rare",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果這道法術在你的法術列表中，則你可以閱讀該卷軸並施展其法術且無需任何材料成分；否則，你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術的正常施法時間。法術一經施展，卷軸本身就會化作塵土。如果施法被打斷，則卷軸不會消失。",
-				"如果這道法術在你的法術列表中，但其環階高於你當前能施展的水平，則你必須使用你的施法屬性進行一次{@dc 16}的屬性檢定，以決定是否可以施展這道法術。如果檢定失敗，則卷軸上記載的法術會消失，並且不會產生任何效果。",
-				"如果法術需要進行豁免投擲或攻擊檢定，法術豁免DC為17，攻擊加值為{@hit 9}。",
-				{
-					"type": "entries",
-					"name": "將卷軸抄錄入法術書",
-					"entries": [
-						"法師法術卷軸上的法術可以抄錄到法術書中。當一個6環法術被以這種方式抄錄時，抄錄者必須成功透過一次{@dc 16}智力（{@skill Arcana|XPHB|奧秘}）檢定。如果檢定成功，法術被抄錄。無論檢定成功還是失敗，法術卷軸都會被銷燬。"
-					],
-					"ENG_name": "Copying a Scroll into a Spellbook"
-				}
-			],
-			"spellScrollLevel": 6,
-			"lootTables": [
-				"Arcana - Very Rare|XDMG",
-				"Relics - Very Rare|XDMG"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Spell Scroll (Level 6)"
-		},
-		{
-			"name": "法術卷軸（七環）",
-			"source": "XDMG",
-			"page": 305,
-			"srd52": true,
-			"basicRules2024": true,
-			"type": "SC|XPHB",
-			"rarity": "very rare",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果這道法術在你的法術列表中，則你可以閱讀該卷軸並施展其法術且無需任何材料成分；否則，你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術的正常施法時間。法術一經施展，卷軸本身就會化作塵土。如果施法被打斷，則卷軸不會消失。",
-				"如果這道法術在你的法術列表中，但其環階高於你當前能施展的水平，則你必須使用你的施法屬性進行一次{@dc 17}的屬性檢定，以決定是否可以施展這道法術。如果檢定失敗，則卷軸上記載的法術會消失，並且不會產生任何效果。",
-				"如果法術需要進行豁免投擲或攻擊檢定，法術豁免DC為18，攻擊加值為{@hit 10}。",
-				{
-					"type": "entries",
-					"name": "將卷軸抄錄入法術書",
-					"entries": [
-						"法術卷軸上的巫師法術可以被抄寫到法術書中。當一個7環法術以這種方式被抄寫時，抄寫者必須透過一次 {@dc 17} 智力（{@skill Arcana|XPHB|奧秘}）檢定。若檢定成功，法術將被抄寫。無論檢定是否成功，法術卷軸都會被銷燬。"
-					],
-					"ENG_name": "Copying a Scroll into a Spellbook"
-				}
-			],
-			"spellScrollLevel": 7,
-			"lootTables": [
-				"Arcana - Very Rare|XDMG",
-				"Relics - Very Rare|XDMG"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Spell Scroll (Level 7)"
-		},
-		{
-			"name": "法術卷軸（八環）",
-			"source": "XDMG",
-			"page": 305,
-			"srd52": true,
-			"basicRules2024": true,
-			"type": "SC|XPHB",
-			"rarity": "very rare",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果這道法術在你的法術列表中，則你可以閱讀該卷軸並施展其法術且無需任何材料成分；否則，你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術的正常施法時間。法術一經施展，卷軸本身就會化作塵土。如果施法被打斷，則卷軸不會消失。",
-				"如果這道法術在你的法術列表中，但其環階高於你當前能施展的水平，則你必須使用你的施法屬性進行一次{@dc 18}的屬性檢定，以決定是否可以施展這道法術。如果檢定失敗，則卷軸上記載的法術會消失，並且不會產生任何效果。",
-				"如果法術需要進行豁免投擲或攻擊檢定，法術豁免DC為18，攻擊加值為{@hit 10}。",
-				{
-					"type": "entries",
-					"name": "將卷軸抄錄入法術書",
-					"entries": [
-						"法術卷軸上的法師法術可以抄錄到法術書中。當一個8環法術以這種方式被抄錄時，抄錄者必須透過一次{@dc 18}智力（{@skill Arcana|XPHB|奧秘}）檢定。檢定成功時，法術被抄錄。無論檢定是否成功，該法術卷軸都會被銷燬。"
-					],
-					"ENG_name": "Copying a Scroll into a Spellbook"
-				}
-			],
-			"spellScrollLevel": 8,
-			"lootTables": [
-				"Arcana - Very Rare|XDMG",
-				"Relics - Very Rare|XDMG"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Spell Scroll (Level 8)"
-		},
-		{
-			"name": "法術卷軸（九環）",
-			"source": "XDMG",
-			"page": 305,
-			"srd52": true,
-			"basicRules2024": true,
-			"type": "SC|XPHB",
-			"rarity": "legendary",
-			"entries": [
-				"每張法術卷軸都以神秘暗語記錄了一道法術。如果這道法術在你的法術列表中，則你可以閱讀該卷軸並施展其法術且無需任何材料成分；否則，你將無法理解該卷軸。透過閱讀卷軸施展的法術同樣需要遵循相應法術的正常施法時間。法術一經施展，卷軸本身就會化作塵土。如果施法被打斷，則卷軸不會消失。",
-				"如果這道法術在你的法術列表中，但其環階高於你當前能施展的水平，則你必須使用你的施法屬性進行一次{@dc 19}的屬性檢定，以決定是否可以施展這道法術。如果檢定失敗，則卷軸上記載的法術會消失，並且不會產生任何效果。",
-				"如果法術需要進行豁免檢定或攻擊檢定，法術豁免DC為19，攻擊加值為{@hit 11}。",
-				{
-					"type": "entries",
-					"name": "將卷軸抄錄入法術書",
-					"entries": [
-						"法術卷軸上的法師法術可以被抄錄到法術書中。當一個9環法術以這種方式被抄錄時，抄錄者必須成功透過一個{@dc 19}智力（{@skill Arcana|XPHB|奧秘}）檢定。如果檢定成功，法術被抄錄。無論檢定成功與否，法術卷軸都會被銷燬。"
-					],
-					"ENG_name": "Copying a Scroll into a Spellbook"
-				}
-			],
-			"spellScrollLevel": 9,
-			"lootTables": [
-				"Arcana - Legendary|XDMG",
-				"Relics - Legendary|XDMG"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Spell Scroll (Level 9)"
-		},
-		{
-			"name": "法力恢復戒指",
-			"source": "EFA",
-			"page": 112,
-			"type": "RG|XDMG",
-			"rarity": "uncommon",
-			"reqAttune": "由施法者",
-			"reqAttuneTags": [
-				{
-					"spellcasting": true
-				}
-			],
-			"entries": [
-				"佩戴這枚戒指時，你可以以一個{@variantrule Bonus Action|XPHB|附贈動作}恢復一個已消耗的法術位。恢復的法術位可以是3環或更低。一旦使用，這枚戒指在下一個拂曉前無法再次使用。"
-			],
-			"classFeatures": [
-				"replicate magic item|artificer|efa|2|efa"
-			],
-			"ENG_name": "Spell-Refueling Ring"
-		},
-		{
-			"name": "法術書",
-			"source": "PHB",
-			"page": 153,
-			"srd": true,
-			"basicRules": true,
-			"referenceSources": [
-				"AitFR-FCD",
-				"CoS",
-				"DSotDQ",
-				"IDRotF",
-				"KftGV",
-				"QftIS"
-			],
-			"type": "G",
-			"rarity": "none",
-			"weight": 3,
-			"value": 5000,
-			"entries": [
-				"硬皮封面的法術書是法師們的必須品，為方便記錄法術，其通常都留有100張羊皮紙空書頁。"
-			],
-			"ENG_name": "Spellbook"
-		},
-		{
-			"name": "抗法盾",
-			"source": "DMG",
-			"page": 201,
-			"srd": true,
-			"referenceSources": [
-				"CoA"
-			],
-			"reprintedAs": [
-				"Spellguard Shield|XDMG"
-			],
-			"type": "S",
-			"tier": "major",
-			"rarity": "very rare",
-			"reqAttune": true,
-			"weight": 6,
-			"ac": 2,
-			"entries": [
-				"持握此盾牌期間，你對抗法術與其他魔法效應所作的豁免檢定具有優勢，而對你發動的法術攻擊檢定具有劣勢。"
-			],
-			"lootTables": [
-				"Magic Item Table H"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Spellguard Shield"
-		},
-		{
-			"name": "抗法盾",
-			"source": "XDMG",
-			"page": 305,
-			"srd52": true,
-			"basicRules2024": true,
-			"baseItem": "shield|xphb",
-			"type": "S|XPHB",
-			"rarity": "very rare",
-			"reqAttune": true,
-			"weight": 6,
-			"ac": 2,
-			"entries": [
-				"在你持握著這面盾牌期間，你為抵抗法術和其他魔法效應所進行的豁免具有{@variantrule Advantage|XPHB|優勢}，且對你發動的法術攻擊檢定具有{@variantrule Disadvantage|XPHB|劣勢}。"
-			],
-			"lootTables": [
-				"Armaments - Very Rare|XDMG"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Spellguard Shield"
-		},
-		{
-			"name": "法驅魔舵",
-			"source": "AAG",
-			"page": 23,
-			"referenceSources": [
-				"LoX"
-			],
-			"rarity": "rare",
-			"reqAttune": "由施法者",
-			"reqAttuneTags": [
-				{
-					"spellcasting": true
-				}
-			],
-			"wondrous": true,
-			"entries": [
-				"這把華麗的椅子的功能是在空間與風中推進並操縱安裝了它的船舶。它也可以在水上或水下推進並操縱船舶，前提是船舶本身是為這類旅行而打造的。有問題的船舶必須重達1噸或更多。",
-				"與法驅魔舵同調後的感覺類似於手臂或腿沉睡後經歷的針刺效果，但並沒有那麼痛苦。",
-				"當你和一個法驅魔舵同調並坐在其中時，只要你維持{@status concentration||專注}（如同{@status concentration||專注於}在一個法術上）你可以獲得如下能力：",
-				{
-					"type": "list",
-					"items": [
-						"你可以使用法驅魔舵來在太空，大氣，或者水中以艦船的速度來移動船體。如果艦船處在太空中，且附近1英里內沒有超過1噸重的其他物件，你可以使用法驅魔舵來讓船隻快速行進，足以在24小時內旅行1億英里。",
-						"你可以操縱該船隻，儘管以一種較為笨拙的方式，如同使用船舵或船槳來操縱航海船舶一樣。",
-						"在任何時間，你都可以看見和聽見在艦船上和艦船周遭發生的事情，就好像你站在艦船上任意由你選擇的位置一樣。"
-					]
-				},
-				{
-					"type": "entries",
-					"name": "轉移同調",
-					"entries": [
-						"你可以使用一個動作來接觸一個願意的施法者。該生物立即與法驅魔舵同調，而你與魔舵的同調在同一時間結束。"
-					],
-					"ENG_name": "Transfer Attunement"
-				},
-				{
-					"type": "inset",
-					"name": "法驅魔舵的成本",
-					"entries": [
-						"一個法驅魔舵可以推動並操縱艦船，猶如航海艦船的帆、槳和方向舵一樣，如果擁有正確的法術，法驅魔舵是很容易創造的。{@spell Create spelljamming helm|AAG|創造法驅魔舵} 的材料成分需要花費 5,000 金幣，因此這也是獲得一個法驅魔舵所需支付的最低成本。",
-						"荒宇商人，包括{@creature dohwar|BAM|多瓦爾企鵝人}和{@creature mercane|BAM|星海商族}（均在{@book 布布的星界怪獸展|BAM}中提及），通常以顯著高於製造成本的價格販賣法驅魔舵。高出的價格取決於市場，但7,500金幣會是一個合理的要價。一個在賣方市場裡有急需的買家可能需要支付10,000金幣或更多。"
-					],
-					"ENG_name": "Cost of a Spelljamming Helm"
-				}
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Spelljamming Helm"
-		},
-		{
-			"name": "法術晶格",
-			"source": "ERLW",
-			"page": 279,
-			"referenceSources": [
-				"EFR"
-			],
-			"rarity": "common",
-			"wondrous": true,
-			"entries": [
-				"這塊拋光的艾伯倫龍晶大小剛好一握，功能上類似一本書，裡面蘊藏著資訊。晶格可以存下的內容最多相當於一本320頁的書。晶格在被製造出來時可以是空的，也可以已經存入了資訊。當晶格被創造出來時，創造者還可以設定一個口令，如此必須對上口令才能接觸到晶格內的資訊。",
-				"當你握住晶格時，可以耗費一個動作將你的意識向晶格敞開，在腦海中閱讀其內容。在隨後的回合中，閱讀文字或在晶格中的空白\"頁面\"上寫下新的文字需要{@status concentration||專注}（類似於{@status concentration||專注於}維持法術專注），在晶格中讀寫所需的時間與正常讀寫相同。思考一個特定的短語或標題會將你的意識拽向晶格中它第一次出現的位置。",
-				"法師可以使用法術晶格作為其法術書，在晶格內\"抄錄\"法術消耗的金幣與時間與通常情況相同。"
-			],
-			"ENG_name": "Spellshard"
-		},
-		{
-			"name": "蘊法刺青（1環）",
-			"source": "TCE",
-			"page": 135,
-			"rarity": "common",
-			"wondrous": true,
-			"tattoo": true,
-			"entries": [
-				"這種魔法紋身由一個特殊的針製造，包含一個單一的{@filter 1環法術|spells|level=1}，由魔法針在你的皮膚上編織而成。要使用紋身，你必須將針按在皮膚上並說出命令詞。針會變成墨水，成為紋身，以你喜歡的任何設計出現在皮膚上。一旦紋身存在，你就可以施放其法術，不需要任何材料元件。在施放法術期間以及法術持續時間內，紋身會發出微弱的光芒。法術結束後，紋身會從你的皮膚上消失。",
-				"這個法術的屬性調整值為+3；豁免難度是13，攻擊加值是+5。"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Spellwrought Tattoo (1st Level)"
-		},
-		{
-			"name": "蘊法刺青（2環）",
-			"source": "TCE",
-			"page": 135,
-			"rarity": "uncommon",
-			"wondrous": true,
-			"tattoo": true,
-			"entries": [
-				"這種魔法紋身由一個特殊的針製造，包含一個單一的{@filter 2環法術|spells|level=2}，由魔法針在你的皮膚上編織而成。要使用紋身，你必須將針按在皮膚上並說出命令詞。針會變成墨水，成為紋身，以你喜歡的任何設計出現在皮膚上。一旦紋身存在，你就可以施放其法術，不需要任何材料元件。在施放法術期間以及法術持續時間內，紋身會發出微弱的光芒。法術結束後，紋身會從你的皮膚上消失。",
-				"這個法術的屬性調整值為+3；豁免難度是13，攻擊加值是+5。"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Spellwrought Tattoo (2nd Level)"
-		},
-		{
-			"name": "蘊法刺青（3環）",
-			"source": "TCE",
-			"page": 135,
-			"rarity": "uncommon",
-			"wondrous": true,
-			"tattoo": true,
-			"entries": [
-				"這種魔法紋身由一個特殊的針製造，包含一個單一的{@filter 3環法術|spells|level=3}，由魔法針在你的皮膚上編織而成。要使用紋身，你必須將針按在皮膚上並說出命令詞。針會變成墨水，成為紋身，以你喜歡的任何設計出現在皮膚上。一旦紋身存在，你就可以施放其法術，不需要任何材料元件。在施放法術期間以及法術持續時間內，紋身會發出微弱的光芒。法術結束後，紋身會從你的皮膚上消失。",
-				"這個法術的屬性調整值為+4；豁免難度是15，攻擊加值是+7。"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Spellwrought Tattoo (3rd Level)"
-		},
-		{
-			"name": "蘊法刺青（4環）",
-			"source": "TCE",
-			"page": 135,
-			"rarity": "rare",
-			"wondrous": true,
-			"tattoo": true,
-			"entries": [
-				"這種魔法紋身由一個特殊的針製造，包含一個單一的{@filter 4環法術|spells|level=4}，由魔法針在你的皮膚上編織而成。要使用紋身，你必須將針按在皮膚上並說出命令詞。針會變成墨水，成為紋身，以你喜歡的任何設計出現在皮膚上。一旦紋身存在，你就可以施放其法術，不需要任何材料元件。在施放法術期間以及法術持續時間內，紋身會發出微弱的光芒。法術結束後，紋身會從你的皮膚上消失。",
-				"這個法術的屬性調整值為+4；豁免難度是15，攻擊加值是+7。"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Spellwrought Tattoo (4th Level)"
-		},
-		{
-			"name": "蘊法刺青（5環）",
-			"source": "TCE",
-			"page": 135,
-			"rarity": "rare",
-			"wondrous": true,
-			"tattoo": true,
-			"entries": [
-				"這種魔法紋身由一個特殊的針製造，包含一個單一的{@filter 5環法術|spells|level=5}，由魔法針在你的皮膚上編織而成。要使用紋身，你必須將針按在皮膚上並說出命令詞。針會變成墨水，成為紋身，以你喜歡的任何設計出現在皮膚上。一旦紋身存在，你就可以施放其法術，不需要任何材料元件。在施放法術期間以及法術持續時間內，紋身會發出微弱的光芒。法術結束後，紋身會從你的皮膚上消失。",
-				"這個法術的屬性調整值為+5；豁免難度是17，攻擊加值是+9。"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Spellwrought Tattoo (5th Level)"
-		},
-		{
-			"name": "蘊法刺青（戲法）",
-			"source": "TCE",
-			"page": 135,
-			"rarity": "common",
-			"wondrous": true,
-			"tattoo": true,
-			"entries": [
-				"這種魔法紋身由一個特殊的針製造，包含一個單一的{@filter 戲法|spells|level=0}，由魔法針在你的皮膚上編織而成。要使用紋身，你必須將針按在皮膚上並說出命令詞。針會變成墨水，成為紋身，以你喜歡的任何設計出現在皮膚上。一旦紋身存在，你就可以施放其法術，不需要任何材料元件。在施放法術期間以及法術持續時間內，紋身會發出微弱的光芒。法術結束後，紋身會從你的皮膚上消失。",
-				"這個法術的屬性調整值為+3；豁免難度是13，攻擊加值是+5。"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Spellwrought Tattoo (Cantrip)"
-		},
-		{
-			"name": "湮滅法球",
-			"source": "DMG",
-			"page": 201,
-			"srd": true,
-			"referenceSources": [
-				"IMR",
-				"TftYP-ToH",
-				"ToA",
-				"VEoR"
-			],
-			"reprintedAs": [
-				"Sphere of Annihilation|XDMG"
-			],
-			"tier": "major",
-			"rarity": "legendary",
-			"wondrous": true,
-			"entries": [
-				"這個直徑2尺的黑色球體是多元宇宙中的一個空洞，它懸浮在空間中，由一個圍繞在它周圍的魔法場維持穩定。",
-				"湮滅法球會毀滅任何穿過它或被它穿過的物質。而神器除非標註了易受湮滅法球影響，否則可以不受影響的穿過法球。其他接觸到法球但未被完全毀滅或吞噬的東西都將受到{@damage 4d10}點力場傷害。",
-				"除非被人控制，湮滅法球總是保持靜止。如果你在一個未被控制的湮滅法球周圍60尺內，你可以用一個動作進行一次{@dc 25}的智力（{@skill Arcana||奧秘}）檢定。如果檢定成功，你可以讓法球向一個你選擇的方向移動尺數等於5×你的智力調整值的距離（至少5尺）。如果檢定失敗，則湮滅法球向你移動10尺。如果法球進入某名生物佔據的空間，則該生物必須成功透過一次{@dc 13}的敏捷豁免以避開法球，失敗則受{@damage 4d10}點力場傷害。",
-				"如果你嘗試控制一個由另一名生物控制的法球，你進行一次智力（{@skill Arcana||奧秘}）檢定，與另一名生物的智力（{@skill Arcana||奧秘}）檢定進行對抗。對抗的勝者將獲得法球的控制權並可以如常的操縱它移動。",
-				"如果湮滅法球與位面傳送門，例如由{@spell gate||異界之門}法術創造的傳送門，或是異位面空間，例如{@item portable hole||次元洞}內部接觸，則DM按下表隨機決定發生的事件：",
-				{
-					"type": "table",
-					"colLabels": [
-						"{@dice d100}",
-						"結果"
-					],
-					"colStyles": [
-						"col-1 text-center",
-						"col-11"
-					],
-					"rows": [
-						[
-							"01-50",
-							"法球被摧毀了。"
-						],
-						[
-							"51-85",
-							"法球穿過位面傳送門或進入異位面空間"
-						],
-						[
-							"86-00",
-							"一個空間裂縫將湮滅法球和其周圍180尺範圍內的生物和物件送到一個隨機存在位面。"
-						]
-					]
-				}
-			],
-			"lootTables": [
-				"Magic Item Table I"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"ENG_name": "Sphere of Annihilation"
-		},
-		{
-			"name": "湮滅法球",
-			"source": "XDMG",
-			"page": 306,
-			"srd52": true,
-			"basicRules2024": true,
-			"rarity": "legendary",
-			"wondrous": true,
-			"entries": [
-				"這個直徑2尺的黑色球體是多元宇宙中的一個空洞，它懸浮在空間中，由一個圍繞在它周圍的魔法場維持穩定。",
-				"湮滅法球會毀滅任何穿過它或被它穿過的事物，只有神器例外：除非某件神器的弱點正是湮滅法球，否則神器均可以不受影響地穿過法球。任何觸碰到法球但未被完全吞沒或毀滅的東西將受到{@damage 8d10}力場傷害。",
-				{
-					"type": "entries",
-					"name": "控制法球",
-					"entries": [
-						"湮滅法球總是保持靜止，除非受到人控制。如果你位於法球60尺內，你能夠以一個{@action Magic|XPHB|魔法}動作進行一次{@dc 25}的智力（{@skill Arcana|XPHB|奧秘}）檢定。成功則你控制法球直至你的下個回合開始，若法球已處於一名其他生物的控制之下，則該生物失去控制權。失敗則法球向你直線移動10尺。",
-						"控制法球期間，你能夠以一個{@variantrule Bonus Action|XPHB|附贈動作}令法球向一個你選擇的方向移動一定尺數，具體尺數等於5×你的智力調整值（至少5尺）。法球進入一名生物的佔據空間時，該生物必須成功透過一次{@dc 19}的敏捷豁免，否則將觸碰到法球，受到{@damage 8d10}力場傷害。因受此傷害而{@variantrule Hit Points|XPHB|生命值}降至0的生物將被毀滅，它攜帶的財物將留在原地，屍體則灰飛煙滅。"
-					],
-					"ENG_name": "Controlling the Sphere"
-				},
-				{
-					"type": "entries",
-					"name": "法球碰撞",
-					"entries": [
-						"如果湮滅法球與位面傳送門（如{@spell Gate|XPHB|異界之門}製造的傳送門）或是異位面空間（如次元洞內部）接觸，則由DM根據下表隨機決定發生的事件：",
-						{
-							"type": "table",
-							"colStyles": [
-								"col-2 text-center",
-								"col-10"
-							],
-							"colLabels": [
-								"1d100",
-								"結果"
-							],
-							"rows": [
-								[
-									"01-50",
-									"法球被摧毀了。"
-								],
-								[
-									"51-85",
-									"法球穿過位面傳送門或進入異位面空間"
-								],
-								[
-									"86-00",
-									"一個空間裂縫出現，將湮滅法球和位於其180尺內的所有生物和物件送到一個隨機存在位面。"
-								]
-							]
-						}
-					],
-					"ENG_name": "Sphere Interactions"
-				}
-			],
-			"lootTables": [
-				"Arcana - Legendary|XDMG",
-				"Implements - Legendary|XDMG"
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Sphere of Annihilation"
-		},
-		{
-			"name": "蜘蛛法杖",
-			"source": "LMoP",
-			"page": 53,
-			"reprintedAs": [
-				"Spider Staff|PaBTSO"
-			],
-			"rarity": "rare",
-			"reqAttune": true,
-			"weight": 6,
-			"weaponCategory": "simple",
-			"property": [
-				"V"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"recharge": "dusk",
-			"rechargeAmount": "{@dice 1d6 + 4}",
-			"charges": 10,
-			"staff": true,
-			"entries": [
-				"這支黑色、鐵質法杖的頂端呈蜘蛛形狀。法杖重6磅。你必須與法杖調諧才能獲得其增益並施放其法術。法杖可以作為四分衛使用。當用來進行武器攻擊時，它在命中時額外造成{@damage 1d6}點毒素damage。",
-				"法杖有10次充能，用於激發其內部的spell。手持法杖時，你可以用行動力從法杖中施放以下spell之一，如果該spell在你的職業spell列表上：{@spell spider climb||蛛行術}（消耗1次充能）或{@spell web||蛛網術}（消耗2次充能，需要透過{@dc 15}的豁免檢定）。不需要任何材料成分。",
-				"這根法杖在黃昏時每天恢復{@dice 1d6 + 4}個已消耗的充能點。如果你用盡了法杖的最後一個充能點，擲一個{@dice d20}骰子。如果是1，法杖化為塵土並被摧毀。"
-			],
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"spider climb"
-					],
-					"2": [
-						"web"
-					]
-				}
-			},
-			"ENG_name": "Spider Staff"
-		},
-		{
-			"name": "蜘蛛法杖",
-			"source": "PaBTSO",
-			"page": 220,
-			"type": "M",
-			"rarity": "rare",
-			"reqAttune": "由吟遊詩人、術士、魔契師或法師",
-			"reqAttuneTags": [
-				{
-					"class": "bard"
-				},
-				{
-					"class": "sorcerer"
-				},
-				{
-					"class": "warlock"
-				},
-				{
-					"class": "wizard"
-				}
-			],
-			"weight": 4,
-			"weaponCategory": "simple",
-			"property": [
-				"V"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"recharge": "dusk",
-			"rechargeAmount": "{@dice 1d6 + 4}",
-			"charges": 10,
-			"staff": true,
-			"entries": [
-				"這根魔法長棍的頂部是蜘蛛形狀。在使用它進行武器攻擊時，擊中目標會額外造成{@damage 1d6}點毒素傷害。",
-				{
-					"type": "entries",
-					"name": "法術",
-					"entries": [
-						"這根法杖有10次充能。當你持有它時，你可以消耗相應的充能次數來施放以下其中一個法術：{@spell spider climb||蛛行術}（1次充能）或{@spell web||蛛網術}（2次充能；法術豁免 {@dc 15}）。",
-						"這根法杖在每天黃昏時恢復{@dice 1d6 + 4}個消耗的充能點。如果你消耗了法杖的最後一個充能點，擲一個{@dice d20}。如果是1，法杖化為塵土並被摧毀。"
-					],
-					"ENG_name": "Spells"
-				}
-			],
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"spider climb"
-					],
-					"2": [
-						"web"
-					]
-				}
-			},
-			"ENG_name": "Spider Staff"
-		},
-		{
-			"name": "間諜低語",
-			"source": "GGR",
-			"page": 181,
-			"rarity": "uncommon",
-			"reqAttune": true,
-			"wondrous": true,
-			"entries": [
-				"這件由暗色金屬製成的頭飾佩戴時彎曲環繞在耳朵上。如果你知道一個佩戴另一個間諜低語的生物且該生物在你身邊1英里範圍內時，你可以與他進行心靈交流。你可以用一個附贈動作使該生物聽見你所聽到的一切，持續1小時。你可以用一個附贈動作終止這一效應，當你陷入{@condition incapacitated||失能}狀態時該效應自行終止。"
-			],
-			"ENG_name": "Spies' Murmur"
-		},
-		{
-			"name": "刺盾",
-			"source": "WttHC",
-			"baseItem": "shield|xphb",
-			"type": "S|XPHB",
-			"rarity": "uncommon",
-			"reqAttune": true,
-			"weight": 6,
-			"ac": 2,
-			"entries": [
-				"粗糙的金屬尖刺裝飾著這個魔法盾牌。它具有以下屬性，當你持握它時可以使用。",
-				{
-					"type": "entries",
-					"name": "盾擊",
-					"entries": [
-						"當你進行{@action Attack|XPHB|攻擊}動作時，你可以使用盾牌對5尺內的一個目標進行一次攻擊檢定。將你的{@variantrule Proficiency|XPHB|熟練}熟練加值和力量調整值應用於攻擊檢定。命中時，盾牌造成等於{@dice 2d6}加上你力量調整值的穿刺傷害。"
-					],
-					"ENG_name": "Shield Bash"
-				},
-				{
-					"type": "entries",
-					"name": "尖刺齊射",
-					"entries": [
-						"作為一個{@action Magic|XPHB|魔法}動作，你可以使盾牌上爆發出尖刺，形成一個30尺的{@variantrule Cone [Area of Effect]|XPHB|錐狀}。{@variantrule Cone [Area of Effect]|XPHB|錐狀}中的每個生物需進行一次DC 13的敏捷豁免檢定，豁免失敗則受到{@damage 3d6}穿刺傷害，豁免成功則只受一半傷害。此屬性一旦使用，直到下一個拂曉前都無法再次使用。"
-					],
-					"ENG_name": "Spike Salvo"
-				}
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Spiked Shield"
-		},
-		{
-			"name": "命運紡錘",
-			"source": "BMT",
-			"page": 38,
-			"type": "WD|DMG",
-			"rarity": "legendary",
-			"reqAttune": true,
-			"recharge": "dawn",
-			"rechargeAmount": "{@dice 1d6}",
-			"charges": 6,
-			"entries": [
-				"這根魔杖的形狀就像一個包裹著紅線的水滴形紡錘。這把魔杖有6發充能，可以透過以下方式消耗：",
-				{
-					"type": "list",
-					"style": "list-hang-notitle",
-					"items": [
-						{
-							"type": "item",
-							"name": "戰鬥預知",
-							"entries": [
-								"當你擲先攻時，你可以消耗1發充能，從擲骰總值中加上或減去你的熟練加值。"
-							],
-							"ENG_name": "Battle Foreknowledge"
-						},
-						{
-							"type": "item",
-							"name": "末日前兆",
-							"entries": [
-								"作為動作，你可以消耗2發充能指定距你30尺內的一個生物，引發它的厄運。只要該生物與你在同一存在位面，你就會感測到該生物的方位，如果該生物正在移動，則你也將知曉其移動的方向。此外，一回合一次，當你對被此特性標記的生物造成傷害時，可以投擲{@dice 1d6}並將骰出的數值加入傷害擲骰中。這些增益持續1小時或你再次使用這一特性指定一個不同生物為止。"
-							],
-							"ENG_name": "Doom Foretold"
-						},
-						{
-							"type": "item",
-							"name": "扭曲命運",
-							"entries": [
-								"當距你60尺內的一個生物進行豁免檢定或攻擊檢定時，你可以用一個反應消耗3發充能並改變其結果，將失敗的豁免轉變為成功，將未命中的攻擊轉變為命中，反之亦然。"
-							],
-							"ENG_name": "Twist of Fate"
-						}
-					]
-				},
-				"該魔杖在每個黎明時恢復{@dice 1d6}發已消耗的充能。"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Spindle of Fate"
-		},
-		{
-			"name": "尖晶石",
-			"source": "DMG",
-			"page": 134,
-			"reprintedAs": [
-				"Spinel|XDMG"
-			],
-			"type": "$G|DMG",
-			"rarity": "none",
-			"value": 10000,
-			"entries": [
-				"一種透明的紅色、紅棕色或深綠色寶石。"
-			],
-			"ENG_name": "Spinel"
-		},
-		{
-			"name": "尖晶石",
-			"source": "XDMG",
-			"page": 214,
-			"type": "$G|XDMG",
-			"rarity": "none",
-			"value": 10000,
-			"entries": [
-				"一顆紅色、紅棕或深綠色的寶石。"
-			],
-			"ENG_name": "Spinel"
-		},
-		{
-			"name": "通靈板",
-			"source": "XDMG",
-			"page": 306,
-			"rarity": "very rare",
-			"wondrous": true,
-			"recharge": "dawn",
-			"rechargeAmount": 3,
-			"charges": 3,
-			"entries": [
-				"這塊華麗木板的一面印有通用語字母表的字元，旁邊還有\"是\"和\"否\"的字樣，以及代表\"吉\"和\"兇\"的符號。通靈板配有一塊心型的木製占卜板。這塊占卜板必須放置在通靈板有字母的一面，才能讓通靈板的魔法發揮作用。",
-				"通靈板具有3充能，並在每日黎明時重獲1已消耗的充能。施展法術時，你可以召喚死者靈魂引導占卜板在木板表面滑動，並透過指向木板上的字母或單詞來回答你的問題。觸控占卜板期間，你可以花費1分鐘施展一個法術，能施展的法術與所需充能如下表所示。",
-				{
-					"type": "table",
-					"colStyles": [
-						"col-10",
-						"col-2 text-center"
-					],
-					"colLabels": [
-						"法術",
-						"消耗充能"
-					],
-					"rows": [
-						[
-							"{@spell Augury|XPHB|卜筮術}",
-							"1"
-						],
-						[
-							"{@spell Commune|XPHB|通神術}",
-							"3"
-						]
-					]
-				}
-			],
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"augury|xphb"
-					],
-					"3": [
-						"commune|xphb"
-					]
-				}
-			},
-			"lootTables": [
-				"Relics - Very Rare|XDMG"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Spirit Board"
-		},
-		{
-			"name": "槲寄生枝條",
-			"group": [
-				"Druidic Focus"
-			],
-			"source": "PHB",
-			"page": 151,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Sprig of Mistletoe|XPHB"
-			],
-			"type": "SCF",
-			"scfType": "druid",
-			"rarity": "none",
-			"value": 100,
-			"ENG_name": "Sprig of Mistletoe"
-		},
-		{
-			"name": "槲寄生枝條",
-			"group": [
-				"Druidic Focus"
-			],
-			"source": "XPHB",
-			"page": 225,
-			"srd52": true,
-			"basicRules2024": true,
-			"type": "SCF|XPHB",
-			"scfType": "druid",
-			"rarity": "none",
-			"value": 100,
-			"ENG_name": "Sprig of Mistletoe"
-		},
-		{
-			"name": "望遠鏡",
-			"source": "PHB",
-			"page": 153,
-			"srd": true,
-			"basicRules": true,
-			"referenceSources": [
-				"CoS",
-				"KftGV",
-				"ToA",
-				"TTP",
-				"XMtS"
-			],
-			"reprintedAs": [
-				"Spyglass|XPHB"
-			],
-			"type": "G",
-			"rarity": "none",
-			"weight": 1,
-			"value": 100000,
-			"entries": [
-				"透過望遠鏡看到的物件要比原先的尺寸大上兩倍。"
-			],
-			"ENG_name": "Spyglass"
-		},
-		{
-			"name": "望遠鏡",
-			"source": "XPHB",
-			"page": 229,
-			"srd52": true,
-			"basicRules2024": true,
-			"referenceSources": [
-				"DrDe-TDoN"
-			],
-			"type": "G|XPHB",
-			"rarity": "none",
-			"weight": 1,
-			"value": 100000,
-			"entries": [
-				"透過望遠鏡看到的物件要比原先的尺寸大上兩倍。"
-			],
-			"ENG_name": "Spyglass"
-		},
-		{
-			"name": "透視望遠鏡",
-			"source": "AI",
-			"page": 19,
-			"rarity": "common",
-			"wondrous": true,
-			"entries": [
-				"第2級起，你的總部提供的望遠鏡變成一件普通品質的魔法物品。以一個動作，你可以透過透視望遠鏡觀察一英里內遮擋你視線的地點，例如山脈、城堡或森林。你必須隨後成功透過{@dc 15}的感知檢定使用{@item cartographer's tools|phb|製圖工具}來繪製該選定點三英里內的自然地形。除了自然地形外，你不能獲得任何關於生物、建築物或其他事物的知識。透視望遠鏡的這個特性直到次日黎明之前不可再次使用。"
-			],
-			"ENG_name": "Spyglass of Clairvoyance"
-		},
-		{
-			"name": "魷魚艦",
-			"source": "AAG",
-			"page": 48,
-			"otherSources": [
-				{
-					"source": "SjA"
-				}
-			],
-			"type": "SPC|AAG",
-			"rarity": "none",
-			"value": 2500000,
-			"crew": 13,
-			"vehAc": 15,
-			"vehHp": 300,
-			"vehDmgThresh": 15,
-			"vehSpeed": 3.5,
-			"capCargo": 20,
-			"entries": [
-				"在最古老的魔法船型別中，魷魚艦很受私掠者的歡迎，經常被用作巡邏艦船。魷魚艦上的標準武器包括一門前置的彈射投石機、兩門後置的弩炮和一個用於撞擊的加固船首。從船頭伸出的觸鬚幾乎佔了艦船龍骨長度的一半。",
-				"魷魚艦可以在水上漂浮和航行，並且可以在地面上著陸。"
-			],
-			"seeAlsoVehicle": [
-				"Squid Ship|AAG"
-			],
-			"ENG_name": "Squid Ship"
-		},
-		{
-			"name": "馬廄(每日)",
-			"source": "PHB",
-			"page": 157,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Stabling (per day)|XPHB"
-			],
-			"type": "TAH",
-			"rarity": "none",
-			"value": 50,
-			"ENG_name": "Stabling (per day)"
-		},
-		{
-			"name": "馬廄(每日)",
-			"source": "XPHB",
-			"page": 230,
-			"srd52": true,
-			"basicRules2024": true,
-			"type": "TAH|XPHB",
-			"rarity": "none",
-			"value": 5,
-			"ENG_name": "Stabling (per day)"
-		},
-		{
-			"name": "飾品法杖",
-			"source": "XDMG",
-			"page": 306,
-			"type": "M|XPHB",
-			"rarity": "common",
-			"weight": 4,
-			"weaponCategory": "simple",
-			"property": [
-				"V|XPHB"
-			],
-			"mastery": [
-				"Topple|XPHB"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"staff": true,
-			"entries": [
-				"持握這根法杖期間，如果你將一個重量不超過1磅的微型物件（例如一塊水晶碎片、一顆雞蛋、一塊石子）放於法杖的尖端，這個物件將會在尖端旁1寸的位置漂浮著，直到該物件被移除或法杖不在你手裡。這根法杖同一時間至多可以讓三個這樣的物件在尖端漂浮。持握此法杖期間，你可以讓這些物件中的一個或多個緩慢地繞著法杖旋轉或原地自轉。"
-			],
-			"lootTables": [
-				"Arcana - Common|XDMG",
-				"Relics - Common|XDMG"
-			],
-			"ENG_name": "Staff of Adornment"
-		},
-		{
-			"name": "飾品法杖",
-			"source": "XGE",
-			"page": 139,
-			"reprintedAs": [
-				"Staff of Adornment|XDMG"
-			],
-			"tier": "minor",
-			"rarity": "common",
-			"weight": 4,
-			"weaponCategory": "simple",
-			"property": [
-				"V"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"staff": true,
-			"entries": [
-				"持握這根法杖期間，你可以將至重1磅的物件（例如水晶碎片、雞蛋、或是石頭）在法杖的頂端，這個物品會在法杖頂端周圍相距一寸的位置漂浮著，直到其被移除或者法杖不再為你所控為止。一根法杖同一時間最多有三件物品漂浮於其頂端周圍。持握法杖時，你可以選擇令一個物品緩慢旋轉起來，或令其停止旋轉。"
-			],
-			"ENG_name": "Staff of Adornment"
-		},
-		{
-			"name": "鳥鳴法杖",
-			"source": "XDMG",
-			"page": 307,
-			"type": "M|XPHB",
-			"rarity": "common",
-			"weight": 4,
-			"weaponCategory": "simple",
-			"property": [
-				"V|XPHB"
-			],
-			"mastery": [
-				"Topple|XPHB"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"recharge": "dawn",
-			"rechargeAmount": "{@dice 1d6 + 4}",
-			"charges": 10,
-			"staff": true,
-			"entries": [
-				"這根木製法杖上裝飾著鳥形雕像。它具有10充能。持握此法杖期間，你可以執行{@action Magic|XPHB|魔法}動作來消耗1充能，使其創造出周圍120尺範圍內都能聽到的以下聲音之一：麻雀啾啾、烏鴉哇哇、鴨子嘎嘎、小雞咯咯、大鵝呱呱、潛鳥嗚嗚、火雞咕咕、海鷗嗷嗷、夜梟嚶嚶或老鷹嚦嚦。",
-				{
-					"type": "entries",
-					"name": "重獲充能",
-					"entries": [
-						"這根法杖在每日黎明時重獲{@dice 1d6 + 4}已消耗的充能。當充能數耗盡時，骰一次{@dice 1d20}。如果骰值為1，法杖將在一陣無害的鳥羽之雲中爆炸並且永久消失。"
-					],
-					"ENG_name": "Regaining Charges"
-				}
-			],
-			"lootTables": [
-				"Arcana - Common|XDMG",
-				"Implements - Common|XDMG"
-			],
-			"ENG_name": "Staff of Birdcalls"
-		},
-		{
-			"name": "鳥鳴法杖",
-			"source": "XGE",
-			"page": 139,
-			"referenceSources": [
-				"DIP"
-			],
-			"reprintedAs": [
-				"Staff of Birdcalls|XDMG"
-			],
-			"tier": "minor",
-			"rarity": "common",
-			"weight": 4,
-			"weaponCategory": "simple",
-			"property": [
-				"V"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"recharge": "dawn",
-			"rechargeAmount": "{@dice 1d6 + 4}",
-			"charges": 10,
-			"staff": true,
-			"entries": [
-				"這根木質法杖以鳥的雕像為飾。它具有10發充能。持握這把法杖期間，你可以用一個動作消耗其1發充能，以創造一陣可以在周圍60尺範圍內被聽到的下列聲音之一：麻雀啾啾、烏鴉報喪、鴨子嘎嘎、家雞打鳴、大鵝咳咳、潛鳥啁啁、火雞咯咯、海鷗啼哭、夜梟呵斥、或老鷹長嘯。",
-				"這根法杖每日黎明時分恢復{@dice 1d6 + 4}發已消耗的充能。當充能數耗盡時，骰一次{@dice d20}。如果骰值為1，法杖將在一陣無害的鳥形雲霧中爆炸並且永遠消失。"
-			],
-			"ENG_name": "Staff of Birdcalls"
-		},
-		{
-			"name": "魅惑法杖",
-			"source": "DMG",
-			"page": 201,
-			"srd": true,
-			"referenceSources": [
-				"IDRotF",
-				"TftYP-DiT"
-			],
-			"reprintedAs": [
-				"Staff of Charming|XDMG"
-			],
-			"tier": "major",
-			"rarity": "rare",
-			"reqAttune": "由吟遊詩人、牧師、德魯伊、術士、魔契師或法師",
-			"reqAttuneTags": [
-				{
-					"class": "bard"
-				},
-				{
-					"class": "cleric"
-				},
-				{
-					"class": "druid"
-				},
-				{
-					"class": "sorcerer"
-				},
-				{
-					"class": "warlock"
-				},
-				{
-					"class": "wizard"
-				}
-			],
-			"weight": 4,
-			"weaponCategory": "simple",
-			"property": [
-				"V"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"staff": true,
-			"entries": [
-				"持握此杖時，你可以用一個動作消耗其10發充能中的1發來以你的法術豁免DC從中施放{@spell charm person||魅惑類人}、{@spell command||命令術}或{@spell comprehend languages||通曉語言}。此法杖也可用作魔法長棍。",
-				"持握法杖時，如果你對一個僅以你為目標的惑控法術豁免失敗，則你可以將這次失敗變為成功。此後該屬性直到次日黎明前都無法再次啟動。如果你在對一個僅以你為目標的惑控法術豁免成功（無論是否受益於法杖屬性），則你可以用反應並消耗1發充能將法術反射回原施法者，而你則視為該反射法術的施法者。",
-				"該法杖每日黎明時恢復{@dice 1d8 + 2}發已消耗充能。如果你消耗了最後一發充能，骰一次{@dice d20}。如果骰值為1，則法杖將變為一根非魔法的長棍。"
-			],
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"charm person",
-						"command",
-						"comprehend languages"
-					]
-				}
-			},
-			"lootTables": [
-				"Magic Item Table G"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Staff of Charming"
-		},
-		{
-			"name": "魅惑法杖",
-			"source": "XDMG",
-			"page": 307,
-			"srd52": true,
-			"basicRules2024": true,
-			"type": "M|XPHB",
-			"rarity": "rare",
-			"reqAttune": "由吟遊詩人、牧師、德魯伊、術士、魔契師或法師",
-			"reqAttuneTags": [
-				{
-					"class": "bard"
-				},
-				{
-					"class": "cleric"
-				},
-				{
-					"class": "druid"
-				},
-				{
-					"class": "sorcerer"
-				},
-				{
-					"class": "warlock"
-				},
-				{
-					"class": "wizard"
-				}
-			],
-			"weight": 4,
-			"weaponCategory": "simple",
-			"property": [
-				"V|XPHB"
-			],
-			"mastery": [
-				"Topple|XPHB"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"recharge": "dawn",
-			"rechargeAmount": "{@dice 1d8 + 2}",
-			"charges": 10,
-			"staff": true,
-			"entries": [
-				"這根法杖具有10充能。持握這根法杖期間，你可以使用以下詞條：",
-				{
-					"type": "list",
-					"style": "list-hang-notitle",
-					"items": [
-						{
-							"type": "item",
-							"name": "施法",
-							"entries": [
-								"你可以消耗1充能，從法杖中施展{@spell Charm Person|XPHB|魅惑類人}、{@spell Command|XPHB|命令術}、或{@spell Comprehend Languages|XPHB|通曉語言} ，該法術使用你自己的法術豁免DC。"
-							],
-							"ENG_name": "Cast Spell"
-						},
-						{
-							"type": "item",
-							"name": "惑控反射",
-							"entries": [
-								"如果一道惑控學派法術僅以你為目標，而你豁免成功時，你可以執行{@variantrule Reaction|XPHB|反應}並消耗1充能，將法術反射給原施法者，如同你施展了這道法術一般。"
-							],
-							"ENG_name": "Reflect Enchantment"
-						},
-						{
-							"type": "item",
-							"name": "惑控抵抗",
-							"entries": [
-								"如果一道惑控學派法術僅以你為目標，而你豁免失敗時，你可以將失敗的豁免改為成功。法杖的這項詞條一經使用，其直至次日黎明前都無法再次使用。"
-							],
-							"ENG_name": "Resist Enchantment"
-						}
-					]
-				},
-				{
-					"type": "entries",
-					"name": "重獲充能",
-					"entries": [
-						"這根法杖在每日黎明時重獲{@dice 1d8 + 2}已消耗的充能。當充能數耗盡時，骰一次{@dice 1d20}。如果骰值為1，法杖將崩解為塵土，並被摧毀。"
-					],
-					"ENG_name": "Regaining Charges"
-				}
-			],
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"charm person|xphb",
-						"command|xphb",
-						"comprehend languages|xphb"
-					]
-				}
-			},
-			"lootTables": [
-				"Arcana - Rare|XDMG",
-				"Relics - Rare|XDMG"
-			],
-			"hasFluffImages": true,
-			"ENG_name": "Staff of Charming"
-		},
-		{
-			"name": "防護法杖",
-			"source": "LMoP",
-			"page": 53,
-			"reprintedAs": [
-				"Staff of Defense|PaBTSO"
-			],
-			"rarity": "rare",
-			"reqAttune": true,
-			"weight": 3,
-			"weaponCategory": "simple",
-			"property": [
-				"V"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"bonusAc": "+1",
-			"recharge": "dawn",
-			"rechargeAmount": "{@dice 1d6 + 4}",
-			"charges": 10,
-			"staff": true,
-			"entries": [
-				"這根纖細的空心法杖由玻璃製成，卻和橡木一樣堅固。它重3磅。你必須與法杖同步才能獲得它的好處並施放它的法術。",
-				"持有法杖時，你的護甲等級獲得+1的加值。",
-				"法杖有10個充能，用來驅動其內的法術。手持法杖時，如果法術在你職業的法術列表中，你可以使用你的行動從法杖中施放以下法術：{@spell mage armor||法師護甲}（1充能）或{@spell shield||護盾術}（2充能）。不需要任何材料。",
-				"這根法杖在黎明時每天恢復{@dice 1d6 + 4}次已消耗的充能。如果你消耗了法杖的最後一次充能，擲一個{@dice d20}。如果是1，法杖會破碎並被摧毀。"
-			],
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"mage armor"
-					],
-					"2": [
-						"shield"
-					]
-				}
-			},
-			"ENG_name": "Staff of Defense"
-		},
-		{
-			"name": "防護法杖",
-			"source": "PaBTSO",
-			"page": 220,
-			"type": "M",
-			"rarity": "rare",
-			"reqAttune": "由吟遊詩人、術士、魔契師或法師",
-			"reqAttuneTags": [
-				{
-					"class": "bard"
-				},
-				{
-					"class": "sorcerer"
-				},
-				{
-					"class": "warlock"
-				},
-				{
-					"class": "wizard"
-				}
-			],
-			"weight": 3,
-			"weaponCategory": "simple",
-			"property": [
-				"V"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"bonusAc": "+1",
-			"recharge": "dawn",
-			"rechargeAmount": "{@dice 1d6 + 4}",
-			"charges": 10,
-			"staff": true,
-			"entries": [
-				"這根纖細的空心法杖由玻璃製成，卻和橡木一樣堅固。它重3磅。持有法杖時，你的護甲等級獲得+1的加值。",
-				{
-					"type": "entries",
-					"name": "法術",
-					"entries": [
-						"法杖有10個充能。持有它時，你可以消耗所需數量的充能來從法杖施放以下法術之一：{@spell mage armor||法師護甲}（1充能）或{@spell shield||護盾術}（2充能）。",
-						"這根法杖每天黎明時分恢復{@dice 1d6 + 4}個已消耗的充能點。如果你用盡了法杖的最後一個充能點，擲一個{@dice d20}骰子。如果是1，法杖碎裂並被摧毀。"
-					],
-					"ENG_name": "Spells"
-				}
-			],
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"mage armor"
-					],
-					"2": [
-						"shield"
-					]
-				}
-			},
-			"ENG_name": "Staff of Defense"
 		}
 	]
 }

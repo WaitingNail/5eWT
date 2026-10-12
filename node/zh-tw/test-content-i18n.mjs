@@ -128,8 +128,8 @@ for (const file of index.files) {
 	}
 }
 
-assert.equal(spellCount, 936);
-assert.equal(fluffCount, 89);
+assert.equal(spellCount, 969);
+assert.equal(fluffCount, 92);
 
 const characterOptionSpecs = [
 	["races.json", ["race", "subrace"]],
@@ -144,12 +144,12 @@ const characterOptionSpecs = [
 const expectedCharacterOptionCounts = {
 	race: 160,
 	subrace: 98,
-	raceFluff: 221,
-	background: 161,
-	backgroundFluff: 160,
-	feat: 276,
-	featFluff: 41,
-	optionalfeature: 213,
+	raceFluff: 223,
+	background: 171,
+	backgroundFluff: 170,
+	feat: 305,
+	featFluff: 44,
+	optionalfeature: 221,
 	optionalfeatureFluff: 1,
 };
 const actualCharacterOptionCounts = {};
@@ -182,14 +182,14 @@ for (const [file, props] of characterOptionSpecs) {
 	}
 
 	if (file === "fluff-races.json") {
-		assert.equal(appliedFile.raceFluffMeta.uncommon.name, "罕見種族");
-		assert.match(appliedFile.raceFluffMeta.monstrous.entries[0], /戰役/u);
-		assert.equal(canonicalFile.raceFluffMeta.uncommon.name, "Uncommon Races");
+		assert.equal(appliedFile.raceFluff.find(it => it.name === "Uncommon Races")._displayName, "罕見種族");
+		assert.match(JSON.stringify(appliedFile.raceFluff.find(it => it.name === "Monstrous Adventurers").entries), /戰役/u);
+		assert.ok(canonicalFile.raceFluff.some(it => it.name === "Uncommon Races"));
 	}
 }
 
 assert.deepEqual(actualCharacterOptionCounts, expectedCharacterOptionCounts);
-assert.equal(localizedCharacterOptionNames, 1326);
+assert.equal(localizedCharacterOptionNames, 1388);
 
 const duplicateCanonicalSubraces = [
 	{name: "Ixalan", source: "PSX", raceName: "Goblin", raceSource: "PSZ", entries: ["Goblin prose."]},

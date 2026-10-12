@@ -67,7 +67,7 @@ const localizedGroups = await I18n.pApplyDataFile({
 	data: canonicalGroups,
 	fnLoad: async () => readJson("data/zh-TW/bestiary/legendarygroups.json"),
 });
-assert.equal(localizedGroups.legendaryGroup.length, 187);
+assert.equal(localizedGroups.legendaryGroup.length, 188);
 assert.ok(localizedGroups.legendaryGroup.some(it => it._displayName !== it.name));
 assert.ok(localizedGroups.legendaryGroup.some(it => it.lairActions?.length || it.regionalEffects?.length));
 

@@ -294,6 +294,18 @@
 		};
 
 		static _RECIPE_TYPES = {
+			Barbarian: "野蠻人料理",
+			Bard: "吟遊詩人料理",
+			Cleric: "牧師料理",
+			Druid: "德魯伊料理",
+			Fighter: "戰士料理",
+			Monk: "武僧料理",
+			Paladin: "聖武士料理",
+			Ranger: "遊俠料理",
+			Rogue: "遊蕩者料理",
+			Sorcerer: "術士料理",
+			Warlock: "契術師料理",
+			Wizard: "法師料理",
 			Dwarven: "矮人料理",
 			"Elixir/Ale": "靈藥／麥酒",
 			Elven: "精靈料理",
@@ -807,6 +819,7 @@
 			"stitches",
 			"yarn",
 			"hpNote",
+			"statblockData",
 			"focus",
 			"modes",
 			"submodes",
@@ -925,6 +938,36 @@
 		}
 
 		static _getPreparedSidecar ({file, sidecar}) {
+			if (file === "magicvariants.json" && sidecar?.magicvariant?.some(ent => ent._copy)) {
+				const out = this._copy(sidecar);
+				const index = new Map(out.magicvariant.map(ent => [`${ent.ENG_name || ent.name}\u0000${ent.source || ent.inherits?.source || ""}`.toLowerCase(), ent]));
+				const resolved = new Map();
+				const resolve = (ent, seen = new Set()) => {
+					if (resolved.has(ent)) return resolved.get(ent);
+					if (!ent._copy) return ent;
+					if (seen.has(ent)) throw new Error("Cyclic localized magic-variant copy");
+					const parent = index.get(`${ent._copy.name}\u0000${ent._copy.source}`.toLowerCase());
+					if (!parent) throw new Error(`Missing localized magic-variant parent: ${ent._copy.name}`);
+					const base = this._copy(resolve(parent, new Set([...seen, ent])));
+					const result = {...base, ...ent, inherits: {...base.inherits, ...ent.inherits}};
+					for (const [path, mods] of Object.entries(ent._copy._mod || {})) {
+						for (const mod of Array.isArray(mods) ? mods : [mods]) {
+							const parts = path.split("."); const key = parts.pop();
+							let target = result; for (const part of parts) target = target[part] ||= {};
+							if (mod === "remove") delete target[key];
+							else if (mod.mode === "setProp") target[key] = this._copy(mod.value);
+							else if (["appendArr", "appendIfNotExistsArr"].includes(mod.mode)) {
+								const values = Array.isArray(mod.items) ? mod.items : [mod.items];
+								target[key] = [...(target[key] || []), ...values.filter(v => mod.mode === "appendArr" || !(target[key] || []).some(x => JSON.stringify(x) === JSON.stringify(v)))];
+							}
+							else throw new Error(`Unsupported localized magic-variant modification: ${mod.mode}`);
+						}
+					}
+					resolved.set(ent, result); return result;
+				};
+				out.magicvariant = out.magicvariant.map(ent => resolve(ent));
+				return out;
+			}
 			if (file !== "deities.json" || !sidecar?.deity?.length) return sidecar;
 
 			const out = this._copy(sidecar);
@@ -978,8 +1021,8 @@
 				out[key] = this._overlayContentValue({
 					canonical: canonical[key],
 					localized: localized[key],
-					isBilingualNames,
-					isPreserveCanonicalNames,
+					isBilingualNames: key === "statblockData" || isBilingualNames,
+					isPreserveCanonicalNames: key === "statblockData" || isPreserveCanonicalNames,
 				});
 			}
 			return out;
@@ -1084,6 +1127,7 @@
 				out._displayName = localized.name;
 			}
 			if (canonical._mod && localized._mod) out._mod = this._copy(localized._mod);
+			if (canonical.hp && localized.hp) out._displayHp = this._copy(localized.hp);
 			for (const key of ["_abstract", "_implementations"]) {
 				if (!(key in canonical) || !(key in localized)) continue;
 				out[key] = this._overlayVersions({canonical: canonical[key], localized: localized[key]});
@@ -1176,7 +1220,7 @@
 			}
 
 			if (["cult", "boon"].includes(prop)) {
-				for (const key of ["goal", "cultists", "signatureSpells", "ability"]) {
+				for (const key of ["goal", "cultists", "signatureSpells", "ability", "abilityEntry"]) {
 					if (!(key in canonical) || !(key in localized)) continue;
 					out[key] = this._overlayContentValue({canonical: canonical[key], localized: localized[key]});
 				}
@@ -1310,6 +1354,7 @@
 				out.template = localized.template;
 			}
 
+			if (prop === "magicvariant" && canonical._copy && localized._copy) out._copy = this._copy(localized._copy);
 			if (prop === "magicvariant" && canonical.inherits && localized.inherits) {
 				out.inherits = this._copy(canonical.inherits);
 				for (const key of ["entries", "additionalEntries", "entriesTemplate"]) {

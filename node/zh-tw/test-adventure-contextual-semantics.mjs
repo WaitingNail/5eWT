@@ -5,7 +5,7 @@ import {fileURLToPath} from "node:url";
 
 // Regression guards for human-reviewed senses, not an automated semantic grader.
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const read = file => JSON.parse(fs.readFileSync(path.join(ROOT, file), "utf8"));
+const read = file => { const compatible = file.replace(/^data\/adventure\//, "data/zh-TW/adventures/canonical-v2.33.3/"); const selected = file.startsWith("data/adventure/") && fs.existsSync(path.join(ROOT, compatible)) ? compatible : file; const data = JSON.parse(fs.readFileSync(path.join(ROOT, selected), "utf8")); return data.adventureData?.[0] || data; };
 const review = read("translation/zh-TW/adventures/reviewed-contextual-semantics.json");
 const groups = {cos: "cos", hotdq: "tyranny", rot: "tyranny", wdh: "wdh", vnotee: "vecna", veor: "vecna", oota: "oota"};
 const get = (document, pointer) => pointer.split("/").reduce((value, key) => value?.[key], document);
