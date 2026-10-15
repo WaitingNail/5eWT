@@ -48,5 +48,22 @@ assert.equal(displayEntry.entries[0]._displayName, "等級 3：戰鬥卓越（Co
 assert.equal(displayEntry.entries[0].entries[0]._displayName, "戰技（Maneuvers）");
 assert.equal(displayEntry.entries[0].entries[0].entries[0], "已翻譯的能力內容。");
 
+// Use the real JSON loader with filesystem transport. Sidecars include _copy
+// metadata, which must not be treated as unresolved canonical entities.
+await import("../../js/hist.js");
+const {I18nZhTwClassBody} = await import("../../js/zh-tw/class-body-i18n.js");
+const originalTransport = DataUtil._pLoad_pGetJson;
+const originalVerifyMerged = DataUtil._verifyMerged;
+try {
+	DataUtil._pLoad_pGetJson = async ({url, id}) => DataUtil._loaded[id] = JSON.parse(fs.readFileSync(path.join(ROOT, url), "utf8"));
+	DataUtil._verifyMerged = () => { throw new Error("Class translation sidecars entered the canonical merge pipeline"); };
+	const sidecar = await I18nZhTwClassBody.pLoad();
+	assert.ok(sidecar.subclass.some(sc => sc._copy), "Copy metadata should be retained as sidecar data");
+	assert.ok(sidecar.subclass.some(sc => sc.name === "舞蹈學院"));
+} finally {
+	DataUtil._pLoad_pGetJson = originalTransport;
+	DataUtil._verifyMerged = originalVerifyMerged;
+}
+
 console.log("Class page runtime regression tests: PASS");
 console.log("Raw translations precede dereferencing; nested subclass feature names render bilingually.");

@@ -254,7 +254,7 @@ function transformPage ({html, page, isSeo, translator, homepageHtml, isServiceW
 	out = injectLocaleScripts({html: out, isSeo, page});
 	// These shared/page loaders are often cached from a previous visit. A
 	// release key avoids mixing a translated HTML shell with the old loader.
-	out = out.replace(/(src=["']\/?js\/(?:utils|lifegen|render|render-tables|render-decks|decks|filter-decks|classes|spells|items)\.js)(?:\?v=[^"']*)?(["'])/g, "$1?v=zh-tw-28$2");
+	out = out.replace(/(src=["']\/?js\/(?:utils|lifegen|render|render-tables|render-decks|decks|filter-decks|classes|spells|items)\.js)(?:\?v=[^"']*)?(["'])/g, "$1?v=zh-tw-29$2");
 	out = localizeRedirectShell({html: out, translator});
 	out = translateHtml({html: out, translator});
 	if (page === "index.html") {

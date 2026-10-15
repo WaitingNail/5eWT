@@ -67,7 +67,7 @@ if (!fs.readFileSync(path.join(upstreamRoot, "js/utils.js"), "utf8").includes("/
 }
 
 // Follow-up patches are checked separately from the pinned upstream overlay.
-for (const relativePath of ["patches/0021-zh-tw-page-list-fixes.patch"]) {
+for (const relativePath of ["patches/0021-zh-tw-page-list-fixes.patch", "patches/0022-zh-tw-class-sidecar-loader.patch"]) {
 	const patchPath = path.join(projectRoot, relativePath);
 	if (canGitApply(patchPath, [])) runGitApply(patchPath, []);
 	else if (!canGitApply(patchPath, ["--reverse"])) throw new Error(`zh-TW follow-up patch does not apply cleanly: ${relativePath}`);

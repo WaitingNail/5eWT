@@ -4,7 +4,10 @@ import fs from "node:fs/promises";
 import {I18nZhTwClassBody} from "../../js/zh-tw/class-body-i18n.js";
 
 globalThis.Renderer = {get: () => ({baseUrl: ""})};
-globalThis.DataUtil = {loadJSON: async url => JSON.parse(await fs.readFile(url, "utf8"))};
+globalThis.DataUtil = {
+	loadRawJSON: async url => JSON.parse(await fs.readFile(url, "utf8")),
+	loadJSON: () => { throw new Error("Translation sidecars must not run canonical entity-copy merging"); },
+};
 
 const sidecar = await I18nZhTwClassBody.pLoad();
 const classIndex = JSON.parse(await fs.readFile("data/class/index.json", "utf8"));

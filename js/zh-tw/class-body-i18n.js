@@ -52,14 +52,16 @@ export class I18nZhTwClassBody {
 
 	static async pLoad ({url = null} = {}) {
 		url ||= `${Renderer.get().baseUrl}data/zh-TW/class/index.json`;
-		const loaded = await DataUtil.loadJSON(url);
+		// Translation sidecars contain canonical _copy references as metadata;
+		// only the upstream class files should run the entity-copy merge pipeline.
+		const loaded = await DataUtil.loadRawJSON(url);
 		if (!Array.isArray(loaded?.files)) {
 			this._sidecar = loaded;
 			return this._sidecar;
 		}
 
 		const baseUrl = url.slice(0, url.lastIndexOf("/") + 1);
-		const files = await Promise.all(loaded.files.map(file => DataUtil.loadJSON(`${baseUrl}${file}`)));
+		const files = await Promise.all(loaded.files.map(file => DataUtil.loadRawJSON(`${baseUrl}${file}`)));
 		this._sidecar = this._mergeSidecars(files, loaded._meta);
 		return this._sidecar;
 	}
