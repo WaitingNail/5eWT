@@ -66,6 +66,13 @@ if (!fs.readFileSync(path.join(upstreamRoot, "js/utils.js"), "utf8").includes("/
 	}
 }
 
+// Follow-up patches are checked separately from the pinned upstream overlay.
+for (const relativePath of ["patches/0021-zh-tw-page-list-fixes.patch"]) {
+	const patchPath = path.join(projectRoot, relativePath);
+	if (canGitApply(patchPath, [])) runGitApply(patchPath, []);
+	else if (!canGitApply(patchPath, ["--reverse"])) throw new Error(`zh-TW follow-up patch does not apply cleanly: ${relativePath}`);
+}
+
 execFileSync(process.execPath, [path.join(upstreamRoot, "node/zh-tw/build-adventure-compatibility.mjs")], {cwd: upstreamRoot, stdio: "inherit"});
 
 const deployedImageRoot = "https://raw.githubusercontent.com/WaitingNail/5eWT-img/main/";

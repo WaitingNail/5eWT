@@ -1,0 +1,65 @@
+--- a/js/classes.js
++++ b/js/classes.js
+@@ -1844,9 +1844,7 @@
+ 		const dispName = veT`<div title="${ClassesPage.getBtnTitleSubclass(sc).qq()}"></div>`;
+ 		const dispSource = veT`<div class="ve-ml-1" title="${Parser.sourceJsonToFull(sc.source).qq()}">(${Parser.sourceJsonToAbv(sc.source).qq()})</div>`;
+ 		const hkSourcesVisible = () => {
+-			const displayName = this._state.isShowScSources ? ClassesPage.getBaseShortName(sc) : sc.shortName;
+-			const canonicalName = I18nZhTwClass.getCanonicalShortName(sc);
+-			dispName.vee.txt(displayName.toLowerCase() === canonicalName.toLowerCase() ? displayName : `${displayName}（${canonicalName}）`);
++			dispName.vee.txt(I18nZhTwClass.getBilingualName(sc));
+ 			dispSource.vee.toggle(!!this._state.isShowScSources);
+ 		};
+ 		this._addHookBase("isShowScSources", hkSourcesVisible);
+@@ -2899,8 +2897,7 @@
+ 		cls.subclasses
+ 			.filter(sc => !ClassesPage.isSubclassExcluded_(cls, sc))
+ 			.forEach((sc, i) => {
+-				const nameBase = sc.isReprinted ? ClassesPage.getBaseShortName(sc) : sc.shortName;
+-				const nameBilingual = I18nZhTwClass.getBilingualShortName(sc, {displayName: nameBase});
++				const nameBilingual = I18nZhTwClass.getBilingualName(sc);
+ 				const name = sc.isReprinted ? `${nameBilingual} (${Parser.sourceJsonToAbv(sc.source)})` : nameBilingual;
+ 				const activeClassName = UtilClassesPage.getSubclassDisplayClassButton({displayType: UtilClassesPage.getSubclassDisplayType(cls, sc)});
+ 				const stateKey = UrlUtil.getStateKeySubclass(sc);
+--- a/js/spells.js
++++ b/js/spells.js
+@@ -230,6 +230,8 @@
+ 
+ 			listOptions: {
+ 				fnSort: PageFilterSpells.sortSpells,
++				sortByInitial: "level",
++				sortDirInitial: "asc",
+ 			},
+ 
+ 			dataProps: ["spell"],
+@@ -346,7 +348,7 @@
+ 			click: (evt) => this._list.doSelect(listItem, evt),
+ 			contextmenu: (evt) => this._openContextMenu(evt, this._list, listItem),
+ 			html: `<a href="#${hash.qq()}" class="ve-lst__row-border ve-lst__row-inner">
+-				<span class="ve-bold ve-col-2-9 ve-pl-0 ve-pr-1">${spell.name.qq()}</span>
++				<span class="ve-bold ve-col-2-9 ve-pl-0 ve-pr-1">${displayName.qq()}</span>
+ 				<span class="ve-col-1-5 ve-px-1 ve-text-center">${PageFilterSpells.getTblLevelStr(spell).qq()}</span>
+ 				<span class="ve-col-1-7 ve-px-1 ve-text-center">${time.qq()}</span>
+ 				<span class="ve-col-1-2 ve-px-1 ${schoolClassName.qq()} ve-text-center" title="${Parser.spSchoolAndSubschoolsAbvsToFull(spell.school, spell.subschools).qq()}" ${Parser.spSchoolAbvToStyle(spell.school) || ""}>${school.qq()}</span>
+--- a/js/items/items-listrow.js
++++ b/js/items/items-listrow.js
+@@ -73,8 +73,8 @@
+ 		eleWeight.textContent = item._l_weight;
+ 		eleAttunement.textContent = item._attunementCategory !== VeCt.STR_NO_ATTUNEMENT ? "×" : "";
+ 		if (item.rarity) eleRarity.className += ` ve-itm__rarity-${item.rarity}`;
+-		eleRarity.title = globalThis.I18nZhTwContent?.getRarity(item.rarity) || (item.rarity || "").toTitleCase();
+-		eleRarity.textContent = Parser.itemRarityToShort(item.rarity) || "";
++		eleRarity.title = globalThis.I18nZhTwContent?.getItemRarity(item.rarity) || (item.rarity || "").toTitleCase();
++		eleRarity.textContent = globalThis.I18nZhTwContent?.getItemRarityShort(item.rarity) || Parser.itemRarityToShort(item.rarity) || "";
+ 
+ 		return ele;
+ 	}
+--- a/js/items.js
++++ b/js/items.js
+@@ -1,5 +1,5 @@
+ import {RenderItems} from "./render-items.js";
+-import {ListRowRendererItems} from "./items/items-listrow.js";
++import {ListRowRendererItems} from "./items/items-listrow.js?v=zh-tw-28";
+ 
+ const {I18nZhTwContent} = globalThis;
+ 

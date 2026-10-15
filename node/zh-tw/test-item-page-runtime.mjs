@@ -92,5 +92,33 @@ assert.match(itemModalSource, /\$\{displayName\}<\/div>/u);
 assert.match(itemModalSource, /englishName: globalThis\.I18nZhTwContent\.getCanonicalName\(item\)/u);
 assert.match(rendererSource, /const name = Renderer\.utils\.getBilingualName\(ent\)/u);
 
+// Exercise the actual lazy-row renderer: metadata tests alone cannot catch a
+// missing translation method that aborts the first magic-item list render.
+const {ListRowRendererItems} = await import("../../js/items/items-listrow.js");
+const makeRow = count => ({
+	classList: {add () {}},
+	addEventListener () {},
+	firstElementChild: {setAttribute () {}, children: Array.from({length: count}, () => ({className: ""}))},
+});
+const originalMagicTemplate = ListRowRendererItems._getTemplateEleMagic;
+const originalMundaneTemplate = ListRowRendererItems._getTemplateEleMundane;
+try {
+	ListRowRendererItems._getTemplateEleMagic = () => makeRow(6);
+	ListRowRendererItems._getTemplateEleMundane = () => makeRow(5);
+	const opts = {source: "TCE", hash: "tool_tce", type: "奇物", fnClick () {}, fnContextmenu () {}};
+	for (const rarity of ["common", "uncommon", "rare", "very rare", "legendary", "artifact", "unknown", undefined]) {
+		const row = ListRowRendererItems.getEleMagic({...opts, item: {...allPurposeTool, rarity}});
+		const [name, , , , rarityCell] = row.firstElementChild.children;
+		assert.equal(name.textContent, I18n.getBilingualName(allPurposeTool));
+		assert.equal(rarityCell.title, I18n.getItemRarity(rarity) || (rarity || "").toTitleCase());
+		assert.equal(rarityCell.textContent, I18n.getItemRarityShort(rarity) || Parser.itemRarityToShort(rarity) || "");
+	}
+	const row = ListRowRendererItems.getEleMundane({...opts, item: longsword});
+	assert.equal(row.firstElementChild.children[0].textContent, I18n.getBilingualName(longsword));
+} finally {
+	ListRowRendererItems._getTemplateEleMagic = originalMagicTemplate;
+	ListRowRendererItems._getTemplateEleMundane = originalMundaneTemplate;
+}
+
 console.log("Item page integration tests: PASS");
 console.log("Canonical hashes retained; localized lists, metadata, attunement, variants, properties, and prose rendered.");

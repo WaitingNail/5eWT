@@ -216,14 +216,9 @@ function injectLocaleScripts ({html, isSeo, page}) {
 		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>`,
 	].join("\n");
 
-	const anchor = isSeo
-		? `<script type="module" defer src="/js/styleswitch.js"></script>`
-		: `<script type="text/javascript" src="sw-injector.js"></script>`;
-	if (!withoutLocaleScripts.includes(anchor)) throw new Error(`${page}: locale-script injection anchor not found.`);
-
-	return isSeo
-		? withoutLocaleScripts.replace(anchor, `${scriptBlock}\n${anchor}`)
-		: withoutLocaleScripts.replace(anchor, `${anchor}\n${scriptBlock}`);
+	const anchor = /<script\b[^>]*\bsrc=["']\/?js\/styleswitch\.js["'][^>]*><\/script>/u;
+	if (!anchor.test(withoutLocaleScripts)) throw new Error(`${page}: locale-script injection anchor not found.`);
+	return withoutLocaleScripts.replace(anchor, match => `${scriptBlock}\n${indent}${match}`);
 }
 
 function localizeRedirectShell ({html, translator}) {
@@ -246,7 +241,7 @@ function customizeHomepage (html, homepageHtml) {
 	return html.replace(upstreamIntro, () => `${homepageHtml.trim()}\n\n\t\t\t`);
 }
 
-function transformPage ({html, page, isSeo, translator, homepageHtml}) {
+function transformPage ({html, page, isSeo, translator, homepageHtml, isServiceWorkerBuilt}) {
 	let out = setDocumentLanguage(html, page);
 	if (page === "crcalculator.html") {
 		for (const [from, to] of Object.entries({"Prof.<br>加值":"熟練<br>加值", "Prof.<br>Bonus":"熟練<br>加值", "Armor<br>Class":"護甲<br>等級", "Hit<br>Points":"生命<br>值", "Attack<br>加值":"攻擊<br>加值", "Attack<br>Bonus":"攻擊<br>加值", "Damage/<br>Round":"每輪<br>傷害", "儲存<br>DC":"豁免<br>DC", "Save<br>DC":"豁免<br>DC"})) out = out.replaceAll(from, to);
@@ -254,10 +249,12 @@ function transformPage ({html, page, isSeo, translator, homepageHtml}) {
 	if (page === "lifegen.html") {
 		out = out.replace('for="race">Background', 'for="background">Background').replace('for="race">Class', 'for="class">Class');
 	}
+	// The static deployment does not build the optional offline worker bundle.
+	if (!isServiceWorkerBuilt) out = out.replace(/^[\t ]*<script\b[^>]*\bsrc=["']\/?sw-injector\.js["'][^>]*><\/script>[\t ]*(?:\r?\n)?/gmu, "");
 	out = injectLocaleScripts({html: out, isSeo, page});
 	// These shared/page loaders are often cached from a previous visit. A
 	// release key avoids mixing a translated HTML shell with the old loader.
-	out = out.replace(/(src=["']\/?js\/(?:utils|lifegen|render|render-tables|render-decks|decks|filter-decks)\.js)(?:\?v=[^"']*)?(["'])/g, "$1?v=zh-tw-27$2");
+	out = out.replace(/(src=["']\/?js\/(?:utils|lifegen|render|render-tables|render-decks|decks|filter-decks|classes|spells|items)\.js)(?:\?v=[^"']*)?(["'])/g, "$1?v=zh-tw-28$2");
 	out = localizeRedirectShell({html: out, translator});
 	out = translateHtml({html: out, translator});
 	if (page === "index.html") {
@@ -318,6 +315,7 @@ async function main () {
 	const siteI18n = JSON.parse(await fs.readFile(PATH_SITE_I18N, "utf8"));
 	const pageMessages = JSON.parse(await fs.readFile(path.join(ROOT, "translation/zh-TW/utility-pages/html-translations.json"), "utf8"));
 	const homepageHtml = await fs.readFile(path.join(ROOT, "translation/zh-TW/homepage.html"), "utf8");
+	const isServiceWorkerBuilt = await fs.access(path.join(ROOT, "sw-injector.js")).then(() => true, () => false);
 	const pages = await getPagePaths();
 	const stalePages = [];
 	let changedCount = 0;
@@ -325,7 +323,7 @@ async function main () {
 	for (const page of pages) {
 		const pagePath = path.join(ROOT, page);
 		const html = await fs.readFile(pagePath, "utf8");
-		const transformed = transformPage({html, page, isSeo: page.includes("/"), translator: getTranslator(siteI18n, pageMessages[page]), homepageHtml});
+		const transformed = transformPage({html, page, isSeo: page.includes("/"), translator: getTranslator(siteI18n, pageMessages[page]), homepageHtml, isServiceWorkerBuilt});
 		validatePage({html: transformed, page, isSeo: page.includes("/")});
 
 		if (transformed === html) continue;
