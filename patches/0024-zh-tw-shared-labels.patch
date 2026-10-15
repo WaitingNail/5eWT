@@ -1,0 +1,55 @@
+--- a/js/render.js
++++ b/js/render.js
+@@ -626,7 +626,7 @@
+ 				textStack[0] += `<button class="ve-btn ve-btn-xs ve-btn-default ve-rd__image-btn-viewer" onclick="RenderMap.pShowViewer(event, this)" data-rd-packed-map="${this._renderImage_getMapRegionData(entry)}" ${ptAdventureBookMeta} title="Open Dynamic Viewer (SHIFT to Open in New Window)"><span class="glyphicon glyphicon-picture"></span> ${Renderer.stripTags(entry.title) || "Dynamic Viewer"}</button>`;
+ 			}
+ 
+-			if (entry.credit) textStack[0] += `<div class="ve-rd__image-credit ve-muted"><span class="glyphicon glyphicon-pencil" title="Art Credit"></span> ${this.render(entry.credit)}</div>`;
++			if (entry.credit) textStack[0] += `<div class="ve-rd__image-credit ve-muted"><span class="glyphicon glyphicon-pencil" title="繪者署名"></span> ${this.render(entry.credit)}</div>`;
+ 
+ 			textStack[0] += `</div>`;
+ 		}
+@@ -3501,6 +3501,7 @@
+ 
+ 	static getSourceAndPageTrHtml (it) {
+ 		const html = Renderer.utils.getSourceAndPageHtml(it);
++		if (globalThis.I18nZhTwContent) return html ? `<b>來源：</b> ${html.replace(/, page (\d+)/gu, "，第 $1 頁")}` : "";
+ 		return html ? `<b>Source:</b> ${html}` : "";
+ 	}
+ 
+--- a/js/utils-ui.js
++++ b/js/utils-ui.js
+@@ -1113,21 +1113,21 @@
+ 				reCommand: /^(?<command>name|stats|info|text)/,
+ 
+ 				name: {
+-					help: `\`name:"query"\` (/query/ for regex; \`name:! ...\` to invert) to search by name.`,
++					help: `以 \`name:"query"\` 搜尋名稱；\`/query/\` 使用正規表示式，\`name:! ...\` 反向篩選。`,
+ 					fn: (listItem, searchTerm) => {
+ 						if (listItem.data._textCacheName == null) listItem.data._textCacheName = listItem.name.toLowerCase().trim();
+ 						return this._listSyntax_isTextMatch(listItem.data._textCacheName, searchTerm);
+ 					},
+ 				},
+ 				stats: {
+-					help: `\`stats:"query"\` (/query/ for regex; \`stats:! ...\` to invert) to search within stat blocks.`,
++					help: `以 \`stats:"query"\` 搜尋資料卡；\`/query/\` 使用正規表示式，\`stats:! ...\` 反向篩選。`,
+ 					fn: (listItem, searchTerm) => {
+ 						if (listItem.data._textCacheStats == null) listItem.data._textCacheStats = this._getSearchCacheStats(this._dataList[listItem.getId()]);
+ 						return this._listSyntax_isTextMatch(listItem.data._textCacheStats, searchTerm);
+ 					},
+ 				},
+ 				info: {
+-					help: `\`info:"query" (/query/ for regex; \`info:! ...\` to invert) to search within info.`,
++					help: `以 \`info:"query"\` 搜尋背景資料；\`/query/\` 使用正規表示式，\`info:! ...\` 反向篩選。`,
+ 					fn: async (listItem, searchTerm) => {
+ 						if (listItem.data._textCacheFluff == null) listItem.data._textCacheFluff = await this._pGetSearchCacheFluff(this._dataList[listItem.getId()]);
+ 						return this._listSyntax_isTextMatch(listItem.data._textCacheFluff, searchTerm);
+@@ -1135,7 +1135,7 @@
+ 					isAsync: true,
+ 				},
+ 				text: {
+-					help: `\`text:"query" (/query/ for regex; \`text:! ...\` to invert) to search within stat blocks plus info.`,
++					help: `以 \`text:"query"\` 同時搜尋資料卡與背景資料；\`/query/\` 使用正規表示式，\`text:! ...\` 反向篩選。`,
+ 					fn: async (listItem, searchTerm) => {
+ 						if (listItem.data._textCacheAll == null) {
+ 							const {textCacheStats, textCacheFluff, textCacheAll} = await this._pGetSearchCacheAll(this._dataList[listItem.getId()], {textCacheStats: listItem.data._textCacheStats, textCacheFluff: listItem.data._textCacheFluff});
