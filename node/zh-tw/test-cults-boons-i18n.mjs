@@ -154,7 +154,7 @@ test("the page runtime, filters, renderer labels, and faction term use zh-TW", (
 	assert.match(filterSource, /getCultBoonType\(it\)/u);
 	for (const label of ["目標：", "典型邪教徒：", "招牌法術：", "屬性值調整："]) assert.ok(renderSource.includes(`name: "${label}"`));
 	assert.match(htmlSource, /<title>邪教與超自然恩賜 - 5etools<\/title>/u);
-	assert.match(htmlSource, /src="js\/zh-tw\/content-i18n\.js"/u);
+	assert.match(htmlSource, /src="js\/zh-tw\/content-i18n\.js(?:\?v=[^"]+)?"/u);
 
 	const faction = I18n.localizeRulesText("Membership in the Order of the Gauntlet");
 	assert.equal(faction, "成員資格：鐵手套教團");

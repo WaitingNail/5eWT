@@ -75,6 +75,8 @@ for (const relativePath of ["patches/0021-zh-tw-page-list-fixes.patch", "patches
 
 execFileSync(process.execPath, [path.join(upstreamRoot, "node/zh-tw/build-adventure-compatibility.mjs")], {cwd: upstreamRoot, stdio: "inherit"});
 
+execFileSync(process.execPath, [path.join(upstreamRoot, "node/zh-tw/apply-reviewed-site-semantics.mjs")], {cwd: upstreamRoot, stdio: "inherit"});
+
 const deployedImageRoot = "https://raw.githubusercontent.com/WaitingNail/5eWT-img/main/";
 const utilsPath = path.join(upstreamRoot, "js", "utils.js");
 const utilsSource = fs.readFileSync(utilsPath, "utf8");

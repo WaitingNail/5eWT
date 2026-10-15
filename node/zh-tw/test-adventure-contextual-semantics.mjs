@@ -1,3 +1,4 @@
+import {normalizeText} from "./apply-reviewed-site-semantics.mjs";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
@@ -26,7 +27,7 @@ for (const record of [...review.corrections, ...review.positiveControls]) {
 	assert.ok(!checked.has(key), `Duplicate semantic guard: ${key}`);
 	checked.add(key);
 	assert.equal(get(source[record.book], record.path), record.english, `Source changed; re-review ${key}`);
-	assert.equal(get(translated[record.book], record.path), record.zh_tw, `Reviewed sense regressed: ${key}`);
+	assert.equal(get(translated[record.book], record.path), normalizeText(record.zh_tw), `Reviewed sense regressed: ${key}`);
 	if ("before" in record) {
 		assert.notEqual(record.before, record.zh_tw, `No-op correction: ${key}`);
 		assert.equal(overrides[record.book]?.[record.path]?.english, record.english, `Missing import source guard: ${key}`);

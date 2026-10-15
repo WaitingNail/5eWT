@@ -209,9 +209,9 @@ function injectLocaleScripts ({html, isSeo, page}) {
 	const srcPrefix = isSeo ? "/" : "";
 	const indent = isSeo ? "" : "\t";
 	const scriptBlock = [
-		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/site-i18n-data.js"></script>`,
+		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/site-i18n-data.js?v=zh-tw-30"></script>`,
 		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/site-i18n.js"></script>`,
-		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/content-i18n.js"></script>`,
+		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/content-i18n.js?v=zh-tw-30"></script>`,
 		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>`,
 		`${indent}<script type="text/javascript" src="${srcPrefix}js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>`,
 	].join("\n");
@@ -254,7 +254,7 @@ function transformPage ({html, page, isSeo, translator, homepageHtml, isServiceW
 	out = injectLocaleScripts({html: out, isSeo, page});
 	// These shared/page loaders are often cached from a previous visit. A
 	// release key avoids mixing a translated HTML shell with the old loader.
-	out = out.replace(/(src=["']\/?js\/(?:utils|lifegen|render|render-tables|render-decks|decks|filter-decks|classes|spells|items)\.js)(?:\?v=[^"']*)?(["'])/g, "$1?v=zh-tw-29$2");
+	out = out.replace(/(src=["']\/?js\/(?:utils|lifegen|render|render-tables|render-decks|decks|filter-decks|classes|spells|items)\.js)(?:\?v=[^"']*)?(["'])/g, "$1?v=zh-tw-30$2");
 	out = localizeRedirectShell({html: out, translator});
 	out = translateHtml({html: out, translator});
 	if (page === "index.html") {
@@ -280,9 +280,9 @@ function validatePage ({html, page, isSeo}) {
 	if (!/<html\b[^>]*\blang="zh-Hant-TW"[^>]*>/iu.test(html)) throw new Error(`${page}: expected lang="zh-Hant-TW".`);
 
 	const srcPrefix = isSeo ? "/" : "";
-	const dataSrc = `${srcPrefix}js/zh-tw/site-i18n-data.js`;
+	const dataSrc = `${srcPrefix}js/zh-tw/site-i18n-data.js?v=zh-tw-30`;
 	const runtimeSrc = `${srcPrefix}js/zh-tw/site-i18n.js`;
-	const contentRuntimeSrc = `${srcPrefix}js/zh-tw/content-i18n.js`;
+	const contentRuntimeSrc = `${srcPrefix}js/zh-tw/content-i18n.js?v=zh-tw-30`;
 	if (countOccurrences(html, `src="${dataSrc}"`) !== 1) throw new Error(`${page}: expected exactly one ${dataSrc} script.`);
 	if (countOccurrences(html, `src="${runtimeSrc}"`) !== 1) throw new Error(`${page}: expected exactly one ${runtimeSrc} script.`);
 	if (countOccurrences(html, `src="${contentRuntimeSrc}"`) !== 1) throw new Error(`${page}: expected exactly one ${contentRuntimeSrc} script.`);

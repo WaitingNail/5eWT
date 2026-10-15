@@ -24,7 +24,7 @@ assert.equal(I18n.getSpellDuration([{type: "timed", duration: {type: "minute", a
 assert.equal(I18n.getSpellDuration([{type: "permanent", ends: ["dispel", "trigger"]}]), "直到被解除或被觸發");
 assert.equal(I18n.getAbility("wisdom"), "感知");
 assert.equal(I18n.getDamageType("necrotic"), "暗蝕");
-assert.equal(I18n.getCondition("prone|XPHB"), "伏地");
+assert.equal(I18n.getCondition("prone|XPHB"), "倒地");
 assert.equal(I18n.getSpellAreaType("E"), "光環");
 assert.equal(I18n.getSizeFull("M"), "中型");
 assert.equal(I18n.getSizeShort("S"), "小");

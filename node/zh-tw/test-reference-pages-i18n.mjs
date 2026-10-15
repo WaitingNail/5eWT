@@ -245,7 +245,7 @@ test("page lists, filters, dynamic labels, and HTML shells use the localized run
 	]) {
 		const html = readText(file);
 		assert.match(html, new RegExp(`<title>${title} - 5etools<\\/title>`, "u"));
-		assert.match(html, /src="js\/zh-tw\/content-i18n\.js"/u);
+		assert.match(html, /src="js\/zh-tw\/content-i18n\.js(?:\?v=[^"]+)?"/u);
 	}
 });
 
