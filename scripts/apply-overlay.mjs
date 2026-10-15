@@ -67,7 +67,7 @@ if (!fs.readFileSync(path.join(upstreamRoot, "js/utils.js"), "utf8").includes("/
 }
 
 // Follow-up patches are checked separately from the pinned upstream overlay.
-for (const relativePath of ["patches/0021-zh-tw-page-list-fixes.patch", "patches/0022-zh-tw-class-sidecar-loader.patch", "patches/0023-zh-tw-page-completions.patch", "patches/0024-zh-tw-shared-labels.patch"]) {
+for (const relativePath of ["patches/0021-zh-tw-page-list-fixes.patch", "patches/0022-zh-tw-class-sidecar-loader.patch", "patches/0023-zh-tw-page-completions.patch", "patches/0024-zh-tw-shared-labels.patch", "patches/0025-zh-tw-imported-conditions.patch"]) {
 	const patchPath = path.join(projectRoot, relativePath);
 	// 0023 advances the Class module cache key introduced by 0022.
 	if (relativePath.endsWith("0022-zh-tw-class-sidecar-loader.patch") && canGitApply(path.join(projectRoot, "patches/0023-zh-tw-page-completions.patch"), ["--reverse"])) continue;

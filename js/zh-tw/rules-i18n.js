@@ -1,5 +1,5 @@
 /**
- * Safe Traditional Chinese display overlay for core rules data.
+ * Safe Traditional Chinese display overlay for rules and reviewed imported conditions.
  *
  * The English entity remains the canonical source of identity. In particular,
  * `name`, `source`, `page`, UIDs, hashes, references, and filter values are not
@@ -16,6 +16,11 @@ export class I18nZhTwRules {
 		["senses.json", new Set(["sense"])],
 		["variantrules.json", new Set(["variantrule"])],
 		["generated/gendata-variantrules.json", new Set(["variantrule"])],
+	]);
+
+	// Partner/homebrew translations are loaded only for sources already imported.
+	static _SOURCE_TO_FILES = new Map([
+		["monstersofdrakkenheim", {props: ["condition"], files: ["homebrew/conditionsdiseases-modk.json"]}],
 	]);
 
 	static _PROP_TO_FILES = (() => {
@@ -114,12 +119,15 @@ export class I18nZhTwRules {
 	}
 
 	static _getFiles ({data, filenames = null}) {
-		if (filenames?.length) return [...new Set(filenames.filter(file => this._FILE_TO_PROPS.has(file)))];
-
-		return [...new Set(
-			Object.keys(data || {})
-				.flatMap(prop => this._PROP_TO_FILES.get(prop) || []),
-		)];
+		const files = filenames?.length
+			? filenames.filter(file => this._FILE_TO_PROPS.has(file))
+			: Object.keys(data || {}).flatMap(prop => this._PROP_TO_FILES.get(prop) || []);
+		for (const [source, config] of this._SOURCE_TO_FILES) {
+			if (config.props.some(prop => data?.[prop]?.some(entity => `${entity?.source || ""}`.toLowerCase() === source))) {
+				files.push(...config.files);
+			}
+		}
+		return [...new Set(files)];
 	}
 
 	static _getEntityKey ({prop, name, source}) {
@@ -231,7 +239,11 @@ export class I18nZhTwRules {
 				const canonical = this.getCanonicalEntity(entity);
 				const key = this._getEntityKey({prop, name: canonical?.name, source: canonical?.source});
 				const localized = key ? localizedIndex.get(key) : null;
-				return localized
+				// Imported sources may update independently of the pinned site.
+				// Match the reviewed English body before applying its translation.
+				const isReviewedBody = !localized?.ENG_entries
+					|| JSON.stringify(canonical.entries) === JSON.stringify(localized.ENG_entries);
+				return localized && isReviewedBody
 					? this._getLocalizedEntity({canonical, localized})
 					: out[prop][ix];
 			});

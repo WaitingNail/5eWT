@@ -585,6 +585,33 @@
 			unconscious: "昏迷",
 		};
 
+		// Source-qualified names must not rename unrelated homebrew conditions.
+		static _SOURCE_CONDITIONS = {
+			monstersofdrakkenheim: {
+				"addled": "神智混亂",
+				"bewildered": "迷亂",
+				"bleeding": "流血",
+				"burning": "灼燒",
+				"clumsy": "笨拙",
+				"contamination": "汙染",
+				"dazed": "恍惚",
+				"defenseless": "無防備",
+				"distracted": "分心",
+				"drakkenheim madness": "德拉肯海姆瘋狂",
+				"enfeebled": "衰弱",
+				"frozen": "凍結",
+				"helpless": "無助",
+				"immobilized": "定身",
+				"jinxed": "厄運",
+				"shocked": "震擊",
+				"sickened": "病弱",
+				"slowed": "緩速",
+				"staggered": "踉蹌",
+				"valor": "英勇",
+				"weakened": "虛弱",
+			},
+		};
+
 		static _CREATURE_TYPES = {
 			aberration: "異怪",
 			beast: "野獸",
@@ -2025,7 +2052,7 @@
 			const rendered = root.Parser?.getFullCondImm?.(values, {isEntry: true}) ?? `${values}`;
 			const withDisplays = rendered.replace(/\{@condition ([^{}]+)\}/gi, (match, body) => {
 				const parts = body.split("|");
-				const localized = this.getCondition(parts[0]);
+				const localized = this.getCondition(body);
 				if (!localized || localized.toLowerCase() === `${parts[0]}`.toLowerCase()) return match;
 				while (parts.length < 3) parts.push("");
 				parts[2] = localized;
@@ -2205,7 +2232,10 @@
 		}
 
 		static getCondition (condition) {
-			return this._CONDITIONS[`${condition || ""}`.split("|")[0].toLowerCase()] || `${condition || ""}`.split("|")[0];
+			const [name, source] = `${condition || ""}`.split("|");
+			return this._SOURCE_CONDITIONS[source?.toLowerCase()]?.[name.toLowerCase()]
+				|| this._CONDITIONS[name.toLowerCase()]
+				|| name;
 		}
 
 		static getCreatureType (type) {

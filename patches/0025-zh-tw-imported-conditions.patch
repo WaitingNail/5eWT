@@ -1,0 +1,71 @@
+diff --git a/js/conditionsdiseases.js b/js/conditionsdiseases.js
+--- a/js/conditionsdiseases.js
++++ b/js/conditionsdiseases.js
+@@ -1,5 +1,5 @@
+ import {RenderConditionDiseases} from "./render-conditionsdiseases.js";
+-import {I18nZhTwRules} from "./zh-tw/rules-i18n.js";
++import {I18nZhTwRules} from "./zh-tw/rules-i18n.js?v=zh-tw-33";
+ 
+ class ConditionsDiseasesSublistManager extends SublistManager {
+ 	static _getRowTemplate () {
+@@ -56,10 +56,7 @@
+ 		const pageFilter = new PageFilterConditionsDiseases();
+ 
+ 		super({
+-			dataSource: async () => I18nZhTwRules.pApplyToData(
+-				await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/conditionsdiseases.json`),
+-				{filenames: ["conditionsdiseases.json"]},
+-			),
++			dataSource: "data/conditionsdiseases.json",
+ 
+ 			pFnGetFluff: Renderer.conditionDisease.pGetFluff.bind(Renderer.conditionDisease),
+ 
+@@ -75,6 +72,14 @@
+ 
+ 			isPreviewable: true,
+ 		});
++	}
++
++	async _pOnLoad_pGetData () {
++		// Include imported partner/homebrew conditions before localizing.
++		return I18nZhTwRules.pApplyToData(
++			await super._pOnLoad_pGetData(),
++			{filenames: ["conditionsdiseases.json"]},
++		);
+ 	}
+ 
+ 	getListItem (it, cdI, isExcluded) {
+diff --git a/js/utils-dataloader/utils-dataloader-dataloader.js b/js/utils-dataloader/utils-dataloader-dataloader.js
+--- a/js/utils-dataloader/utils-dataloader-dataloader.js
++++ b/js/utils-dataloader/utils-dataloader-dataloader.js
+@@ -3,7 +3,7 @@
+ import {DataLoaderDependency} from "./utils-dataloader-dependency.js";
+ import {DataLoaderDereferencerFacade} from "./utils-dataloader-dereferencing.js";
+ import {DataLoaderCache} from "./utils-dataloader-cache.js";
+-import {I18nZhTwRules} from "../zh-tw/rules-i18n.js";
++import {I18nZhTwRules} from "../zh-tw/rules-i18n.js?v=zh-tw-33";
+ 
+ // region Data type loading
+ 
+@@ -239,6 +239,13 @@
+ 	static PAGE = UrlUtil.PG_CONDITIONS_DISEASES;
+ 
+ 	_filename = "conditionsdiseases.json";
++
++	async _pGetStoredPrereleaseBrewData (opts) {
++		return I18nZhTwRules.pApplyToData(
++			await super._pGetStoredPrereleaseBrewData(opts),
++			{filenames: [this._filename]},
++		);
++	}
+ }
+ 
+ class DataTypeLoaderSkill extends DataTypeLoaderSingleSource {
+diff --git a/js/utils-dataloader.js b/js/utils-dataloader.js
+--- a/js/utils-dataloader.js
++++ b/js/utils-dataloader.js
+@@ -1,3 +1,3 @@
+-import {DataLoader} from "./utils-dataloader/utils-dataloader-dataloader.js";
++import {DataLoader} from "./utils-dataloader/utils-dataloader-dataloader.js?v=zh-tw-33";
+ 
+ globalThis.DataLoader = DataLoader;
