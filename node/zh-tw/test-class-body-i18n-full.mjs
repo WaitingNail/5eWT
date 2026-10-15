@@ -79,7 +79,7 @@ for (const json of fluffFiles) {
 		fluffApplied += report.appliedFields;
 		assert.equal(fluff.name, identityBeforeFluff.name);
 		assert.equal(fluff.source, identityBeforeFluff.source);
-		assert.deepEqual(fluff.images, identityBeforeFluff.images);
+		assert.deepEqual(fluff.images?.map(({title, ...mechanics}) => mechanics), identityBeforeFluff.images?.map(({title, ...mechanics}) => mechanics), "Only the image display title may be localized");
 	}
 
 	for (const fluff of json.subclassFluff || []) {
@@ -107,7 +107,7 @@ for (const json of fluffFiles) {
 		assert.equal(fluff.source, identityBeforeFluff.source);
 		assert.equal(fluff.className, identityBeforeFluff.className);
 		assert.equal(fluff.classSource, identityBeforeFluff.classSource);
-		assert.deepEqual(fluff.images, identityBeforeFluff.images);
+		assert.deepEqual(fluff.images?.map(({title, ...mechanics}) => mechanics), identityBeforeFluff.images?.map(({title, ...mechanics}) => mechanics), "Only the image display title may be localized");
 	}
 }
 

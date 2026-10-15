@@ -1,0 +1,114 @@
+--- a/js/classes.js
++++ b/js/classes.js
+@@ -3,7 +3,7 @@
+ 
+ import {OmnisearchUtilsUi} from "./omnisearch/omnisearch-utils-ui.js";
+ import {I18nZhTwClass} from "./zh-tw/class-i18n.js";
+-import {I18nZhTwClassBody} from "./zh-tw/class-body-i18n.js?v=zh-tw-29";
++import {I18nZhTwClassBody} from "./zh-tw/class-body-i18n.js?v=zh-tw-31";
+ 
+ class UtilClassesPage {
+ 	static getColorStyleClasses (entry, {isForceStandardSource, prefix, isSubclass} = {}) {
+--- a/js/decks.js
++++ b/js/decks.js
+@@ -1,4 +1,4 @@
+-import {DeckSpreads} from "./decks/decks-spreads.js";
++import {DeckSpreads} from "./decks/decks-spreads.js?v=zh-tw-31";
+ 
+ class DecksSublistManager extends SublistManager {
+ 	static _getRowTemplate () {
+@@ -176,7 +176,7 @@
+ 			let abortController = null;
+ 
+ 			const {eleModalInner} = UiUtil.getShowModal({
+-				title: `Spread \u2014 ${ent.name}`,
++				title: `牌陣 \u2014 ${I18nZhTwUtilities.name(ent)}`,
+ 				isHeaderBorder: true,
+ 				isUncappedHeight: true,
+ 				isHeight100: true,
+@@ -194,7 +194,7 @@
+ 				"ixSpread",
+ 				{
+ 					values: ent.spreads,
+-					fnDisplay: spread => `${spread.name} (${Parser.sourceJsonToAbv(spread.source)})`,
++					fnDisplay: spread => `${I18nZhTwUtilities.name(spread)} (${Parser.sourceJsonToAbv(spread.source)})`,
+ 					isSetIndexes: true,
+ 					html: `<select class="ve-form-control ve-input-sm ve-w-100 ve-br-0"></select>`,
+ 				},
+@@ -220,7 +220,7 @@
+ 				await DeckSpreads.pRevealSpread({rowMetas, isSkipAnimation, abortSignal: abortController.signal});
+ 			};
+ 
+-			const btnRedraw = veT`<button class="ve-btn ve-btn-primary ve-btn-sm ve-no-shrink" title="Draw Spread (CTRL to Skip Animation)">Draw</button>`
++			const btnRedraw = veT`<button class="ve-btn ve-btn-primary ve-btn-sm ve-no-shrink" title="抽取牌陣（按住 CTRL 跳過動畫）">抽牌</button>`
+ 				.vee.onn("click", evt => pDoRender({isSkipAnimation: EventUtil.isCtrlMetaKey(evt)}));
+ 
+ 			comp._addHookBase("ixSpread", () => pDoRender());
+@@ -305,7 +305,7 @@
+ 
+ 		// region Spreads
+ 		const btnSpread = ent.spreads?.length
+-			? veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="Read a Spread (CTRL to Skip Animation)"><i class="fas fa-fw fa-layer-group"></i></button>`
++			? veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-bb-0 ve-bbr-0 ve-bbl-0" title="解讀牌陣（按住 CTRL 跳過動畫）"><i class="fas fa-fw fa-layer-group"></i></button>`
+ 				.vee.onn("click", evt => this._handleClick_pDoOpenSpread(ent, btnSpread, {isSkipAnimation: EventUtil.isCtrlMetaKey(evt)}))
+ 			: null;
+ 		// endregion
+--- a/js/decks/decks-spreads.js
++++ b/js/decks/decks-spreads.js
+@@ -3,14 +3,15 @@
+ 	static _REVEAL_CARD_DELAY_MS = 150;
+ 
+ 	static getEntries ({spread}) {
++		const withDisplayName = uid => [I18nZhTwUtilities.name(spread), ...uid.split("|").slice(1)].join("|");
+ 		const seeAlso = [
+-			...(spread.seeAlsoAdventureHeader || []).map(uid => `{@adventure ${uid}}`),
+-			...(spread.seeAlsoBookHeader || []).map(uid => `{@book ${uid}}`),
++			...(spread.seeAlsoAdventureHeader || []).map(uid => `{@adventure ${withDisplayName(uid)}}`),
++			...(spread.seeAlsoBookHeader || []).map(uid => `{@book ${withDisplayName(uid)}}`),
+ 		];
+ 
+ 		return [
+ 			...(spread.entries || []),
+-			seeAlso.length ? `{@note See also: ${seeAlso.join(", ")}.}` : null,
++			seeAlso.length ? `{@note 另見：${seeAlso.join("、")}。}` : null,
+ 		].filter(Boolean);
+ 	}
+ 
+@@ -80,12 +81,12 @@
+ 		if (!card) {
+ 			return {
+ 				wrp: veT`<div class="ve-flex-v-center ve-stats ve-stats--book ve-p-2 ve-mb-2 ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p">
+-					${Renderer.get().render(`{@note No card was available for position "${position.name}".}`)}
++					${Renderer.get().render(`{@note 位置「${I18nZhTwUtilities.name(position)}」沒有可用的卡牌。}`)}
+ 				</div>`,
+ 			};
+ 		}
+ 
+-		const btnViewer = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Open Card Viewer"><span class="glyphicon glyphicon-eye-open"></span></button>`
++		const btnViewer = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="開啟卡牌檢視器"><span class="glyphicon glyphicon-eye-open"></span></button>`
+ 			.vee.onn("click", async () => {
+ 				try {
+ 					btnViewer.vee.prop("disabled", true);
+@@ -99,11 +100,11 @@
+ 			<div class="ve-absolute ve-pt-2 ve-pr-2 decks__wrp-btn-show-card">
+ 				<div class="ve-btn-group ve-flex-v-center">${btnViewer}</div>
+ 			</div>
+-			${Renderer.get().setFirstSection(true).render({...card.face, title: card.name, altText: card.name})}
++			${Renderer.get().setFirstSection(true).render({...card.face, title: I18nZhTwUtilities.name(card), altText: I18nZhTwUtilities.name(card)})}
+ 		</div>`;
+ 
+ 		const entries = [
+-			`{@b Drawn:} {@card ${DataUtil.deck.getUidCard(card, {isMaintainCase: true})}}`,
++			`{@b 抽到：} {@card ${DataUtil.deck.getUidCard(card, {isMaintainCase: true, displayName: I18nZhTwUtilities.name(card)})}}`,
+ 			...(position.entries || []),
+ 			...this._getOutcomeEntries({card, outcomeMeta}),
+ 		];
+@@ -115,7 +116,7 @@
+ 		Renderer.get().setPartPageExpandCollapseDisabled(false);
+ 
+ 		const wrpFront = veT`<div class="deck-spread__wrp-position-face ve-flex-col ve-stats ve-stats--book ve-p-2 ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p">
+-			<h4 class="ve-mt-0 ve-mb-2 ve-text-center ve-dnd-font"><span class="ve-muted ve-small">Position${position.name ? ":" : ""}</span>${position.name ? ` &quot;<u>${position.name}</u>&quot;` : ""}</h4>
++			<h4 class="ve-mt-0 ve-mb-2 ve-text-center ve-dnd-font"><span class="ve-muted ve-small">位置${position.name ? "：" : ""}</span>${position.name ? `「<u>${I18nZhTwUtilities.name(position)}</u>」` : ""}</h4>
+ 			<div class="ve-flex-v-center">
+ 				${wrpFace}
+ 				<div class="ve-ml-2 decks__wrp-card-text ve-w-100">${ptText}</div>

@@ -120,6 +120,7 @@ for (const relativePath of required) {
 
 const runNode = (script, ...args) => execFileSync(process.execPath, [script, ...args], {cwd: upstreamRoot, stdio: "inherit"});
 runNode("node/zh-tw/test-reviewed-site-semantics.mjs");
+runNode("node/zh-tw/test-page-completions.mjs");
 for (const script of [
   "js/classes.js",
   "js/render-class.js",

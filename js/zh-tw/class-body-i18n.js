@@ -373,6 +373,7 @@ export class I18nZhTwClassBody {
 		const isVisibleEntryLeaf = () => Array.isArray(parent) || this._VISIBLE_ENTRY_KEYS.has(pathParts.at(-1));
 
 		if (["classFeature", "subclassFeature", "classFluff", "subclassFluff"].includes(category)) {
+			if (this._FLUFF_CATEGORIES.includes(category) && pathParts[0] === "images") return pathParts.length === 3 && pathParts[2] === "title";
 			return pathParts[0] === "entries" && isVisibleEntryLeaf();
 		}
 
@@ -452,6 +453,14 @@ export class I18nZhTwClassBody {
 			switch (field) {
 				case "entries":
 					this._replaceArray({entity, pathParts: ["entries"], value, category, uid, report});
+					break;
+
+				case "images":
+					if (!this._FLUFF_CATEGORIES.includes(category)) {
+						this._addSkipped({category, uid, path: "/images", reason: "field-not-allowed", report});
+						break;
+					}
+					this._applyIndexedVisibleObjects({entity, key: "images", value, allowedFields: ["title"], category, uid, report});
 					break;
 
 				case "subclassTitle":
@@ -764,6 +773,7 @@ export class I18nZhTwClassBody {
 	static _getFieldsFromLocalizedEntity (entity, category) {
 		const out = {};
 		if (Array.isArray(entity.entries)) out.entries = entity.entries;
+		if (this._FLUFF_CATEGORIES.includes(category) && Array.isArray(entity.images)) out.images = entity.images.map(image => ({...(typeof image.title === "string" ? {title: image.title} : {})}));
 
 		if (category === "class") {
 			if (typeof entity.subclassTitle === "string") out.subclassTitle = entity.subclassTitle;

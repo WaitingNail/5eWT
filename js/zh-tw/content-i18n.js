@@ -1042,7 +1042,7 @@
 			}
 			for (const [key, value] of Object.entries(canonical)) {
 				if (!(key in localized)) continue;
-				if (key === "note" && typeof value === "string" && typeof localized[key] === "string") {
+				if (["note", "entry"].includes(key) && typeof value === "string" && typeof localized[key] === "string") {
 					out[key] = localized[key];
 					continue;
 				}
@@ -1226,8 +1226,15 @@
 				}
 			}
 
-			if (prop === "charoption" && canonical.prerequisite && localized.prerequisite) {
+			if (canonical.prerequisite && localized.prerequisite) {
 				out.prerequisite = this._overlayPrerequisite({canonical: canonical.prerequisite, localized: localized.prerequisite});
+			}
+
+			// New display notes can occur inside otherwise mechanical structures.
+			// Traverse objects while retaining canonical values, IDs, and numbers.
+			for (const key of ["ability", "property", "mastery", "alignment"]) {
+				if (!canonical[key] || !localized[key]) continue;
+				out[key] = this._overlayPrerequisite({canonical: canonical[key], localized: localized[key]});
 			}
 
 			if (prop === "language") {

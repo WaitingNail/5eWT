@@ -5,6 +5,10 @@ import {buildSiteLocale} from "./build-site-locale.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 export const review = JSON.parse(fs.readFileSync(path.join(ROOT, "translation/zh-TW/reviewed-site-semantics.json"), "utf8"));
+const completions = JSON.parse(fs.readFileSync(path.join(ROOT, "translation/zh-TW/reviewed-page-completions.json"), "utf8"));
+const completionRecords = completions.files.flatMap(file => JSON.parse(fs.readFileSync(path.join(ROOT, file), "utf8")));
+if (completionRecords.length !== completions.correctionCount) throw new Error("Incomplete page-completion manifest");
+review.corrections.push(...completionRecords);
 const get = (obj, pointer) => pointer.split("/").reduce((v, k) => v?.[k], obj);
 const set = (obj, pointer, value) => { const parts = pointer.split("/"); const key = parts.pop(); get(obj, parts.join("/"))[key] = value; };
 const nameTerms = new Map(Object.values(review.terms).flatMap(group => Object.entries(group)));
@@ -70,7 +74,8 @@ export async function applyReview () {
 		if (!sourceStrings.has(record.sourceFile)) sourceStrings.set(record.sourceFile, strings(load(record.sourceFile)));
 		if (!sourceStrings.get(record.sourceFile).has(record.english)) throw new Error(`English changed; re-review ${record.file}:${record.path}`);
 		const data = load(record.file), current = get(data, record.path);
-		if (![record.before, record.after, normalizeText(record.after)].includes(current)) throw new Error(`Translation changed; re-review ${record.file}:${record.path}`);
+		if (!(record.create && current === undefined) && ![record.before, record.after, normalizeText(record.after)].includes(current)) throw new Error(`Translation changed; re-review ${record.file}:${record.path}`);
+		if (record.canonicalPath && get(data, record.canonicalPath) !== record.english) throw new Error(`Canonical display identity changed: ${record.file}:${record.canonicalPath}`);
 		set(data, record.path, record.after);
 	}
 	let changedFiles = 0;
