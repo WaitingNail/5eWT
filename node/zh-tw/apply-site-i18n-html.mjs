@@ -238,7 +238,15 @@ function localizeRedirectShell ({html, translator}) {
 	);
 }
 
-function transformPage ({html, page, isSeo, translator}) {
+function customizeHomepage (html, homepageHtml) {
+	const existing = /<!--5EWT_HOME_INTRO_START-->[\s\S]*?<!--5EWT_HOME_INTRO_END-->/u;
+	if (existing.test(html)) return html.replace(existing, () => homepageHtml.trim());
+	const upstreamIntro = /<div class="ve-mb-2" id="wrp-patreon"><\/div>[\s\S]*?(?=<h3>[^<]*<a href="https:\/\/foundryvtt\.com\/")/u;
+	if (!upstreamIntro.test(html)) throw new Error("index.html: homepage introduction anchor not found.");
+	return html.replace(upstreamIntro, () => `${homepageHtml.trim()}\n\n\t\t\t`);
+}
+
+function transformPage ({html, page, isSeo, translator, homepageHtml}) {
 	let out = setDocumentLanguage(html, page);
 	if (page === "crcalculator.html") {
 		for (const [from, to] of Object.entries({"Prof.<br>加值":"熟練<br>加值", "Prof.<br>Bonus":"熟練<br>加值", "Armor<br>Class":"護甲<br>等級", "Hit<br>Points":"生命<br>值", "Attack<br>加值":"攻擊<br>加值", "Attack<br>Bonus":"攻擊<br>加值", "Damage/<br>Round":"每輪<br>傷害", "儲存<br>DC":"豁免<br>DC", "Save<br>DC":"豁免<br>DC"})) out = out.replaceAll(from, to);
@@ -253,6 +261,7 @@ function transformPage ({html, page, isSeo, translator}) {
 	out = localizeRedirectShell({html: out, translator});
 	out = translateHtml({html: out, translator});
 	assertCanonicalAttributesUnchanged({before: html, after: out, page});
+	if (page === "index.html") out = customizeHomepage(out, homepageHtml);
 	return out;
 }
 
@@ -304,6 +313,7 @@ async function main () {
 	const isCheck = process.argv.includes("--check");
 	const siteI18n = JSON.parse(await fs.readFile(PATH_SITE_I18N, "utf8"));
 	const pageMessages = JSON.parse(await fs.readFile(path.join(ROOT, "translation/zh-TW/utility-pages/html-translations.json"), "utf8"));
+	const homepageHtml = await fs.readFile(path.join(ROOT, "translation/zh-TW/homepage.html"), "utf8");
 	const pages = await getPagePaths();
 	const stalePages = [];
 	let changedCount = 0;
@@ -311,7 +321,7 @@ async function main () {
 	for (const page of pages) {
 		const pagePath = path.join(ROOT, page);
 		const html = await fs.readFile(pagePath, "utf8");
-		const transformed = transformPage({html, page, isSeo: page.includes("/"), translator: getTranslator(siteI18n, pageMessages[page])});
+		const transformed = transformPage({html, page, isSeo: page.includes("/"), translator: getTranslator(siteI18n, pageMessages[page]), homepageHtml});
 		validatePage({html: transformed, page, isSeo: page.includes("/")});
 
 		if (transformed === html) continue;
