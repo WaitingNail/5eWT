@@ -260,6 +260,10 @@ function transformPage ({html, page, isSeo, translator, homepageHtml}) {
 	out = out.replace(/(src=["']\/?js\/(?:utils|lifegen|render|render-tables|render-decks|decks|filter-decks)\.js)(?:\?v=[^"']*)?(["'])/g, "$1?v=zh-tw-27$2");
 	out = localizeRedirectShell({html: out, translator});
 	out = translateHtml({html: out, translator});
+	if (page === "index.html") {
+		out = out.replace(/(<b>有維基嗎？<\/b>)\s*(?=<a\b)/u, "$1 5etools(原文/英文) ");
+		out = out.replace(/(<p><b>這是免費的嗎？<\/b>[^\n]*?<\/sup>)。請參閱/u, "$1(英文版)。請參閱");
+	}
 	assertCanonicalAttributesUnchanged({before: html, after: out, page});
 	if (page === "index.html") out = customizeHomepage(out, homepageHtml);
 	return out;
