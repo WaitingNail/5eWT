@@ -91,7 +91,7 @@ export async function applyReview () {
 	}
 	fs.writeFileSync(runtimeFile, runtime);
 	await buildSiteLocale();
-	console.log(`Applied ${review.corrections.length} source-guarded semantic corrections; normalized reviewed 2014/2024 terms in ${changedFiles} data files.`);
+	console.log(`Applied ${review.corrections.length} source-guarded reviewed corrections; normalized reviewed 2014/2024 terms in ${changedFiles} data files.`);
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
