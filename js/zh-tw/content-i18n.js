@@ -666,6 +666,8 @@
 			OBJ: "影響物件",
 			ADV: "賦予優勢",
 			PIR: "重複施展後永久生效",
+			WLT: "以自願生物為目標",
+			ALT: "以盟友為目標",
 		};
 
 		static _SPELL_FILTER_LABELS = {

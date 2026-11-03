@@ -199,7 +199,8 @@ for (const dir of ["js/lootgen", "js/statgen"]) utilityScripts.push(...fs.readdi
 for (const script of utilityScripts) execFileSync(process.execPath, ["--check", script], {cwd: upstreamRoot, stdio: "inherit"});
 
 runNode("node/zh-tw/validate-glossary.mjs");
-runNode("node/zh-tw/validate-upstream-upgrade.mjs");
+execFileSync("git", ["diff", "--exit-code", "HEAD", "--", "data"], {cwd: upstreamRoot, stdio: "pipe"});
+runNode("node/zh-tw/test-v2.39.1-runtime.mjs");
 runNode("node/zh-tw/test-class-i18n.mjs");
 runNode("node/zh-tw/test-class-body-i18n.mjs");
 runNode("node/zh-tw/test-class-body-i18n-full.mjs");

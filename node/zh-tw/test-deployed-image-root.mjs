@@ -48,3 +48,15 @@ test("all craft-page image paths resolve to the image fork", () => {
 		assert.ok(url.pathname.startsWith("/WaitingNail/5eWT-img/main/"), url.href);
 	}
 });
+
+
+test("the renderer routes new sources to the pinned upstream image snapshot", async () => {
+	await import("../../js/parser.js");
+	await import("../../js/utils.js");
+	await import("../../js/render.js");
+	const renderer = Renderer.get();
+	assert.match(renderer.getMediaUrl("img", "items/XDMG/+1 Ammunition.webp"), /5etools-img\/f6bfad3/);
+	assert.match(renderer.getMediaUrl("img", "bestiary/tokens/PL/Adam.webp"), /5etools-img\/f6bfad3/);
+	assert.match(renderer.getMediaUrl("img", "adventure/SoS/map.webp"), /5etools-img\/f6bfad3/);
+	assert.equal(renderer.getMediaUrl("img", "bestiary/MM/Aboleth.webp"), `${EXPECTED_IMAGE_ROOT}bestiary/MM/Aboleth.webp`);
+});

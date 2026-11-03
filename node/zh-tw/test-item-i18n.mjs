@@ -40,7 +40,7 @@ const expectedCounts = {
 	itemEntry: 13,
 	itemMastery: 8,
 	magicvariant: 230,
-	itemFluff: 980,
+	itemFluff: 1200,
 };
 const actualCounts = {};
 let localizedNames = 0;
@@ -73,7 +73,7 @@ for (const [file, props] of specs) {
 }
 
 assert.deepEqual(actualCounts, expectedCounts);
-assert.equal(localizedNames, 4162);
+assert.equal(localizedNames, 4382);
 
 const canonicalItems = readJson("data/items.json");
 const localizedItems = await I18n.pApplyDataFile({
@@ -150,11 +150,12 @@ const localizedFluff = await I18n.pApplyDataFile({
 	fnLoad: async () => readJson("data/zh-TW/items/fluff-items.json"),
 });
 assert.equal(localizedFluff.itemFluff[0].name, canonicalFluff.itemFluff[0].name);
-assert.equal(localizedFluff.itemFluff[0]._displayName, "+1 命運主宰之牌");
+assert.equal(localizedFluff.itemFluff.find(it => it.name === "+1 Fate Dealer's Deck" && it.source === "BMT")._displayName, "+1 命運主宰之牌");
+assert.equal(localizedFluff.itemFluff.find(it => it.name === "+1 Ammunition" && it.source === "XDMG")._displayName, "+1 彈藥");
 
 assert.equal(I18n.getItemRarity("very rare"), "極稀有");
 assert.equal(I18n.getItemRarityShort("uncommon"), "非普");
 assert.equal(I18n.getItemWeaponCategory("martial"), "軍用武器");
 
 console.log("Item localization runtime tests: PASS");
-console.log("3,097 item rules entities; 948 item fluff entries; 4,020 localized names.");
+console.log(`${actualCounts.itemFluff} item fluff entries; ${localizedNames} localized names.`);

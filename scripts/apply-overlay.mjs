@@ -1,11 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
-import {execFileSync} from "node:child_process";
+import {execFileSync, spawnSync} from "node:child_process";
 import {fileURLToPath} from "node:url";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const upstreamRoot = path.join(projectRoot, "vendor", "5etools-src");
-const patchPaths = [path.join(projectRoot, "patches", "0020-zh-tw-v2.37.0-runtime.patch")];
+const runtimePatch = path.join(projectRoot, "patches", "0026-zh-tw-v2.39.1-runtime.patch");
+const imagePatch = path.join(projectRoot, "patches", "0027-zh-tw-v2.39.1-image-sources.patch");
 const copyRoots = [
   "requirements-zh-tw.txt",
   "data/zh-TW",
@@ -41,38 +42,15 @@ for (const relativePath of copyRoots) {
   copyRecursive(sourcePath, path.join(upstreamRoot, relativePath));
 }
 
-const canGitApply = (patchPath, args) => {
-  try {
-    execFileSync("git", ["apply", ...args, "--check", patchPath], {cwd: upstreamRoot, stdio: "pipe"});
-    return true;
-  } catch {
-    return false;
-  }
-};
 const runGitApply = (patchPath, args) => execFileSync("git", ["apply", ...args, patchPath], {cwd: upstreamRoot, stdio: "inherit"});
 
 
-// The runtime patches intentionally overlap (later stages extend shared data
-// loading and rendering code). If the final patch can be reversed, the whole
-// ordered stack is already present; checking older patches independently would
-// fail because their context has since been extended by the newer patches.
-if (!fs.readFileSync(path.join(upstreamRoot, "js/utils.js"), "utf8").includes("// 5eWT zh-TW runtime v2.37.0")) {
-	for (const patchPath of patchPaths) {
-		if (canGitApply(patchPath, [])) {
-			runGitApply(patchPath, []);
-		} else if (!canGitApply(patchPath, ["--reverse"])) {
-			throw new Error(`zh-TW overlay patch does not apply cleanly: ${path.basename(patchPath)}`);
-		}
-	}
+if (!fs.readFileSync(path.join(upstreamRoot, "js/utils.js"), "utf8").includes("// 5eWT zh-TW runtime v2.39.1")) {
+	runGitApply(runtimePatch, []);
 }
 
-// Follow-up patches are checked separately from the pinned upstream overlay.
-for (const relativePath of ["patches/0021-zh-tw-page-list-fixes.patch", "patches/0022-zh-tw-class-sidecar-loader.patch", "patches/0023-zh-tw-page-completions.patch", "patches/0024-zh-tw-shared-labels.patch", "patches/0025-zh-tw-imported-conditions.patch"]) {
-	const patchPath = path.join(projectRoot, relativePath);
-	// 0023 advances the Class module cache key introduced by 0022.
-	if (relativePath.endsWith("0022-zh-tw-class-sidecar-loader.patch") && canGitApply(path.join(projectRoot, "patches/0023-zh-tw-page-completions.patch"), ["--reverse"])) continue;
-	if (canGitApply(patchPath, [])) runGitApply(patchPath, []);
-	else if (!canGitApply(patchPath, ["--reverse"])) throw new Error(`zh-TW follow-up patch does not apply cleanly: ${relativePath}`);
+if (spawnSync("git", ["apply", "--reverse", "--check", imagePatch], {cwd: upstreamRoot}).status !== 0) {
+	runGitApply(imagePatch, []);
 }
 
 execFileSync(process.execPath, [path.join(upstreamRoot, "node/zh-tw/build-adventure-compatibility.mjs")], {cwd: upstreamRoot, stdio: "inherit"});

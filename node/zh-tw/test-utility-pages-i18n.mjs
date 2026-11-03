@@ -43,7 +43,7 @@ test("the public data loader localizes every requested utility data file",async(
 	}
 	assert.equal((await DataUtil.object.loadJSON()).object.length,37);
 	const tables=await DataUtil.table.loadJSON();
-	assert.equal(tables.table.length,2381);
+	assert.equal(tables.table.length,2390);
 	assert.equal(tables.tableGroup.length,22);
 	const decks=await DataUtil.deck.loadRawJSON();
 	assert.equal(decks.deck.length,35);
@@ -84,7 +84,7 @@ test("all traps, objects, cards, and standalone tables render translated content
 });
 
 test("names and encounters use bilingual group and option titles without changing hashes",()=>{
-	for(const[file,prop,renderer]of [["names.json","name",Renderer.names],["encounters.json","encounter",Renderer.encounters]])for(const group of loaded[file][prop])for(const table of group.tables){
+	for(const[file,prop,renderer]of [["names.json","name",Renderer.namez],["encounters.json","encounter",Renderer.encounter]])for(const group of loaded[file][prop])for(const table of group.tables){
 		const ent={...group,...table};delete ent.tables;
 		const hashBefore=UrlUtil.URL_TO_HASH_BUILDER[file==="names.json"?"names.html":"encountergen.html"](ent);
 		const rawGroup=read(`data/${file}`)[prop].find(x=>x.name===group.name&&x.source===group.source);

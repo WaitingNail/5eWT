@@ -16,4 +16,4 @@ for (const file of fs.readdirSync(folder).filter(it => /^adventure-.*\.json$/.te
 	fs.writeFileSync(path.join(canonicalFolder, file), bytes);
 	count++;
 }
-console.log(`Prepared ${count} exact canonical adventure snapshots for existing reviewed translations; v2.37.0 adventure sources remain intact.`);
+console.log(`Prepared ${count} exact canonical adventure snapshots for existing reviewed translations; upstream adventure sources remain intact.`);

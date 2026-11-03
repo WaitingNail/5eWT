@@ -1,6 +1,6 @@
 # 5eWT — 5etools 臺灣繁中覆蓋層
 
-這是固定對應 `5etools-mirror-3/5etools-src@v2.37.0` 的私人、自用繁中覆蓋層。
+這是固定對應 `5etools-mirror-3/5etools-src@v2.39.1` 的私人、自用繁中覆蓋層。
 
 [上游 v2.38.0 至 v2.39.1 繁中更新說明與移植狀態](reports/zh-tw-upstream-v2.39.1.md)
 

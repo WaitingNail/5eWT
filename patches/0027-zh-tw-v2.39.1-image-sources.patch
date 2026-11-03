@@ -1,0 +1,15 @@
+diff --git a/js/render.js b/js/render.js
+index d3037f6..75bb5c6 100644
+--- a/js/render.js
++++ b/js/render.js
+@@ -113,6 +113,10 @@ globalThis.Renderer = class {
+ 	setBaseMediaUrl (mediaDir, url) { this.baseMediaUrls[mediaDir] = url; return this; }
+ 
+ 	getMediaUrl (mediaDir, path) {
++		// These sources include assets added after the WaitingNail image snapshot.
++		if (mediaDir === "img" && /^(?:items\/(?:X?DMG)\/|book\/PL\/|adventure\/SoS\/|bestiary\/(?:tokens\/)?PL\/|covers\/(?:PL|SoS)\.)/u.test(path)) {
++			return `https://raw.githubusercontent.com/5etools-mirror-3/5etools-img/f6bfad316f02b25f698eca461512bbbbfe8e6321/${path}`;
++		}
+ 		if (Renderer.get().baseMediaUrls[mediaDir]) return `${Renderer.get().baseMediaUrls[mediaDir]}${path}`;
+ 		return `${Renderer.get().baseUrl}${mediaDir}/${path}`;
+ 	}

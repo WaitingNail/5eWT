@@ -145,8 +145,8 @@ const expectedCharacterOptionCounts = {
 	race: 160,
 	subrace: 98,
 	raceFluff: 223,
-	background: 171,
-	backgroundFluff: 170,
+	background: 175,
+	backgroundFluff: 174,
 	feat: 305,
 	featFluff: 44,
 	optionalfeature: 221,
@@ -189,7 +189,7 @@ for (const [file, props] of characterOptionSpecs) {
 }
 
 assert.deepEqual(actualCharacterOptionCounts, expectedCharacterOptionCounts);
-assert.equal(localizedCharacterOptionNames, 1388);
+assert.equal(localizedCharacterOptionNames, 1396);
 
 const duplicateCanonicalSubraces = [
 	{name: "Ixalan", source: "PSX", raceName: "Goblin", raceSource: "PSZ", entries: ["Goblin prose."]},
