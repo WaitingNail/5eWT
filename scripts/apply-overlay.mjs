@@ -7,6 +7,7 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "
 const upstreamRoot = path.join(projectRoot, "vendor", "5etools-src");
 const runtimePatch = path.join(projectRoot, "patches", "0026-zh-tw-v2.39.1-runtime.patch");
 const imagePatch = path.join(projectRoot, "patches", "0027-zh-tw-v2.39.1-image-sources.patch");
+const catalogPatch = path.join(projectRoot, "patches", "0028-zh-tw-book-catalog.patch");
 const copyRoots = [
   "requirements-zh-tw.txt",
   "data/zh-TW",
@@ -53,9 +54,15 @@ if (spawnSync("git", ["apply", "--reverse", "--check", imagePatch], {cwd: upstre
 	runGitApply(imagePatch, []);
 }
 
+if (spawnSync("git", ["apply", "--reverse", "--check", catalogPatch], {cwd: upstreamRoot}).status !== 0) {
+	runGitApply(catalogPatch, []);
+}
+
 execFileSync(process.execPath, [path.join(upstreamRoot, "node/zh-tw/build-adventure-compatibility.mjs")], {cwd: upstreamRoot, stdio: "inherit"});
 
 execFileSync(process.execPath, [path.join(upstreamRoot, "node/zh-tw/apply-reviewed-site-semantics.mjs")], {cwd: upstreamRoot, stdio: "inherit"});
+
+execFileSync(process.execPath, [path.join(upstreamRoot, "node/zh-tw/build-book-catalog-navigation.mjs")], {cwd: upstreamRoot, stdio: "inherit"});
 
 const deployedImageRoot = "https://raw.githubusercontent.com/WaitingNail/5eWT-img/main/";
 const utilsPath = path.join(upstreamRoot, "js", "utils.js");

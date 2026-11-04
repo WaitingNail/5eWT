@@ -12,3 +12,7 @@
 ## v2.37.0 增量候選來源
 
 增量一般條目使用 `tjliqy/5etools-cn` 的 `5cc0bbe2c2b241a334e731af4448bdba2168e8bd` 版本作為候選譯文，沿用原檔授權與本專案既有署名。只有與 v2.37.0 英文相符的文字會被採用，並經 OpenCC 臺灣繁中轉換、專案術語及 canonical reference 校正；人工修訂另記錄於 `upstream-v2.37.0/text-overrides.json`。
+
+## v2.39.1 冒險與規則書目
+
+《拉莫迪亞計畫》、《西堤庫斯之影》與兩份書目使用 [tjliqy/5etools-cn 的對應譯稿](https://github.com/tjliqy/5etools-cn/tree/5e27439bd559a720522bb0b0c280e18ca195eba4) 作為改作來源，沿用譯稿授權與署名。5eWT 以 OpenCC 轉為臺灣繁體中文，校訂站內譯名，並依 v2.39.1 英文資料核對章節順序、連結目標與骰式。

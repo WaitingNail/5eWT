@@ -231,6 +231,7 @@ runNode("node/zh-tw/test-adventure-oota-i18n.mjs");
 runNode("node/zh-tw/test-adventure-bgdia-toa-i18n.mjs");
 runNode("node/zh-tw/test-adventure-kftgv-i18n.mjs");
 runNode("node/zh-tw/test-adventure-contextual-semantics.mjs");
+runNode("node/zh-tw/test-book-catalog-i18n.mjs");
 runNode("node/zh-tw/test-craft-pages-i18n.mjs");
 runNode("node/zh-tw/test-psionics-i18n.mjs");
 runNode("node/zh-tw/test-vehicle-psionics-page-loading.mjs");

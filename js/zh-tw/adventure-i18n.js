@@ -3,7 +3,8 @@ import {I18nZhTwQuickReference} from "./quick-reference-i18n.js";
 /** Adventure display adapter. Canonical headings/IDs remain usable in old URLs. */
 export class I18nZhTwAdventure {
 	static _loadPromises = new Map();
-	static _supportedBooks = new Set(["cos", "hotdq", "rot", "wdh", "vnotee", "veor", "oota", "bgdia", "toa", "kftgv"]);
+	static _supportedBooks = new Set(["cos", "hotdq", "rot", "wdh", "vnotee", "veor", "oota", "bgdia", "toa", "kftgv", "pl", "sos"]);
+	static _currentBooks = {pl: "book-pl", sos: "adventure-sos"};
 	static _visibleKeys = new Set([
 		"name", "caption", "title", "label", "by", "text", "quote", "author",
 		"entries", "entry", "items", "footnotes", "headerEntries", "footerEntries",
@@ -13,7 +14,11 @@ export class I18nZhTwAdventure {
 	static async pLoad ({bookId = "cos", fnLoad = null} = {}) {
 		bookId = `${bookId}`.toLowerCase();
 		if (!this._supportedBooks.has(bookId)) return null;
-		const url = `${globalThis.Renderer?.get?.().baseUrl || ""}data/zh-TW/adventures/adventure-${bookId}.json`;
+		const baseUrl = globalThis.Renderer?.get?.().baseUrl || "";
+		const currentBook = this._currentBooks[bookId];
+		const url = currentBook
+			? `${baseUrl}data/zh-TW/book-catalog/${currentBook}.json`
+			: `${baseUrl}data/zh-TW/adventures/adventure-${bookId}.json`;
 		const load = async () => {
 			try {
 				if (fnLoad) return await fnLoad({url});
@@ -50,8 +55,11 @@ export class I18nZhTwAdventure {
 	}
 
 	static createLocalizedView ({canonical, localized, index}) {
-		canonical = canonical.adventureData?.find(it => it.id === index.id) || canonical;
-		if (!["v2.33.3", "v2.37.0"].includes(localized?._meta?.upstreamTag) || localized?.adventure?.id !== index.id) {
+		const localizedIndex = localized?.book || localized?.adventure;
+		const isCurrent = Object.hasOwn(this._currentBooks, index.id.toLowerCase());
+		const acceptedTags = isCurrent ? ["v2.39.1"] : ["v2.33.3", "v2.37.0"];
+		canonical = (canonical.bookData || canonical.adventureData)?.find(it => it.id === index.id) || canonical;
+		if (!acceptedTags.includes(localized?._meta?.upstreamTag) || localizedIndex?.id !== index.id) {
 			throw new Error("Adventure translation identity/version mismatch");
 		}
 		const displayByCanonical = new Map();
@@ -101,20 +109,20 @@ export class I18nZhTwAdventure {
 			return out;
 		};
 		const data = overlay(canonical.data, localized.data, "data");
-		if (index.contents.length !== localized.adventure.contents.length) throw new Error("Chapter index mismatch");
+		if (index.contents.length !== localizedIndex.contents.length) throw new Error("Chapter index mismatch");
 		const displayIndex = structuredClone(index);
 		displayIndex.ENG_name = index.name;
-		displayIndex.name = bilingual(index.name, localized.adventure.name);
+		displayIndex.name = bilingual(index.name, localizedIndex.name);
 		displayIndex.contents = index.contents.map((chapter, ix) => {
-			const zh = localized.adventure.contents[ix];
+			const zh = localizedIndex.contents[ix];
 			if (zh.ENG_name !== chapter.name) throw new Error(`Index heading mismatch: ${ix}`);
 			register(chapter.name, zh.name);
 			return {
 				...structuredClone(chapter),
 				name: bilingual(chapter.name, zh.name),
-				...(chapter.headers ? {headers: chapter.headers.map(header => {
+				...(chapter.headers ? {headers: chapter.headers.map((header, headerIndex) => {
 					const name = header.header || header;
-					return {...(typeof header === "object" ? header : {header}), displayName: displayByCanonical.get(clean(name))?.display || name};
+					return {...(typeof header === "object" ? header : {header}), displayName: displayByCanonical.get(clean(name))?.display || bilingual(name, zh.headers?.[headerIndex]?.displayName)};
 				})} : {}),
 			};
 		});

@@ -1,0 +1,299 @@
+diff --git a/js/adventures.js b/js/adventures.js
+index a20c981..d798a60 100644
+--- a/js/adventures.js
++++ b/js/adventures.js
+@@ -21,8 +21,8 @@ class AdventuresList extends AdventuresBooksList {
+ 			rowBuilderFn: (adv) => {
+ 				return `
+ 					<span class="ve-col-1-3 ve-text-center ve-mobile-sm__text-clip-ellipsis">${AdventuresBooksList._getGroupHtml(adv)}</span>
+-					<span class="ve-col-5-5 ve-bold ve-mobile-sm__text-clip-ellipsis">${adv.id === "SoS" ? "西提庫斯之影（Shadows of Sithicus）" : adv.name}</span>
+-					<span class="ve-col-2-5 ve-mobile-sm__text-clip-ellipsis">${adv.storyline || "\u2014"}</span>
++					<span class="ve-col-5-5 ve-bold ve-mobile-sm__text-clip-ellipsis">${adv._displayName || adv.name}</span>
++					<span class="ve-col-2-5 ve-mobile-sm__text-clip-ellipsis">${adv._displayStoryline || adv.storyline || "\u2014"}</span>
+ 					<span class="ve-col-1 ve-text-center ve-mobile-sm__text-clip-ellipsis">${AdventuresList._getLevelsStr(adv)}</span>
+ 					<span class="ve-col-1-7 ve-text-center ve-mobile-sm__text-clip-ellipsis ve-code">${AdventuresBooksList._getDateStr(adv)}</span>
+ 				`;
+diff --git a/js/books.js b/js/books.js
+index 5ec9367..8ff6603 100644
+--- a/js/books.js
++++ b/js/books.js
+@@ -15,7 +15,7 @@ class BooksList extends AdventuresBooksList {
+ 			rowBuilderFn: (bk) => {
+ 				return `
+ 					<span class="ve-col-1-3 ve-text-center">${AdventuresBooksList._getGroupHtml(bk)}</span>
+-					<span class="ve-col-8-5 ve-bold">${bk.id === "PL" ? "拉莫迪亞計畫（Project Lamordia）" : bk.name}</span>
++					<span class="ve-col-8-5 ve-bold">${bk._displayName || bk.name}</span>
+ 					<span class="ve-grow ve-text-center ve-code">${AdventuresBooksList._getDateStr(bk)}</span>
+ 				`;
+ 			},
+diff --git a/js/bookslist.js b/js/bookslist.js
+index 64d0732..5017fe7 100644
+--- a/js/bookslist.js
++++ b/js/bookslist.js
+@@ -1,6 +1,20 @@
+ import {UtilBookUtil} from "./bookutils/bookutils-utils.js";
+ 
+ export class AdventuresBooksList {
++	static _getChapterPrefix (ordinal) {
++		if (!ordinal) return "";
++		const id = ordinal.identifier;
++		switch (ordinal.type) {
++			case "part": return `第 ${id} 部　`;
++			case "chapter": return `第 ${id} 章　`;
++			case "episode": return `第 ${id} 集　`;
++			case "appendix": return id == null ? "附錄　" : `附錄 ${id}　`;
++			case "section": return `第 ${id} 節　`;
++			case "level": return `第 ${id} 層　`;
++			default: return Parser.bookOrdinalToAbv(ordinal);
++		}
++	}
++
+ 	static _getHeaderText ({header}) {
+ 		return header.header || header;
+ 	}
+@@ -28,7 +42,7 @@ export class AdventuresBooksList {
+ 		const group = advBook.group || "other";
+ 		const entry = SourceUtil.ADV_BOOK_GROUPS.find(it => it.group === group);
+ 		return [
+-			entry.displayName,
++			entry?.displayName ?? group,
+ 			Parser.sourceJsonToMarkerHtml(advBook.source, {isList: true, isAddBrackets: true}),
+ 		]
+ 			.filter(Boolean)
+@@ -75,15 +89,28 @@ export class AdventuresBooksList {
+ 		this._dataList = [];
+ 	}
+ 
++	async _pLoadCatalog () {
++		const url = `${Renderer.get().baseUrl}data/zh-TW/book-catalog/${this._dataProp}s.json`;
++		try {
++			const response = await fetch(url);
++			if (!response.ok) throw new Error(`HTTP ${response.status}`);
++			return (await response.json())[this._dataProp];
++		} catch (error) {
++			console.warn("[zh-TW] Book catalog translation unavailable.", error);
++			return null;
++		}
++	}
++
+ 	async pOnPageLoad ({handleBrew}) {
+ 		await Promise.all([
+ 			PrereleaseUtil.pInit(),
+ 			BrewUtil2.pInit(),
+ 		]);
+ 
+-		const [data] = await Promise.all([
+-			await DataUtil.loadJSON(`${Renderer.get().baseUrl}${this._contentsUrl}`),
+-			await ExcludeUtil.pInitialise(),
++		const [data, catalog] = await Promise.all([
++			DataUtil.loadJSON(`${Renderer.get().baseUrl}${this._contentsUrl}`),
++			this._pLoadCatalog(),
++			ExcludeUtil.pInitialise(),
+ 		]);
+ 
+ 		const iptSearch = veEs(`#search`);
+@@ -117,7 +144,7 @@ export class AdventuresBooksList {
+ 			});
+ 		});
+ 
+-		this.addData(data);
++		this.addData(data, {catalog});
+ 		await handleBrew(await PrereleaseUtil.pGetBrewProcessed());
+ 		await handleBrew(await BrewUtil2.pGetBrewProcessed());
+ 		// TODO(MODULES) refactor
+@@ -133,13 +160,16 @@ export class AdventuresBooksList {
+ 		window.dispatchEvent(new Event("toolsLoaded"));
+ 	}
+ 
+-	addData (data) {
++	addData (data, {catalog = null} = {}) {
+ 		if (!data[this._dataProp] || !data[this._dataProp].length) return;
+ 
+-		this._dataList.push(...data[this._dataProp]);
++		this._dataList.push(...data[this._dataProp].map(it => ({...it})));
+ 
+ 		for (; this._dataIx < this._dataList.length; this._dataIx++) {
+ 			const it = this._dataList[this._dataIx];
++			const localized = catalog?.[it.id];
++			if (localized?.name) it._displayName = localized.name;
++			if (localized?.storyline) it._displayStoryline = localized.storyline;
+ 			if (this._enhanceRowDataFn) this._enhanceRowDataFn(it);
+ 
+ 			const isExcluded = ExcludeUtil.isExcluded(UrlUtil.URL_TO_HASH_BUILDER[this._rootPage](it), this._dataProp, it.source)
+@@ -151,8 +181,9 @@ export class AdventuresBooksList {
+ 
+ 			const elesContents = [];
+ 			it.contents.map((chapter, ixChapter) => {
++				const [chapterName, headerNames] = localized?.contents?.[ixChapter] || [];
+ 				const lnkChapter = veT`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter}" class="ve-flex ve-w-100 bklist__row-chapter ve-lst__row-border ve-lst__row-inner ve-lst__row ve-lst__wrp-cells ve-bold">
+-					${Parser.bookOrdinalToAbv(chapter.ordinal)}${chapter.name}
++					${AdventuresBooksList._getChapterPrefix(chapter.ordinal)}${chapterName || chapter.name}
+ 				</a>`;
+ 				elesContents.push(lnkChapter);
+ 
+@@ -160,12 +191,15 @@ export class AdventuresBooksList {
+ 
+ 				const headerCounts = {};
+ 
+-				chapter.headers.forEach(header => {
++				chapter.headers.forEach((header, ixHeader) => {
+ 					const headerText = this.constructor._getHeaderText({header});
+ 					const headerHash = this.constructor._getScrollHash({bookSource: it.source, header, headerText, headerCounts});
+ 
++					const displayHeader = headerNames?.[ixHeader]
++						? {...(typeof header === "string" ? {header} : header), displayName: headerNames[ixHeader]}
++						: header;
+ 					const lnk = veT`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter},${headerHash}" class="ve-lst__row ve-lst__row-border ve-lst__row-inner ve-lst__wrp-cells bklist__row-section ve-flex ve-w-100">
+-						${BookUtil._getContentsSectionHeader(header)}
++						${BookUtil._getContentsSectionHeader(displayHeader)}
+ 					</a>`;
+ 					elesContents.push(lnk);
+ 				});
+@@ -195,13 +229,14 @@ export class AdventuresBooksList {
+ 			const listItemValues = {
+ 				source: Parser.sourceJsonToAbv(it.source),
+ 				...ListItem.getCommonValues(it, {isCorpus: true}),
+-				storyline: it.storyline || "",
++				storyline: [it.storyline, it._displayStoryline].filter(Boolean).join(" "),
++				englishName: it.name,
+ 			};
+ 
+ 			const listItem = new ListItem({
+ 				id: this._dataIx,
+ 				ele: eleLi,
+-				name: it.name,
++				name: it._displayName || it.name,
+ 				values: listItemValues,
+ 				data: {
+ 					btnToggleExpand,
+@@ -213,21 +248,21 @@ export class AdventuresBooksList {
+ 			const isLegacySource = SourceUtil.isLegacySourceWotc(it.source);
+ 
+ 			const ptTitle = [
+-				it.coverCredit ? `Credit: ${it.coverCredit.qq()}` : null,
+-				isLegacySource ? `Legacy Source` : null,
++				it.coverCredit ? `封面繪者：${it.coverCredit.qq()}` : null,
++				isLegacySource ? `舊版來源` : null,
+ 			]
+ 				.filter(Boolean)
+ 				.join(". ");
+ 
+ 			// region Alt list (covers/thumbnails)
+ 			const eleLiAlt = veT`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="ve-flex-col ve-flex-v-center ve-m-3 bks__wrp-bookshelf-item ${isExcluded ? `bks__wrp-bookshelf-item--blocklisted` : ""} ${isLegacySource ? `bks__wrp-bookshelf-item--legacy` : ""} ve-py-3 ve-px-2 ${Parser.sourceJsonToSourceClassname(it.source)}" ${ptTitle ? `title="${ptTitle}"` : ""}>
+-				<img src="${Renderer.adventureBook.getCoverUrl(it)}" class="ve-mb-2 bks__bookshelf-image" loading="lazy" alt="Cover Image: ${(it.name || "").qq()}">
+-				<div class="bks__bookshelf-item-name ve-flex-vh-center ve-text-center">${it.name}</div>
++				<img src="${Renderer.adventureBook.getCoverUrl(it)}" class="ve-mb-2 bks__bookshelf-image" loading="lazy" alt="封面：${(it._displayName || it.name || "").qq()}">
++				<div class="bks__bookshelf-item-name ve-flex-vh-center ve-text-center">${it._displayName || it.name}</div>
+ 			</a>`;
+ 			const listItemAlt = new ListItem({
+ 				id: this._dataIx,
+ 				ele: eleLiAlt,
+-				name: it.name,
++				name: it._displayName || it.name,
+ 				values: listItemValues,
+ 			});
+ 			this._listAlt.addItem(listItemAlt);
+diff --git a/js/bookutils.js b/js/bookutils.js
+index 6a0631d..5569d75 100644
+--- a/js/bookutils.js
++++ b/js/bookutils.js
+@@ -810,7 +810,7 @@ export class BookUtil {
+ 
+ 		if (!BookUtil.referenceId) {
+ 			BookUtil.referenceI18n = null;
+-			if (BookUtil.contentType === "adventure" && !homebrewData) {
++			if (!homebrewData) {
+ 				const view = await I18nZhTwAdventure.pGetView({bookId, canonical: data, index: fromIndex});
+ 				if (view) {
+ 					data = view.dataDocument;
+diff --git a/js/navigation.js b/js/navigation.js
+index 345f759..0f672a3 100644
+--- a/js/navigation.js
++++ b/js/navigation.js
+@@ -287,7 +287,8 @@ class NavBar {
+ 			BrewUtil2.pInit(),
+ 		]);
+ 		const [adventureBookIndex] = await Promise.all([
+-			DataUtil.loadJSON(`${Renderer.get().baseUrl}data/generated/gendata-nav-adventure-book-index.json`),
++			DataUtil.loadJSON(`${Renderer.get().baseUrl}data/zh-TW/book-catalog/navigation.json`)
++				.catch(() => DataUtil.loadJSON(`${Renderer.get().baseUrl}data/generated/gendata-nav-adventure-book-index.json`)),
+ 			ExcludeUtil.pInitialise(),
+ 		]);
+ 		const [prerelease, brew] = await Promise.all([
+@@ -342,11 +343,13 @@ class NavBar {
+ 							if (year != null) seenYears.add(year);
+ 
+ 							if (indexMeta.parentSource) {
+-								if (!this._tree.getNode({keyPath: [...parentCategoryPath, indexMeta.parentName], isAllowNull: true})) {
++								const parentName = indexMeta.displayParentName || indexMeta.parentName;
++								const name = indexMeta.displayName || indexMeta.name;
++								if (!this._tree.getNode({keyPath: [...parentCategoryPath, parentName], isAllowNull: true})) {
+ 									this._addElement_accordion(
+ 										{
+ 											keyPath: parentCategoryPath,
+-											category: indexMeta.parentName,
++											category: parentName,
+ 											date: isNewYear ? year : null,
+ 											source: indexMeta.parentSource,
+ 											isAddDateSpacer: !isNewYear,
+@@ -354,12 +357,12 @@ class NavBar {
+ 									);
+ 								}
+ 
+-								let cleanName = indexMeta.name.startsWith(indexMeta.parentName)
+-									? indexMeta.name.slice(indexMeta.parentName.length).replace(/^:\s+/, "")
+-									: indexMeta.name;
++								const cleanName = name.startsWith(parentName)
++									? name.slice(parentName.length).replace(/^[:：]\s*/, "")
++									: name;
+ 								this._addElement_li(
+ 									{
+-										keyPath: [...parentCategoryPath, indexMeta.parentName],
++										keyPath: [...parentCategoryPath, parentName],
+ 										page,
+ 										aText: cleanName,
+ 										aHash: indexMeta.id,
+@@ -376,7 +379,7 @@ class NavBar {
+ 								{
+ 									keyPath: parentCategoryPath,
+ 									page,
+-									aText: indexMeta.name,
++									aText: indexMeta.displayName || indexMeta.name,
+ 									aHash: indexMeta.id,
+ 									date: isNewYear ? year : null,
+ 									isAddDateSpacer: !isNewYear,
+diff --git a/js/utils.js b/js/utils.js
+index dc7cb93..257c7e6 100644
+--- a/js/utils.js
++++ b/js/utils.js
+@@ -568,18 +568,18 @@ globalThis.CleanUtil = class {
+ // SOURCES =============================================================================================================
+ globalThis.SourceUtil = class {
+ 	static ADV_BOOK_GROUPS = [
+-		{group: "core", displayName: "Core"},
+-		{group: "supplement", displayName: "Supplements"},
+-		{group: "setting", displayName: "Settings"},
+-		{group: "setting-alt", displayName: "Additional Settings"},
+-		{group: "supplement-alt", displayName: "Extras"},
+-		{group: "organized-play", displayName: "Organized Play"},
+-		{group: "prerelease", displayName: "Prerelease"},
+-		{group: "homebrew", displayName: "Homebrew"},
+-		{group: "screen", displayName: "Screens"},
+-		{group: "recipe", displayName: "Recipes"},
+-		{group: "homecraft", displayName: "Home Crafts"},
+-		{group: "other", displayName: "Miscellaneous"},
++		{group: "core", displayName: "核心規則"},
++		{group: "supplement", displayName: "擴充內容"},
++		{group: "setting", displayName: "世界設定"},
++		{group: "setting-alt", displayName: "補充設定"},
++		{group: "supplement-alt", displayName: "額外內容"},
++		{group: "organized-play", displayName: "官方組織遊戲"},
++		{group: "prerelease", displayName: "預發佈內容"},
++		{group: "homebrew", displayName: "自製內容"},
++		{group: "screen", displayName: "地下城主屏風"},
++		{group: "recipe", displayName: "食譜"},
++		{group: "homecraft", displayName: "居家工藝"},
++		{group: "other", displayName: "其他"},
+ 	];
+ 
+ 	static _subclassReprintLookup = {};
