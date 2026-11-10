@@ -1,0 +1,2951 @@
+diff --git a/js/deities.js b/js/deities.js
+index b35739b..7d62a11 100644
+--- a/js/deities.js
++++ b/js/deities.js
+@@ -27,9 +27,11 @@ class DeitiesSublistManager extends SublistManager {
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
+-		const alignment = it.alignment ? it.alignment.join("") : "\u2014";
+-		const domains = it.domains.join(", ");
+-		const cellsText = [it.name, it.pantheon, alignment, domains];
++		const displayName = Renderer.utils.getBilingualName(it);
++		const alignment = I18nZhTwContent.getAlignment(it.alignment, {isAbbreviation: true});
++		const pantheon = I18nZhTwContent.getBilingualField(it, "pantheon");
++		const domains = I18nZhTwContent.getBilingualField(it, "domains");
++		const cellsText = [displayName, pantheon, alignment, domains];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+ 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+@@ -42,7 +44,7 @@ class DeitiesSublistManager extends SublistManager {
+ 		const listItem = new ListItem({
+ 			id: hash,
+ 			ele,
+-			name: it.name,
++			name: displayName,
+ 			values: {
+ 				...ListItem.getCommonValues(it),
+ 				pantheon: it.pantheon,
+@@ -71,9 +73,9 @@ class DeitiesPage extends ListPage {
+ 			dataProps: ["deity"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "deity",
+-				namePlural: "deities",
+-				pageTitle: "Deities Book View",
++				nameSingular: "神祇",
++				namePlural: "神祇",
++				pageTitle: "神祇書本檢視",
+ 			},
+ 
+ 			listSyntax: new ListSyntaxDeities({fnGetDataList: () => this._dataList}),
+@@ -82,18 +84,20 @@ class DeitiesPage extends ListPage {
+ 
+ 	getListItem (ent, dtI, isExcluded) {
+ 		this._pageFilter.mutateAndAddToFilters(ent, isExcluded);
++		const displayName = Renderer.utils.getBilingualName(ent);
+ 
+ 		const eleLi = document.createElement("div");
+ 		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
+ 
+ 		const source = Parser.sourceJsonToAbv(ent.source);
+ 		const hash = UrlUtil.autoEncodeHash(ent);
+-		const alignment = ent.alignment ? ent.alignment.join("") : "\u2014";
+-		const domains = ent.domains.join(", ");
++		const alignment = I18nZhTwContent.getAlignment(ent.alignment, {isAbbreviation: true});
++		const pantheon = I18nZhTwContent.getBilingualField(ent, "pantheon");
++		const domains = I18nZhTwContent.getBilingualField(ent, "domains");
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+-			<span class="ve-bold ve-col-3 ve-pl-0 ve-pr-1">${ent.name}</span>
+-			<span class="ve-col-2 ve-px-1 ve-text-center">${ent.pantheon}</span>
++			<span class="ve-bold ve-col-3 ve-pl-0 ve-pr-1">${displayName}</span>
++			<span class="ve-col-2 ve-px-1 ve-text-center">${pantheon}</span>
+ 			<span class="ve-col-2 ve-px-1 ve-text-center">${alignment}</span>
+ 			<span class="ve-col-3 ve-px-1 ${ent.domains[0] === VeCt.STR_NONE ? `ve-italic` : ""}">${domains}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
+@@ -102,11 +106,11 @@ class DeitiesPage extends ListPage {
+ 		const listItem = new ListItem({
+ 			id: dtI,
+ 			ele: eleLi,
+-			name: ent.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				...ListItem.getCommonValues(ent),
+-				title: ent.title || "",
++				title: I18nZhTwContent.getBilingualField(ent, "title"),
+ 				pantheon: ent.pantheon,
+ 				alignment,
+ 				domains,
+diff --git a/js/feats.js b/js/feats.js
+index acbefef..dd25314 100644
+--- a/js/feats.js
++++ b/js/feats.js
+@@ -1,25 +1,27 @@
+ import {RenderFeats} from "./render-feats.js";
+ 
++const {I18nZhTwContent} = globalThis;
++
+ class FeatsSublistManager extends SublistManager {
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-4 ve-pl-0 ve-pr-1",
+ 				colStyle: "",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Category",
++				name: "類別",
+ 				css: "ve-col-2 ve-px-1 ve-text-center",
+ 				colStyle: "",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Ability",
++				name: "屬性",
+ 				css: "ve-col-2 ve-px-1",
+ 				colStyle: "",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Prerequisite",
++				name: "先決條件",
+ 				css: "ve-col-4 ve-pl-1 ve-pr-0",
+ 				colStyle: "",
+ 			}),
+@@ -27,9 +29,11 @@ class FeatsSublistManager extends SublistManager {
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
++		const displayName = I18nZhTwContent.getBilingualName(it);
++		const categoryDisplay = I18nZhTwContent.getFeatCategory(it.category || "Other");
+ 		const cellsText = [
+-			it.name,
+-			new SublistCell({title: it.category ? Parser.featCategoryToFull(it.category) : null, text: it.category || "\u2014"}),
++			displayName,
++			new SublistCell({title: categoryDisplay, text: it.category || "\u2014"}),
+ 			it._slAbility,
+ 			it._slPrereq,
+ 		];
+@@ -45,9 +49,10 @@ class FeatsSublistManager extends SublistManager {
+ 		const listItem = new ListItem({
+ 			id: hash,
+ 			ele,
+-			name: it.name,
++			name: displayName,
+ 			values: {
+ 				...ListItem.getCommonValues(it),
++				englishName: I18nZhTwContent.getCanonicalName(it),
+ 				category: it.category || "Other",
+ 				ability: it._slAbility,
+ 				prerequisite: it._slPrereq,
+@@ -77,9 +82,9 @@ class FeatsPage extends ListPage {
+ 			dataProps: ["feat"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "feat",
+-				namePlural: "feats",
+-				pageTitle: "Feats Book View",
++				nameSingular: "專長",
++				namePlural: "專長",
++				pageTitle: "專長書籍檢視",
+ 			},
+ 
+ 			isPreviewable: true,
+@@ -94,12 +99,14 @@ class FeatsPage extends ListPage {
+ 
+ 		const source = Parser.sourceJsonToAbv(feat.source);
+ 		const hash = UrlUtil.autoEncodeHash(feat);
++		const displayName = I18nZhTwContent.getBilingualName(feat);
++		const categoryDisplay = I18nZhTwContent.getFeatCategory(feat.category || "Other");
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-col-0-3 ve-px-0 ve-flex-vh-center ve-lst__btn-toggle-expand ve-self-flex-stretch ve-no-select">[+]</span>
+-			<span class="ve-bold ve-col-3-2 ve-px-1">${feat.name}</span>
+-			<span class="ve-col-1-3 ve-px-1 ve-text-center ${feat.category == null ? "ve-italic" : ""}" ${feat.category ? `title="${Parser.featCategoryToFull(feat.category).qq()}"` : ""}>${feat.category || "\u2014"}</span>
+-			<span class="ve-col-2-5 ve-px-1 ${feat._slAbility === VeCt.STR_NONE ? "ve-italic " : ""}">${feat._slAbility}</span>
++			<span class="ve-bold ve-col-3-2 ve-px-1">${displayName}</span>
++			<span class="ve-col-1-3 ve-px-1 ve-text-center ${feat.category == null ? "ve-italic" : ""}" title="${categoryDisplay.qq()}">${feat.category || "\u2014"}</span>
++			<span class="ve-col-2-5 ve-px-1 ${feat._slAbility === "無" ? "ve-italic " : ""}">${feat._slAbility}</span>
+ 			<span class="ve-col-3 ve-px-1 ${feat._slPrereq === VeCt.STR_NONE ? "ve-italic " : ""}">${feat._slPrereq}</span>
+ 			<span class="ve-col-1-7 ve-text-center ${Parser.sourceJsonToSourceClassname(feat.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(feat.source)}">${source}</span>
+ 		</a>
+@@ -111,10 +118,11 @@ class FeatsPage extends ListPage {
+ 		const listItem = new ListItem({
+ 			id: ftI,
+ 			ele: eleLi,
+-			name: feat.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				...ListItem.getCommonValues(feat),
++				englishName: I18nZhTwContent.getCanonicalName(feat),
+ 				category: feat.category || "Other",
+ 				ability: feat._slAbility,
+ 				prerequisite: feat._slPrereq,
+diff --git a/js/filter-actions.js b/js/filter-actions.js
+index 4b35961..dece35f 100644
+--- a/js/filter-actions.js
++++ b/js/filter-actions.js
+@@ -2,7 +2,9 @@
+ 
+ class PageFilterActions extends PageFilterBase {
+ 	static getTimeText (time) {
+-		return typeof time === "string" ? time : Parser.getTimeToFull(time);
++		return typeof time === "string"
++			? (globalThis.I18nZhTwRules?.getActionTimeUnitDisplay(time) || time)
++			: (globalThis.I18nZhTwRules?.getActionTimeDisplay(time, Parser.getTimeToFull(time)) || Parser.getTimeToFull(time));
+ 	}
+ 
+ 	constructor () {
+@@ -10,7 +12,7 @@ class PageFilterActions extends PageFilterBase {
+ 
+ 		this._timeFilter = new Filter({
+ 			header: "Type",
+-			displayFn: StrUtil.uppercaseFirst,
++			displayFn: it => globalThis.I18nZhTwRules?.getActionTimeUnitDisplay(it) || StrUtil.uppercaseFirst(it),
+ 			itemSortFn: SortUtil.ascSortLower,
+ 		});
+ 		this._miscFilter = new Filter({
+diff --git a/js/filter-backgrounds.js b/js/filter-backgrounds.js
+index 9e79945..23d14e0 100644
+--- a/js/filter-backgrounds.js
++++ b/js/filter-backgrounds.js
+@@ -1,32 +1,36 @@
+ "use strict";
+ 
++const _I18N_ZH_TW_BACKGROUNDS = globalThis.I18nZhTwContent;
++
+ class PageFilterBackgrounds extends PageFilterBase {
+ 	static _TRAIT_DISPLAY_VALUES = {
+-		"Armor Proficiency": "Armor Training",
++		"Armor Proficiency": "護甲訓練",
+ 	};
+ 
+ 	constructor () {
+ 		super();
+ 
+-		this._asiFilter = new AbilityScoreFilter({header: "Ability Scores"});
++		this._asiFilter = new AbilityScoreFilter({header: "屬性值"});
+ 		this._skillFilter = FilterCommon.getSkillProficienciesFilter();
+ 		this._prereqFilter = new Filter({
+-			header: "Prerequisite",
++			header: "先決條件",
+ 			items: [...FilterCommon.PREREQ_FILTER_ITEMS],
++			displayFn: val => _I18N_ZH_TW_BACKGROUNDS.getFilterLabel(val),
+ 		});
+ 		this._toolFilter = FilterCommon.getToolProficienciesFilter();
+ 		this._languageFilter = FilterCommon.getLanguageProficienciesFilter();
+ 		this._otherBenefitsFilter = new Filter({
+-			header: "Other Benefits",
+-			displayFn: val => this.constructor._TRAIT_DISPLAY_VALUES[val] || val,
++			header: "其他增益",
++			displayFn: val => this.constructor._TRAIT_DISPLAY_VALUES[val] || _I18N_ZH_TW_BACKGROUNDS.getFilterLabel(val),
+ 		});
+ 		this._miscFilter = new Filter({
+-			header: "Miscellaneous",
++			header: "雜項",
+ 			items: ["Has Info", "Has Images", "Legacy"],
+ 			isMiscFilter: true,
++			displayFn: val => _I18N_ZH_TW_BACKGROUNDS.getFilterLabel(val),
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+ 		});
+-		this._featsFilter = new SearchableFilter({header: "Feats", itemSortFn: SortUtil.ascSortLower});
++		this._featsFilter = new SearchableFilter({header: "專長", itemSortFn: SortUtil.ascSortLower});
+ 	}
+ 
+ 	static _mutateForFilters_getFilterFeats (bg) {
+@@ -77,11 +81,11 @@ class PageFilterBackgrounds extends PageFilterBase {
+ 		if (bg.additionalSpells) bg._fOtherBenefits.push("Additional Spells");
+ 		if (bg.armorProficiencies) bg._fOtherBenefits.push("Armor Proficiencies");
+ 		if (bg.weaponProficiencies) bg._fOtherBenefits.push("Weapon Proficiencies");
+-		bg._skillDisplay = skillDisplay;
++		bg._skillDisplay = _I18N_ZH_TW_BACKGROUNDS.localizeSkillText(skillDisplay);
+ 
+-		bg._slAbility = bg.ability
++		bg._slAbility = _I18N_ZH_TW_BACKGROUNDS.localizeAbilityText(bg.ability
+ 			? (Renderer.getAbilityData(bg.ability, {isOnlyShort: true, isBackgroundShortForm: bg.edition === "one"}).asTextShort || VeCt.STR_NONE)
+-			: VeCt.STR_NONE;
++			: VeCt.STR_NONE);
+ 
+ 		bg._fFeats = this._mutateForFilters_getFilterFeats(bg);
+ 	}
+@@ -143,7 +147,7 @@ class ModalFilterBackgrounds extends ModalFilterBase {
+ 		opts = opts || {};
+ 		super({
+ 			...opts,
+-			modalTitle: `Background${opts.isRadio ? "" : "s"}`,
++			modalTitle: `背景`,
+ 			pageFilter: new PageFilterBackgrounds(),
+ 			previewButtonHandler: new ListUiPreviewButtonHandlerStatsFluff({page: UrlUtil.PG_BACKGROUNDS}),
+ 		});
+@@ -151,10 +155,10 @@ class ModalFilterBackgrounds extends ModalFilterBase {
+ 
+ 	_getColumnHeaders () {
+ 		const btnMeta = [
+-			{sort: "name", text: "Name", width: "3"},
+-			{sort: "ability", text: "Ability", width: "4"},
+-			{sort: "skills", text: "Skills", width: "4"},
+-			{sort: "source", text: "Source", width: "1"},
++			{sort: "name", text: "名稱", width: "3"},
++			{sort: "ability", text: "屬性", width: "4"},
++			{sort: "skills", text: "技能", width: "4"},
++			{sort: "source", text: "來源", width: "1"},
+ 		];
+ 		return ModalFilterBase._getFilterColumnHeaders(btnMeta);
+ 	}
+@@ -173,16 +177,17 @@ class ModalFilterBackgrounds extends ModalFilterBase {
+ 
+ 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BACKGROUNDS](bg);
+ 		const source = Parser.sourceJsonToAbv(bg.source);
++		const displayName = _I18N_ZH_TW_BACKGROUNDS.getBilingualName(bg);
+ 
+ 		eleRow.innerHTML = `<div class="ve-w-100 ve-flex-vh-center ve-lst__row-border veapp__list-row ve-no-select ve-lst__wrp-cells">
+ 			<div class="ve-col-0-5 ve-pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="ve-no-events">` : `<input type="checkbox" class="ve-no-events">`}</div>
+ 
+ 			<div class="ve-col-0-5 ve-px-1 ve-flex-vh-center">
+-				<div class="ve-ui-list__btn-inline ve-px-2 ve-no-select" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
++				<div class="ve-ui-list__btn-inline ve-px-2 ve-no-select" title="切換預覽（按住 SHIFT 可切換資訊預覽）">[+]</div>
+ 			</div>
+ 
+-			<div class="ve-col-3 ve-px-1 ${bg._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${bg._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${bg.name}</div>
+-			<span class="ve-col-4 ve-px-1 ${bg._slAbility === VeCt.STR_NONE ? "ve-italic" : ""}">${bg._slAbility}</span>
++			<div class="ve-col-3 ve-px-1 ${bg._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${bg._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${displayName}</div>
++			<span class="ve-col-4 ve-px-1 ${bg._slAbility === "無" ? "ve-italic" : ""}">${bg._slAbility}</span>
+ 			<div class="ve-col-4 ve-px-1">${bg._skillDisplay}</div>
+ 			<div class="ve-col-1 ve-pl-1 ve-pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(bg.source)}" title="${Parser.sourceJsonToFull(bg.source)}">${source}${Parser.sourceJsonToMarkerHtml(bg.source, {isList: true})}</div>
+ 		</div>`;
+@@ -192,13 +197,14 @@ class ModalFilterBackgrounds extends ModalFilterBase {
+ 		const listItem = new ListItem({
+ 			id: bgI,
+ 			ele: eleRow,
+-			name: bg.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				sourceJson: bg.source,
+ 				...ListItem.getCommonValues(bg),
+ 				ability: bg._slAbility,
+ 				skills: bg._skillDisplay,
++				englishName: _I18N_ZH_TW_BACKGROUNDS.getCanonicalName(bg),
+ 			},
+ 			data: {
+ 				hash,
+diff --git a/js/filter-bastions.js b/js/filter-bastions.js
+index c81188c..dba0ada 100644
+--- a/js/filter-bastions.js
++++ b/js/filter-bastions.js
+@@ -5,24 +5,26 @@ class PageFilterBastions extends PageFilterBase {
+ 		super();
+ 
+ 		this._typeFilter = new Filter({
+-			header: "Type",
++			header: "類型",
+ 			items: ["basic", "special"],
+-			displayFn: it => it.toTitleCase(),
++			displayFn: it => I18nZhTwContent.getFacilityType(it),
+ 			deselFn: (it) => it === "basic",
+ 		});
+ 		this._levelFilter = new RangeFilter({
+-			header: "Level",
++			header: "等級",
+ 			isLabelled: true,
+ 			labels: ["\u2014", ...Array.from({length: 20}, (_, i) => i + 1)],
+-			labelDisplayFn: n => n === "\u2014" ? "None" : n,
++			labelDisplayFn: n => n === "\u2014" ? "無" : n,
+ 		});
+ 		this._prereqFilter = new Filter({
+-			header: "Prerequisite",
++			header: "先決條件",
+ 			items: [...FilterCommon.PREREQ_FILTER_ITEMS],
++			displayFn: it => I18nZhTwContent.getFilterLabel(it),
+ 		});
+ 		this._miscFilter = new Filter({
+-			header: "Miscellaneous",
++			header: "其他",
+ 			items: ["Has Images", "Has Info"],
++			displayFn: it => I18nZhTwContent.getFilterLabel(it),
+ 			isMiscFilter: true,
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+ 		});
+@@ -40,7 +42,7 @@ class PageFilterBastions extends PageFilterBase {
+ 		if (isExcluded) return;
+ 
+ 		this._sourceFilter.addItem(ent._fSources);
+-		this._typeFilter.addItem(ent.type);
++		this._typeFilter.addItem(ent.facilityType);
+ 		this._levelFilter.addItem(ent.level);
+ 		this._prereqFilter.addItem(ent._fPrereq);
+ 		this._miscFilter.addItem(ent._fMisc);
+diff --git a/js/filter-bestiary.js b/js/filter-bestiary.js
+index ab86ef8..5356386 100644
+--- a/js/filter-bestiary.js
++++ b/js/filter-bestiary.js
+@@ -40,9 +40,9 @@ class PageFilterBestiary extends PageFilterBase {
+ 		return SortUtil.ascSortLower(a, b);
+ 	}
+ 
+-	static _getDamageTagDisplayText (tag) { return Parser.dmgTypeToFull(tag).toTitleCase(); }
+-	static _getConditionDisplayText (uid) { return uid.split("|")[0].toTitleCase(); }
+-	static _getAbilitySaveDisplayText (abl) { return `${abl.uppercaseFirst()} Save`; }
++	static _getDamageTagDisplayText (tag) { return globalThis.I18nZhTwContent?.getDamageType(tag) || Parser.dmgTypeToFull(tag).toTitleCase(); }
++	static _getConditionDisplayText (uid) { return globalThis.I18nZhTwContent?.getCondition(uid) || uid.split("|")[0].toTitleCase(); }
++	static _getAbilitySaveDisplayText (abl) { return globalThis.I18nZhTwContent ? `${globalThis.I18nZhTwContent.getAbility(abl)}豁免` : `${abl.uppercaseFirst()} Save`; }
+ 	// endregion
+ 
+ 	/* -------------------------------------------- */
+@@ -88,11 +88,11 @@ class PageFilterBestiary extends PageFilterBase {
+ 				Parser.SZ_GARGANTUAN,
+ 				Parser.SZ_VARIES,
+ 			],
+-			displayFn: Parser.sizeAbvToFull,
++			displayFn: size => globalThis.I18nZhTwContent?.getSizeFull(size) || Parser.sizeAbvToFull(size),
+ 			itemSortFn: null,
+ 		});
+ 		this._speedFilter = new RangeFilter({header: "Speed", min: 30, max: 30, suffix: " ft"});
+-		this._speedTypeFilter = new Filter({header: "Speed Type", items: [...Parser.SPEED_MODES, "hover"], displayFn: StrUtil.uppercaseFirst});
++		this._speedTypeFilter = new Filter({header: "Speed Type", items: [...Parser.SPEED_MODES, "hover"], displayFn: it => globalThis.I18nZhTwContent?.localizeSpeedText(it) || StrUtil.uppercaseFirst(it)});
+ 		this._speedFilterWalk = new RangeFilter({header: "Walk", min: 30, max: 30, suffix: " ft"});
+ 		this._speedFilterBurrow = new RangeFilter({header: "Burrow", min: 30, max: 30, suffix: " ft"});
+ 		this._speedFilterClimb = new RangeFilter({header: "Climb", min: 30, max: 30, suffix: " ft"});
+@@ -119,7 +119,7 @@ class PageFilterBestiary extends PageFilterBase {
+ 		this._typeFilter = new Filter({
+ 			header: "Type",
+ 			items: [...Parser.MON_TYPES],
+-			displayFn: StrUtil.toTitleCase.bind(StrUtil),
++			displayFn: it => globalThis.I18nZhTwContent?.getCreatureType(it) || StrUtil.toTitleCase(it),
+ 			itemSortFn: SortUtil.ascSortLower,
+ 		});
+ 		this._tagFilter = new Filter({header: "Tag", displayFn: StrUtil.toTitleCase.bind(StrUtil)});
+@@ -133,90 +133,90 @@ class PageFilterBestiary extends PageFilterBase {
+ 		this._alignmentFilter = new Filter({
+ 			header: "Alignment",
+ 			items: ["L", "NX", "C", "G", "NY", "E", "N", "U", "A", "No Alignment"],
+-			displayFn: alignment => Parser.alignmentAbvToFull(alignment).toTitleCase(),
++			displayFn: alignment => globalThis.I18nZhTwContent?.localizeMonsterMetaText(Parser.alignmentAbvToFull(alignment)) || Parser.alignmentAbvToFull(alignment).toTitleCase(),
+ 			itemSortFn: null,
+ 		});
+ 		this._languageFilter = new Filter({
+ 			header: "Languages",
+-			displayFn: (k) => Parser.monLanguageTagToFull(k).toTitleCase(),
++			displayFn: k => globalThis.I18nZhTwContent?.getLanguage(Parser.monLanguageTagToFull(k)) || Parser.monLanguageTagToFull(k).toTitleCase(),
+ 			umbrellaItems: ["X", "XX"],
+ 			umbrellaExcludes: ["CS"],
+ 		});
+ 		this._damageTypeFilterBase = new Filter({
+ 			header: "Damage Inflicted by Traits/Actions",
+ 			displayFn: this.constructor._getDamageTagDisplayText,
+-			displayFnMini: tag => `Deals ${this.constructor._getDamageTagDisplayText(tag)} (Trait/Action)`,
++			displayFnMini: tag => globalThis.I18nZhTwContent ? `造成${this.constructor._getDamageTagDisplayText(tag)}（特質／動作）` : `Deals ${this.constructor._getDamageTagDisplayText(tag)} (Trait/Action)`,
+ 			items: Object.keys(Parser.DMGTYPE_JSON_TO_FULL),
+ 		});
+ 		this._damageTypeFilterLegendary = new Filter({
+ 			header: "Damage Inflicted by Lair Actions/Regional Effects",
+ 			displayFn: this.constructor._getDamageTagDisplayText,
+-			displayFnMini: tag => `Deals ${this.constructor._getDamageTagDisplayText(tag)} (Lair/Regional)`,
++			displayFnMini: tag => globalThis.I18nZhTwContent ? `造成${this.constructor._getDamageTagDisplayText(tag)}（巢穴／區域）` : `Deals ${this.constructor._getDamageTagDisplayText(tag)} (Lair/Regional)`,
+ 			items: Object.keys(Parser.DMGTYPE_JSON_TO_FULL),
+ 		});
+ 		this._damageTypeFilterSpells = new Filter({
+ 			header: "Damage Inflicted by Spells",
+ 			displayFn: this.constructor._getDamageTagDisplayText,
+-			displayFnMini: tag => `Deals ${this.constructor._getDamageTagDisplayText(tag)} (Spell)`,
++			displayFnMini: tag => globalThis.I18nZhTwContent ? `造成${this.constructor._getDamageTagDisplayText(tag)}（法術）` : `Deals ${this.constructor._getDamageTagDisplayText(tag)} (Spell)`,
+ 			items: Object.keys(Parser.DMGTYPE_JSON_TO_FULL),
+ 		});
+ 		this._damageTypeFilter = new MultiFilter({header: "Damage Inflicted", filters: [this._damageTypeFilterBase, this._damageTypeFilterLegendary, this._damageTypeFilterSpells]});
+ 		this._conditionsInflictedFilterBase = new Filter({
+ 			header: "Conditions Inflicted by Traits/Actions",
+ 			displayFn: this.constructor._getConditionDisplayText,
+-			displayFnMini: uid => `Inflicts ${this.constructor._getConditionDisplayText(uid)} (Trait/Action)`,
++			displayFnMini: uid => globalThis.I18nZhTwContent ? `造成${this.constructor._getConditionDisplayText(uid)}（特質／動作）` : `Inflicts ${this.constructor._getConditionDisplayText(uid)} (Trait/Action)`,
+ 			items: [...Parser.CONDITIONS],
+ 		});
+ 		this._conditionsInflictedFilterLegendary = new Filter({
+ 			header: "Conditions Inflicted by Lair Actions/Regional Effects",
+ 			displayFn: this.constructor._getConditionDisplayText,
+-			displayFnMini: uid => `Inflicts ${this.constructor._getConditionDisplayText(uid)} (Lair/Regional)`,
++			displayFnMini: uid => globalThis.I18nZhTwContent ? `造成${this.constructor._getConditionDisplayText(uid)}（巢穴／區域）` : `Inflicts ${this.constructor._getConditionDisplayText(uid)} (Lair/Regional)`,
+ 			items: [...Parser.CONDITIONS],
+ 		});
+ 		this._conditionsInflictedFilterSpells = new Filter({
+ 			header: "Conditions Inflicted by Spells",
+ 			displayFn: this.constructor._getConditionDisplayText,
+-			displayFnMini: uid => `Inflicts ${this.constructor._getConditionDisplayText(uid)} (Spell)`,
++			displayFnMini: uid => globalThis.I18nZhTwContent ? `造成${this.constructor._getConditionDisplayText(uid)}（法術）` : `Inflicts ${this.constructor._getConditionDisplayText(uid)} (Spell)`,
+ 			items: [...Parser.CONDITIONS],
+ 		});
+ 		this._conditionsInflictedFilter = new MultiFilter({header: "Conditions Inflicted", filters: [this._conditionsInflictedFilterBase, this._conditionsInflictedFilterLegendary, this._conditionsInflictedFilterSpells]});
+ 		this._savingThrowForcedFilterBase = new Filter({
+ 			header: "Saving Throws Required by Traits/Actions",
+ 			displayFn: this.constructor._getAbilitySaveDisplayText,
+-			displayFnMini: abl => `Requires ${this.constructor._getAbilitySaveDisplayText(abl)} (Trait/Action)`,
++			displayFnMini: abl => globalThis.I18nZhTwContent ? `要求${this.constructor._getAbilitySaveDisplayText(abl)}（特質／動作）` : `Requires ${this.constructor._getAbilitySaveDisplayText(abl)} (Trait/Action)`,
+ 			items: Parser.ABIL_ABVS.map(abl => Parser.attAbvToFull(abl).toLowerCase()),
+ 			itemSortFn: null,
+ 		});
+ 		this._savingThrowForcedFilterLegendary = new Filter({
+ 			header: "Saving Throws Required by Lair Actions/Regional Effects",
+ 			displayFn: this.constructor._getAbilitySaveDisplayText,
+-			displayFnMini: abl => `Requires ${this.constructor._getAbilitySaveDisplayText(abl)} (Lair/Regional)`,
++			displayFnMini: abl => globalThis.I18nZhTwContent ? `要求${this.constructor._getAbilitySaveDisplayText(abl)}（巢穴／區域）` : `Requires ${this.constructor._getAbilitySaveDisplayText(abl)} (Lair/Regional)`,
+ 			items: Parser.ABIL_ABVS.map(abl => Parser.attAbvToFull(abl).toLowerCase()),
+ 			itemSortFn: null,
+ 		});
+ 		this._savingThrowForcedFilterSpells = new Filter({
+ 			header: "Saving Throws Required by Spells",
+ 			displayFn: this.constructor._getAbilitySaveDisplayText,
+-			displayFnMini: abl => `Requires ${this.constructor._getAbilitySaveDisplayText(abl)} (Spell)`,
++			displayFnMini: abl => globalThis.I18nZhTwContent ? `要求${this.constructor._getAbilitySaveDisplayText(abl)}（法術）` : `Requires ${this.constructor._getAbilitySaveDisplayText(abl)} (Spell)`,
+ 			items: Parser.ABIL_ABVS.map(abl => Parser.attAbvToFull(abl).toLowerCase()),
+ 			itemSortFn: null,
+ 		});
+ 		this._savingThrowForcedFilter = new MultiFilter({header: "Saving Throw Required", filters: [this._savingThrowForcedFilterBase, this._savingThrowForcedFilterLegendary, this._savingThrowForcedFilterSpells]});
+ 		this._senseFilter = new Filter({
+ 			header: "Senses",
+-			displayFn: (it) => Parser.monSenseTagToFull(it).toTitleCase(),
++			displayFn: it => globalThis.I18nZhTwContent?.localizeMonsterMetaText(Parser.monSenseTagToFull(it)) || Parser.monSenseTagToFull(it).toTitleCase(),
+ 			items: ["B", "D", "SD", "T", "U"],
+ 			itemSortFn: SortUtil.ascSortLower,
+ 		});
+ 		this._passivePerceptionFilter = new RangeFilter({header: "Passive Perception", min: 10, max: 10});
+ 		this._skillFilter = new Filter({
+ 			header: "Skills",
+-			displayFn: (it) => it.toTitleCase(),
++			displayFn: it => globalThis.I18nZhTwContent?.getSkill(it) || it.toTitleCase(),
+ 			items: Object.keys(Parser.SKILL_TO_ATB_ABV),
+ 		});
+ 		this._saveFilter = new Filter({
+ 			header: "Saves",
+-			displayFn: Parser.attAbvToFull,
++			displayFn: it => globalThis.I18nZhTwContent?.getAbility(it) || Parser.attAbvToFull(it),
+ 			items: [...Parser.ABIL_ABVS],
+ 			itemSortFn: null,
+ 		});
+diff --git a/js/filter-charcreationoptions.js b/js/filter-charcreationoptions.js
+index 2fb2b9b..1f17731 100644
+--- a/js/filter-charcreationoptions.js
++++ b/js/filter-charcreationoptions.js
+@@ -10,7 +10,7 @@ class PageFilterCharCreationOptions extends PageFilterBase {
+ 		this._typeFilter = new Filter({
+ 			header: "Feature Type",
+ 			items: [],
+-			displayFn: Parser.charCreationOptionTypeToFull,
++			displayFn: it => I18nZhTwContent.getCharOptionType(it, {isBilingual: true}),
+ 			itemSortFn: PageFilterCharCreationOptions._filterFeatureTypeSort,
+ 		});
+ 		this._miscFilter = new Filter({
+@@ -25,6 +25,7 @@ class PageFilterCharCreationOptions extends PageFilterBase {
+ 		this._mutateForFilters_commonSources(it);
+ 
+ 		it._fOptionType = Parser.charCreationOptionTypeToFull(it.optionType);
++		it._fOptionTypeDisplay = I18nZhTwContent.getCharOptionType(it.optionType, {isBilingual: true});
+ 
+ 		this._mutateForFilters_commonMisc(it);
+ 	}
+diff --git a/js/filter-common.js b/js/filter-common.js
+index 6b020fa..883b024 100644
+--- a/js/filter-common.js
++++ b/js/filter-common.js
+@@ -1,9 +1,24 @@
+ "use strict";
+ 
+ class FilterCommon {
++	static _t (text) { return globalThis.I18nZhTwContent?.getFilterLabel(text) || text; }
++
++	static _getDamageDisplay (str) {
++		const [type] = `${str}`.split(" (");
++		const suffix = `${str}`.includes("(Conditional)") ? "（有條件）" : "";
++		return `${globalThis.I18nZhTwContent?.getDamageType(type) || type.toTitleCase()}${suffix}`;
++	}
++
++	static _getConditionDisplay (str) {
++		const [condition] = `${str}`.split(" (");
++		const suffix = `${str}`.includes("(Conditional)") ? "（有條件）" : "";
++		if (condition === "disease") return `疾病${suffix}`;
++		return `${globalThis.I18nZhTwContent?.getCondition(condition) || condition.toTitleCase()}${suffix}`;
++	}
++
+ 	static getCostFilter () {
+ 		return new RangeFilter({
+-			header: "Cost",
++			header: "價格",
+ 			isLabelled: true,
+ 			isAllowGreater: true,
+ 			labelSortFn: null,
+@@ -16,7 +31,7 @@ class FilterCommon {
+ 				...[...new Array(9)].map((_, i) => 100_000 * (i + 1)),
+ 				...[...new Array(10)].map((_, i) => 1_000_000 * (i + 1)),
+ 			],
+-			labelDisplayFn: it => !it ? "None" : Parser.getDisplayCurrency(CurrencyUtil.doSimplifyCoins({cp: it})),
++			labelDisplayFn: it => !it ? "無" : Parser.getDisplayCurrency(CurrencyUtil.doSimplifyCoins({cp: it})),
+ 		});
+ 	}
+ 
+@@ -24,22 +39,22 @@ class FilterCommon {
+ 
+ 	static getDamageVulnerableFilter () {
+ 		return this._getDamageResistVulnImmuneFilter({
+-			header: "Vulnerability",
+-			headerShort: "Vuln.",
++			header: "易傷",
++			headerShort: "易傷",
+ 		});
+ 	}
+ 
+ 	static getDamageResistFilter () {
+ 		return this._getDamageResistVulnImmuneFilter({
+-			header: "Resistance",
+-			headerShort: "Res.",
++			header: "抗性",
++			headerShort: "抗性",
+ 		});
+ 	}
+ 
+ 	static getDamageImmuneFilter () {
+ 		return this._getDamageResistVulnImmuneFilter({
+-			header: "Immunity",
+-			headerShort: "Imm.",
++			header: "免疫",
++			headerShort: "免疫",
+ 		});
+ 	}
+ 
+@@ -52,9 +67,9 @@ class FilterCommon {
+ 		return new Filter({
+ 			header: header,
+ 			items: [...Parser.DMG_TYPES],
+-			displayFnMini: str => `${headerShort} ${str.toTitleCase()}`,
+-			displayFnTitle: str => `Damage ${header}: ${str.toTitleCase()}`,
+-			displayFn: StrUtil.uppercaseFirst,
++			displayFnMini: str => `${headerShort}：${this._getDamageDisplay(str)}`,
++			displayFnTitle: str => `傷害${header}：${this._getDamageDisplay(str)}`,
++			displayFn: str => this._getDamageDisplay(str),
+ 		});
+ 	}
+ 
+@@ -82,11 +97,11 @@ class FilterCommon {
+ 
+ 	static getConditionImmuneFilter () {
+ 		return new Filter({
+-			header: "Condition Immunity",
++			header: "狀態免疫",
+ 			items: this._CONDS,
+-			displayFnMini: str => `Imm. ${str.toTitleCase()}`,
+-			displayFnTitle: str => `Condition Immunity: ${str.toTitleCase()}`,
+-			displayFn: StrUtil.uppercaseFirst,
++			displayFnMini: str => `免疫：${this._getConditionDisplay(str)}`,
++			displayFnTitle: str => `狀態免疫：${this._getConditionDisplay(str)}`,
++			displayFn: str => this._getConditionDisplay(str),
+ 		});
+ 	}
+ 
+@@ -192,26 +207,32 @@ class FilterCommon {
+ 
+ 	static getSkillProficienciesFilter () {
+ 		return new Filter({
+-			header: "Skill Proficiencies",
+-			displayFn: this._getNameSourceFilterDisplay.bind(this),
++			header: "技能熟練項",
++			displayFn: it => {
++				const [name, sourceJson] = it.split("|");
++				const display = globalThis.I18nZhTwContent?.getSkill(name) || name.toTitleCase();
++				return `${display}${sourceJson ? `（${Parser.sourceJsonToAbv(sourceJson)}）` : ""}`;
++			},
+ 		});
+ 	}
+ 
+ 	/* -------------------------------------------- */
+ 
+ 	static _LANG_TO_DISPLAY = {
+-		"anyStandard": "Any Standard",
+-		"anyExotic": "Any Exotic",
+-		"anyRare": "Any Rare",
+-		"anyLanguage": "Any",
++		"anyStandard": "任一標準語言",
++		"anyExotic": "任一奇異語言",
++		"anyRare": "任一稀有語言",
++		"anyLanguage": "任一語言",
+ 	};
+ 
+ 	static getLanguageProficienciesFilter () {
+ 		return new Filter({
+-			header: "Language Proficiencies",
++			header: "語言熟練項",
+ 			displayFn: it => {
+ 				if (this._LANG_TO_DISPLAY[it]) return this._LANG_TO_DISPLAY[it];
+-				return this._getNameSourceFilterDisplay(it);
++				const [name, sourceJson] = it.split("|");
++				const display = globalThis.I18nZhTwContent?.getLanguage(name) || name.toTitleCase();
++				return `${display}${sourceJson ? `（${Parser.sourceJsonToAbv(sourceJson)}）` : ""}`;
+ 			},
+ 		});
+ 	}
+@@ -219,15 +240,15 @@ class FilterCommon {
+ 	/* -------------------------------------------- */
+ 
+ 	static _TOOL_TO_DISPLAY = {
+-		"anyTool": "Any Tool",
+-		"anyArtisansTool": "Any Artisan's Tool",
+-		"anyMusicalInstrument": "Any Musical Instrument",
+-		"anyGamingSet": "Any Gaming Set",
++		"anyTool": "任一工具",
++		"anyArtisansTool": "任一工匠工具",
++		"anyMusicalInstrument": "任一樂器",
++		"anyGamingSet": "任一遊戲套組",
+ 	};
+ 
+ 	static getToolProficienciesFilter () {
+ 		return new Filter({
+-			header: "Tool Proficiencies",
++			header: "工具熟練項",
+ 			displayFn: it => {
+ 				if (this._TOOL_TO_DISPLAY[it]) return this._TOOL_TO_DISPLAY[it];
+ 				return this._getNameSourceFilterDisplay(it);
+diff --git a/js/filter-conditionsdiseases.js b/js/filter-conditionsdiseases.js
+index aa6c2b1..cff3827 100644
+--- a/js/filter-conditionsdiseases.js
++++ b/js/filter-conditionsdiseases.js
+@@ -5,8 +5,9 @@ class PageFilterConditionsDiseases extends PageFilterBase {
+ 	static _PROPS = new Set(["condition", "disease", "status"]);
+ 
+ 	static getDisplayProp (prop) {
+-		if (!this._PROPS.has(prop)) return prop;
+-		return prop === "status" ? "Other" : Parser.getPropDisplayName(prop);
++		if (!this._PROPS.has(prop)) return globalThis.I18nZhTwRules?.getDisplayType(prop) || prop;
++		return globalThis.I18nZhTwRules?.getDisplayType(prop)
++			|| (prop === "status" ? "Other" : Parser.getPropDisplayName(prop));
+ 	}
+ 	// endregion
+ 
+diff --git a/js/filter-cultsboons.js b/js/filter-cultsboons.js
+index c849c8e..d981d2a 100644
+--- a/js/filter-cultsboons.js
++++ b/js/filter-cultsboons.js
+@@ -7,10 +7,12 @@ class PageFilterCultsBoons extends PageFilterBase {
+ 		this._typeFilter = new Filter({
+ 			header: "Type",
+ 			items: ["Boon, Demonic", "Cult"],
++			displayFn: it => ({"Boon, Demonic": "恩賜，惡魔", "Cult": "邪教"})[it] || it,
+ 		});
+ 		this._subtypeFilter = new Filter({
+ 			header: "Subtype",
+ 			items: [],
++			displayFn: it => I18nZhTwContent.getCultBoonType(it),
+ 		});
+ 		this._miscFilter = new Filter({
+ 			header: "Miscellaneous",
+diff --git a/js/filter-decks.js b/js/filter-decks.js
+index 80517c4..ff2b14c 100644
+--- a/js/filter-decks.js
++++ b/js/filter-decks.js
+@@ -7,6 +7,7 @@ class PageFilterDecks extends PageFilterBase {
+ 		this._miscFilter = new Filter({
+ 			header: "Miscellaneous",
+ 			items: ["Has Card Art", "Legacy"],
++			displayFn: it => ({"Has Card Art": "附卡牌圖片", "Legacy": "舊版"}[it] || it),
+ 			isMiscFilter: true,
+ 			selFn: it => it === "Has Card Art",
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+diff --git a/js/filter-deities.js b/js/filter-deities.js
+index 5c50caa..e4f480a 100644
+--- a/js/filter-deities.js
++++ b/js/filter-deities.js
+@@ -14,22 +14,23 @@ class PageFilterDeities extends PageFilterBase {
+ 
+ 	constructor () {
+ 		super();
+-		this._pantheonFilter = new Filter({header: "Pantheon", items: []});
+-		this._categoryFilter = new Filter({header: "Category", items: [VeCt.STR_NONE]});
++		this._pantheonFilter = new Filter({header: "Pantheon", items: [], displayFn: it => I18nZhTwContent.getDeityMetadataValue("pantheon", it)});
++		this._categoryFilter = new Filter({header: "Category", items: [VeCt.STR_NONE], displayFn: it => I18nZhTwContent.getDeityMetadataValue("category", it)});
+ 		this._alignmentFilter = new Filter({
+ 			header: "Alignment",
+ 			items: ["L", "NX", "C", "G", "NY", "E", "N"],
+-			displayFn: it => Parser.alignmentAbvToFull(it).toTitleCase(),
++			displayFn: it => I18nZhTwContent.getAlignment([it]),
+ 			itemSortFn: null,
+ 		});
+ 		this._domainFilter = new Filter({
+ 			header: "Domain",
+ 			items: ["Death", "Knowledge", "Life", "Light", "Nature", VeCt.STR_NONE, "Tempest", "Trickery", "War"],
++			displayFn: it => I18nZhTwContent.getDeityMetadataValue("domains", it),
+ 		});
+ 		this._miscFilter = new Filter({
+ 			header: "Miscellaneous",
+ 			items: ["Grants Piety Features", "Has Info", "Has Images", "Reprinted", "Legacy"],
+-			displayFn: StrUtil.uppercaseFirst,
++			displayFn: it => I18nZhTwContent.getFilterLabel(it),
+ 			isMiscFilter: true,
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+ 		});
+diff --git a/js/filter-feats.js b/js/filter-feats.js
+index 5a1156a..d7dd566 100644
+--- a/js/filter-feats.js
++++ b/js/filter-feats.js
+@@ -1,11 +1,13 @@
+ "use strict";
+ 
++const _I18N_ZH_TW_FEATS = globalThis.I18nZhTwContent;
++
+ class PageFilterFeats extends PageFilterBase {
+ 	// region static
+ 	static _PREREQ_KEYs_OTHER_IGNORED = new Set(["level"]);
+ 
+ 	static _TRAIT_DISPLAY_VALUES = {
+-		"Armor Proficiency": "Armor Training",
++		"Armor Proficiency": "護甲訓練",
+ 	};
+ 	// endregion
+ 
+@@ -13,12 +15,12 @@ class PageFilterFeats extends PageFilterBase {
+ 		super();
+ 
+ 		this._categoryFilter = new Filter({
+-			header: "Category",
+-			displayFn: Parser.featCategoryToFull,
++			header: "類別",
++			displayFn: category => _I18N_ZH_TW_FEATS.getFeatCategory(category),
+ 			items: [...Object.keys(Parser.FEAT_CATEGORY_TO_FULL), "Other"],
+ 		});
+ 		this._asiFilter = new Filter({
+-			header: "Ability Bonus",
++			header: "屬性加值",
+ 			items: [
+ 				"str",
+ 				"dex",
+@@ -27,20 +29,22 @@ class PageFilterFeats extends PageFilterBase {
+ 				"wis",
+ 				"cha",
+ 			],
+-			displayFn: Parser.attAbvToFull,
++			displayFn: ability => _I18N_ZH_TW_FEATS.getAbility(ability),
+ 			itemSortFn: null,
+ 		});
+ 		this._otherPrereqFilter = new Filter({
+-			header: "Other",
++			header: "其他",
+ 			items: [...FilterCommon.PREREQ_FILTER_ITEMS],
++			displayFn: val => _I18N_ZH_TW_FEATS.getFilterLabel(val),
+ 		});
+ 		this._levelFilter = new Filter({
+-			header: "Level",
++			header: "等級",
++			displayFn: val => _I18N_ZH_TW_FEATS.localizeRulesText(val),
+ 			itemSortFn: SortUtil.ascSortNumericalSuffix,
+ 		});
+-		this._prerequisiteFilter = new MultiFilter({header: "Prerequisite", filters: [this._otherPrereqFilter, this._levelFilter]});
++		this._prerequisiteFilter = new MultiFilter({header: "先決條件", filters: [this._otherPrereqFilter, this._levelFilter]});
+ 		this._benefitsFilter = new Filter({
+-			header: "Benefits",
++			header: "增益",
+ 			items: [
+ 				"Armor Proficiency",
+ 				"Language Proficiency",
+@@ -49,17 +53,18 @@ class PageFilterFeats extends PageFilterBase {
+ 				"Tool Proficiency",
+ 				"Weapon Proficiency",
+ 			],
+-			displayFn: val => this.constructor._TRAIT_DISPLAY_VALUES[val] || val,
++			displayFn: val => this.constructor._TRAIT_DISPLAY_VALUES[val] || _I18N_ZH_TW_FEATS.getFilterLabel(val),
+ 		});
+ 		this._vulnerableFilter = FilterCommon.getDamageVulnerableFilter();
+ 		this._resistFilter = FilterCommon.getDamageResistFilter();
+ 		this._immuneFilter = FilterCommon.getDamageImmuneFilter();
+-		this._defenseFilter = new MultiFilter({header: "Damage", filters: [this._vulnerableFilter, this._resistFilter, this._immuneFilter]});
++		this._defenseFilter = new MultiFilter({header: "傷害", filters: [this._vulnerableFilter, this._resistFilter, this._immuneFilter]});
+ 		this._conditionImmuneFilter = FilterCommon.getConditionImmuneFilter();
+ 		this._miscFilter = new Filter({
+-			header: "Miscellaneous",
++			header: "雜項",
+ 			items: ["Has Info", "Has Images", "Legacy"],
+ 			isMiscFilter: true,
++			displayFn: val => _I18N_ZH_TW_FEATS.getFilterLabel(val),
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+ 		});
+ 	}
+@@ -100,9 +105,9 @@ class PageFilterFeats extends PageFilterBase {
+ 		this._mutateForFilters_commonMisc(feat);
+ 		if (feat.repeatable != null) feat._fMisc.push(feat.repeatable ? "Repeatable" : "Not Repeatable");
+ 
+-		feat._slAbility = ability.asTextShort || VeCt.STR_NONE;
++		feat._slAbility = _I18N_ZH_TW_FEATS.localizeAbilityText(ability.asTextShort || VeCt.STR_NONE);
+ 		feat._srtAbility = ability.asSortableString;
+-		feat._slPrereq = prereqText;
++		feat._slPrereq = _I18N_ZH_TW_FEATS.localizeRulesText(prereqText);
+ 
+ 		FilterCommon.mutateForFilters_damageVulnResImmunePlayer(feat);
+ 		FilterCommon.mutateForFilters_conditionImmunePlayer(feat);
+@@ -112,7 +117,7 @@ class PageFilterFeats extends PageFilterBase {
+ 		if (isExcluded) return;
+ 
+ 		this._sourceFilter.addItem(feat._fSources);
+-		this._categoryFilter.addItem(feat.category);
++		this._categoryFilter.addItem(feat._fCategory);
+ 		this._levelFilter.addItem(feat._fPrereqLevel);
+ 		this._otherPrereqFilter.addItem(feat._fPrereqOther);
+ 		this._vulnerableFilter.addItem(feat._fVuln);
+@@ -171,7 +176,7 @@ class ModalFilterFeats extends ModalFilterBase {
+ 		opts = opts || {};
+ 		super({
+ 			...opts,
+-			modalTitle: `Feat${opts.isRadio ? "" : "s"}`,
++			modalTitle: `專長`,
+ 			pageFilter: new PageFilterFeats(),
+ 			previewButtonHandler: new ListUiPreviewButtonHandlerStatsFluff({page: UrlUtil.PG_FEATS}),
+ 		});
+@@ -179,11 +184,11 @@ class ModalFilterFeats extends ModalFilterBase {
+ 
+ 	_getColumnHeaders () {
+ 		const btnMeta = [
+-			{sort: "name", text: "Name", width: "3-5"},
+-			{sort: "category", text: "Category", width: "1-5"},
+-			{sort: "ability", text: "Ability", width: "2"},
+-			{sort: "prerequisite", text: "Prerequisite", width: "3"},
+-			{sort: "source", text: "Source", width: "1"},
++			{sort: "name", text: "名稱", width: "3-5"},
++			{sort: "category", text: "類別", width: "1-5"},
++			{sort: "ability", text: "屬性", width: "2"},
++			{sort: "prerequisite", text: "先決條件", width: "3"},
++			{sort: "source", text: "來源", width: "1"},
+ 		];
+ 		return ModalFilterBase._getFilterColumnHeaders(btnMeta);
+ 	}
+@@ -202,17 +207,19 @@ class ModalFilterFeats extends ModalFilterBase {
+ 
+ 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_FEATS](feat);
+ 		const source = Parser.sourceJsonToAbv(feat.source);
++		const displayName = _I18N_ZH_TW_FEATS.getBilingualName(feat);
++		const categoryDisplay = _I18N_ZH_TW_FEATS.getFeatCategory(feat.category || "Other");
+ 
+ 		eleRow.innerHTML = `<div class="ve-w-100 ve-flex-vh-center ve-lst__row-border veapp__list-row ve-no-select ve-lst__wrp-cells">
+ 			<div class="ve-col-0-5 ve-pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="ve-no-events">` : `<input type="checkbox" class="ve-no-events">`}</div>
+ 
+ 			<div class="ve-col-0-5 ve-px-1 ve-flex-vh-center">
+-				<div class="ve-ui-list__btn-inline ve-px-2 ve-no-select" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
++				<div class="ve-ui-list__btn-inline ve-px-2 ve-no-select" title="切換預覽（按住 SHIFT 可切換資訊預覽）">[+]</div>
+ 			</div>
+ 
+-			<div class="ve-col-3-5 ve-px-1 ${feat._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${feat._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${feat.name}</div>
+-			<span class="ve-col-1-5 ve-px-1 ve-text-center ${feat.category == null ? "ve-italic" : ""}" ${feat.category ? `title="${Parser.featCategoryToFull(feat.category).qq()}"` : ""}>${feat.category || "\u2014"}</span>
+-			<span class="ve-col-2 ve-px-1 ${feat._slAbility === VeCt.STR_NONE ? "ve-italic" : ""}">${feat._slAbility}</span>
++			<div class="ve-col-3-5 ve-px-1 ${feat._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${feat._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${displayName}</div>
++			<span class="ve-col-1-5 ve-px-1 ve-text-center ${feat.category == null ? "ve-italic" : ""}" title="${categoryDisplay.qq()}">${categoryDisplay}</span>
++			<span class="ve-col-2 ve-px-1 ${feat._slAbility === "無" ? "ve-italic" : ""}">${feat._slAbility}</span>
+ 			<span class="ve-col-3 ve-px-1 ${feat._slPrereq === VeCt.STR_NONE ? "ve-italic" : ""}">${feat._slPrereq}</span>
+ 			<div class="ve-col-1 ve-pl-1 ve-pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(feat.source)}" title="${Parser.sourceJsonToFull(feat.source)}">${source}${Parser.sourceJsonToMarkerHtml(feat.source, {isList: true})}</div>
+ 		</div>`;
+@@ -222,7 +229,7 @@ class ModalFilterFeats extends ModalFilterBase {
+ 		const listItem = new ListItem({
+ 			id: ftI,
+ 			ele: eleRow,
+-			name: feat.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				sourceJson: feat.source,
+@@ -230,6 +237,7 @@ class ModalFilterFeats extends ModalFilterBase {
+ 				category: feat.category || "Other",
+ 				ability: feat._slAbility,
+ 				prerequisite: feat._slPrereq,
++				englishName: _I18N_ZH_TW_FEATS.getCanonicalName(feat),
+ 			},
+ 			data: {
+ 				hash,
+diff --git a/js/filter-homecrafts.js b/js/filter-homecrafts.js
+index 5df5469..cf1ba9e 100644
+--- a/js/filter-homecrafts.js
++++ b/js/filter-homecrafts.js
+@@ -26,30 +26,30 @@ class PageFilterHomeCrafts extends PageFilterBase {
+ 		super();
+ 
+ 		this._typeFilter = new Filter({
+-			header: "Type",
++			header: "類型",
+ 			items: ["crochetPattern"],
+-			displayFn: it => Parser.getPropDisplayName(it),
++			displayFn: it => I18nZhTwContent.getHomecraftType(it, {isBilingual: true}),
+ 		});
+ 		this._categoryFilter = new Filter({
+-			header: "Category",
++			header: "類別",
+ 			items: ["amigurumi", "wearable", "household item"],
+-			displayFn: it => it.toTitleCase(),
++			displayFn: it => I18nZhTwContent.getHomecraftPatternType(it, {isBilingual: true}),
+ 		});
+ 		this._skillLevelFilter = new Filter({
+-			header: "Skill Level",
++			header: "難度",
+ 			items: [...PageFilterHomeCrafts._SKILL_LEVELS],
+-			displayFn: it => Parser.crochetPatternSkilLevelToFull(it),
++			displayFn: it => I18nZhTwContent.getHomecraftSkillLevel(it, {isBilingual: true}),
+ 			itemSortFn: PageFilterHomeCrafts._ascSortSkillLevelFilter.bind(PageFilterHomeCrafts),
+ 		});
+-		this._sizeFilterWidth = new RangeFilter({header: "Width", min: 1, max: 10, suffix: " in."});
+-		this._sizeFilterHeight = new RangeFilter({header: "Height", min: 1, max: 10, suffix: " in."});
++		this._sizeFilterWidth = new RangeFilter({header: "寬度", min: 1, max: 10, suffix: " 吋"});
++		this._sizeFilterHeight = new RangeFilter({header: "高度", min: 1, max: 10, suffix: " 吋"});
+ 		this._sizesFilter = new MultiFilter({
+-			header: "Sizes",
++			header: "尺寸",
+ 			filters: [this._sizeFilterWidth, this._sizeFilterHeight],
+ 			isAddDropdownToggle: true,
+ 		});
+ 		this._hookFilter = new Filter({
+-			header: "Hook",
++			header: "鉤針",
+ 			displayFn: sizeMm => {
+ 				const asMm = `${sizeMm.toFixed(2)} mm`;
+ 
+@@ -60,12 +60,13 @@ class PageFilterHomeCrafts extends PageFilterBase {
+ 			},
+ 		});
+ 		this._designerFilter = new Filter({
+-			header: "Designer",
++			header: "設計者",
+ 		});
+ 		this._miscFilter = new Filter({
+-			header: "Miscellaneous",
++			header: "雜項",
+ 			items: ["Has Images", "Has Info"],
+ 			isMiscFilter: true,
++			displayFn: I18nZhTwContent.getFilterLabel.bind(I18nZhTwContent),
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+ 		});
+ 	}
+diff --git a/js/filter-items.js b/js/filter-items.js
+index 1293ed4..1883125 100644
+--- a/js/filter-items.js
++++ b/js/filter-items.js
+@@ -39,8 +39,10 @@ class PageFilterEquipment extends PageFilterBase {
+ 
+ 	static _getMasteryDisplay (mastery) {
+ 		const {name, source} = DataUtil.proxy.unpackUid("itemMastery", mastery, "itemMastery");
+-		if (SourceUtil.isSiteSource(source)) return name.toTitleCase();
+-		return `${name.toTitleCase()} (${Parser.sourceJsonToAbv(source)})`;
++		const ent = MiscUtil.get(Renderer.item._masteryMap, source.toLowerCase(), name.toLowerCase());
++		const displayName = globalThis.I18nZhTwContent?.getBilingualName(ent) || name.toTitleCase();
++		if (SourceUtil.isSiteSource(source)) return displayName;
++		return `${displayName} (${Parser.sourceJsonToAbv(source)})`;
+ 	}
+ 
+ 	constructor ({filterOpts = null} = {}) {
+@@ -60,13 +62,13 @@ class PageFilterEquipment extends PageFilterBase {
+ 			...(filterOpts?.["Category"] || {}),
+ 		});
+ 		this._costFilter = FilterCommon.getCostFilter();
+-		this._weightFilter = new RangeFilter({header: "Weight", min: 0, max: 100, isAllowGreater: true, suffix: " lb."});
++		this._weightFilter = new RangeFilter({header: "Weight", min: 0, max: 100, isAllowGreater: true, suffix: globalThis.I18nZhTwContent ? " 磅" : " lb."});
+ 		this._focusFilter = new Filter({header: "Spellcasting Focus", items: [...Parser.ITEM_SPELLCASTING_FOCUS_CLASSES]});
+-		this._damageTypeFilter = new Filter({header: "Weapon Damage Type", displayFn: it => Parser.dmgTypeToFull(it).uppercaseFirst(), itemSortFn: (a, b) => SortUtil.ascSortLower(Parser.dmgTypeToFull(a.item), Parser.dmgTypeToFull(b.item))});
++		this._damageTypeFilter = new Filter({header: "Weapon Damage Type", displayFn: it => globalThis.I18nZhTwContent?.getDamageType(it) || Parser.dmgTypeToFull(it).uppercaseFirst(), itemSortFn: (a, b) => SortUtil.ascSortLower(Parser.dmgTypeToFull(a.item), Parser.dmgTypeToFull(b.item))});
+ 		this._damageDiceFilter = new Filter({header: "Weapon Damage Dice", items: ["1", "1d4", "1d6", "1d8", "1d10", "1d12", "2d6"], itemSortFn: (a, b) => PageFilterEquipment._sortDamageDice(a, b)});
+ 		this._acFilter = new RangeFilter({header: "Armor Class", displayFn: it => it === 0 ? "None" : it});
+-		this._rangeFilterNormal = new RangeFilter({header: "Normal", displayFn: it => it === 0 ? "None" : `${it} ft.`});
+-		this._rangeFilterLong = new RangeFilter({header: "Long", displayFn: it => it === 0 ? "None" : `${it} ft.`});
++		this._rangeFilterNormal = new RangeFilter({header: "Normal", displayFn: it => it === 0 ? (globalThis.I18nZhTwContent ? "無" : "None") : `${it}${globalThis.I18nZhTwContent ? " 尺" : " ft."}`});
++		this._rangeFilterLong = new RangeFilter({header: "Long", displayFn: it => it === 0 ? (globalThis.I18nZhTwContent ? "無" : "None") : `${it}${globalThis.I18nZhTwContent ? " 尺" : " ft."}`});
+ 		this._rangeFilter = new MultiFilter({header: "Range", filters: [this._rangeFilterNormal, this._rangeFilterLong]});
+ 		this._miscFilter = new Filter({
+ 			header: "Miscellaneous",
+@@ -74,7 +76,7 @@ class PageFilterEquipment extends PageFilterBase {
+ 			isMiscFilter: true,
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+ 		});
+-		this._poisonTypeFilter = new Filter({header: "Poison Type", items: ["ingested", "injury", "inhaled", "contact"], displayFn: StrUtil.toTitleCase.bind(StrUtil)});
++		this._poisonTypeFilter = new Filter({header: "Poison Type", items: ["ingested", "injury", "inhaled", "contact"], displayFn: it => globalThis.I18nZhTwContent?.getItemPoisonType(it) || StrUtil.toTitleCase(it)});
+ 		this._masteryFilter = new Filter({header: "Mastery", displayFn: this.constructor._getMasteryDisplay.bind(this)});
+ 	}
+ 
+@@ -115,7 +117,7 @@ class PageFilterEquipment extends PageFilterBase {
+ 	static mutateForFilters (item) {
+ 		this._mutateForFilters_commonSources(item, {isIncludeBaseSource: true});
+ 
+-		item._fProperties = item.property ? item.property.map(p => Renderer.item.getProperty(p?.uid || p)?.name).filter(Boolean) : null;
++		item._fProperties = item.property ? item.property.map(p => globalThis.I18nZhTwContent?.getBilingualName(Renderer.item.getProperty(p?.uid || p)) || Renderer.item.getProperty(p?.uid || p)?.name).filter(Boolean) : null;
+ 
+ 		this._mutateForFilters_commonMisc(item);
+ 		if (item._isItemGroup) item._fMisc.push("Item Group");
+@@ -319,7 +321,7 @@ class PageFilterItems extends PageFilterEquipment {
+ 	constructor (opts) {
+ 		super(opts);
+ 
+-		this._tierFilter = new Filter({header: "Tier", items: ["none", "minor", "major"], itemSortFn: null, displayFn: StrUtil.toTitleCase.bind(StrUtil)});
++		this._tierFilter = new Filter({header: "Tier", items: ["none", "minor", "major"], itemSortFn: null, displayFn: it => globalThis.I18nZhTwContent?.getItemTier(it) || StrUtil.toTitleCase(it)});
+ 		this._attachedSpellsFilter = new SearchableFilter({header: "Attached Spells", displayFn: (it) => it.split("|")[0].toTitleCase(), itemSortFn: SortUtil.ascSortLower});
+ 		this._lootTableFilter = new Filter({
+ 			header: "Found On",
+@@ -333,7 +335,7 @@ class PageFilterItems extends PageFilterEquipment {
+ 			header: "Rarity",
+ 			items: [...Parser.ITEM_RARITIES],
+ 			itemSortFn: null,
+-			displayFn: StrUtil.toTitleCase.bind(StrUtil),
++			displayFn: it => globalThis.I18nZhTwContent?.getItemRarity(it) || StrUtil.toTitleCase(it),
+ 		});
+ 		this._attunementFilter = new Filter({header: "Attunement", items: [...PageFilterItems._FILTER_BASE_ITEMS_ATTUNEMENT], itemSortFn: PageFilterItems._sortAttunementFilter});
+ 		this._bonusFilter = new Filter({
+@@ -607,6 +609,7 @@ class ModalFilterItems extends ModalFilterBase {
+ 
+ 		Renderer.item.enhanceItem(item);
+ 		pageFilter.mutateAndAddToFilters(item);
++		const displayName = globalThis.I18nZhTwContent.getBilingualName(item);
+ 
+ 		const eleRow = document.createElement("div");
+ 		eleRow.className = "ve-px-0 ve-w-100 ve-flex-col ve-no-shrink";
+@@ -622,7 +625,7 @@ class ModalFilterItems extends ModalFilterBase {
+ 				<div class="ve-ui-list__btn-inline ve-px-2 ve-no-select" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
+ 			</div>
+ 
+-			<div class="ve-col-5 ve-px-1 ${item._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${item._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${item.name}</div>
++			<div class="ve-col-5 ve-px-1 ${item._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${item._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${displayName}</div>
+ 			<div class="ve-col-5 ve-px-1">${type.uppercaseFirst()}</div>
+ 			<div class="ve-col-1 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(item.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(item.source)}">${source}${Parser.sourceJsonToMarkerHtml(item.source, {isList: true})}</div>
+ 		</div>`;
+@@ -632,11 +635,12 @@ class ModalFilterItems extends ModalFilterBase {
+ 		const listItem = new ListItem({
+ 			id: itI,
+ 			ele: eleRow,
+-			name: item.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				sourceJson: item.source,
+ 				...ListItem.getCommonValues(item),
++				englishName: globalThis.I18nZhTwContent.getCanonicalName(item),
+ 				type,
+ 			},
+ 			data: {
+diff --git a/js/filter-languages.js b/js/filter-languages.js
+index ebd6ca8..f8ed3fc 100644
+--- a/js/filter-languages.js
++++ b/js/filter-languages.js
+@@ -4,8 +4,8 @@ class PageFilterLanguages extends PageFilterBase {
+ 	constructor () {
+ 		super();
+ 
+-		this._typeFilter = new Filter({header: "Type", items: ["standard", "exotic", "rare", "secret"], itemSortFn: null, displayFn: StrUtil.uppercaseFirst});
+-		this._scriptFilter = new Filter({header: "Script", displayFn: StrUtil.uppercaseFirst});
++		this._typeFilter = new Filter({header: "Type", items: ["standard", "exotic", "rare", "secret"], itemSortFn: null, displayFn: it => I18nZhTwContent.getLanguageType(it, {isBilingual: true})});
++		this._scriptFilter = new Filter({header: "Script", displayFn: it => I18nZhTwContent.getLanguageScript(it, {isBilingual: true})});
+ 		this._miscFilter = new Filter({
+ 			header: "Miscellaneous",
+ 			items: ["Has Fonts", "Legacy", "Has Images", "Has Info"],
+diff --git a/js/filter-optionalfeatures.js b/js/filter-optionalfeatures.js
+index bfeee88..3f31fb7 100644
+--- a/js/filter-optionalfeatures.js
++++ b/js/filter-optionalfeatures.js
+@@ -1,9 +1,11 @@
+ "use strict";
+ 
++const _I18N_ZH_TW_OPTIONAL_FEATURES = globalThis.I18nZhTwContent;
++
+ class PageFilterOptionalFeatures extends PageFilterBase {
+ 	// region static
+ 	static _filterFeatureTypeSort (a, b) {
+-		return SortUtil.ascSort(Parser.optFeatureTypeToFull(a.item), Parser.optFeatureTypeToFull(b.item));
++		return SortUtil.ascSort(_I18N_ZH_TW_OPTIONAL_FEATURES.getOptionalFeatureType(a.item), _I18N_ZH_TW_OPTIONAL_FEATURES.getOptionalFeatureType(b.item));
+ 	}
+ 
+ 	static sortOptionalFeatures (itemA, itemB, options) {
+@@ -21,11 +23,11 @@ class PageFilterOptionalFeatures extends PageFilterBase {
+ 		if (typeof lvlMeta === "number") {
+ 			return new FilterItem({
+ 				item: `Level ${lvlMeta}`,
+-				nest: `(No Class)`,
++				nest: `（無職業）`,
+ 			}).getSerialized();
+ 		}
+ 
+-		const className = lvlMeta.class ? lvlMeta.class.name : `(No Class)`;
++		const className = lvlMeta.class ? lvlMeta.class.name : `（無職業）`;
+ 		return new FilterItem({
+ 			item: `${lvlMeta.class ? className : ""}${lvlMeta.subclass ? ` (${lvlMeta.subclass.name})` : ""} Level ${lvlMeta.level}`,
+ 			nest: className,
+@@ -37,37 +39,38 @@ class PageFilterOptionalFeatures extends PageFilterBase {
+ 		super();
+ 
+ 		this._typeFilter = new Filter({
+-			header: "Feature Type",
++			header: "特性類型",
+ 			items: [],
+-			displayFn: Parser.optFeatureTypeToFull,
++			displayFn: type => _I18N_ZH_TW_OPTIONAL_FEATURES.getOptionalFeatureType(type),
+ 			itemSortFn: PageFilterOptionalFeatures._filterFeatureTypeSort,
+ 		});
+ 		this._pactFilter = new Filter({
+-			header: "Pact Boon",
++			header: "契約恩賜",
+ 			items: [],
+-			displayFn: Parser.prereqPactToFull,
++			displayFn: pact => ({Blade: "魔刃魔契", Chain: "鎖鏈魔契", Talisman: "護符魔契", Tome: "魔典魔契"})[pact] || Parser.prereqPactToFull(pact),
+ 		});
+ 		this._patronFilter = new Filter({
+-			header: "Otherworldly Patron",
++			header: "異界宗主",
+ 			items: [],
+ 			displayFn: Parser.prereqPatronToShort,
+ 		});
+ 		this._spellFilter = new Filter({
+-			header: "Spell",
++			header: "法術",
+ 			items: [],
+ 			displayFn: StrUtil.toTitleCase.bind(StrUtil),
+ 		});
+ 		this._featureFilter = new Filter({
+-			header: "Feature",
++			header: "特性",
+ 			displayFn: StrUtil.toTitleCase.bind(StrUtil),
+ 		});
+ 		this._levelFilter = new Filter({
+-			header: "Level",
++			header: "等級",
+ 			itemSortFn: SortUtil.ascSortNumericalSuffix,
++			displayFn: val => _I18N_ZH_TW_OPTIONAL_FEATURES.localizeRulesText(val),
+ 			nests: [],
+ 		});
+ 		this._prerequisiteFilter = new MultiFilter({
+-			header: "Prerequisite",
++			header: "先決條件",
+ 			filters: [
+ 				this._pactFilter,
+ 				this._patronFilter,
+@@ -77,9 +80,10 @@ class PageFilterOptionalFeatures extends PageFilterBase {
+ 			],
+ 		});
+ 		this._miscFilter = new Filter({
+-			header: "Miscellaneous",
++			header: "雜項",
+ 			items: ["Has Info", "Has Images", "Legacy", "Grants Additional Spells"],
+ 			isMiscFilter: true,
++			displayFn: val => _I18N_ZH_TW_OPTIONAL_FEATURES.getFilterLabel(val),
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+ 		});
+ 	}
+@@ -167,9 +171,9 @@ class PageFilterOptionalFeatures extends PageFilterBase {
+ 			ent._fPrereqLevel = ent.prerequisite.filter(it => it.level).map(PageFilterOptionalFeatures.getLevelFilterItem.bind(PageFilterOptionalFeatures));
+ 		}
+ 
+-		ent._dFeatureType = ent.featureType.map(ft => Parser.optFeatureTypeToFull(ft));
+-		ent._lFeatureType = ent.featureType.join(", ");
+-		ent.featureType.sort((a, b) => SortUtil.ascSortLower(Parser.optFeatureTypeToFull(a), Parser.optFeatureTypeToFull(b)));
++		ent._dFeatureType = ent.featureType.map(ft => _I18N_ZH_TW_OPTIONAL_FEATURES.getOptionalFeatureType(ft));
++		ent._lFeatureType = ent._dFeatureType.join("、");
++		ent.featureType.sort((a, b) => SortUtil.ascSortLower(_I18N_ZH_TW_OPTIONAL_FEATURES.getOptionalFeatureType(a), _I18N_ZH_TW_OPTIONAL_FEATURES.getOptionalFeatureType(b)));
+ 
+ 		this._mutateForFilters_commonMisc(ent);
+ 		if (ent.additionalSpells) ent._fMisc.push("Grants Additional Spells");
+@@ -231,7 +235,7 @@ class ModalFilterOptionalFeatures extends ModalFilterBase {
+ 		opts = opts || {};
+ 		super({
+ 			...opts,
+-			modalTitle: `Optional Feature${opts.isRadio ? "" : "s"}`,
++			modalTitle: `選用特性`,
+ 			pageFilter: new PageFilterOptionalFeatures(),
+ 			previewButtonHandler: new ListUiPreviewButtonHandlerStatsFluff({page: UrlUtil.PG_OPT_FEATURES}),
+ 		});
+@@ -239,11 +243,11 @@ class ModalFilterOptionalFeatures extends ModalFilterBase {
+ 
+ 	_getColumnHeaders () {
+ 		const btnMeta = [
+-			{sort: "name", text: "Name", width: "3"},
+-			{sort: "type", text: "Type", width: "2"},
+-			{sort: "prerequisite", text: "Prerequisite", width: "4"},
+-			{sort: "level", text: "Level", width: "1"},
+-			{sort: "source", text: "Source", width: "1"},
++			{sort: "name", text: "名稱", width: "3"},
++			{sort: "type", text: "類型", width: "2"},
++			{sort: "prerequisite", text: "先決條件", width: "4"},
++			{sort: "level", text: "等級", width: "1"},
++			{sort: "source", text: "來源", width: "1"},
+ 		];
+ 		return ModalFilterBase._getFilterColumnHeaders(btnMeta);
+ 	}
+@@ -262,20 +266,22 @@ class ModalFilterOptionalFeatures extends ModalFilterBase {
+ 
+ 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_OPT_FEATURES](optfeat);
+ 		const source = Parser.sourceJsonToAbv(optfeat.source);
+-		const prerequisite = Renderer.utils.prerequisite.getHtml(optfeat.prerequisite, {isListMode: true, keyOptions: {level: {isNameOnly: true}}});
++		const prerequisite = _I18N_ZH_TW_OPTIONAL_FEATURES.localizeRulesText(Renderer.utils.prerequisite.getHtml(optfeat.prerequisite, {isListMode: true, keyOptions: {level: {isNameOnly: true}}}));
+ 		const level = Renderer.optionalfeature.getListPrerequisiteLevelText(optfeat.prerequisite);
++		const levelDisplay = level === "\u2014" ? level : `${level}級`;
++		const displayName = _I18N_ZH_TW_OPTIONAL_FEATURES.getBilingualName(optfeat);
+ 
+ 		eleRow.innerHTML = `<div class="ve-w-100 ve-flex-vh-center ve-lst__row-border veapp__list-row ve-no-select ve-lst__wrp-cells">
+ 			<div class="ve-col-0-5 ve-pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="ve-no-events">` : `<input type="checkbox" class="ve-no-events">`}</div>
+ 
+ 			<div class="ve-col-0-5 ve-px-1 ve-flex-vh-center">
+-				<div class="ve-ui-list__btn-inline ve-px-2 ve-no-select" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
++				<div class="ve-ui-list__btn-inline ve-px-2 ve-no-select" title="切換預覽（按住 SHIFT 可切換資訊預覽）">[+]</div>
+ 			</div>
+ 
+-			<div class="ve-col-3 ve-px-1 ${optfeat._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${optfeat._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${optfeat.name}</div>
++			<div class="ve-col-3 ve-px-1 ${optfeat._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${optfeat._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${displayName}</div>
+ 			<span class="ve-col-2 ve-px-1 ve-text-center" title="${optfeat._dFeatureType.join(", ").qq()}">${optfeat._lFeatureType}</span>
+ 			<span class="ve-col-4 ve-px-1 ve-text-center">${prerequisite}</span>
+-			<span class="ve-col-1 ve-px-1 ve-text-center">${level}</span>
++			<span class="ve-col-1 ve-px-1 ve-text-center">${levelDisplay}</span>
+ 			<div class="ve-col-1 ve-pl-1 ve-pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(optfeat.source)}" title="${Parser.sourceJsonToFull(optfeat.source)}">${source}${Parser.sourceJsonToMarkerHtml(optfeat.source, {isList: true})}</div>
+ 		</div>`;
+ 
+@@ -284,14 +290,15 @@ class ModalFilterOptionalFeatures extends ModalFilterBase {
+ 		const listItem = new ListItem({
+ 			id: ftI,
+ 			ele: eleRow,
+-			name: optfeat.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				sourceJson: optfeat.source,
+ 				...ListItem.getCommonValues(optfeat),
+ 				prerequisite,
+-				level,
++				level: levelDisplay,
+ 				type: optfeat._lFeatureType,
++				englishName: _I18N_ZH_TW_OPTIONAL_FEATURES.getCanonicalName(optfeat),
+ 			},
+ 			data: {
+ 				hash,
+diff --git a/js/filter-psionics.js b/js/filter-psionics.js
+index c04b9b4..8cf54cd 100644
+--- a/js/filter-psionics.js
++++ b/js/filter-psionics.js
+@@ -4,19 +4,26 @@ class PageFilterPsionics extends PageFilterBase {
+ 	// region static
+ 	static _sortFilterTypes (a, b) {
+ 		a = a.item; b = b.item;
+-		a = Parser.psiTypeToMeta(a);
+-		b = Parser.psiTypeToMeta(b);
+-		return (Number(a.hasOrder) - Number(b.hasOrder)) || SortUtil.ascSortLower(a.full, b.full);
++		const aMeta = Parser.psiTypeToMeta(a);
++		const bMeta = Parser.psiTypeToMeta(b);
++		return (Number(aMeta.hasOrder) - Number(bMeta.hasOrder))
++			|| SortUtil.ascSortLower(I18nZhTwContent.getPsionicType(a), I18nZhTwContent.getPsionicType(b));
+ 	}
+ 	// endregion
+ 
+ 	constructor () {
+ 		super({sourceFilterOpts: {deselFn: () => false}});
+ 
+-		this._typeFilter = new Filter({header: "Type", items: [Parser.PSI_ABV_TYPE_TALENT, Parser.PSI_ABV_TYPE_DISCIPLINE], displayFn: Parser.psiTypeToFull, itemSortFn: PageFilterPsionics._sortFilterTypes});
++		this._typeFilter = new Filter({
++			header: "類型",
++			items: [Parser.PSI_ABV_TYPE_TALENT, Parser.PSI_ABV_TYPE_DISCIPLINE],
++			displayFn: it => I18nZhTwContent.getPsionicType(it, {isBilingual: true}),
++			itemSortFn: PageFilterPsionics._sortFilterTypes,
++		});
+ 		this._orderFilter = new Filter({
+-			header: "Order",
++			header: "修會",
+ 			items: [Parser.PSI_ORDER_NONE],
++			displayFn: it => I18nZhTwContent.getPsionicOrder(it, {isBilingual: true}),
+ 		});
+ 	}
+ 
+diff --git a/js/filter-races.js b/js/filter-races.js
+index 50488b7..df5870b 100644
+--- a/js/filter-races.js
++++ b/js/filter-races.js
+@@ -1,7 +1,11 @@
+ "use strict";
+ 
++const _I18N_ZH_TW_RACES = globalThis.I18nZhTwContent;
++
+ class PageFilterRaces extends PageFilterBase {
+ 	// region static
++	static _BASE_NAME_TO_DISPLAY = new Map();
++
+ 	static getLanguageProficiencyTags (lProfs) {
+ 		if (!lProfs) return [];
+ 
+@@ -30,29 +34,28 @@ class PageFilterRaces extends PageFilterBase {
+ 		size ||= [Parser.SZ_VARIES];
+ 
+ 		return {
+-			sizeText: size.map(sz => Parser.sizeAbvToFull(sz)).joinConjunct(", ", " or "),
+-			sizeShortText: size.map(sz => Parser.sizeAbvToShort(sz)).join("/"),
++			sizeText: size.map(sz => _I18N_ZH_TW_RACES.getSizeFull(sz)).join("或"),
++			sizeShortText: size.map(sz => _I18N_ZH_TW_RACES.getSizeShort(sz)).join("/"),
+ 		};
+ 	}
+ 	// endregion
+ 
+ 	static _TRAIT_DISPLAY_VALUES = {
+-		"Monstrous Race": "Monstrous Species",
+-		"NPC Race": "NPC Species",
+-		"Uncommon Race": "Uncommon Species",
+-
+-		"Armor Proficiency": "Armor Training",
++		"Monstrous Race": "怪物種族",
++		"NPC Race": "NPC 種族",
++		"Uncommon Race": "罕見種族",
++		"Armor Proficiency": "護甲訓練",
+ 	};
+ 
+ 	constructor () {
+ 		super();
+ 
+-		this._sizeFilter = new Filter({header: "Size", displayFn: Parser.sizeAbvToFull, itemSortFn: PageFilterRaces.filterAscSortSize});
+-		this._asiFilter = new AbilityScoreFilter({header: "Ability Scores (Including Subspecies)"});
+-		this._baseRaceFilter = new Filter({header: "Base Species"});
+-		this._speedFilter = new Filter({header: "Speed", items: ["Climb", "Fly", "Swim", "Walk (Fast)", "Walk", "Walk (Slow)"]});
++		this._sizeFilter = new Filter({header: "體型", displayFn: size => _I18N_ZH_TW_RACES.getSizeFull(size), itemSortFn: PageFilterRaces.filterAscSortSize});
++		this._asiFilter = new AbilityScoreFilter({header: "屬性值（含亞種）"});
++		this._baseRaceFilter = new Filter({header: "基礎種族", displayFn: name => this.constructor._BASE_NAME_TO_DISPLAY.get(name) || name});
++		this._speedFilter = new Filter({header: "速度", items: ["Climb", "Fly", "Swim", "Walk (Fast)", "Walk", "Walk (Slow)"], displayFn: val => _I18N_ZH_TW_RACES.getFilterLabel(val)});
+ 		this._traitFilter = new Filter({
+-			header: "Traits",
++			header: "特質",
+ 			items: [
+ 				"Amphibious",
+ 				"Armor Proficiency",
+@@ -74,7 +77,7 @@ class PageFilterRaces extends PageFilterBase {
+ 				"Uncommon Race",
+ 				"Weapon Proficiency",
+ 			],
+-			displayFn: val => this.constructor._TRAIT_DISPLAY_VALUES[val] || val,
++			displayFn: val => this.constructor._TRAIT_DISPLAY_VALUES[val] || _I18N_ZH_TW_RACES.getFilterLabel(val),
+ 			deselFn: (it) => {
+ 				return it === "NPC Race";
+ 			},
+@@ -82,10 +85,10 @@ class PageFilterRaces extends PageFilterBase {
+ 		this._vulnerableFilter = FilterCommon.getDamageVulnerableFilter();
+ 		this._resistFilter = FilterCommon.getDamageResistFilter();
+ 		this._immuneFilter = FilterCommon.getDamageImmuneFilter();
+-		this._defenseFilter = new MultiFilter({header: "Damage", filters: [this._vulnerableFilter, this._resistFilter, this._immuneFilter]});
++		this._defenseFilter = new MultiFilter({header: "傷害", filters: [this._vulnerableFilter, this._resistFilter, this._immuneFilter]});
+ 		this._conditionImmuneFilter = FilterCommon.getConditionImmuneFilter();
+ 		this._languageFilter = new Filter({
+-			header: "Languages",
++			header: "語言",
+ 			items: [
+ 				"Abyssal",
+ 				"Celestial",
+@@ -105,32 +108,34 @@ class PageFilterRaces extends PageFilterBase {
+ 				"Sylvan",
+ 				"Undercommon",
+ 			],
+-			displayFn: it => it.split("|")[0].toTitleCase(),
++			displayFn: it => _I18N_ZH_TW_RACES.getLanguage(it),
+ 			umbrellaItems: ["Choose"],
+ 		});
+ 		this._creatureTypeFilter = new Filter({
+-			header: "Creature Type",
++			header: "生物類型",
+ 			items: Parser.MON_TYPES,
+-			displayFn: StrUtil.toTitleCase.bind(StrUtil),
++			displayFn: type => _I18N_ZH_TW_RACES.getCreatureType(type),
+ 			itemSortFn: SortUtil.ascSortLower,
+ 		});
+ 		this._ageFilter = new RangeFilter({
+-			header: "Adult Age",
++			header: "成年年齡",
+ 			isRequireFullRangeMatch: true,
+ 			isSparse: true,
+-			displayFn: it => `${it} y.o.`,
+-			displayFnTooltip: it => `${it} year${it === 1 ? "" : "s"} old`,
++			displayFn: it => `${it}歲`,
++			displayFnTooltip: it => `${it}歲`,
+ 		});
+ 		this._miscFilter = new Filter({
+-			header: "Miscellaneous",
++			header: "雜項",
+ 			items: ["Base Species", "Key Species", "Lineage", "Modified Copy", "Reprinted", "Legacy", "Has Images", "Has Info"],
+ 			isMiscFilter: true,
++			displayFn: val => _I18N_ZH_TW_RACES.getFilterLabel(val),
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+ 		});
+ 	}
+ 
+ 	static mutateForFilters (r) {
+ 		this._mutateForFilters_commonSources(r);
++		if (r._baseName && r._baseDisplayName) this._BASE_NAME_TO_DISPLAY.set(r._baseName, r._baseDisplayName);
+ 
+ 		r._fSize = r.size ? [...r.size] : [];
+ 		if (r._fSize.length > 1) r._fSize.push("V");
+@@ -157,7 +162,7 @@ class PageFilterRaces extends PageFilterBase {
+ 		const ability = r.ability
+ 			? Renderer.getAbilityData(r.ability, {isOnlyShort: true, isCurrentLineage: r.lineage === "VRGR"})
+ 			: new Renderer._AbilityData({asTextShort: "None"});
+-		r._slAbility = ability.asTextShort || VeCt.STR_NONE;
++		r._slAbility = _I18N_ZH_TW_RACES.localizeAbilityText(ability.asTextShort || VeCt.STR_NONE);
+ 		r._srtAbility = ability.asSortableString;
+ 
+ 		if (r.age?.mature != null && r.age?.max != null) r._fAge = [r.age.mature, r.age.max];
+@@ -255,7 +260,7 @@ class ModalFilterRaces extends ModalFilterBase {
+ 		opts = opts || {};
+ 		super({
+ 			...opts,
+-			modalTitle: `Species`,
++			modalTitle: `種族`,
+ 			pageFilter: new PageFilterRaces(),
+ 			previewButtonHandler: new ListUiPreviewButtonHandlerStatsFluff({page: UrlUtil.PG_RACES}),
+ 		});
+@@ -263,10 +268,10 @@ class ModalFilterRaces extends ModalFilterBase {
+ 
+ 	_getColumnHeaders () {
+ 		const btnMeta = [
+-			{sort: "name", text: "Name", width: "4"},
+-			{sort: "ability", text: "Ability", width: "4"},
+-			{sort: "size", text: "Size", width: "2"},
+-			{sort: "source", text: "Source", width: "1"},
++			{sort: "name", text: "名稱", width: "4"},
++			{sort: "ability", text: "屬性", width: "4"},
++			{sort: "size", text: "體型", width: "2"},
++			{sort: "source", text: "來源", width: "1"},
+ 		];
+ 		return ModalFilterBase._getFilterColumnHeaders(btnMeta);
+ 	}
+@@ -285,18 +290,20 @@ class ModalFilterRaces extends ModalFilterBase {
+ 
+ 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RACES](race);
+ 		const ability = race.ability ? Renderer.getAbilityData(race.ability) : {asTextShort: "None"};
+-		const size = (race.size || [Parser.SZ_VARIES]).map(sz => Parser.sizeAbvToFull(sz)).join("/");
++		const abilityDisplay = _I18N_ZH_TW_RACES.localizeAbilityText(ability.asTextShort);
++		const size = (race.size || [Parser.SZ_VARIES]).map(sz => _I18N_ZH_TW_RACES.getSizeFull(sz)).join("/");
+ 		const source = Parser.sourceJsonToAbv(race.source);
++		const displayName = _I18N_ZH_TW_RACES.getBilingualName(race);
+ 
+ 		eleRow.innerHTML = `<div class="ve-w-100 ve-flex-vh-center ve-lst__row-border veapp__list-row ve-no-select ve-lst__wrp-cells">
+ 			<div class="ve-col-0-5 ve-pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="ve-no-events">` : `<input type="checkbox" class="ve-no-events">`}</div>
+ 
+ 			<div class="ve-col-0-5 ve-px-1 ve-flex-vh-center">
+-				<div class="ve-ui-list__btn-inline ve-px-2 ve-no-select" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
++				<div class="ve-ui-list__btn-inline ve-px-2 ve-no-select" title="切換預覽（按住 SHIFT 可切換資訊預覽）">[+]</div>
+ 			</div>
+ 
+-			<div class="ve-col-4 ve-px-1 ${race._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${race._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${race.name}</div>
+-			<div class="ve-col-4 ve-px-1">${ability.asTextShort}</div>
++			<div class="ve-col-4 ve-px-1 ${race._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${race._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${displayName}</div>
++			<div class="ve-col-4 ve-px-1">${abilityDisplay}</div>
+ 			<div class="ve-col-2 ve-px-1 ve-text-center">${size}</div>
+ 			<div class="ve-col-1 ve-pl-1 ve-pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(race.source)}" title="${Parser.sourceJsonToFull(race.source)}">${source}${Parser.sourceJsonToMarkerHtml(race.source, {isList: true})}</div>
+ 		</div>`;
+@@ -306,14 +313,15 @@ class ModalFilterRaces extends ModalFilterBase {
+ 		const listItem = new ListItem({
+ 			id: rI,
+ 			ele: eleRow,
+-			name: race.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				sourceJson: race.source,
+ 				...ListItem.getCommonValues(race),
+-				ability: ability.asTextShort,
++				ability: abilityDisplay,
+ 				size,
+-				cleanName: PageFilterRaces.getInvertedName(race.name) || "",
++				englishName: _I18N_ZH_TW_RACES.getCanonicalName(race),
++				cleanName: PageFilterRaces.getInvertedName(displayName) || "",
+ 				alias: PageFilterRaces.getListAliases(race),
+ 			},
+ 			data: {
+diff --git a/js/filter-recipes.js b/js/filter-recipes.js
+index 584e5f6..1d937dd 100644
+--- a/js/filter-recipes.js
++++ b/js/filter-recipes.js
+@@ -15,35 +15,35 @@ class PageFilterRecipes extends PageFilterBase {
+ 		super();
+ 
+ 		this._typeFilter = new Filter({
+-			header: "Category",
+-			displayFn: StrUtil.toTitleCase.bind(StrUtil),
++			header: "類別",
++			displayFn: it => I18nZhTwContent.getRecipeType(it, {isBilingual: true}),
+ 			itemSortFn: SortUtil.ascSortLower,
+ 		});
+ 		this._dishTypeFilter = new Filter({
+-			header: "Dish Type",
+-			displayFn: StrUtil.toTitleCase.bind(StrUtil),
++			header: "菜餚類型",
++			displayFn: it => I18nZhTwContent.getRecipeDishType(it, {isBilingual: true}),
+ 			itemSortFn: SortUtil.ascSortLower,
+ 		});
+-		this._servesFilter = new RangeFilter({header: "Serves", min: 1, max: 1});
+-		this._timeFilterTotal = new RangeFilter({header: "Total", min: 10, max: 60, displayFn: time => Parser.getMinutesToFull(time, {isShort: true}), displayFnTooltip: Parser.getMinutesToFull});
+-		this._timeFilterPreparation = new RangeFilter({header: "Preparation", min: 10, max: 60, displayFn: time => Parser.getMinutesToFull(time, {isShort: true}), displayFnTooltip: Parser.getMinutesToFull});
+-		this._timeFilterCooking = new RangeFilter({header: "Cooking", min: 10, max: 60, displayFn: time => Parser.getMinutesToFull(time, {isShort: true}), displayFnTooltip: Parser.getMinutesToFull});
++		this._servesFilter = new RangeFilter({header: "份量", min: 1, max: 1});
++		this._timeFilterTotal = new RangeFilter({header: "總計", min: 10, max: 60, displayFn: time => I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(time, {isShort: true})), displayFnTooltip: time => I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(time))});
++		this._timeFilterPreparation = new RangeFilter({header: "準備", min: 10, max: 60, displayFn: time => I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(time, {isShort: true})), displayFnTooltip: time => I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(time))});
++		this._timeFilterCooking = new RangeFilter({header: "烹調", min: 10, max: 60, displayFn: time => I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(time, {isShort: true})), displayFnTooltip: time => I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(time))});
+ 		this._timeFilter = new MultiFilter({
+-			header: "Time",
++			header: "時間",
+ 			filters: [this._timeFilterTotal, this._timeFilterPreparation, this._timeFilterCooking],
+ 		});
+ 		this._dietFilter = new Filter({
+-			header: "Diet",
++			header: "飲食類型",
+ 			displayFn: PageFilterRecipes._dietToFull,
+ 			itemSortFn: SortUtil.ascSortLower,
+ 		});
+ 		this._allergensFilter = new Filter({
+-			header: "Allergens",
+-			displayFn: StrUtil.toTitleCase.bind(StrUtil),
++			header: "過敏原",
++			displayFn: it => I18nZhTwContent.getRecipeAllergen(it, {isBilingual: true}),
+ 			itemSortFn: SortUtil.ascSortLower,
+ 		});
+ 		this._miscFilter = new Filter({
+-			header: "Miscellaneous",
++			header: "雜項",
+ 			items: ["Legacy"],
+ 			isMiscFilter: true,
+ 			displayFn: PageFilterRecipes._miscTagToFull,
+@@ -146,8 +146,14 @@ class PageFilterRecipes extends PageFilterBase {
+ 		);
+ 	}
+ 
+-	static _dietToFull (diet) { return PageFilterRecipes._DIET_TO_FULL[diet] || diet; }
+-	static _miscTagToFull (tag) { return PageFilterRecipes._MISC_TAG_TO_FULL[tag] || tag; }
++	static _dietToFull (diet) { return I18nZhTwContent.getRecipeDiet(PageFilterRecipes._DIET_TO_FULL[diet] || diet, {isBilingual: true}); }
++	static _miscTagToFull (tag) {
++		return ({
++			alcohol: "含酒精（Contains Alcohol）",
++			feast: "宴席菜餚（Feast Dish）",
++			Legacy: "舊版（Legacy）",
++		})[tag] || PageFilterRecipes._MISC_TAG_TO_FULL[tag] || tag;
++	}
+ }
+ 
+ globalThis.PageFilterRecipes = PageFilterRecipes;
+diff --git a/js/filter-rewards.js b/js/filter-rewards.js
+index eca95e5..3847d7c 100644
+--- a/js/filter-rewards.js
++++ b/js/filter-rewards.js
+@@ -11,18 +11,20 @@ class PageFilterRewards extends PageFilterBase {
+ 				"Boon",
+ 				"Charm",
+ 			],
++			displayFn: it => I18nZhTwContent.getRewardType(it, {isBilingual: true}),
+ 		});
+ 		this._rarityFilter = new Filter({
+ 			header: "Rarity",
+ 			items: ["unknown", ...Parser.RARITIES],
+ 			itemSortFn: null,
+-			displayFn: StrUtil.toTitleCase.bind(StrUtil),
++			displayFn: it => I18nZhTwContent.getItemRarity(it),
+ 		});
+ 		this._benefitsFilter = new Filter({
+ 			header: "Benefits",
+ 			items: [
+ 				"Spellcasting",
+ 			],
++			displayFn: it => I18nZhTwContent.getFilterLabel(it),
+ 		});
+ 		this._miscFilter = new Filter({
+ 			header: "Miscellaneous",
+diff --git a/js/filter-spells.js b/js/filter-spells.js
+index db25595..646a635 100644
+--- a/js/filter-spells.js
++++ b/js/filter-spells.js
+@@ -1,9 +1,11 @@
+ "use strict";
+ 
++const {I18nZhTwContent} = globalThis;
++
+ class VariantClassFilter extends Filter {
+ 	constructor (opts) {
+ 		super({
+-			header: "Optional/Variant Class",
++			header: "選用／變體職業",
+ 			nests: {},
+ 			groupFn: it => it.group,
+ 			...opts,
+@@ -21,7 +23,7 @@ class VariantClassFilter extends Filter {
+ 
+ class MultiFilterClasses extends MultiFilter {
+ 	constructor (opts) {
+-		super({header: "Classes", mode: "or", filters: [opts.classFilter, opts.subclassFilter, opts.variantClassFilter], ...opts});
++		super({header: "職業", mode: "or", filters: [opts.classFilter, opts.subclassFilter, opts.variantClassFilter], ...opts});
+ 
+ 		this._classFilter = opts.classFilter;
+ 		this._subclassFilter = opts.subclassFilter;
+@@ -48,11 +50,11 @@ class MultiFilterClasses extends MultiFilter {
+ 			this,
+ 			"isVariantSplit",
+ 			{
+-				ele: veE({tag: "button", clazz: "ve-btn ve-btn-default ve-btn-xs", txt: "Include Variants"}),
++				ele: veE({tag: "button", clazz: "ve-btn ve-btn-default ve-btn-xs", txt: "包含變體"}),
+ 				isInverted: true,
+ 				stateName: "meta",
+ 				stateProp: "_meta",
+-				title: `If "Optional/Variant Class" spell lists should be treated as part of the "Class" filter.`,
++				title: "是否將選用／變體職業法術列表視為職業篩選的一部分。",
+ 			},
+ 		);
+ 
+@@ -128,8 +130,8 @@ class PageFilterSpells extends PageFilterBase {
+ 		return SortUtil.ascSortLower(a, b);
+ 	}
+ 
+-	static getFilterAbilitySave (ability) { return `${ability.uppercaseFirst()} Save`; }
+-	static getFilterAbilityCheck (ability) { return `${ability.uppercaseFirst()} Check`; }
++	static getFilterAbilitySave (ability) { return `${I18nZhTwContent.getAbility(ability)}豁免`; }
++	static getFilterAbilityCheck (ability) { return `${I18nZhTwContent.getAbility(ability)}檢定`; }
+ 
+ 	static _mutMetaFilterObj (s) {
+ 		this._mutateForFilters_commonMisc(s);
+@@ -296,12 +298,10 @@ class PageFilterSpells extends PageFilterBase {
+ 	}
+ 
+ 	static getTblTimeStr (time) {
+-		return (time.number === 1 && Parser.SP_TIME_SINGLETONS.includes(time.unit))
+-			? `${time.unit.uppercaseFirst()}`
+-			: `${time.number ? `${time.number} ` : ""}${Parser.spTimeUnitToShort(time.unit).uppercaseFirst()}`;
++		return I18nZhTwContent.getSpellTime(time, {isShort: true, isPlainText: true});
+ 	}
+ 
+-	static getTblLevelStr (spell) { return `${Parser.spLevelToFull(spell.level)}${spell.meta && spell.meta.ritual ? " (rit.)" : ""}${spell.meta && spell.meta.technomagic ? " (tec.)" : ""}`; }
++	static getTblLevelStr (spell) { return `${I18nZhTwContent.getSpellLevel(spell.level)}${spell.meta?.ritual ? "（儀）" : ""}${spell.meta?.technomagic ? "（科）" : ""}`; }
+ 
+ 	static getRaceFilterItem (r) {
+ 		const addSuffix = (
+@@ -316,7 +316,7 @@ class PageFilterSpells extends PageFilterBase {
+ 			group: SourceUtil.getFilterGroup(r.source || Parser.SRC_PHB),
+ 		};
+ 		if (r.baseName) opts.nest = r.baseName;
+-		else opts.nest = "(No Subspecies)";
++		else opts.nest = "（無亞種）";
+ 		return new FilterItem(opts).getSerialized();
+ 	}
+ 	// endregion
+@@ -325,20 +325,20 @@ class PageFilterSpells extends PageFilterBase {
+ 		super(opts);
+ 
+ 		this._classFilter = new Filter({
+-			header: "Class",
++			header: "職業",
+ 			groupFn: it => it.group,
+ 		});
+ 		this._subclassFilter = new Filter({
+-			header: "Subclass",
++			header: "子職業",
+ 			nests: {},
+ 			groupFn: it => it.group,
+ 		});
+ 		this._levelFilter = new Filter({
+-			header: "Level",
++			header: "環階",
+ 			items: [
+ 				0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+ 			],
+-			displayFn: (lvl) => Parser.spLevelToFullLevelText(lvl, {isPluralCantrips: false}),
++			displayFn: (lvl) => I18nZhTwContent.getSpellLevel(lvl, {isIncludeWord: true}),
+ 		});
+ 		this._variantClassFilter = new VariantClassFilter();
+ 		this._classAndSubclassFilter = new MultiFilterClasses({
+@@ -347,64 +347,64 @@ class PageFilterSpells extends PageFilterBase {
+ 			variantClassFilter: this._variantClassFilter,
+ 		});
+ 		this._raceFilter = new Filter({
+-			header: "Species",
++			header: "物種／種族",
+ 			nests: {},
+ 			groupFn: it => it.group,
+ 		});
+-		this._backgroundFilter = new SearchableFilter({header: "Background"});
+-		this._featFilter = new SearchableFilter({header: "Feat"});
+-		this._optionalfeaturesFilter = new SearchableFilter({header: "Other Option/Feature"});
++		this._backgroundFilter = new SearchableFilter({header: "背景"});
++		this._featFilter = new SearchableFilter({header: "專長"});
++		this._optionalfeaturesFilter = new SearchableFilter({header: "其他選項／特性"});
+ 		this._miscFilter = new Filter({
+-			header: "Components & Miscellaneous",
++			header: "成分與其他",
+ 			items: [...PageFilterSpells._META_FILTER_BASE_ITEMS, "Ritual", "Legacy", "Reprinted", "Has Images", "Has Token"],
+ 			itemSortFn: PageFilterSpells.sortMetaFilter,
+ 			isMiscFilter: true,
+-			displayFn: it => Parser.spMiscTagToFull(it),
++			displayFn: it => I18nZhTwContent.getSpellMiscTag(it),
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+ 		});
+-		this._groupFilter = new Filter({header: "Group"});
++		this._groupFilter = new Filter({header: "群組"});
+ 		this._schoolFilter = new Filter({
+-			header: "School",
++			header: "學派",
+ 			items: [...Parser.SKL_ABVS],
+-			displayFn: Parser.spSchoolAbvToFull,
+-			itemSortFn: (a, b) => SortUtil.ascSortLower(Parser.spSchoolAbvToFull(a.item), Parser.spSchoolAbvToFull(b.item)),
++			displayFn: it => I18nZhTwContent.getSpellSchool(it),
++			itemSortFn: (a, b) => SortUtil.ascSortLower(I18nZhTwContent.getSpellSchool(a.item), I18nZhTwContent.getSpellSchool(b.item)),
+ 		});
+ 		this._subSchoolFilter = new Filter({
+-			header: "Subschool",
++			header: "次學派",
+ 			items: [],
+-			displayFn: it => Parser.spSchoolAbvToFull(it).toTitleCase(),
+-			itemSortFn: (a, b) => SortUtil.ascSortLower(Parser.spSchoolAbvToFull(a.item), Parser.spSchoolAbvToFull(b.item)),
++			displayFn: it => I18nZhTwContent.getSpellSchool(it),
++			itemSortFn: (a, b) => SortUtil.ascSortLower(I18nZhTwContent.getSpellSchool(a.item), I18nZhTwContent.getSpellSchool(b.item)),
+ 		});
+ 		this._damageFilter = new Filter({
+-			header: "Damage Type",
++			header: "傷害類型",
+ 			items: MiscUtil.copy(Parser.DMG_TYPES),
+-			displayFn: StrUtil.uppercaseFirst,
++			displayFn: it => I18nZhTwContent.getDamageType(it),
+ 		});
+ 		this._conditionFilter = new Filter({
+-			header: "Conditions Inflicted",
++			header: "造成的狀態",
+ 			items: [...Parser.CONDITIONS],
+-			displayFn: uid => uid.split("|")[0].toTitleCase(),
++			displayFn: uid => I18nZhTwContent.getCondition(uid),
+ 		});
+ 		this._spellAttackFilter = new Filter({
+-			header: "Spell Attack",
++			header: "法術攻擊",
+ 			items: ["M", "R", "O"],
+-			displayFn: Parser.spAttackTypeToFull,
++			displayFn: it => I18nZhTwContent.getSpellAttackType(it),
+ 			itemSortFn: null,
+ 		});
+ 		this._saveFilter = new Filter({
+-			header: "Saving Throw",
++			header: "豁免檢定",
+ 			items: ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"],
+ 			displayFn: PageFilterSpells.getFilterAbilitySave,
+ 			itemSortFn: null,
+ 		});
+ 		this._checkFilter = new Filter({
+-			header: "Ability Check",
++			header: "屬性檢定",
+ 			items: ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"],
+ 			displayFn: PageFilterSpells.getFilterAbilityCheck,
+ 			itemSortFn: null,
+ 		});
+ 		this._timeFilter = new Filter({
+-			header: "Cast Time",
++			header: "施法時間",
+ 			items: [
+ 				Parser.SP_TM_ACTION,
+ 				Parser.SP_TM_B_ACTION,
+@@ -414,17 +414,18 @@ class PageFilterSpells extends PageFilterBase {
+ 				Parser.SP_TM_HRS,
+ 				Parser.SP_TM_SPECIAL,
+ 			],
+-			displayFn: Parser.spTimeUnitToFull,
++			displayFn: it => I18nZhTwContent.getSpellTimeUnit(it),
+ 			itemSortFn: null,
+ 		});
+ 		this._durationFilter = new RangeFilter({
+-			header: "Duration",
++			header: "持續時間",
+ 			isLabelled: true,
+ 			labelSortFn: null,
+ 			labels: ["Instant", "1 Round", "1 Minute", "10 Minutes", "1 Hour", "8 Hours", "24+ Hours", "Permanent", "Special"],
++			labelDisplayFn: it => I18nZhTwContent.getSpellFilterLabel(it),
+ 		});
+ 		this._rangeFilter = new Filter({
+-			header: "Range",
++			header: "施法距離",
+ 			items: [
+ 				PageFilterSpells.F_RNG_SELF,
+ 				PageFilterSpells.F_RNG_TOUCH,
+@@ -432,18 +433,19 @@ class PageFilterSpells extends PageFilterBase {
+ 				PageFilterSpells.F_RNG_SELF_AREA,
+ 				PageFilterSpells.F_RNG_SPECIAL,
+ 			],
++			displayFn: it => I18nZhTwContent.getSpellFilterLabel(it),
+ 			itemSortFn: null,
+ 		});
+ 		this._areaTypeFilter = new Filter({
+-			header: "Area Style",
++			header: "範圍形狀",
+ 			items: ["ST", "MT", "R", "N", "C", "Y", "H", "E", "L", "S", "Q", "W"],
+-			displayFn: Parser.spAreaTypeToFull,
++			displayFn: it => I18nZhTwContent.getSpellAreaType(it),
+ 			itemSortFn: null,
+ 		});
+ 		this._affectsCreatureTypeFilter = new Filter({
+-			header: "Affects Creature Types",
++			header: "影響的生物類型",
+ 			items: [...Parser.MON_TYPES_STANDARD],
+-			displayFn: StrUtil.toTitleCase.bind(StrUtil),
++			displayFn: it => I18nZhTwContent.getCreatureType(it),
+ 		});
+ 	}
+ 
+@@ -620,7 +622,7 @@ class ModalFilterSpells extends ModalFilterBase {
+ 		opts = opts || {};
+ 		super({
+ 			...opts,
+-			modalTitle: `Spell${opts.isRadio ? "" : "s"}`,
++			modalTitle: opts.isRadio ? "法術" : "法術列表",
+ 			pageFilter: new PageFilterSpells(),
+ 			fnSort: PageFilterSpells.sortSpells,
+ 			previewButtonHandler: new ListUiPreviewButtonHandlerStatsFluff({page: UrlUtil.PG_SPELLS}),
+@@ -629,13 +631,13 @@ class ModalFilterSpells extends ModalFilterBase {
+ 
+ 	_getColumnHeaders () {
+ 		const btnMeta = [
+-			{sort: "name", text: "Name", width: "3"},
+-			{sort: "level", text: "Level", width: "1-5"},
+-			{sort: "time", text: "Time", width: "2"},
+-			{sort: "school", text: "School", width: "1"},
+-			{sort: "concentration", text: "C.", title: "Concentration", width: "0-5"},
+-			{sort: "range", text: "Range", width: "2"},
+-			{sort: "source", text: "Source", width: "1"},
++			{sort: "name", text: "名稱", width: "3"},
++			{sort: "level", text: "環階", width: "1-5"},
++			{sort: "time", text: "時間", width: "2"},
++			{sort: "school", text: "學派", width: "1"},
++			{sort: "concentration", text: "專", title: "專注", width: "0-5"},
++			{sort: "range", text: "距離", width: "2"},
++			{sort: "source", text: "來源", width: "1"},
+ 		];
+ 		return ModalFilterBase._getFilterColumnHeaders(btnMeta);
+ 	}
+@@ -659,25 +661,26 @@ class ModalFilterSpells extends ModalFilterBase {
+ 
+ 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_SPELLS](spell);
+ 		const source = Parser.sourceJsonToAbv(spell.source);
++		const displayName = I18nZhTwContent.getBilingualName(spell);
+ 		const levelText = PageFilterSpells.getTblLevelStr(spell);
+ 		const time = PageFilterSpells.getTblTimeStr(spell.time[0]);
+-		const school = Parser.spSchoolAndSubschoolsAbvsShort(spell.school, spell.subschools);
++		const school = I18nZhTwContent.getSpellSchoolAndSubschools(spell.school, spell.subschools);
+ 		const schoolClassName = Parser.spSchoolAbvToStyleClass(spell.school);
+ 		const concentration = spell._isConc ? "×" : "";
+-		const range = Parser.spRangeToFull(spell.range, {isDisplaySelfArea: true});
++		const range = I18nZhTwContent.getSpellRange(spell.range, {isDisplaySelfArea: true});
+ 
+ 		eleRow.innerHTML = `<div class="ve-w-100 ve-flex-vh-center ve-lst__row-border veapp__list-row ve-no-select ve-lst__wrp-cells">
+ 			<div class="ve-col-0-5 ve-pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="ve-no-events">` : `<input type="checkbox" class="ve-no-events">`}</div>
+ 
+ 			<div class="ve-col-0-5 ve-px-1 ve-flex-vh-center">
+-				<div class="ve-ui-list__btn-inline ve-px-2 ve-no-select" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
++				<div class="ve-ui-list__btn-inline ve-px-2 ve-no-select" title="切換預覽（按住 Shift 可切換資訊預覽）">[+]</div>
+ 			</div>
+ 
+-			<div class="ve-col-3 ve-px-1 ${spell._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${spell._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${spell.name}</div>
++			<div class="ve-col-3 ve-px-1 ${spell._versionBase_isVersion ? "ve-italic" : ""} ${this._getNameStyle()}">${spell._versionBase_isVersion ? `<span class="ve-px-3"></span>` : ""}${displayName}</div>
+ 			<div class="ve-col-1-5 ve-px-1 ve-text-center">${levelText}</div>
+ 			<div class="ve-col-2 ve-px-1 ve-text-center">${time}</div>
+-			<div class="ve-col-1 ve-px-1 ${schoolClassName} ve-text-center" title="${Parser.spSchoolAndSubschoolsAbvsToFull(spell.school, spell.subschools)}" ${Parser.spSchoolAbvToStyle(spell.school)}>${school}</div>
+-			<div class="ve-col-0-5 ve-px-1 ve-text-center" title="Concentration">${concentration}</div>
++			<div class="ve-col-1 ve-px-1 ${schoolClassName} ve-text-center" title="${I18nZhTwContent.getSpellSchoolAndSubschools(spell.school, spell.subschools)}" ${Parser.spSchoolAbvToStyle(spell.school)}>${school}</div>
++			<div class="ve-col-0-5 ve-px-1 ve-text-center" title="專注">${concentration}</div>
+ 			<div class="ve-col-2 ve-px-1 ve-text-right">${range}</div>
+ 			<div class="ve-col-1 ve-pl-1 ve-pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(spell.source)}" title="${Parser.sourceJsonToFull(spell.source)}">${source}${Parser.sourceJsonToMarkerHtml(spell.source, {isList: true})}</div>
+ 		</div>`;
+@@ -687,14 +690,15 @@ class ModalFilterSpells extends ModalFilterBase {
+ 		const listItem = new ListItem({
+ 			id: spI,
+ 			ele: eleRow,
+-			name: spell.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				sourceJson: spell.source,
+ 				...ListItem.getCommonValues(spell),
++				englishName: I18nZhTwContent.getCanonicalName(spell),
+ 				level: spell.level,
+ 				time,
+-				school: Parser.spSchoolAbvToFull(spell.school),
++				school: I18nZhTwContent.getSpellSchool(spell.school),
+ 				classes: Parser.spClassesToFull(spell, {isTextOnly: true}),
+ 				concentration,
+ 				normalisedTime: spell._normalisedTime,
+diff --git a/js/filter-variantrules.js b/js/filter-variantrules.js
+index 06c57fa..37d5180 100644
+--- a/js/filter-variantrules.js
++++ b/js/filter-variantrules.js
+@@ -7,7 +7,11 @@ class PageFilterVariantRules extends PageFilterBase {
+ 	constructor () {
+ 		super();
+ 
+-		this._ruleTypeFilter = new Filter({header: "Rule Type", items: ["O", "V", "VO", "VV", "U"], displayFn: Parser.ruleTypeToFull});
++		this._ruleTypeFilter = new Filter({
++			header: "Rule Type",
++			items: ["O", "V", "VO", "VV", "U"],
++			displayFn: it => globalThis.I18nZhTwRules?.getRuleTypeDisplay(it) || Parser.ruleTypeToFull(it),
++		});
+ 		this._miscFilter = new Filter({
+ 			header: "Miscellaneous",
+ 			items: ["Legacy"],
+diff --git a/js/filter-vehicles.js b/js/filter-vehicles.js
+index e910b04..790b2f7 100644
+--- a/js/filter-vehicles.js
++++ b/js/filter-vehicles.js
+@@ -5,32 +5,33 @@ class PageFilterVehicles extends PageFilterBase {
+ 		super();
+ 
+ 		this._vehicleTypeFilter = new Filter({
+-			header: "Vehicle Type",
++			header: "載具類型",
+ 			items: [],
+-			displayFn: Parser.vehicleTypeToFull,
++			displayFn: it => I18nZhTwContent.getVehicleType(it, {isBilingual: true}),
+ 			isSortByDisplayItems: true,
+ 		});
+ 		this._upgradeTypeFilter = new Filter({
+-			header: "Upgrade Type",
++			header: "升級類型",
+ 			items: [],
+-			displayFn: Parser.vehicleUpgradeTypeToFull,
++			displayFn: it => I18nZhTwContent.getVehicleUpgradeType(it, {isBilingual: true}),
+ 			isSortByDisplayItems: true,
+ 		});
+ 		this._typeFilter = new MultiFilter({
+-			header: "Type",
++			header: "類型",
+ 			filters: [this._vehicleTypeFilter, this._upgradeTypeFilter],
+ 		});
+ 		this._costFilter = FilterCommon.getCostFilter();
+-		this._terrainFilter = new Filter({header: "Terrain", items: ["land", "sea", "air"], displayFn: StrUtil.uppercaseFirst});
+-		this._speedFilter = new RangeFilter({header: "Speed"});
+-		this._acFilter = new RangeFilter({header: "Armor Class"});
+-		this._hpFilter = new RangeFilter({header: "Hit Points"});
+-		this._hpFilter = new RangeFilter({header: "Hit Points"});
+-		this._creatureCapacityFilter = new RangeFilter({header: "Creature Capacity"});
++		this._terrainFilter = new Filter({header: "地形", items: ["land", "sea", "air"], displayFn: it => I18nZhTwContent.getVehicleTerrain(it, {isBilingual: true})});
++		this._speedFilter = new RangeFilter({header: "速度"});
++		this._acFilter = new RangeFilter({header: "護甲等級"});
++		this._hpFilter = new RangeFilter({header: "生命值"});
++		this._hpFilter = new RangeFilter({header: "生命值"});
++		this._creatureCapacityFilter = new RangeFilter({header: "生物容量"});
+ 		this._miscFilter = new Filter({
+-			header: "Miscellaneous",
++			header: "雜項",
+ 			items: ["Legacy", "Has Images", "Has Info", "Has Token"],
+ 			isMiscFilter: true,
++			displayFn: I18nZhTwContent.getFilterLabel.bind(I18nZhTwContent),
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+ 		});
+ 	}
+diff --git a/js/filter/filter-box.js b/js/filter/filter-box.js
+index 2564095..8122d9a 100644
+--- a/js/filter/filter-box.js
++++ b/js/filter/filter-box.js
+@@ -2,6 +2,8 @@ import {EVNT_VALCHANGE, SOURCE_HEADER, SUB_HASH_PREFIX_LENGTH, TITLE_BTN_RESET}
+ import {FilterRegistry} from "./filter-registry.js";
+ import {FilterSnapshotManager} from "./snapshot/filter-snapshot-manager.js";
+ 
++const _tZhTw = (text, data) => globalThis.I18nZhTwSite?.tEnglish(text, data) ?? text;
++
+ export class FilterBox extends ProxyBase {
+ 	static selectFirstVisible (entryList) {
+ 		if (Hist.lastLoadedId == null && !Hist.initialLoad) {
+@@ -200,13 +202,13 @@ export class FilterBox extends ProxyBase {
+ 
+ 		if (this._btnReset) {
+ 			this._btnReset
+-				.vee.tooltip(TITLE_BTN_RESET)
++				.vee.tooltip(_tZhTw(TITLE_BTN_RESET))
+ 				.vee.onn("click", (evt) => this.reset(evt.shiftKey));
+ 		}
+ 
+ 		if (this._wrpFormTop || this._btnToggleSummaryHidden) {
+ 			if (!this._btnToggleSummaryHidden) {
+-				this._btnToggleSummaryHidden = veT`<button class="ve-btn ve-btn-default ${this._isCompact ? "ve-p-2" : ""}" title="Toggle Filter Summary"><span class="glyphicon glyphicon-resize-small"></span></button>`
++				this._btnToggleSummaryHidden = veT`<button class="ve-btn ve-btn-default ${this._isCompact ? "ve-p-2" : ""}" title="${_tZhTw("Toggle Filter Summary")}"><span class="glyphicon glyphicon-resize-small"></span></button>`
+ 					.vee.prependTo(this._wrpFormTop);
+ 			} else if (!this._btnToggleSummaryHidden.vee.parent()) {
+ 				this._btnToggleSummaryHidden.vee.prependTo(this._wrpFormTop);
+@@ -226,7 +228,7 @@ export class FilterBox extends ProxyBase {
+ 
+ 		if (this._wrpFormTop || this._btnOpen) {
+ 			if (!this._btnOpen) {
+-				this._btnOpen = veT`<button class="ve-btn ve-btn-default ${this._isCompact ? "ve-px-2" : ""}">Filter</button>`
++				this._btnOpen = veT`<button class="ve-btn ve-btn-default ${this._isCompact ? "ve-px-2" : ""}">${_tZhTw("Filter")}</button>`
+ 					.vee.prependTo(this._wrpFormTop);
+ 			} else if (!this._btnOpen.vee.parent()) {
+ 				this._btnOpen.vee.prependTo(this._wrpFormTop);
+@@ -269,7 +271,7 @@ export class FilterBox extends ProxyBase {
+ 			isIndestructible: true,
+ 			isClosed: true,
+ 			isEmpty: true,
+-			title: "Filter", // Not shown due toe `isEmpty`, but useful for external overrides
++			title: _tZhTw("Filter"), // Not shown due toe `isEmpty`, but useful for external overrides
+ 			cbClose: (isDataEntered) => this._pHandleHide(!isDataEntered),
+ 		});
+ 
+@@ -277,27 +279,27 @@ export class FilterBox extends ProxyBase {
+ 
+ 		this._metaIptSearch = ComponentUiUtil.getIptStr(
+ 			this._compSearch, "search",
+-			{decorationRight: "clear", asMeta: true, html: `<input class="ve-form-control ve-input-xs" placeholder="Search...">`},
++			{decorationRight: "clear", asMeta: true, html: `<input class="ve-form-control ve-input-xs" placeholder="${_tZhTw("Search...")}">`},
+ 		);
+ 		this._compSearch._addHookBase("search", () => {
+ 			const searchTerm = this._compSearch._state.search.toLowerCase();
+ 			this._filters.forEach(f => f.handleSearch(searchTerm));
+ 		});
+ 
+-		const btnShowAllFilters = veT`<button class="ve-btn ve-btn-xs ve-btn-default">Show All</button>`
++		const btnShowAllFilters = veT`<button class="ve-btn ve-btn-xs ve-btn-default">${_tZhTw("Show All")}</button>`
+ 			.vee.onn("click", () => this.showAllFilters());
+-		const btnHideAllFilters = veT`<button class="ve-btn ve-btn-xs ve-btn-default">Hide All</button>`
++		const btnHideAllFilters = veT`<button class="ve-btn ve-btn-xs ve-btn-default">${_tZhTw("Hide All")}</button>`
+ 			.vee.onn("click", () => this.hideAllFilters());
+ 
+-		const btnReset = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-3" title="${TITLE_BTN_RESET}">Reset</button>`
++		const btnReset = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-3" title="${_tZhTw(TITLE_BTN_RESET)}">${_tZhTw("Reset")}</button>`
+ 			.vee.onn("click", evt => this.reset(evt.shiftKey));
+ 
+ 		const btnSnapshotManager = this._snapshotManager.getBtn();
+ 
+-		const btnSettings = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="Settings"><span class="glyphicon glyphicon-cog"></span></button>`
++		const btnSettings = veT`<button class="ve-btn ve-btn-xs ve-btn-default" title="${_tZhTw("Settings")}"><span class="glyphicon glyphicon-cog"></span></button>`
+ 			.vee.onn("click", () => this._pOpenSettingsModal());
+ 
+-		const btnSaveAlt = veT`<button class="ve-btn ve-btn-xs ve-btn-primary" title="Save"><span class="glyphicon glyphicon-ok"></span></button>`
++		const btnSaveAlt = veT`<button class="ve-btn ve-btn-xs ve-btn-primary" title="${_tZhTw("Save")}"><span class="glyphicon glyphicon-ok"></span></button>`
+ 			.vee.onn("click", () => this._modalMeta.doClose(true));
+ 
+ 		const wrpBtnCombineFilters = veT`<div class="ve-btn-group ve-mr-3"></div>`;
+@@ -320,20 +322,20 @@ export class FilterBox extends ProxyBase {
+ 		this._addHook("meta", "modeCombineFilters", hook);
+ 		hook();
+ 
+-		const btnSave = veT`<button class="ve-btn ve-btn-primary ve-fltr__btn-close ve-mr-2">Save</button>`
++		const btnSave = veT`<button class="ve-btn ve-btn-primary ve-fltr__btn-close ve-mr-2">${_tZhTw("Save")}</button>`
+ 			.vee.onn("click", () => this._modalMeta.doClose(true));
+ 
+-		const btnCancel = veT`<button class="ve-btn ve-btn-default ve-fltr__btn-close">Cancel</button>`
++		const btnCancel = veT`<button class="ve-btn ve-btn-default ve-fltr__btn-close">${_tZhTw("Cancel")}</button>`
+ 			.vee.onn("click", () => this._modalMeta.doClose(false));
+ 
+ 		veT(this._modalMeta.eleModal)`<div class="ve-split ve-mb-2 ve-mt-2 ve-flex-v-center ve-mobile-sm__flex-col">
+ 			<div class="ve-flex-v-baseline ve-mobile-sm__flex-col">
+-				<h4 class="ve-m-0 ve-mr-2 ve-mobile-sm__mb-2">Filters</h4>
++				<h4 class="ve-m-0 ve-mr-2 ve-mobile-sm__mb-2">${_tZhTw("Filters")}</h4>
+ 				${this._metaIptSearch.wrp.vee.addClass("ve-mobile-sm__mb-2")}
+ 			</div>
+ 			<div class="ve-flex-v-center ve-mobile-sm__flex-col">
+ 				<div class="ve-flex-v-center ve-mobile-sm__m-1">
+-					<div class="ve-mr-2">Combine as</div>
++					<div class="ve-mr-2">${_tZhTw("Combine as")}</div>
+ 					${wrpBtnCombineFilters}
+ 				</div>
+ 				<div class="ve-flex-v-center ve-mobile-sm__m-1">
+@@ -360,21 +362,21 @@ export class FilterBox extends ProxyBase {
+ 	}
+ 
+ 	async _pOpenSettingsModal () {
+-		const {eleModalInner} = await UiUtil.pGetShowModal({title: "Settings"});
++		const {eleModalInner} = await UiUtil.pGetShowModal({title: _tZhTw("Settings")});
+ 
+-		UiUtil.getAddModalRowCb(eleModalInner, "Deselect Prerelease Content Sources by Default", this._meta, "isPrereleaseDefaultHidden");
+-		UiUtil.getAddModalRowCb(eleModalInner, "Deselect Homebrew Sources by Default", this._meta, "isBrewDefaultHidden");
++		UiUtil.getAddModalRowCb(eleModalInner, _tZhTw("Deselect Prerelease Content Sources by Default"), this._meta, "isPrereleaseDefaultHidden");
++		UiUtil.getAddModalRowCb(eleModalInner, _tZhTw("Deselect Homebrew Sources by Default"), this._meta, "isBrewDefaultHidden");
+ 
+ 		UiUtil.addModalSep(eleModalInner);
+ 
+-		UiUtil.getAddModalRowHeader(eleModalInner, "Hide summary for filter...", {helpText: "The summary is the small red and blue button panel which appear below the search bar."});
+-		this._filters.forEach(f => UiUtil.getAddModalRowCb(eleModalInner, f.header, this._minisHidden, f.header));
++		UiUtil.getAddModalRowHeader(eleModalInner, _tZhTw("Hide summary for filter..."), {helpText: _tZhTw("The summary is the small red and blue button panel which appear below the search bar.")});
++		this._filters.forEach(f => UiUtil.getAddModalRowCb(eleModalInner, f._getHeaderDisplayName(), this._minisHidden, f.header));
+ 
+ 		UiUtil.addModalSep(eleModalInner);
+ 
+ 		const rowResetAlwaysSave = UiUtil.getAddModalRow(eleModalInner, "div").vee.addClass("ve-pr-2");
+-		rowResetAlwaysSave.vee.appends(`<span>Always Save on Close</span>`);
+-		veT`<button class="ve-btn ve-btn-xs ve-btn-default">Reset</button>`
++		rowResetAlwaysSave.vee.appends(`<span>${_tZhTw("Always Save on Close")}</span>`);
++		veT`<button class="ve-btn ve-btn-xs ve-btn-default">${_tZhTw("Reset")}</button>`
+ 			.vee.appendTo(rowResetAlwaysSave)
+ 			.vee.onn("click", async () => {
+ 				await StorageUtil.pRemove(FilterBox._STORAGE_KEY_ALWAYS_SAVE_UNCHANGED);
+@@ -383,13 +385,13 @@ export class FilterBox extends ProxyBase {
+ 	}
+ 
+ 	async _pOpenCombineAsModal () {
+-		const {eleModalInner} = await UiUtil.pGetShowModal({title: "Filter Combination Logic"});
+-		const btnReset = veT`<button class="ve-btn ve-btn-xs ve-btn-default">Reset</button>`
++		const {eleModalInner} = await UiUtil.pGetShowModal({title: _tZhTw("Filter Combination Logic")});
++		const btnReset = veT`<button class="ve-btn ve-btn-xs ve-btn-default">${_tZhTw("Reset")}</button>`
+ 			.vee.onn("click", () => {
+ 				Object.keys(this._combineAs).forEach(k => this._combineAs[k] = "and");
+ 				sels.forEach(sel => sel.vee.val("0"));
+ 			});
+-		UiUtil.getAddModalRowHeader(eleModalInner, "Combine filters as...", {eleRhs: btnReset});
++		UiUtil.getAddModalRowHeader(eleModalInner, _tZhTw("Combine filters as..."), {eleRhs: btnReset});
+ 		const sels = this._filters.map(f => UiUtil.getAddModalRowSel(eleModalInner, f.header, this._combineAs, f.header, ["and", "or"], {fnDisplay: (it) => it.toUpperCase()}));
+ 	}
+ 
+@@ -470,10 +472,10 @@ export class FilterBox extends ProxyBase {
+ 
+ 			if (hasChanges) {
+ 				const isSave = await InputUiUtil.pGetUserBoolean({
+-					title: "Unsaved Changes",
+-					textYesRemember: "Always Save",
+-					textYes: "Save",
+-					textNo: "Discard",
++					title: _tZhTw("Unsaved Changes"),
++					textYesRemember: _tZhTw("Always Save"),
++					textYes: _tZhTw("Save"),
++					textNo: _tZhTw("Discard"),
+ 					storageKey: FilterBox._STORAGE_KEY_ALWAYS_SAVE_UNCHANGED,
+ 					isGlobal: true,
+ 				});
+diff --git a/js/filter/filter-modal-filter-base.js b/js/filter/filter-modal-filter-base.js
+index a735417..7fed811 100644
+--- a/js/filter/filter-modal-filter-base.js
++++ b/js/filter/filter-modal-filter-base.js
+@@ -2,10 +2,12 @@ import {EVNT_VALCHANGE} from "./filter-constants.js";
+ import {UtilsBlocklist} from "../utils-blocklist/utils-blocklist.js";
+ import {FilterUtils} from "./filter-utils.js";
+ 
++const _tZhTwModalFilter = text => globalThis.I18nZhTwSite?.tEnglish(text) ?? text;
++
+ /** @abstract */
+ export class ModalFilterBase {
+ 	static _getFilterColumnHeaders (btnMeta) {
+-		return btnMeta.map((it, i) => veT`<button class="ve-col-${it.width} ${i === 0 ? "ve-pl-0" : i === btnMeta.length ? "ve-pr-0" : ""} ${it.disabled ? "" : "sort"} ve-btn ve-btn-default ve-btn-xs" ${it.disabled ? "" : `data-sort="${it.sort}"`} ${it.title ? `title="${it.title}"` : ""} ${it.disabled ? "disabled" : ""}>${it.text}</button>`);
++		return btnMeta.map((it, i) => veT`<button class="ve-col-${it.width} ${i === 0 ? "ve-pl-0" : i === btnMeta.length ? "ve-pr-0" : ""} ${it.disabled ? "" : "sort"} ve-btn ve-btn-default ve-btn-xs" ${it.disabled ? "" : `data-sort="${it.sort}"`} ${it.title ? `title="${_tZhTwModalFilter(it.title)}"` : ""} ${it.disabled ? "disabled" : ""}>${_tZhTwModalFilter(it.text)}</button>`);
+ 	}
+ 
+ 	/**
+@@ -63,10 +65,10 @@ export class ModalFilterBase {
+ 
+ 		await this._pInit();
+ 
+-		const ovlLoading = veT`<div class="ve-w-100 ve-h-100 ve-flex-vh-center"><i class="ve-dnd-font ve-muted">Loading...</i></div>`.vee.appendTo(wrp);
++		const ovlLoading = veT`<div class="ve-w-100 ve-h-100 ve-flex-vh-center"><i class="ve-dnd-font ve-muted">${_tZhTwModalFilter("Loading...")}</i></div>`.vee.appendTo(wrp);
+ 
+-		const iptSearch = (opts.iptSearch || veT`<input class="ve-form-control ve-lst__search ve-lst__search--no-border-h ve-h-100" type="search" placeholder="Search...">`).vee.disableSpellcheck();
+-		const btnReset = opts.btnReset || veT`<button class="ve-btn ve-btn-default">Reset</button>`;
++		const iptSearch = (opts.iptSearch || veT`<input class="ve-form-control ve-lst__search ve-lst__search--no-border-h ve-h-100" type="search" placeholder="${_tZhTwModalFilter("Search...")}">`).vee.disableSpellcheck();
++		const btnReset = opts.btnReset || veT`<button class="ve-btn ve-btn-default">${_tZhTwModalFilter("Reset")}</button>`;
+ 		const dispNumVisible = veT`<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>`;
+ 
+ 		const wrpIptSearch = veT`<div class="ve-w-100 ve-relative">
+@@ -81,7 +83,7 @@ export class ModalFilterBase {
+ 
+ 		const wrpFormHeaders = veT`<div class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink"></div>`;
+ 		const cbSelAll = opts.isBuildUi || opts.isNoSelect || this._isRadio ? null : veT`<input type="checkbox">`;
+-		const btnSendAllToRight = opts.isBuildUi ? veT`<button class="ve-btn ve-btn-xxs ve-btn-default ve-col-1" title="Add All"><span class="glyphicon glyphicon-arrow-right"></span></button>` : null;
++		const btnSendAllToRight = opts.isBuildUi ? veT`<button class="ve-btn ve-btn-xxs ve-btn-default ve-col-1" title="${_tZhTwModalFilter("Add All")}"><span class="glyphicon glyphicon-arrow-right"></span></button>` : null;
+ 
+ 		if (!opts.isBuildUi && !opts.isNoSelect) {
+ 			if (this._isRadio) wrpFormHeaders.vee.appends(`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-0-5 ve-flex-vh-center" disabled></label>`);
+@@ -97,7 +99,7 @@ export class ModalFilterBase {
+ 		const wrpForm = veT`<div class="ve-flex-col ve-w-100 ve-mb-1">${wrpFormTop}${wrpFormBottom}${wrpFormHeaders}</div>`;
+ 		const wrpList = this._getWrpList();
+ 
+-		const btnConfirm = opts.isBuildUi ? null : veT`<button class="ve-btn ve-btn-default">Confirm</button>`;
++		const btnConfirm = opts.isBuildUi ? null : veT`<button class="ve-btn ve-btn-default">${_tZhTwModalFilter("Confirm")}</button>`;
+ 
+ 		this._list = new List({
+ 			iptSearch,
+@@ -293,7 +295,7 @@ export class ModalFilterBase {
+ 			isHeight100: true,
+ 			isWidth100: true,
+ 			isUncappedWidth: globalThis.styleSwitcher?.getIsWideMode(),
+-			title: `Filter/Search for ${this._modalTitle}`,
++			title: globalThis.I18nZhTwSite?.t("filter.searchFor", "Filter/Search for {title}", {title: _tZhTwModalFilter(this._modalTitle)}) ?? `Filter/Search for ${this._modalTitle}`,
+ 			cbClose: (isDataEntered) => {
+ 				if (this._filterCache) this._filterCache.wrpModalInner.vee.detach();
+ 				if (!isDataEntered) resolve([]);
+diff --git a/js/filter/filter/filter-filter-ability-score.js b/js/filter/filter/filter-filter-ability-score.js
+index 53a8047..56ea4e1 100644
+--- a/js/filter/filter/filter-filter-ability-score.js
++++ b/js/filter/filter/filter-filter-ability-score.js
+@@ -86,7 +86,7 @@ export class AbilityScoreFilter extends FilterBase {
+ 			tag: "button",
+ 			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-fltr__h-btn--clear ve-w-100`,
+ 			click: () => this._doSetPillsClear(),
+-			html: "Clear",
++			html: globalThis.I18nZhTwContent ? "清除" : "Clear",
+ 		});
+ 
+ 		const wrpStateBtnsOuter = veE({
+@@ -119,7 +119,7 @@ export class AbilityScoreFilter extends FilterBase {
+ 
+ 			const htmlSummary = [
+ 				cur._totals?.yes
+-					? `<span class="ve-fltr__summary_item ve-fltr__summary_item--include" title="${cur._totals.yes} hidden &quot;required&quot; tags">${cur._totals.yes}</span>`
++					? `<span class="ve-fltr__summary_item ve-fltr__summary_item--include" title="${globalThis.I18nZhTwContent ? `${cur._totals.yes} 個隱藏的「必要」標籤` : `${cur._totals.yes} hidden &quot;required&quot; tags`}">${cur._totals.yes}</span>`
+ 					: null,
+ 			].filter(Boolean).join("");
+ 			veE({ele: wrpSummary, html: htmlSummary}).vee.toggle(this._uiMeta.isHidden);
+@@ -164,11 +164,11 @@ export class AbilityScoreFilter extends FilterBase {
+ 							veE({
+ 								tag: "div",
+ 								clazz: "ve-mr-3 ve-text-right ve-fltr__label-ability-score ve-no-shrink ve-no-grow",
+-								txt: Parser.attAbvToFull(it.ability),
++								txt: globalThis.I18nZhTwContent?.getAbility(it.ability) || Parser.attAbvToFull(it.ability),
+ 							}),
+ 						],
+ 					}).vee.appendTo(this.__wrpPills),
+-					searchText: Parser.attAbvToFull(it.ability).toLowerCase(),
++					searchText: `${Parser.attAbvToFull(it.ability)} ${globalThis.I18nZhTwContent?.getAbility(it.ability) || ""}`.toLowerCase(),
+ 				};
+ 			}
+ 
+@@ -238,7 +238,7 @@ export class AbilityScoreFilter extends FilterBase {
+ 			tag: "div",
+ 			clazz: `ve-fltr__mini-pill ${this._filterBox.isMinisHidden(this.header) ? "ve-hidden" : ""}`,
+ 			txt: item.getMiniPillDisplayText(),
+-			title: `Filter: ${this._getHeaderDisplayName()}`,
++			title: `${globalThis.I18nZhTwContent ? "篩選" : "Filter"}：${this._getHeaderDisplayName()}`,
+ 			click: () => {
+ 				this._state[item.uid] = PILL_STATE__IGNORE;
+ 				this._filterBox.fireChangeEvent();
+@@ -695,7 +695,7 @@ export class AbilityScoreFilter extends FilterBase {
+ 				const item = this._items.find(item => item.uid === k);
+ 				if (!item) return null; // Should never occur
+ 
+-				if (isPlainText) return `${v === PILL_STATE__NO ? "not " : ""}${item.getMiniPillDisplayText()}`;
++				if (isPlainText) return `${v === PILL_STATE__NO ? (globalThis.I18nZhTwContent ? "非" : "not ") : ""}${item.getMiniPillDisplayText()}`;
+ 
+ 				return `<span class="ve-fltr__disp-state ${getPillStateDisplayClass(v)}">${item.getMiniPillDisplayText()}</span>`;
+ 			})
+@@ -703,9 +703,9 @@ export class AbilityScoreFilter extends FilterBase {
+ 			.join(", ");
+ 
+ 		if (!ptState) {
+-			if (isPlainText) return [`${this._getHeaderDisplayName()}: (cleared)`];
++			if (isPlainText) return [`${this._getHeaderDisplayName()}: ${globalThis.I18nZhTwContent ? "（已清除）" : "(cleared)"}`];
+ 			return [
+-				`${this._getDisplayStatePart_getHeader({isPlainText})}<span class="ve-italic ve-fltr__disp-state ve-fltr__disp-state--ignore">(cleared)</span>`,
++				`${this._getDisplayStatePart_getHeader({isPlainText})}<span class="ve-italic ve-fltr__disp-state ve-fltr__disp-state--ignore">${globalThis.I18nZhTwContent ? "（已清除）" : "(cleared)"}</span>`,
+ 			];
+ 		}
+ 
+@@ -750,14 +750,15 @@ AbilityScoreFilter.FilterItem = class {
+ 	get uid () { return this._uid; }
+ 
+ 	getMiniPillDisplayText () {
+-		if (this._isAnyIncrease) return `+Any ${Parser.attAbvToFull(this._ability)}`;
+-		if (this._isAnyDecrease) return `\u2212Any ${Parser.attAbvToFull(this._ability)}`;
+-		return `${UiUtil.intToBonus(this._modifier, {isPretty: true})} ${Parser.attAbvToFull(this._ability)}`;
++		const ability = globalThis.I18nZhTwContent?.getAbility(this._ability) || Parser.attAbvToFull(this._ability);
++		if (this._isAnyIncrease) return `+${globalThis.I18nZhTwContent ? "任意" : "Any"} ${ability}`;
++		if (this._isAnyDecrease) return `\u2212${globalThis.I18nZhTwContent ? "任意" : "Any"} ${ability}`;
++		return `${UiUtil.intToBonus(this._modifier, {isPretty: true})} ${ability}`;
+ 	}
+ 
+ 	getPillDisplayHtml () {
+-		if (this._isAnyIncrease) return `+Any`;
+-		if (this._isAnyDecrease) return `\u2212Any`;
++		if (this._isAnyIncrease) return `+${globalThis.I18nZhTwContent ? "任意" : "Any"}`;
++		if (this._isAnyDecrease) return `\u2212${globalThis.I18nZhTwContent ? "任意" : "Any"}`;
+ 		return UiUtil.intToBonus(this._modifier, {isPretty: true});
+ 	}
+ };
+diff --git a/js/filter/filter/filter-filter-base.js b/js/filter/filter/filter-filter-base.js
+index e1ba181..64fe0cd 100644
+--- a/js/filter/filter/filter-filter-base.js
++++ b/js/filter/filter/filter-filter-base.js
+@@ -32,11 +32,15 @@ export class FilterBase extends BaseComponent {
+ 	}
+ 
+ 	_getHeaderDisplayName () {
+-		return this._headerDisplayName || this.header;
++		const displayName = this._headerDisplayName || this.header;
++		return globalThis.I18nZhTwSite?.tEnglish(displayName) ?? displayName;
+ 	}
+ 
+ 	_getRenderedHeader () {
+-		return `<span ${this._headerHelp ? `title="${this._headerHelp.escapeQuotes()}" class="ve-help-subtle"` : ""}>${this._getHeaderDisplayName()}</span>`;
++		const headerHelp = this._headerHelp == null
++			? null
++			: (globalThis.I18nZhTwSite?.tEnglish(this._headerHelp) ?? this._headerHelp);
++		return `<span ${headerHelp ? `title="${headerHelp.escapeQuotes()}" class="ve-help-subtle"` : ""}>${this._getHeaderDisplayName()}</span>`;
+ 	}
+ 
+ 	set filterBox (it) { this._filterBox = it; }
+diff --git a/js/filter/filter/filter-filter-generic.js b/js/filter/filter/filter-filter-generic.js
+index f1880f8..125f963 100644
+--- a/js/filter/filter/filter-filter-generic.js
++++ b/js/filter/filter/filter-filter-generic.js
+@@ -3,6 +3,8 @@ import {FilterBase} from "./filter-filter-base.js";
+ import {MISC_FILTER_VALUE__BASIC_RULES_2014, MISC_FILTER_VALUE__BASIC_RULES_2024, MISC_FILTER_VALUE__SRD_5_1, MISC_FILTER_VALUE__SRD_5_2, PILL_STATE__IGNORE, PILL_STATE__NO, PILL_STATE__YES, PILL_STATES, getPillStateDisplayClass} from "../filter-constants.js";
+ import {FilterUtils} from "../filter-utils.js";
+ 
++const _tZhTwFilter = text => globalThis.I18nZhTwSite?.tEnglish(text) ?? text;
++
+ class FilterTransientOptions {
+ 	/**
+ 	 * @param opts Options object.
+@@ -545,13 +547,15 @@ export class Filter extends FilterBase {
+ 	}
+ 
+ 	_getDisplayText (item) {
+-		return this._displayFn ? this._displayFn(item.item, item) : item.item;
++		const displayText = this._displayFn ? this._displayFn(item.item, item) : item.item;
++		return globalThis.I18nZhTwSite?.tEnglish(displayText) ?? displayText;
+ 	}
+ 
+ 	_getDisplayTextMini (item) {
+-		return this._displayFnMini
++		const displayText = this._displayFnMini
+ 			? this._displayFnMini(item.item, item)
+ 			: this._getDisplayText(item);
++		return globalThis.I18nZhTwSite?.tEnglish(displayText) ?? displayText;
+ 	}
+ 
+ 	_getPill (item) {
+@@ -567,7 +571,8 @@ export class Filter extends FilterBase {
+ 
+ 		this._getPill_bindHookState({btnPill, item});
+ 
+-		item.searchText = displayText.toLowerCase();
++		const displayTextCanonical = this._displayFn ? this._displayFn(item.item, item) : item.item;
++		item.searchText = `${displayText} ${displayTextCanonical}`.toLowerCase();
+ 
+ 		return btnPill;
+ 	}
+@@ -696,23 +701,23 @@ export class Filter extends FilterBase {
+ 			tag: "button",
+ 			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-fltr__h-btn--all ve-w-100`,
+ 			click: evt => this._doSetPillsAll({isIgnoreSearchTermParent: !!evt.shiftKey}),
+-			html: "All",
++			html: _tZhTwFilter("All"),
+ 		});
+ 		const btnClear = veE({
+ 			tag: "button",
+ 			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-fltr__h-btn--clear ve-w-100`,
+ 			click: evt => this._doSetPillsClear({isIgnoreSearchTermParent: !!evt.shiftKey}),
+-			html: "Clear",
++			html: _tZhTwFilter("Clear"),
+ 		});
+ 		const btnNone = veE({
+ 			tag: "button",
+ 			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-fltr__h-btn--none ve-w-100`,
+ 			click: evt => this._doSetPillsNone({isIgnoreSearchTermParent: !!evt.shiftKey}),
+-			html: "None",
++			html: _tZhTwFilter("None"),
+ 		});
+ 		this._compSearch._addHookBase("searchTermParent", () => {
+ 			const tooltipIgnoreSearch = this._compSearch._state.searchTermParent
+-				? `SHIFT to Ignore Search`
++				? _tZhTwFilter(`SHIFT to Ignore Search`)
+ 				: null;
+ 			btnAll.vee.tooltip(tooltipIgnoreSearch);
+ 			btnClear.vee.tooltip(tooltipIgnoreSearch);
+@@ -723,7 +728,7 @@ export class Filter extends FilterBase {
+ 			tag: "button",
+ 			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"} ve-w-100`,
+ 			click: () => this._doSetPinsDefault(),
+-			html: "Default",
++			html: _tZhTwFilter("Default"),
+ 		});
+ 
+ 		const wrpStateBtnsOuter = veE({
+diff --git a/js/filter/filter/filter-filter-range.js b/js/filter/filter/filter-filter-range.js
+index b8d5f52..227920c 100644
+--- a/js/filter/filter/filter-filter-range.js
++++ b/js/filter/filter/filter-filter-range.js
+@@ -360,7 +360,7 @@ export class RangeFilter extends FilterBase {
+ 	_getDisplayText (value, {isBeyondMax = false, isTooltip = false} = {}) {
+ 		value = `${this._labels ? this._labelDisplayFn ? this._labelDisplayFn(this._labels[value]) : this._labels[value] : (isTooltip && this._displayFnTooltip) ? this._displayFnTooltip(value) : this._displayFn ? this._displayFn(value) : value}${isBeyondMax ? "+" : ""}`;
+ 		if (this._suffix) value += this._suffix;
+-		return value;
++		return globalThis.I18nZhTwSite?.tEnglish(value) ?? value;
+ 	}
+ 
+ 	/**
+diff --git a/js/filter/filter/filter-filter-source.js b/js/filter/filter/filter-filter-source.js
+index ddd1dcf..a5461f4 100644
+--- a/js/filter/filter/filter-filter-source.js
++++ b/js/filter/filter/filter-filter-source.js
+@@ -3,6 +3,8 @@ import {Filter} from "./filter-filter-generic.js";
+ import {MISC_FILTER_VALUE__BASIC_RULES_2014, MISC_FILTER_VALUE__BASIC_RULES_2024, MISC_FILTER_VALUE__SRD_5_1, MISC_FILTER_VALUE__SRD_5_2, PILL_STATE__IGNORE, PILL_STATE__NO, PILL_STATE__YES, SOURCE_HEADER} from "../filter-constants.js";
+ import {PageFilterBase} from "../filter-page-filter-base.js";
+ 
++const _tZhTwSourceFilter = text => globalThis.I18nZhTwSite?.tEnglish(text) ?? text;
++
+ export class SourceFilterItem extends FilterItem {
+ 	static TYPE = "source";
+ 
+@@ -56,11 +58,11 @@ export class SourceFilter extends Filter {
+ 		const group = SourceUtil.getFilterGroup(item);
+ 		switch (group) {
+ 			case SourceUtil.FILTER_GROUP_STANDARD: return `<span class="glyphicon glyphicon-book"></span>`;
+-			case SourceUtil.FILTER_GROUP_UNIVERSES_BEYOND: return `<span title="(Universes Beyond)" class="glyphicon glyphicon-globe"></span>`;
+-			case SourceUtil.FILTER_GROUP_NON_STANDARD: return `<span title="(Other)" class="glyphicon glyphicon-file"></span>`;
+-			case SourceUtil.FILTER_GROUP_PARTNERED: return `<span title="(Partnered)" class="glyphicon glyphicon-star-empty"></span>`;
+-			case SourceUtil.FILTER_GROUP_PRERELEASE: return `<span title="(Prerelease)" class="glyphicon glyphicon-wrench"></span>`;
+-			case SourceUtil.FILTER_GROUP_HOMEBREW: return `<span title="(Homebrew)" class="glyphicon glyphicon-glass"></span>`;
++			case SourceUtil.FILTER_GROUP_UNIVERSES_BEYOND: return `<span title="（異界宇宙）" class="glyphicon glyphicon-globe"></span>`;
++			case SourceUtil.FILTER_GROUP_NON_STANDARD: return `<span title="${_tZhTwSourceFilter("(Other)")}" class="glyphicon glyphicon-file"></span>`;
++			case SourceUtil.FILTER_GROUP_PARTNERED: return `<span title="${_tZhTwSourceFilter("(Partnered)")}" class="glyphicon glyphicon-star-empty"></span>`;
++			case SourceUtil.FILTER_GROUP_PRERELEASE: return `<span title="${_tZhTwSourceFilter("(Prerelease)")}" class="glyphicon glyphicon-wrench"></span>`;
++			case SourceUtil.FILTER_GROUP_HOMEBREW: return `<span title="${_tZhTwSourceFilter("(Homebrew)")}" class="glyphicon glyphicon-glass"></span>`;
+ 			default: throw new Error(`Unhandled source filter group "${group}"`);
+ 		}
+ 	}
+@@ -135,16 +137,16 @@ export class SourceFilter extends Filter {
+ 		const btnPartnered = veE({
+ 			tag: "button",
+ 			clazz: `ve-btn ve-btn-default ve-w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
+-			title: `SHIFT to add to existing selection; ALT to intersect`,
+-			html: `Partnered`,
++			title: `Shift 加入現有選取，Alt 取交集`,
++			html: `合作內容`,
+ 			click: evt => this._doSetPinsPartnered({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt)}),
+ 		});
+ 
+ 		const btnHomebrew = veE({
+ 			tag: "button",
+ 			clazz: `ve-btn ve-btn-default ve-w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
+-			title: `SHIFT to add to existing selection; ALT to intersect`,
+-			html: `Homebrew`,
++			title: `Shift 加入現有選取，Alt 取交集`,
++			html: `自製內容`,
+ 			click: evt => this._doSetPinsHomebrew({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt)}),
+ 		});
+ 
+@@ -244,14 +246,14 @@ export class SourceFilter extends Filter {
+ 			clazz: `ve-btn ve-btn-default ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
+ 			html: `<span class="glyphicon glyphicon-option-vertical"></span>`,
+ 			click: evt => ContextUtil.pOpenMenu(evt, menu),
+-			title: "Other Options",
++			title: _tZhTwSourceFilter("Other Options"),
+ 		});
+ 
+ 		const btnOnlyPrimary = veE({
+ 			tag: "button",
+ 			clazz: `ve-btn ve-btn-default ve-w-100 ${opts.isMulti ? "ve-btn-xxs" : "ve-btn-xs"}`,
+-			html: `Include References`,
+-			title: `Consider entities as belonging to every source they are referenced in (i.e. in bolded/italic text), in addition to their primary source`,
++			html: _tZhTwSourceFilter(`Include References`),
++			title: _tZhTwSourceFilter(`Consider entities as belonging to every source they are referenced in (i.e. in bolded/italic text), in addition to their primary source`),
+ 			click: () => this._meta.isIncludeReferenceSources = !this._meta.isIncludeReferenceSources,
+ 		});
+ 		const hkIsIncludeOtherSources = () => {
+@@ -468,7 +470,7 @@ export class SourceFilter extends Filter {
+ 		const btnCancel = veE({
+ 			tag: "button",
+ 			clazz: `ve-btn ve-btn-xs ve-btn-default ve-px-1`,
+-			html: "Cancel",
++			html: _tZhTwSourceFilter("Cancel"),
+ 			click: () => {
+ 				grpBtnsInactive.vee.show();
+ 				wrpWrpSlider.vee.hide();
+@@ -479,7 +481,7 @@ export class SourceFilter extends Filter {
+ 		const btnConfirm = veE({
+ 			tag: "button",
+ 			clazz: `ve-btn ve-btn-xs ve-btn-default ve-px-1`,
+-			html: "Confirm",
++			html: _tZhTwSourceFilter("Confirm"),
+ 			click: () => {
+ 				grpBtnsInactive.vee.show();
+ 				wrpWrpSlider.vee.hide();
+@@ -503,7 +505,7 @@ export class SourceFilter extends Filter {
+ 		const btnShowSlider = veE({
+ 			tag: "button",
+ 			clazz: `ve-btn ve-btn-xxs ve-btn-default ve-px-1`,
+-			html: "Select by Date",
++			html: _tZhTwSourceFilter("Select by Date"),
+ 			click: () => {
+ 				grpBtnsInactive.vee.hide();
+ 				wrpWrpSlider.vee.show();
+@@ -533,7 +535,7 @@ export class SourceFilter extends Filter {
+ 		const btnClear = veE({
+ 			tag: "button",
+ 			clazz: `ve-btn ve-btn-xxs ve-btn-default ve-px-1`,
+-			html: "Clear",
++			html: _tZhTwSourceFilter("Clear"),
+ 			click: () => {
+ 				const nxtState = {};
+ 				Object.keys(this._state)
+@@ -589,7 +591,7 @@ export class SourceFilter extends Filter {
+ 		const btnClear = veE({
+ 			tag: "button",
+ 			clazz: `ve-btn ve-btn-xxs ve-btn-default ve-px-1`,
+-			html: "Clear",
++			html: _tZhTwSourceFilter("Clear"),
+ 			click: () => {
+ 				const nxtState = {};
+ 				Object.keys(this._state)
+diff --git a/js/homecrafts.js b/js/homecrafts.js
+index 2a23407..6e557d4 100644
+--- a/js/homecrafts.js
++++ b/js/homecrafts.js
+@@ -4,16 +4,16 @@ class HomeCraftsSublistManager extends SublistManager {
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Type",
++				name: "類型",
+ 				css: "ve-col-2 ve-pl-0 ve-pr-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-7 ve-px-1",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Category",
++				name: "類別",
+ 				css: "ve-col-3 ve-pl-1 ve-pr-0 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+@@ -21,13 +21,14 @@ class HomeCraftsSublistManager extends SublistManager {
+ 	}
+ 
+ 	pGetSublistItem (ent, hash) {
+-		const type = Parser.getPropDisplayName(ent.__prop);
++		const type = I18nZhTwContent.getHomecraftType(ent.__prop, {isBilingual: true});
+ 		const typeShort = PageFilterHomeCrafts.getTypeAbbreviation(ent.__prop);
+-		const category = (ent.patternType || "Unknown").toTitleCase();
++		const category = I18nZhTwContent.getHomecraftPatternType(ent.patternType, {isBilingual: true});
++		const displayName = I18nZhTwContent.getBilingualName(ent);
+ 
+ 		const cellsText = [
+ 			new SublistCell({text: typeShort, title: type}),
+-			ent.name,
++			displayName,
+ 			category,
+ 		];
+ 
+@@ -42,7 +43,7 @@ class HomeCraftsSublistManager extends SublistManager {
+ 		const listItem = new ListItem({
+ 			id: hash,
+ 			ele,
+-			name: ent.name,
++			name: displayName,
+ 			values: {
+ 				...ListItem.getCommonValues(ent),
+ 				category,
+@@ -73,9 +74,9 @@ class HomeCraftsPage extends ListPage {
+ 			dataProps: ["crochetPattern"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "crochet pattern",
+-				namePlural: "crochet patterns",
+-				pageTitle: "Crochet Patterns Book View",
++				nameSingular: "鉤織圖樣",
++				namePlural: "鉤織圖樣",
++				pageTitle: "鉤織圖樣書籍檢視",
+ 			},
+ 		});
+ 	}
+@@ -88,13 +89,14 @@ class HomeCraftsPage extends ListPage {
+ 
+ 		const hash = UrlUtil.autoEncodeHash(ent);
+ 		const source = Parser.sourceJsonToAbv(ent.source);
+-		const type = Parser.getPropDisplayName(ent.__prop);
++		const type = I18nZhTwContent.getHomecraftType(ent.__prop, {isBilingual: true});
+ 		const typeShort = PageFilterHomeCrafts.getTypeAbbreviation(ent.__prop);
+-		const category = (ent.patternType || "Unknown").toTitleCase();
++		const category = I18nZhTwContent.getHomecraftPatternType(ent.patternType, {isBilingual: true});
++		const displayName = I18nZhTwContent.getBilingualName(ent);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-col-1-5 ve-pl-0 ve-pr-1 ve-text-center" title="${type.qq()}">${typeShort}</span>
+-			<span class="ve-col-5 ve-bold ve-px-1">${ent.name}</span>
++			<span class="ve-col-5 ve-bold ve-px-1">${displayName}</span>
+ 			<span class="ve-col-3-5 ve-px-1 ve-text-center">${category}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
+ 		</a>`;
+@@ -102,7 +104,7 @@ class HomeCraftsPage extends ListPage {
+ 		const listItem = new ListItem({
+ 			id: ixEnt,
+ 			ele: eleLi,
+-			name: ent.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				...ListItem.getCommonValues(ent),
+@@ -135,9 +137,9 @@ class HomeCraftsPage extends ListPage {
+ 				if (hasAnyFluff) wrpType.vee.addClass("ve-mb-1").vee.insertBefore(this._wrpTabs);
+ 				else wrpType.vee.addClass("ve-pl-7p").vee.prependTo(this._wrpTabs);
+ 
+-				veT`<span class="ve-roller">${Parser.getPropDisplayName(ent.__prop)}</span>`
++				veT`<span class="ve-roller">${I18nZhTwContent.getHomecraftType(ent.__prop, {isBilingual: true})}</span>`
+ 					.vee.onn("click", () => {
+-						this._filterBox.setFromValues({"Type": {[ent.__prop]: 1}});
++						this._filterBox.setFromValues({"類型": {[ent.__prop]: 1}});
+ 						this.handleFilterChange();
+ 					})
+ 					.vee.appendTo(wrpType);
+diff --git a/js/index.js b/js/index.js
+index a6e7958..02cf6ba 100644
+--- a/js/index.js
++++ b/js/index.js
+@@ -21,7 +21,7 @@ class IndexPage {
+ 			.forEach(lnk => lnk.vee.attr("href", `${lnk.vee.attr("href")}?v=${VERSION_NUMBER}_${Date.now()}`));
+ 
+ 		window.__cmp2 = () => {
+-			alert("This only works on a live version of the site!");
++			alert(UiUtil.getTranslatedText("This only works on a live version of the site!"));
+ 		};
+ 	}
+ 
+diff --git a/js/items.js b/js/items.js
+index 20eb2cd..98ebed6 100644
+--- a/js/items.js
++++ b/js/items.js
+@@ -1,5 +1,7 @@
+ import {RenderItems} from "./render-items.js";
+-import {ListRowRendererItems} from "./items/items-listrow.js";
++import {ListRowRendererItems} from "./items/items-listrow.js?v=zh-tw-28";
++
++const {I18nZhTwContent} = globalThis;
+ 
+ class ItemsSublistManager extends SublistManager {
+ 	constructor () {
+@@ -30,22 +32,22 @@ class ItemsSublistManager extends SublistManager {
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-6 ve-pl-0 ve-pr-1",
+ 				colStyle: "",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Weight",
++				name: "重量",
+ 				css: "ve-text-center ve-col-2 ve-px-1",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Cost",
++				name: "價格",
+ 				css: "ve-text-center ve-col-2 ve-px-1",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Number",
++				name: "數量",
+ 				css: "ve-text-center ve-col-2 ve-pl-1 ve-pr-0",
+ 				colStyle: "text-center",
+ 			}),
+@@ -53,8 +55,9 @@ class ItemsSublistManager extends SublistManager {
+ 	}
+ 
+ 	pGetSublistItem (item, hash, {count = 1} = {}) {
++		const displayName = I18nZhTwContent.getBilingualName(item);
+ 		const cellsText = [
+-			item.name,
++			displayName,
+ 			item._l_weight || "\u2014",
+ 			item._l_value,
+ 		];
+@@ -111,10 +114,11 @@ class ItemsSublistManager extends SublistManager {
+ 		const listItem = new ListItem({
+ 			id: hash,
+ 			ele,
+-			name: item.name,
++			name: displayName,
+ 			values: {
+ 				source: Parser.sourceJsonToAbv(item.source),
+ 				...ListItem.getCommonValues(item),
++				englishName: I18nZhTwContent.getCanonicalName(item),
+ 				weight: Parser.weightValueToNumber(item.weight),
+ 				cost: item.value || 0,
+ 			},
+@@ -246,9 +250,9 @@ class ItemsPage extends ListPage {
+ 			},
+ 
+ 			tableViewOptions: {
+-				title: "Items",
++				title: "物品",
+ 				colTransforms: {
+-					name: UtilsTableview.COL_TRANSFORM_NAME,
++					name: {name: "名稱", transform: (item) => I18nZhTwContent.getBilingualName(item)},
+ 					source: UtilsTableview.COL_TRANSFORM_SOURCE,
+ 					page: UtilsTableview.COL_TRANSFORM_PAGE,
+ 					rarity: {name: "Rarity"},
+@@ -294,6 +298,7 @@ class ItemsPage extends ListPage {
+ 	getListItem (item, itI, isExcluded, hash) {
+ 		if (Renderer.item.isExcluded(item, {hash})) return null;
+ 		if (item.noDisplay) return null;
++		const displayName = I18nZhTwContent.getBilingualName(item);
+ 
+ 		this._pageFilter.mutateAndAddToFilters(item, isExcluded);
+ 
+@@ -314,10 +319,11 @@ class ItemsPage extends ListPage {
+ 			const listItem = new ListItem({
+ 				id: itI,
+ 				fnGetEle,
+-				name: item.name,
++				name: displayName,
+ 				values: {
+ 					source,
+ 					...ListItem.getCommonValues(item),
++					englishName: I18nZhTwContent.getCanonicalName(item),
+ 					type,
+ 					cost: item.value || 0,
+ 					weight: Parser.weightValueToNumber(item.weight),
+@@ -344,10 +350,11 @@ class ItemsPage extends ListPage {
+ 			const listItem = new ListItem({
+ 				id: itI,
+ 				fnGetEle,
+-				name: item.name,
++				name: displayName,
+ 				values: {
+ 					source,
+ 					...ListItem.getCommonValues(item),
++					englishName: I18nZhTwContent.getCanonicalName(item),
+ 					type,
+ 					rarity: item.rarity,
+ 					attunement: item._attunementCategory !== VeCt.STR_NO_ATTUNEMENT,
+@@ -363,7 +370,7 @@ class ItemsPage extends ListPage {
+ 		}
+ 	}
+ 
+-	_tabTitleStats = "Item";
++	_tabTitleStats = UiUtil.getTranslatedText("Item");
+ 
+ 	_renderStats_doBuildStatsTab ({ent}) {
+ 		this._pgContent.vee.empty().vee.appends(RenderItems.getRenderedItem(ent));
+@@ -478,8 +485,8 @@ class ItemsPage extends ListPage {
+ 		super._addData(data);
+ 
+ 		// Populate table labels
+-		veEs(`.ve-itm__side-label--mundane`).vee.txt("Mundane");
+-		veEs(`.ve-itm__side-label--magic`).vee.txt("Magic");
++		veEs(`.ve-itm__side-label--mundane`).vee.txt(UiUtil.getTranslatedText("Mundane"));
++		veEs(`.ve-itm__side-label--magic`).vee.txt(UiUtil.getTranslatedText("Magic"));
+ 	}
+ 
+ 	_addListItem (listItem) {
+diff --git a/js/items/items-listrow.js b/js/items/items-listrow.js
+index 249cff7..a64ccc3 100644
+--- a/js/items/items-listrow.js
++++ b/js/items/items-listrow.js
+@@ -53,7 +53,7 @@ export class ListRowRendererItems {
+ 
+ 		this._mutEleShared({item, source, hash, isExcluded, fnClick, fnContextmenu, ele, eleSource});
+ 
+-		eleName.textContent = item.name;
++		eleName.textContent = globalThis.I18nZhTwContent?.getBilingualName(item) || item.name;
+ 		eleType.textContent = type.toTitleCase();
+ 		eleValue.textContent = item._l_value;
+ 		eleWeight.textContent = item._l_weight;
+@@ -68,13 +68,13 @@ export class ListRowRendererItems {
+ 
+ 		this._mutEleShared({item, source, hash, isExcluded, fnClick, fnContextmenu, ele, eleSource});
+ 
+-		eleName.textContent = item.name;
++		eleName.textContent = globalThis.I18nZhTwContent?.getBilingualName(item) || item.name;
+ 		eleType.textContent = type.toTitleCase();
+ 		eleWeight.textContent = item._l_weight;
+ 		eleAttunement.textContent = item._attunementCategory !== VeCt.STR_NO_ATTUNEMENT ? "×" : "";
+ 		if (item.rarity) eleRarity.className += ` ve-itm__rarity-${item.rarity}`;
+-		eleRarity.title = (item.rarity || "").toTitleCase();
+-		eleRarity.textContent = Parser.itemRarityToShort(item.rarity) || "";
++		eleRarity.title = globalThis.I18nZhTwContent?.getItemRarity(item.rarity) || (item.rarity || "").toTitleCase();
++		eleRarity.textContent = globalThis.I18nZhTwContent?.getItemRarityShort(item.rarity) || Parser.itemRarityToShort(item.rarity) || "";
+ 
+ 		return ele;
+ 	}
+diff --git a/js/langdemo.js b/js/langdemo.js
+index 3d229ac..4025db8 100644
+--- a/js/langdemo.js
++++ b/js/langdemo.js
+@@ -116,7 +116,7 @@ class LangDemoUi {
+ 		const ctx = LangDemoUi._metasContext
+ 			.mergeMap(it => ({[it.iptName.vee.val().trim()]: Number(it.iptVal.vee.val()) || 0}));
+ 		const result = await parsed.pEvl(ctx, LangDemoUi.RESOLVER);
+-		if (result.isCancelled) dispOutResult.vee.txt("Cancelled!");
++		if (result.isCancelled) dispOutResult.vee.txt(UiUtil.getTranslatedText("Cancelled!"));
+ 		else dispOutResult.vee.txt(result.val == null ? `(null)` : result.val);
+ 	}
+ }
+diff --git a/js/languages.js b/js/languages.js
+index f4398e8..26bc229 100644
+--- a/js/languages.js
++++ b/js/languages.js
+@@ -22,10 +22,11 @@ class LanguagesSublistManager extends SublistManager {
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
++		const displayName = Renderer.utils.getBilingualName(it);
+ 		const cellsText = [
+-			it.name,
+-			(it.type || "\u2014").uppercaseFirst(),
+-			(it.script || "\u2014").toTitleCase(),
++			displayName,
++			it.type ? I18nZhTwContent.getLanguageType(it.type, {isBilingual: true}) : "\u2014",
++			it.script ? I18nZhTwContent.getLanguageScript(it.script, {isBilingual: true}) : "\u2014",
+ 		];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+@@ -39,7 +40,7 @@ class LanguagesSublistManager extends SublistManager {
+ 		const listItem = new ListItem({
+ 			id: hash,
+ 			ele,
+-			name: it.name,
++			name: displayName,
+ 			values: {
+ 				...ListItem.getCommonValues(it),
+ 				type: it.type || "",
+@@ -69,15 +70,18 @@ class LanguagesPage extends ListPage {
+ 			dataProps: ["language"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "language",
+-				namePlural: "languages",
+-				pageTitle: "Languages Book View",
++				nameSingular: "語言",
++				namePlural: "語言",
++				pageTitle: "語言書本檢視",
+ 			},
+ 		});
+ 	}
+ 
+ 	getListItem (it, anI, isExcluded) {
+ 		this._pageFilter.mutateAndAddToFilters(it, isExcluded);
++		const displayName = Renderer.utils.getBilingualName(it);
++		const displayType = it.type ? I18nZhTwContent.getLanguageType(it.type, {isBilingual: true}) : "\u2014";
++		const displayScript = it.script ? I18nZhTwContent.getLanguageScript(it.script, {isBilingual: true}) : "\u2014";
+ 
+ 		const eleLi = document.createElement("div");
+ 		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
+@@ -86,16 +90,16 @@ class LanguagesPage extends ListPage {
+ 		const hash = UrlUtil.autoEncodeHash(it);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+-			<span class="ve-col-6 ve-bold ve-pl-0 ve-pr-1">${it.name}</span>
+-			<span class="ve-col-2 ve-px-1 ve-text-center">${(it.type || "\u2014").uppercaseFirst()}</span>
+-			<span class="ve-col-2 ve-px-1 ve-text-center">${(it.script || "\u2014").toTitleCase()}</span>
++			<span class="ve-col-6 ve-bold ve-pl-0 ve-pr-1">${displayName}</span>
++			<span class="ve-col-2 ve-px-1 ve-text-center">${displayType}</span>
++			<span class="ve-col-2 ve-px-1 ve-text-center">${displayScript}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
+ 		</a>`;
+ 
+ 		const listItem = new ListItem({
+ 			id: anI,
+ 			ele: eleLi,
+-			name: it.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				...ListItem.getCommonValues(it),
+@@ -123,7 +127,7 @@ class LanguagesPage extends ListPage {
+ 	_renderStats_getTabMetasAdditional ({ent}) {
+ 		return [
+ 			new Renderer.utils.TabButton({
+-				label: "Fonts",
++				label: "字型（Fonts）",
+ 				fnPopulate: () => {
+ 					this._pgContent.vee.empty().vee.appends(Renderer.utils.getBorderTr());
+ 					this._pgContent.vee.appends(Renderer.utils.getNameTr(ent));
+@@ -134,7 +138,7 @@ class LanguagesPage extends ListPage {
+ 					const allFonts = [...ent.fonts || [], ...ent._fonts || []];
+ 
+ 					if (!allFonts || !allFonts.length) {
+-						td.vee.appends("<i>No fonts available.</i>");
++						td.vee.appends("<i>沒有可用的字型。</i>");
+ 						return;
+ 					}
+ 
+@@ -194,11 +198,11 @@ class LanguagesPage extends ListPage {
+ 
+ 					veT`<div class="ve-flex-col ve-w-100">
+ 						${styleFont}
+-						${selFont ? veT`<label class="ve-flex-v-center ve-mb-2"><div class="ve-mr-2">Font:</div>${selFont}</div>` : ""}
++						${selFont ? veT`<label class="ve-flex-v-center ve-mb-2"><div class="ve-mr-2">字型（Font）：</div>${selFont}</div>` : ""}
+ 						${iptSample}
+ 						${ptOutput}
+ 						<hr class="ve-hr-4">
+-						<h5 class="ve-mb-2 ve-mt-0">Downloads</h5>
++						<h5 class="ve-mb-2 ve-mt-0">下載（Downloads）</h5>
+ 						<ul class="ve-pl-5 ve-mb-0">
+ 							${allFonts.map(f => `<li><a href="${f}" target="_blank">${f.split("/").last()}</a></li>`).join("")}
+ 						</ul>

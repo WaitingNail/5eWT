@@ -1,0 +1,16 @@
+--- a/js/render.js
++++ b/js/render.js
+@@ -15403,9 +15403,10 @@
+ 					depth: depthStack.last(),
+ 				};
+ 
+-				if (obj.name) {
+-					out[obj.id].name = obj.name;
+-					out[obj.id].nameClean = metaTitleRel?.nameClean ?? Renderer.utils.TitleRelativeIndexTracker.getCleanName(obj.name);
++				const name = obj._canonicalName || obj.name;
++				if (name) {
++					out[obj.id].name = name;
++					out[obj.id].nameClean = metaTitleRel?.nameClean ?? Renderer.utils.TitleRelativeIndexTracker.getCleanName(name);
+ 				}
+ 
+ 				if (metaTitleRel != null) out[obj.id].ixTitleRel = metaTitleRel.ixTitleRel;

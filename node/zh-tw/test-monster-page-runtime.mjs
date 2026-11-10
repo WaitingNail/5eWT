@@ -40,6 +40,19 @@ assert.match(spellcastingHtml, /戲法/u);
 assert.match(spellcastingHtml, /法術位/u);
 assert.doesNotMatch(spellcastingHtml, /At will|slots|Spellcasting/iu);
 
+const warcraftFluffFile = "fluff-bestiary-wow.json";
+const warcraftFluff = await I18n.pApplyEntities({
+	prop: "monsterFluff",
+	file: warcraftFluffFile,
+	entities: readJson(`data/bestiary/${warcraftFluffFile}`).monsterFluff,
+	fnLoad: async () => readJson(`data/zh-TW/bestiary/${warcraftFluffFile}`),
+});
+const warcraftDragonFluff = warcraftFluff.find(it => it.name === "Black Dragonflight Dragon");
+assert.equal(warcraftDragonFluff._displayName, "黑龍軍團巨龍");
+assert.equal(warcraftDragonFluff._copy.name, "Black Dragonflight");
+await DataUtil.monsterFluff.pMergeCopy(warcraftFluff, warcraftDragonFluff, {isErrorOnMissing: true});
+assert.match(warcraftDragonFluff.entries[0].entries[0], /黑龍軍團巨龍/u);
+
 const bgdiaCanonical = readJson("data/bestiary/bestiary-bgdia.json");
 const bgdiaLocalized = await I18n.pApplyEntities({
 	prop: "monster",

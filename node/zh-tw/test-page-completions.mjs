@@ -71,8 +71,9 @@ for (const [i, deck] of canonicalDecks.deck.entries()) for (const [j, spread] of
  }
  ++spreads;
 }
-const feats = await I.pApplyDataFile({file: "feats.json", data: read("data/feats.json"), fnLoad: async () => read("data/zh-TW/character-options/feats.json")});
-assert.ok(han(feats.feat[26].prerequisite[0].otherSummary.entry));
-assert.ok(han(feats.feat[225].ability[0].choose.entry));
-assert.deepEqual(feats.feat[225].ability[0].choose.from, read("data/feats.json").feat[225].ability[0].choose.from);
+const canonicalFeats = read("data/feats.json");
+const feats = await I.pApplyDataFile({file: "feats.json", data: canonicalFeats, fnLoad: async () => read("data/zh-TW/character-options/feats.json")});
+assert.ok(han(feats.feat.find(it => it.name === "Blessed Warrior" && it.source === "XPHB").prerequisite[0].otherSummary.entry));
+assert.ok(han(feats.feat.find(it => it.name === "Resilient" && it.source === "PHB").ability[0].choose.entry));
+assert.deepEqual(feats.feat.find(it => it.name === "Resilient" && it.source === "PHB").ability[0].choose.from, canonicalFeats.feat.find(it => it.name === "Resilient" && it.source === "PHB").ability[0].choose.from);
 console.log(JSON.stringify({completionRecords: records.length, runtimeRecipeFields: recipeStrings, conditionDiseaseStatusEntities: 64, classCaptions, spreads, canonicalIdentitiesAndQuantityTemplates: "passed"}));

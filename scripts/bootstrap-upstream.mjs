@@ -4,8 +4,8 @@ import {execFileSync, spawnSync} from "node:child_process";
 import {fileURLToPath} from "node:url";
 
 const UPSTREAM_REPOSITORY = "https://github.com/5etools-mirror-3/5etools-src.git";
-const UPSTREAM_TAG = "v2.39.1";
-const UPSTREAM_COMMIT = "c3d53956346388b222aaaaf4637776f563e201b8";
+const UPSTREAM_TAG = "v2.41.0";
+const UPSTREAM_COMMIT = "32ef600fab87a585a61dd1a22e9b02dfc58c728a";
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const target = path.join(projectRoot, "vendor", "5etools-src");
 

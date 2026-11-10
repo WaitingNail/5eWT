@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 const read = path => fs.readFileSync(path, "utf8");
-assert.match(read("js/utils.js"), /VERSION_NUMBER[^\n]+"2\.39\.1"/);
+assert.match(read("js/utils.js"), /VERSION_NUMBER[^\n]+"2\.41\.0"/);
 assert.match(read("js/spells.js"), /sortByInitial: "level",\s*sortDirInitial: "asc"/);
 assert.match(read("js/spells.js"), /getSpellLevel\(i, \{isIncludeWord: true\}\)/);
 assert.match(read("js/listpage.js"), /await this\._pGetVisibleAsMarkdown\(\)/);
@@ -17,4 +17,4 @@ const getPotionLink = entity => entity.entries.join(" ").match(/\{@filter [^|]+\
 const officialLink = getPotionLink(canonical.spell.find(it => it.name === name));
 assert.ok(officialLink);
 assert.equal(getPotionLink(localized.spell.find(it => it.ENG_name === name)), officialLink);
-console.log("v2.39.1 spell sorting, Markdown controls, filters and updated potion link verified.");
+console.log("v2.41.0 spell sorting, Markdown controls, filters and updated potion link verified.");

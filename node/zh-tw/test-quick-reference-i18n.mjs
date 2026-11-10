@@ -265,8 +265,8 @@ assert.doesNotMatch(BookUtil.Search.getResultHash(referenceId, englishProseResul
 for (const [term, expectedHeader] of [
 	["超越 1 級", "Beyond 1st Level"],
 	["Beyond 1st Level", "Beyond 1st Level"],
-	["力量", "Beyond 1st Level"],
-	["Strength", "Beyond 1st Level"],
+	["力量", "Strength"],
+	["Strength", "Strength"],
 	["角色升級", "Beyond 1st Level"],
 	["Character Advancement", "Beyond 1st Level"],
 ]) {

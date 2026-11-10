@@ -1,0 +1,2880 @@
+diff --git a/.gitignore b/.gitignore
+index 7968227..ecfabad 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -20,6 +20,9 @@ sitemap.xml
+ *.DS_Store
+ Thumbs.db
+ .rsync-filter
++__pycache__/
++.venv-zh-tw/
++*.pyc
+ 
+ # Generated service worker files
+ sw.js
+diff --git a/5etools.html b/5etools.html
+index 0806cfb..9b1c0dc 100644
+--- a/5etools.html
++++ b/5etools.html
+@@ -1,17 +1,17 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+ 	<!--5ETOOLS_ANALYTICS-->
+ 	<!--5ETOOLS_ADCODE-->
+ 	<meta charset="utf-8">
+-	<meta name="description" content="A suite of browser-based tools for 5th Edition Dungeons &amp; Dragons players and Dungeon Masters.">
++	<meta name="description" content="為第五版《龍與地下城》玩家與地下城主提供的一套瀏覽器工具。">
+ 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>5etools</title>
++	<title>5etools 繁體中文版</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -47,10 +47,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 
+ 	<meta http-equiv="refresh" content="0; URL=index.html"/>
+@@ -62,7 +66,7 @@
+ 
+ <main class="container ve-flex-vh-center ve-w-100w ve-h-100h">
+ 	<h3>
+-		Click <a href="index.html">here</a> to be redirected to the homepage.
++		正在重新導向至 首頁. <a href="index.html">繼續</a>
+ 	</h3>
+ </main>
+ </body>
+diff --git a/actions.html b/actions.html
+index 3089608..df498cb 100644
+--- a/actions.html
++++ b/actions.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Actions - 5etools</title>
++	<title>動作 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -47,10 +47,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -69,8 +73,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Actions</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">動作</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">從左側按名稱搜尋，點選名稱後於右側顯示。</p>
+ 			</div>
+ 		</header>
+ 
+@@ -88,14 +92,14 @@
+ 						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+ 						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
+ 					</div>
+-					<button type="button" class="ve-btn ve-btn-default" id="reset">Reset</button>
++					<button type="button" class="ve-btn ve-btn-default" id="reset">重設</button>
+ 				</div>
+ 
+ 				<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+ 					<button type="button" class="ve-col-0-3 ve-btn ve-btn-default ve-btn-xs ve-p-0 ve-lst__btn-collapse-all-previews ve-no-select" name="list-toggle-all-previews">[+]</button>
+-					<button type="button" class="ve-col-5-7 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-					<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="time">Time</button>
+-					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
++					<button type="button" class="ve-col-5-7 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++					<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="time">時間</button>
++					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">來源</button>
+ 				</div>
+ 
+ 				<div id="list" class="list list--stats"></div>
+@@ -106,8 +110,8 @@
+ 			<div id="contentwrapper" class="view-col">
+ 				<div id="sublistcontainer" class="sublist sublist--resizable ve-print__hidden">
+ 					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
+-						<button type="button" class="ve-col-8 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-						<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="time">Time</button>
++						<button type="button" class="ve-col-8 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++						<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="time">時間</button>
+ 					</div>
+ 
+ 					<div id="sublist" class="list"></div>
+@@ -120,17 +124,17 @@
+ 				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
+ 					<table id="pagecontent" class="ve-w-100 ve-stats">
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-						<tr><td colspan="6" class="initial-message initial-message--med">Select an entry from the list to view it here</td></tr>
++						<tr><td colspan="6" class="initial-message initial-message--med">從清單選取項目，即可在此檢視</td></tr>
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 					</table>
+ 				</div>
+ 
+ 				<div class="ve-flex-vh-center ve-mt-2 ve-print__hidden">
+-					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">Printer View</button>
++					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">列印檢視</button>
+ 					<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">管理內容</button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="管理預發佈內容"><span class="glyphicon glyphicon-wrench"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="管理自製內容"><span class="glyphicon glyphicon-glass"></span></button>
+ 					</div>
+ 				</div>
+ 			</div>
+@@ -142,18 +146,18 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/utils-list.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+diff --git a/adventure.html b/adventure.html
+index 12c5d32..1b05eef 100644
+--- a/adventure.html
++++ b/adventure.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Adventure - 5etools</title>
++	<title>冒險 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -47,10 +47,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -65,8 +69,8 @@
+ <div class="ve-flex-col" data-cancer-id="cancer-header">
+ 	<header class="ve-mobile-sm__hidden page__header">
+ 		<div class="container ve-flex-v-baseline">
+-			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Adventure Details</h1>
+-			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Loading...</p>
++			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">冒險詳細資料</h1>
++			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">載入中……</p>
+ 		</div>
+ 	</header>
+ 
+@@ -88,14 +92,14 @@
+ 	<div class="view-col linked-titles book-view">
+ 		<table id="pagecontent" class="ve-w-100 ve-stats ve-stats--book ve-stats--book-large">
+ 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-			<tr><td colspan="6" class="initial-message initial-message--med book-loading-message">Loading...</td></tr>
++			<tr><td colspan="6" class="initial-message initial-message--med book-loading-message">載入中……</td></tr>
+ 			<!-- (Placeholder text until page loads) -->
+ 			<tr><td colspan="6" class="ve-muted">Did you ever hear the tragedy of Darth Plagueis The Wise? I thought not. It&#x27;s not a story the Jedi would tell you. It&#x27;s a Sith legend. Darth Plagueis was a Dark Lord of the Sith, so powerful and so wise he could use the Force to influence the midichlorians to create life… He had such a knowledge of the dark side that he could even keep the ones he cared about from dying. The dark side of the Force is a pathway to many abilities some consider to be unnatural. He became so powerful… the only thing he was afraid of was losing his power, which eventually, of course, he did. Unfortunately, he taught his apprentice everything he knew, then his apprentice killed him in his sleep. Ironic. He could save others from death, but not himself.</td></tr>
+ 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 		</table>
+ 
+ 		<div class="bk__overlay-loading">
+-			<div class="ve-h-100 ve-w-100 ve-flex-vh-center"><span class="initial-message initial-message--med">Loading...</span></div>
++			<div class="ve-h-100 ve-w-100 ve-flex-vh-center"><span class="initial-message initial-message--med">載入中……</span></div>
+ 		</div>
+ 
+ 		<div class="cancer__footer-pad ve-w-100"></div>
+@@ -106,17 +110,17 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+diff --git a/adventures.html b/adventures.html
+index 04d66e6..c9345d0 100644
+--- a/adventures.html
++++ b/adventures.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Adventures - 5etools</title>
++	<title>冒險 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -47,10 +47,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -65,8 +69,8 @@
+ <div class="ve-flex-col" data-cancer-id="cancer-header">
+ 	<header class="ve-mobile-sm__hidden page__header">
+ 		<div class="container ve-flex-v-baseline">
+-			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Adventures</h1>
+-			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Browse adventures by name and contents</p>
++			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">冒險</h1>
++			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">依名稱與目錄瀏覽冒險</p>
+ 		</div>
+ 	</header>
+ 
+@@ -81,16 +85,16 @@
+ <div class="container view-col-wrapper" data-cancer-id="cancer-wrapper">
+ 	<div class="view-col" id="listcontainer">
+ 		<div class="ve-lst__form-top">
+-			<input type="search" id="search" autocomplete="off" autocapitalize="off" spellcheck="false" class="search ve-form-control" placeholder="Find adventure...">
+-			<button class="ve-btn ve-btn-default" id="reset">Reset</button>
++			<input type="search" id="search" autocomplete="off" autocapitalize="off" spellcheck="false" class="search ve-form-control" placeholder="尋找冒險……">
++			<button class="ve-btn ve-btn-default" id="reset">重設</button>
+ 		</div>
+ 
+ 		<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+-			<button type="button" class="ve-col-1-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="group">Type</button>
+-			<button type="button" class="ve-col-5-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-			<button type="button" class="ve-col-2-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="storyline">Storyline</button>
+-			<button type="button" class="ve-col-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="level">Levels</button>
+-			<button type="button" class="ve-col-1-7 sort ve-btn ve-btn-default ve-btn-xs" data-sort="published">Published</button>
++			<button type="button" class="ve-col-1-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="group">類型</button>
++			<button type="button" class="ve-col-5-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++			<button type="button" class="ve-col-2-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="storyline">故事線</button>
++			<button type="button" class="ve-col-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="level">等級</button>
++			<button type="button" class="ve-col-1-7 sort ve-btn ve-btn-default ve-btn-xs" data-sort="published">出版日期</button>
+ 			<button class="ve-btn ve-btn-default ve-btn-xs ve-w-30p ve-mobile-sm__hidden" disabled></button>
+ 		</div>
+ 
+@@ -100,9 +104,9 @@
+ 
+ 		<div class="ve-flex-vh-center ve-mt-3 ve-print__hidden">
+ 			<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+-				<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+-				<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+-				<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
++				<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">管理內容</button>
++				<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="管理預發佈內容"><span class="glyphicon glyphicon-wrench"></span></button>
++				<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="管理自製內容"><span class="glyphicon glyphicon-glass"></span></button>
+ 			</div>
+ 		</div>
+ 
+@@ -118,17 +122,17 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+ <script type="text/javascript" defer src="js/hist.js"></script>
+diff --git a/backgrounds.html b/backgrounds.html
+index 32e9af6..09def7a 100644
+--- a/backgrounds.html
++++ b/backgrounds.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Backgrounds - 5etools</title>
++	<title>背景 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -47,10 +47,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -69,8 +73,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Backgrounds</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">背景</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">從左側按名稱搜尋，點選名稱後於右側顯示。</p>
+ 			</div>
+ 		</header>
+ 
+@@ -88,14 +92,14 @@
+ 						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+ 						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
+ 					</div>
+-					<button type="button" class="ve-btn ve-btn-default" id="reset">Reset</button>
++					<button type="button" class="ve-btn ve-btn-default" id="reset">重設</button>
+ 				</div>
+ 
+ 				<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+-					<button type="button" class="ve-col-2-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-					<button type="button" class="ve-col-3-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="ability">Ability</button>
+-					<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="skills">Skill Proficiencies</button>
+-					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
++					<button type="button" class="ve-col-2-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++					<button type="button" class="ve-col-3-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="ability">屬性</button>
++					<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="skills">技能熟練項</button>
++					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">來源</button>
+ 				</div>
+ 
+ 				<div id="list" class="list list--stats"></div>
+@@ -106,9 +110,9 @@
+ 			<div id="contentwrapper" class="view-col">
+ 				<div id="sublistcontainer" class="sublist sublist--resizable ve-print__hidden">
+ 					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
+-						<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-						<button type="button" class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="ability">Ability</button>
+-						<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="skills">Skills</button>
++						<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++						<button type="button" class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="ability">屬性</button>
++						<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="skills">技能</button>
+ 					</div>
+ 
+ 					<div id="sublist" class="list"></div>
+@@ -121,17 +125,17 @@
+ 				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
+ 					<table id="pagecontent" class="ve-w-100 ve-stats">
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-						<tr><td colspan="6" class="initial-message initial-message--med">Select an entry from the list to view it here</td></tr>
++						<tr><td colspan="6" class="initial-message initial-message--med">從清單選取項目，即可在此檢視</td></tr>
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 					</table>
+ 				</div>
+ 
+ 				<div class="ve-flex-vh-center ve-mt-2 ve-print__hidden">
+-					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">Printer View</button>
++					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">列印檢視</button>
+ 					<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">管理內容</button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="管理預發佈內容"><span class="glyphicon glyphicon-wrench"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="管理自製內容"><span class="glyphicon glyphicon-glass"></span></button>
+ 					</div>
+ 				</div>
+ 			</div>
+@@ -143,18 +147,18 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/utils-list.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+diff --git a/bastions.html b/bastions.html
+index d4845a4..f38dd2c 100644
+--- a/bastions.html
++++ b/bastions.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Bastions - 5etools</title>
++	<title>堡壘 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -47,10 +47,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -69,8 +73,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Bastions</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">堡壘</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">從左側按名稱搜尋，點選名稱後於右側顯示。</p>
+ 			</div>
+ 		</header>
+ 
+@@ -88,15 +92,15 @@
+ 						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+ 						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
+ 					</div>
+-					<button type="button" class="ve-btn ve-btn-default" id="reset">Reset</button>
++					<button type="button" class="ve-btn ve-btn-default" id="reset">重設</button>
+ 				</div>
+ 
+ 				<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+-					<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="facilityType">Type</button>
+-					<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-					<button type="button" class="ve-col-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="level">Level</button>
+-					<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="prerequisite">Prerequisite</button>
+-					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
++					<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="facilityType">類型</button>
++					<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++					<button type="button" class="ve-col-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="level">等級</button>
++					<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="prerequisite">先決條件</button>
++					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">來源</button>
+ 				</div>
+ 
+ 				<div id="list" class="list list--stats"></div>
+@@ -107,10 +111,10 @@
+ 			<div id="contentwrapper" class="view-col">
+ 				<div id="sublistcontainer" class="sublist sublist--resizable ve-print__hidden">
+ 					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
+-						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="facilityType">Type</button>
+-						<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="level">Level</button>
+-						<button type="button" class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="prerequisite">Prerequisite</button>
++						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="facilityType">類型</button>
++						<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="level">等級</button>
++						<button type="button" class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="prerequisite">先決條件</button>
+ 					</div>
+ 
+ 					<div id="sublist" class="list"></div>
+@@ -123,20 +127,20 @@
+ 				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
+ 					<table id="pagecontent" class="ve-w-100 ve-stats">
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-						<tr><td colspan="6" class="initial-message initial-message--med">Select an entry from the list to view it here</td></tr>
++						<tr><td colspan="6" class="initial-message initial-message--med">從清單選取項目，即可在此檢視</td></tr>
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 					</table>
+ 				</div>
+ 
+ 				<div class="ve-flex-vh-center ve-mt-2 ve-print__hidden ve-mobile-sm__flex-col">
+ 					<div class="ve-flex-v-center ve-mr-2 ve-mobile-sm__mb-2 ve-mobile-sm__mr-0">
+-						<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">Printer View</button>
+-						<button type="button" class="ve-btn ve-btn-default ve-btn-xs" id="btn-show-table" title="View and Download in Tabular Format">Table View</button>
++						<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">列印檢視</button>
++						<button type="button" class="ve-btn ve-btn-default ve-btn-xs" id="btn-show-table" title="以表格格式檢視及下載">表格檢視</button>
+ 					</div>
+ 					<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">管理內容</button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="管理預發佈內容"><span class="glyphicon glyphicon-wrench"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="管理自製內容"><span class="glyphicon glyphicon-glass"></span></button>
+ 					</div>
+ 				</div>
+ 			</div>
+@@ -148,19 +152,19 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/utils-list.js"></script>
+ <script type="text/javascript" defer src="js/utils-tableview.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+diff --git a/bestiary.html b/bestiary.html
+index 1409ed0..e077dd2 100644
+--- a/bestiary.html
++++ b/bestiary.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Bestiary - 5etools</title>
++	<title>怪物圖鑑 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -49,10 +49,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -71,8 +75,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Bestiary</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">怪物圖鑑</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">從左側按名稱搜尋，點選名稱後於右側顯示。</p>
+ 			</div>
+ 		</header>
+ 
+@@ -90,14 +94,14 @@
+ 						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+ 						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
+ 					</div>
+-					<button type="button" class="ve-btn ve-btn-default" id="reset">Reset</button>
++					<button type="button" class="ve-btn ve-btn-default" id="reset">重設</button>
+ 				</div>
+ 
+ 				<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+-					<button type="button" class="ve-col-4-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-					<button type="button" class="ve-col-4-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">Type</button>
+-					<button type="button" class="ve-col-1-7 sort ve-btn ve-btn-default ve-btn-xs" data-sort="cr">CR</button>
+-					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
++					<button type="button" class="ve-col-4-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++					<button type="button" class="ve-col-4-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">類型</button>
++					<button type="button" class="ve-col-1-7 sort ve-btn ve-btn-default ve-btn-xs" data-sort="cr">挑戰等級</button>
++					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">來源</button>
+ 				</div>
+ 
+ 				<div id="list" class="list list--stats"></div>
+@@ -115,17 +119,17 @@
+ 
+ 				<div id="sublistcontainer" class="sublist sublist--resizable ve-print__hidden">
+ 					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
+-						<button type="button" class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-						<button type="button" class="ve-col-3-8 sort ve-btn ve-btn-default ve-btn-xs best-ecgen__hidden" data-sort="type">Type</button>
++						<button type="button" class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++						<button type="button" class="ve-col-3-8 sort ve-btn ve-btn-default ve-btn-xs best-ecgen__hidden" data-sort="type">類型</button>
+ 						<button type="button" class="ve-col-3-8 sort ve-btn ve-btn-default ve-btn-xs best-ecgen__visible" disabled>&nbsp;</button>
+-						<button type="button" class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="cr">CR</button>
+-						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="count">Number</button>
++						<button type="button" class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="cr">挑戰等級</button>
++						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="count">數量</button>
+ 					</div>
+ 
+ 					<div id="sublist" class="list"></div>
+ 
+ 					<div class="row best-ecgen__hidden ve-small ve-pb-2">
+-						<span class="ve-col-6 ve-text-right ve-pr-2">Total:</span>
++						<span class="ve-col-6 ve-text-right ve-pr-2">總計：</span>
+ 						<span class="ve-col-6 ve-no-wrap ve-pl-0" id="totalcr"></span>
+ 					</div>
+ 				</div>
+@@ -139,28 +143,28 @@
+ 
+ 					<table id="pagecontent" class="ve-w-100 ve-stats">
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-						<tr><td colspan="6" class="initial-message initial-message--med">Select an entry from the list to view it here</td></tr>
++						<tr><td colspan="6" class="initial-message initial-message--med">從清單選取項目，即可在此檢視</td></tr>
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 					</table>
+ 				</div>
+ 
+ 				<div class="ve-flex-vh-center ve-mt-2 ve-print__hidden ve-mobile-sm__flex-col best-ecgen__hidden">
+ 					<div class="ve-flex-v-center ve-mr-2 ve-mobile-sm__mb-2 ve-mobile-sm__mr-0">
+-						<button type="button" class="ve-btn ve-btn-success ve-btn-xs ve-mr-2" id="btn-encounterbuild">Encounter Builder</button>
++						<button type="button" class="ve-btn ve-btn-success ve-btn-xs ve-mr-2" id="btn-encounterbuild">遭遇建構器</button>
+ 						<div id="wrp-profbonusdice" class="ve-flex-v-center">
+-							<button type="button" class="ve-btn ve-btn-default ve-btn-xs" id="profbonusdice" title="See the 2014 Dungeon Master&apos;s Guide, p263.">Proficiency Dice <span class="ve-muted">('14)</span></button>
++							<button type="button" class="ve-btn ve-btn-default ve-btn-xs" id="profbonusdice" title="請參閱 2014 年版《地下城主指南》第 263 頁。">熟練骰 <span class="ve-muted">('14)</span></button>
+ 						</div>
+ 					</div>
+ 
+ 					<div class="ve-flex-v-center ve-mr-2 ve-mobile-sm__mb-2 ve-mobile-sm__mr-0">
+-						<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">Printer View</button>
+-						<button type="button" class="ve-btn ve-btn-default ve-btn-xs" id="btn-show-table" title="View and Download Creatures in Tabular Format">Table View</button>
++						<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">列印檢視</button>
++						<button type="button" class="ve-btn ve-btn-default ve-btn-xs" id="btn-show-table" title="以表格格式檢視及下載生物">表格檢視</button>
+ 					</div>
+ 
+ 					<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">管理內容</button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="管理預發佈內容"><span class="glyphicon glyphicon-wrench"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="管理自製內容"><span class="glyphicon glyphicon-glass"></span></button>
+ 					</div>
+ 				</div>
+ 
+@@ -178,19 +182,19 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/utils-list.js"></script>
+ <script type="text/javascript" defer src="js/utils-tableview.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+diff --git a/bestiary/index.html b/bestiary/index.html
+index 275cc3a..4dbdddf 100644
+--- a/bestiary/index.html
++++ b/bestiary/index.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ <head>
+ <!--5ETOOLS_CMP-->
+ <!--5ETOOLS_ANALYTICS-->
+@@ -9,7 +9,7 @@
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ <meta name="mobile-web-app-capable" content="yes">
+-<title>5etools</title>
++<title>5etools 繁體中文版</title>
+ <link rel="stylesheet" href="/css/bootstrap.css">
+ <link rel="stylesheet" href="/css/main.css">
+ <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+@@ -32,6 +32,11 @@
+ <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+ <meta name="apple-mobile-web-app-title" content="5etools">
+ <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#006bc4">
++<script type="text/javascript" src="/js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++<script type="text/javascript" src="/js/zh-tw/site-i18n.js"></script>
++<script type="text/javascript" src="/js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++<script type="text/javascript" src="/js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++<script type="text/javascript" src="/js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ <script type="module" defer src="/js/styleswitch.js"></script>
+ <script type="text/javascript" defer src="/js/navigation.js"></script>
+ <script type="module" defer src="/js/browsercheck.js"></script>
+@@ -54,21 +59,21 @@
+ 
+ <header class="ve-mobile-sm__hidden page__header"><div class="container ve-flex-v-baseline"><h1 class="page__title ve-no-wrap ve-my-0"></h1></div></header><nav class="container page__nav" id="navigation"><ul class="nav nav-pills page__nav-inner" id="navbar"></ul></nav>
+ 
+-<main class="container" data-cancer-id="cancer-wrapper"><div class="row"><div id="wrp-pagecontent"><table id="pagecontent" class="ve-w-100 ve-stats"><tr><th class="ve-tbl-border" colspan="6"></th></tr><tr><td colspan="6" class="initial-message initial-message--med">Loading...</td></tr><tr><th class="ve-tbl-border" colspan="6"></th></tr></table></div></div><div class="row" id="link-page"></div></main>
++<main class="container" data-cancer-id="cancer-wrapper"><div class="row"><div id="wrp-pagecontent"><table id="pagecontent" class="ve-w-100 ve-stats"><tr><th class="ve-tbl-border" colspan="6"></th></tr><tr><td colspan="6" class="initial-message initial-message--med">載入中……</td></tr><tr><th class="ve-tbl-border" colspan="6"></th></tr></table></div></div><div class="row" id="link-page"></div></main>
+ 
+ <script type="text/javascript" defer src="/lib/localforage.js"></script>
+ <script type="text/javascript" defer src="/lib/elasticlunr.js"></script>
+ <script type="text/javascript" defer src="/js/parser.js"></script>
+-<script type="text/javascript" defer src="/js/utils.js"></script>
+-<script type="text/javascript" defer src="/js/utils-ui.js"></script>
++<script type="text/javascript" defer src="/js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="/js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="module" defer src="/js/omnidexer.js"></script>
+ <script type="module" src="/js/omnisearch.js"></script>
+ <script type="module" src="/js/filter.js"></script>
+-<script type="module" src="/js/utils-dataloader.js"></script>
++<script type="module" src="/js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="/js/utils-font.js"></script>
+ <script type="module" src="/js/utils-brew.js"></script>
+ <script type="module" src="/js/utils-config.js"></script>
+-<script type="text/javascript" defer src="/js/render.js"></script>
++<script type="text/javascript" defer src="/js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="/js/render-dice.js"></script>
+ <script type="module" src="/js/shim-esmodules.js"></script>
+ <script type="text/javascript" defer src="/js/hist.js"></script>
+diff --git a/blocklist.html b/blocklist.html
+index 18ea231..9feab68 100644
+--- a/blocklist.html
++++ b/blocklist.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Content Blocklist - 5etools</title>
++	<title>內容封鎖清單 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -47,10 +47,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -65,8 +69,8 @@
+ <div class="ve-flex-col" data-cancer-id="cancer-header">
+ 	<header class="ve-mobile-sm__hidden page__header">
+ 		<div class="container ve-flex-v-baseline">
+-			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Content Blocklist</h1>
+-			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Exclude content and export configurations.</p>
++			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">內容封鎖清單</h1>
++			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">排除內容並匯出設定。</p>
+ 		</div>
+ 	</header>
+ 
+@@ -96,7 +100,7 @@
+ 	<hr>
+ 
+ 	<div class="ve-flex-col" id="blocklist-content">
+-		<div class="ve-py-2 ve-flex-vh-center initial-message initial-message--med">Loading...</div>
++		<div class="ve-py-2 ve-flex-vh-center initial-message initial-message--med">載入中……</div>
+ 	</div>
+ </main>
+ 
+@@ -104,17 +108,17 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+ <script type="text/javascript" defer src="js/hist.js"></script>
+diff --git a/book.html b/book.html
+index 03a4bcb..a78e35a 100644
+--- a/book.html
++++ b/book.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Book - 5etools</title>
++	<title>書籍 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -47,10 +47,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -65,8 +69,8 @@
+ <div class="ve-flex-col" data-cancer-id="cancer-header">
+ 	<header class="ve-mobile-sm__hidden page__header">
+ 		<div class="container ve-flex-v-baseline">
+-			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Book Details</h1>
+-			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Loading...</p>
++			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">書籍詳細資料</h1>
++			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">載入中……</p>
+ 		</div>
+ 	</header>
+ 
+@@ -88,14 +92,14 @@
+ 	<div class="view-col linked-titles book-view">
+ 		<table id="pagecontent" class="ve-w-100 ve-stats ve-stats--book ve-stats--book-large">
+ 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-			<tr><td colspan="6" class="initial-message initial-message--med book-loading-message">Loading...</td></tr>
++			<tr><td colspan="6" class="initial-message initial-message--med book-loading-message">載入中……</td></tr>
+ 			<!-- (Placeholder text until page loads) -->
+ 			<tr><td colspan="6" class="ve-muted">What the fuck did you just fucking say about me, you little bitch? I&#x27;ll have you know I graduated top of my class in the Navy Seals, and I&#x27;ve been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I&#x27;m the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You&#x27;re fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that&#x27;s just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little &quot;clever&quot; comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn&#x27;t, you didn&#x27;t, and now you&#x27;re paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You&#x27;re fucking dead, kiddo.</td></tr>
+ 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 		</table>
+ 
+ 		<div class="bk__overlay-loading">
+-			<div class="ve-h-100 ve-w-100 ve-flex-vh-center"><span class="initial-message initial-message--med">Loading...</span></div>
++			<div class="ve-h-100 ve-w-100 ve-flex-vh-center"><span class="initial-message initial-message--med">載入中……</span></div>
+ 		</div>
+ 
+ 		<div class="cancer__footer-pad ve-w-100"></div>
+@@ -106,17 +110,17 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+diff --git a/books.html b/books.html
+index 7b486a8..695974c 100644
+--- a/books.html
++++ b/books.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Books - 5etools</title>
++	<title>書籍 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -47,10 +47,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -65,8 +69,8 @@
+ <div class="ve-flex-col" data-cancer-id="cancer-header">
+ 	<header class="ve-mobile-sm__hidden page__header">
+ 		<div class="container ve-flex-v-baseline">
+-			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Books</h1>
+-			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Browse books by name and contents</p>
++			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">書籍</h1>
++			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">依名稱與目錄瀏覽書籍</p>
+ 		</div>
+ 	</header>
+ 
+@@ -81,14 +85,14 @@
+ <div class="container view-col-wrapper" data-cancer-id="cancer-wrapper">
+ 	<div class="view-col" id="listcontainer">
+ 		<div class="ve-lst__form-top">
+-			<input type="search" id="search" autocomplete="off" autocapitalize="off" spellcheck="false" class="search ve-form-control" placeholder="Find book...">
+-			<button class="ve-btn ve-btn-default" id="reset">Reset</button>
++			<input type="search" id="search" autocomplete="off" autocapitalize="off" spellcheck="false" class="search ve-form-control" placeholder="尋找書籍……">
++			<button class="ve-btn ve-btn-default" id="reset">重設</button>
+ 		</div>
+ 
+ 		<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+-			<button type="button" class="ve-col-1-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="group">Type</button>
+-			<button type="button" class="ve-col-8-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-			<button type="button" class="ve-grow sort ve-btn ve-btn-default ve-btn-xs" data-sort="published">Published</button>
++			<button type="button" class="ve-col-1-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="group">類型</button>
++			<button type="button" class="ve-col-8-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++			<button type="button" class="ve-grow sort ve-btn ve-btn-default ve-btn-xs" data-sort="published">出版日期</button>
+ 			<button class="ve-btn ve-btn-default ve-btn-xs ve-w-30p ve-mobile-sm__hidden" disabled></button>
+ 		</div>
+ 
+@@ -98,9 +102,9 @@
+ 
+ 		<div class="ve-flex-vh-center ve-mt-3 ve-print__hidden">
+ 			<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+-				<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+-				<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+-				<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
++				<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">管理內容</button>
++				<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="管理預發佈內容"><span class="glyphicon glyphicon-wrench"></span></button>
++				<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="管理自製內容"><span class="glyphicon glyphicon-glass"></span></button>
+ 			</div>
+ 		</div>
+ 
+@@ -116,17 +120,17 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+ <script type="text/javascript" defer src="js/hist.js"></script>
+diff --git a/changelog.html b/changelog.html
+index 58e98dc..d5db577 100644
+--- a/changelog.html
++++ b/changelog.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Changelog - 5etools</title>
++	<title>變更記錄 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -48,10 +48,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -66,8 +70,8 @@
+ <div class="ve-flex-col" data-cancer-id="cancer-header">
+ 	<header class="ve-mobile-sm__hidden page__header">
+ 		<div class="container ve-flex-v-baseline">
+-			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Changelog</h1>
+-			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">See what changed.</p>
++			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">變更記錄</h1>
++			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">查看變更內容。</p>
+ 		</div>
+ 	</header>
+ 
+@@ -79,24 +83,24 @@
+ <div class="cancer__wrp-sidebar cancer__wrp-sidebar-lhs cancer__wrp-sidebar-lhs--scrolling-page cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-inner cancer__sidebar-inner--top cancer__wrp-interactive"><!--5ETOOLS_AD_LEFT_1--></div><div class="cancer__sidebar-inner cancer__sidebar-inner--bottom cancer__wrp-interactive"><!--5ETOOLS_AD_LEFT_2--></div></div>
+ <div class="cancer__wrp-sidebar cancer__wrp-sidebar-rhs cancer__wrp-sidebar-rhs--scrolling-page cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-inner cancer__sidebar-inner--top cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_1--></div><div class="cancer__sidebar-inner cancer__sidebar-inner--bottom cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_2--></div></div>
+ 
+-<main class="container ve-night__shadow-big ve-mt-3" id="pagecontent" data-cancer-id="cancer-wrapper"><div class="ve-flex-vh-center ve-dnd-font ve-mt-3"><i>Loading...</i></div></main>
++<main class="container ve-night__shadow-big ve-mt-3" id="pagecontent" data-cancer-id="cancer-wrapper"><div class="ve-flex-vh-center ve-dnd-font ve-mt-3"><i>載入中……</i></div></main>
+ 
+ <!--5ETOOLS_SCRIPT_ANCHOR-->
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/utils-changelog.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+ <script type="text/javascript" defer src="js/hist.js"></script>
+diff --git a/charcreationoptions.html b/charcreationoptions.html
+index 88345f1..57a2c27 100644
+--- a/charcreationoptions.html
++++ b/charcreationoptions.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Other Character Creation Options - 5etools</title>
++	<title>其他角色創建選項 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -47,10 +47,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -69,8 +73,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Other Character Creation Options</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">其他角色創建選項</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">從左側按名稱搜尋，點選名稱後於右側顯示。</p>
+ 			</div>
+ 		</header>
+ 
+@@ -88,13 +92,13 @@
+ 						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+ 						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
+ 					</div>
+-					<button type="button" class="ve-btn ve-btn-default" id="reset">Reset</button>
++					<button type="button" class="ve-btn ve-btn-default" id="reset">重設</button>
+ 				</div>
+ 
+ 				<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+-					<button type="button" class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">Type</button>
+-					<button type="button" class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
++					<button type="button" class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">類型</button>
++					<button type="button" class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">來源</button>
+ 				</div>
+ 
+ 				<div id="list" class="list list--stats"></div>
+@@ -105,8 +109,8 @@
+ 			<div id="contentwrapper" class="view-col">
+ 				<div id="sublistcontainer" class="sublist sublist--resizable ve-print__hidden">
+ 					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
+-						<button type="button" class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">Type</button>
+-						<button type="button" class="ve-col-7 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
++						<button type="button" class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">類型</button>
++						<button type="button" class="ve-col-7 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
+ 					</div>
+ 
+ 					<div id="sublist" class="list"></div>
+@@ -119,17 +123,17 @@
+ 				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
+ 					<table id="pagecontent" class="ve-w-100 ve-stats">
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-						<tr><td colspan="6" class="initial-message initial-message--med">Select an entry from the list to view it here</td></tr>
++						<tr><td colspan="6" class="initial-message initial-message--med">從清單選取項目，即可在此檢視</td></tr>
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 					</table>
+ 				</div>
+ 
+ 				<div class="ve-flex-vh-center ve-mt-2 ve-print__hidden">
+-					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">Printer View</button>
++					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">列印檢視</button>
+ 					<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">管理內容</button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="管理預發佈內容"><span class="glyphicon glyphicon-wrench"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="管理自製內容"><span class="glyphicon glyphicon-glass"></span></button>
+ 					</div>
+ 				</div>
+ 			</div>
+@@ -141,18 +145,18 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/utils-list.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="text/javascript" defer src="js/render-charcreationoptions.js"></script>
+diff --git a/classes.html b/classes.html
+index d938daf..9a4056a 100644
+--- a/classes.html
++++ b/classes.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Classes - 5etools</title>
++	<title>職業 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -48,10 +48,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -66,8 +70,8 @@
+ <div class="ve-flex-col" data-cancer-id="cancer-header">
+ 	<header class="ve-mobile-sm__hidden page__header">
+ 		<div class="container ve-flex-v-baseline">
+-			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Classes</h1>
+-			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
++			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">職業</h1>
++			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">從左側按名稱搜尋，點選名稱後於右側顯示。</p>
+ 		</div>
+ 	</header>
+ 
+@@ -92,8 +96,8 @@
+ 					<button class="ve-btn ve-btn-default ve-px-2" id="reset"><span class="glyphicon glyphicon-refresh"></span></button>
+ 				</div>
+ 				<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+-					<button class="ve-col-8 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-					<button class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
++					<button class="ve-col-8 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++					<button class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">來源</button>
+ 				</div>
+ 
+ 				<div class="list list--stats classes cls__list" id="list"></div>
+@@ -101,9 +105,9 @@
+ 
+ 			<div class="ve-flex-vh-center ve-my-3">
+ 				<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+-					<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+-					<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+-					<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
++					<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">管理內容</button>
++					<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="管理預發佈內容"><span class="glyphicon glyphicon-wrench"></span></button>
++					<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="管理自製內容"><span class="glyphicon glyphicon-glass"></span></button>
+ 				</div>
+ 			</div>
+ 		</div>
+@@ -116,10 +120,10 @@
+ 		<div class="ve-col-3 ve-mobile-md__col-12 ve-px-4">
+ 			<div class="ve-flex-vh-center ve-text-center wrp-btn-readmode ve-mb-3">
+ 				<button class="ve-btn ve-btn-default ve-btn-xs ve-print__hidden ve-mr-1" id="btn-comparemode" title="A pop-up table which can be used to compare subclass features.">Subclass Comparison</button>
+-				<button class="ve-btn ve-btn-default ve-btn-xs ve-print__hidden ve-mr-1" id="btn-readmode" title="A pop-up reading mode with a layout and content order matching that of the books.">Book View</button>
++				<button class="ve-btn ve-btn-default ve-btn-xs ve-print__hidden ve-mr-1" id="btn-readmode" title="A pop-up reading mode with a layout and content order matching that of the books.">書籍檢視</button>
+ 				<div class=" ve-flex-v-center ve-btn-group">
+ 					<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-link-export"><span class="glyphicon glyphicon-magnet"></span></button>
+-					<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-sidebar-settings" title="Other Options"><span class="glyphicon glyphicon-option-vertical"></span></button>
++					<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-sidebar-settings" title="其他選項"><span class="glyphicon glyphicon-option-vertical"></span></button>
+ 				</div>
+ 			</div>
+ 
+@@ -133,7 +137,7 @@
+ 			<div id="subclasstabs" class="ve-w-100 ve-flex ve-mb-2 cls-tabs__wrp"></div>
+ 			<table id="pagecontent" class="ve-w-100 ve-stats ve-shadow-big cls__stats">
+ 				<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-				<tr><td colspan="6" class="initial-message initial-message--med">Loading...</td></tr>
++				<tr><td colspan="6" class="initial-message initial-message--med">載入中……</td></tr>
+ 				<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 			</table>
+ 		</div>
+@@ -144,18 +148,18 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/utils-list.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+@@ -163,7 +167,7 @@
+ <script type="text/javascript" defer src="js/listpage.js"></script>
+ <script type="text/javascript" defer src="js/filter-common.js"></script>
+ <script type="text/javascript" defer src="js/filter-classes.js"></script>
+-<script type="module" src="js/classes.js"></script>
++<script type="module" src="js/classes.js?v=zh-tw-33"></script>
+ <script type="module" defer src="js/list2.js"></script>
+ <script type="text/javascript" defer src="lib/elasticlunr.js"></script>
+ 
+diff --git a/conditionsdiseases.html b/conditionsdiseases.html
+index 10839e3..ca665c4 100644
+--- a/conditionsdiseases.html
++++ b/conditionsdiseases.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Conditions &amp; Diseases - 5etools</title>
++	<title>狀態與疾病 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -47,10 +47,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -69,8 +73,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Conditions &amp; Diseases</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">狀態與疾病</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">從左側按名稱搜尋，點選名稱後於右側顯示。</p>
+ 			</div>
+ 		</header>
+ 
+@@ -88,14 +92,14 @@
+ 						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+ 						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
+ 					</div>
+-					<button type="button" class="ve-btn ve-btn-default" id="reset">Reset</button>
++					<button type="button" class="ve-btn ve-btn-default" id="reset">重設</button>
+ 				</div>
+ 
+ 				<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+ 					<button type="button" class="ve-col-0-3 ve-btn ve-btn-default ve-btn-xs ve-p-0 ve-lst__btn-collapse-all-previews ve-no-select" name="list-toggle-all-previews">[+]</button>
+-					<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">Type</button>
+-					<button type="button" class="ve-col-6-7 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
++					<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">類型</button>
++					<button type="button" class="ve-col-6-7 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">來源</button>
+ 				</div>
+ 
+ 				<div id="list" class="list list--stats"></div>
+@@ -106,8 +110,8 @@
+ 			<div id="contentwrapper" class="view-col">
+ 				<div id="sublistcontainer" class="sublist sublist--resizable ve-print__hidden">
+ 					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
+-						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">Type</button>
+-						<button type="button" class="ve-col-10 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
++						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">類型</button>
++						<button type="button" class="ve-col-10 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
+ 					</div>
+ 
+ 					<div id="sublist" class="list"></div>
+@@ -120,17 +124,17 @@
+ 				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
+ 					<table id="pagecontent" class="ve-w-100 ve-stats">
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-						<tr><td colspan="6" class="initial-message initial-message--med">Select an entry from the list to view it here</td></tr>
++						<tr><td colspan="6" class="initial-message initial-message--med">從清單選取項目，即可在此檢視</td></tr>
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 					</table>
+ 				</div>
+ 
+ 				<div class="ve-flex-vh-center ve-mt-2 ve-print__hidden">
+-					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">Printer View</button>
++					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">列印檢視</button>
+ 					<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">管理內容</button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="管理預發佈內容"><span class="glyphicon glyphicon-wrench"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="管理自製內容"><span class="glyphicon glyphicon-glass"></span></button>
+ 					</div>
+ 				</div>
+ 			</div>
+@@ -142,18 +146,18 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/utils-list.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+@@ -161,7 +165,7 @@
+ <script type="text/javascript" defer src="js/listpage.js"></script>
+ <script type="text/javascript" defer src="js/filter-common.js"></script>
+ <script type="text/javascript" defer src="js/filter-conditionsdiseases.js"></script>
+-<script type="module" src="js/conditionsdiseases.js"></script>
++<script type="module" src="js/conditionsdiseases.js?v=zh-tw-33"></script>
+ <script type="module" defer src="js/list2.js"></script>
+ <script type="text/javascript" defer src="lib/elasticlunr.js"></script>
+ 
+diff --git a/converter.html b/converter.html
+index 7b6a924..610c3de 100644
+--- a/converter.html
++++ b/converter.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Text Converter - 5etools</title>
++	<title>文字轉換器 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -48,10 +48,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -67,8 +71,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Text Converter</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Input text on left, hit parse, copy JSON from right.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">文字轉換器</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">在左側輸入文字、按下解析，再從右側複製 JSON。</p>
+ 			</div>
+ 		</header>
+ 
+@@ -80,10 +84,10 @@
+ 	<div class="ve-h-100 ve-flex-col ve-min-h-0" data-cancer-id="cancer-wrapper">
+ 		<div class="ve-pt-2 ve-mb-1 ve-pl-7p ve-pr-7p ve-flex-v-center ve-mobile-md__flex-col ve-mobile-md__flex-ai-start">
+ 			<div class="ve-flex-v-stretch ve-mr-2 ve-mobile-md__mr-0 ve-mobile-md__mb-2">
+-				<div class="ve-mr-2 ve-bold ve-flex-v-center">Mode</div>
++				<div class="ve-mr-2 ve-bold ve-flex-v-center">模式</div>
+ 				<div class="ve-flex-v-stretch ve-input-group ve-btn-group">
+-					<select id="sel-mode" class="ve-form-control ve-input-xs ve-min-w-100p ve-br-0" disabled><option value="-1" class="ve-italic">Loading...</option></select>
+-					<button class="ve-btn ve-btn-xs ve-btn-default" id="btn-settings" type="button" title="Settings" disabled>
++					<select id="sel-mode" class="ve-form-control ve-input-xs ve-min-w-100p ve-br-0" disabled><option value="-1" class="ve-italic">載入中……</option></select>
++					<button class="ve-btn ve-btn-xs ve-btn-default" id="btn-settings" type="button" title="設定" disabled>
+ 						<span class="glyphicon glyphicon-cog"></span>
+ 					</button>
+ 				</div>
+@@ -95,11 +99,11 @@
+ 		<div class="ve-flex ve-h-100 ve-min-h-0 ve-mobile-md__flex-col ve-mobile-md__h-initial ve-mobile-md__min-h-initial ve-mobile-md__flex-col">
+ 			<div class="view-col">
+ 				<div class="ve-mb-2 ve-split-v-center ve-w-100">
+-					<h4 class="ve-my-0 ve-italic">Input</h4>
++					<h4 class="ve-my-0 ve-italic">輸入</h4>
+ 
+ 					<div class="ve-flex-v-center ve-btn-group">
+-						<button id="btn-parse" class="ve-btn ve-btn-xs ve-btn-default">Parse</button>
+-						<button id="btn-parse-and-add" class="ve-btn ve-btn-xs ve-btn-default">Parse and Add</button>
++						<button id="btn-parse" class="ve-btn ve-btn-xs ve-btn-default">解析</button>
++						<button id="btn-parse-and-add" class="ve-btn ve-btn-xs ve-btn-default">解析並新增</button>
+ 					</div>
+ 				</div>
+ 
+@@ -109,20 +113,20 @@
+ 			<div class="view-col">
+ 				<div class="ve-mb-2 ve-split-v-center ve-w-100">
+ 					<div class="ve-flex-v-center">
+-						<h4 class="ve-my-0 ve-italic">Output</h4>
++						<h4 class="ve-my-0 ve-italic">輸出</h4>
+ 
+-						<button id="btn-enable-edit" class="ve-btn ve-btn-xs ve-btn-default ve-ml-3" title="If enabled, output will be editable, rather than read-only. Note that edits will be overwritten if you parse new input(s).">Enable Editing</button>
++						<button id="btn-enable-edit" class="ve-btn ve-btn-xs ve-btn-default ve-ml-3" title="啟用後即可編輯輸出，而非僅供讀取。請注意，解析新的輸入時會覆寫編輯內容。">啟用編輯</button>
+ 					</div>
+ 
+ 					<div class="ve-flex-v-center ve-mobile-xs__flex-col ve-mobile-xs__flex-ai-start">
+ 						<div class="ve-flex-vh-center ve-mobile-xs__mb-2">
+-							<button id="btn-preview" class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">Preview</button>
+-							<button id="btn-save-local" class="ve-btn ve-btn-xs ve-btn-default hidden ve-mr-2">Save to Homebrew</button>
++							<button id="btn-preview" class="ve-btn ve-btn-xs ve-btn-default ve-mr-2">預覽</button>
++							<button id="btn-save-local" class="ve-btn ve-btn-xs ve-btn-default hidden ve-mr-2">儲存至自製內容</button>
+ 						</div>
+ 
+ 						<div class="ve-btn-group ve-flex-vh-center">
+-							<button id="btn-output-copy" class="ve-btn ve-btn-xs ve-btn-default" title="Copy the output text.">Copy</button>
+-							<button id="btn-output-download" class="ve-btn ve-btn-xs ve-btn-default" title="Download the output text, as a homebrew file.">Download</button>
++							<button id="btn-output-copy" class="ve-btn ve-btn-xs ve-btn-default" title="複製輸出文字。">複製</button>
++							<button id="btn-output-download" class="ve-btn ve-btn-xs ve-btn-default" title="將輸出文字下載為自製內容檔案。">下載</button>
+ 						</div>
+ 					</div>
+ 				</div>
+@@ -141,17 +145,17 @@
+ 
+ <script type="text/javascript" defer src="lib/ace.js"></script>
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+diff --git a/crcalculator.html b/crcalculator.html
+index a0d5a19..23c388d 100644
+--- a/crcalculator.html
++++ b/crcalculator.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>CR Calculator (5e/2014) - 5etools</title>
++	<title>挑戰等級計算器（5e／2014） - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -48,10 +48,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -66,8 +70,8 @@
+ <div class="ve-flex-col" data-cancer-id="cancer-header">
+ 	<header class="ve-mobile-sm__hidden page__header">
+ 		<div class="container ve-flex-v-baseline">
+-			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">CR Calculator (5e/2014)</h1>
+-			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Easily build custom creatures.</p>
++			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">挑戰等級計算器（5e／2014）</h1>
++			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">輕鬆建立自訂生物。</p>
+ 		</div>
+ 	</header>
+ 
+@@ -83,29 +87,25 @@
+ 	<form id="crcalc" autocomplete="off">
+ 		<div class="row ve-flex">
+ 			<div class="ve-col-6">
+-				<div id="croutput">Waiting for calculation...</div>
+-				<button class="ve-btn ve-btn-sm ve-btn-danger crc__reset ve-mt-3" id="crcalc_reset" type="button">Reset</button>
+-				<h4>Instructions</h4>
++				<div id="croutput">等待計算……</div>
++				<button class="ve-btn ve-btn-sm ve-btn-danger crc__reset ve-mt-3" id="crcalc_reset" type="button">重設</button>
++				<h4>使用說明（Instructions）</h4>
+ 				<ol>
+-					<li>Enter expected CR of the creature.</li>
+-					<li>Fill in the HP, AC, and other defensive attributes of the creature.</li>
+-					<li>Fill in offensive attributes of the creature. DPR is averaged over three rounds!</li>
+-					<li>Add any special Monster Features of the creature.</li>
++					<li>輸入生物的預期挑戰等級（CR）。</li>
++					<li>填入生物的生命值、護甲等級及其他防禦數值。</li>
++					<li>填入生物的進攻數值。每輪傷害（DPR）應取三輪的平均值！</li>
++					<li>加入生物具有的特殊怪物特徵。</li>
+ 				</ol>
+ 				<p>
+-					<small>Be sure to read the <em>Dungeon Master's Guide (2014)</em> <a href="book.html#dmg,9,creating%20a%20monster,0">section on monster creation</a>, pages 273
+-						through 283. You can click on the table to the right to fill in values for a given CR and adjust to
+-						taste. You can hover over the individual labels for a short description of how each attribute
+-						contributes to a monster's CR. You can also hover over each feature description to see how that
+-						feature affects the calculations.
++					<small>請務必閱讀 <em>城主指南（2014）</em> <a href="book.html#dmg,9,creating%20a%20monster,0">建立怪物的章節</a>，第 273–283 頁。點擊右側表格即可填入特定 CR 的數值，再依需要調整。將游標移到各欄位標籤上，可查看該數值如何影響怪物 CR；移到特徵說明上，則可查看該特徵如何影響計算。
+ 					</small>
+ 				</p>
+ 				<hr>
+ 				<div class="crc__row">
+ 					<label for="expectedcr" class="ve-ui-tip__parent" style="font-size: 1em;">
+-						Expected CR:
++						預期挑戰等級（CR）：
+ 						<span class="explanation ve-ui-tip__child">
+-							CR calculation begins by determining what you want the final CR of the monster to be.
++							計算 CR 的第一步，是決定你希望怪物最終達到的挑戰等級。
+ 						</span>
+ 					</label>
+ 					<span class="ve-flex-v-center">
+@@ -114,17 +114,17 @@
+ 				</div>
+ 			</div>
+ 			<div class="ve-col-6 ve-text-center">
+-				<h4>Monster Statistics by Challenge Rating</h4>
++				<h4>各挑戰等級的怪物數值（Monster Statistics by Challenge Rating）</h4>
+ 				<table id="msbcr">
+ 					<tr>
+-						<th class="ve-text-center">CR</th>
++						<th class="ve-text-center">挑戰等級</th>
+ 						<th class="ve-text-center">XP</th>
+-						<th class="ve-text-center">Prof.<br>Bonus</th>
+-						<th class="ve-text-center">Armor<br>Class</th>
+-						<th class="ve-text-center">Hit<br>Points</th>
+-						<th class="ve-text-center">Attack<br>Bonus</th>
+-						<th class="ve-text-center">Damage/<br>Round</th>
+-						<th class="ve-text-center">Save<br>DC</th>
++						<th class="ve-text-center">熟練<br>加值</th>
++						<th class="ve-text-center">護甲<br>等級</th>
++						<th class="ve-text-center">生命<br>值</th>
++						<th class="ve-text-center">攻擊<br>加值</th>
++						<th class="ve-text-center">每輪<br>傷害</th>
++						<th class="ve-text-center">豁免<br>DC</th>
+ 					</tr>
+ 				</table>
+ 			</div>
+@@ -132,57 +132,57 @@
+ 		<hr>
+ 		<div class="row ve-flex">
+ 			<div class="ve-col-6">
+-				<h4>Defensive</h4>
++				<h4>防禦（Defensive）</h4>
+ 
+ 				<div class="crc__row">
+ 					<label for="hp" class="ve-ui-tip__parent">
+-						Hit Points:
++						生命值：
+ 						<span class="explanation ve-ui-tip__child">
+-							A creature's hit points determine its defensive CR before it is adjusted by its AC.
++							生物的生命值決定基礎防禦 CR，之後再依其護甲等級調整。
+ 						</span>
+ 					</label>
+-					<input type="number" id="hp" placeholder="Average HP" value="1" min="0" max="850" class="ve-form-control form-control--minimal ve-input-xs">
++					<input type="number" id="hp" placeholder="平均生命值" value="1" min="0" max="850" class="ve-form-control form-control--minimal ve-input-xs">
+ 				</div>
+ 
+ 				<div class="crc__row">
+ 					<label for="ac" class="ve-ui-tip__parent">
+-						Armor Class:
++						護甲等級：
+ 						<span class="explanation ve-ui-tip__child">
+-							A creature's AC adjusts its defensive CR.
++							生物的護甲等級用來調整其防禦 CR。
+ 						</span>
+ 					</label>
+-					<input type="number" id="ac" placeholder="AC" value="13" min="1" max="40" class="ve-form-control form-control--minimal ve-input-xs">
++					<input type="number" id="ac" placeholder="護甲" value="13" min="1" max="40" class="ve-form-control form-control--minimal ve-input-xs">
+ 				</div>
+ 			</div>
+ 
+ 			<div class="ve-col-6">
+-				<h4>Offensive</h4>
++				<h4>進攻（Offensive）</h4>
+ 
+ 				<div class="crc__row">
+ 					<label for="dpr" class="ve-ui-tip__parent">
+-						Damage Per Round:
++						每輪傷害：
+ 						<span class="explanation ve-ui-tip__child">
+-							A creature's damage per round (DPR) determines its offensive CR, which is offset by its attack bonus or save DC. DPR is determined by averaging its maximum damage output (taking the average of dice rolls, ignoring critical hits and accuracy) over three rounds. Areas of effect are treated as though they hit two creatures, which fail any involved saving throws.
++							生物的每輪傷害（DPR）決定基礎進攻 CR，再以攻擊加值或豁免 DC 調整。DPR 取三輪最大傷害輸出的平均值：使用骰子的平均值，不計重擊與命中率。範圍效果視為命中兩個生物，且它們的相關豁免皆失敗。
+ 						</span>
+ 					</label>
+-					<input type="number" id="dpr" placeholder="Average DPR" value="1" min="0" max="320" class="ve-form-control form-control--minimal ve-input-xs">
++					<input type="number" id="dpr" placeholder="平均每輪傷害" value="1" min="0" max="320" class="ve-form-control form-control--minimal ve-input-xs">
+ 				</div>
+ 
+ 				<div class="crc__row">
+ 					<label for="attackbonus" class="ve-ui-tip__parent">
+-						Attack Bonus/Save DC:
++						攻擊加值／豁免 DC：
+ 						<span class="explanation ve-ui-tip__child">
+-							A creature's attack bonus or save DC adjusts its offensive CR.
++							生物的攻擊加值或豁免 DC 用來調整其進攻 CR。
+ 						</span>
+ 					</label>
+-					<input type="number" id="attackbonus" placeholder="Attack Bonus" value="3" min="-5" max="19" class="ve-form-control form-control--minimal ve-input-xs">
++					<input type="number" id="attackbonus" placeholder="攻擊加值" value="3" min="-5" max="19" class="ve-form-control form-control--minimal ve-input-xs">
+ 				</div>
+ 
+ 				<div class="crc__row">
+ 					<label for="saveinstead" class="ve-ui-tip__parent">
+-						Use Saves?
++						使用豁免 DC？
+ 						<span class="explanation ve-ui-tip__child">
+-							If a creature's damage output is more dependent on save-based abilities, its save DC is used for adjusting its offensive CR instead of its attack bonus.
++							若生物的傷害輸出主要依賴要求豁免的能力，則以豁免 DC 取代攻擊加值來調整進攻 CR。
+ 						</span>
+ 					</label>
+ 					<input type="checkbox" id="saveinstead" value="0">
+@@ -195,28 +195,28 @@
+ 
+ 				<div class="crc__row">
+ 					<label for="size" class="ve-ui-tip__parent">
+-						Size:
++						體型：
+ 						<span class="explanation ve-ui-tip__child">
+-							A creature's size determines the size of its individual hit dice.
++							生物的體型決定每顆生命骰的面數。
+ 						</span>
+ 					</label>
+ 					<span class="ve-flex-v-center">
+ 						<select id="size" class="ve-form-control ve-input-xs">
+-							<option value="Tiny">Tiny</option>
+-							<option value="Small">Small</option>
+-							<option value="Medium" selected>Medium</option>
+-							<option value="Large">Large</option>
+-							<option value="Huge">Huge</option>
+-							<option value="Gargantuan">Gargantuan</option>
++							<option value="Tiny">微型</option>
++							<option value="Small">小型</option>
++							<option value="Medium" selected>中型</option>
++							<option value="Large">大型</option>
++							<option value="Huge">巨型</option>
++							<option value="Gargantuan">超巨型</option>
+ 						</select>
+ 					</span>
+ 				</div>
+ 
+ 				<div class="crc__row">
+ 					<label for="hd" class="ve-ui-tip__parent">
+-						Hit Dice:
++						生命骰：
+ 						<span class="explanation ve-ui-tip__child">
+-							Unlike player characters, the number of hit dice an NPC gets is completely arbitrary. Adjust this amount to taste.
++							與玩家角色不同，非玩家角色的生命骰數量可自由設定，請依需要調整。
+ 						</span>
+ 					</label>
+ 					<div class="ve-flex-v-center">
+@@ -227,9 +227,9 @@
+ 
+ 				<div class="crc__row">
+ 					<label for="con" class="ve-ui-tip__parent">
+-						Constitution:
++						體質：
+ 						<span class="explanation ve-ui-tip__child">
+-							A creature's HP is increased by its Constitution modifier for each hit die it has.
++							生物每具有一顆生命骰，其生命值就加上一次體質調整值。
+ 						</span>
+ 					</label>
+ 					<input type="number" id="con" value="10" min="1" max="30" class="ve-form-control form-control--minimal ve-input-xs">
+@@ -241,9 +241,9 @@
+ 
+ 				<div class="crc__row">
+ 					<label for="vulnerabilities" class="ve-ui-tip__parent">
+-						Vulnerabilities:
++						傷害易傷：
+ 						<span class="explanation ve-ui-tip__child">
+-							If a creature is vulnerable to common damage types (especially bludgeoning, piercing, and slashing damage), its effective hit points are halved.
++							若生物對常見傷害類型具有易傷（尤其是鈍擊、穿刺與揮砍），其計算用有效生命值減半。
+ 						</span>
+ 					</label>
+ 					<input type="checkbox" id="vulnerabilities" class="ve-form-control form-control--minimal ve-input-xs">
+@@ -251,25 +251,25 @@
+ 
+ 				<div class="crc__row">
+ 					<label for="resistances" class="ve-ui-tip__parent">
+-						Resistances/Immunities:
++						傷害抗性／免疫：
+ 						<span class="explanation ve-ui-tip__child">
+-							A monster's HP is multiplied based on the resistances and immunities it has to common damage types (non-magical bludgeoning, piercing, and slashing chief among them).
++							依怪物對常見傷害類型具有的抗性與免疫，將生命值乘上對應倍率；主要考慮非魔法的鈍擊、穿刺與揮砍傷害。
+ 						</span>
+ 					</label>
+ 					<span class="ve-flex-v-center">
+ 						<select id="resistances" class="ve-form-control ve-input-xs">
+-							<option value="0" selected>None</option>
+-							<option value="res">Resistances</option>
+-							<option value="imm">Immunities</option>
++							<option value="0" selected>無</option>
++							<option value="res">抗性</option>
++							<option value="imm">免疫</option>
+ 						</select>
+ 					</span>
+ 				</div>
+ 
+ 				<div class="crc__row">
+ 					<label for="flying" class="ve-ui-tip__parent">
+-						Flies and can deal damage at range (CR 0-9 only):
++						能飛行且能造成遠程傷害（僅限 CR 0–9）：
+ 						<span class="explanation ve-ui-tip__child">
+-							A monster's effective AC is increased by 2 if it can fly and deal damage at range, though only if its expected challenge rating is 10 or lower.
++							若怪物能飛行並造成遠程傷害，其計算用有效護甲等級增加 2；原文此處標示預期 CR 為 10 或以下（上方欄位標示為 CR 0–9）。
+ 						</span>
+ 					</label>
+ 					<input type="checkbox" id="flying">
+@@ -277,9 +277,9 @@
+ 
+ 				<div class="crc__row">
+ 					<label for="saveprofs" class="ve-ui-tip__parent">
+-						Save Proficiencies:
++						豁免熟練：
+ 						<span class="explanation ve-ui-tip__child">
+-							Increase a creature's effective AC by 2 if it has 3 or 4 saving throw proficiencies, or by 4 if it has 5 or 6.
++							若生物具有 3 或 4 項豁免熟練，其計算用有效護甲等級增加 2；若有 5 或 6 項則增加 4。
+ 						</span>
+ 					</label>
+ 					<span class="ve-flex-v-center">
+@@ -296,19 +296,18 @@
+ 	<hr>
+ 	<div class="row ve-flex">
+ 		<div class="ve-col-12" id="monsterfeatures">
+-			<h4>Monster Features</h4>
++			<h4>怪物特徵（Monster Features）</h4>
+ 			<div class="crc__hdr_mon_features ve-flex-v-center">
+ 				<div class="ve-col-1"></div>
+-				<div class="ve-col-2">Name</div>
+-				<div class="ve-col-2">Example Monster</div>
+-				<div class="ve-col-7">Feature Description</div>
++				<div class="ve-col-2">名稱</div>
++				<div class="ve-col-2">怪物範例</div>
++				<div class="ve-col-7">特徵說明</div>
+ 			</div>
+ 			<div class="crc__wrp_mon_features">
+ 				<!-- populate with JS -->
+ 			</div>
+ 			<p>
+-				<small><em>Note: Not all monster features are covered here. The DMG&apos;14 has specific instructions on how to
+-					manage other features.</em></small>
++				<small><em>注意：此處未列出所有怪物特徵。2014 年版城主指南另有處理其他特徵的具體說明。</em></small>
+ 			</p>
+ 		</div>
+ 	</div>
+@@ -318,17 +317,17 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+ <script type="text/javascript" defer src="js/hist.js"></script>
+diff --git a/cultsboons.html b/cultsboons.html
+index dffef3a..1e83fb9 100644
+--- a/cultsboons.html
++++ b/cultsboons.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Cults &amp; Supernatural Boons - 5etools</title>
++	<title>邪教與超自然恩賜 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -47,10 +47,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -69,8 +73,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Cults &amp; Supernatural Boons</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">邪教與超自然恩賜</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">從左側按名稱搜尋，點選名稱後於右側顯示。</p>
+ 			</div>
+ 		</header>
+ 
+@@ -88,14 +92,14 @@
+ 						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+ 						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
+ 					</div>
+-					<button type="button" class="ve-btn ve-btn-default" id="reset">Reset</button>
++					<button type="button" class="ve-btn ve-btn-default" id="reset">重設</button>
+ 				</div>
+ 
+ 				<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+-					<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">Type</button>
+-					<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="subType">Subtype</button>
+-					<button type="button" class="ve-col-6 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
++					<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">類型</button>
++					<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="subType">子類型</button>
++					<button type="button" class="ve-col-6 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">來源</button>
+ 				</div>
+ 
+ 				<div id="list" class="list list--stats"></div>
+@@ -106,9 +110,9 @@
+ 			<div id="contentwrapper" class="view-col">
+ 				<div id="sublistcontainer" class="sublist sublist--resizable ve-print__hidden">
+ 					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
+-						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">Type</button>
+-						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="subType">Subtype</button>
+-						<button type="button" class="ve-col-8 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
++						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">類型</button>
++						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="subType">子類型</button>
++						<button type="button" class="ve-col-8 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
+ 					</div>
+ 
+ 					<div id="sublist" class="list"></div>
+@@ -121,17 +125,17 @@
+ 				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
+ 					<table id="pagecontent" class="ve-w-100 ve-stats">
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-						<tr><td colspan="6" class="initial-message initial-message--med">Select an entry from the list to view it here</td></tr>
++						<tr><td colspan="6" class="initial-message initial-message--med">從清單選取項目，即可在此檢視</td></tr>
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 					</table>
+ 				</div>
+ 
+ 				<div class="ve-flex-vh-center ve-mt-2 ve-print__hidden">
+-					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">Printer View</button>
++					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">列印檢視</button>
+ 					<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">管理內容</button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="管理預發佈內容"><span class="glyphicon glyphicon-wrench"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="管理自製內容"><span class="glyphicon glyphicon-glass"></span></button>
+ 					</div>
+ 				</div>
+ 			</div>
+@@ -143,18 +147,18 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/utils-list.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="text/javascript" defer src="js/render-cultsboons.js"></script>
+diff --git a/decks.html b/decks.html
+index 7747612..ffa5d1f 100644
+--- a/decks.html
++++ b/decks.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Decks - 5etools</title>
++	<title>牌組 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/fontawesome.css">
+@@ -50,10 +50,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -72,8 +76,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Decks</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">牌組</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">從左側按名稱搜尋，點選名稱後於右側顯示。</p>
+ 			</div>
+ 		</header>
+ 
+@@ -91,12 +95,12 @@
+ 						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+ 						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
+ 					</div>
+-					<button type="button" class="ve-btn ve-btn-default" id="reset">Reset</button>
++					<button type="button" class="ve-btn ve-btn-default" id="reset">重設</button>
+ 				</div>
+ 
+ 				<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+-					<button type="button" class="ve-col-10 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
++					<button type="button" class="ve-col-10 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">來源</button>
+ 				</div>
+ 
+ 				<div id="list" class="list list--stats"></div>
+@@ -107,7 +111,7 @@
+ 			<div id="contentwrapper" class="view-col ve-flex-7">
+ 				<div id="sublistcontainer" class="sublist sublist--resizable ve-print__hidden">
+ 					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
+-						<button type="button" class="ve-col-12 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
++						<button type="button" class="ve-col-12 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
+ 					</div>
+ 
+ 					<div id="sublist" class="list"></div>
+@@ -120,17 +124,17 @@
+ 				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table wrp-stats-table--book">
+ 					<table id="pagecontent" class="ve-w-100 ve-stats ve-stats--book">
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-						<tr><td colspan="6" class="initial-message initial-message--med">Select an entry from the list to view it here</td></tr>
++						<tr><td colspan="6" class="initial-message initial-message--med">從清單選取項目，即可在此檢視</td></tr>
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 					</table>
+ 				</div>
+ 
+ 				<div class="ve-flex-vh-center ve-mt-2 ve-print__hidden">
+-					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">Printer View</button>
++					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">列印檢視</button>
+ 					<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">管理內容</button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="管理預發佈內容"><span class="glyphicon glyphicon-wrench"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="管理自製內容"><span class="glyphicon glyphicon-glass"></span></button>
+ 					</div>
+ 				</div>
+ 			</div>
+@@ -142,27 +146,27 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/utils-list.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+-<script type="text/javascript" defer src="js/render-decks.js"></script>
++<script type="text/javascript" defer src="js/render-decks.js?v=zh-tw-33"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+ <script type="text/javascript" defer src="js/hist.js"></script>
+ <script type="text/javascript" defer src="js/listpage.js"></script>
+ <script type="text/javascript" defer src="js/filter-common.js"></script>
+-<script type="text/javascript" defer src="js/filter-decks.js"></script>
+-<script type="module" src="js/decks.js"></script>
++<script type="text/javascript" defer src="js/filter-decks.js?v=zh-tw-33"></script>
++<script type="module" src="js/decks.js?v=zh-tw-33"></script>
+ <script type="module" defer src="js/list2.js"></script>
+ <script type="text/javascript" defer src="lib/elasticlunr.js"></script>
+ 
+diff --git a/deities.html b/deities.html
+index d59e201..ff00cd8 100644
+--- a/deities.html
++++ b/deities.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Deities - 5etools</title>
++	<title>神祇 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -47,10 +47,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -69,8 +73,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Deities</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">神祇</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">從左側按名稱搜尋，點選名稱後於右側顯示。</p>
+ 			</div>
+ 		</header>
+ 
+@@ -88,15 +92,15 @@
+ 						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+ 						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
+ 					</div>
+-					<button type="button" class="ve-btn ve-btn-default" id="reset">Reset</button>
++					<button type="button" class="ve-btn ve-btn-default" id="reset">重設</button>
+ 				</div>
+ 
+ 				<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+-					<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-					<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="pantheon">Pantheon</button>
+-					<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="alignment">Alignment</button>
+-					<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="domains">Domains</button>
+-					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
++					<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++					<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="pantheon">神系</button>
++					<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="alignment">陣營</button>
++					<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="domains">領域</button>
++					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">來源</button>
+ 				</div>
+ 
+ 				<div id="list" class="list list--stats"></div>
+@@ -107,10 +111,10 @@
+ 			<div id="contentwrapper" class="view-col ve-flex-4">
+ 				<div id="sublistcontainer" class="sublist sublist--resizable ve-print__hidden">
+ 					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
+-						<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="pantheon">Pantheon</button>
+-						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="alignment">Alignment</button>
+-						<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="domains">Domains</button>
++						<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="pantheon">神系</button>
++						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="alignment">陣營</button>
++						<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="domains">領域</button>
+ 					</div>
+ 
+ 					<div id="sublist" class="list"></div>
+@@ -123,17 +127,17 @@
+ 				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
+ 					<table id="pagecontent" class="ve-w-100 ve-stats">
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-						<tr><td colspan="6" class="initial-message initial-message--med">Select an entry from the list to view it here</td></tr>
++						<tr><td colspan="6" class="initial-message initial-message--med">從清單選取項目，即可在此檢視</td></tr>
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 					</table>
+ 				</div>
+ 
+ 				<div class="ve-flex-vh-center ve-mt-2 ve-print__hidden">
+-					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">Printer View</button>
++					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">列印檢視</button>
+ 					<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">管理內容</button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="管理預發佈內容"><span class="glyphicon glyphicon-wrench"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="管理自製內容"><span class="glyphicon glyphicon-glass"></span></button>
+ 					</div>
+ 				</div>
+ 			</div>
+@@ -145,18 +149,18 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/utils-list.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="text/javascript" defer src="js/render-deities.js"></script>
+diff --git a/dmscreen.html b/dmscreen.html
+index 36ad09c..1091e93 100644
+--- a/dmscreen.html
++++ b/dmscreen.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>DM Screen - 5etools</title>
++	<title>地下城主螢幕 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/fontawesome.css">
+@@ -49,10 +49,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -66,8 +70,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">DM Screen</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Build a personalised DM screen.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">地下城主螢幕</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">建立個人化的地下城主螢幕。</p>
+ 			</div>
+ 		</header>
+ 
+@@ -92,19 +96,19 @@
+ <script type="text/javascript" defer src="lib/peerjs.js"></script>
+ <script type="text/javascript" defer src="lib/lzma.js"></script>
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/utils-list.js"></script>
+ <script type="text/javascript" defer src="js/utils-p2p.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+ <script type="text/javascript" defer src="js/hist.js"></script>
+diff --git a/encountergen.html b/encountergen.html
+index 2d59695..05e5f58 100644
+--- a/encountergen.html
++++ b/encountergen.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Encounters - 5etools</title>
++	<title>遭遇 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -48,10 +48,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -70,8 +74,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Encounter Generator</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Choose a table, then roll the dice! Alternatively, try the <a href="bestiary.html#blankhash,encounterbuilder:true">Bestiary Encounter Builder</a>.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">遭遇產生器</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">選擇一張表後擲骰！或者，試試 <a href="bestiary.html#blankhash,encounterbuilder:true">怪物圖鑑遭遇建構器</a>.</p>
+ 			</div>
+ 		</header>
+ 
+@@ -89,7 +93,7 @@
+ 						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+ 						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
+ 					</div>
+-					<button type="button" class="ve-btn ve-btn-default ve-bbr-4p" id="reset">Reset</button>
++					<button type="button" class="ve-btn ve-btn-default ve-bbr-4p" id="reset">重設</button>
+ 				</div>
+ 
+ 				<div id="list" class="list list--stats"></div>
+@@ -100,7 +104,7 @@
+ 			<div id="contentwrapper" class="view-col ve-flex-7">
+ 				<div id="sublistcontainer" class="sublist sublist--resizable ve-print__hidden">
+ 					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
+-						<button type="button" class="ve-col-12 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
++						<button type="button" class="ve-col-12 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
+ 					</div>
+ 
+ 					<div id="sublist" class="list"></div>
+@@ -113,13 +117,13 @@
+ 				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table wrp-stats-table--book">
+ 					<table id="pagecontent" class="ve-w-100 ve-stats ve-stats--book ve-stats--book-large">
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-						<tr><td colspan="6" class="initial-message initial-message--med">Select an entry from the list to view it here</td></tr>
++						<tr><td colspan="6" class="initial-message initial-message--med">從清單選取項目，即可在此檢視</td></tr>
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 					</table>
+ 				</div>
+ 
+ 				<div class="ve-flex-vh-center ve-mt-2 ve-print__hidden">
+-					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">Printer View</button>
++					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">列印檢視</button>
+ 				</div>
+ 			</div>
+ 		</div>
+@@ -130,18 +134,18 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/utils-list.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="text/javascript" defer src="js/render-encounters.js"></script>
+diff --git a/feats.html b/feats.html
+index 5fd6135..8aed083 100644
+--- a/feats.html
++++ b/feats.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Feats - 5etools</title>
++	<title>專長 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -47,10 +47,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -69,8 +73,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Feats</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">專長</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">從左側按名稱搜尋，點選名稱後於右側顯示。</p>
+ 			</div>
+ 		</header>
+ 
+@@ -88,16 +92,16 @@
+ 						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+ 						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
+ 					</div>
+-					<button type="button" class="ve-btn ve-btn-default" id="reset">Reset</button>
++					<button type="button" class="ve-btn ve-btn-default" id="reset">重設</button>
+ 				</div>
+ 
+ 				<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+ 					<button type="button" class="ve-col-0-3 ve-btn ve-btn-default ve-btn-xs ve-p-0 ve-lst__btn-collapse-all-previews ve-no-select" name="list-toggle-all-previews">[+]</button>
+-					<button type="button" class="ve-col-3-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-					<button type="button" class="ve-col-1-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">Category</button>
+-					<button type="button" class="ve-col-2-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="ability">Ability</button>
+-					<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="prerequisite">Prerequisite</button>
+-					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
++					<button type="button" class="ve-col-3-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++					<button type="button" class="ve-col-1-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">分類</button>
++					<button type="button" class="ve-col-2-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="ability">屬性</button>
++					<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="prerequisite">先決條件</button>
++					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">來源</button>
+ 				</div>
+ 
+ 				<div id="list" class="list list--stats"></div>
+@@ -108,10 +112,10 @@
+ 			<div id="contentwrapper" class="view-col ve-flex-5">
+ 				<div id="sublistcontainer" class="sublist sublist--resizable ve-print__hidden">
+ 					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
+-						<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">Category</button>
+-						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="ability">Ability</button>
+-						<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="prerequisite">Prerequisite</button>
++						<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">分類</button>
++						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="ability">屬性</button>
++						<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="prerequisite">先決條件</button>
+ 					</div>
+ 
+ 					<div id="sublist" class="list"></div>
+@@ -124,17 +128,17 @@
+ 				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
+ 					<table id="pagecontent" class="ve-w-100 ve-stats">
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-						<tr><td colspan="6" class="initial-message initial-message--med">Select an entry from the list to view it here</td></tr>
++						<tr><td colspan="6" class="initial-message initial-message--med">從清單選取項目，即可在此檢視</td></tr>
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 					</table>
+ 				</div>
+ 
+ 				<div class="ve-flex-vh-center ve-mt-2 ve-print__hidden">
+-					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">Printer View</button>
++					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">列印檢視</button>
+ 					<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">管理內容</button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="管理預發佈內容"><span class="glyphicon glyphicon-wrench"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="管理自製內容"><span class="glyphicon glyphicon-glass"></span></button>
+ 					</div>
+ 				</div>
+ 			</div>
+@@ -146,18 +150,18 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/utils-list.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+diff --git a/homecrafts.html b/homecrafts.html
+index 9254883..b772186 100644
+--- a/homecrafts.html
++++ b/homecrafts.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Home Crafts - 5etools</title>
++	<title>居家工藝 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -48,10 +48,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -70,8 +74,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Home Crafts</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">居家工藝</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">從左側按名稱搜尋，點選名稱後於右側顯示。</p>
+ 			</div>
+ 		</header>
+ 
+@@ -89,14 +93,14 @@
+ 						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+ 						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
+ 					</div>
+-					<button type="button" class="ve-btn ve-btn-default" id="reset">Reset</button>
++					<button type="button" class="ve-btn ve-btn-default" id="reset">重設</button>
+ 				</div>
+ 
+ 				<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+-					<button type="button" class="ve-col-1-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">Type</button>
+-					<button type="button" class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-					<button type="button" class="ve-col-3-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">Category</button>
+-					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
++					<button type="button" class="ve-col-1-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">類型</button>
++					<button type="button" class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++					<button type="button" class="ve-col-3-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">分類</button>
++					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">來源</button>
+ 				</div>
+ 
+ 				<div id="list" class="list list--stats"></div>
+@@ -107,9 +111,9 @@
+ 			<div id="contentwrapper" class="view-col ve-flex-7">
+ 				<div id="sublistcontainer" class="sublist sublist--resizable ve-print__hidden">
+ 					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
+-						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">Type</button>
+-						<button type="button" class="ve-col-7 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-						<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">Category</button>
++						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">類型</button>
++						<button type="button" class="ve-col-7 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++						<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">分類</button>
+ 					</div>
+ 
+ 					<div id="sublist" class="list"></div>
+@@ -122,17 +126,17 @@
+ 				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table wrp-stats-table--book">
+ 					<table id="pagecontent" class="ve-w-100 ve-stats ve-stats--book homecrafts__tbl-homecrafts">
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-						<tr><td colspan="6" class="initial-message initial-message--med">Select an entry from the list to view it here</td></tr>
++						<tr><td colspan="6" class="initial-message initial-message--med">從清單選取項目，即可在此檢視</td></tr>
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 					</table>
+ 				</div>
+ 
+ 				<div class="ve-flex-vh-center ve-mt-2 ve-print__hidden">
+-					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">Printer View</button>
++					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">列印檢視</button>
+ 					<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">管理內容</button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="管理預發佈內容"><span class="glyphicon glyphicon-wrench"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="管理自製內容"><span class="glyphicon glyphicon-glass"></span></button>
+ 					</div>
+ 				</div>
+ 			</div>
+@@ -144,18 +148,18 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/utils-list.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>

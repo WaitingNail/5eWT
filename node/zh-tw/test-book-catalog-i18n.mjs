@@ -8,12 +8,13 @@ const nav = read("data/zh-TW/book-catalog/navigation.json");
 await import("../../js/parser.js");
 await import("../../js/utils.js");
 await import("../../js/utils-ui.js");
+await import("../../js/hist.js");
 await import("../../js/render.js");
 await import("../../js/render-dice.js");
 globalThis.VetoolsConfig = {get: () => "one"};
 globalThis.DataLoader = {getAllFromCacheAll: () => []};
 
-for (const [kind, id, title] of [["book", "PL", "拉莫迪亞計畫"], ["adventure", "SoS", "西堤庫斯之影"]]) {
+for (const [kind, id, title] of [["book", "PL", "拉莫迪亞計畫"], ["adventure", "SoS", "西堤庫斯之影"], ["book", "WoW", "D&D：魔獸世界"], ["adventure", "ICC", "魔獸世界：冰冠城塞"], ["adventure", "DDE", "魔獸世界：死亡礦坑"]]) {
 	const index = read(`data/${kind}s.json`)[kind];
 	const catalog = read(`data/zh-TW/book-catalog/${kind}s.json`)[kind];
 	assert.equal(Object.keys(catalog).length, index.length);
@@ -30,18 +31,17 @@ for (const [kind, id, title] of [["book", "PL", "拉莫迪亞計畫"], ["adventu
 
 	const file = `${kind}-${id.toLowerCase()}.json`;
 	const source = read(`data/${kind}/${file}`)[`${kind}Data`][0];
-	const localized = read(`data/zh-TW/book-catalog/${file}`);
 	const view = await I18nZhTwAdventure.pGetView({
 		bookId: id,
 		canonical: source,
 		index: index.find(it => it.id === id),
 		fnLoad: ({url}) => {
-			assert.equal(url, `data/zh-TW/book-catalog/${file}`);
-			return localized;
+			assert.ok(url.startsWith(`data/zh-TW/book-catalog/${file.slice(0, -5)}`));
+			return read(url);
 		},
 	});
 	assert.ok(view.index.name.startsWith(title));
-	assert.equal(view.dataDocument.data.length, 7);
+	assert.equal(view.dataDocument.data.length, source.data.length);
 
 	const render = chapter => {
 		const renderer = new Renderer().setFirstSection(true).setEnumerateTitlesRel(true).setTrackTitles(true).resetHeaderIndex().setHeaderIndexTableCaptions(true);
@@ -60,4 +60,4 @@ for (const [kind, id, title] of [["book", "PL", "拉莫迪亞計畫"], ["adventu
 	assert.deepEqual(getAreas(view.dataDocument.data), getAreas(source.data));
 }
 
-console.log("Both localized catalogs and all 14 translated chapters preserve canonical chapter links and area IDs.");
+console.log("Both localized catalogs and all 39 translated chapters preserve canonical chapter links and area IDs.");

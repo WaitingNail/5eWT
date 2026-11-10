@@ -1,0 +1,1749 @@
+diff --git a/js/optionalfeatures.js b/js/optionalfeatures.js
+index 9b8b5db..279b272 100644
+--- a/js/optionalfeatures.js
++++ b/js/optionalfeatures.js
+@@ -1,5 +1,7 @@
+ import {RenderOptionalFeatures} from "./render-optionalfeatures.js";
+ 
++const {I18nZhTwContent} = globalThis;
++
+ class OptionalFeaturesSublistManager extends SublistManager {
+ 	constructor () {
+ 		super({
+@@ -12,22 +14,22 @@ class OptionalFeaturesSublistManager extends SublistManager {
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-4 ve-pl-0 ve-pr-1",
+ 				colStyle: "",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Type",
++				name: "類型",
+ 				css: "ve-col-2 ve-px-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Prerequisite",
++				name: "先決條件",
+ 				css: "ve-col-4-5 ve-px-1",
+ 				colStyle: "",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Level",
++				name: "等級",
+ 				css: "ve-col-1-5 ve-text-center ve-pl-1 ve-pr-0",
+ 				colStyle: "text-center",
+ 			}),
+@@ -35,13 +37,15 @@ class OptionalFeaturesSublistManager extends SublistManager {
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
+-		const prerequisite = Renderer.utils.prerequisite.getHtml(it.prerequisite, {isListMode: true, keyOptions: {level: {isNameOnly: true}}});
++		const prerequisite = I18nZhTwContent.localizeRulesText(Renderer.utils.prerequisite.getHtml(it.prerequisite, {isListMode: true, keyOptions: {level: {isNameOnly: true}}}));
+ 		const level = Renderer.optionalfeature.getListPrerequisiteLevelText(it.prerequisite);
++		const levelDisplay = level === "\u2014" ? level : `${level}級`;
++		const displayName = I18nZhTwContent.getBilingualName(it);
+ 		const cellsText = [
+-			it.name,
++			displayName,
+ 			new SublistCell({title: it._dFeatureType.join(", "), text: it._lFeatureType}),
+ 			prerequisite,
+-			level,
++			levelDisplay,
+ 		];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+@@ -55,12 +59,13 @@ class OptionalFeaturesSublistManager extends SublistManager {
+ 		const listItem = new ListItem({
+ 			id: hash,
+ 			ele,
+-			name: it.name,
++			name: displayName,
+ 			values: {
+ 				...ListItem.getCommonValues(it),
++				englishName: I18nZhTwContent.getCanonicalName(it),
+ 				type: it._lFeatureType,
+ 				prerequisite,
+-				level,
++				level: levelDisplay,
+ 			},
+ 			data: {
+ 				hash,
+@@ -91,9 +96,9 @@ class OptionalFeaturesPage extends ListPage {
+ 			dataProps: ["optionalfeature"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "optional feature",
+-				namePlural: "optional features",
+-				pageTitle: "Optional Features Book View",
++				nameSingular: "選用特性",
++				namePlural: "選用特性",
++				pageTitle: "選用特性書籍檢視",
+ 			},
+ 
+ 			isPreviewable: true,
+@@ -108,15 +113,17 @@ class OptionalFeaturesPage extends ListPage {
+ 
+ 		const source = Parser.sourceJsonToAbv(it.source);
+ 		const hash = UrlUtil.autoEncodeHash(it);
+-		const prerequisite = Renderer.utils.prerequisite.getHtml(it.prerequisite, {isListMode: true, keyOptions: {level: {isNameOnly: true}}});
++		const prerequisite = I18nZhTwContent.localizeRulesText(Renderer.utils.prerequisite.getHtml(it.prerequisite, {isListMode: true, keyOptions: {level: {isNameOnly: true}}}));
+ 		const level = Renderer.optionalfeature.getListPrerequisiteLevelText(it.prerequisite);
++		const levelDisplay = level === "\u2014" ? level : `${level}級`;
++		const displayName = I18nZhTwContent.getBilingualName(it);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-col-0-3 ve-px-0 ve-flex-vh-center ve-lst__btn-toggle-expand ve-self-flex-stretch ve-no-select">[+]</span>
+-			<span class="ve-bold ve-col-3 ve-px-1">${it.name}</span>
++			<span class="ve-bold ve-col-3 ve-px-1">${displayName}</span>
+ 			<span class="ve-col-1-5 ve-px-1 ve-text-center" title="${it._dFeatureType.join(", ").qq()}">${it._lFeatureType}</span>
+ 			<span class="ve-col-4-7 ve-px-1">${prerequisite}</span>
+-			<span class="ve-col-1 ve-px-1 ve-text-center">${level}</span>
++			<span class="ve-col-1 ve-px-1 ve-text-center">${levelDisplay}</span>
+ 			<span class="ve-col-1-5 ${Parser.sourceJsonToSourceClassname(it.source)} ve-text-center ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
+ 		</a>
+ 		<div class="ve-flex ve-hidden ve-relative ve-accordion__wrp-preview">
+@@ -127,12 +134,13 @@ class OptionalFeaturesPage extends ListPage {
+ 		const listItem = new ListItem({
+ 			id: ivI,
+ 			ele: eleLi,
+-			name: it.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				...ListItem.getCommonValues(it),
++				englishName: I18nZhTwContent.getCanonicalName(it),
+ 				prerequisite,
+-				level,
++				level: levelDisplay,
+ 				type: it._lFeatureType,
+ 			},
+ 			data: {
+@@ -161,14 +169,14 @@ class OptionalFeaturesPage extends ListPage {
+ 				if (hasAnyFluff) wrpOptFeatType.vee.addClass("ve-mb-1").vee.insertBefore(this._wrpTabs);
+ 				else wrpOptFeatType.vee.addClass("ve-pl-7p").vee.prependTo(this._wrpTabs);
+ 
+-				const commonPrefix = ent.featureType.length > 1 ? MiscUtil.findCommonPrefix(ent.featureType.map(fs => Parser.optFeatureTypeToFull(fs)), {isRespectWordBoundaries: true}) : "";
++				const commonPrefix = ent.featureType.length > 1 ? MiscUtil.findCommonPrefix(ent.featureType.map(fs => I18nZhTwContent.getOptionalFeatureType(fs)), {isRespectWordBoundaries: true}) : "";
+ 				if (commonPrefix) wrpOptFeatType.vee.appends(`<span>${commonPrefix.trim()} </span>`);
+ 
+ 				ent.featureType.forEach((ft, i) => {
+ 					if (i > 0) wrpOptFeatType.vee.appends(`<span>/</span>`);
+-					veT`<span class="ve-roller">${Parser.optFeatureTypeToFull(ft).substring(commonPrefix.length)}</span>`
++					veT`<span class="ve-roller">${I18nZhTwContent.getOptionalFeatureType(ft).substring(commonPrefix.length)}</span>`
+ 						.vee.onn("click", () => {
+-							this._filterBox.setFromValues({"Feature Type": {[ft]: 1}});
++							this._filterBox.setFromValues({"特性類型": {[ft]: 1}});
+ 							this.handleFilterChange();
+ 						})
+ 						.vee.appendTo(wrpOptFeatType);
+diff --git a/js/parser.js b/js/parser.js
+index 77d32a3..c143bfc 100644
+--- a/js/parser.js
++++ b/js/parser.js
+@@ -2791,7 +2791,7 @@ Parser.attackTypeToFull = function (attackType) {
+ };
+ 
+ Parser.trapHazTypeToFull = function (type) {
+-	return Parser._parse_aToB(Parser.TRAP_HAZARD_TYPE_TO_FULL, type);
++	return globalThis.I18nZhTwUtilities?.trapType(type) || Parser._parse_aToB(Parser.TRAP_HAZARD_TYPE_TO_FULL, type);
+ };
+ 
+ Parser.TRAP_HAZARD_TYPE_TO_FULL = {
+diff --git a/js/psionics.js b/js/psionics.js
+index 82b91c6..09874dc 100644
+--- a/js/psionics.js
++++ b/js/psionics.js
+@@ -4,17 +4,17 @@ class PsionicsSublistManager extends SublistManager {
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-6 ve-pl-0 ve-pr-1",
+ 				colStyle: "",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Type",
++				name: "類型",
+ 				css: "ve-col-3 ve-px-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Order",
++				name: "修會",
+ 				css: "ve-col-3 ve-text-center ve-pl-1 ve-pr-0",
+ 				colStyle: "text-center",
+ 			}),
+@@ -22,16 +22,18 @@ class PsionicsSublistManager extends SublistManager {
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
+-		const typeMeta = Parser.psiTypeToMeta(it.type);
++		const displayName = I18nZhTwContent.getBilingualName(it);
++		const displayType = I18nZhTwContent.getPsionicType(it.type, {isBilingual: true});
++		const displayOrder = I18nZhTwContent.getPsionicOrder(it.order, {isBilingual: true});
+ 		const cellsText = [
+-			it.name,
++			displayName,
+ 			new SublistCell({
+-				text: typeMeta.short,
+-				title: typeMeta.full,
++				text: displayType,
++				title: displayType,
+ 				css: Parser.psiTypeAbvToStyleClass(it.type),
+ 				style: Parser.psiTypeAbvToStylePart(it.type),
+ 			}),
+-			it._fOrder,
++			displayOrder,
+ 		];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+@@ -45,10 +47,11 @@ class PsionicsSublistManager extends SublistManager {
+ 		const listItem = new ListItem({
+ 			id: hash,
+ 			ele,
+-			name: it.name,
++			name: displayName,
+ 			values: {
+ 				...ListItem.getCommonValues(it),
+-				type: typeMeta.full,
++				englishName: I18nZhTwContent.getCanonicalName(it),
++				type: displayType,
+ 				order: it._fOrder,
+ 			},
+ 			data: {
+@@ -66,26 +69,26 @@ class PsionicsPage extends ListPage {
+ 	constructor () {
+ 		const pageFilter = new PageFilterPsionics();
+ 		super({
+-			dataSource: "data/psionics.json",
++			dataSource: DataUtil.psionic.loadJSON.bind(DataUtil.psionic),
+ 
+ 			pageFilter,
+ 
+ 			dataProps: ["psionic"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "psionic",
+-				namePlural: "psionics",
+-				pageTitle: "Psionics Book View",
++				nameSingular: "靈能",
++				namePlural: "靈能",
++				pageTitle: "靈能書冊檢視",
+ 				fnPartition: ent => ent.type === "T" ? 0 : 1,
+ 			},
+ 
+ 			tableViewOptions: {
+-				title: "Psionics",
++				title: "靈能",
+ 				colTransforms: {
+-					name: UtilsTableview.COL_TRANSFORM_NAME,
++					_name: {name: "名稱", transform: it => I18nZhTwContent.getBilingualName(it)},
+ 					source: UtilsTableview.COL_TRANSFORM_SOURCE,
+ 					page: UtilsTableview.COL_TRANSFORM_PAGE,
+-					_text: {name: "Text", transform: (it) => Renderer.psionic.getBodyHtml(it), flex: 3},
++					_text: {name: "內容", transform: (it) => Renderer.psionic.getBodyHtml(it), flex: 3},
+ 				},
+ 			},
+ 
+@@ -97,9 +100,9 @@ class PsionicsPage extends ListPage {
+ 		return (psionic.modes || [])
+ 			.map(mode => {
+ 				return [
+-					`"${mode.name}"`,
++					`"${I18nZhTwContent.getBilingualName(mode)}"`,
+ 					...(mode.submodes || [])
+-						.map(subMode => `"${subMode.name}"`),
++						.map(subMode => `"${I18nZhTwContent.getBilingualName(subMode)}"`),
+ 				];
+ 			})
+ 			.flat()
+@@ -114,24 +117,27 @@ class PsionicsPage extends ListPage {
+ 
+ 		const source = Parser.sourceJsonToAbv(p.source);
+ 		const hash = UrlUtil.autoEncodeHash(p);
+-		const typeMeta = Parser.psiTypeToMeta(p.type);
++		const displayName = I18nZhTwContent.getBilingualName(p);
++		const displayType = I18nZhTwContent.getPsionicType(p.type, {isBilingual: true});
++		const displayOrder = I18nZhTwContent.getPsionicOrder(p.order, {isBilingual: true});
+ 		const typeClassName = Parser.psiTypeAbvToStyleClass(p.type);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+-			<span class="ve-bold ve-col-6 ve-pl-0 ve-pr-1">${p.name}</span>
+-			<span class="ve-col-2 ve-px-1 ${typeClassName} ve-text-center" ${Parser.psiTypeAbvToStyle(p.type)} title="${typeMeta.full}">${typeMeta.short}</span>
+-			<span class="ve-col-2 ve-px-1 ve-text-center ${p._fOrder === VeCt.STR_NONE ? "ve-italic" : ""}">${p._fOrder}</span>
++			<span class="ve-bold ve-col-6 ve-pl-0 ve-pr-1">${displayName}</span>
++			<span class="ve-col-2 ve-px-1 ${typeClassName} ve-text-center" ${Parser.psiTypeAbvToStyle(p.type)} title="${displayType}">${displayType}</span>
++			<span class="ve-col-2 ve-px-1 ve-text-center ${p._fOrder === VeCt.STR_NONE ? "ve-italic" : ""}">${displayOrder}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(p.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(p.source)}">${source}</span>
+ 		</a>`;
+ 
+ 		const listItem = new ListItem({
+ 			id: psI,
+ 			ele: eleLi,
+-			name: p.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				...ListItem.getCommonValues(p),
+-				type: typeMeta.full,
++				englishName: I18nZhTwContent.getCanonicalName(p),
++				type: displayType,
+ 				order: p._fOrder,
+ 				searchModeList: this.constructor._getHiddenModeList(p),
+ 			},
+diff --git a/js/quickreference.js b/js/quickreference.js
+index 664be45..68131ae 100644
+--- a/js/quickreference.js
++++ b/js/quickreference.js
+@@ -1,4 +1,5 @@
+ import {BookUtil} from "./bookutils.js";
++import {I18nZhTwQuickReference} from "./zh-tw/quick-reference-i18n.js";
+ 
+ // NOTE: This file is generated with the Node script `generate-quick-reference.js`
+ const JSON_URL = "data/generated/bookref-quick.json";
+@@ -12,7 +13,7 @@ window.addEventListener("load", async () => {
+ 		BookUtil.dispBook
+ 			.vee.empty()
+ 			.vee.html(`${Renderer.utils.getBorderTr()}
+-			<tr><td colspan="6" class="initial-message initial-message--med">Select a section to begin</td></tr>
++			<tr><td colspan="6" class="initial-message initial-message--med">請選擇一個章節開始閱讀</td></tr>
+ 			${Renderer.utils.getBorderTr()}`);
+ 	}
+ 
+@@ -21,11 +22,24 @@ window.addEventListener("load", async () => {
+ 		BrewUtil2.pInit(),
+ 	]);
+ 	await ExcludeUtil.pInitialise();
+-	DataUtil.loadJSON(JSON_URL).then(onJsonLoad);
++
++	const [canonical, localized] = await Promise.all([
++		DataUtil.loadJSON(JSON_URL),
++		I18nZhTwQuickReference.pLoad(),
++	]);
++	await onJsonLoad({canonical, localized});
+ });
+ 
+-async function onJsonLoad (data) {
+-	reference = [data.reference["bookref-quick"]];
++async function onJsonLoad ({canonical, localized}) {
++	let localizedView;
++	try {
++		localizedView = I18nZhTwQuickReference.createLocalizedView({canonical, localized});
++	} catch (e) {
++		console.warn(`[zh-TW quick reference] Invalid localized data; using canonical English data.`, e);
++		localizedView = I18nZhTwQuickReference.createLocalizedView({canonical, localized: null});
++	}
++
++	reference = [localizedView.reference];
+ 	BookUtil.contentType = "document";
+ 
+ 	BookUtil.isDefaultExpandedContents = true;
+@@ -33,6 +47,8 @@ async function onJsonLoad (data) {
+ 	BookUtil.bookIndex = reference;
+ 	BookUtil.referenceId = "bookref-quick";
+ 	BookUtil.typeTitle = "Quick Reference (5e/2014)";
++	BookUtil.referenceData = localizedView.dataDocument;
++	BookUtil.referenceI18n = localizedView.adapter;
+ 	await BookUtil.pInit();
+ 
+ 	window.onhashchange = BookUtil.booksHashChange.bind(BookUtil);
+diff --git a/js/races.js b/js/races.js
+index 73e980e..6833084 100644
+--- a/js/races.js
++++ b/js/races.js
+@@ -1,20 +1,22 @@
+ import {RenderRaces} from "./render-races.js";
+ 
++const {I18nZhTwContent} = globalThis;
++
+ class RacesSublistManager extends SublistManager {
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-5 ve-pl-0 ve-pr-1",
+ 				colStyle: "",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Ability",
++				name: "屬性",
+ 				css: "ve-col-5 ve-px-1",
+ 				colStyle: "",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Size",
++				name: "體型",
+ 				css: "ve-col-2 ve-text-center ve-pl-1 ve-pr-0",
+ 				colStyle: "text-center",
+ 			}),
+@@ -23,10 +25,11 @@ class RacesSublistManager extends SublistManager {
+ 
+ 	pGetSublistItem (race, hash) {
+ 		const {sizeText, sizeShortText} = PageFilterRaces.getSizeDisplayInfo(race.size);
++		const displayName = I18nZhTwContent.getBilingualName(race);
+ 
+ 		const cellsText = [
+-			race.name,
+-			new SublistCell({text: race._slAbility, css: race._slAbility === VeCt.STR_NONE || race._slAbility === "Lineage" ? "ve-italic" : ""}),
++			displayName,
++			new SublistCell({text: race._slAbility, css: race._slAbility === "無" || race._slAbility === "血統" ? "ve-italic" : ""}),
+ 			new SublistCell({text: sizeShortText, title: sizeText}),
+ 		];
+ 
+@@ -42,9 +45,10 @@ class RacesSublistManager extends SublistManager {
+ 		const listItem = new ListItem({
+ 			id: hash,
+ 			ele,
+-			name: race.name,
++			name: displayName,
+ 			values: {
+ 				...ListItem.getCommonValues(race),
++				englishName: I18nZhTwContent.getCanonicalName(race),
+ 				ability: race._slAbility,
+ 				size: sizeText,
+ 			},
+@@ -75,9 +79,9 @@ class RacesPage extends ListPage {
+ 			dataProps: ["race"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "species",
+-				namePlural: "species",
+-				pageTitle: "Species Book View",
++				nameSingular: "物種／種族",
++				namePlural: "物種／種族",
++				pageTitle: "物種／種族書籍檢視",
+ 			},
+ 
+ 			isPreviewable: true,
+@@ -109,11 +113,12 @@ class RacesPage extends ListPage {
+ 		const {sizeText, sizeShortText} = PageFilterRaces.getSizeDisplayInfo(race.size);
+ 
+ 		const source = Parser.sourceJsonToAbv(race.source);
++		const displayName = I18nZhTwContent.getBilingualName(race);
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-col-0-4 ve-px-0 ve-flex-vh-center ve-lst__btn-toggle-expand ve-self-flex-stretch ve-no-select">[+]</span>
+-			<span class="ve-bold ve-col-4-4 ve-pl-0 ve-pr-1">${race.name}</span>
+-			<span class="ve-col-3-6 ve-px-1 ${race._slAbility === VeCt.STR_NONE || race._slAbility === "Lineage" ? "ve-italic" : ""}">${race._slAbility}</span>
++			<span class="ve-bold ve-col-4-4 ve-pl-0 ve-pr-1">${displayName}</span>
++			<span class="ve-col-3-6 ve-px-1 ${race._slAbility === "無" || race._slAbility === "血統" ? "ve-italic" : ""}">${race._slAbility}</span>
+ 			<span class="ve-col-1-6 ve-px-1 ve-text-center" title="${sizeText}">${sizeShortText}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(race.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(race.source)}">${source}</span>
+ 		</a>
+@@ -125,13 +130,14 @@ class RacesPage extends ListPage {
+ 		const listItem = new ListItem({
+ 			id: rcI,
+ 			ele: eleLi,
+-			name: race.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				...ListItem.getCommonValues(race),
++				englishName: I18nZhTwContent.getCanonicalName(race),
+ 				ability: race._slAbility,
+ 				size: sizeText,
+-				cleanName: PageFilterRaces.getInvertedName(race.name) || "",
++				cleanName: PageFilterRaces.getInvertedName(displayName) || "",
+ 				alias: PageFilterRaces.getListAliases(race),
+ 			},
+ 			data: {
+diff --git a/js/recipes.js b/js/recipes.js
+index 0d9d2df..3153541 100644
+--- a/js/recipes.js
++++ b/js/recipes.js
+@@ -8,12 +8,12 @@ class RecipesSublistManager extends SublistManager {
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-9 ve-pl-0 ve-pr-1",
+ 				colStyle: "",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Type",
++				name: "類別",
+ 				css: "ve-col-3 ve-text-center ve-pl-1 ve-pr-0",
+ 				colStyle: "text-center",
+ 			}),
+@@ -22,8 +22,9 @@ class RecipesSublistManager extends SublistManager {
+ 
+ 	async pGetSublistItem (itRaw, hash, {customHashId = null} = {}) {
+ 		const it = await Renderer.hover.pApplyCustomHashId(UrlUtil.getCurrentPage(), itRaw, customHashId);
+-		const name = it._displayName || it.name;
+-		const cellsText = [name, it.type || "\u2014"];
++		const name = I18nZhTwContent.getBilingualName(it);
++		const displayType = it.type ? I18nZhTwContent.getRecipeType(it.type, {isBilingual: true}) : "\u2014";
++		const cellsText = [name, displayType];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+ 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+@@ -39,7 +40,7 @@ class RecipesSublistManager extends SublistManager {
+ 			name,
+ 			values: {
+ 				...ListItem.getCommonValues(it),
+-				type: it.type,
++				type: displayType,
+ 			},
+ 			data: {
+ 				hash,
+@@ -70,9 +71,9 @@ class RecipesPage extends ListPage {
+ 			dataProps: ["recipe"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "recipe",
+-				namePlural: "recipes",
+-				pageTitle: "Recipes Book View",
++				nameSingular: "配方",
++				namePlural: "配方",
++				pageTitle: "配方書籍檢視",
+ 			},
+ 
+ 			listSyntax: new ListSyntaxRecipes({fnGetDataList: () => this._dataList, pFnGetFluff}),
+@@ -87,22 +88,27 @@ class RecipesPage extends ListPage {
+ 
+ 		const source = Parser.sourceJsonToAbv(ent.source);
+ 		const hash = UrlUtil.autoEncodeHash(ent);
++		const displayName = I18nZhTwContent.getBilingualName(ent);
++		const displayType = ent.type ? I18nZhTwContent.getRecipeType(ent.type, {isBilingual: true}) : "\u2014";
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+-			<span class="ve-col-6 ve-bold ve-pl-0 ve-pr-1">${ent.name}</span>
+-			<span class="ve-col-4 ve-px-1 ve-text-center">${ent.type || "\u2014"}</span>
++			<span class="ve-col-6 ve-bold ve-pl-0 ve-pr-1">${displayName}</span>
++			<span class="ve-col-4 ve-px-1 ve-text-center">${displayType}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
+ 		</a>`;
+ 
+ 		const listItem = new ListItem({
+ 			id: rpI,
+ 			ele: eleLi,
+-			name: ent.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				...ListItem.getCommonValues(ent),
+-				type: ent.type,
+-				alias: PageFilterRecipes.getListAliases(ent),
++				type: displayType,
++				alias: [
++					...PageFilterRecipes.getListAliases(ent),
++					...(ent._displayAlias || []),
++				],
+ 			},
+ 			data: {
+ 				hash,
+@@ -117,13 +123,13 @@ class RecipesPage extends ListPage {
+ 		return listItem;
+ 	}
+ 
+-	_tabTitleStats = "Recipe";
++	_tabTitleStats = "配方";
+ 
+ 	_renderStats_doBuildStatsTab ({ent, scaleFactor = null}) {
+ 		if (scaleFactor != null) ent = Renderer.recipe.getScaledRecipe(ent, scaleFactor);
+ 
+ 		const selScaleFactor = veT`
+-			<select title="Scale Recipe" class="ve-form-control ve-input-xs form-control--minimal ve-popwindow__hidden ve-min-w-40p">
++			<select title="縮放配方" class="ve-form-control ve-input-xs form-control--minimal ve-popwindow__hidden ve-min-w-40p">
+ 				${[0.5, 1, 2, 3, 4].map(it => `<option value="${it}" ${(scaleFactor || 1) === it ? "selected" : ""}>×${it}</option>`)}
+ 			</select>`
+ 			.vee.onn("change", () => {
+diff --git a/js/render-actions.js b/js/render-actions.js
+index aeb9f7f..12923e2 100644
+--- a/js/render-actions.js
++++ b/js/render-actions.js
+@@ -13,7 +13,7 @@ class _RenderActionsImpl extends RenderPageImplBase {
+ 
+ 		const htmlPtEntries = renderer.render({entries: ent.entries});
+ 		const htmlPtFromVariant = ent.fromVariant
+-			? `<div>${renderer.render(`{@note This action is an optional addition to the game, from the optional/variant rule {@variantrule ${ent.fromVariant}}.}`)}</div>`
++			? `<div>${renderer.render(`{@note 此動作是遊戲中的選用內容，出自選用／變體規則 {@variantrule ${ent.fromVariant}}.}`)}</div>`
+ 			: "";
+ 		const htmlPtSeeAlso = this._getRenderedSeeAlso({renderer, ent, prop: "seeAlsoAction", tag: "action"});
+ 
+diff --git a/js/render-bastions.js b/js/render-bastions.js
+index 6c09c24..60d7e06 100644
+--- a/js/render-bastions.js
++++ b/js/render-bastions.js
+@@ -27,7 +27,7 @@ class _RenderFacilitiesImplBase extends RenderPageImplBase {
+ 
+ 	_getCommonHtmlParts_prerequisites ({ent}) {
+ 		if (ent.level == null) return "";
+-		return `<tr><td colspan="6" class="ve-pb-2 ve-pt-0"><i>Level ${ent.level} Bastion Facility</i></td></tr>`;
++		return `<tr><td colspan="6" class="ve-pb-2 ve-pt-0"><i>${ent.level}級堡壘設施</i></td></tr>`;
+ 	}
+ 
+ 	/* ----- */
+diff --git a/js/render-bestiary.js b/js/render-bestiary.js
+index aeacc14..4d70c21 100644
+--- a/js/render-bestiary.js
++++ b/js/render-bestiary.js
+@@ -5,6 +5,8 @@ import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "./consts.js";
+ class _RenderBestiaryImplBase {
+ 	_style;
+ 
++	_tMeta (text) { return globalThis.I18nZhTwContent?.localizeMonsterMetaText(text) || text; }
++
+ 	/**
+ 	 * @param {object} mon
+ 	 * @param [opts]
+@@ -208,16 +210,17 @@ class _RenderBestiaryImplBase {
+ 	}
+ 
+ 	_getCommonHtmlParts_sizeTypeAlignment ({mon, renderer, isInlinedToken}) {
+-		return `<tr><td colspan="6"><div ${isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><i>${Renderer.monster.getTypeAlignmentPart(mon, {renderer})}</i></div></td></tr>`;
++		return `<tr><td colspan="6"><div ${isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><i>${this._tMeta(Renderer.monster.getTypeAlignmentPart(mon, {renderer}))}</i></div></td></tr>`;
+ 	}
+ 
+ 	/* ----- */
+ 
+ 	_getCommonHtmlParts_hitPoints ({mon, isInlinedToken}) {
+-		const labelFull = mon.hp?.isTemporary ? "Temporary Hit Points" : "Hit Points";
++		const labelFull = mon.hp?.isTemporary ? "臨時生命值" : "生命值";
+ 		const label = this._style === "classic" ? labelFull : mon.hp?.isTemporary ? "Temp HP" : "HP";
+ 		const ptTitle = this._style === "classic" ? "" : `title="${labelFull}"`;
+-		const rendered = mon.hp == null ? "\u2014" : Renderer.monster.getRenderedHp(mon.hp);
++		const hp = mon.hp?.special != null ? {...mon.hp, special: mon._displayHp?.special ?? mon.hp.special} : mon.hp;
++		const rendered = hp == null ? "\u2014" : this._tMeta(Renderer.monster.getRenderedHp(hp));
+ 		return `<tr><td colspan="6"><div ${isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><strong ${ptTitle}>${label}</strong> ${rendered}</div></td></tr>`;
+ 	}
+ 
+@@ -229,7 +232,8 @@ class _RenderBestiaryImplBase {
+ 	}
+ 
+ 	_getCommonHtmlParts_speed ({mon, isInlinedToken}) {
+-		return `<tr><td colspan="6"><div ${this._style !== "classic" && isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><strong>Speed</strong> ${Parser.getSpeedString(mon, {styleHint: this._style})}</div></td></tr>`;
++		const monDisplay = mon._displaySpeed ? {...mon, speed: mon._displaySpeed} : mon;
++		return `<tr><td colspan="6"><div ${this._style !== "classic" && isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><strong>速度</strong> ${this._tMeta(Parser.getSpeedString(monDisplay, {styleHint: this._style}))}</div></td></tr>`;
+ 	}
+ 
+ 	/* ----- */
+@@ -241,71 +245,73 @@ class _RenderBestiaryImplBase {
+ 	/* ----- */
+ 
+ 	_getCommonHtmlParts_skills ({mon, renderer}) {
+-		return mon.skill ? `<tr><td colspan="6"><strong>Skills</strong> ${Renderer.monster.getSkillsString(renderer, mon)}</td></tr>` : "";
++		return mon.skill ? `<tr><td colspan="6"><strong>技能</strong> ${this._tMeta(Renderer.monster.getSkillsString(renderer, mon))}</td></tr>` : "";
+ 	}
+ 
+ 	_getCommonHtmlParts_tools ({mon, renderer}) {
+-		return mon.tool ? `<tr><td colspan="6"><strong>Tools</strong> ${Renderer.monster.getToolsString(renderer, mon, {styleHint: this._style})}</td></tr>` : "";
++		return mon.tool ? `<tr><td colspan="6"><strong>工具</strong> ${this._tMeta(Renderer.monster.getToolsString(renderer, mon, {styleHint: this._style}))}</td></tr>` : "";
+ 	}
+ 
+ 	_getCommonHtmlParts_vulnerabilities ({mon}) {
+-		const label = this._style === "classic" ? "Damage Vulnerabilities" : "Vulnerabilities";
+-		return mon.vulnerable ? `<tr><td colspan="6"><strong>${label}</strong> ${Parser.getFullImmRes(mon.vulnerable, {isTitleCase: this._style !== "classic"})}</td></tr>` : "";
++		const label = this._style === "classic" ? "傷害易傷" : "易傷";
++		const vulnerable = mon._displayVulnerable || mon.vulnerable;
++		return vulnerable ? `<tr><td colspan="6"><strong>${label}</strong> ${this._tMeta(Parser.getFullImmRes(vulnerable, {isTitleCase: this._style !== "classic"}))}</td></tr>` : "";
+ 	}
+ 
+ 	_getCommonHtmlParts_resistances ({mon}) {
+-		const label = this._style === "classic" ? "Damage Resistances" : "Resistances";
+-		return mon.resist ? `<tr><td colspan="6"><strong>${label}</strong> ${Parser.getFullImmRes(mon.resist, {isTitleCase: this._style !== "classic"})}</td></tr>` : "";
++		const label = this._style === "classic" ? "傷害抗性" : "抗性";
++		const resist = mon._displayResist || mon.resist;
++		return resist ? `<tr><td colspan="6"><strong>${label}</strong> ${this._tMeta(Parser.getFullImmRes(resist, {isTitleCase: this._style !== "classic"}))}</td></tr>` : "";
+ 	}
+ 
+ 	_getCommonHtmlParts_senses ({mon}) {
+ 		const pt = Renderer.monster.getSensesPart(mon, {isTitleCase: this._style !== "classic"});
+-		return pt ? `<tr><td colspan="6"><strong>Senses</strong> ${pt}</td></tr>` : "";
++		return pt ? `<tr><td colspan="6"><strong>感官</strong> ${this._tMeta(pt)}</td></tr>` : "";
+ 	}
+ 
+ 	_getCommonHtmlParts_languages ({mon}) {
+-		return `<tr><td colspan="6"><strong>Languages</strong> ${Renderer.monster.getRenderedLanguages(mon.languages, {styleHint: this._style})}</td></tr>`;
++		return `<tr><td colspan="6"><strong>語言</strong> ${Renderer.monster.getRenderedLanguages(mon._displayLanguages || mon.languages, {styleHint: this._style})}</td></tr>`;
+ 	}
+ 
+ 	/* ----- */
+ 
+ 	_getCommonHtmlParts_actions ({mon, entsAction}) {
+-		return `${entsAction?.length ? `${this._getRenderedSectionHeader({mon, title: "Actions", prop: "action"})}
++		return `${entsAction?.length ? `${this._getRenderedSectionHeader({mon, title: "動作", prop: "action"})}
+ 		${this._getRenderedSection({mon, prop: "action", entries: entsAction})}` : ""}`;
+ 	}
+ 
+ 	_getCommonHtmlParts_bonusActions ({mon, entsBonusAction}) {
+-		return `${entsBonusAction?.length ? `${this._getRenderedSectionHeader({mon, title: "Bonus Actions", prop: "bonus"})}
++		return `${entsBonusAction?.length ? `${this._getRenderedSectionHeader({mon, title: "附贈動作", prop: "bonus"})}
+ 		${this._getRenderedSection({mon, prop: "bonus", entries: entsBonusAction})}` : ""}`;
+ 	}
+ 
+ 	_getCommonHtmlParts_reactions ({mon, entsReaction}) {
+-		return `${entsReaction?.length ? `${this._getRenderedSectionHeader({mon, title: "Reactions", prop: "reaction"})}
++		return `${entsReaction?.length ? `${this._getRenderedSectionHeader({mon, title: "反應", prop: "reaction"})}
+ 		${this._getRenderedSection({mon, prop: "reaction", entries: entsReaction})}` : ""}`;
+ 	}
+ 
+ 	_getCommonHtmlParts_legendaryActions ({mon, entsLegendaryAction}) {
+ 		if (!entsLegendaryAction?.length) return "";
+ 		const ptHeader = Renderer.monster.getLegendaryActionIntro(mon, {styleHint: this._style});
+-		return `${this._getRenderedSectionHeader({mon, title: "Legendary Actions", prop: "legendary"})}
++		return `${this._getRenderedSectionHeader({mon, title: "傳奇動作", prop: "legendary"})}
+ 		${this._getRenderedSection({mon, prop: "legendary", entries: entsLegendaryAction, ptHeader})}`;
+ 	}
+ 
+ 	_getCommonHtmlParts_mythicActions ({mon, entsMythicAction}) {
+ 		if (!entsMythicAction?.length) return "";
+-		return `${this._getRenderedSectionHeader({mon, title: "Mythic Actions", prop: "mythic"})}
++		return `${this._getRenderedSectionHeader({mon, title: "神話動作", prop: "mythic"})}
+ 		${this._getRenderedSection({mon, prop: "mythic", entries: entsMythicAction})}`;
+ 	}
+ 
+ 	/* ----- */
+ 
+ 	_getCommonHtmlParts_lairActions ({legGroup}) {
+-		return `${legGroup && legGroup.lairActions ? `<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner ve-stats__sect-header-inner--non-statblock">Lair Actions</h3></td></tr>
++		return `${legGroup && legGroup.lairActions ? `<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner ve-stats__sect-header-inner--non-statblock">巢穴動作</h3></td></tr>
+ 		${this._getRenderedSection({prop: "lairaction", entries: legGroup.lairActions, depth: -1})}` : ""}`;
+ 	}
+ 
+ 	_getCommonHtmlParts_regionalEffects ({legGroup}) {
+-		return `${legGroup && legGroup.regionalEffects ? `<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner ve-stats__sect-header-inner--non-statblock">Regional Effects</h3></td></tr>
++		return `${legGroup && legGroup.regionalEffects ? `<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner ve-stats__sect-header-inner--non-statblock">區域效應</h3></td></tr>
+ 		${this._getRenderedSection({prop: "regionaleffect", entries: legGroup.regionalEffects, depth: -1})}` : ""}`;
+ 	}
+ 
+@@ -321,7 +327,7 @@ class _RenderBestiaryImplBase {
+ 		const ptVariants = renderedVariants ? `<tr><td colspan="6">${renderedVariants}</td></tr>` : "";
+ 
+ 		const ptFooter = `${mon.footer ? `<tr><td colspan="6" class="ve-stats__sect-row-inner">${renderer.render({entries: mon.footer})}</td></tr>` : ""}
+-		${mon.summonedBySpell ? `<tr><td colspan="6"><b>Summoned By:</b> ${renderer.render(`{@spell ${mon.summonedBySpell}}`)}</td></tr>` : ""}
++		${mon.summonedBySpell ? `<tr><td colspan="6"><b>召喚法術：</b> ${renderer.render(`{@spell ${mon.summonedBySpell}}`)}</td></tr>` : ""}
+ 		${ptEnvironment ? `<tr><td colspan="6">${ptEnvironment}</td></tr>` : ""}
+ 		${ptTreasure ? `<tr><td colspan="6">${ptTreasure}</td></tr>` : ""}
+ 		<tr><td colspan="6">${ptSource}</td></tr>`.trim();
+@@ -371,18 +377,18 @@ class _RenderBestiaryImplBase {
+ 
+ 	_getHtmlPtEnvironment (mon) {
+ 		if (!mon.environment?.length) return "";
+-		return `<div><b>${this._style === "classic" ? "Environment" : "Habitat"}:</b> ${Renderer.monster.getRenderedEnvironment(mon.environment)}</div>`;
++		return `<div><b>${this._style === "classic" ? "環境" : "棲地"}：</b> ${this._tMeta(Renderer.monster.getRenderedEnvironment(mon.environment))}</div>`;
+ 	}
+ 
+ 	_getHtmlPtTreasure (mon) {
+ 		if (!mon.treasure?.length) return "";
+-		return `<div><b>Treasure:</b> ${Renderer.monster.getRenderedTreasure(mon.treasure)}</div>`;
++		return `<div><b>寶藏：</b> ${this._tMeta(Renderer.monster.getRenderedTreasure(mon.treasure))}</div>`;
+ 	}
+ 
+ 	/* -------------------------------------------- */
+ 
+ 	_getTdChallenge (mon, opts) {
+-		const ptLabel = `<strong ${this._style === "classic" ? "" : `title="Challenge Rating"`}>${this._style !== "classic" ? "CR" : "Challenge"}</strong>`;
++		const ptLabel = `<strong ${this._style === "classic" ? "" : `title="挑戰等級"`}>${this._style !== "classic" ? "CR" : "挑戰等級"}</strong>`;
+ 
+ 		if (Parser.crToNumber(mon.cr) >= VeCt.CR_UNKNOWN && this._style === "classic") return `<td colspan="3">${ptLabel} <span>\u2014</span></td>`;
+ 
+@@ -426,25 +432,28 @@ class _RenderBestiaryImplClassic extends _RenderBestiaryImplBase {
+ 	/* ----- */
+ 
+ 	_getHtmlParts_armorClass ({mon, renderer, isInlinedToken}) {
+-		return `<tr><td colspan="6"><div ${isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><strong>Armor Class</strong> ${mon.ac == null ? "\u2014" : Parser.acToFull(mon.ac, {renderer})}</div></td></tr>`;
++		const ac = mon._displayAc || mon.ac;
++		return `<tr><td colspan="6"><div ${isInlinedToken ? `class="ve-stats__wrp-avoid-token"` : ""}><strong>護甲等級</strong> ${ac == null ? "\u2014" : this._tMeta(Parser.acToFull(ac, {renderer}))}</div></td></tr>`;
+ 	}
+ 
+ 	/* ----- */
+ 
+ 	_getHtmlParts_initiative ({mon}) {
+-		return mon.initiative ? `<tr><td colspan="6"><strong>Initiative</strong> ${Renderer.monster.getInitiativePart(mon)}</td></tr>` : "";
++		return mon.initiative ? `<tr><td colspan="6"><strong>先攻</strong> ${Renderer.monster.getInitiativePart(mon)}</td></tr>` : "";
+ 	}
+ 
+ 	_getHtmlParts_savingThrows ({mon}) {
+-		return mon.save ? `<tr><td colspan="6"><strong>Saving Throws</strong> ${Renderer.monster.getSavesPart(mon)}</td></tr>` : "";
++		return mon.save ? `<tr><td colspan="6"><strong>豁免</strong> ${this._tMeta(Renderer.monster.getSavesPart(mon))}</td></tr>` : "";
+ 	}
+ 
+ 	_getHtmlParts_damageImmunities ({mon}) {
+-		return mon.immune ? `<tr><td colspan="6"><strong>Damage Immunities</strong> ${Parser.getFullImmRes(mon.immune)}</td></tr>` : "";
++		const immune = mon._displayImmune || mon.immune;
++		return immune ? `<tr><td colspan="6"><strong>傷害免疫</strong> ${this._tMeta(Parser.getFullImmRes(immune))}</td></tr>` : "";
+ 	}
+ 
+ 	_getHtmlParts_conditionImmunities ({mon}) {
+-		return mon.conditionImmune ? `<tr><td colspan="6"><strong>Condition Immunities</strong> ${Parser.getFullCondImm(mon.conditionImmune)}</td></tr>` : "";
++		const conditionImmune = mon._displayConditionImmune || mon.conditionImmune;
++		return conditionImmune ? `<tr><td colspan="6"><strong>狀態免疫</strong> ${this._tMeta(Parser.getFullCondImm(conditionImmune))}</td></tr>` : "";
+ 	}
+ 
+ 	/* ----- */
+@@ -452,7 +461,7 @@ class _RenderBestiaryImplClassic extends _RenderBestiaryImplBase {
+ 	_getHtmlParts_pb ({mon}) {
+ 		const ptPb = Renderer.monster.getPbPart(mon);
+ 		if (!ptPb) return `<td colspan="3"></td>`;
+-		return `<td colspan="3" class="ve-text-right"><strong>Proficiency Bonus</strong> ${ptPb}</td>`;
++		return `<td colspan="3" class="ve-text-right"><strong>熟練加值</strong> ${ptPb}</td>`;
+ 	}
+ 
+ 	/* ----- */
+@@ -577,8 +586,8 @@ class _RenderBestiaryImplClassic extends _RenderBestiaryImplBase {
+ 			${htmlPtPb}
+ 		</tr>
+ 
+-		<tr>${opts.selSummonSpellLevel ? veT`<td colspan="6"><strong class="ve-mr-2">Spell Level</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
+-		<tr>${opts.selSummonClassLevel ? veT`<td colspan="6"><strong class="ve-mr-2">${opts.classLevelScalerClass ? "Class Level" : "Level"}</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
++		<tr>${opts.selSummonSpellLevel ? veT`<td colspan="6"><strong class="ve-mr-2">法術環階</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
++		<tr>${opts.selSummonClassLevel ? veT`<td colspan="6"><strong class="ve-mr-2">${opts.classLevelScalerClass ? "職業等級" : "等級"}</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
+ 
+ 		${htmlPtTraits}
+ 		${htmlPtActions}
+@@ -626,10 +635,11 @@ class _RenderBestiaryImplOne extends _RenderBestiaryImplBase {
+ 	/* ----- */
+ 
+ 	_getHtmlParts_armorClass ({mon, renderer, isInlinedToken}) {
++		const ac = mon._displayAc || mon.ac;
+ 		return `<tr><td colspan="6">
+ 			<div class="ve-split-v-center ve-lst-is-exporting-image__no-wrap ${isInlinedToken ? `ve-stats__wrp-avoid-token` : ""}">
+-				<div><strong title="Armor Class">AC</strong> ${mon.ac == null ? "\u2014" : Parser.acToFull(mon.ac, {renderer})}</div>
+-				<div><strong>Initiative</strong> ${Renderer.monster.getInitiativePart(mon)}</div>
++				<div><strong title="護甲等級">AC</strong> ${ac == null ? "\u2014" : this._tMeta(Parser.acToFull(ac, {renderer}))}</div>
++				<div><strong>先攻</strong> ${Renderer.monster.getInitiativePart(mon)}</div>
+ 			</div>
+ 		</td></tr>`;
+ 	}
+@@ -638,27 +648,32 @@ class _RenderBestiaryImplOne extends _RenderBestiaryImplBase {
+ 
+ 	_getHtmlParts_savingThrows ({mon, renderer}) {
+ 		if (!mon.save?.special) return "";
+-		return `<tr><td colspan="6"><strong>Saving Throws</strong> ${Renderer.monster.getSave(renderer, "special", mon.save.special)}</td></tr>`;
++		return `<tr><td colspan="6"><strong>豁免</strong> ${this._tMeta(Renderer.monster.getSave(renderer, "special", mon.save.special))}</td></tr>`;
+ 	}
+ 
+ 	/* ----- */
+ 
+ 	_getHtmlParts_immunities ({mon}) {
+-		const pt = Renderer.monster.getImmunitiesCombinedPart(mon);
++		const monDisplay = {
++			...mon,
++			immune: mon._displayImmune || mon.immune,
++			conditionImmune: mon._displayConditionImmune || mon.conditionImmune,
++		};
++		const pt = Renderer.monster.getImmunitiesCombinedPart(monDisplay);
+ 		if (!pt) return "";
+-		return `<tr><td colspan="6"><strong>Immunities</strong> ${pt}</td></tr>`;
++		return `<tr><td colspan="6"><strong>免疫</strong> ${this._tMeta(pt)}</td></tr>`;
+ 	}
+ 
+ 	_getHtmlParts_gear ({mon}) {
+ 		const pt = Renderer.monster.getGearPart(mon);
+ 		if (!pt) return "";
+-		return `<tr><td colspan="6"><strong>Gear</strong> ${pt}</td></tr>`;
++		return `<tr><td colspan="6"><strong>裝備</strong> ${pt}</td></tr>`;
+ 	}
+ 
+ 	/* ----- */
+ 
+ 	_getHtmlParts_traits ({mon, entsTrait}) {
+-		return `${entsTrait?.length ? `${this._getRenderedSectionHeader({mon, title: "Traits", prop: "trait"})}
++		return `${entsTrait?.length ? `${this._getRenderedSectionHeader({mon, title: "特質", prop: "trait"})}
+ 		${this._getRenderedSection({prop: "trait", entries: entsTrait})}` : ""}`;
+ 	}
+ 
+@@ -770,8 +785,8 @@ class _RenderBestiaryImplOne extends _RenderBestiaryImplBase {
+ 			${this._getTdChallenge(mon, opts)}
+ 		</tr>
+ 
+-		<tr>${opts.selSummonSpellLevel ? veT`<td colspan="6"><strong class="ve-mr-2">Spell Level</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
+-		<tr>${opts.selSummonClassLevel ? veT`<td colspan="6"><strong class="ve-mr-2">${opts.classLevelScalerClass ? "Class Level" : "Level"}</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
++		<tr>${opts.selSummonSpellLevel ? veT`<td colspan="6"><strong class="ve-mr-2">法術環階</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
++		<tr>${opts.selSummonClassLevel ? veT`<td colspan="6"><strong class="ve-mr-2">${opts.classLevelScalerClass ? "職業等級" : "等級"}</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
+ 
+ 		${htmlPtTraits}
+ 		${htmlPtActions}
+@@ -817,9 +832,9 @@ export class RenderBestiary {
+ 		${Renderer.utils.getBorderTr()}
+ 		${Renderer.utils.getNameTr(legGroup)}
+ 		<tr><td colspan="6">
+-			${legGroup.lairActions && legGroup.lairActions.length ? Renderer.get().render({type: "entries", entries: [{type: "entries", name: "Lair Actions", entries: legGroup.lairActions}]}) : ""}
+-			${legGroup.regionalEffects && legGroup.regionalEffects.length ? Renderer.get().render({type: "entries", entries: [{type: "entries", name: "Regional Effects", entries: legGroup.regionalEffects}]}) : ""}
+-			${legGroup.mythicEncounter && legGroup.mythicEncounter.length ? Renderer.get().render({type: "entries", entries: [{type: "entries", name: `<i title="This will display the creature's name when this legendary group is referenced from a creature statblock." class="ve-help-subtle">&lt;Creature Name&gt;</i> as a Mythic Encounter`, entries: legGroup.mythicEncounter}]}) : ""}
++			${legGroup.lairActions && legGroup.lairActions.length ? Renderer.get().render({type: "entries", entries: [{type: "entries", name: "巢穴動作", entries: legGroup.lairActions}]}) : ""}
++			${legGroup.regionalEffects && legGroup.regionalEffects.length ? Renderer.get().render({type: "entries", entries: [{type: "entries", name: "區域效應", entries: legGroup.regionalEffects}]}) : ""}
++			${legGroup.mythicEncounter && legGroup.mythicEncounter.length ? Renderer.get().render({type: "entries", entries: [{type: "entries", name: `<i title="從生物資料卡引用這個傳奇群組時，這裡會顯示該生物的名稱。" class="ve-help-subtle">&lt;生物名稱&gt;</i>的神話遭遇`, entries: legGroup.mythicEncounter}]}) : ""}
+ 		</td></tr>
+ 		${Renderer.utils.getBorderTr()}`;
+ 	}
+diff --git a/js/render-class.js b/js/render-class.js
+index 28690cd..9834d88 100644
+--- a/js/render-class.js
++++ b/js/render-class.js
+@@ -1,5 +1,6 @@
+ import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "./consts.js";
+ import {VetoolsConfig} from "./utils-config/utils-config-config.js";
++import {I18nZhTwClass} from "./zh-tw/class-i18n.js";
+ 
+ /** @abstract */
+ class _RenderClassesSidebarImplBase {
+@@ -86,7 +87,7 @@ class _RenderClassesSidebarImplBase {
+ 	}
+ 
+ 	_getCommonElements_authors ({comp, cls}) {
+-		return `${cls.authors ? `<tr><th class="ve-text-left" colspan="6">By ${cls.authors.join(", ")}</th></tr>` : ""}`;
++		return `${cls.authors ? `<tr><th class="ve-text-left" colspan="6">作者：${cls.authors.join("、")}</th></tr>` : ""}`;
+ 	}
+ 
+ 	/* ----- */
+@@ -97,7 +98,7 @@ class _RenderClassesSidebarImplBase {
+ 		const ele = veE({
+ 			tag: "tr",
+ 			html: `<td colspan="6" class="cls-side__section">
+-				<h5 class="cls-side__section-head">Groups</h5>
++				<h5 class="cls-side__section-head">職業分組</h5>
+ 				<div>${cls.classGroup.map(it => it.toTitleCase()).join(", ")}</div>
+ 			</td>`,
+ 		});
+@@ -114,13 +115,13 @@ class _RenderClassesSidebarImplBase {
+ 	_getPtRequirements ({renderer, requirements, intro = null}) {
+ 		if (!requirements) return "";
+ 
+-		const renderPart = (obj, joiner = ", ") => Object.keys(obj).filter(k => Parser.ABIL_ABVS.includes(k)).sort(SortUtil.ascSortAtts).map(k => `${Parser.attAbvToFull(k)} ${obj[k]}`).join(joiner);
+-		const orPart = requirements.or ? requirements.or.map(obj => renderPart(obj, " or ")).join("; ") : "";
++		const renderPart = (obj, joiner = "、") => Object.keys(obj).filter(k => Parser.ABIL_ABVS.includes(k)).sort(SortUtil.ascSortAtts).map(k => `${Renderer.class.getAbilityNameZhTw(k)} ${obj[k]}`).join(joiner);
++		const orPart = requirements.or ? requirements.or.map(obj => renderPart(obj, "或")).join("；") : "";
+ 		const basePart = renderPart(requirements);
+-		const abilityPart = [orPart, basePart].filter(Boolean).join("; ");
++		const abilityPart = [orPart, basePart].filter(Boolean).join("；");
+ 
+ 		const allEntries = [
+-			abilityPart ? `{@b Ability Score Minimum:} ${abilityPart}` : null,
++			abilityPart ? `{@b 最低屬性值：} ${abilityPart}` : null,
+ 			...requirements.entries || [],
+ 		]
+ 			.filter(Boolean);
+@@ -137,7 +138,7 @@ class _RenderClassesSidebarImplBase {
+ 		const ele = veE({
+ 			tag: "tr",
+ 			html: `<td colspan="6" class="cls-side__section">
+-				<h5 class="cls-side__section-head">Prerequisites</h5>
++				<h5 class="cls-side__section-head">先決條件</h5>
+ 				${this._getPtRequirements({renderer, requirements: cls.requirements})}
+ 			</td>`,
+ 		});
+@@ -157,38 +158,38 @@ class _RenderClassesSidebarImplBase {
+ 		const {multiclassing: mc} = cls;
+ 
+ 		const htmlMCcPrereqPreText = mc.requirements || mc.requirementsSpecial
+-			? `<div>To qualify for a new class, you must meet the ${mc.requirementsSpecial ? "" : "ability score "}prerequisites for both your current class and your new one.</div>`
++			? `<div>若要兼任新職業，你必須同時滿足目前職業與新職業的${mc.requirementsSpecial ? "" : "屬性值"}先決條件。</div>`
+ 			: "";
+ 
+ 		const ptMcPrereq = cls.primaryAbility
+-			? `To qualify for a new class, you must have a score of at least 13 in the primary ability of the new class and your current classes.`
++			? `若要兼任新職業，新職業與目前職業的主要屬性值都必須至少為 13。`
+ 			: this._getPtRequirements({renderer, requirements: mc.requirements});
+ 
+ 		const ptMcPrereqSpecial = mc.requirementsSpecial
+ 			? `<div>
+ 				${htmlMCcPrereqPreText}
+-				<b>${htmlMCcPrereqPreText ? "Other " : ""}Prerequisites:</b> ${renderer.render(mc.requirementsSpecial || "")}
++				<b>${htmlMCcPrereqPreText ? "其他" : ""}先決條件：</b> ${renderer.render(mc.requirementsSpecial || "")}
+ 			</div>`
+ 			: "";
+ 
+ 		const ptMcProfsIntro = mc.requirements && mc.proficienciesGained
+-			? `<div>When you gain a level in a class other than your first, you gain only some of that class's starting proficiencies.</div>`
++			? `<div>當你在初始職業以外的職業中獲得等級時，只會取得該職業的部分起始熟練。</div>`
+ 			: "";
+ 
+ 		const ptMcProfsArmor = mc.proficienciesGained?.armor
+-			? `<div><b>${this._style === SITE_STYLE__CLASSIC ? "Armor" : "Armor Training"}:</b> ${Renderer.class.getRenderedArmorProfs(mc.proficienciesGained.armor, {styleHint: this._style})}</div>`
++			? `<div><b>${this._style === SITE_STYLE__CLASSIC ? "護甲" : "護甲訓練"}：</b> ${Renderer.class.getRenderedArmorProfs(mc.proficienciesGained.armor, {styleHint: this._style})}</div>`
+ 			: "";
+ 
+ 		const ptMcProfsWeapons = mc.proficienciesGained?.weapons
+-			? `<div><b>${this._style === SITE_STYLE__CLASSIC ? "Weapons" : "Weapon Proficiencies"}:</b> ${Renderer.class.getRenderedWeaponProfs(mc.proficienciesGained.weapons, {styleHint: this._style})}</div>`
++			? `<div><b>${this._style === SITE_STYLE__CLASSIC ? "武器" : "武器熟練"}：</b> ${Renderer.class.getRenderedWeaponProfs(mc.proficienciesGained.weapons, {styleHint: this._style})}</div>`
+ 			: "";
+ 
+ 		const ptMcProfsTools = mc.proficienciesGained?.tools
+-			? `<div><b>${this._style === SITE_STYLE__CLASSIC ? "Tools" : "Tool Proficiencies"}:</b> ${Renderer.class.getRenderedToolProfs(mc.proficienciesGained.tools, {styleHint: this._style})}</div>`
++			? `<div><b>${this._style === SITE_STYLE__CLASSIC ? "工具" : "工具熟練"}：</b> ${Renderer.class.getRenderedToolProfs(mc.proficienciesGained.tools, {styleHint: this._style})}</div>`
+ 			: "";
+ 
+ 		const ptMcProfsSkills = mc.proficienciesGained?.skills
+-			? `<div><b>${this._style === SITE_STYLE__CLASSIC ? "Skills" : "Skill Proficiencies"}:</b> ${Renderer.class.getRenderedSkillProfs(mc.proficienciesGained.skills, {styleHint: this._style})}</div>`
++			? `<div><b>${this._style === SITE_STYLE__CLASSIC ? "技能" : "技能熟練"}：</b> ${Renderer.class.getRenderedSkillProfs(mc.proficienciesGained.skills, {styleHint: this._style})}</div>`
+ 			: "";
+ 
+ 		const ptsProfs = this._style === SITE_STYLE__CLASSIC
+@@ -212,7 +213,7 @@ class _RenderClassesSidebarImplBase {
+ 		const ele = veE({
+ 			tag: "tr",
+ 			html: `<td class="cls-side__section" colspan="6">
+-				<h5 class="cls-side__section-head">Multiclassing</h5>
++				<h5 class="cls-side__section-head">兼職</h5>
+ 				${ptMcPrereq}
+ 				${ptMcPrereqSpecial}
+ 				${ptMcEntries}
+@@ -234,7 +235,7 @@ class _RenderClassesSidebarImplBase {
+ 		const ele = veE({
+ 			tag: "tr",
+ 			html: `<td class="cls-side__section ve-pt-3" colspan="6">
+-				${Renderer.utils.getSourceAndPageTrHtml(cls)}
++				${I18nZhTwClass.localizeSourceHtml(Renderer.utils.getSourceAndPageTrHtml(cls))}
+ 			</td>`,
+ 		});
+ 
+@@ -275,10 +276,10 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
+ 		const ele = veE({
+ 			tag: "tr",
+ 			html: `<td colspan="6" class="cls-side__section">
+-				<h5 class="cls-side__section-head">Hit Points</h5>
+-				<div><strong>Hit Dice:</strong> ${renderer.render(Renderer.class.getHitDiceEntry(cls.hd, {styleHint: this._style}))}</div>
+-				<div><strong>Hit Points at 1st Level:</strong> ${Renderer.class.getHitPointsAtFirstLevel(cls.hd, {styleHint: this._style})}</div>
+-				<div><strong>Hit Points at Higher Levels:</strong> ${Renderer.class.getHitPointsAtHigherLevels(cls.name, cls.hd, {styleHint: this._style})}</div>
++				<h5 class="cls-side__section-head">生命值</h5>
++				<div><strong>生命骰：</strong> ${renderer.render(Renderer.class.getHitDiceEntry(cls.hd, {styleHint: this._style}))}</div>
++				<div><strong>第1級生命值：</strong> ${Renderer.class.getHitPointsAtFirstLevel(cls.hd, {styleHint: this._style})}</div>
++				<div><strong>更高等級生命值：</strong> ${Renderer.class.getHitPointsAtHigherLevels(cls.name, cls.hd, {styleHint: this._style})}</div>
+ 			</td>`,
+ 		});
+ 
+@@ -302,7 +303,7 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
+ 
+ 		const ele = veT`<tr>
+ 			<td class="cls-side__section" colspan="6">
+-				<h5 class="cls-side__section-head">Starting Equipment</h5>
++				<h5 class="cls-side__section-head">起始裝備</h5>
+ 				<div>${disp}</div>
+ 			</td>
+ 		</tr>`;
+@@ -322,12 +323,12 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
+ 		const ele = veE({
+ 			tag: "tr",
+ 			html: `<td colspan="6" class="cls-side__section">
+-				<h5 class="cls-side__section-head">Proficiencies</h5>
+-				<div><b>Armor:</b> <span>${profs.armor ? Renderer.class.getRenderedArmorProfs(profs.armor, {styleHint: this._style}) : "none"}</span></div>
+-				<div><b>Weapons:</b> <span>${profs.weapons ? Renderer.class.getRenderedWeaponProfs(profs.weapons, {styleHint: this._style}) : "none"}</span></div>
+-				<div><b>Tools:</b> <span>${profs.tools ? Renderer.class.getRenderedToolProfs(profs.tools, {styleHint: this._style}) : "none"}</span></div>
+-				<div><b>Saving Throws:</b> <span>${cls.proficiency ? cls.proficiency.map(p => Parser.attAbvToFull(p)).join(", ") : "none"}</span></div>
+-				<div><b>Skills:</b> <span>${profs.skills ? Renderer.class.getRenderedSkillProfs(profs.skills, {styleHint: this._style}) : "none"}</span></div>
++				<h5 class="cls-side__section-head">熟練</h5>
++				<div><b>護甲：</b> <span>${profs.armor ? Renderer.class.getRenderedArmorProfs(profs.armor, {styleHint: this._style}) : "無"}</span></div>
++				<div><b>武器：</b> <span>${profs.weapons ? Renderer.class.getRenderedWeaponProfs(profs.weapons, {styleHint: this._style}) : "無"}</span></div>
++				<div><b>工具：</b> <span>${profs.tools ? Renderer.class.getRenderedToolProfs(profs.tools, {styleHint: this._style}) : "無"}</span></div>
++				<div><b>豁免：</b> <span>${cls.proficiency ? cls.proficiency.map(p => Renderer.class.getAbilityNameZhTw(p)).join("、") : "無"}</span></div>
++				<div><b>技能：</b> <span>${profs.skills ? Renderer.class.getRenderedSkillProfs(profs.skills, {styleHint: this._style}) : "無"}</span></div>
+ 			</td>`,
+ 		});
+ 
+@@ -420,7 +421,7 @@ class _RenderClassesSidebarImplOne extends _RenderClassesSidebarImplBase {
+ 		const ele = veE({
+ 			tag: "tr",
+ 			html: `<td colspan="6" class="cls-side__section">
+-				<h5 class="cls-side__section-head">Core Traits</h5>
++				<h5 class="cls-side__section-head">核心特質</h5>
+ 				${pts}
+ 			</td>`,
+ 		});
+diff --git a/js/render-conditionsdiseases.js b/js/render-conditionsdiseases.js
+index 3d9f650..dbad9a7 100644
+--- a/js/render-conditionsdiseases.js
++++ b/js/render-conditionsdiseases.js
+@@ -1,6 +1,7 @@
+ import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "./consts.js";
+ import {VetoolsConfig} from "./utils-config/utils-config-config.js";
+ import {RenderPageImplBase} from "./render-page-base.js";
++import {I18nZhTwRules} from "./zh-tw/rules-i18n.js";
+ 
+ /** @abstract */
+ class _RenderConditionDiseaseStatusImplBase extends RenderPageImplBase {
+@@ -23,7 +24,8 @@ class _RenderConditionDiseaseStatusImplBase extends RenderPageImplBase {
+ 	/* ----- */
+ 
+ 	_getCommonHtmlParts_type ({ent, renderer}) {
+-		return ent.type ? `<tr><td colspan="6" class="ve-pb-2 ve-pt-0">${renderer.render(`{@i ${ent.type}}`)}</td></tr>` : "";
++		const displayType = ent._displayType || I18nZhTwRules.getDisplayType(ent.type) || ent.type;
++		return displayType ? `<tr><td colspan="6" class="ve-pb-2 ve-pt-0">${renderer.render(`{@i ${displayType}}`)}</td></tr>` : "";
+ 	}
+ 
+ 	/* ----- */
+@@ -59,7 +61,7 @@ class _RenderConditionDiseaseStatusImplBase extends RenderPageImplBase {
+ 			${htmlPtType}
+ 			${ptDivider}
+ 			<tr><td colspan="6">${htmlPtEntries}</td></tr>
+-			${htmlPtPage}
++			${I18nZhTwRules.localizeSourceHtml(htmlPtPage)}
+ 			${Renderer.utils.getBorderTr()}
+ 		`;
+ 	}
+diff --git a/js/render-decks.js b/js/render-decks.js
+index 2bf26bf..8c414f3 100644
+--- a/js/render-decks.js
++++ b/js/render-decks.js
+@@ -4,17 +4,17 @@ class RenderDecks {
+ 	static SETTINGS = {
+ 		cardLayout: new SettingsUtil.EnumSetting({
+ 			type: "enum",
+-			name: "Card Layout",
+-			help: `The layout to use when displaying cards in a deck.`,
++			name: "卡牌配置",
++			help: `顯示牌組卡牌時使用的排列方式。`,
+ 			defaultVal: "list",
+ 			enumVals: [
+ 				{
+ 					value: "list",
+-					name: "List",
++					name: "清單",
+ 				},
+ 				{
+ 					value: "grid",
+-					name: "Grid",
++					name: "格狀",
+ 				},
+ 			],
+ 		}),
+@@ -24,7 +24,7 @@ class RenderDecks {
+ 		const ptText = Renderer.get()
+ 			.setFirstSection(true)
+ 			.setPartPageExpandCollapseDisabled(true)
+-			.render({name: card.name, entries: Renderer.card.getFullEntries(card, {backCredit: deck?.back?.credit})}, 1);
++			.render({name: I18nZhTwUtilities.name(card), entries: Renderer.card.getFullEntries(card, {backCredit: deck?.back?.credit})}, 1);
+ 		Renderer.get().setPartPageExpandCollapseDisabled(false);
+ 		return ptText;
+ 	}
+@@ -45,19 +45,19 @@ class RenderDecks {
+ 			.map((card, ixCard) => {
+ 				const ptText = this.getCardTextHtml({card});
+ 
+-				const btnMarkDrawn = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Mark Card as Drawn"><i class="fas fa-fw fa-cards"></i></button>`
++				const btnMarkDrawn = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="標記為已抽出"><i class="fas fa-fw fa-cards"></i></button>`
+ 					.vee.onn("click", async evt => {
+ 						evt.stopPropagation();
+ 						await cardStateManager.pDrawCard(ent, card);
+ 					});
+ 
+-				const btnReplace = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Return Card to Deck"><i class="fas fa-arrow-rotate-left"></i></button>`
++				const btnReplace = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="將卡牌放回牌組"><i class="fas fa-arrow-rotate-left"></i></button>`
+ 					.vee.onn("click", async evt => {
+ 						evt.stopPropagation();
+ 						await cardStateManager.pReplaceCard(ent, card);
+ 					});
+ 
+-				const btnViewer = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Open Card Viewer"><span class="glyphicon glyphicon-eye-open"></span></button>`
++				const btnViewer = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="開啟卡牌檢視器"><span class="glyphicon glyphicon-eye-open"></span></button>`
+ 					.vee.onn("click", async evt => {
+ 						evt.stopPropagation();
+ 						try {
+@@ -76,7 +76,7 @@ class RenderDecks {
+ 							${btnViewer}
+ 						</div>
+ 					</div>
+-					${Renderer.get().setFirstSection(true).render({...card.face, title: card.name, altText: card.name})}
++					${Renderer.get().setFirstSection(true).render({...card.face, title: I18nZhTwUtilities.name(card), altText: I18nZhTwUtilities.name(card)})}
+ 				</div>`;
+ 
+ 				const imgFace = wrpFace.vee.find("img");
+@@ -103,7 +103,7 @@ class RenderDecks {
+ 		</div>`;
+ 
+ 		const ptCards = veT`<div class="ve-flex-col">
+-			<h3 class="ve-dnd-font ve-my-0 ve-mb-1 decks__h-cards">Cards</h3>
++			<h3 class="ve-dnd-font ve-my-0 ve-mb-1 decks__h-cards">卡牌</h3>
+ 			${wrpCardRows}
+ 		</div>`;
+ 
+@@ -229,7 +229,7 @@ class RenderDecks {
+ 		Renderer.dice.bindOnclickListener(wrpInfo);
+ 
+ 		const btnFlip = imgBack
+-			? veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-px-3" title="Flip Card"><i class="fas fa-rotate"></i> Flip</button>`
++			? veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-px-3" title="翻面"><i class="fas fa-rotate"></i> 翻面</button>`
+ 				.vee.onn("click", evt => {
+ 					evt.stopPropagation();
+ 					wrpCardFlip.classList.toggle("decks-draw__wrp-card-flip--flipped");
+diff --git a/js/render-deities.js b/js/render-deities.js
+index a4e6d0a..6b8e987 100644
+--- a/js/render-deities.js
++++ b/js/render-deities.js
+@@ -5,9 +5,9 @@ class RenderDeities {
+ 		return veT`
+ 			${Renderer.utils.getBorderTr()}
+ 			${Renderer.utils.getExcludedTr({entity: deity, dataProp: "deity"})}
+-			${Renderer.utils.getNameTr(deity, {suffix: deity.title ? `, ${deity.title.toTitleCase()}` : "", page: UrlUtil.PG_DEITIES})}
++			${Renderer.utils.getNameTr(deity, {suffix: deity.title ? `，${I18nZhTwContent.getBilingualField(deity, "title")}` : "", page: UrlUtil.PG_DEITIES})}
+ 			${RenderDeities._getDeityBody(deity)}
+-			${deity.reprinted ? `<tr><td colspan="6"><i class="ve-muted">Note: this deity has been reprinted in a newer publication.</i></td></tr>` : ""}
++			${deity.reprinted ? `<tr><td colspan="6"><i class="ve-muted">註：此神祇已於較新的出版品中重印。</i></td></tr>` : ""}
+ 			${Renderer.utils.getPageTr(deity)}
+ 			${deity.previousVersions ? `
+ 			${Renderer.utils.getDividerTr()}
+@@ -22,10 +22,11 @@ class RenderDeities {
+ 
+ 		const renderStack = [];
+ 		if (deity.entries) {
++			const extensionDisplayName = Renderer.utils.getBilingualName(deity);
+ 			renderer.recursiveRender(
+ 				{
+ 					entries: [
+-						...deity.customExtensionOf ? [`{@note This deity is a custom extension of {@deity ${deity.customExtensionOf}} with additional information from <i title="${Parser.sourceJsonToFull(deity.source).escapeQuotes()}">${Parser.sourceJsonToAbv(deity.source)}</i>.}`] : [],
++						...deity.customExtensionOf ? [`{@note 此神祇是 {@deity ${deity.customExtensionOf}|${extensionDisplayName}} 的自訂擴充，並加入來自 <i title="${Parser.sourceJsonToFull(deity.source).escapeQuotes()}">${Parser.sourceJsonToAbv(deity.source)}</i> 的額外資訊。}`] : [],
+ 						...deity.entries,
+ 					],
+ 				},
+@@ -41,7 +42,7 @@ class RenderDeities {
+ 			${reprintIndex ? `
+ 				<tr><td colspan="6">
+ 				<i class="ve-muted">
+-				${reprintIndex === 1 ? `This deity is a reprint.` : ""} The version below was printed in an older publication (${Parser.sourceJsonToFull(deity.source)}${Renderer.utils.isDisplayPage(deity.page) ? `, page ${deity.page}` : ""}).
++				${reprintIndex === 1 ? `此神祇為重印版本。` : ""} 下列版本刊載於較早的出版品（${Parser.sourceJsonToFull(deity.source)}${Renderer.utils.isDisplayPage(deity.page) ? `，第 ${deity.page} 頁` : ""}）。
+ 				</i>
+ 				</td></tr>
+ 			` : ""}
+diff --git a/js/render-dice.js b/js/render-dice.js
+index 32cf860..137a4fb 100644
+--- a/js/render-dice.js
++++ b/js/render-dice.js
+@@ -19,6 +19,15 @@ Renderer.dice = class {
+ 
+ 	static _isManualMode = false;
+ 
++	static _t (text, data) {
++		return globalThis.I18nZhTwSite?.tEnglish(text, data) ?? text;
++	}
++
++	static _tk (key, fallback, data) {
++		if (globalThis.I18nZhTwSite) return globalThis.I18nZhTwSite.t(key, fallback, data);
++		return fallback.replace(/\{([A-Za-z][A-Za-z0-9_.-]*)\}/g, (full, name) => data != null && Object.hasOwn(data, name) ? data[name] : full);
++	}
++
+ 	/* -------------------------------------------- */
+ 
+ 	// region Utilities
+@@ -113,7 +122,7 @@ Renderer.dice = class {
+ 	static _showBox () {
+ 		Renderer.dice._eleRollboxMinimized.vee.hide();
+ 		Renderer.dice._wrpRoll.vee.show();
+-		Renderer.dice._iptRoll.vee.prop("placeholder", `${Renderer.dice._getRandomPlaceholder()} or "/help"`);
++		Renderer.dice._iptRoll.vee.prop("placeholder", this._tk("dice.inputPlaceholder", "{dice} or /help", {dice: Renderer.dice._getRandomPlaceholder()}));
+ 	}
+ 
+ 	static _hideBox () {
+@@ -138,7 +147,7 @@ Renderer.dice = class {
+ 				Renderer.dice._showBox();
+ 				Renderer.dice._iptRoll.vee.focus();
+ 			});
+-		const eleHead = veT`<div class="head-roll"><span class="hdr-roll">Dice Roller</span><span class="ve-p-2 glyphicon glyphicon-remove"></span></div>`
++		const eleHead = veT`<div class="head-roll"><span class="hdr-roll">${this._t("Dice Roller")}</span><span class="ve-p-2 glyphicon glyphicon-remove"></span></div>`
+ 			.vee.onn("click", () => {
+ 				if (!Renderer.dice._panel) Renderer.dice._hideBox();
+ 			});
+@@ -359,7 +368,7 @@ Renderer.dice = class {
+ 
+ 	static getEleUnknownTableRoll (total) { return veE({outer: Renderer.dice._pRollerClick_getMsgBug(total)}); }
+ 
+-	static _pRollerClick_getMsgBug (total) { return `<span class="message">No result found matching roll ${total}?! <span class="ve-help-subtle" title="Bug!">🐛</span></span>`; }
++	static _pRollerClick_getMsgBug (total) { return `<span class="message">${this._tk("dice.noMatchingResult", "No result found matching roll {total}?!", {total})} <span class="ve-help-subtle" title="${this._t("Bug!")}">🐛</span></span>`; }
+ 
+ 	static async pRollerClick (evtMock, ele, packed, name) {
+ 		ele = veE({ele});
+@@ -627,7 +636,7 @@ Renderer.dice = class {
+ 
+ 		// arbitrarily return the result of the highest roll if we roll multiple times
+ 		const results = [];
+-		if (rollCount > 1 && !opts.isHidden) Renderer.dice._showMessage(`Rolling twice...`, rolledBy);
++		if (rollCount > 1 && !opts.isHidden) Renderer.dice._showMessage(this._t(`Rolling twice...`), rolledBy);
+ 		for (let i = 0; i < rollCount; ++i) {
+ 			const result = await Renderer.dice._pHandleRoll2(wrpTree, rolledBy, opts);
+ 			if (result == null) return null;
+@@ -737,7 +746,7 @@ Renderer.dice = class {
+ 			const isColorSuccess = tree.isColorSuccessFail || !tree.chanceSuccessText;
+ 			const isColorFail = tree.isColorSuccessFail || !tree.chanceFailureText;
+ 			const totalPart = tree.successThresh != null
+-				? `<span class="roll ${isThreshSuccess && isColorSuccess ? "roll-max" : !isThreshSuccess && isColorFail ? "roll-min" : ""}">${isThreshSuccess ? Renderer.get().render(tree.chanceSuccessText || "Success!") : Renderer.get().render(tree.chanceFailureText || "Failure")}</span>`
++				? `<span class="roll ${isThreshSuccess && isColorSuccess ? "roll-max" : !isThreshSuccess && isColorFail ? "roll-min" : ""}">${isThreshSuccess ? Renderer.get().render(tree.chanceSuccessText || this._t("Success!")) : Renderer.get().render(tree.chanceFailureText || this._t("Failure"))}</span>`
+ 				: `<span class="roll ${allMax ? "roll-max" : allMin ? "roll-min" : ""}">${result}</span>`;
+ 
+ 			const ptTitle = [
+@@ -758,7 +767,7 @@ Renderer.dice = class {
+ 			});
+ 
+ 			if (!opts.isHidden) {
+-				const btnCopyToInput = veT`<button title="Copy to Input" class="ve-btn ve-btn-default ve-btn-xs ve-btn-copy-roll"><span class="glyphicon glyphicon-pencil"></span></button>`
++				const btnCopyToInput = veT`<button title="${this._t("Copy to Input")}" class="ve-btn ve-btn-default ve-btn-xs ve-btn-copy-roll"><span class="glyphicon glyphicon-pencil"></span></button>`
+ 					.vee.onn("click", () => {
+ 						Renderer.dice._iptRoll
+ 							.vee.val(formula.replace(/\s+/g, ""))
+@@ -785,7 +794,7 @@ Renderer.dice = class {
+ 			return result;
+ 		} else {
+ 			if (!opts.isHidden) {
+-				eleOut.vee.appends(`<div class="out-roll-item">Invalid input! Try &quot;/help&quot;</div>`);
++				eleOut.vee.appends(`<div class="out-roll-item">${this._t("Invalid input! Try /help")}</div>`);
+ 				Renderer.dice._scrollBottom();
+ 			}
+ 			return null;
+@@ -795,9 +804,9 @@ Renderer.dice = class {
+ 	static _pHandleRoll2_manual (tree, rolledBy, opts) {
+ 		opts = opts || {};
+ 
+-		if (!tree) return JqueryUtil.doToast({type: "danger", content: `Invalid roll input!`});
++		if (!tree) return JqueryUtil.doToast({type: "danger", content: this._t(`Invalid roll input!`)});
+ 
+-		const title = (rolledBy.label || "").toTitleCase() || "Roll Dice";
++		const title = (rolledBy.label || "").toTitleCase() || this._t("Roll Dice");
+ 		const dispDice = veT`<div class="ve-p-2 ve-bold ve-flex-vh-center rll__prompt-header">${tree.toString()}</div>`;
+ 		if (opts.isResultUsed) {
+ 			return InputUiUtil.pGetUserNumber({
+@@ -823,7 +832,7 @@ Renderer.dice = class {
+ 	}
+ 
+ 	static _showInvalid () {
+-		Renderer.dice._showMessage("Invalid input! Try &quot;/help&quot;", Renderer.dice.SYSTEM_USER);
++		Renderer.dice._showMessage(this._t("Invalid input! Try /help"), Renderer.dice.SYSTEM_USER);
+ 	}
+ 
+ 	static _validCommands = new Set(["/c", "/cls", "/clear", "/iterroll"]);
+@@ -837,50 +846,50 @@ Renderer.dice = class {
+ 		if (comOp === "/help" || comOp === "/h") {
+ 			Renderer.dice._showMessage(
+ 				`<ul class="rll__list">
+-					<li>Keep highest; <span class="out-roll-item-code">4d6kh3</span></li>
+-					<li>Drop lowest; <span class="out-roll-item-code">4d6dl1</span></li>
+-					<li>Drop highest; <span class="out-roll-item-code">3d4dh1</span></li>
+-					<li>Keep lowest; <span class="out-roll-item-code">3d4kl1</span></li>
++					<li>保留最高骰：<span class="out-roll-item-code">4d6kh3</span></li>
++					<li>捨棄最低骰：<span class="out-roll-item-code">4d6dl1</span></li>
++					<li>捨棄最高骰：<span class="out-roll-item-code">3d4dh1</span></li>
++					<li>保留最低骰：<span class="out-roll-item-code">3d4kl1</span></li>
+ 
+-					<li>Reroll equal; <span class="out-roll-item-code">2d4r1</span></li>
+-					<li>Reroll less; <span class="out-roll-item-code">2d4r&lt;2</span></li>
+-					<li>Reroll less or equal; <span class="out-roll-item-code">2d4r&lt;=2</span></li>
+-					<li>Reroll greater; <span class="out-roll-item-code">2d4r&gt;2</span></li>
+-					<li>Reroll greater equal; <span class="out-roll-item-code">2d4r&gt;=3</span></li>
++					<li>重擲等於：<span class="out-roll-item-code">2d4r1</span></li>
++					<li>重擲小於：<span class="out-roll-item-code">2d4r&lt;2</span></li>
++					<li>重擲小於或等於：<span class="out-roll-item-code">2d4r&lt;=2</span></li>
++					<li>重擲大於：<span class="out-roll-item-code">2d4r&gt;2</span></li>
++					<li>重擲大於或等於：<span class="out-roll-item-code">2d4r&gt;=3</span></li>
+ 
+-					<li>Explode equal; <span class="out-roll-item-code">2d4x4</span></li>
+-					<li>Explode less; <span class="out-roll-item-code">2d4x&lt;2</span></li>
+-					<li>Explode less or equal; <span class="out-roll-item-code">2d4x&lt;=2</span></li>
+-					<li>Explode greater; <span class="out-roll-item-code">2d4x&gt;2</span></li>
+-					<li>Explode greater equal; <span class="out-roll-item-code">2d4x&gt;=3</span></li>
++					<li>爆骰等於：<span class="out-roll-item-code">2d4x4</span></li>
++					<li>爆骰小於：<span class="out-roll-item-code">2d4x&lt;2</span></li>
++					<li>爆骰小於或等於：<span class="out-roll-item-code">2d4x&lt;=2</span></li>
++					<li>爆骰大於：<span class="out-roll-item-code">2d4x&gt;2</span></li>
++					<li>爆骰大於或等於：<span class="out-roll-item-code">2d4x&gt;=3</span></li>
+ 
+-					<li>Count Successes equal; <span class="out-roll-item-code">2d4cs=4</span></li>
+-					<li>Count Successes less; <span class="out-roll-item-code">2d4cs&lt;2</span></li>
+-					<li>Count Successes less or equal; <span class="out-roll-item-code">2d4cs&lt;=2</span></li>
+-					<li>Count Successes greater; <span class="out-roll-item-code">2d4cs&gt;2</span></li>
+-					<li>Count Successes greater equal; <span class="out-roll-item-code">2d4cs&gt;=3</span></li>
++					<li>計算等於的成功數：<span class="out-roll-item-code">2d4cs=4</span></li>
++					<li>計算小於的成功數：<span class="out-roll-item-code">2d4cs&lt;2</span></li>
++					<li>計算小於或等於的成功數：<span class="out-roll-item-code">2d4cs&lt;=2</span></li>
++					<li>計算大於的成功數：<span class="out-roll-item-code">2d4cs&gt;2</span></li>
++					<li>計算大於或等於的成功數：<span class="out-roll-item-code">2d4cs&gt;=3</span></li>
+ 
+-					<li>Margin of Success; <span class="out-roll-item-code">2d4ms=4</span></li>
++					<li>成功差值：<span class="out-roll-item-code">2d4ms=4</span></li>
+ 
+-					<li>Dice pools; <span class="out-roll-item-code">{2d8, 1d6}</span></li>
+-					<li>Dice pools with modifiers; <span class="out-roll-item-code">{1d20+7, 10}kh1</span></li>
++					<li>骰池：<span class="out-roll-item-code">{2d8, 1d6}</span></li>
++					<li>含調整值的骰池：<span class="out-roll-item-code">{1d20+7, 10}kh1</span></li>
+ 
+-					<li>Rounding; <span class="out-roll-item-code">floor(1.5)</span>, <span class="out-roll-item-code">ceil(1.5)</span>, <span class="out-roll-item-code">round(1.5)</span></li>
++					<li>取整：<span class="out-roll-item-code">floor(1.5)</span>、<span class="out-roll-item-code">ceil(1.5)</span>、<span class="out-roll-item-code">round(1.5)</span></li>
+ 
+-					<li>Average; <span class="out-roll-item-code">avg(8d6)</span></li>
+-					<li>Maximize dice; <span class="out-roll-item-code">dmax(8d6)</span></li>
+-					<li>Minimize dice; <span class="out-roll-item-code">dmin(8d6)</span></li>
++					<li>平均值：<span class="out-roll-item-code">avg(8d6)</span></li>
++					<li>骰值最大化：<span class="out-roll-item-code">dmax(8d6)</span></li>
++					<li>骰值最小化：<span class="out-roll-item-code">dmin(8d6)</span></li>
+ 
+-					<li>Other functions; <span class="out-roll-item-code">sign(1d6-3)</span>, <span class="out-roll-item-code">abs(1d6-3)</span>, ...etc.</li>
++					<li>其他函式：<span class="out-roll-item-code">sign(1d6-3)</span>、<span class="out-roll-item-code">abs(1d6-3)</span> 等。</li>
+ 				</ul>
+-				Up and down arrow keys cycle input history.<br>
+-				Anything before a colon is treated as a label (<span class="out-roll-item-code">Fireball: 8d6</span>)<br>
+-Use <span class="out-roll-item-code">/macro list</span> to list saved macros.<br>
+-				Use <span class="out-roll-item-code">/macro add myName 1d2+3</span> to add (or update) a macro. Macro names should not contain spaces or hashes.<br>
+-				Use <span class="out-roll-item-code">/macro remove myName</span> to remove a macro.<br>
+-				Use <span class="out-roll-item-code">#myName</span> to roll a macro.<br>
+-				Use <span class="out-roll-item-code">/iterroll roll count [target]</span> to roll multiple times, optionally against a target.
+-				Use <span class="out-roll-item-code">/clear</span> to clear the roller.`,
++				使用上、下方向鍵可瀏覽輸入紀錄。<br>
++				冒號前的文字會視為標籤（<span class="out-roll-item-code">Fireball: 8d6</span>）。<br>
++				使用 <span class="out-roll-item-code">/macro list</span> 列出已儲存的巨集。<br>
++				使用 <span class="out-roll-item-code">/macro add myName 1d2+3</span> 新增或更新巨集；巨集名稱不可包含空格或井字號。<br>
++				使用 <span class="out-roll-item-code">/macro remove myName</span> 移除巨集。<br>
++				使用 <span class="out-roll-item-code">#myName</span> 擲出巨集。<br>
++				使用 <span class="out-roll-item-code">/iterroll roll count [target]</span> 重複擲骰，並可選擇指定目標值。<br>
++				使用 <span class="out-roll-item-code">/clear</span> 清空擲骰器。`,
+ 				Renderer.dice.SYSTEM_USER,
+ 			);
+ 			return;
+@@ -2312,5 +2321,5 @@ Renderer.dice.parsed = class {
+ };
+ 
+ if (!globalThis.IS_VTT && typeof window !== "undefined") {
+-	window.addEventListener("load", Renderer.dice._pInit);
++	window.addEventListener("load", () => Renderer.dice._pInit());
+ }
+diff --git a/js/render-homecrafts.js b/js/render-homecrafts.js
+index 2252640..9d162b1 100644
+--- a/js/render-homecrafts.js
++++ b/js/render-homecrafts.js
+@@ -45,7 +45,7 @@ class _RenderCrochetPatternsImplBase extends RenderPageImplBase {
+ 	_getCommonHtmlParts_skillLevelDesignedBy ({ent, renderer, entriesMeta}) {
+ 		const {entrySkillLevel, entryDesignedBy} = entriesMeta;
+ 		return `<tr><td colspan="6" class="ve-pb-3 ve-pt-0">
+-			<i>Skill Level: ${renderer.render(entrySkillLevel)}.${entryDesignedBy ? ` Designed by ${renderer.render(entryDesignedBy)}.` : ""}</i>
++			<i>難度（Skill Level）：${renderer.render(entrySkillLevel)}。${entryDesignedBy ? ` 設計者（Designed by）：${renderer.render(entryDesignedBy)}。` : ""}</i>
+ 		</td></tr>`;
+ 	}
+ 
+@@ -77,7 +77,7 @@ class _RenderCrochetPatternsImplBase extends RenderPageImplBase {
+ 		if (!entriesMeasurements?.length) return "";
+ 
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Finished Measurements</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">完成尺寸（Finished Measurements）</h5>
+ 			${entriesMeasurements.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+@@ -87,7 +87,7 @@ class _RenderCrochetPatternsImplBase extends RenderPageImplBase {
+ 	_getCommonHtmlParts_yarn ({ent, renderer}) {
+ 		if (!ent.yarn?.length) return "";
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Yarn</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">紗線（Yarn）</h5>
+ 			${ent.yarn.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+@@ -98,7 +98,7 @@ class _RenderCrochetPatternsImplBase extends RenderPageImplBase {
+ 		const {entriesHooks} = entriesMeta;
+ 
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Hooks</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">鉤針（Hooks）</h5>
+ 			${entriesHooks.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+@@ -108,7 +108,7 @@ class _RenderCrochetPatternsImplBase extends RenderPageImplBase {
+ 	_getCommonHtmlParts_notions ({ent, renderer}) {
+ 		if (!ent.notions?.length) return "";
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Notions</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">配件（Notions）</h5>
+ 			${ent.notions.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+@@ -118,7 +118,7 @@ class _RenderCrochetPatternsImplBase extends RenderPageImplBase {
+ 	_getCommonHtmlParts_gauge ({ent, renderer}) {
+ 		if (!ent.gauge?.length) return "";
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Gauge</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">針目密度（Gauge）</h5>
+ 			${ent.gauge.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+@@ -128,7 +128,7 @@ class _RenderCrochetPatternsImplBase extends RenderPageImplBase {
+ 	_getCommonHtmlParts_stitches ({ent, renderer}) {
+ 		if (!ent.stitches?.length) return "";
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Special Stitches</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">特殊針法（Special Stitches）</h5>
+ 			${ent.stitches.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+@@ -138,7 +138,7 @@ class _RenderCrochetPatternsImplBase extends RenderPageImplBase {
+ 	_getCommonHtmlParts_abbreviations ({ent, renderer}) {
+ 		if (!ent.abbreviations?.length) return "";
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Special Abbreviations</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">特殊縮寫（Special Abbreviations）</h5>
+ 			${ent.abbreviations.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+@@ -148,7 +148,7 @@ class _RenderCrochetPatternsImplBase extends RenderPageImplBase {
+ 	_getCommonHtmlParts_notes ({ent, renderer}) {
+ 		if (!ent.notes?.length) return "";
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Notes</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">註記（Notes）</h5>
+ 			${ent.notes.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+@@ -158,7 +158,7 @@ class _RenderCrochetPatternsImplBase extends RenderPageImplBase {
+ 	_getCommonHtmlParts_finishing ({ent, renderer}) {
+ 		if (!ent.finishing?.length) return "";
+ 		return `<div class="ve-pb-4 ve-pt-0">
+-			<h5 class="ve-bold ve-small-caps ve-my-0">Finishing</h5>
++			<h5 class="ve-bold ve-small-caps ve-my-0">收尾（Finishing）</h5>
+ 			${ent.finishing.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}
+ 		</div>`;
+ 	}
+diff --git a/js/render-races.js b/js/render-races.js
+index 885e37b..f6f6ab2 100644
+--- a/js/render-races.js
++++ b/js/render-races.js
+@@ -17,7 +17,7 @@ export class RenderRaces {
+ 			${entriesMeta.entryAttributes ? `<div class="ve-w-100 ve-py-1"></div>` : ""}
+ 			${renderer.render(entriesMeta.entryMain, 1)}
+ 			${ent.traitTags && ent.traitTags.includes("NPC Race") ? `<section class="ve-muted">
+-				${renderer.render(`{@note Note: This race is listed in the {@i Dungeon Master's Guide} as an option for creating NPCs. It is not designed for use as a playable race.}`, 2)}
++				${renderer.render(`{@note 注意：此種族在《{@i 地城主指南}》中列為建立 NPC 的選項，並非供玩家角色使用。}`, 2)}
+ 			 </section>` : ""}
+ 		</td></tr>
+ 
+diff --git a/js/render-recipes.js b/js/render-recipes.js
+index 7f315df..7de191f 100644
+--- a/js/render-recipes.js
++++ b/js/render-recipes.js
+@@ -31,13 +31,13 @@ export class RenderRecipes {
+ 
+ 				${(ptMakes || ptServes) ? veT`<div class="ve-flex-v-center">${ptMakes || ptServes}${wrpSelScaleFactor}</div>` : ""}
+ 				${(ptMakes && ptServes) ? ptServes : ""}
+-				${!(ptMakes || ptServes) && opts.selScaleFactor ? veT`<div class="ve-mb-2">Scale: ${opts.selScaleFactor}</div>` : ""}
++				${!(ptMakes || ptServes) && opts.selScaleFactor ? veT`<div class="ve-mb-2">縮放倍率：${opts.selScaleFactor}</div>` : ""}
+ 
+ 				<div class="ve-rd-plaintext__wrp-sidebar ${ptMakes || ptServes || opts.selScaleFactor ? "ve-mt-1" : ""}">${Renderer.get().render(entriesMeta.entryIngredients, 0)}</div>
+ 
+-				${entriesMeta.entryEquipment ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">Equipment</div><div>${Renderer.get().render(entriesMeta.entryEquipment)}</div></div>` : ""}
++				${entriesMeta.entryEquipment ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">器具（Equipment）</div><div>${Renderer.get().render(entriesMeta.entryEquipment)}</div></div>` : ""}
+ 
+-				${entriesMeta.entryCooksNotes ? `<div class="ve-w-100 ve-flex-col ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">Cook's Notes</div><div class="ve-italic">${Renderer.get().render(entriesMeta.entryCooksNotes)}</div></div>` : ""}
++				${entriesMeta.entryCooksNotes ? `<div class="ve-w-100 ve-flex-col ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">廚師註記（Cook's Notes）</div><div class="ve-italic">${Renderer.get().render(entriesMeta.entryCooksNotes)}</div></div>` : ""}
+ 			</div>
+ 
+ 			<div class="ve-w-66 ve-pr-3 ve-pl-5 ve-rd-plaintext__wrp-primary">
+diff --git a/js/render-spells.js b/js/render-spells.js
+index 78309ad..7bfebdc 100644
+--- a/js/render-spells.js
++++ b/js/render-spells.js
+@@ -6,75 +6,75 @@ export class RenderSpellsSettings {
+ 	static SETTINGS = {
+ 		isDisplayGroups: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Groups",
+-			help: `Whether or not "Groups" should be shown for a spell.`,
++			name: "法術來源：顯示群組",
++			help: "是否顯示法術所屬群組。",
+ 			defaultVal: true,
+ 		}),
+ 
+ 		isDisplayClasses: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Classes",
+-			help: `Whether or not "Classes" should be shown for a spell.`,
++			name: "法術來源：顯示職業",
++			help: "是否顯示可使用此法術的職業。",
+ 			defaultVal: true,
+ 		}),
+ 		isDisplayClassesLegacy: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Classes (Legacy)",
+-			help: `Whether or not "Classes (legacy)" should be shown for a spell.`,
++			name: "法術來源：顯示職業（舊版）",
++			help: "是否顯示舊版職業來源。",
+ 			defaultVal: false,
+ 		}),
+ 
+ 		isDisplaySubclasses: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Subclasses",
+-			help: `Whether or not "Subclasses" should be shown for a spell.`,
++			name: "法術來源：顯示子職業",
++			help: "是否顯示可使用此法術的子職業。",
+ 			defaultVal: true,
+ 		}),
+ 		isDisplaySubclassesLegacy: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Subclasses (Legacy)",
+-			help: `Whether or not "Subclasses (legacy)" should be shown for a spell.`,
++			name: "法術來源：顯示子職業（舊版）",
++			help: "是否顯示舊版子職業來源。",
+ 			defaultVal: false,
+ 		}),
+ 
+ 		isDisplayVariantClasses: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Optional/Variant Classes",
+-			help: `Whether or not "Optional/Variant Classes" should be shown for a spell.`,
++			name: "法術來源：顯示選用／變體職業",
++			help: "是否顯示選用／變體職業來源。",
+ 			defaultVal: true,
+ 		}),
+ 		isDisplayVariantClassesLegacy: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Optional/Variant Classes (Legacy)",
+-			help: `Whether or not "Optional/Variant Classes (legacy)" should be shown for a spell.`,
++			name: "法術來源：顯示選用／變體職業（舊版）",
++			help: "是否顯示舊版的選用／變體職業來源。",
+ 			defaultVal: false,
+ 		}),
+ 
+ 		isDisplayRaces: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Species",
+-			help: `Whether or not "Species" should be shown for a spell.`,
++			name: "法術來源：顯示物種／種族",
++			help: "是否顯示可使用此法術的物種／種族。",
+ 			defaultVal: true,
+ 		}),
+ 
+ 		isDisplayBackgrounds: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Backgrounds",
+-			help: `Whether or not "Backgrounds" should be shown for a spell.`,
++			name: "法術來源：顯示背景",
++			help: "是否顯示可使用此法術的背景。",
+ 			defaultVal: true,
+ 		}),
+ 
+ 		isDisplayFeats: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Show Feats",
+-			help: `Whether or not "Feats" should be shown for a spell.`,
++			name: "法術來源：顯示專長",
++			help: "是否顯示可使用此法術的專長。",
+ 			defaultVal: true,
+ 		}),
+ 
+ 		isDisplayOptionalfeatures: new SettingsUtil.Setting({
+ 			type: "boolean",
+-			name: "Spell Sources: Other Options/Features",
+-			help: `Whether or not "Other Options/Features" should be shown for a spell.`,
++			name: "法術來源：其他選項／特性",
++			help: "是否顯示可使用此法術的其他選項／特性。",
+ 			defaultVal: true,
+ 		}),
+ 	};
+@@ -161,16 +161,16 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
+ 
+ 		const stackFroms = [];
+ 
+-		if (settings.isDisplayGroups) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Groups", propSpell: "groups"});
++		if (settings.isDisplayGroups) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "群組", propSpell: "groups"});
+ 
+ 		const fromClassList = Renderer.spell.getCombinedClasses(ent, "fromClassList");
+ 		if (fromClassList.length) {
+ 			const [current, legacy] = Parser.spClassesToCurrentAndLegacy(fromClassList);
+ 			if (settings.isDisplayClasses) {
+-				stackFroms.push(`<div><span class="ve-bold">Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
++				stackFroms.push(`<div><span class="ve-bold">職業：</span>${Parser.spMainClassesToFull(current)}</div>`);
+ 			}
+ 			if (settings.isDisplayClassesLegacy && legacy.length) {
+-				stackFroms.push(`<div class="ve-muted"><span class="ve-bold">Classes (legacy): </span>${Parser.spMainClassesToFull(legacy)}</div>`);
++				stackFroms.push(`<div class="ve-muted"><span class="ve-bold">職業（舊版）：</span>${Parser.spMainClassesToFull(legacy)}</div>`);
+ 			}
+ 		}
+ 
+@@ -178,10 +178,10 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
+ 		if (fromSubclass.length) {
+ 			const [current, legacy] = Parser.spSubclassesToCurrentAndLegacyFull(ent, subclassLookup);
+ 			if (settings.isDisplaySubclasses) {
+-				stackFroms.push(`<div><span class="ve-bold">Subclasses: </span>${current}</div>`);
++				stackFroms.push(`<div><span class="ve-bold">子職業：</span>${current}</div>`);
+ 			}
+ 			if (settings.isDisplaySubclassesLegacy && legacy.length) {
+-				stackFroms.push(`<div class="ve-muted"><span class="ve-bold">Subclasses (legacy): </span>${legacy}</div>`);
++				stackFroms.push(`<div class="ve-muted"><span class="ve-bold">子職業（舊版）：</span>${legacy}</div>`);
+ 			}
+ 		}
+ 
+@@ -189,24 +189,24 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
+ 		if (fromClassListVariant.length) {
+ 			const [current, legacy] = Parser.spVariantClassesToCurrentAndLegacy(fromClassListVariant);
+ 			if (settings.isDisplayVariantClasses && current.length) {
+-				stackFroms.push(`<div><span class="ve-bold" title="&quot;Optional&quot; spells may be added to a campaign by the DM. &quot;Variant&quot; spells are generally available, but may be made available to a class by the DM.">Optional/Variant Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
++				stackFroms.push(`<div><span class="ve-bold" title="「選用」法術可由 DM 加入戰役；「變體」法術通常可用，但也可能須由 DM 開放給該職業。">選用／變體職業：</span>${Parser.spMainClassesToFull(current)}</div>`);
+ 			}
+ 			if (settings.isDisplayVariantClassesLegacy && legacy.length) {
+-				stackFroms.push(`<div class="ve-muted"><span class="ve-bold" title="&quot;Optional&quot; spells may be added to a campaign by the DM. &quot;Variant&quot; spells are generally available, but may be made available to a class by the DM.">Optional/Variant Classes (legacy): </span>${Parser.spMainClassesToFull(legacy)}</div>`);
++				stackFroms.push(`<div class="ve-muted"><span class="ve-bold" title="「選用」法術可由 DM 加入戰役；「變體」法術通常可用，但也可能須由 DM 開放給該職業。">選用／變體職業（舊版）：</span>${Parser.spMainClassesToFull(legacy)}</div>`);
+ 			}
+ 		}
+ 
+-		if (settings.isDisplayRaces) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Species", propSpell: "races", prop: "race", tag: "race"});
+-		if (settings.isDisplayBackgrounds) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Backgrounds", propSpell: "backgrounds", prop: "background", tag: "background"});
+-		if (settings.isDisplayFeats) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Feats", propSpell: "feats", prop: "feat", tag: "feat"});
+-		if (settings.isDisplayOptionalfeatures) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Other Options/Features", propSpell: "optionalfeatures", prop: "optionalfeature", tag: "optfeature"});
++		if (settings.isDisplayRaces) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "物種／種族", propSpell: "races", prop: "race", tag: "race"});
++		if (settings.isDisplayBackgrounds) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "背景", propSpell: "backgrounds", prop: "background", tag: "background"});
++		if (settings.isDisplayFeats) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "專長", propSpell: "feats", prop: "feat", tag: "feat"});
++		if (settings.isDisplayOptionalfeatures) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "其他選項／特性", propSpell: "optionalfeatures", prop: "optionalfeature", tag: "optfeature"});
+ 
+ 		if (
+ 			ent.level >= 5
+ 			&& fromClassList?.some(it => it.name === "Wizard" && it?.source === Parser.SRC_PHB)
+ 		) {
+ 			stackFroms.push(`<section class="ve-muted ve-mt-2">`);
+-			renderer.recursiveRender(`{@italic Note: Both the {@class fighter||Fighter (Eldritch Knight)|eldritch knight} and the {@class rogue||Rogue (Arcane Trickster)|arcane trickster} spell lists include all {@class Wizard} spells. Spells of 5th level or higher may be cast with the aid of a spell scroll or similar.}`, stackFroms, {depth: 2});
++			renderer.recursiveRender(`{@italic 註：{@class fighter||戰士（奧法騎士）|eldritch knight}與{@class rogue||遊蕩者（奧法詭術師）|arcane trickster}的法術列表均包含所有{@class Wizard||法師}法術。5環或更高環階的法術可藉助法術卷軸或類似物品施展。}`, stackFroms, {depth: 2});
+ 			stackFroms.push(`</section>`);
+ 		}
+ 
+@@ -219,12 +219,12 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
+ 
+ 		const ptFroms = froms
+ 			.map(it => {
+-				const pt = tag ? renderer.render(`{@${tag} ${it.name}|${it.source}}`) : `<span class="ve-help-subtle" title="Source: ${(Parser.sourceJsonToFull(it.source)).qq()}">${it.name}</span>`;
++				const pt = tag ? renderer.render(`{@${tag} ${it.name}|${it.source}}`) : `<span class="ve-help-subtle" title="來源：${(Parser.sourceJsonToFull(it.source)).qq()}">${it.name}</span>`;
+ 				return `${SourceUtil.isNonstandardSource(it.source) ? `<span class="ve-muted">` : ``}${pt}${SourceUtil.isNonstandardSource(it.source) ? `</span>` : ``}`;
+ 			})
+ 			.join(", ");
+ 
+-		stackFroms.push(`<div><span class="ve-bold">${title}: </span>${ptFroms}</div>`);
++		stackFroms.push(`<div><span class="ve-bold">${title}：</span>${ptFroms}</div>`);
+ 	}
+ }
+ 
+diff --git a/js/render-tables.js b/js/render-tables.js
+index ddaec34..35a5381 100644
+--- a/js/render-tables.js
++++ b/js/render-tables.js
+@@ -4,7 +4,7 @@ class RenderTables {
+ 	static _getPartTableFrom (it) {
+ 		if (it.chapter) {
+ 			return `<tr><td colspan="6">
+-				${Renderer.get().render(`{@note ${it.__prop === "table" ? `This table` : "These tables"} can be found in ${Parser.sourceJsonToFull(it.source)}${Parser.bookOrdinalToAbv(it.chapter.ordinal, {isPreNoSuff: true})}, {@book ${it.chapter.name}|${it.source}|${it.chapter.index}|${it.chapter.name}}.}`)}
++				${Renderer.get().render(`{@note ${it.__prop === "table" ? "本表" : "這組表格"}出自《${Parser.sourceJsonToFull(it.source)}》的「{@book ${it.chapter.name}|${it.source}|${it.chapter.index}|${it.chapter.name}}」。}`)}
+ 			</td></tr>`;
+ 		}
+ 
+diff --git a/js/render-variantrules.js b/js/render-variantrules.js
+index 9ba6304..1968286 100644
+--- a/js/render-variantrules.js
++++ b/js/render-variantrules.js
+@@ -1,6 +1,11 @@
+ "use strict";
+ 
+ class RenderVariantRules {
++	static _getLocalizedPageTr (rule) {
++		const html = Renderer.utils.getPageTr(rule);
++		return globalThis.I18nZhTwRules?.localizeSourceHtml(html) || html;
++	}
++
+ 	static getRenderedVariantRule (rule) {
+ 		const cpy = MiscUtil.copy(rule);
+ 		delete cpy.name;
+@@ -15,7 +20,7 @@ class RenderVariantRules {
+ 		${Renderer.utils.getExcludedTr({entity: rule, dataProp: "variantrule"})}
+ 		${Renderer.utils.getNameTr(rule, {page: UrlUtil.PG_VARIANTRULES})}
+ 		<tr><td colspan="6">${textStack.join("")}</td></tr>
+-		${Renderer.utils.getPageTr(rule)}
++		${this._getLocalizedPageTr(rule)}
+ 		${Renderer.utils.getBorderTr()}`;
+ 	}
+ }

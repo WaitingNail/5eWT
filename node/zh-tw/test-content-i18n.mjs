@@ -128,7 +128,7 @@ for (const file of index.files) {
 	}
 }
 
-assert.equal(spellCount, 969);
+assert.equal(spellCount, 1038);
 assert.equal(fluffCount, 92);
 
 const characterOptionSpecs = [
@@ -142,14 +142,14 @@ const characterOptionSpecs = [
 	["fluff-optionalfeatures.json", ["optionalfeatureFluff"]],
 ];
 const expectedCharacterOptionCounts = {
-	race: 160,
+	race: 177,
 	subrace: 98,
-	raceFluff: 223,
+	raceFluff: 240,
 	background: 175,
 	backgroundFluff: 174,
-	feat: 305,
+	feat: 317,
 	featFluff: 44,
-	optionalfeature: 221,
+	optionalfeature: 233,
 	optionalfeatureFluff: 1,
 };
 const actualCharacterOptionCounts = {};
@@ -181,6 +181,12 @@ for (const [file, props] of characterOptionSpecs) {
 		});
 	}
 
+	if (file === "races.json") {
+		for (const [name, localized] of [["Dracthyr", "半龍人"], ["Gnome", "地精"], ["Goblin", "哥布林"]]) {
+			const race = appliedFile.race.find(it => it.name === name && it.source === "WoW");
+			assert.equal(race?._displayName, localized);
+		}
+	}
 	if (file === "fluff-races.json") {
 		assert.equal(appliedFile.raceFluff.find(it => it.name === "Uncommon Races")._displayName, "罕見種族");
 		assert.match(JSON.stringify(appliedFile.raceFluff.find(it => it.name === "Monstrous Adventurers").entries), /戰役/u);
@@ -189,7 +195,7 @@ for (const [file, props] of characterOptionSpecs) {
 }
 
 assert.deepEqual(actualCharacterOptionCounts, expectedCharacterOptionCounts);
-assert.equal(localizedCharacterOptionNames, 1396);
+assert.equal(localizedCharacterOptionNames, 1454);
 
 const duplicateCanonicalSubraces = [
 	{name: "Ixalan", source: "PSX", raceName: "Goblin", raceSource: "PSZ", entries: ["Goblin prose."]},
@@ -252,7 +258,7 @@ assert.equal(aasimar._versions[0].name, "Aasimar; Necrotic Shroud");
 assert.equal(aasimar._versions[0]._displayName, "阿斯莫; 死靈斗篷");
 assert.equal(aasimar._versions[0]._mod.entries.replace, "Celestial Revelation");
 assert.match(JSON.stringify(aasimar._versions[0]._mod.entries.items), /天界啟示/u);
-assert.equal([...localizedRawRaceData.race, ...localizedRawRaceData.subrace].filter(it => it._copy).length, 17);
+assert.equal([...localizedRawRaceData.race, ...localizedRawRaceData.subrace].filter(it => it._copy).length, 22);
 await DataUtil.pDoMetaMerge("test:localized-races", localizedRawRaceData, {isSkipMetaMergeCache: true});
 assert.equal([...localizedRawRaceData.race, ...localizedRawRaceData.subrace].filter(it => it._copy).length, 0, "all localized race copies must resolve");
 const processedRaceData = DataUtil.race.getPostProcessedSiteJson(localizedRawRaceData, {isAddBaseRaces: true});

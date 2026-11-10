@@ -7,6 +7,7 @@ const catalog = Object.fromEntries(["book", "adventure"].map(kind => [
 	kind, read(`data/zh-TW/book-catalog/${kind}s.json`)[kind],
 ]));
 const parentNames = {
+	WoW: "D&D：魔獸世界",
 	TftYP: "哈欠傳送門故事集",
 	ESK: "基礎套組",
 	AitFR: "被遺忘國度的冒險",

@@ -1,0 +1,12 @@
+--- a/js/render.js
++++ b/js/render.js
+@@ -114,6 +114,9 @@
+ 	setBaseMediaUrl (mediaDir, url) { this.baseMediaUrls[mediaDir] = url; return this; }
+ 
+ 	getMediaUrl (mediaDir, path) {
++		if (mediaDir === "img" && /^(?:(?:adventure|book|items|bestiary)\/(?:tokens\/)?(?:WoW|ICC|DDE)\/|covers\/(?:WoW|ICC|DDE)\.)/u.test(path)) {
++			return `https://raw.githubusercontent.com/5etools-mirror-3/5etools-img/9d9933dfc61f498d221cd5b5f974aa0972f23d9c/${path}`;
++		}
+ 		// These sources include assets added after the WaitingNail image snapshot.
+ 		if (mediaDir === "img" && /^(?:items\/(?:X?DMG)\/|book\/PL\/|adventure\/SoS\/|bestiary\/(?:tokens\/)?PL\/|covers\/(?:PL|SoS)\.)/u.test(path)) {
+ 			return `https://raw.githubusercontent.com/5etools-mirror-3/5etools-img/f6bfad316f02b25f698eca461512bbbbfe8e6321/${path}`;

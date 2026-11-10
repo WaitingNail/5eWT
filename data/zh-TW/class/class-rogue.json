@@ -912,6 +912,23 @@
 			"hasFluff": true,
 			"hasFluffImages": true,
 			"ENG_name": "Rogue"
+		},
+		{
+			"name": "遊蕩者",
+			"source": "WoW",
+			"reskinOf": [
+				"Rogue|XPHB"
+			],
+			"_copy": {
+				"name": "Rogue",
+				"source": "XPHB"
+			},
+			"includeSubclassesFrom": [
+				"Rogue|XPHB"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Rogue"
 		}
 	],
 	"subclass": [
@@ -2194,6 +2211,73 @@
 			"hasFluffImages": true,
 			"ENG_name": "Phantom",
 			"ENG_shortName": "Phantom"
+		},
+		{
+			"name": "刺客",
+			"shortName": "刺客",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Assassin",
+				"source": "XPHB",
+				"shortName": "Assassin",
+				"className": "Rogue",
+				"classSource": "XPHB"
+			},
+			"ENG_name": "Assassin",
+			"ENG_shortName": "Assassin"
+		},
+		{
+			"name": "魂刃",
+			"shortName": "魂刃",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Soulknife",
+				"source": "XPHB",
+				"shortName": "Soulknife",
+				"className": "Rogue",
+				"classSource": "XPHB"
+			},
+			"ENG_name": "Soulknife",
+			"ENG_shortName": "Soulknife"
+		},
+		{
+			"name": "風流劍客",
+			"shortName": "風流劍客",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Swashbuckler",
+				"source": "WoW",
+				"shortName": "Swashbuckler",
+				"className": "Rogue",
+				"classSource": "XPHB",
+				"_preserve": {
+					"*": true
+				}
+			},
+			"ENG_name": "Swashbuckler",
+			"ENG_shortName": "Swashbuckler"
+		},
+		{
+			"name": "風流劍客",
+			"shortName": "風流劍客",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"edition": "one",
+			"subclassFeatures": [
+				"Swashbuckler|Rogue|XPHB|Swashbuckler|WoW|3",
+				"Panache|Rogue|XPHB|Swashbuckler|WoW|9",
+				"Dashing Strikes|Rogue|XPHB|Swashbuckler|WoW|13",
+				"Master Duelist|Rogue|XPHB|Swashbuckler|WoW|17"
+			],
+			"ENG_name": "Swashbuckler",
+			"ENG_shortName": "Swashbuckler"
 		}
 	],
 	"classFeature": [
@@ -5230,6 +5314,129 @@
 				"你變的更加擅長伏擊和快速脫離險境。每次戰鬥的第一輪裡，你可以行動兩個回合。你先以自己正常的{@variantrule Initiative|XPHB|先攻}執行你的第一個回合的行動，再以{@variantrule Initiative|XPHB|先攻}數值減 10 的先攻執行你的第二個回合的行動。"
 			],
 			"ENG_name": "Thief's Reflexes"
+		},
+		{
+			"name": "華麗步法",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"你學會了出手一擊後全身而退。如果你在你的回合內對一個生物進行近戰攻擊檢定，該生物在本回合餘下時間裡不能對你進行{@action opportunity attack|XPHB|藉機攻擊}。"
+			],
+			"ENG_name": "Fancy Footwork"
+		},
+		{
+			"name": "放蕩無畏",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"當你擲{@variantrule Initiative|XPHB|先攻}時，你可以為擲骰結果加上等同於你魅力調整值的加值。",
+				"你還獲得使用{@classFeature Sneak Attack|Rogue|XPHB|1|XPHB|偷襲}的額外方式：如果你與一個生物相距 5 尺內、沒有其他生物在你 5 尺內，且你的攻擊檢定沒有{@variantrule Disadvantage|XPHB|劣勢}，則你無需攻擊檢定上的{@variantrule Advantage|XPHB|優勢}即可對該生物使用偷襲。偷襲的其他規則對你仍然適用。"
+			],
+			"ENG_name": "Rakish Audacity"
+		},
+		{
+			"name": "風流劍客",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i 以派頭與敏捷滑入近戰}",
+				"作為一名劍客，你專注於劍之藝術，為你的戰鬥風格注入速度、優雅與魅力——再以精妙的派頭收尾。你擅長單打獨鬥，你的招法讓決鬥看起來像一場華麗的表演。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Fancy Footwork|Rogue|XPHB|Swashbuckler|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Rakish Audacity|Rogue|XPHB|Swashbuckler|WoW|3"
+				}
+			],
+			"ENG_name": "Swashbuckler"
+		},
+		{
+			"name": "瀟灑氣質",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"你練習了使用{@classFeature Sneak Attack|Rogue|XPHB|1|XPHB|偷襲}的新方式。以下效果現列入你的{@classFeature Cunning Strike|Rogue|XPHB|5|XPHB|詭詐打擊}選項。",
+				{
+					"type": "entries",
+					"name": "挑釁（消耗：1d6）",
+					"entries": [
+						"目標必須透過感知豁免，否則直到其下個回合結束，目標對非你目標的攻擊檢定具有{@variantrule Disadvantage|XPHB|劣勢}，且不能對非你目標進行{@action opportunity attack|XPHB|藉機攻擊}。"
+					],
+					"ENG_name": "Goad (Cost: 1d6)"
+				},
+				{
+					"type": "entries",
+					"name": "威懾（消耗：3d6）",
+					"entries": [
+						"你 30 尺內每個由你選擇的生物必須透過感知豁免，否則受{@condition Charmed|XPHB|魅惑}狀態直到你的下個回合結束。"
+					],
+					"ENG_name": "Awe (Cost: 3d6)"
+				}
+			],
+			"ENG_name": "Panache"
+		},
+		{
+			"name": "疾風連擊",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 13,
+			"header": 2,
+			"entries": [
+				"你練習了使用{@classFeature Sneak Attack|Rogue|XPHB|1|XPHB|偷襲}的新方式。以下效果現列入你的{@classFeature Cunning Strike|Rogue|XPHB|5|XPHB|詭詐打擊}選項。",
+				{
+					"type": "entries",
+					"name": "鼓舞（消耗：2d6）",
+					"entries": [
+						"選擇你 30 尺內一個可見生物。直到該生物下個回合結束，每當他進行攻擊檢定或豁免檢定時，都可以擲{@dice 1d6}並將擲骰數值加入該攻擊檢定或豁免檢定。"
+					],
+					"ENG_name": "Invigorate (Cost: 2d6)"
+				},
+				{
+					"type": "entries",
+					"name": "招架架勢（消耗：2d6）",
+					"entries": [
+						"擲{@dice 1d6}。直到你的下個回合開始，你的 AC 獲得等同於擲骰數值的加值。"
+					],
+					"ENG_name": "Parrying Stance (Cost: 2d6)"
+				}
+			],
+			"ENG_name": "Dashing Strikes"
+		},
+		{
+			"name": "決鬥大師",
+			"source": "WoW",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Swashbuckler",
+			"subclassSource": "WoW",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"在你使用{@classFeature Sneak Attack|Rogue|XPHB|1|XPHB|偷襲}後立即，如果目標與你相距 5 尺內且沒有其他生物在你 5 尺內，你可以對同一目標再進行一次攻擊。"
+			],
+			"ENG_name": "Master Duelist"
 		}
 	]
 }

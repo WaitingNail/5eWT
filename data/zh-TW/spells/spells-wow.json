@@ -1,0 +1,3463 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.41.0",
+		"upstreamCommit": "32ef600fab87a585a61dd1a22e9b02dfc58c728a",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "aaadd34f4e61a4701c31aa38d0337a2b3ae856ba",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"spell": [
+		{
+			"name": "神聖化身",
+			"source": "WoW",
+			"page": 54,
+			"level": 9,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"你化為一具幽靈般的天使形態，獲得以下收益。",
+				{
+					"type": "entries",
+					"name": "天使之翼",
+					"entries": [
+						"你的{@variantrule Fly Speed|XPHB|飛行速度}為 90 尺。"
+					],
+					"ENG_name": "Angelic Wings"
+				},
+				{
+					"type": "entries",
+					"name": "幽靈形態",
+					"entries": [
+						"你具有對鈍擊、穿刺、光耀和揮砍傷害的{@variantrule Resistance|XPHB|抗性}。"
+					],
+					"ENG_name": "Spectral Form"
+				},
+				{
+					"type": "entries",
+					"name": "神聖強化",
+					"entries": [
+						"每當你使用法術位施展能為一個或多個生物恢復{@variantrule Hit Points|XPHB|生命值}或造成光耀傷害的法術時，按比你實際消耗的法術位高 2 環（最高 9 環）來決定該法術的效果。"
+					],
+					"ENG_name": "Holy Empowerment"
+				}
+			],
+			"damageResist": [
+				"bludgeoning",
+				"piercing",
+				"radiant",
+				"slashing"
+			],
+			"miscTags": [
+				"HL"
+			],
+			"ENG_name": "Apotheosis"
+		},
+		{
+			"name": "奧術脈衝",
+			"source": "WoW",
+			"page": 78,
+			"level": 0,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "emanation",
+				"distance": {
+					"type": "feet",
+					"amount": 10
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "round",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"你以自身為中心創造一道 10 尺{@variantrule Emanation [Area of Effect]|XPHB|光環}的奧術能量脈衝。區域內的每個目標生物進行體質豁免。豁免失敗者受{@damage 1d8}點力場傷害，且其{@variantrule Speed|XPHB|速度}降低 10 尺（最低為 0 尺），直到你的下個回合結束。"
+			],
+			"damageInflict": [
+				"force"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"ENG_name": "Arcane Pulse"
+		},
+		{
+			"name": "碧藍打擊",
+			"source": "WoW",
+			"page": 31,
+			"level": 1,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "round",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"你向射程內最多兩個彼此相距 30 尺內的目標射出奧術與酷寒能量束。對每個目標各進行一次遠端法術攻擊。命中時，目標受{@damage 2d6}點力場傷害，且其{@variantrule Speed|XPHB|速度}降低 10 尺，直到其下個回合結束。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 1 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d6}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"force"
+			],
+			"spellAttack": [
+				"R"
+			],
+			"ENG_name": "Azure Strike"
+		},
+		{
+			"name": "碧藍橫掃",
+			"source": "WoW",
+			"page": 31,
+			"level": 6,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "emanation",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"純粹的魔法以你為中心向外橫掃，形成一個30尺的{@variantrule Emanation [Area of Effect]|XPHB|光環}。你選擇該{@variantrule Emanation [Area of Effect]|XPHB|光環}內的生物進行一次體質豁免。豁免失敗時，該生物受到{@damage 7d8}力場傷害，且其{@variantrule Speed|XPHB|速度}在持續時間內減少20尺。豁免成功時，目標僅受到一半傷害。"
+			],
+			"damageInflict": [
+				"force"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"ENG_name": "Azure Sweep"
+		},
+		{
+			"name": "熾火龍鱗",
+			"source": "WoW",
+			"page": 31,
+			"level": 3,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "一片龍鱗"
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"選擇射程內一名你能看見的自願生物。五片爆裂鱗片在目標身上成形，在持續時間內為其 AC 提供 +1 加值。法術結束前，若有生物以近戰攻擊檢定命中目標，一片鱗片爆裂，攻擊者受{@damage 1d8}點火焰傷害。目標失去所有爆裂鱗片後，法術提前結束。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 3 環的法術位施展此法術時，每升高一環，目標身上形成的爆炸鱗片便增加 1 片。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"fire"
+			],
+			"miscTags": [
+				"MAC",
+				"SGT",
+				"WLT"
+			],
+			"ENG_name": "Blistering Scales"
+		},
+		{
+			"name": "白骨風暴",
+			"source": "WoW",
+			"page": 14,
+			"level": 5,
+			"school": "A",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "emanation",
+				"distance": {
+					"type": "feet",
+					"amount": 10
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你在自身周圍召喚一場骨肉橫飛的旋風。你回覆{@dice 4d6}點{@variantrule Hit Points|XPHB|生命值}，以你為中心 10 尺{@variantrule Emanation [Area of Effect]|XPHB|光環}內的每個生物進行體質豁免。豁免失敗的目標受{@damage 4d8}點黯蝕傷害，成功則僅受一半傷害。"
+			],
+			"damageInflict": [
+				"necrotic"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"HL"
+			],
+			"ENG_name": "Bonestorm"
+		},
+		{
+			"name": "亙古吐息",
+			"source": "WoW",
+			"page": 31,
+			"level": 4,
+			"school": "A",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"你汲取青銅龍軍團的魔法。在持續時間內，你獲得以下收益。",
+				{
+					"type": "entries",
+					"name": "時序創傷",
+					"entries": [
+						"當你移動到某生物 5 尺內時，你可以詛咒它直到你的下個回合開始。生物受詛咒期間，其下次受到傷害時額外受{@damage 1d10}點力場傷害，隨後詛咒結束。每回合只能以這種方式詛咒一個生物一次。"
+					],
+					"ENG_name": "Temporal Wounds"
+				},
+				{
+					"type": "entries",
+					"name": "飛翼",
+					"entries": [
+						"如果你本沒有翅膀，背後會長出幽靈雙翼。你的{@variantrule Fly Speed|XPHB|飛行速度}為 60 尺且可以懸浮。此外，你的移動不會引發{@action Opportunity Attack|XPHB|借機攻擊}。"
+					],
+					"ENG_name": "Wings"
+				}
+			],
+			"damageInflict": [
+				"force"
+			],
+			"ENG_name": "Breath of Eons"
+		},
+		{
+			"name": "寒冰鎖鏈",
+			"source": "WoW",
+			"page": 14,
+			"level": 1,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你在射程內一個可見生物周圍造出寒冰鎖鏈。目標進行敏捷豁免。豁免失敗的目標受{@damage 1d10}點寒冷傷害，且其{@variantrule Speed|XPHB|速度}減半直到其下個回合結束。豁免成功則僅受一半傷害。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 1 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d10}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"cold"
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"ENG_name": "Chains of Ice"
+		},
+		{
+			"name": "混亂新星",
+			"source": "WoW",
+			"page": 19,
+			"level": 4,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "emanation",
+				"distance": {
+					"type": "feet",
+					"amount": 20
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"混沌能量以你為中心，在20尺範圍內爆發出一道{@variantrule Emanation [Area of Effect]|XPHB|光環}。位於該{@variantrule Emanation [Area of Effect]|XPHB|光環}內每個你選擇的生物受到{@damage 2d6}力場傷害，並且必須成功透過一次感知豁免，否則將陷入{@condition Stunned|XPHB|震懾}狀態，持續到你的下一個回合結束。"
+			],
+			"damageInflict": [
+				"force"
+			],
+			"conditionInflict": [
+				"stunned"
+			],
+			"savingThrow": [
+				"wisdom"
+			],
+			"ENG_name": "Chaos Nova"
+		},
+		{
+			"name": "坍縮之星",
+			"source": "WoW",
+			"page": 19,
+			"level": 4,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你將虛空能量引導為一場災變衝擊，填充一個以你視線範圍內某點為中心、半徑20尺的{@variantrule Sphere [Area of Effect]|XPHB|球狀}區域。你選擇的位於該{@variantrule Sphere [Area of Effect]|XPHB|球狀}區域內的每個生物必須進行一次體質豁免，豁免失敗則受到{@damage 4d12}力場傷害，豁免成功則只受到一半傷害。"
+			],
+			"damageInflict": [
+				"force"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"ENG_name": "Collapsing Star"
+		},
+		{
+			"name": "燃燒",
+			"source": "WoW",
+			"page": 41,
+			"level": 6,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "emanation",
+				"distance": {
+					"type": "feet",
+					"amount": 5
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"你在持續時間內被烈焰包裹，散發 20 尺半徑的{@variantrule Bright Light|XPHB|明亮光照}及額外 10 尺的{@variantrule Dim Light|XPHB|微光光照}。這些火焰使你對火焰傷害具有{@variantrule Immunity|XPHB|免疫}。火焰持續期間，你的法術攻擊檢定具有{@variantrule Advantage|XPHB|優勢}。",
+				"在你的每個回合結束時，以你為中心 5 尺{@variantrule Emanation [Area of Effect]|XPHB|光環}內的每個目標生物受{@damage 3d8}點火焰傷害。"
+			],
+			"damageImmune": [
+				"fire"
+			],
+			"damageInflict": [
+				"fire"
+			],
+			"miscTags": [
+				"ADV",
+				"LGT"
+			],
+			"ENG_name": "Combustion"
+		},
+		{
+			"name": "奉獻",
+			"source": "WoW",
+			"page": 49,
+			"level": 2,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "emanation",
+				"distance": {
+					"type": "feet",
+					"amount": 15
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"你奉獻一個以你為源點、半徑15尺的{@variantrule Emanation [Area of Effect]|XPHB|光環}區域。由你選擇的、在其回合開始時位於該{@variantrule Emanation [Area of Effect]|XPHB|光環}內的生物受到{@damage 1d8}光耀傷害。該{@variantrule Emanation [Area of Effect]|XPHB|光環}對邪魔和不死生物而言是{@variantrule Difficult Terrain|XPHB|困難地形}。"
+			],
+			"damageInflict": [
+				"radiant"
+			],
+			"miscTags": [
+				"DFT"
+			],
+			"ENG_name": "Consecration"
+		},
+		{
+			"name": "吞噬靈魂",
+			"source": "WoW",
+			"page": 19,
+			"level": 1,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你抽取射程內一個生物的本源，該生物進行體質豁免。豁免失敗者受{@damage 4d4}點力場傷害，你獲得等同於所造成力場傷害一半的{@variantrule Temporary Hit Points|XPHB|臨時生命值}。豁免成功則僅受一半傷害。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 1 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d4}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"force"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"THP"
+			],
+			"ENG_name": "Consume Soul"
+		},
+		{
+			"name": "痛苦詛咒",
+			"source": "WoW",
+			"page": 64,
+			"level": 2,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"你以劇痛詛咒射程內一個生物。目標進行體質豁免；法術傷害起始為{@damage 1d4}點心靈傷害。豁免失敗時，目標受法術傷害，且法術的傷害骰升級：從{@damage 1d4}升為{@damage 1d6}、{@damage 1d6}升為{@damage 1d8}、{@damage 1d8}升為{@damage 1d10}，或{@damage 1d10}升為{@damage 1d12}（上限）。豁免成功時，目標受法術傷害，效應結束。目標在其每個回合結束時重複豁免。"
+			],
+			"damageInflict": [
+				"psychic"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"ENG_name": "Curse of Agony"
+		},
+		{
+			"name": "枯萎凋零",
+			"source": "WoW",
+			"page": 14,
+			"level": 2,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"腐化從射程內可見的地面一點盪開，形成半徑 20 尺的{@variantrule Sphere [Area of Effect]|XPHB|球狀}。區域內的每個生物進行感知豁免。豁免失敗的目標受{@damage 2d6}點黯蝕傷害，並被詛咒直到你的下個回合結束。如果你以攻擊檢定對受詛咒目標造成傷害，目標額外受{@damage 1d6}點黯蝕傷害。豁免成功則僅受一半傷害。"
+			],
+			"damageInflict": [
+				"necrotic"
+			],
+			"savingThrow": [
+				"wisdom"
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"ENG_name": "Death and Decay"
+		},
+		{
+			"name": "死亡之握",
+			"source": "WoW",
+			"page": 14,
+			"level": 1,
+			"school": "A",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你駕馭符文能量將敵人縛於己身。射程內一個可見生物必須透過力量豁免，否則被直線拖向你，至你 5 尺內最近的未被佔據空間。"
+			],
+			"savingThrow": [
+				"strength"
+			],
+			"miscTags": [
+				"FMV",
+				"SGT"
+			],
+			"ENG_name": "Death Grip"
+		},
+		{
+			"name": "惡魔尖刺",
+			"source": "WoW",
+			"page": 19,
+			"level": 3,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"邪能之力在你體內奔湧，長出堅硬的鋸齒尖刺。在持續時間內你的 AC 獲得 +2 加值，且當 5 尺內的生物以近戰攻擊檢定命中你時，它受 10 點穿刺傷害。"
+			],
+			"damageInflict": [
+				"piercing"
+			],
+			"miscTags": [
+				"MAC"
+			],
+			"ENG_name": "Demon Spikes"
+		},
+		{
+			"name": "聖盾術",
+			"source": "WoW",
+			"page": 49,
+			"level": 4,
+			"school": "A",
+			"time": [
+				{
+					"number": 1,
+					"unit": "reaction",
+					"condition": "當你受到傷害時執行"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "round",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"直到你的下個回合開始前，你對所有傷害具有{@variantrule Immunity|XPHB|免疫}，包括觸發此效果的傷害。在此持續時間內，你的{@variantrule Speed|XPHB|速度}無法被降低，任何對你{@variantrule Speed|XPHB|速度}的當前降低效果都將被暫停，且沒有效果能違揹你的意願移動你。"
+			],
+			"damageImmune": [
+				"acid",
+				"bludgeoning",
+				"cold",
+				"fire",
+				"force",
+				"lightning",
+				"necrotic",
+				"piercing",
+				"poison",
+				"psychic",
+				"radiant",
+				"slashing",
+				"thunder"
+			],
+			"ENG_name": "Divine Shield"
+		},
+		{
+			"name": "夢境吐息",
+			"source": "WoW",
+			"page": 31,
+			"level": 2,
+			"school": "A",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "cone",
+				"distance": {
+					"type": "feet",
+					"amount": 15
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你撥出蒼翠的治療魔法。15 尺{@variantrule Cone [Area of Effect]|XPHB|錐狀}內的每個目標生物回覆{@dice 2d6}點{@variantrule Hit Points|XPHB|生命值}。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 2 環的法術位施展此法術時，每升高一環，恢復的生命值增加 {@dice 2d6}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"miscTags": [
+				"HL"
+			],
+			"ENG_name": "Dream Breath"
+		},
+		{
+			"name": "夢境飛行",
+			"source": "WoW",
+			"page": 31,
+			"level": 5,
+			"school": "A",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"你汲取綠龍軍團的魔法。在持續時間內，你獲得以下收益。",
+				{
+					"type": "entries",
+					"name": "治療之息",
+					"entries": [
+						"當你移動至一個生物5尺內時，你可以為該生物恢復{@dice 5d4}點{@variantrule Hit Points|XPHB|生命值}。一個生物每回合只能以此方式恢復一次{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Healing Presence"
+				},
+				{
+					"type": "entries",
+					"name": "飛翼",
+					"entries": [
+						"如果你本沒有翅膀，背後會長出幽靈雙翼。你的{@variantrule Fly Speed|XPHB|飛行速度}為 60 尺且可以懸浮。此外，你的移動不會引發{@action Opportunity Attack|XPHB|借機攻擊}。"
+					],
+					"ENG_name": "Wings"
+				}
+			],
+			"miscTags": [
+				"HL"
+			],
+			"ENG_name": "Dream Flight"
+		},
+		{
+			"name": "黑檀之力",
+			"source": "WoW",
+			"page": 32,
+			"level": 1,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "emanation",
+				"distance": {
+					"type": "feet",
+					"amount": 10
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"當你祈喚黑龍軍團時，巨龍之力自你體內迸發。以你為中心 10 尺{@variantrule Emanation [Area of Effect]|XPHB|光環}內的每個目標生物獲得強化，直到你的下個回合結束。生物受強化期間，其以攻擊檢定命中目標時，該攻擊額外造成{@damage 1d4}點力場傷害。"
+			],
+			"damageInflict": [
+				"force"
+			],
+			"miscTags": [
+				"AAD"
+			],
+			"ENG_name": "Ebon Might"
+		},
+		{
+			"name": "餘燼風暴",
+			"source": "WoW",
+			"page": 32,
+			"level": 4,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"白熱餘燼充滿一個以你選擇範圍內一點為中心、半徑20尺的{@variantrule Sphere [Area of Effect]|XPHB|球狀}。{@variantrule Sphere [Area of Effect]|XPHB|球狀}內的每個生物需進行一次體質豁免，豁免失敗則受到{@damage 6d8}點火焰傷害，豁免成功則只受一半傷害。",
+				"位於該{@variantrule Sphere [Area of Effect]|XPHB|球狀}區域內且未被穿著或攜帶的生物和可燃物開始{@hazard burning|XPHB}，在其每回合開始時受到{@damage 1d8}火焰傷害，而非通常的{@hazard burning|XPHB}傷害。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 4 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d8}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"fire"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"BO",
+				"OBJ"
+			],
+			"ENG_name": "Emberstorm"
+		},
+		{
+			"name": "翡翠之花",
+			"source": "WoW",
+			"page": 32,
+			"level": 3,
+			"school": "C",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"你召喚一枚幽靈球莖，從射程內可見的未被佔據空間的地面破土而出。球莖持續存在至法術結束。",
+				"在你的每個回合結束時，花苞會向10尺範圍內的{@variantrule Emanation [Area of Effect]|XPHB|光環}散發治療魔法。你選擇的位於該{@variantrule Emanation [Area of Effect]|XPHB|光環}內的盟友恢復5點{@variantrule Hit Points|XPHB|生命值}。當花苞總共恢復了20點{@variantrule Hit Points|XPHB|生命值}時，它便會消失。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 3 環的法術位施展此法術時，每升高一環，花蕾可恢復的{@variantrule Hit Points|XPHB|生命值}總量增加 5。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"miscTags": [
+				"HL",
+				"SGT"
+			],
+			"ENG_name": "Emerald Blossom"
+		},
+		{
+			"name": "熵能之擁",
+			"source": "WoW",
+			"page": 78,
+			"level": 1,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "reaction",
+					"condition": "當你進行具有優勢或劣勢的D20檢定，且兩顆骰子擲出相同數字時觸發"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"在持續時間內，虛空的本源強化了你，你被暗影包裹，呈現出深藍或紫色的外觀。此效應持續期間，你獲得以下收益。",
+				{
+					"type": "entries",
+					"name": "超然寧靜",
+					"entries": [
+						"你自動透過為維持{@status Concentration|XPHB|專注}而進行的體質豁免。"
+					],
+					"ENG_name": "Preternatural Calm"
+				},
+				{
+					"type": "entries",
+					"name": "暗影蔽體",
+					"entries": [
+						"你被暗影籠罩，你所在的空間成為{@variantrule Lightly Obscured|XPHB|輕度遮蔽}。"
+					],
+					"ENG_name": "Shadow Shroud"
+				},
+				{
+					"type": "entries",
+					"name": "虛空之觸",
+					"entries": [
+						"你的每個回合一次，當你對一個生物造成傷害時，可以使其額外受{@damage 1d4}點黯蝕傷害；或當你治療一個生物時，可以為其額外回覆{@dice 1d4}點{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Touch of the Void"
+				}
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 1 環的法術位施展此法術時，每升高一環，虛空之觸效應造成的額外傷害或恢復的生命值增加 {@dice 1d4}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"necrotic"
+			],
+			"miscTags": [
+				"HL",
+				"OBS"
+			],
+			"ENG_name": "Entropic Embrace"
+		},
+		{
+			"name": "噴發",
+			"source": "WoW",
+			"page": 32,
+			"level": 2,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"以射程內一點為中心，半徑20尺的{@variantrule Sphere [Area of Effect]|XPHB|球狀}範圍內的地面噴發出火焰。該{@variantrule Sphere [Area of Effect]|XPHB|球狀}內的每個生物需進行一次敏捷豁免，豁免失敗則受到{@damage 3d8}點火焰傷害，豁免成功則傷害減半。",
+				"裂隙將{@variantrule Sphere [Area of Effect]|XPHB|球狀}範圍內的地面變為{@variantrule Difficult Terrain|XPHB|困難地形}，直到你的下個回合結束，屆時裂隙會閉合。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 2 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d8}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"fire"
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"miscTags": [
+				"DFT"
+			],
+			"ENG_name": "Eruption"
+		},
+		{
+			"name": "爆炸陷阱",
+			"source": "WoW",
+			"page": 37,
+			"level": 5,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"一個{@condition Invisible|XPHB|隱形}、無形的陷阱出現在你選擇範圍內的一點地面上。當一個生物首次進入陷阱5尺範圍內時，陷阱會爆炸，產生一次火焰爆發，充滿以陷阱為中心的20尺半徑{@variantrule Sphere [Area of Effect]|XPHB|球狀}。法術結束，{@variantrule Sphere [Area of Effect]|XPHB|球狀}內的每個生物需進行一次敏捷豁免。豁免失敗時，生物受到{@damage 8d6}火焰傷害，並且如果它是巨型或更小的體型，會被徑直推離陷阱位置20尺。"
+			],
+			"damageInflict": [
+				"fire"
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"miscTags": [
+				"FMV"
+			],
+			"ENG_name": "Explosive Trap"
+		},
+		{
+			"name": "眼稜",
+			"source": "WoW",
+			"page": 20,
+			"level": 2,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "cone",
+				"distance": {
+					"type": "feet",
+					"amount": 15
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"你將魔法凝聚於雙眼。施展此法術時，以及持續時間內你後續回合的{@action Magic|XPHB|魔法}動作中，你可以釋放一股邪能爆發。15 尺{@variantrule Cone [Area of Effect]|XPHB|錐狀}內的每個生物進行敏捷豁免，失敗者受{@damage 3d6}點力場傷害，成功者僅受一半傷害。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 1 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d6}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"force"
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"ENG_name": "Eye Beam"
+		},
+		{
+			"name": "邪能衝撞",
+			"source": "WoW",
+			"page": 20,
+			"level": 1,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"熾烈的邪能魔法環繞你，賦予你爆發的速度。直到你的回合結束，你的{@variantrule Speed|XPHB|速度}提高 30 尺，且你的移動不會引發{@action Opportunity Attack|XPHB|借機攻擊}。",
+				"當你移動到某生物或未被穿戴攜帶的物體 5 尺內時，其進行敏捷豁免，失敗者受{@damage 2d6}點火焰傷害，成功者僅受一半傷害。一個生物或物體每回合只能受此傷害一次。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 1 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d6}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"fire"
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"miscTags": [
+				"OBJ"
+			],
+			"ENG_name": "Fel Rush"
+		},
+		{
+			"name": "野性潛行",
+			"source": "WoW",
+			"page": 26,
+			"level": 2,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"你如同使用了{@classFeature Wild Shape|Druid|XPHB|2|XPHB|荒野形態}一般變形，但不消耗{@classFeature Wild Shape|Druid|XPHB|2|XPHB|荒野形態}的使用次數。直到法術結束，你處於{@condition Invisible|XPHB|隱形}狀態。你進行攻擊檢定、造成傷害、施展法術或變回原形後，法術立即提前結束。"
+			],
+			"conditionInflict": [
+				"invisible"
+			],
+			"ENG_name": "Feral Prowl"
+		},
+		{
+			"name": "烈火烙印",
+			"source": "WoW",
+			"page": 20,
+			"level": 2,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"你以魔法將一枚熾烈的惡魔符記烙在射程內一個生物身上，該生物進行感知豁免。豁免失敗的生物受{@damage 3d10}點火焰傷害並被詛咒。它受詛咒期間，你對其造成的所有傷害具有{@variantrule Resistance|XPHB|抗性}。豁免成功則僅受一半傷害。",
+				"受詛咒的生物在其每個回合結束時重複豁免，成功則法術對其結束。"
+			],
+			"damageResist": [
+				"acid",
+				"bludgeoning",
+				"cold",
+				"fire",
+				"force",
+				"lightning",
+				"necrotic",
+				"piercing",
+				"poison",
+				"psychic",
+				"radiant",
+				"slashing",
+				"thunder"
+			],
+			"damageInflict": [
+				"fire"
+			],
+			"savingThrow": [
+				"wisdom"
+			],
+			"ENG_name": "Fiery Brand"
+		},
+		{
+			"name": "冰風暴",
+			"source": "WoW",
+			"page": 41,
+			"level": 3,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你向射程內一個或多個目標擲出三枚冰片。對每枚冰片各進行一次遠端法術攻擊。命中時，目標受{@damage 3d6}點寒冷傷害。若為{@variantrule Critical Hit|XPHB|重擊}，目標受{@condition Restrained|XPHB|束縛}狀態直到你的下個回合結束。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 3 環的法術位施展此法術時，每升高一環，你便額外創造一枚冰晶碎片。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"cold"
+			],
+			"conditionInflict": [
+				"restrained"
+			],
+			"spellAttack": [
+				"R"
+			],
+			"ENG_name": "Flurry"
+		},
+		{
+			"name": "冰凍陷阱",
+			"source": "WoW",
+			"page": 37,
+			"level": 1,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"一個{@condition Invisible|XPHB|隱形}且無形的陷阱出現在射程內你選擇的地面一點。當生物首次進入陷阱 5 尺內時，陷阱爆發出一股霜寒，法術結束，觸發生物進行體質豁免。豁免失敗的目標受{@condition Restrained|XPHB|束縛}狀態 1 分鐘。若該生物受到任何傷害，來自陷阱的{@condition Restrained|XPHB|束縛}狀態結束。"
+			],
+			"conditionInflict": [
+				"restrained"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"ENG_name": "Freezing Trap"
+		},
+		{
+			"name": "冰霜新星",
+			"source": "WoW",
+			"page": 41,
+			"level": 1,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "emanation",
+				"distance": {
+					"type": "feet",
+					"amount": 15
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你釋放出一股冰霜爆發，創造一個以你為源點的15尺{@variantrule Emanation [Area of Effect]|XPHB|光環}。位於該{@variantrule Emanation [Area of Effect]|XPHB|光環}內每個你選擇的生物需進行一次體質豁免。豁免失敗時，該生物受到{@damage 2d6}冷凍傷害，並且獲得{@condition Restrained|XPHB|束縛}狀態，持續至你的下個回合結束。豁免成功時，該生物僅受到一半傷害。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 1 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d6}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"cold"
+			],
+			"conditionInflict": [
+				"restrained"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"ENG_name": "Frost Nova"
+		},
+		{
+			"name": "冰霜之鐮",
+			"source": "WoW",
+			"page": 14,
+			"level": 2,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "cone",
+				"distance": {
+					"type": "feet",
+					"amount": 20
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你揮掃身前的武器，釋放一股酷寒衝擊。20 尺{@variantrule Cone [Area of Effect]|XPHB|錐狀}內的每個生物進行體質豁免。豁免失敗的生物受{@damage 3d8}點寒冷傷害，且其{@variantrule Speed|XPHB|速度}降低 10 尺，持續 1 分鐘。豁免成功則僅受一半傷害。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 2 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d8}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"cold"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"ENG_name": "Frostscythe"
+		},
+		{
+			"name": "向善禱言",
+			"source": "WoW",
+			"page": 49,
+			"level": 3,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "reaction",
+					"condition": "當你進入浴血狀態或處於浴血狀態期間受到傷害時執行"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你回覆{@dice 8d4}加你的施法屬性調整值點{@variantrule Hit Points|XPHB|生命值}。在你的下個回合結束前，你進行的下一次攻擊檢定具有{@variantrule Advantage|XPHB|優勢}。"
+			],
+			"miscTags": [
+				"ADV",
+				"HL"
+			],
+			"ENG_name": "Guided Prayer"
+		},
+		{
+			"name": "古爾丹之手",
+			"source": "WoW",
+			"page": 65,
+			"level": 3,
+			"school": "C",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"一顆惡魔隕石從你手中呼嘯飛向射程內你選擇的一點並爆發。以該點為中心、半徑 20 尺{@variantrule Sphere [Area of Effect]|XPHB|球狀}內的每個生物進行敏捷豁免，失敗者受{@damage 2d8}點火焰傷害加{@damage 2d8}點黯蝕傷害，成功者僅受一半傷害。",
+				"惡魔精魂，形似邪能小鬼，在法術持續時間內環繞著{@variantrule Sphere [Area of Effect]|XPHB|球狀}區域飛舞。一個生物若進入{@variantrule Sphere [Area of Effect]|XPHB|球狀}區域或在其內結束其回合，則需進行一次敏捷豁免，豁免失敗則受到{@damage 1d8}火焰傷害加上{@damage 1d8}黯蝕傷害，豁免成功則只受到一半傷害。一個生物每回合只能被此法術影響一次。"
+			],
+			"damageInflict": [
+				"fire",
+				"necrotic"
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"ENG_name": "Hand of Gul'dan"
+		},
+		{
+			"name": "神聖新星",
+			"source": "WoW",
+			"page": 54,
+			"level": 4,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "emanation",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"一陣神聖光芒的爆炸在你周圍30尺的{@variantrule Emanation [Area of Effect]|XPHB|光環}內爆發，傷害你的敵人並治療你的盟友。你選擇的{@variantrule Emanation [Area of Effect]|XPHB|光環}內的每個生物必須進行一次體質豁免，豁免失敗則受到{@damage 5d6}光耀傷害，豁免成功則只受一半傷害。{@variantrule Emanation [Area of Effect]|XPHB|光環}內的其他每個生物恢復{@dice 3d6}{@variantrule Hit Points|XPHB|生命值}。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 4 環的法術位施展此法術時，每升高一環，傷害和恢復的生命值各增加 {@dice 1d6}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"radiant"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"HL"
+			],
+			"ENG_name": "Holy Nova"
+		},
+		{
+			"name": "地獄火撞擊",
+			"source": "WoW",
+			"page": 20,
+			"level": 1,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "emanation",
+				"distance": {
+					"type": "feet",
+					"amount": 10
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你騰空躍起而不引發{@action Opportunity Attack|XPHB|借機攻擊}，落在 30 尺內一處未被佔據的空間。以你為中心 10 尺{@variantrule Emanation [Area of Effect]|XPHB|光環}內的每個生物進行敏捷豁免。豁免失敗的生物受{@damage 2d6}點火焰傷害，且在你下個回合開始前，其對非你生物的攻擊檢定具有{@variantrule Disadvantage|XPHB|劣勢}。豁免成功則僅受一半傷害。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 1 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d6}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"fire"
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"ENG_name": "Infernal Strike"
+		},
+		{
+			"name": "啟用",
+			"source": "WoW",
+			"page": 26,
+			"level": 5,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"射程內一個目標生物獲得一個 4 環法術位。該法術位在消耗後或目標完成{@variantrule Long Rest|XPHB|長休}後消失。它可以用此法術位施展任意已準備的法術。",
+				"此外，你恢復一次已消耗的{@classFeature Wild Shape|Druid|XPHB|2|XPHB|荒野形態}使用次數。"
+			],
+			"ENG_name": "Innervate"
+		},
+		{
+			"name": "肆虐",
+			"source": "WoW",
+			"page": 32,
+			"level": 7,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "line",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你深吸一口氣，朝你選擇的方向噴出一道120尺長、10尺寬的{@variantrule Line [Area of Effect]|XPHB|線狀}熔岩餘燼。處於該{@variantrule Line [Area of Effect]|XPHB|線狀}區域內的每個生物必須進行一次敏捷豁免，豁免失敗則受到{@damage 12d6}點火焰傷害，豁免成功則傷害減半。",
+				"隨後你傳送到{@variantrule Line [Area of Effect]|XPHB|線狀}末端 5 尺內一處未被佔據的空間。"
+			],
+			"damageInflict": [
+				"fire"
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"ENG_name": "Lay Waste"
+		},
+		{
+			"name": "吸血打擊",
+			"source": "WoW",
+			"page": 15,
+			"level": 3,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus",
+					"condition": "當你使用近戰武器或徒手打擊命中目標後立即執行"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"被此打擊命中的目標額外受{@damage 3d8}點黯蝕傷害，你回覆{@dice 3d4}點{@variantrule Hit Points|XPHB|生命值}。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 3 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d8}，你恢復的{@variantrule Hit Points|XPHB|生命值}增加 {@dice 1d4}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"necrotic"
+			],
+			"miscTags": [
+				"HL"
+			],
+			"ENG_name": "Leeching Strike"
+		},
+		{
+			"name": "活化烈焰",
+			"source": "WoW",
+			"page": 32,
+			"level": 1,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"搖曳的火焰撲向射程內你選擇的一個生物。選擇以下選項之一：",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "療愈之焰",
+							"entries": [
+								"目標回覆{@dice 2d6}點{@variantrule Hit Points|XPHB|生命值}。"
+							],
+							"ENG_name": "Healing Flames"
+						},
+						{
+							"type": "item",
+							"name": "灼燒之焰",
+							"entries": [
+								"對目標進行一次遠端攻擊檢定。命中時，目標受{@damage 2d8}點火焰傷害。"
+							],
+							"ENG_name": "Searing Flames"
+						}
+					]
+				}
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以 3 環或更高環階的法術位施展此法術時，每高出 2 環，便可額外選擇一個目標（使用 3 環或 4 環法術位時可選擇兩個目標，使用 5 環或 6 環法術位時可選擇三個目標，使用 7 環或 8 環法術位時可選擇四個目標，使用 9 環法術位時可選擇五個目標）。你分別為每個目標選擇烈焰效應。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"fire"
+			],
+			"miscTags": [
+				"HL"
+			],
+			"ENG_name": "Living Flame"
+		},
+		{
+			"name": "群體變形術",
+			"source": "WoW",
+			"page": 41,
+			"level": 9,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "emanation",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "一枚毛毛蟲繭"
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "hour",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"你嘗試將你周圍30尺{@variantrule Emanation [Area of Effect]|XPHB|光環}內的任意數量的生物轉變為相同的野獸形態。{@variantrule Emanation [Area of Effect]|XPHB|光環}內的每個生物必須成功透過一次感知豁免，否則在法術持續時間內變形為野獸形態。非野獸、巨人、類人生物或怪獸的生物自動透過豁免。",
+				"新形態可以是任意你選擇的{@variantrule Challenge Rating|XPHB|挑戰等級}為 0 的{@filter 野獸|bestiary|type=beast|challenge rating=[&0]|miscellaneous=!swarm}（推薦{@creature Goat|XMM|山羊}）。每個目標的遊戲資料被所選野獸的屬性資料塊取代，但目標保留其陣營、性格、生物型別、{@variantrule Hit Points|XPHB|生命值}和{@variantrule Hit Point Dice|XPHB|生命值骰}。",
+				"每個目標獲得等同於野獸形態{@variantrule Temporary Hit Points|XPHB|臨時生命值}的{@variantrule Hit Points|XPHB|生命值}。目標失去所有{@variantrule Temporary Hit Points|XPHB|臨時生命值}後，法術對其提前結束。",
+				"目標受新形態解剖結構限制，無法執行其形態不允許的動作，也不能說話或施展法術。",
+				"每個目標的裝備融入新形態。該生物無法使用或以其他方式從那些裝備中獲益。"
+			],
+			"savingThrow": [
+				"wisdom"
+			],
+			"miscTags": [
+				"THP"
+			],
+			"ENG_name": "Mass Polymorph"
+		},
+		{
+			"name": "惡魔變形",
+			"source": "WoW",
+			"page": 20,
+			"level": 3,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "一枚靈魂碎片，法術會將其消耗",
+					"consume": true
+				}
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"唸誦咒文，你汲取邪能或虛空魔法改造自身，呈現惡魔特徵。直到法術結束，你獲得以下由你選擇的收益之一：",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "噬滅",
+							"entries": [
+								"當你為造成力場傷害的法術、武器或特性擲傷害時，可以將傷害骰上的 1 或 2 視為 3。"
+							],
+							"ENG_name": "Devourer"
+						},
+						{
+							"type": "item",
+							"name": "浩劫",
+							"entries": [
+								"每當你以近戰武器的攻擊檢定命中一個生物，目標額外受{@damage 1d6}點火焰傷害。"
+							],
+							"ENG_name": "Havoc"
+						},
+						{
+							"type": "item",
+							"name": "復仇",
+							"entries": [
+								"你的 AC 獲得 +2 加值，且在法術持續時間內，你的{@variantrule Hit Points|XPHB|生命值}上限與當前{@variantrule Hit Points|XPHB|生命值}提高 5 點。"
+							],
+							"ENG_name": "Vengeance"
+						}
+					]
+				}
+			],
+			"damageInflict": [
+				"fire"
+			],
+			"miscTags": [
+				"MAC"
+			],
+			"ENG_name": "Metamorphosis"
+		},
+		{
+			"name": "月火術",
+			"source": "WoW",
+			"page": 26,
+			"level": 1,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "round",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"一道月光灼燒射程內一個可見生物。目標進行敏捷豁免。豁免失敗者受{@damage 2d8}點光耀傷害，散發 10 尺半徑的{@variantrule Dim Light|XPHB|微光光照}，且直到其下個回合結束無法從{@condition Invisible|XPHB|隱形}狀態中獲益。其下個回合結束時，額外受{@damage 1d8}點光耀傷害，法術結束。豁免成功則僅受初始傷害的一半。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 1 環的法術位施展此法術時，每升高一環，初始傷害和後續傷害各增加 {@damage 1d8}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"radiant"
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"miscTags": [
+				"LGT",
+				"SGT"
+			],
+			"ENG_name": "Moonfire"
+		},
+		{
+			"name": "癒合禱言",
+			"source": "WoW",
+			"page": 54,
+			"level": 3,
+			"school": "A",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"m": "一撮銀粉"
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"你在射程內一名自願生物身上放置神聖守護。該生物下次受到傷害時，守護觸發，該生物回覆{@dice 1d8}加你的施法屬性調整值點{@variantrule Hit Points|XPHB|生命值}。守護隨後跳到受守護生物 30 尺內你選擇的另一名盟友身上，效果相同。若無盟友在範圍內，法術結束；守護治療五次後法術也會結束。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 3 環的法術位施展此法術時，每升高一環，該法術便可額外治療一次。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"miscTags": [
+				"HL",
+				"WLT"
+			],
+			"ENG_name": "Prayer of Mending"
+		},
+		{
+			"name": "心靈驚駭",
+			"source": "WoW",
+			"page": 55,
+			"level": 4,
+			"school": "E",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"v": true,
+				"m": "一滴墨水"
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"射程內一個生物被虛空的心智幻象淹沒，進行感知豁免。豁免失敗的目標受{@damage 2d10}點心靈傷害，並受{@condition Frightened|XPHB|恐懼}狀態 1 分鐘。受{@condition Frightened|XPHB|恐懼}狀態的生物同時受{@condition Stunned|XPHB|震懾}狀態，直到你的下個回合結束。目標在其每個回合結束時重複豁免，成功則效應對其結束。豁免成功則僅受一半傷害。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 4 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d10}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"psychic"
+			],
+			"conditionInflict": [
+				"frightened",
+				"stunned"
+			],
+			"savingThrow": [
+				"wisdom"
+			],
+			"ENG_name": "Psychic Horror"
+		},
+		{
+			"name": "火焰之雨",
+			"source": "WoW",
+			"page": 65,
+			"level": 3,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"地獄之火傾瀉在以射程內一點為中心、半徑 20 尺、高 40 尺的{@variantrule Cylinder [Area of Effect]|XPHB|柱狀}中。直到法術結束，你可以在後續回合採取{@action Magic|XPHB|魔法}動作，將{@variantrule Cylinder [Area of Effect]|XPHB|柱狀}移動至多 60 尺。",
+				"{@variantrule Cylinder [Area of Effect]|XPHB|柱狀}出現時，其中的每個生物進行敏捷豁免，失敗者受{@damage 3d8}點火焰傷害，成功者僅受一半傷害。當法術區域移入某生物的空間，或該生物進入法術區域或在其中結束回合時，它也進行此豁免。一個生物每回合只進行一次此豁免。",
+				"你對{@variantrule Advantage|XPHB|優勢}內生物的法術攻擊檢定具有{@variantrule Cylinder [Area of Effect]|XPHB|優勢}，且命中時對目標額外造成{@damage 1d6}點黯蝕傷害。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 3 環的法術位施展此法術時，每升高一環，火焰傷害增加 {@damage 1d8}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"fire",
+				"necrotic"
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"miscTags": [
+				"ADV",
+				"UA"
+			],
+			"ENG_name": "Rain of Fire"
+		},
+		{
+			"name": "癒合",
+			"source": "WoW",
+			"page": 26,
+			"level": 3,
+			"school": "A",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"射程內一個可見生物回覆{@dice 3d8}點{@variantrule Hit Points|XPHB|生命值}。在持續時間內，目標在你的每個回合開始時回覆{@dice 1d8}點{@variantrule Hit Points|XPHB|生命值}。法術累計回覆至少 24 點{@variantrule Hit Points|XPHB|生命值}後提前結束。"
+			],
+			"miscTags": [
+				"HL",
+				"SGT"
+			],
+			"ENG_name": "Regrowth"
+		},
+		{
+			"name": "冷酷嚴冬",
+			"source": "WoW",
+			"page": 15,
+			"level": 3,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "emanation",
+				"distance": {
+					"type": "feet",
+					"amount": 30
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你抽取附近生物的體溫。以你為中心 30 尺{@variantrule Emanation [Area of Effect]|XPHB|光環}內的每個目標生物進行體質豁免，失敗者受{@damage 6d6}點寒冷傷害，成功者僅受一半傷害。無論豁免是否成功，附著的不解寒霜都會阻礙其行動，其{@variantrule Speed|XPHB|速度}降為 10 尺直到其下個回合結束。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 3 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d6}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"cold"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"ENG_name": "Remorseless Winter"
+		},
+		{
+			"name": "營救",
+			"source": "WoW",
+			"page": 33,
+			"level": 5,
+			"school": "C",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你傳送到射程內一處可見的未被佔據空間。你離開的空間 60 尺內的一名自願生物，也傳送到你的目的空間 5 尺內一處未被佔據的空間。"
+			],
+			"miscTags": [
+				"SGT",
+				"TP",
+				"WLT"
+			],
+			"ENG_name": "Rescue"
+		},
+		{
+			"name": "烏索克之吼",
+			"source": "WoW",
+			"page": 26,
+			"level": 2,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "round",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"你如同使用了{@classFeature Wild Shape|Druid|XPHB|2|XPHB|荒野形態}一般變形，但不消耗{@classFeature Wild Shape|Druid|XPHB|2|XPHB|荒野形態}的使用次數。直到你的下個回合開始，任何在你 5 尺內開始回合的生物，對非你生物的攻擊檢定均具有{@variantrule Disadvantage|XPHB|劣勢}。"
+			],
+			"ENG_name": "Roar of Ursoc"
+		},
+		{
+			"name": "符文打擊",
+			"source": "WoW",
+			"page": 15,
+			"level": 1,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus",
+					"condition": "當你使用近戰武器或徒手打擊命中目標後立即執行"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"目標額外受{@damage 2d8}點黯蝕傷害。若目標為天族生物，傷害增加{@damage 1d8}。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 1 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d8}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"necrotic"
+			],
+			"ENG_name": "Rune Strike"
+		},
+		{
+			"name": "天災打擊",
+			"source": "WoW",
+			"page": 15,
+			"level": 1,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus",
+					"condition": "當你使用近戰武器或徒手打擊命中目標後立即執行"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"目標額外受{@damage 2d6}點黯蝕傷害，且必須透過體質豁免，否則受{@condition Poisoned|XPHB|中毒}狀態直到法術結束。受{@condition Poisoned|XPHB|中毒}狀態的目標在其每個回合結束時重複豁免，成功則法術對其結束。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 1 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d6}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"necrotic"
+			],
+			"conditionInflict": [
+				"poisoned"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"ENG_name": "Scourge Strike"
+		},
+		{
+			"name": "毒蛇釘刺",
+			"source": "WoW",
+			"page": 37,
+			"level": 3,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus",
+					"condition": "在你用武器命中目標後立即可用"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"目標額外受{@damage 4d6}點毒素傷害，且受{@condition Poisoned|XPHB|中毒}狀態直到法術結束。受{@condition Poisoned|XPHB|中毒}狀態的目標在其每個回合結束時進行體質豁免。豁免失敗則受{@damage 2d6}點毒素傷害；豁免成功則法術結束。"
+			],
+			"damageInflict": [
+				"poison"
+			],
+			"conditionInflict": [
+				"poisoned"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"ENG_name": "Serpent Sting"
+		},
+		{
+			"name": "暗言術：痛",
+			"source": "WoW",
+			"page": 55,
+			"level": 1,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"你吐出一個蘊含虛空之力的話語，使射程內一個生物承受劇痛。目標進行感知豁免。豁免失敗的目標受{@damage 1d10}加你的施法屬性調整值點心靈傷害，並在持續時間內被詛咒。豁免成功則僅受一半傷害。",
+				"詛咒結束前，目標在其每個回合開始時受{@damage 1d10}點心靈傷害。它在其每個回合結束時重複豁免，成功則詛咒結束。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 1 環的法術位施展此法術時，每升高一環，初始傷害增加 {@damage 1d10}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"psychic"
+			],
+			"savingThrow": [
+				"wisdom"
+			],
+			"ENG_name": "Shadow Word: Pain"
+		},
+		{
+			"name": "碎裂之星",
+			"source": "WoW",
+			"page": 33,
+			"level": 5,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 90
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你向射程內一個生物撥出一道凝縮的能量矢。對目標進行遠端法術攻擊。命中時，目標受{@damage 10d8}點力場傷害，且附著的不解寒霜使其外殼變脆，其 AC 受 -2 減值直到你的下個回合開始。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 5 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d8}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"force"
+			],
+			"spellAttack": [
+				"R"
+			],
+			"miscTags": [
+				"MAC"
+			],
+			"ENG_name": "Shattering Star"
+		},
+		{
+			"name": "鎖鏈咒符",
+			"source": "WoW",
+			"page": 20,
+			"level": 5,
+			"school": "C",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 90
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "round",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"一枚咒符出現在射程內可見的地面一點，隨即爆發成半徑 20 尺的{@variantrule Sphere [Area of Effect]|XPHB|球狀}。{@variantrule Sphere [Area of Effect]|XPHB|球狀}內的每個生物進行敏捷豁免。豁免失敗的生物受{@damage 5d6}點力場傷害，被向咒符方向直線拖至多 10 尺，且受{@condition Restrained|XPHB|束縛}狀態直到你的下個回合結束。豁免成功的生物僅受一半傷害，且其{@variantrule Speed|XPHB|速度}降低 10 尺直到你的下個回合結束。"
+			],
+			"damageInflict": [
+				"force"
+			],
+			"conditionInflict": [
+				"restrained"
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"miscTags": [
+				"FMV",
+				"SGT"
+			],
+			"ENG_name": "Sigil of Chains"
+		},
+		{
+			"name": "烈焰咒符",
+			"source": "WoW",
+			"page": 21,
+			"level": 2,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 90
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你在空中刻下一個咒符，使其顯現在你射程內一個你能看見的生物身上。目標進行一次體質豁免，豁免失敗則受到{@damage 2d8}點火焰傷害，豁免成功則只受一半傷害。無論目標豁免成功與否，直到其下一回合結束，它都會以自身為中心散發出一個10尺的{@variantrule Emanation [Area of Effect]|XPHB|光環}。在目標下一回合開始時，目標和處於該{@variantrule Emanation [Area of Effect]|XPHB|光環}內的每個生物必須成功透過一次體質豁免，否則受到{@damage 1d8}點火焰傷害。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 2 環的法術位施展此法術時，每升高一環，初始傷害和後續傷害均增加 {@damage 1d8}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"fire"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"ENG_name": "Sigil of Flame"
+		},
+		{
+			"name": "靈魂收割",
+			"source": "WoW",
+			"page": 21,
+			"level": 3,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你劃開現實的織物，向射程內一個生物射出一道宇宙物質之矢。對目標進行遠端法術攻擊，目標無法從{@variantrule Cover|XPHB|半身掩護}或{@variantrule Cover|XPHB|四分之三掩護}中獲益。命中時，你造成{@damage 6d6}點力場傷害。如果你為此法術擲{@damage d6}擲出 6，你可以再擲一枚{@damage d6}並加入傷害。施展此法術時，你能加入傷害的此類 d6 上限等於你的施法屬性調整值。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 3 環的法術位施展此法術時，每升高一環，傷害增加 {@damage 1d6}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"force"
+			],
+			"spellAttack": [
+				"R"
+			],
+			"ENG_name": "Soul Reap"
+		},
+		{
+			"name": "星辰墜落",
+			"source": "WoW",
+			"page": 26,
+			"level": 4,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": "一撮星塵"
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "round",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"你在施法範圍內召喚墜落的星辰，轟擊一個半徑30尺、高40尺的{@variantrule Cylinder [Area of Effect]|XPHB|柱狀}內的生物。該{@variantrule Cylinder [Area of Effect]|XPHB|柱狀}內的每個生物必須進行一次敏捷豁免，豁免失敗則受到{@damage 7d8}點光耀傷害，豁免成功則只受到一半傷害。",
+				"直到你的下個回合開始，首次於某回合進入{@variantrule Cylinder [Area of Effect]|XPHB|柱狀}或在其中結束回合的生物，受等同於你{@class Druid|WoW|德魯伊}等級的光耀傷害。一個生物每回合只能受此傷害一次。"
+			],
+			"damageInflict": [
+				"radiant"
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"ENG_name": "Starfall"
+		},
+		{
+			"name": "投擲利刃",
+			"source": "WoW",
+			"page": 21,
+			"level": 1,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你造出一柄惡魔戰刃，擲向射程內的一個生物或物體。對目標進行遠端法術攻擊。命中時，目標受{@damage 1d8}點揮砍傷害加{@damage 1d8}點火焰傷害，戰刃隨即彈向目標 30 尺內你選擇的另一目標。對新目標重新進行攻擊與傷害擲骰。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 1 環的法術位施展此法術時，每升高一環，火焰傷害增加 {@damage 1d8}。戰刃彈射的次數至多等於所消耗法術位的環階；每次施展此法術時，每個生物最多隻能成為一次目標。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"fire",
+				"slashing"
+			],
+			"spellAttack": [
+				"R"
+			],
+			"miscTags": [
+				"OBJ"
+			],
+			"ENG_name": "Throw Glaive"
+		},
+		{
+			"name": "時間膨脹",
+			"source": "WoW",
+			"page": 33,
+			"level": 4,
+			"school": "A",
+			"time": [
+				{
+					"number": 1,
+					"unit": "reaction",
+					"condition": "當你或你能看見且位於 60 尺內的生物受到傷害時，作為對該傷害的回應執行"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"目標將其受到的傷害減少{@dice 4d8}點。在目標的每個回合結束時，目標失去{@dice 1d8}點{@variantrule Hit Points|XPHB|生命值}，直到累計失去{@dice 4d8}點{@variantrule Hit Points|XPHB|生命值}（這{@dice 4d8}與傷害減免分開擲骰）。"
+			],
+			"miscTags": [
+				"SGT"
+			],
+			"ENG_name": "Time Dilation"
+		},
+		{
+			"name": "凝神境",
+			"source": "WoW",
+			"page": 27,
+			"level": 6,
+			"school": "A",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "emanation",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"在法術持續時間內，自然之力在你周圍60尺的{@variantrule Emanation [Area of Effect]|XPHB|光環}內流動。你選擇的位於該{@variantrule Emanation [Area of Effect]|XPHB|光環}內的生物獲得對鈍擊、穿刺和揮砍傷害的{@variantrule Resistance|XPHB|抗性}。以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以使該{@variantrule Emanation [Area of Effect]|XPHB|光環}內的每個盟友恢復等於{@dice 2d8}加上你的施法關鍵屬性調整值的{@variantrule Hit Points|XPHB|生命值}。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 6 環的法術位施展此法術時，每升高一環，生物便額外恢復 {@dice 1d8} {@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageResist": [
+				"bludgeoning",
+				"piercing",
+				"slashing"
+			],
+			"miscTags": [
+				"HL",
+				"UA",
+				"UBA"
+			],
+			"ENG_name": "Tranquility"
+		},
+		{
+			"name": "生命之樹",
+			"source": "WoW",
+			"page": 27,
+			"level": 8,
+			"school": "T",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"你變形成一株形似樹人的生命之樹形態。在此形態下，你獲得以下收益。",
+				{
+					"type": "entries",
+					"name": "樹木型態",
+					"entries": [
+						"你變為大型體型。你的{@variantrule Speed|XPHB|速度}變為 10 尺且不能被降低，且{@variantrule Difficult Terrain|XPHB|困難地形}不會消耗你額外的移動。"
+					],
+					"ENG_name": "Tree Form"
+				},
+				{
+					"type": "entries",
+					"name": "樹皮之膚",
+					"entries": [
+						"你的{@variantrule Armor Class|XPHB|護甲等級}獲得 +2 加值，並獲得 10 點{@variantrule Temporary Hit Points|XPHB|臨時生命值}。"
+					],
+					"ENG_name": "Bark Skin"
+				},
+				{
+					"type": "entries",
+					"name": "狀態免疫",
+					"entries": [
+						"你獲得對{@condition Paralyzed|XPHB|麻痺}和{@condition Restrained|XPHB|束縛}狀態的{@variantrule Immunity|XPHB|免疫}。你不能被違背意願地變形。"
+					],
+					"ENG_name": "Condition Immunity"
+				},
+				{
+					"type": "entries",
+					"name": "生命之源",
+					"entries": [
+						"當你使用法術位施展的法術為一個生物恢復{@variantrule Hit Points|XPHB|生命值}時，該生物在你施展法術的回合額外回覆{@dice 1d8}點{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Source of Life"
+				},
+				{
+					"type": "entries",
+					"name": "法術強化",
+					"entries": [
+						"你{@class Druid|WoW|德魯伊}法術的法術豁免 DC 提高 1，且你施展的{@class Druid|WoW|德魯伊}法術的攻擊檢定具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Spells Enhanced"
+				}
+			],
+			"miscTags": [
+				"ADV",
+				"HL",
+				"THP"
+			],
+			"ENG_name": "Tree of Life"
+		},
+		{
+			"name": "地殼激變",
+			"source": "WoW",
+			"page": 33,
+			"level": 4,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 90
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"熾熱石塊噴發，填充一個以你射程內可見地面一點為原點、半徑20尺、高10尺的{@variantrule Cylinder [Area of Effect]|XPHB|柱狀}區域。該{@variantrule Cylinder [Area of Effect]|XPHB|柱狀}區域內的每個生物需進行一次敏捷豁免。豁免失敗者，受到{@damage 1d12}鈍擊傷害加{@damage 3d8}火焰傷害，並被垂直推至柱狀區域的頂部，隨後墜落。豁免成功者，僅受到一半傷害。",
+				"悶燃的石頭將{@variantrule Cylinder [Area of Effect]|XPHB|柱狀}內的地面變為{@variantrule Difficult Terrain|XPHB|困難地形}，持續到你的下個回合結束。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 4 環的法術位施展此法術時，每升高一環，鈍擊傷害增加 {@damage 1d12}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"damageInflict": [
+				"bludgeoning",
+				"fire"
+			],
+			"savingThrow": [
+				"dexterity"
+			],
+			"miscTags": [
+				"DFT",
+				"SGT"
+			],
+			"ENG_name": "Upheaval"
+		},
+		{
+			"name": "吸血鬼之血",
+			"source": "WoW",
+			"page": 15,
+			"level": 1,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "self"
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"在持續時間內，你的{@variantrule Hit Points|XPHB|生命值}上限提高 10 點。此外，每當你回覆{@variantrule Hit Points|XPHB|生命值}時，額外回覆{@dice 1d6}點{@variantrule Hit Points|XPHB|生命值}。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "升環施法",
+					"entries": [
+						"以高於 1 環的法術位施展此法術時，每升高一環，額外恢復的生命值增加 {@dice 1d6}。"
+					],
+					"ENG_name": "Using a Higher-Level Spell Slot"
+				}
+			],
+			"miscTags": [
+				"HL"
+			],
+			"ENG_name": "Vampiric Blood"
+		},
+		{
+			"name": "虛空爆發",
+			"source": "WoW",
+			"page": 55,
+			"level": 5,
+			"school": "N",
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 120
+				}
+			},
+			"components": {
+				"v": true
+			},
+			"duration": [
+				{
+					"type": "timed",
+					"duration": {
+						"type": "minute",
+						"amount": 1
+					},
+					"concentration": true
+				}
+			],
+			"entries": [
+				"暗影虛空能量在你選擇範圍內的一點爆發，形成一個20尺半徑的{@variantrule Sphere [Area of Effect]|XPHB|球狀}區域。該{@variantrule Sphere [Area of Effect]|XPHB|球狀}區域內的每個生物必須進行一次體質豁免，豁免失敗則受到{@damage 5d6}點黯蝕傷害，豁免成功則只受到一半傷害。同時，你獲得虛空形態，在法術持續時間內獲得以下增益。",
+				{
+					"type": "entries",
+					"name": "虛空之矢",
+					"entries": [
+						"在你的回合以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以向 60 尺內的一個生物擲出一道虛空能量矢。進行遠端法術攻擊；命中時，目標受{@damage 2d6}加你的施法屬性調整值點黯蝕傷害。"
+					],
+					"ENG_name": "Void Bolt"
+				},
+				{
+					"type": "entries",
+					"name": "虛空潛行",
+					"entries": [
+						"當你處於{@variantrule Dim Light|XPHB|微光光照}或{@variantrule Darkness|XPHB|黑暗術}區域時，你處於{@condition Invisible|XPHB|隱形}狀態。"
+					],
+					"ENG_name": "Void Stealth"
+				}
+			],
+			"damageInflict": [
+				"necrotic"
+			],
+			"spellAttack": [
+				"R"
+			],
+			"savingThrow": [
+				"constitution"
+			],
+			"miscTags": [
+				"UBA"
+			],
+			"ENG_name": "Void Eruption"
+		},
+		{
+			"name": "憤怒",
+			"source": "WoW",
+			"page": 27,
+			"level": 0,
+			"school": "V",
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 60
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"你向射程內一個目標擲出一枚能量球。對目標進行遠端法術攻擊。命中時，目標受{@damage 1d8}點閃電傷害，且其{@variantrule Speed|XPHB|速度}降低 10 尺，直到你的下個回合結束。"
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "戲法強化",
+					"entries": [
+						"當你達到以下等級時，傷害增加 {@damage 1d8}：5 級（{@damage 2d8}）、11 級（{@damage 3d8}）和 17 級（{@damage 4d8}）。"
+					],
+					"ENG_name": "Cantrip Upgrade"
+				}
+			],
+			"scalingLevelDice": {
+				"label": "閃電傷害",
+				"scaling": {
+					"1": "1d8",
+					"5": "2d8",
+					"11": "3d8",
+					"17": "4d8"
+				}
+			},
+			"damageInflict": [
+				"lightning"
+			],
+			"spellAttack": [
+				"R"
+			],
+			"miscTags": [
+				"SCL"
+			],
+			"ENG_name": "Wrath"
+		}
+	]
+}

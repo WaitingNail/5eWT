@@ -1,0 +1,29 @@
+--- a/js/filter/filter/filter-filter-source.js
++++ b/js/filter/filter/filter-filter-source.js
+@@ -3,7 +3,7 @@
+ import {MISC_FILTER_VALUE__BASIC_RULES_2014, MISC_FILTER_VALUE__BASIC_RULES_2024, MISC_FILTER_VALUE__SRD_5_1, MISC_FILTER_VALUE__SRD_5_2, PILL_STATE__IGNORE, PILL_STATE__NO, PILL_STATE__YES, SOURCE_HEADER} from "../filter-constants.js";
+ import {PageFilterBase} from "../filter-page-filter-base.js";
+ 
+-const _tZhTwSourceFilter = text => globalThis.I18nZhTwSite?.tEnglish(text) ?? text;
++const _tZhTwSourceFilter = text => text == null ? text : globalThis.I18nZhTwSite?.tEnglish(text) ?? text;
+ 
+ export class SourceFilterItem extends FilterItem {
+ 	static TYPE = "source";
+@@ -77,7 +77,7 @@
+ 		opts.itemSortFnMini = opts.itemSortFnMini === undefined ? SourceFilter._SORT_ITEMS_MINI.bind(SourceFilter) : opts.itemSortFnMini;
+ 		opts.itemSortFn = opts.itemSortFn === undefined ? SourceFilter._SORT_ITEMS.bind(SourceFilter) : opts.itemSortFn;
+ 		opts.groupFn = opts.groupFn === undefined ? SourceUtil.getFilterGroup : opts.groupFn;
+-		opts.groupNameFn = opts.groupNameFn === undefined ? SourceUtil.getFilterGroupName : opts.groupNameFn;
++		opts.groupNameFn = opts.groupNameFn === undefined ? group => _tZhTwSourceFilter(SourceUtil.getFilterGroupName(group)) : opts.groupNameFn;
+ 		opts.selFn = opts.selFn === undefined ? PageFilterBase.defaultSourceSelFn : opts.selFn;
+ 
+ 		super(opts);
+@@ -181,7 +181,7 @@
+ 				{title: this.constructor._TITLE_CONTEXT_SOURCE_SET},
+ 			),
+ 			new ContextUtil.Action(
+-				"Select All Universes Beyond Sources",
++				_tZhTwSourceFilter("Select All Universes Beyond Sources"),
+ 				(evt) => this._doSetPinsUniversesBeyond({isAdditive: evt.shiftKey, isIntersection: EventUtil.isAltOptionKey(evt), isExclusive: EventUtil.isCtrlMetaKey(evt)}),
+ 				{title: this.constructor._TITLE_CONTEXT_SOURCE_SET},
+ 			),

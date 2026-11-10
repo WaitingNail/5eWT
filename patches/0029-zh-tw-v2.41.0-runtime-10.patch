@@ -1,0 +1,30 @@
+--- a/js/render.js
++++ b/js/render.js
+@@ -3426,7 +3426,7 @@
+ 			const meta = Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[type];
+ 			if (!meta || meta.propTitle) return null;
+ 
+-			return entry.name || null;
++			return entry._canonicalName || entry.name || null;
+ 		}
+ 
+ 		static getCleanName (name, {isStripTags = true} = {}) {
+--- a/js/bookutils.js
++++ b/js/bookutils.js
+@@ -1279,14 +1279,14 @@
+ 	static _searchEntriesForRecursive (chapterIndex, prevLastName, appendTo, term, cleanTerm, obj, isPageMode) {
+ 		const isNamedEntry = BookUtil.Search._isNamedEntry(obj);
+ 		if (isNamedEntry) {
+-			const cleanName = Renderer.stripTags(obj.name);
++			const cleanName = Renderer.stripTags(obj._canonicalName || obj.name);
+ 			if (BookUtil._headerCounts[cleanName] === undefined) BookUtil._headerCounts[cleanName] = 0;
+ 			else BookUtil._headerCounts[cleanName]++;
+ 		}
+ 
+ 		let lastName;
+ 		if (isNamedEntry) {
+-			lastName = Renderer.stripTags(obj.name);
++			lastName = Renderer.stripTags(obj._canonicalName || obj.name);
+ 			const displayName = Renderer.stripTags(obj._displayName || obj.name);
+ 			const matches = isPageMode
+ 				? obj.page === cleanTerm

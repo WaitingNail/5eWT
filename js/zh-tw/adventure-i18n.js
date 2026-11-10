@@ -3,8 +3,8 @@ import {I18nZhTwQuickReference} from "./quick-reference-i18n.js";
 /** Adventure display adapter. Canonical headings/IDs remain usable in old URLs. */
 export class I18nZhTwAdventure {
 	static _loadPromises = new Map();
-	static _supportedBooks = new Set(["cos", "hotdq", "rot", "wdh", "vnotee", "veor", "oota", "bgdia", "toa", "kftgv", "pl", "sos"]);
-	static _currentBooks = {pl: "book-pl", sos: "adventure-sos"};
+	static _supportedBooks = new Set(["cos", "hotdq", "rot", "wdh", "vnotee", "veor", "oota", "bgdia", "toa", "kftgv", "pl", "sos", "wow", "icc", "dde"]);
+	static _currentBooks = {pl: "book-pl", sos: "adventure-sos", wow: "book-wow", icc: "adventure-icc", dde: "adventure-dde"};
 	static _visibleKeys = new Set([
 		"name", "caption", "title", "label", "by", "text", "quote", "author",
 		"entries", "entry", "items", "footnotes", "headerEntries", "footerEntries",
@@ -21,10 +21,16 @@ export class I18nZhTwAdventure {
 			: `${baseUrl}data/zh-TW/adventures/adventure-${bookId}.json`;
 		const load = async () => {
 			try {
-				if (fnLoad) return await fnLoad({url});
-				const response = await fetch(url);
-				if (!response.ok) throw new Error(`HTTP ${response.status}`);
-				return await response.json();
+				const pRead = async url => {
+					if (fnLoad) return fnLoad({url});
+					const response = await fetch(url);
+					if (!response.ok) throw new Error(`HTTP ${response.status}`);
+					return response.json();
+				};
+				const document = await pRead(url);
+				if (!document?.chapterCount) return document;
+				const data = await Promise.all(Array.from({length: document.chapterCount}, (_, ix) => pRead(url.replace(/\.json$/, `-${ix}.json`))));
+				return {...document, data};
 			} catch (error) {
 				console.warn(`[zh-TW ${bookId}] Translation unavailable; using English.`, error);
 				return null;
@@ -57,7 +63,7 @@ export class I18nZhTwAdventure {
 	static createLocalizedView ({canonical, localized, index}) {
 		const localizedIndex = localized?.book || localized?.adventure;
 		const isCurrent = Object.hasOwn(this._currentBooks, index.id.toLowerCase());
-		const acceptedTags = isCurrent ? ["v2.39.1"] : ["v2.33.3", "v2.37.0"];
+		const acceptedTags = isCurrent ? ["v2.39.1", "v2.41.0"] : ["v2.33.3", "v2.37.0"];
 		canonical = (canonical.bookData || canonical.adventureData)?.find(it => it.id === index.id) || canonical;
 		if (!acceptedTags.includes(localized?._meta?.upstreamTag) || localizedIndex?.id !== index.id) {
 			throw new Error("Adventure translation identity/version mismatch");

@@ -1212,6 +1212,76 @@
 			"hasFluffImages": true,
 			"ENG_name": "Path of the Zealot",
 			"ENG_shortName": "Zealot"
+		},
+		{
+			"name": "元素道途",
+			"shortName": "元素",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"ability": "wis",
+					"resourceName": "Rage",
+					"known": {
+						"6": [
+							"elementalism|xphb#c"
+						]
+					},
+					"innate": {
+						"6": {
+							"resource": {
+								"1": [
+									"daylight|xphb",
+									"water walk|xphb",
+									"wind wall|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Path of the Elements|Barbarian|XPHB|Elements|WoW|3",
+				"Echo of the Elements|Barbarian|XPHB|Elements|WoW|6",
+				"Primordial Bond|Barbarian|XPHB|Elements|WoW|10",
+				"Elemental Overload|Barbarian|XPHB|Elements|WoW|14"
+			],
+			"ENG_name": "Path of the Elements",
+			"ENG_shortName": "Elements"
+		},
+		{
+			"name": "靈體衛士道途",
+			"shortName": "靈體衛士",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"ability": "wis",
+					"innate": {
+						"10": {
+							"rest": {
+								"1": [
+									"augury|xphb",
+									"clairvoyance|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Path of the Spiritual Guardian|Barbarian|XPHB|Spiritual Guardian|WoW|3",
+				"Spirit Shield|Barbarian|XPHB|Spiritual Guardian|WoW|6",
+				"Consult the Spirits|Barbarian|XPHB|Spiritual Guardian|WoW|10",
+				"Spirits' Fury|Barbarian|XPHB|Spiritual Guardian|WoW|14"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Path of the Spiritual Guardian",
+			"ENG_shortName": "Spiritual Guardian"
 		}
 	],
 	"classFeature": [
@@ -3967,6 +4037,229 @@
 				}
 			],
 			"ENG_name": "Rage of the Gods"
+		},
+		{
+			"name": "元素道途",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i 揮舞元素的怒火}",
+				"追隨元素道途的野蠻人學會將他們的{@classFeature Rage|Barbarian|XPHB|1|XPHB|狂暴}駕馭為烈焰、寒霜與閃電的風暴。這些野蠻人在{@classFeature Rage|Barbarian|XPHB|1|XPHB|狂暴}中汲取自然的元素之力，創造強大的魔法效應。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Raging Elements|Barbarian|XPHB|Elements|WoW|3"
+				}
+			],
+			"ENG_name": "Path of the Elements"
+		},
+		{
+			"name": "怒火元素",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"每當你啟用{@classFeature Rage|Barbarian|XPHB|1|XPHB|狂暴}時，你可以作為該{@variantrule Bonus Action|XPHB|附贈動作}的一部分，選擇以下怒火元素選項之一。當你的{@classFeature Rage|Barbarian|XPHB|1|XPHB|rage}生效期間，你可以以一個{@variantrule Bonus Action|XPHB|附贈動作}再次使用該選項或改用另一選項。",
+				"怒火元素選項若需豁免檢定，其 DC 等於 8 加你的體質調整值與{@variantrule Proficiency|XPHB|熟練加值}。",
+				{
+					"type": "entries",
+					"name": "寒冰之怒",
+					"entries": [
+						"此效應啟用時，擲等同於你{@classFeature Rage|Barbarian|XPHB|1|XPHB|狂暴}傷害加值數量的 d8 並求和。你向 30 尺內一個生物擲出酷寒堅冰。進行近戰法術攻擊（若目標在 5 尺內）或遠端法術攻擊，以體質為施法屬性。命中時，該攻擊造成等同於擲骰總和的寒冷傷害，且在你的下個回合結束前，目標下次受到火焰傷害時，額外受{@damage 1d10}點火焰傷害。"
+					],
+					"ENG_name": "Icefury"
+				},
+				{
+					"type": "entries",
+					"name": "熔岩爆裂",
+					"entries": [
+						"此效應啟用時，擲等同於你{@classFeature Rage|Barbarian|XPHB|1|XPHB|狂暴}傷害加值數量的 d4 並求和。隨後你向 30 尺內一個可見生物擲出熔岩。目標進行敏捷豁免。豁免失敗的目標受等同於擲骰總和的火焰傷害，且在你的下個回合結束前，目標下次受到閃電傷害時，額外受{@damage 1d8}點閃電傷害。豁免成功則僅受一半傷害。"
+					],
+					"ENG_name": "Lava Burst"
+				},
+				{
+					"type": "entries",
+					"name": "閃電束",
+					"entries": [
+						"此效應啟用時，擲等同於你{@classFeature Rage|Barbarian|XPHB|1|XPHB|狂暴}傷害加值數量的 d6 並求和。隨後你可以向 30 尺內另一個可見生物擲出一道閃電。目標進行敏捷豁免。豁免失敗的目標受等同於擲骰總和的閃電傷害，且在你的下個回合結束前，目標下次受到寒冷傷害時，額外受{@damage 1d6}點寒冷傷害。豁免成功則僅受一半傷害。"
+					],
+					"ENG_name": "Lightning Bolt"
+				}
+			],
+			"ENG_name": "Raging Elements"
+		},
+		{
+			"name": "元素迴響",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "WoW",
+			"level": 6,
+			"header": 2,
+			"consumes": {
+				"name": "Rage"
+			},
+			"entries": [
+				"你汲取元素的寧靜。你習得{@spell Elementalism|XPHB|四象法門}戲法。此外，你可以消耗一次{@classFeature Rage|Barbarian|XPHB|1|XPHB|狂暴}的使用次數，施展{@spell Daylight|XPHB|晝明術}、{@spell Water Walk|XPHB|水上行走}或{@spell Wind Wall|XPHB|風牆術}。就這些法術而言，你的施法屬性是感知。"
+			],
+			"ENG_name": "Echo of the Elements"
+		},
+		{
+			"name": "原初羈絆",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "WoW",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"當你的{@classFeature Rage|Barbarian|XPHB|1|XPHB|狂暴}生效期間，你對寒冷、火焰和閃電傷害具有{@variantrule Resistance|XPHB|抗性}。"
+			],
+			"ENG_name": "Primordial Bond"
+		},
+		{
+			"name": "元素過載",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "WoW",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"你引導的風暴之力愈發強大，向你的敵人橫掃而去。你的{@subclassFeature Raging Elements|Barbarian|XPHB|Elements|WoW|3|WoW|怒火元素}選項獲得以下效果。",
+				{
+					"type": "entries",
+					"name": "寒冰之怒",
+					"entries": [
+						"無論你以此選項是否命中目標，目標在你的下個回合開始前進行的下次傷害擲骰，都減去擲骰總和的一半（向下取整）。"
+					],
+					"ENG_name": "Icefury"
+				},
+				{
+					"type": "entries",
+					"name": "熔岩爆裂",
+					"entries": [
+						"無論目標與此選項的豁免是否失敗，目標及其 10 尺內的每個敵人開始{@hazard burning|XPHB}。"
+					],
+					"ENG_name": "Lava Burst"
+				},
+				{
+					"type": "entries",
+					"name": "閃電束",
+					"entries": [
+						"無論目標與此選項的豁免是否失敗，一道閃電從目標躍向第一個目標 30 尺內另一個由你選擇的可見目標。新目標進行敏捷豁免，失敗者受等同於擲骰總和的閃電傷害，成功者僅受一半傷害。"
+					],
+					"ENG_name": "Lightning Bolt"
+				}
+			],
+			"ENG_name": "Elemental Overload"
+		},
+		{
+			"name": "靈體衛士道途",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Spiritual Guardian",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i 呼喚靈體前來助戰}",
+				"行走靈體衛士道途的野蠻人呼喚靈體——無論是自然的野獸之靈、逝去先祖之靈，還是純粹元素之力之靈——引導並守護他們。當這些野蠻人狂暴時，他們便溝通靈界，請求援助。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Spiritual Protectors|Barbarian|XPHB|Spiritual Guardian|WoW|3"
+				}
+			],
+			"ENG_name": "Path of the Spiritual Guardian"
+		},
+		{
+			"name": "靈魂守護者",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Spiritual Guardian",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"你的{@classFeature Rage|Barbarian|XPHB|1|XPHB|狂暴}召喚幽靈戰士前來助陣。當你的{@classFeature Rage|Barbarian|XPHB|1|XPHB|狂暴}生效期間，每當你以武器或{@variantrule Unarmed Strike|XPHB|徒手打擊}命中一個生物，該生物便成為靈體的目標，靈體造成以下由你選擇的效果之一。",
+				{
+					"type": "entries",
+					"name": "干擾",
+					"entries": [
+						"直到你的下個回合開始，目標對非你、亦非其他擁有此特性的野蠻人的目標進行攻擊檢定時具有{@variantrule Disadvantage|XPHB|劣勢}。"
+					],
+					"ENG_name": "Distract"
+				},
+				{
+					"type": "entries",
+					"name": "阻礙",
+					"entries": [
+						"除了你正隨該武器使用的另一掌握詞條外，你還可以啟用{@itemMastery Slow||緩速}掌握詞條。"
+					],
+					"ENG_name": "Hinder"
+				},
+				{
+					"type": "entries",
+					"name": "打擊",
+					"entries": [
+						"目標額外受{@damage 1d4}點傷害，其型別可以為寒冷、火焰或閃電傷害（由你選擇）。"
+					],
+					"ENG_name": "Strike"
+				}
+			],
+			"ENG_name": "Spiritual Protectors"
+		},
+		{
+			"name": "精魂之盾",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Spiritual Guardian",
+			"subclassSource": "WoW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"你的守護靈體能為你所守護的人提供超自然的庇護。當你的{@classFeature Rage|Barbarian|XPHB|1|XPHB|狂暴}生效期間，當你 30 尺內另一個可見生物受到傷害時，你可以以一個{@variantrule Reaction|XPHB|反應}減少該傷害。為決定傷害減少的數值，擲等同於你{@classFeature Rage|Barbarian|XPHB|1|XPHB|狂暴}傷害加值數量的 d6 並求和。"
+			],
+			"ENG_name": "Spirit Shield"
+		},
+		{
+			"name": "問道精魂",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Spiritual Guardian",
+			"subclassSource": "WoW",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"你獲得與守護靈體商議的能力。此時你施展{@spell Augury|XPHB|卜筮術}或{@spell Clairvoyance|XPHB|鷹眼術}法術，無需消耗法術位或材料成分。此用法下的{@spell Clairvoyance|XPHB|鷹眼術}並非創造球形感應器，而是隱形地召喚你的一名守護靈體前往所選地點。就這些法術而言，你的施法屬性是感知。",
+				"以此方式施展任一法術後，你須完成{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}才能再次使用此特性。"
+			],
+			"ENG_name": "Consult the Spirits"
+		},
+		{
+			"name": "靈體之怒",
+			"source": "WoW",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Spiritual Guardian",
+			"subclassSource": "WoW",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"你的靈體令你的攻擊更加迅疾。當你以近戰武器進行作為{@action Attack|XPHB|攻擊}動作一部分的攻擊檢定且{@dice d20}擲出 18–20 時，你可以作為該動作的一部分用同一武器再進行一次攻擊檢定。使用此特性後，直到你的下個回合開始你不能再次使用。"
+			],
+			"ENG_name": "Spirits' Fury"
 		}
 	]
 }

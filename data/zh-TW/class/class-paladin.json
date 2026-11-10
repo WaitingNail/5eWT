@@ -806,6 +806,23 @@
 			"hasFluff": true,
 			"hasFluffImages": true,
 			"ENG_name": "Paladin"
+		},
+		{
+			"name": "聖武士",
+			"source": "WoW",
+			"reskinOf": [
+				"Paladin|XPHB"
+			],
+			"_copy": {
+				"name": "Paladin",
+				"source": "XPHB"
+			},
+			"includeSubclassesFrom": [
+				"Paladin|XPHB"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Paladin"
 		}
 	],
 	"subclass": [
@@ -1699,6 +1716,100 @@
 			"hasFluffImages": true,
 			"ENG_name": "Oath of the Noble Genies",
 			"ENG_shortName": "Noble Genies"
+		},
+		{
+			"name": "奉獻之誓",
+			"shortName": "奉獻",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Oath of Devotion",
+				"source": "XPHB",
+				"shortName": "Devotion",
+				"className": "Paladin",
+				"classSource": "XPHB"
+			},
+			"ENG_name": "Oath of Devotion",
+			"ENG_shortName": "Devotion"
+		},
+		{
+			"name": "神聖之誓",
+			"shortName": "神聖",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Oath of the Holy",
+				"source": "WoW",
+				"shortName": "Holy",
+				"className": "Paladin",
+				"classSource": "XPHB",
+				"_preserve": {
+					"*": true
+				}
+			},
+			"ENG_name": "Oath of the Holy",
+			"ENG_shortName": "Holy"
+		},
+		{
+			"name": "復仇之誓",
+			"shortName": "復仇",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "WoW",
+			"_copy": {
+				"name": "Oath of Vengeance",
+				"source": "XPHB",
+				"shortName": "Vengeance",
+				"className": "Paladin",
+				"classSource": "XPHB"
+			},
+			"ENG_name": "Oath of Vengeance",
+			"ENG_shortName": "Vengeance"
+		},
+		{
+			"name": "神聖之誓",
+			"shortName": "神聖",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"ability": "cha",
+					"prepared": {
+						"3": [
+							"cure wounds|xphb",
+							"healing word|xphb"
+						],
+						"5": [
+							"lesser restoration|xphb",
+							"prayer of healing|xphb"
+						],
+						"9": [
+							"dispel magic|xphb",
+							"mass healing word|xphb"
+						],
+						"13": [
+							"aura of life|xphb",
+							"death ward|xphb"
+						],
+						"17": [
+							"greater restoration|xphb",
+							"mass cure wounds|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Oath of the Holy|Paladin|XPHB|Holy|WoW|3",
+				"Lightbringer's Aura|Paladin|XPHB|Holy|WoW|7",
+				"Infusion of Light|Paladin|XPHB|Holy|WoW|15",
+				"Holy Deliverance|Paladin|XPHB|Holy|WoW|20"
+			],
+			"ENG_name": "Oath of the Holy",
+			"ENG_shortName": "Holy"
 		}
 	],
 	"classFeature": [
@@ -5766,6 +5877,158 @@
 				}
 			],
 			"ENG_name": "Avenging Angel"
+		},
+		{
+			"name": "聖光道標",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"以一個{@action Magic|XPHB|魔法}動作，你可以消耗一次{@classFeature Channel Divinity|Paladin|XPHB|3|XPHB|引導神力}，以聖光能量包裹 60 尺內的一名盟友。持續 1 分鐘，每當你以法術或{@classFeature Lay On Hands|Paladin|XPHB|1|XPHB|聖療}治療受此影響的盟友以外的生物時，被選中的盟友也回覆一半數值的{@variantrule Hit Points|XPHB|生命值}。"
+			],
+			"ENG_name": "Beacon of Light"
+		},
+		{
+			"name": "神聖之誓",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i 化身聖光的信標}",
+				"神聖之誓團結著那些培育生命、以聖光之力治療與支援的聖武士。他們將虔誠與美德和武藝相結合，追求道德、利他與自我犧牲的最高標準。",
+				"立下此誓言的聖武士都遵循以下信條。",
+				{
+					"type": "list",
+					"items": [
+						"以服務其他善念之人為生。",
+						"竭盡所能減輕無辜者的苦難。",
+						"讓聖光透過你閃耀，驅散黑暗。"
+					]
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Oath of the Holy Spells|Paladin|XPHB|Holy|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Beacon of Light|Paladin|XPHB|Holy|WoW|3"
+				}
+			],
+			"ENG_name": "Oath of the Holy"
+		},
+		{
+			"name": "神聖之誓法術",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"你誓言的魔法確保你始終準備好特定法術；當你達到神聖之誓法術表中列出的聖武士等級後，你始終準備好表中列出的法術。",
+				{
+					"type": "table",
+					"caption": "神聖之誓法術",
+					"colLabels": [
+						"聖武士等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Cure Wounds|XPHB|療傷術}, {@spell Healing Word|XPHB|治癒真言}"
+						],
+						[
+							"5",
+							"{@spell Lesser Restoration|XPHB|次等復原術}, {@spell Prayer of Healing|XPHB|治療禱言}"
+						],
+						[
+							"9",
+							"{@spell Dispel Magic|XPHB|解除魔法}, {@spell Mass Healing Word|XPHB|群體治癒真言}"
+						],
+						[
+							"13",
+							"{@spell Aura of Life|XPHB|生命靈光}，{@spell Death Ward|XPHB|防死結界}"
+						],
+						[
+							"17",
+							"{@spell Greater Restoration|XPHB|高等復原術}、{@spell Mass Cure Wounds|XPHB|群體療傷術}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Oath of the Holy Spells"
+		},
+		{
+			"name": "光明使者之輝",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"每當你施展法術或使用{@classFeature Lay On Hands|Paladin|XPHB|1|XPHB|聖療}為你的{@classFeature Aura of Protection|Paladin|XPHB|6|XPHB|守護靈光}內一個浴血生物恢復{@variantrule Hit Points|XPHB|生命值}時，該生物額外回覆{@dice 1d6}點{@variantrule Hit Points|XPHB|生命值}。"
+			],
+			"ENG_name": "Lightbringer's Aura"
+		},
+		{
+			"name": "聖光灌注",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"每當你施展造成光耀傷害的法術時，你為{@classFeature Lay On Hands|Paladin|XPHB|1|XPHB|聖療}特性的治療之力池補充能量。你的治療之力池回覆等同於該法術光耀傷害擲骰總值的{@variantrule Hit Points|XPHB|生命值}，至多為你聖武士等級的五倍。"
+			],
+			"ENG_name": "Infusion of Light"
+		},
+		{
+			"name": "神聖救贖",
+			"source": "WoW",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Holy",
+			"subclassSource": "WoW",
+			"level": 20,
+			"header": 2,
+			"entries": [
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以將神聖之力灌注你的{@classFeature Aura of Protection|Paladin|XPHB|6|XPHB|守護靈光}，給予以下收益，持續 10 分鐘或直到你結束它（無需動作）。使用此特性後，你須完成{@variantrule Long Rest|XPHB|長休}才能再次使用。你也可以消耗一個 5 環法術位來恢復其使用（無需動作）。",
+				{
+					"type": "entries",
+					"name": "治療之力",
+					"entries": [
+						"每當一名盟友以{@status Bloodied|XPHB|浴血}狀態在靈光中開始其回合，該生物回覆等同於你魅力調整值加{@variantrule Proficiency|XPHB|熟練加值}的{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Healing Power"
+				},
+				{
+					"type": "entries",
+					"name": "陽光",
+					"entries": [
+						"你的靈光內變為{@variantrule Bright Light|XPHB|明亮光照}，視為陽光。"
+					],
+					"ENG_name": "Sunlight"
+				}
+			],
+			"ENG_name": "Holy Deliverance"
 		}
 	]
 }

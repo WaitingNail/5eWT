@@ -58,5 +58,8 @@ test("the renderer routes new sources to the pinned upstream image snapshot", as
 	assert.match(renderer.getMediaUrl("img", "items/XDMG/+1 Ammunition.webp"), /5etools-img\/f6bfad3/);
 	assert.match(renderer.getMediaUrl("img", "bestiary/tokens/PL/Adam.webp"), /5etools-img\/f6bfad3/);
 	assert.match(renderer.getMediaUrl("img", "adventure/SoS/map.webp"), /5etools-img\/f6bfad3/);
+	assert.match(renderer.getMediaUrl("img", "adventure/DDE/000-map-01-001.mine-tunnels.webp"), /5etools-img\/9d9933d/);
+	assert.match(renderer.getMediaUrl("img", "book/WoW/158-wow-2732wlogo.webp"), /5etools-img\/9d9933d/);
+	assert.match(renderer.getMediaUrl("img", "bestiary/tokens/ICC/Arthas.webp"), /5etools-img\/9d9933d/);
 	assert.equal(renderer.getMediaUrl("img", "bestiary/MM/Aboleth.webp"), `${EXPECTED_IMAGE_ROOT}bestiary/MM/Aboleth.webp`);
 });

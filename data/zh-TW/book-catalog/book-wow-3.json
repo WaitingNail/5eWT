@@ -1,0 +1,1669 @@
+{
+	"type": "section",
+	"name": "第三章：專業與裝備",
+	"id": "20c",
+	"entries": [
+		{
+			"type": "image",
+			"href": {
+				"type": "internal",
+				"path": "book/WoW/052-03-001.stormwind-auction-house-splash.webp"
+			},
+			"width": 1700,
+			"height": 1100,
+			"title": "冒險者在暴風城拍賣行競拍珍貴的寶物。",
+			"credit": "Swatches Studio"
+		},
+		"除了選擇職業和起源之外，你還可以透過專業與裝備——尤其是坐騎、行侶生物和魔法物品——來定製你在《{@i 魔獸世界}》戰役中的角色。本章涵蓋這些選項。",
+		{
+			"type": "section",
+			"name": "專業與製作",
+			"id": "20d",
+			"entries": [
+				"艾澤拉斯的角色可以利用工具熟練項來修習專業，從而採集資源並將其製作成裝備和魔法物品。只要具備必要的熟練項，角色就可以修習任何專業。",
+				"本章的規則建立在《{@book 玩家手冊|XPHB}》和《{@book 城主指南|XDMG}》中{@book 製作規則|XPHB|6|Crafting Equipment}的基礎之上。透過這些規則，角色可以使用採集專業（如釣魚、採礦和剝皮）來收集以金幣價值衡量的抽象資源。例如，角色可以使用草藥學專業收集價值 50 GP 的草藥學資源。隨後，角色可以使用這些資源與自己的金錢任意組合，透過生產專業（如鍛造、烹飪和制皮）製作物品。在收集了價值 50 GP 的草藥學資源後，角色可以花費這些資源，再加上 50 GP 的錢幣或其他貨幣資源，製作一件{@item Potion of Water Breathing|XDMG|水下呼吸藥水}。",
+				"DM 也可以選擇讓資源不那麼抽象，但這要求 DM 為角色想製作的魔法物品發明或查詢配方，併為角色採集的資源命名。想製作{@i 水下呼吸藥水}的角色可能需要採集價值 50 GP 的荊棘藻，而不只是抽象的草藥學資源，還要取得價值 50 GP 的黑口魚油（或者用釣魚釣起油滑的黑口魚再煉油）。列出具體的資源和配方超出了本書的範圍。",
+				{
+					"type": "entries",
+					"name": "熟練等級",
+					"id": "20e",
+					"entries": [
+						"角色的熟練加值衡量其專業的熟練程度。熟練加值為 +2 的角色是某專業的學徒，+3 則成為熟練工，以此類推，如下方的熟練等級表所示。製作專業中使用的每個配方都有最低熟練加值要求，由配方所製作魔法物品的稀有度決定。（大多數非魔法裝備只需學徒級配方。）",
+						{
+							"type": "table",
+							"caption": "熟練等級",
+							"colLabels": [
+								"熟練加值",
+								"熟練等級",
+								"魔法物品工藝"
+							],
+							"colStyles": [
+								"col-4 text-center",
+								"col-4",
+								"col-4"
+							],
+							"rows": [
+								[
+									"+2",
+									"學徒",
+									"普通"
+								],
+								[
+									"+3",
+									"熟練",
+									"非普通"
+								],
+								[
+									"+4",
+									"專家",
+									"珍稀"
+								],
+								[
+									"+5",
+									"工匠",
+									"極珍稀"
+								],
+								[
+									"+6",
+									"大師",
+									"傳說"
+								]
+							]
+						},
+						"本章假設角色在冒險間隙跟隨訓練師提升專業。如果你的戰役採用《{@i 城主指南}》中要求角色花費時間和金錢受訓才能升級的{@book 變體規則|XDMG|1|Variant: Training to Gain Levels}，那麼角色也必須花費時間和金錢跟隨專業訓練師受訓，以提升專業技藝。這種訓練所需的天數等於角色的新熟練加值，每天花費 2 GP。因此，當角色達到 5 級、熟練加值為 +3 時，其修習的每項專業都必須分別花費 3 天時間和 6 GP 受訓，才能達到熟練等級。"
+					],
+					"ENG_name": "Proficiency Levels"
+				},
+				{
+					"type": "entries",
+					"name": "採集專業",
+					"id": "20f",
+					"entries": [
+						"採集專業允許角色收集資源，這些資源可以出售或用於製作。",
+						"大多數採集專業的運作方式類似旅行中的覓食，如《{@i 城主指南}》中{@book 所述|XDMG|1|Foraging}。每個旅程階段（若一個階段短於一天，則每天一次），你可以用一項採集專業進行一次感知（{@skill Survival|XPHB|求生}）檢定。DC 由 DM 根據你旅行地區的總體等級範圍設定，如{@book 第五章|WoW|5}所述。（考古學和剝皮的運作方式有所不同，見下文。）",
+						"檢定失敗時你一無所獲。檢定成功時，你在旅程階段的每一天找到一份資源。如果你超過 DC 5 點或更多，你在該旅程階段找到的資源中有一份是珍稀（更值錢）資源。你找到什麼資源由 DM 決定。",
+						{
+							"type": "table",
+							"caption": "採集專業",
+							"colLabelRows": [
+								[
+									"",
+									"",
+									{
+										"type": "cellHeader",
+										"style": "th-skewer",
+										"width": 2,
+										"entry": "資源價值"
+									}
+								],
+								[
+									"Region Levels",
+									"Gathering DC",
+									"Common",
+									"Rare"
+								]
+							],
+							"colStyles": [
+								"col-3 text-center",
+								"col-3 text-center",
+								"col-3 text-center",
+								"col-3 text-center"
+							],
+							"rows": [
+								[
+									"1–4",
+									"10",
+									"10 GP",
+									"25 GP"
+								],
+								[
+									"5–10",
+									"12",
+									"50 GP",
+									"100 GP"
+								],
+								[
+									"11–16",
+									"15",
+									"250 GP",
+									"500 GP"
+								],
+								[
+									"17–20",
+									"17",
+									"1,000 GP",
+									"2,500 GP"
+								],
+								[
+									"終局",
+									"20",
+									"5,000 GP",
+									"7,500 GP"
+								]
+							]
+						},
+						{
+							"type": "entries",
+							"name": "考古學",
+							"id": "210",
+							"entries": [
+								"{@i 需要{@skill History|XPHB|歷史}熟練項}",
+								"你可以使用考古學專業從古代遺蹟處收集考古碎片。與其他採集專業收集的資源不同，這些資源不用於製作。相反，你可以將這些考古碎片拼合成具有歷史價值的物品。",
+								{
+									"type": "entries",
+									"name": "收集碎片",
+									"id": "211",
+									"entries": [
+										"要收集考古碎片，你必須前往挖掘場。由 DM 決定某個地區是否為挖掘場，以及其中遺物的來源。{@book 挖掘場表|WoW|3|Dig Sites}列出了可以找到不同來源遺物的地區。",
+										"花 1 小時探索一片挖掘場（可與短休同時進行）後，進行一次智力（{@skill History|XPHB|歷史}）檢定。檢定 DC 取決於地區等級，見{@area 採集專業表|20f|x}。檢定成功時，你發掘出{@dice 1d6}個考古碎片。如果你超過 DC 5 點或更多，你發掘出一件完整遺物，其價值相當於該地區的珍稀資源，見採集專業表。若擲出天然 20，你則改為找到一個魔法碎片。"
+									],
+									"ENG_name": "Gathering Fragments"
+								},
+								{
+									"type": "entries",
+									"name": "拼合遺物",
+									"id": "212",
+									"entries": [
+										"你可以透過一次{@dc 15}的智力（{@skill History|XPHB|歷史}）檢定，將六個來源相同的考古碎片拼合成一件完整的遺物。拼合遺物的價值等於你等級（而非地區等級）的常見資源價值，見{@area 採集專業表|20f|x}。檢定失敗後，在你收集到至少一個同來源的額外考古碎片之前，不能再次嘗試。"
+									],
+									"ENG_name": "Assembling a Relic"
+								},
+								{
+									"type": "entries",
+									"name": "拼合魔法物品",
+									"id": "213",
+									"entries": [
+										"你可以將六個來源相同的魔法碎片拼合成一件由 DM 選擇的物品，其稀有度與你的熟練加值對應，見熟練等級表。例如，如果你收集了六個矮人挖掘場的魔法碎片，而你是大師級考古學家（熟練加值 +6），你可以將這些碎片拼合成一件曾由巫師領主索瑞森使用的{@item Staff of the Magi|XDMG|賢者法杖}。",
+										{
+											"type": "table",
+											"caption": "挖掘場",
+											"colLabels": [
+												"起源",
+												"地區"
+											],
+											"colStyles": [
+												"col-3",
+												"col-9"
+											],
+											"rows": [
+												[
+													"惡魔",
+													"{@area 破碎群島|399|x}"
+												],
+												[
+													"德萊尼",
+													"外域"
+												],
+												[
+													"德魯斯特",
+													"{@area 庫爾提拉斯|3af|x}"
+												],
+												[
+													"矮人",
+													"{@area 東部王國|35a|x}中部"
+												],
+												[
+													"化石",
+													"{@area 東部王國|35a|x}、{@area 卡利姆多|335|x}"
+												],
+												[
+													"上層精靈",
+													"{@area 破碎群島|399|x}"
+												],
+												[
+													"至高嶺牛頭人",
+													"{@area 破碎群島|399|x}"
+												],
+												[
+													"螳螂人",
+													"{@area 潘達利亞|3b4|x}"
+												],
+												[
+													"魔古",
+													"{@area 潘達利亞|3b4|x}"
+												],
+												[
+													"蛛魔",
+													"{@area 諾森德|386|x}"
+												],
+												[
+													"暗夜精靈",
+													"{@area 卡利姆多|335|x}"
+												],
+												[
+													"獸人",
+													"外域"
+												],
+												[
+													"熊貓人",
+													"{@area 潘達利亞|3b4|x}"
+												],
+												[
+													"託維爾",
+													"{@area 卡利姆多|335|x}（{@area 奧丹姆|34b|x}）"
+												],
+												[
+													"食人妖",
+													"{@area 東部王國|35a|x}北部和南部、{@area 諾森德|386|x}"
+												],
+												[
+													"維庫人",
+													"{@area 諾森德|386|x}"
+												],
+												[
+													"贊達拉",
+													"{@area 贊達拉|3c0|x}"
+												]
+											]
+										},
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "book/WoW/053-03-002.unexpected-treasure.webp"
+											},
+											"width": 1700,
+											"height": 1130,
+											"title": "釣魚也可能釣起意想不到的財寶。",
+											"credit": "Steve Prescott"
+										}
+									],
+									"ENG_name": "Assembling a Magic Item"
+								}
+							],
+							"ENG_name": "Archaeology"
+						},
+						{
+							"type": "entries",
+							"name": "釣魚",
+							"id": "214",
+							"entries": [
+								"{@i 無需熟練項}",
+								"釣魚的主要用途是{@book 覓食獲取食物|XDMG|1|Foraging}，使用《{@i 城主指南}》中的規則。如果你以釣魚的方式覓食，並在感知（{@skill Survival|XPHB|求生}）檢定中擲出天然 20，你可能會釣起一個箱子、貨箱或鎖盒，裡面裝有其他資源——如礦石、布料或皮革——由 DM 決定。這類發現的價值等於該地區等級的珍稀資源價值。",
+								"如果你在尋找特定魚類用於配方，可以每個旅程階段進行一次感知（{@skill Survival|XPHB|求生}）檢定，看看能否釣到想要的魚，DC 從{@area 採集專業表|20f|x}中選取。",
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "book/WoW/054-03-003.herbalist.webp"
+									},
+									"width": 850,
+									"height": 850,
+									"maxWidth": 360,
+									"title": "一名被遺忘者草藥師正在採集幽靈菇。",
+									"credit": "Swatches Studio"
+								}
+							],
+							"ENG_name": "Fishing"
+						},
+						{
+							"type": "entries",
+							"name": "草藥學",
+							"id": "215",
+							"entries": [
+								"{@i 需要{@item Herbalism Kit|XPHB|草藥工具}熟練項}",
+								"你可以使用草藥學專業採集草藥、花卉和蘑菇。這些資源主要用於{@area 鍊金術|220|x}和{@area 銘文|226|x}專業製作物品。",
+								"使用草藥學遵循\"{@area 採集專業|20f|x}\"中所述的一般規則。在特殊情況下，你可以用草藥學從植物生物身上採集珍稀資源。以{@area 剝皮|218|x}的規則為參照，決定此類採集的 DC 及其價值。"
+							],
+							"ENG_name": "Herbalism"
+						},
+						{
+							"type": "entries",
+							"name": "採礦",
+							"id": "216",
+							"entries": [
+								"{@i 需要{@item Mason's Tools|XPHB|石匠工具}熟練項}",
+								"你可以使用採礦專業採集金屬礦石、石頭和寶石。這些資源主要用於{@area 鍛造|221|x}、{@area 工程學|225|x}和{@area 珠寶加工|22b|x}專業製作物品。",
+								{
+									"type": "entries",
+									"name": "熔鍊",
+									"id": "217",
+									"entries": [
+										"如果你在採集特定資源用於詳細配方，金屬採礦資源可能需要先熔鍊成錠才能用於製作。熔鍊礦石需要使用鐵匠的熔爐或精煉廠，所需時間為每 10 GP 金屬資源價值 1 小時。因此銅和錫（10 GP 採礦資源）可在 1 小時內提煉成錠，而製作一根天界金錠（500 GP 資源）需要 50 小時。",
+										"你可以使用相同的規則組合金屬資源來製造合金，這在鍛造中可能很重要。"
+									],
+									"ENG_name": "Smelting"
+								}
+							],
+							"ENG_name": "Mining"
+						},
+						{
+							"type": "entries",
+							"name": "剝皮",
+							"id": "218",
+							"entries": [
+								"{@i 需要{@item Leatherworker's Tools|XPHB|皮匠工具}熟練項}",
+								"你可以使用剝皮專業採集皮革或獸皮。這些資源主要用於制皮專業製作物品。",
+								"剝皮針對死去的生物而非在旅行中進行，採集到的皮革或獸皮的品質取決於生物的挑戰等級，而非地區等級。",
+								"對野獸或形似動物的怪獸剝皮可獲得皮革或獸皮。你必須與屍體處於同一空間，花 10 分鐘為生物剝皮，然後使用{@item Leatherworker's Tools|XPHB|皮匠工具}進行一次感知（{@skill Survival|XPHB|求生}）檢定。檢定 DC 取決於生物的挑戰等級，使用{@area 採集專業表|20f|x}的地區等級列，並將 20 以上的挑戰等級視為終局。檢定成功時，這次勞作產出價值等於常見資源的皮革資源。如果你超過 DC 5 點或更多，這次勞作改為產出獸皮，其價值等於珍稀資源。",
+								"你也可以對某些邪魔和巨龍剝皮。為類似動物的邪魔（如{@creature felhound|WoW|地獄獵犬}）剝皮需要熟練級剝皮（熟練加值 +3 或更高）。為巨龍剝皮需要工匠級剝皮（熟練加值 +5 或更高）。兩種情況下，檢定成功都會產出價值等於珍稀資源的獸皮。"
+							],
+							"ENG_name": "Skinning"
+						}
+					],
+					"ENG_name": "Gathering Professions"
+				},
+				{
+					"type": "entries",
+					"name": "生產專業",
+					"id": "219",
+					"entries": [
+						"生產專業允許角色使用資源——無論是用採集專業收集的、作為財寶找到的，還是從商人處購買的——來製作非魔法與魔法物品。",
+						"生產專業使用《{@i 玩家手冊}》中的{@book 製作裝備規則|XPHB|6|Crafting Equipment}和《{@i 城主指南}》中的{@book 製作魔法物品規則|XDMG|6|Crafting Magic Items}，但有一個關鍵變化：材料提供魔法。角色即使沒有{@skill Arcana|XPHB|奧秘}技能熟練項，也可以製作魔法物品。他們也不需要準備特定法術來製作能施放法術的魔法物品。取而代之的是，他們需要知曉特定配方，並使用材料——其中許多都浸透著魔法——來創造物品。角色按下文及隨後各專業描述中的說明學習配方。",
+						{
+							"type": "entries",
+							"name": "製作配方",
+							"id": "21a",
+							"entries": [
+								"\"配方\"是一個統稱，涵蓋鍊金術和烹飪的配方、鍛造的圖樣、附魔的公式、工程學的結構圖、銘文的技術、珠寶加工的設計，以及制皮和裁縫的圖樣。隨著角色製作技藝的提升，他們會自動學會基礎配方。基礎配方讓角色能夠製作非魔法物品和普通、非普通、珍稀的魔法護甲、藥水、卷軸、魔杖和武器。其他配方可以從專門的訓練師處購買、作為財寶找到，或作為聲望獎勵獲得（見{@book 第四章|WoW|4}）。工匠級和大師級配方只能透過非凡的途徑獲得，如下文所述。",
+								"這裡提到的具體配方僅為示例，靈感來自《{@i 魔獸世界}》遊戲中的製作配方。DM 可以自由創造獨特的配方，或者忽略細節，只要求抽象資源與金錢的某種組合。",
+								{
+									"type": "entries",
+									"name": "學徒配方",
+									"id": "21b",
+									"entries": [
+										"學徒配方需要兩三種不同資源的某種組合。例如，用鍊金術製作一瓶普通藥水花費 25 GP。DM 可以查閱《{@i 魔獸世界}》中的鍊金配方，決定這需要 20 GP 的草藥學資源外加 5 GP 的雜項材料。製作一瓶{@item Potion of Healing|XDMG|治療藥水}可能需要一朵寧神花和一株銀葉草，而一瓶{@item Potion of Mana|WoW|法力藥水}可能需要一株魔皇草和一株銀葉草。這些都是 1–4 級地區出產的常見資源（每份價值 10 GP）。類似地，在《{@i 魔獸世界}》中用鍛造製作一套{@item Plate Armor|XPHB|板甲}需要鐵錠和重石頭，因此 DM 可以決定製作這副護甲的 750 GP 成本由十二根鐵錠和三塊重石頭組成，它們都是 5–10 級地區出產的常見資源（每份 50 GP）。"
+									],
+									"ENG_name": "Apprentice Recipes"
+								},
+								{
+									"type": "entries",
+									"name": "熟練配方",
+									"id": "21c",
+									"entries": [
+										"熟練配方有時涉及比簡單組合兩三份同類資源更復雜的步驟。例如，在《{@i 魔獸世界}》中製作水下呼吸藥劑需要組合荊棘藻（用草藥學採集）和黑口魚油（用鍊金術從油滑的黑口魚中提煉）。因此，DM 可以為一瓶{@item Potion of Water Breathing|XDMG|水下呼吸藥水}（製作成本 100 GP 的非普通藥水）設計配方：先在 1–4 級地區釣到兩份珍稀魚類資源（每份 25 GP），然後將其中提煉的魚油與一份來自 5–10 級地區的常見草藥資源荊棘藻（50 GP）組合。類似地，用鍛造製作一把{@item +1 Greatsword|XDMG|+1 巨劍}（成本 225 GP）可能同時涉及採礦和剝皮資源：十根銅錠（每根 10 GP）、兩塊孔雀石（每塊 10 GP）和兩張中皮（每張 50 GP），外加 5 GP。"
+									],
+									"ENG_name": "Journeyman Recipes"
+								},
+								{
+									"type": "entries",
+									"name": "專家配方",
+									"id": "21d",
+									"entries": [
+										"除了需要更昂貴的資源外，專家配方往往相當複雜，有時還需要不尋常的材料——這常常賦予它們次要特性或怪癖（見《城主指南》中的\"{@book 魔法物品的獨特特性|XDMG|6|Magic Item Special Features}\"）。例如，《{@i 魔獸世界}》中的角色可以透過鍛造，使用鐵錠、重石頭以及捕食動物的尖牙利爪來製作野蠻鐵板甲。DM 可以決定這副護甲是帶有\"守護\"次要特性的{@item +1 Plate Armor|XDMG|+1 板甲}，為穿戴者的先攻檢定提供 +2 加值。這樣一件物品的製作成本為 2,750 GP，因此配方可能需要四十八根鐵錠（每根 50 GP）、五塊重石頭（每塊 50 GP），以及價值 100 GP 的尖牙利爪。"
+									],
+									"ENG_name": "Expert Recipes"
+								},
+								{
+									"type": "entries",
+									"name": "工匠配方",
+									"id": "21e",
+									"entries": [
+										"與其高昂的價格相稱，工匠配方需要珍稀而昂貴的材料。學習這些物品所需的配方往往需要完成特殊任務，或在守護其製作秘密的陣營中取得 10 點以上的聲望值（見{@book 第四章|WoW|4}）。例如，一個名為\"巨人藥劑\"的鍊金配方——教會角色製作{@item Potion of Cloud Giant Strength|XDMG|雲巨人之力藥水}（雲巨人）——在當代已不常見，但可以在艾澤拉斯各地的鎖盒和其他寶藏中找到。（它可能需要五株格羅姆之血和五株太陽草，兩者都是價值 1,000 GP 的草藥學資源。）",
+										"工匠配方有時需要大量必須先用其他專業加工的資源。例如，用鍛造製作一把{@item Frost Brand Longsword|XDMG|霜銘長劍}（長劍）可能需要十八根奧金錠——這是由瑟銀錠（250 GP 採礦資源）透過鍊金術與奧術水晶（100 GP 寶石）化合而成。劍柄需要四張附魔皮革——即透過附魔、使用 1,200 GP 由分解物品所得魔法殘渣強化過的厚皮（250 GP 皮革資源）。劍刃中的寒冷魔法來自四份水元素精華（可從專門商人處以每份 100 GP 購得）。然後將這些物品與四顆藍寶石（1,000 GP 寶石）、四顆艾澤拉斯鑽石（1,000 GP 寶石）和一塊緻密磨刀石（125 GP 採礦資源）組合在一起。"
+									],
+									"ENG_name": "Artisan Recipes"
+								},
+								{
+									"type": "entries",
+									"name": "大師配方",
+									"id": "21f",
+									"entries": [
+										"大師配方只能作為財寶或聲望獎勵獲得。它們往往需要珍稀資源，或在其他世界或存在位面上才能找到的資源。例如，用鍊金術製作一瓶{@item Potion of Storm Giant Strength|XDMG|風暴巨人之力藥水}（風暴巨人）可能需要二十株晉榮花——一種只生長在暗影界晉升堡壘的 5,000 GP 草藥學資源。類似地，用鍛造製作{@item Plate Armor of Etherealness|XDMG|以太化板甲}需要組合六種只在暗影界出產的礦物：五份苷銅礦石（5,000 GP 採礦資源），以及各兩份的陰鐵、珀銀、熾鈷、罪釩和髓硫礦石（7,500 GP 採礦資源），外加價值 750 GP 的輝光助熔劑（從商人處購買）以輔助金屬的混合。"
+									],
+									"ENG_name": "Master Recipes"
+								}
+							],
+							"ENG_name": "Crafting Recipes"
+						},
+						{
+							"type": "entries",
+							"name": "鍊金術",
+							"id": "220",
+							"entries": [
+								"{@i 需要{@item Alchemist's Supplies|XPHB|鍊金工具}或{@item Herbalism Kit|XPHB|草藥工具}熟練項}",
+								"使用鍊金工具或草藥工具，以及主要從草藥學採集的資源，並遵循特定配方，你可以製作藥水、鍊金裝備、粉塵、香水之類的物品。隨著技藝提升，你可以學會製作這些物品：",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "學徒（+2）配方：",
+											"entry": "{@item Acid|XPHB|強酸}、{@item Alchemist's Fire|XPHB|熾火膠}、{@item Component Pouch|XPHB|材料包}、{@item Fuel|WoW|燃料}（見本章的\"{@area 坐騎與載具|22f|x}\"）、{@item Oil|XPHB|燃油}、{@item Paper|XPHB|紙張}、{@item Perfume|XPHB|香水}、普通藥水、{@item Perfume of Bewitching|XDMG|迷醉香水}",
+											"ENG_name": "Apprentice (+2) Recipes:"
+										},
+										{
+											"type": "item",
+											"name": "熟練（+3）配方：",
+											"entry": "非普通藥水、{@item Alchemy Jug|XDMG|鍊金壺}、{@item Dust of Disappearance|XDMG|無蹤粉}、{@item Dust of Dryness|XDMG|乾燥粉}、{@item Keoghtom's Ointment|XDMG|卡夫統靈藥}",
+											"ENG_name": "Journeyman (+3) Recipes:"
+										},
+										{
+											"type": "item",
+											"name": "專家（+4）配方：",
+											"entry": "珍稀藥水",
+											"ENG_name": "Expert (+4) Recipes:"
+										},
+										{
+											"type": "item",
+											"name": "工匠（+5）配方：",
+											"entry": "極珍稀藥水、{@item Philosopher's Stone|WoW|點金石}",
+											"ENG_name": "Artisan (+5) Recipes:"
+										},
+										{
+											"type": "item",
+											"name": "大師（+6）配方：",
+											"entry": "傳說藥水、{@item Sovereign Glue|XDMG|至尊膠}、{@item Universal Solvent|XDMG|萬溶劑}",
+											"ENG_name": "Master (+6) Recipes:"
+										}
+									]
+								}
+							],
+							"ENG_name": "Alchemy"
+						},
+						{
+							"type": "entries",
+							"name": "鍛造",
+							"id": "221",
+							"entries": [
+								"{@i 需要{@item Mason's Tools|XPHB|石匠工具}或{@item Smith's Tools|XPHB|鐵匠工具}熟練項}",
+								"使用石匠工具或鐵匠工具，以及從採礦收集的資源（包括金屬、寶石和石頭），並遵循特定圖樣，你可以用金屬和石頭製作物品。有些圖樣可能還需要布料或皮革資源。隨著技藝提升，你可以學會製作這些物品：",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "學徒（+2）圖樣：",
+											"entry": "任意近戰武器（{@item Club|XPHB|短棒}、{@item Greatclub|XPHB|巨棒}、{@item Quarterstaff|XPHB|長棍}和{@item Whip|XPHB|鞭子}除外）；中型護甲（{@item Hide Armor|XPHB|獸皮甲}除外）；重型護甲；{@item Shield|XPHB|盾牌}；{@item Ball Bearings|XPHB|滾珠}；{@item Block and Tackle|XPHB|滑輪組}；{@item Bucket|XPHB|吊桶}；{@item Caltrops|XPHB|鐵蒺藜}；{@item Chain|XPHB|鏈條}；{@item Crowbar|XPHB|撬棍}；{@item Firearm Bullets (10)|XPHB|槍械子彈}；{@item Grappling Hook|XPHB|爪鉤}；{@item Iron Pot|XPHB|鐵壺}；{@item Iron Spikes|XPHB|鐵釘(組)}；{@item Sling Bullet|XPHB|投石索子彈}；上述類別中的普通魔法彈藥、護甲和武器；{@item Dark Shard Amulet|XDMG|黑暗碎片護符}；{@item Dread Helm|XDMG|恐怖頭盔}",
+											"ENG_name": "Apprentice (+2) Plans:"
+										},
+										{
+											"type": "item",
+											"name": "熟練（+3）圖樣：",
+											"entry": "上述類別中的非普通魔法彈藥、護甲和武器；{@item Figurine of Wondrous Power, Silver Raven|XDMG|異能塑像, 白銀渡鴉}（銀渡鴉）；{@item Gauntlets of Ogre Power|XDMG|食人魔力量護手}；{@item Helm of Comprehending Languages|XDMG|通曉語言頭盔}；{@item Helm of Telepathy|XDMG|心靈感應頭盔}；{@item Sending Stones|XDMG|短訊石}；{@item Stone of Good Luck|XDMG|吉運之石}",
+											"ENG_name": "Journeyman (+3) Plans:"
+										},
+										{
+											"type": "item",
+											"name": "專家（+4）圖樣：",
+											"entry": "上述類別中的珍稀魔法彈藥、護甲和武器；{@item Belt of Hill Giant Strength|XDMG|山丘巨人力量腰帶}（山丘）；{@item Bracers of Defense|XDMG|防禦護腕}；{@item Brazier of Commanding Fire Elementals|XDMG|命令火元素火盆}；{@item Dimensional Shackles|XDMG|次元鐐銬}；{@item Figurine of Wondrous Power|XDMG|異能塑像}（青銅獅鷲、黃金獅子、大理石象）；{@item Helm of Teleportation|XDMG|傳送頭盔}；{@item Horseshoes of Speed|XDMG|加速馬蹄鐵}；{@item Iron Bands of Bilarro|XDMG|比拉羅的鐵索}；{@item Stone of Controlling Earth Elementals|XDMG|命令土元素石核}",
+											"ENG_name": "Expert (+4) Plans:"
+										},
+										{
+											"type": "item",
+											"name": "工匠（+5）圖樣：",
+											"entry": "上述類別中的極珍稀魔法彈藥、護甲和武器；{@item Belt of Giant Strength|XDMG|巨人之力腰帶}（火焰、霜寒或石頭）；{@item Helm of Brilliance|XDMG|光輝頭盔}；{@item Horseshoes of a Zephyr|XDMG|西風馬蹄鐵}",
+											"ENG_name": "Artisan (+5) Plans:"
+										},
+										{
+											"type": "item",
+											"name": "大師（+6）圖樣：",
+											"entry": "上述類別中的傳說魔法彈藥、護甲和武器；{@item Belt of Giant Strength|XDMG|巨人之力腰帶}（雲或風暴）；{@item Iron Flask|XDMG|收妖瓶}",
+											"ENG_name": "Master (+6) Plans:"
+										}
+									]
+								}
+							],
+							"ENG_name": "Blacksmithing"
+						},
+						{
+							"type": "entries",
+							"name": "烹飪",
+							"id": "222",
+							"entries": [
+								"{@i 需要{@item Brewer's Supplies|XPHB|釀酒工具}或{@item Cook's Utensils|XPHB|廚師工具}熟練項}",
+								"使用釀酒工具或廚師工具，以及食材（通常來自釣魚、草藥學和狩獵），並遵循特定配方，你可以製作普通的和魔法的可食用物品：",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "學徒（+2）配方：",
+											"entry": "{@item Antitoxin|XPHB|抗毒劑}、{@item Rations|XPHB|口糧}、{@item Bead of Nourishment|XDMG|營養珠}、{@item Bead of Refreshment|XDMG|淨水珠}、{@item Heward's Handy Spice Pouch|XDMG|霍華德便利香料包}、{@item Tankard of Sobriety|XDMG|清醒杯}",
+											"ENG_name": "Apprentice (+2) Recipes:"
+										}
+									]
+								},
+								"烹飪的更高技藝等級最適合用{@feat Chef|XPHB|大廚}專長來體現。此外，工匠級（+5）廚師烹製的一餐，只要有一小時準備時間和 1,000 GP 的資源（可包括魚類或其他肉類），就能復現{@spell Heroes' Feast|XPHB|英雄宴}法術的效果。"
+							],
+							"ENG_name": "Cooking"
+						},
+						{
+							"type": "entries",
+							"name": "附魔",
+							"id": "223",
+							"entries": [
+								"{@i 需要{@item Carpenter's Tools|XPHB|木匠工具}、{@item Potter's Tools|XPHB|陶匠工具}或{@item Woodcarver's Tools|XPHB|木雕工具}熟練項}",
+								"使用木匠工具、陶匠工具或木雕工具，連同試劑（主要是下文所述分解物品所得的魔法殘渣，以及草藥、寶石和其他資源），並遵循特定公式，你可以製作各種物品。隨著技藝提升，你可以學會製作這些物品：",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "學徒（+2）公式：",
+											"entry": "木製武器（{@item Club|XPHB|短棒}、{@item Greatclub|XPHB|巨棒}、{@item Quarterstaff|XPHB|長棍}）、遠端武器（{@item Musket|XPHB|滑膛槍}、{@item Pistol|XPHB|手槍}和{@item Sling|XPHB|投石索}除外）、彈藥（{@item Arrows (20)|XPHB|箭矢}、{@item Bolts (20)|XPHB|弩矢}、{@item Needles (50)|XPHB|吹矢}）、{@item Arcane Focus|XPHB|奧術法器}、{@item Barrel|XPHB|木桶}、{@item Chest|XPHB|箱子}、{@item Druidic Focus|XPHB|德魯伊法器}、{@item Ink Pen|XPHB|墨水筆}、{@item Jug|XPHB|壺}、{@item Ladder|XPHB|梯子}、{@item Lamp|XPHB|油燈}、{@item Pole|XPHB|長杆}、{@item Portable Ram|XPHB|行動式攻城錘}、{@item Torch|XPHB|火把}、上述類別中的普通魔法彈藥、普通魔杖、{@item Charlatan's Die|XDMG|騙子骰}、{@item Pot of Awakening|XDMG|啟蒙花盆}",
+											"ENG_name": "Apprentice (+2) Formulas:"
+										},
+										{
+											"type": "item",
+											"name": "熟練（+3）公式：",
+											"entry": "上述類別中的非普通魔法彈藥和武器；非普通權杖和魔杖；非普通{@item Enspelled Armor|XDMG|魔咒護甲}、{@item Enspelled Staff|XDMG|魔咒法杖}或{@item Enspelled Weapon|XDMG|魔咒武器}；{@item Broom of Flying|XDMG|飛天掃帚}；{@item Decanter of Endless Water|XDMG|無盡水瓶}；{@item Pipes of Haunting|XDMG|顫慄樂笙}；{@item Pipes of the Sewers|XDMG|喚鼠樂笙}",
+											"ENG_name": "Journeyman (+3) Formulas:"
+										},
+										{
+											"type": "item",
+											"name": "專家（+4）公式：",
+											"entry": "上述類別中的珍稀魔法彈藥和武器；珍稀權杖和魔杖；珍稀{@item Enspelled Armor|XDMG|魔咒護甲}、{@item Enspelled Staff|XDMG|魔咒法杖}或{@item Enspelled Weapon|XDMG|魔咒武器}；{@item Bowl of Commanding Water Elementals|XDMG|命令水元素水缽}；{@item Figurine of Wondrous Power, Ebony Fly|XDMG|異能塑像，黑檀蒼蠅}（黑檀木蠅）",
+											"ENG_name": "Expert (+4) Formulas:"
+										},
+										{
+											"type": "item",
+											"name": "工匠（+5）公式：",
+											"entry": "上述類別中的極珍稀魔法彈藥和武器；極珍稀權杖和魔杖；極珍稀{@item Enspelled Armor|XDMG|魔咒護甲}、{@item Enspelled Staff|XDMG|魔咒法杖}或{@item Enspelled Weapon|XDMG|魔咒武器}",
+											"ENG_name": "Artisan (+5) Formulas:"
+										},
+										{
+											"type": "item",
+											"name": "大師（+6）公式：",
+											"entry": "上述類別中的傳說魔法彈藥和武器；傳說權杖和魔杖；傳說{@item Enspelled Armor|XDMG|魔咒護甲}、{@item Enspelled Staff|XDMG|魔咒法杖}或{@item Enspelled Weapon|XDMG|魔咒武器}",
+											"ENG_name": "Master (+6) Formulas:"
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "分解",
+									"id": "224",
+									"entries": [
+										"當你達到熟練級附魔技藝時，你學會分解魔法物品。如果你花 1 小時（可與短休同時進行）處理一件未與他人同調的永久魔法物品，就可以去除其魔法並將其儲存於殘渣中，殘渣以魔法粉塵或碎片的形式存在。物品的稀有度決定分解它所需的附魔技藝以及所留殘渣的價值，如下表所示。魔法殘渣可用作任何附魔公式的製作資源。傳說魔法物品和神器不能以這種方式分解。",
+										{
+											"type": "table",
+											"colLabels": [
+												"物品稀有度",
+												"所需技藝",
+												"殘渣價值"
+											],
+											"colStyles": [
+												"col-4",
+												"col-4",
+												"col-4"
+											],
+											"rows": [
+												[
+													"普通",
+													"熟練（+3）",
+													"25 GP"
+												],
+												[
+													"非普通",
+													"專家（+4）",
+													"100 GP"
+												],
+												[
+													"珍稀",
+													"工匠（+5）",
+													"1,000 GP"
+												],
+												[
+													"極珍稀",
+													"大師（+6）",
+													"10,000 GP"
+												]
+											]
+										}
+									],
+									"ENG_name": "Disenchanting"
+								}
+							],
+							"ENG_name": "Enchanting"
+						},
+						{
+							"type": "entries",
+							"name": "工程學",
+							"id": "225",
+							"entries": [
+								"{@i 需要{@item Tinker's Tools|XPHB|修補工具}熟練項}",
+								"使用修補工具和部件（通常包括採礦所得資源以及皮革或布料），並遵循特定結構圖，你可以製作奇巧裝置。",
+								"用工程學創造的魔法物品通常帶有機械外觀，似乎結合了世俗科學與魔法。地侏工程師的傳統偏向精巧的機械裝置，而哥布林工程學的傳統則更具爆炸性。",
+								"每張工程學結構圖都包含製作機械零件和炸藥粉的過程，用於製作其他物品，例如把開採並熔鍊的銅錠變成銅製螺栓，把開採的石頭變成炸藥粉。製作這些部件的時間與金錢已計入製作成品所需。隨著技藝提升，你可以學會製作這些物品：",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "學徒（+2）結構圖：",
+											"entry": "{@item Musket|XPHB|滑膛槍}、{@item Pistol|XPHB|手槍}、{@item Bell|XPHB|鈴鐺}、{@item Bullseye Lantern|XPHB|牛眼提燈}、{@item Flask|XPHB|扁瓶}、{@item Hooded Lantern|XPHB|附蓋提燈}、{@item Hunting Trap|XPHB|捕獵陷阱}、{@item Lock|XPHB|鎖}、{@item Manacles|XPHB|鐐銬}、{@item Mirror|XPHB|鏡子}、{@item Shovel|XPHB|鏟子}、{@item Signal Whistle|XPHB|訊號笛}、{@item Tinderbox|XPHB|火絨盒}、{@item Clockwork Amulet|XDMG|發條護符}、{@item Ear Horn of Hearing|XDMG|聆聽耳號}、{@item Ersatz Eye|XDMG|義眼}、{@item Horn of Silent Alarm|XDMG|靜報號角}、{@item Instrument of Illusions|XDMG|幻象樂器}、{@item Instrument of Scribing|XDMG|撰寫樂器}、{@item Lock of Trickery|XDMG|騙術鎖}、{@item Mystery Key|XDMG|謎之鑰}、{@item Orb of Direction|XDMG|方向法球}、{@item Orb of Time|XDMG|時間法球}、{@item Pipe of Smoke Monsters|XDMG|怪物菸斗}、{@item Pole of Angling|XDMG|垂釣之杆}、{@item Pole of Collapsing|XDMG|壓縮之杆}、{@item Prosthetic Limb|FRHoF|假肢}、{@item Rival Coin|XDMG|勁敵硬幣}、{@item Veteran's Cane|XDMG|老兵手杖}",
+											"ENG_name": "Apprentice (+2) Schematics:"
+										},
+										{
+											"type": "item",
+											"name": "熟練（+3）結構圖：",
+											"entry": "哥布林三輪摩托；非普通魔法火銃和手槍；{@item Baba Yaga's Dancing Broom|XDMG|芭芭·雅嘎的舞空帚}、{@item Driftglobe|XDMG|漂浮之球}、{@item Eversmoking Bottle|XDMG|無盡煙壺}、{@item Goblin Jumper Cables|WoW|哥布林起搏器}、{@item Goggles of Night|XDMG|夜視鏡}、{@item Lantern of Revealing|XDMG|顯像提燈}、{@item Wind Fan|XDMG|造風之扇}",
+											"ENG_name": "Journeyman (+3) Schematics:"
+										},
+										{
+											"type": "item",
+											"name": "專家（+4）結構圖：",
+											"entry": "飛行器、機械路霸或機械師的摩托車；珍稀魔法火銃和手槍；{@item Chime of Opening|XDMG|開門鐘琴}；{@item Cube of Summoning|XDMG|召喚魔方}；{@item Daern's Instant Fortress|XDMG|迪恩的摺疊要塞}；{@item Experimental Goblin Jetpack|WoW|實驗型哥布林噴氣揹包}；{@item Horn of Blasting|XDMG|音爆號角}；{@item Horn of Valhalla|XDMG|瓦爾哈拉號角}（黃銅或白銀）；{@item Portable Hole|XDMG|次元洞}",
+											"ENG_name": "Expert (+4) Schematics:"
+										},
+										{
+											"type": "item",
+											"name": "工匠（+5）結構圖：",
+											"entry": "極珍稀魔法火銃和手槍、{@item Cauldron of Rebirth|XDMG|重生坩堝}、{@item Horn of Valhalla, Bronze|XDMG|瓦爾哈拉號角，青銅}（青銅）",
+											"ENG_name": "Artisan (+5) Schematics:"
+										},
+										{
+											"type": "item",
+											"name": "大師（+6）結構圖：",
+											"entry": "傳說魔法火銃和手槍、{@item Apparatus of Kwalish|XDMG|誇力許裝置}、{@item Cubic Gate|XDMG|異界之門魔方}、{@item Horn of Valhalla, Iron|XDMG|瓦爾哈拉號角，黑鐵}（鐵）、{@item Sphere of Annihilation|XDMG|湮滅法球}、{@item Talisman of the Sphere|XDMG|法球護符}、{@item Well of Many Worlds|XDMG|諸界之井}",
+											"ENG_name": "Master (+6) Schematics:"
+										}
+									]
+								}
+							],
+							"ENG_name": "Engineering"
+						},
+						{
+							"type": "entries",
+							"name": "銘文",
+							"id": "226",
+							"entries": [
+								"{@i 需要{@item Calligrapher's Supplies|XPHB|書法工具}、{@item Cartographer's Tools|XPHB|製圖工具}或{@item Painter's Supplies|XPHB|畫家工具}熟練項}",
+								"使用書法工具、製圖工具或畫家工具，連同由草藥學資源製成的顏料與墨水（以草藥學採集或購買），並運用特定技術，你可以製作墨水、顏料和書寫品。",
+								"每項銘文技術都包含研磨草藥以製作顏料和墨水的過程。製作這些材料的時間與金錢已計入製作成品所需。隨著技藝提升，你可以學會製作這些物品：",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "學徒（+2）技術：",
+											"entry": "{@item Druidic Focus|XPHB|德魯伊法器}、{@item Holy Symbol|XPHB|聖徽}、{@item Ink|XPHB|墨水}、{@item Map|XPHB|地圖}、普通卷軸和法杖、{@item Enduring Spellbook|XDMG|耐久法術書}",
+											"ENG_name": "Apprentice (+2) Techniques:"
+										},
+										{
+											"type": "item",
+											"name": "熟練（+3）技術：",
+											"entry": "非普通卷軸和法杖、{@item Deck of Illusions|XDMG|幻象牌組}",
+											"ENG_name": "Journeyman (+3) Techniques:"
+										},
+										{
+											"type": "item",
+											"name": "專家（+4）技術：",
+											"entry": "珍稀卷軸和法杖",
+											"ENG_name": "Expert (+4) Techniques:"
+										},
+										{
+											"type": "item",
+											"name": "工匠（+5）技術：",
+											"entry": "極珍稀卷軸和法杖、{@item Manual of Bodily Health|XDMG|強身手冊}、{@item Manual of Gainful Exercise|XDMG|健體手冊}、{@item Manual of Golems|XDMG|魔像手冊}（任意）、{@item Manual of Quickness of Action|XDMG|靈巧手冊}、{@item Nolzur's Marvelous Pigments|XDMG|諾澤爾的驚奇顏料}、{@item Spirit Board|XDMG|通靈板}、{@item Tome of Clear Thought|XDMG|靜思卷冊}、{@item Tome of Leadership and Influence|XDMG|統御卷冊}、{@item Tome of Understanding|XDMG|通曉卷冊}",
+											"ENG_name": "Artisan (+5) Techniques:"
+										},
+										{
+											"type": "item",
+											"name": "大師（+6）技術：",
+											"entry": "傳說卷軸和法杖、{@item Tome of the Stilled Tongue|XDMG|靜語卷冊}",
+											"ENG_name": "Master (+6) Techniques:"
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "銘文行家",
+									"id": "227",
+									"entries": [
+										"角色可以選取銘文行家專長來提升自己的銘文技藝。"
+									],
+									"ENG_name": "Inscription Adept"
+								}
+							],
+							"ENG_name": "Inscription"
+						},
+						{
+							"type": "statblock",
+							"tag": "feat",
+							"name": "銘文行家",
+							"source": "WoW",
+							"ENG_name": "Inscription Adept"
+						},
+						{
+							"type": "entries",
+							"name": "珠寶加工",
+							"id": "22b",
+							"entries": [
+								"{@i 需要{@item Glassblower's Tools|XPHB|玻璃匠工具}或{@item Jeweler's Tools|XPHB|珠寶匠工具}熟練項}",
+								"使用玻璃匠工具或珠寶匠工具，連同金屬與寶石（來自採礦或購買），並運用特定設計，你可以製作珠寶及類似物品。隨著技藝提升，你可以學會製作這些物品：",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "學徒（+2）設計：",
+											"entry": "{@item Arcane Focus|XPHB|奧術法器}、{@item Glass Bottle|XPHB|玻璃瓶}、{@item Holy Symbol|XPHB|聖徽}、{@item Magnifying Glass|XPHB|放大鏡}、{@item Spyglass|XPHB|望遠鏡}、{@item Vial|XPHB|小瓶}、{@item Ruby of the War Mage|XDMG|戰法紅石}",
+											"ENG_name": "Apprentice (+2) Designs:"
+										},
+										{
+											"type": "item",
+											"name": "熟練（+3）設計：",
+											"entry": "非普通魔法戒指、{@item Amulet of Proof against Detection and Location|XDMG|反偵護符}、{@item Brooch of Shielding|XDMG|護盾胸針}、{@item Circlet of Blasting|XDMG|爆裂頭飾}、{@item Elemental Gem|XDMG|元素寶石}、{@item Eyes of Charming|XDMG|魅惑鏡片}、{@item Eyes of Minute Seeing|XDMG|微視鏡片}、{@item Gem of Brightness|XDMG|光彩奪目寶石}、{@item Headband of Intellect|XDMG|智力頭帶}、{@item Medallion of Thoughts|XDMG|讀心勳章}、{@item Necklace of Adaptation|XDMG|適應項鍊}、{@item Pearl of Power|XDMG|法力再生珍珠}、{@item Periapt of Health|XDMG|保健護符}、{@item Periapt of Wound Closure|XDMG|癒合護符}、非普通{@item Quaal's Feather Token|XDMG|誇爾羽符}",
+											"ENG_name": "Journeyman (+3) Designs:"
+										},
+										{
+											"type": "item",
+											"name": "專家（+4）設計：",
+											"entry": "珍稀魔法戒指、{@item Amulet of Health|XDMG|健康護符}、{@item Bead of Force|XDMG|力場珠}、{@item Censer of Controlling Air Elementals|XDMG|命令氣元素香爐}、{@item Cube of Force|XDMG|力場魔方}、珍稀{@item Figurine of Wondrous Power|XDMG|異能塑像}（包括本章所述的翡翠黑豹）、{@item Gem of Seeing|XDMG|真視寶石}、珍稀{@item Ioun Stone|XDMG|艾恩石}、{@item Necklace of Fireballs|XDMG|火球項鍊}、{@item Necklace of Prayer Beads|XDMG|念珠項鍊}、{@item Periapt of Proof against Poison|XDMG|闢毒護符}、珍稀{@item Quaal's Feather Token|XDMG|誇爾羽符}",
+											"ENG_name": "Expert (+4) Designs:"
+										},
+										{
+											"type": "item",
+											"name": "工匠（+5）設計：",
+											"entry": "極珍稀魔法戒指、{@item Amulet of the Planes|XDMG|位面護符}、{@item Crystal Ball of Telepathy|XDMG|心靈感應水晶球}、極珍稀{@item Figurine of Wondrous Power|XDMG|異能塑像}、極珍稀{@item Ioun Stone|XDMG|艾恩石}、{@item Mirror of Life Trapping|XDMG|攝心鏡}",
+											"ENG_name": "Artisan (+5) Designs:"
+										},
+										{
+											"type": "item",
+											"name": "大師（+6）設計：",
+											"entry": "傳說魔法戒指、{@item Crystal Ball of Mind Reading|XDMG|讀心水晶球}、{@item Crystal Ball of True Seeing|XDMG|真知水晶球}、傳說{@item Ioun Stone|XDMG|艾恩石}、{@item Scarab of Protection|XDMG|防護聖甲蟲}",
+											"ENG_name": "Master (+6) Designs:"
+										}
+									]
+								}
+							],
+							"ENG_name": "Jewelcrafting"
+						},
+						{
+							"type": "entries",
+							"name": "制皮",
+							"id": "22c",
+							"entries": [
+								"{@i 需要{@item Cobbler's Tools|XPHB|鞋匠工具}或{@item Leatherworker's Tools|XPHB|皮匠工具}熟練項}",
+								"使用鞋匠工具或皮匠工具，連同材料（大多來自剝皮），並運用特定圖樣，你可以製作普通的和魔法的皮甲及類似製品。隨著技藝提升，你可以學會製作這些物品：",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "學徒（+2）圖樣：",
+											"entry": "{@item Sling|XPHB|投石索}、{@item Whip|XPHB|鞭子}、{@item Hide Armor|XPHB|獸皮甲}、{@item Leather Armor|XPHB|皮甲}、{@item Studded Leather Armor|XPHB|鑲釘皮甲}、{@item Backpack|XPHB|揹包}、{@item Climber's Kit|XPHB|攀爬工具}、{@item Crossbow Bolt Case|XPHB|弩矢匣}、{@item Map or Scroll Case|XPHB|地圖或卷軸匣}、{@item Parchment|XPHB|羊皮紙}、{@item Pouch|XPHB|小包}、{@item Quiver|XPHB|箭袋}、{@item Waterskin|XPHB|水袋}、上述類別中的普通魔法護甲和武器、{@item Boots of False Tracks|XDMG|偽跡之靴}",
+											"ENG_name": "Apprentice (+2) Patterns:"
+										},
+										{
+											"type": "item",
+											"name": "熟練（+3）設計：",
+											"entry": "上述類別中的非普通魔法護甲和武器、{@item Boots of Elvenkind|XDMG|精靈之靴}、{@item Boots of Striding and Springing|XDMG|跑跳之靴}、{@item Boots of the Winterlands|XDMG|雪地之靴}、{@item Bracers of Archery|XDMG|射手護腕}、{@item Heward's Handy Haversack|XDMG|霍華德便利袋}、{@item Quiver of Ehlonna|XDMG|艾羅娜的箭袋}、{@item Saddle of the Cavalier|XDMG|鐵騎馬鞍}、{@item Winged Boots|XDMG|飛翼之靴}",
+											"ENG_name": "Journeyman (+3) Designs:"
+										},
+										{
+											"type": "item",
+											"name": "專家（+4）設計：",
+											"entry": "上述類別中的珍稀魔法護甲和武器、{@item Boots of Levitation|XDMG|浮空之靴}、{@item Boots of Speed|XDMG|速度之靴}",
+											"ENG_name": "Expert (+4) Designs:"
+										},
+										{
+											"type": "item",
+											"name": "工匠（+5）設計：",
+											"entry": "上述類別中的極珍稀魔法護甲和武器",
+											"ENG_name": "Artisan (+5) Designs:"
+										},
+										{
+											"type": "item",
+											"name": "大師（+6）設計：",
+											"entry": "上述類別中的傳說魔法護甲和武器",
+											"ENG_name": "Master (+6) Designs:"
+										}
+									]
+								}
+							],
+							"ENG_name": "Leatherworking"
+						},
+						{
+							"type": "entries",
+							"name": "裁縫",
+							"id": "22d",
+							"entries": [
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "book/WoW/055-03-004.leatherworker.webp"
+									},
+									"width": 850,
+									"height": 972,
+									"credit": "Derk Venneman"
+								},
+								"{@i 需要{@item Weaver's Tools|XPHB|織布工具}熟練項}",
+								"使用織布工具，連同材料（主要是購買或作為財寶找到的成匹布料），並運用特定圖樣，你可以製作布製品。隨著技藝提升，你可以學會製作這些物品：",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "學徒（+2）圖樣：",
+											"entry": "{@item Padded Armor|XPHB|布甲}、{@item Basket|XPHB|籃子}、{@item Bedroll|XPHB|鋪蓋}、{@item Blanket|XPHB|毯子}、{@item Fine Clothes|XPHB|高檔服裝}、{@item Net|XPHB|捕網}、{@item Robe|XPHB|法袍}、{@item Rope|XPHB|繩索}、{@item Sack|XPHB|麻袋}、{@item String|XPHB|細線}、{@item Tent|XPHB|帳篷}、{@item Traveler's Clothes|XPHB|旅行服裝}、普通魔法布甲；{@item Cloak of Billowing|XDMG|飄揚斗篷}、{@item Cloak of Many Fashions|XDMG|萬眾時尚斗篷}、{@item Clothes of Mending|XDMG|修補之衣}、{@item Hat of Vermin|XDMG|害獸帽}、{@item Hat of Wizardry|XDMG|巫術帽}、{@item Rope of Mending|XDMG|修補繩}、{@item Talking Doll|XDMG|說話玩偶}",
+											"ENG_name": "Apprentice (+2) Patterns:"
+										},
+										{
+											"type": "item",
+											"name": "熟練（+3）設計：",
+											"entry": "非普通魔法布甲、{@item Bag of Holding|XDMG|次元袋}、{@item Bag of Tricks|XDMG|魔術袋}、{@item Cap of Water Breathing|XDMG|水下呼吸帽}、{@item Cloak of Elvenkind|XDMG|精靈斗篷}、{@item Cloak of Protection|XDMG|防護斗篷}、{@item Cloak of the Manta Ray|XDMG|蝠鱝斗篷}、{@item Gloves of Missile Snaring|XDMG|闢矢奪箭手套}、{@item Gloves of Swimming and Climbing|XDMG|攀泳手套}、{@item Gloves of Thievery|XDMG|竊賊手套}、{@item Hat of Disguise|XDMG|易容帽}、{@item Nature's Mantle|XDMG|自然斗篷}、{@item Robe of Useful Items|XDMG|雜貨法袍}、{@item Rope of Climbing|XDMG|攀爬繩}、{@item Slippers of Spider Climbing|XDMG|蛛行便鞋}、{@item +1 Wraps of Unarmed Power|XDMG|+1 神功綁帶}（+1）",
+											"ENG_name": "Journeyman (+3) Designs:"
+										},
+										{
+											"type": "item",
+											"name": "專家（+4）設計：",
+											"entry": "珍稀魔法布甲、{@item Bag of Beans|XDMG|魔豆之袋}、{@item Cape of the Mountebank|XDMG|江湖騙子披風}、{@item Cloak of Displacement|XDMG|移位斗篷}、{@item Cloak of the Bat|XDMG|蝙蝠斗篷}、{@item Mantle of Spell Resistance|XDMG|法術抗性斗篷}、{@item Robe of Eyes|XDMG|百眼法袍}、{@item Rope of Entanglement|XDMG|糾纏繩}、{@item Wings of Flying|XDMG|飛翼斗篷}、{@item +2 Wraps of Unarmed Power|XDMG|+2 神功綁帶}（+2）",
+											"ENG_name": "Expert (+4) Designs:"
+										},
+										{
+											"type": "item",
+											"name": "工匠（+5）設計：",
+											"entry": "極珍稀魔法布甲、{@item Carpet of Flying|XDMG|飛毯}、{@item Cloak of Arachnida|XDMG|節肢斗篷}、{@item Hat of Many Spells|XDMG|萬法無常帽}、{@item Robe of Scintillating Colors|XDMG|虹光法袍}、{@item Robe of Stars|XDMG|星辰法袍}、{@item +3 Wraps of Unarmed Power|XDMG|+3 神功綁帶}（+3）",
+											"ENG_name": "Artisan (+5) Designs:"
+										},
+										{
+											"type": "item",
+											"name": "大師（+6）設計：",
+											"entry": "傳說魔法布甲、{@item Cloak of Invisibility|XDMG|隱形斗篷}、{@item Robe of the Archmagi|XDMG|大法師法袍}",
+											"ENG_name": "Master (+6) Designs:"
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "布料資源",
+									"id": "22e",
+									"entries": [
+										"布料資源的價值區間與採集專業所得資源相同，從 10 GP 的亞麻布和 25 GP 的毛料，到只在卡茲阿加才能找到的 7,500 GP 晨織布或暮織布。布料有時會作為財寶出現在懂得其貿易價值的類人生物手中。",
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "book/WoW/056-03-005.pets-and-mounts.webp"
+											},
+											"width": 1700,
+											"height": 1100,
+											"title": "行侶生物和坐騎可以展示角色的成就。",
+											"credit": "Xavier Leroux"
+										}
+									],
+									"ENG_name": "Cloth Resources"
+								}
+							],
+							"ENG_name": "Tailoring"
+						}
+					],
+					"ENG_name": "Production Professions"
+				}
+			],
+			"ENG_name": "Professions and Crafting"
+		},
+		{
+			"type": "section",
+			"name": "坐騎與載具",
+			"id": "22f",
+			"entries": [
+				"坐騎是每位冒險者的重要工具，不僅在艾澤拉斯各地運送人員和貨物，還能幫助冒險者彰顯個性與成就。",
+				{
+					"type": "entries",
+					"name": "購買坐騎",
+					"id": "230",
+					"entries": [
+						"{@area 購買坐騎表|230|x}列出了角色可以購買的坐騎。表中許多坐騎只有在角色於特定陣營達到一定聲望等級後才能購買（見{@book 第四章|WoW|4}）。這些坐騎遵循《{@i 玩家手冊}》中的{@book 坐騎規則|XPHB|6|Mounts and Vehicles}。"
+					],
+					"ENG_name": "Mounts for Purchase"
+				},
+				{
+					"type": "entries",
+					"name": "製作的坐騎",
+					"id": "231",
+					"entries": [
+						"角色可以使用本章前文描述的專業來製作能充當坐騎的魔法物品。此類坐騎中最著名的包括{@item Carpet of Flying|XDMG|飛毯}（以工匠級{@area 裁縫|22d|x}製作）、鑲寶石黑豹{@item Figurine of Wondrous Power (Jeweled Panther)|WoW|奇妙雕像（鑲寶石黑豹）}（以專家級{@area 珠寶加工|22b|x}製作，本章後文詳述），以及用工程學製造的載具。",
+						{
+							"type": "entries",
+							"name": "動力載具",
+							"id": "232",
+							"entries": [
+								"動力載具類似於《{@i 玩家手冊}》中{@book 所述的大型空中與水上載具|XPHB|6|Large Vehicles}。它們包括：",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "飛行器：",
+											"entry": "一架小型旋翼機，頂部有一具旋翼，兩側各裝一臺引擎，並以滑橇作為起落架。",
+											"ENG_name": "Flying Machine:"
+										},
+										{
+											"type": "item",
+											"name": "哥布林三輪摩托：",
+											"entry": "一輛三輪機動車，配有豪華的木質鑲板。",
+											"ENG_name": "Goblin Trike:"
+										},
+										{
+											"type": "item",
+											"name": "機械路霸與機械師的摩托車：",
+											"entry": "兩輛動力強勁、可選裝邊斗的摩托車，一輛由部落製造，另一輛由聯盟製造。",
+											"ENG_name": "Mechano-Hog and Mekgineer's Chopper:"
+										}
+									]
+								},
+								"角色乘坐這些載具旅行時，用載具的時速（見{@area 動力載具表|232|x}）決定旅行速度，而不選擇旅行步速。這些載具需要{@item Fuel|WoW|燃料}，每 8 小時旅行消耗重 10 磅、價值 1 GP 的燃料。（角色可以用鍊金術專業製作{@item Fuel|WoW|燃料}。）"
+							],
+							"ENG_name": "Powered Vehicles"
+						}
+					],
+					"ENG_name": "Crafted Mounts"
+				},
+				{
+					"type": "entries",
+					"name": "特殊坐騎",
+					"id": "233",
+					"entries": [
+						"其他坐騎可以由角色透過冒險獎勵、財寶或聲望福利獲得。其中包括可以透過指令詞召喚和遣散的魔法坐騎，以及超出上述範圍的更不尋常的生物。這裡有兩個例子：",
+						{
+							"type": "list",
+							"items": [
+								"在瓦德拉肯聯軍（見{@area 第四章|31a|x}）擁有 25 點以上聲望值的角色，將獲得{@reward Blessing of the Wylderdrake|WoW|祝福}，允許其召喚一頭巨龍坐騎。",
+								"用考古學從至高嶺牛頭人挖掘場收集六個魔法碎片、且為工匠級考古學家的角色（見本章的\"{@area 採集專業|20f|x}\"），可以將碎片拼合成一根帶有{@spell Find Steed|XPHB|尋獲坐騎}法術（4 環版本）的極珍稀{@item Enspelled Staff|XDMG|魔咒法杖}。這根法杖會召喚胡恩·高嶺那頭著名駝鹿坐騎艾特洛的靈魂。"
+							]
+						},
+						{
+							"type": "table",
+							"caption": "購買坐騎",
+							"colLabels": [
+								"坐騎",
+								"先決",
+								"載重",
+								"價格"
+							],
+							"colStyles": [
+								"col-4",
+								"col-4",
+								"col-2 text-center",
+								"col-2 text-center"
+							],
+							"rows": [
+								[
+									"{@item Camel|XPHB|駱駝}",
+									"無",
+									"450 磅",
+									"50 GP"
+								],
+								[
+									"{@item Dire Wolf|WoW|恐狼}",
+									"在{@area 奧格瑞瑪|2df|x}聲望 10+",
+									"510 磅",
+									"750 GP"
+								],
+								[
+									"{@item Draft Horse|XPHB|馱用馬}",
+									"無",
+									"540 磅",
+									"50 GP"
+								],
+								[
+									"{@item Elekk|WoW|雷象}",
+									"在{@area 埃索達|2a1|x}聲望 10+",
+									"510 磅",
+									"400 GP"
+								],
+								[
+									"{@item Giant Goat|WoW|巨山羊}",
+									"在{@area 鐵爐堡|2b0|x}聲望 10+",
+									"510 磅",
+									"400 GP"
+								],
+								[
+									"{@item Giant Hyena|WoW|巨鬣狗}",
+									"在{@area 熱砂財團|314|x}聲望 10+",
+									"480 磅",
+									"750 GP"
+								],
+								[
+									"{@item Giant Seahorse|WoW|巨海馬}",
+									"無",
+									"450 磅",
+									"1,000 GP"
+								],
+								[
+									"{@item Gryphon|WoW|獅鷲}",
+									"在{@area 聯盟|295|x}聲望 25+",
+									"540 磅",
+									"2,000 GP"
+								],
+								[
+									"{@item Hawkstrider|WoW|陸行鳥}",
+									"在{@area 銀月城|2e4|x}聲望 10+",
+									"420 磅",
+									"150 GP"
+								],
+								[
+									"{@item Kodo|WoW|科多獸}",
+									"在{@area 雷霆崖|2e9|x}聲望 10+",
+									"450 磅",
+									"100 GP"
+								],
+								[
+									"{@item Mechanostrider|WoW|機械陸行鳥}",
+									"在{@area 諾莫瑞根|2ab|x}聲望 10+",
+									"420 磅",
+									"450 GP"
+								],
+								[
+									"{@item Nightsaber|WoW|夜刃豹}",
+									"在{@area 達納蘇斯|29c|x}聲望 10+",
+									"510 磅",
+									"750 GP"
+								],
+								[
+									"{@item Pandarian Dragon Turtle|WoW|熊貓人龍龜}",
+									"在{@area 火金派|2da|x}或{@area 土水派|2bf|x}聲望 10+",
+									"480 磅",
+									"500 GP"
+								],
+								[
+									"{@item Raptor|WoW|迅猛龍}",
+									"在{@area 暗矛部落|2d5|x}聲望 10+",
+									"570 磅",
+									"1,000 GP"
+								],
+								[
+									"{@item Riding Horse|XPHB|乘用馬}",
+									"無",
+									"480 磅",
+									"75 GP"
+								],
+								[
+									"{@item Talbuk|WoW|塔布羊}",
+									"無",
+									"480 磅",
+									"150 GP"
+								],
+								[
+									"{@item Warhorse|WoW|戰馬}",
+									"在{@area 暴風城|2ba|x}聲望 10+",
+									"540 磅",
+									"400 GP"
+								],
+								[
+									"{@item Warhorse Skeleton|WoW|骷髏戰馬}",
+									"在{@area 幽暗城|2ee|x}聲望 10+",
+									"540 磅",
+									"500 GP"
+								],
+								[
+									"{@item Wind Rider|WoW|雙足飛龍}",
+									"在{@area 部落|2c5|x}聲望 25+",
+									"450 磅",
+									"2,000 GP"
+								],
+								[
+									"{@item Zhevra|WoW|斑馬獸}",
+									"無",
+									"480 磅",
+									"200 GP"
+								]
+							]
+						},
+						{
+							"type": "table",
+							"caption": "動力載具",
+							"colLabels": [
+								"載具",
+								"先決",
+								"速度",
+								"乘員",
+								"乘客",
+								"貨物",
+								"AC",
+								"HP",
+								"價格"
+							],
+							"colStyles": [
+								"col-1-6",
+								"col-1-3",
+								"col-1-3 text-center",
+								"col-1-3 text-center",
+								"col-1-3 text-center",
+								"col-1-3 text-center",
+								"col-1-3 text-center",
+								"col-1-3 text-center",
+								"col-1-3 text-center"
+							],
+							"rows": [
+								[
+									"{@item Flying Machine|WoW|飛行器}",
+									"無",
+									"4 mph",
+									"1",
+									"0",
+									"300 磅",
+									"19",
+									"27",
+									"—*"
+								],
+								[
+									"{@item Goblin Trike|WoW|哥布林三輪摩托}",
+									"任一哥布林財團聲望 10+",
+									"3 mph",
+									"1",
+									"0",
+									"600 磅",
+									"19",
+									"27",
+									"400 GP"
+								],
+								[
+									"{@item Mechano-Hog|WoW|機械路霸}",
+									"在{@area 部落|2c5|x}聲望 10+",
+									"4 mph",
+									"1",
+									"1",
+									"800 磅",
+									"19",
+									"27",
+									"4,000 GP"
+								],
+								[
+									"{@item Mekgineer's Chopper|WoW|機械師的摩托車}",
+									"在{@area 聯盟|295|x}聲望 10+",
+									"4 mph",
+									"1",
+									"1",
+									"800 磅",
+									"19",
+									"27",
+									"4,000 GP"
+								]
+							],
+							"footnotes": [
+								"*飛行器無法購買；必須由擁有專家級{@area 工程學|225|x}的角色製作。製作這臺機器需要 2,000 GP 的資源。"
+							]
+						},
+						{
+							"type": "statblock",
+							"tag": "creature",
+							"name": "機械陸行鳥",
+							"source": "WoW",
+							"style": "narrow",
+							"ENG_name": "Mechanostrider"
+						},
+						{
+							"type": "statblock",
+							"tag": "creature",
+							"name": "熊貓人龍龜",
+							"source": "WoW",
+							"style": "narrow",
+							"ENG_name": "Pandarian Dragon Turtle"
+						}
+					],
+					"ENG_name": "Special Mounts"
+				}
+			],
+			"ENG_name": "Mounts and Vehicles"
+		},
+		{
+			"type": "section",
+			"name": "行侶生物",
+			"id": "234",
+			"entries": [
+				"角色可以透過多種途徑獲得行侶生物。有些可以從商人處花費幾枚金幣購買，有時設有最低聲望門檻。另一些作為財寶被發現、作為完成冒險的獎勵獲得，甚至在使用採集專業時偶然發現。（例如，在 17 級以上地區開採源質時，有時會釋放出一個源質晶簇——一種元素行侶生物。）",
+				"行侶生物太小，無法充當坐騎；太弱，無法有意義地參與戰鬥；而且一般無法獨立做出有用的行動。不過，與坐騎一樣，它們可以作為榮譽的徽章，標記角色的成就或遊歷之廣。",
+				{
+					"type": "entries",
+					"name": "召喚行侶生物",
+					"id": "235",
+					"entries": [
+						"行侶生物透過魔法與角色相連。有些行侶生物被召喚時出現，被遣散時消失到其他位面。另一些是被魔法物品（通常是項圈或牽繩）束縛的自然生物，允許角色以同樣的方式召喚和遣散它們。還有一些是機械或魔法構裝體，可以被停用（而非遣散），並存放在角色的裝備中。無論哪種情況，召喚或遣散行侶生物都需要角色採取{@action Magic|XPHB|魔法}動作，且角色一次只能以此方式召喚一隻行侶生物。召喚新行侶生物會立即遣散已經在場的行侶生物。被召喚期間，行侶生物會漂浮或飛在附近、棲停在角色肩上，或步行跟隨，保持在角色 5 尺以內。",
+						"行侶生物無法採取動作，也不能成為攻擊的目標。如果它受到任何傷害（例如，角色被捲入{@spell Fireball|XPHB|火球術}法術的範圍），它會立即被遣散或停用。"
+					],
+					"ENG_name": "Calling a Companion"
+				},
+				{
+					"type": "entries",
+					"name": "行侶生物忠誠度",
+					"id": "236",
+					"entries": [
+						"行侶生物擁有忠誠值，使用《{@i 城主指南}》中的{@book 規則|XDMG|2|Loyalty}，但其忠誠物件是個人而非隊伍。角色獲得行侶生物時，行侶生物的忠誠值等於角色的魅力調整值（至少為 1）。行侶生物的忠誠值不能高於角色的魅力值。",
+						"如果行侶生物受到特別好的對待——比如為它購買特別的食物、以其他方式寵愛它，或把它從危險中救出——它的忠誠值增加{@dice 1d4}。如果它因受到傷害而被遣散或停用，忠誠值減少 1。",
+						"如果行侶生物的忠誠值達到 10 或更高，行侶生物在場時會給予角色一項小小的超自然恩賜。這份恩賜的性質取決於行侶生物的類別，如下文所述。"
+					],
+					"ENG_name": "Companion Loyalty"
+				},
+				{
+					"type": "entries",
+					"name": "行侶生物的類別",
+					"id": "237",
+					"entries": [
+						"以下各節詳述角色可能發現的不同類別的行侶生物。",
+						{
+							"type": "entries",
+							"name": "水生行侶生物",
+							"id": "238",
+							"entries": [
+								"水生行侶生物包括魚、蟹、蛙、章魚、水鳥、龜、水獺和其他水棲生物。它們有時漂浮在主人附近的一團水泡中。",
+								{
+									"type": "statblock",
+									"tag": "reward",
+									"name": "水棲行侶生物祝福",
+									"source": "WoW",
+									"ENG_name": "Blessing of the Aquatic Companion"
+								}
+							],
+							"ENG_name": "Aquatic Companions"
+						},
+						{
+							"type": "entries",
+							"name": "野獸行侶生物",
+							"id": "239",
+							"entries": [
+								"野獸行侶生物是不會飛也不會游泳的自然動物。它們包括微型和小型野獸，以及較大型生物的幼崽。（這些野獸作為行侶生物飼養期間年齡不會增長。）",
+								{
+									"type": "statblock",
+									"tag": "reward",
+									"name": "野獸行侶生物祝福",
+									"source": "WoW",
+									"ENG_name": "Blessing of the Beast Companion"
+								}
+							],
+							"ENG_name": "Beast Companions"
+						},
+						{
+							"type": "entries",
+							"name": "龍類行侶生物",
+							"id": "23a",
+							"entries": [
+								"龍類行侶生物包括幼小的雛龍——比{@book 第七章|WoW|7}中描述的雛龍更年幼更小巧——以及{@area 巨龍群島|3a1|x}原生的龍類動物。",
+								{
+									"type": "statblock",
+									"tag": "reward",
+									"name": "龍類行侶生物祝福",
+									"source": "WoW",
+									"ENG_name": "Blessing of the Dragonkin Companion"
+								}
+							],
+							"ENG_name": "Dragonkin Companions"
+						},
+						{
+							"type": "entries",
+							"name": "元素行侶生物",
+							"id": "23b",
+							"entries": [
+								"元素行侶生物包括活化的植物、{@area 上古之神|3f9|x}之力的殘餘，以及元素能量的活體微粒。",
+								{
+									"type": "statblock",
+									"tag": "reward",
+									"name": "元素行侶生物祝福",
+									"source": "WoW",
+									"ENG_name": "Blessing of the Elemental Companion"
+								}
+							],
+							"ENG_name": "Elemental Companions"
+						},
+						{
+							"type": "entries",
+							"name": "飛行行侶生物",
+							"id": "23c",
+							"entries": [
+								"飛行行侶生物包括會飛的生物——普通鳥類、蝙蝠、飛蛾、大黃蜂和飛蛇——以及這些生物的魔法版本。",
+								{
+									"type": "statblock",
+									"tag": "reward",
+									"name": "飛行行侶生物祝福",
+									"source": "WoW",
+									"ENG_name": "Blessing of the Flying Companion"
+								}
+							],
+							"ENG_name": "Flying Companions"
+						},
+						{
+							"type": "entries",
+							"name": "類人行侶生物",
+							"id": "23d",
+							"entries": [
+								"類人行侶生物包括小鬼、狗頭人、幼年魚人，以及各種能以非戰鬥方式幫助你的存在。鼓勵 DM 按照《{@i 城主指南}》中的{@book 指引|XDMG|2|NPCs as Party Members}，將任何類人行侶生物發展為一個 NPC。",
+								{
+									"type": "statblock",
+									"tag": "reward",
+									"name": "人形行侶生物祝福",
+									"source": "WoW",
+									"ENG_name": "Blessing of the Humanoid Companion"
+								}
+							],
+							"ENG_name": "Humanoid Companions"
+						},
+						{
+							"type": "entries",
+							"name": "魔法行侶生物",
+							"id": "23e",
+							"entries": [
+								"魔法行侶生物涵蓋各種本質上屬於魔法的存在，包括{@area 上古之神|3f9|x}或其他力量的微小碎片、來自異界的遊離眼球或觸手、軟泥、虛空生物、鬼靈精魂，以及活化的魔法書卷。",
+								{
+									"type": "statblock",
+									"tag": "reward",
+									"name": "魔法行侶生物祝福",
+									"source": "WoW",
+									"ENG_name": "Blessing of the Magic Companion"
+								}
+							],
+							"ENG_name": "Magic Companions"
+						},
+						{
+							"type": "entries",
+							"name": "機械行侶生物",
+							"id": "23f",
+							"entries": [
+								"機械行侶生物是發條或經其他工程手段製造的生物，從機械小雞到{@area 燃燒軍團|3d2|x}可怕邪能收割者構裝體的微縮複製品，不一而足。",
+								{
+									"type": "statblock",
+									"tag": "reward",
+									"name": "機械行侶生物祝福",
+									"source": "WoW",
+									"ENG_name": "Blessing of the Mechanical Companion"
+								}
+							],
+							"ENG_name": "Mechanical Companions"
+						},
+						{
+							"type": "entries",
+							"name": "亡靈行侶生物",
+							"id": "240",
+							"entries": [
+								"亡靈行侶生物包括骸骨或鬼靈動物及類似生物。",
+								{
+									"type": "statblock",
+									"tag": "reward",
+									"name": "亡靈行侶生物祝福",
+									"source": "WoW",
+									"ENG_name": "Blessing of the Undead Companion"
+								}
+							],
+							"ENG_name": "Undead Companions"
+						}
+					],
+					"ENG_name": "Types of Companions"
+				}
+			],
+			"ENG_name": "Companion Creatures"
+		},
+		{
+			"type": "section",
+			"name": "魔法物品",
+			"id": "241",
+			"entries": [
+				"在《{@i 魔獸世界}》戰役中，角色可以使用許多魔法物品。這裡描述的物品涵蓋了從聲名顯赫的武器到精通鍊金術的角色能製作的簡單藥水。它們遵循《{@i 城主指南}》中的{@book 魔法物品規則|XDMG|6|Magic Items}。",
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WoW/Ashbringer.webp"
+					},
+					"width": 1000,
+					"height": 835,
+					"maxWidth": 360,
+					"title": "灰燼使者",
+					"credit": "Xavier Leroux"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "灰燼使者",
+					"source": "WoW",
+					"ENG_name": "Ashbringer"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "艾維娜之羽",
+					"source": "WoW",
+					"ENG_name": "Aviana's Feather"
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WoW/Crown of the Ogre King.webp"
+					},
+					"width": 850,
+					"height": 494,
+					"maxWidth": 360,
+					"title": "食人魔王之冠",
+					"credit": "Thomas Tenery, Matt Gaser"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "食人魔王之冠",
+					"source": "WoW",
+					"ENG_name": "Crown of the Ogre King"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "迪菲亞皮甲",
+					"source": "WoW",
+					"ENG_name": "Defias Leather"
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WoW/Doomhammer.webp"
+					},
+					"width": 959,
+					"height": 1000,
+					"maxWidth": 360,
+					"title": "毀滅之錘",
+					"credit": "James Ryman"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "毀滅之錘",
+					"source": "WoW",
+					"ENG_name": "Doomhammer"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "實驗型哥布林噴氣揹包",
+					"source": "WoW",
+					"ENG_name": "Experimental Goblin Jetpack"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "奇妙雕像（鑲寶石黑豹）",
+					"source": "WoW",
+					"ENG_name": "Figurine of Wondrous Power (Jeweled Panther)"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "泰坦合劑",
+					"source": "WoW",
+					"ENG_name": "Flask of the Titans"
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "book/WoW/060-03-009.frostmourne.webp"
+					},
+					"width": 850,
+					"height": 1228,
+					"maxWidth": 360,
+					"title": "霜之哀傷",
+					"credit": "Ben Thompson"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "霜之哀傷",
+					"source": "WoW",
+					"ENG_name": "Frostmourne"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "哥布林起搏器",
+					"source": "WoW",
+					"ENG_name": "Goblin Jumper Cables"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "爐石",
+					"source": "WoW",
+					"ENG_name": "Hearthstone"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "統御頭盔",
+					"source": "WoW",
+					"ENG_name": "Helm of Domination"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "審判護甲",
+					"source": "WoW",
+					"ENG_name": "Judgment Armor"
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WoW/Life-Staff of the Web Lair.webp"
+					},
+					"width": 976,
+					"height": 1000,
+					"maxWidth": 360,
+					"title": "網巢生命法杖",
+					"credit": "Ralph Horsley"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "網巢生命法杖",
+					"source": "WoW",
+					"ENG_name": "Life-Staff of the Web Lair"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "諾格弗格藥劑",
+					"source": "WoW",
+					"ENG_name": "Noggenfogger Elixir"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "點金石",
+					"source": "WoW",
+					"ENG_name": "Philosopher's Stone"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "法力藥水",
+					"displayName": "法力藥水",
+					"source": "WoW",
+					"ENG_name": "Potions of Mana"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "恢復藥水",
+					"displayName": "恢復藥水",
+					"source": "WoW",
+					"ENG_name": "Potions of Rejuvenation"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "睡行者之杖",
+					"source": "WoW",
+					"ENG_name": "Rod of the Sleepwalker"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "影牙",
+					"source": "WoW",
+					"ENG_name": "Shadowfang"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "薩拉邁恩",
+					"source": "WoW",
+					"ENG_name": "Shalamayne"
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WoW/Staff of Light and Shadow (Anathema).webp"
+					},
+					"width": 959,
+					"height": 1000,
+					"maxWidth": 360,
+					"title": "光影之杖——詛咒形態",
+					"credit": "Martina Pilcerova"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "光影法杖",
+					"source": "WoW",
+					"ENG_name": "Staff of Light and Shadow"
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WoW/Sulfuras, Hand of Ragnaros.webp"
+					},
+					"width": 850,
+					"height": 969,
+					"maxWidth": 360,
+					"title": "薩弗拉斯，炎魔拉格納羅斯之手",
+					"credit": "James Ryman"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "薩弗拉斯，炎魔拉格納羅斯之手",
+					"source": "WoW",
+					"ENG_name": "Sulfuras, Hand of Ragnaros"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "食人妖之血藥劑",
+					"displayName": "食人妖之血藥劑",
+					"source": "WoW",
+					"ENG_name": "Troll's Blood Elixirs"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "埃辛諾斯雙刃",
+					"source": "WoW",
+					"ENG_name": "Twin Blades of Azzinoth"
+				},
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "維斯拉克，亡者之瞳",
+					"source": "WoW",
+					"ENG_name": "Vithrak, Gaze of the Deadman"
+				}
+			],
+			"ENG_name": "Magic Items"
+		}
+	],
+	"ENG_name": "Chapter 3: Professions and Gear"
+}

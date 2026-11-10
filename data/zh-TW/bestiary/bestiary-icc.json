@@ -1,0 +1,3806 @@
+{
+	"_meta": {
+		"locale": "zh-TW",
+		"upstreamTag": "v2.41.0",
+		"upstreamCommit": "32ef600fab87a585a61dd1a22e9b02dfc58c728a",
+		"translationSourceRepository": "https://github.com/tjliqy/5etools-cn",
+		"translationSourceCommit": "aaadd34f4e61a4701c31aa38d0337a2b3ae856ba",
+		"conversion": "OpenCC s2twp; locked project terminology; canonical inline-tag reconciliation",
+		"license": "CC BY-NC-SA 4.0"
+	},
+	"monster": [
+		{
+			"name": "鮮血女王蘭娜瑟爾",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ICC",
+			"page": 52,
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"elf",
+					"vampire"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 315,
+				"formula": "30d10 + 150"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40,
+				"fly": {
+					"number": 40,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 22,
+			"dex": 18,
+			"con": 20,
+			"int": 19,
+			"wis": 16,
+			"cha": 23,
+			"save": {
+				"str": "+13",
+				"wis": "+10",
+				"cha": "+13"
+			},
+			"skill": {
+				"arcana": "+11",
+				"perception": "+17",
+				"stealth": "+11"
+			},
+			"senses": [
+				"Blindsight 120 ft."
+			],
+			"passive": 27,
+			"immune": [
+				"cold",
+				"necrotic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion"
+			],
+			"languages": [
+				"通用語",
+				"被遺忘者語",
+				"獸人語",
+				"薩拉斯語"
+			],
+			"cr": "23",
+			"spellcasting": [
+				{
+					"name": "煽動驚恐（1/日，僅在其浴血時可用）",
+					"type": "spellcasting",
+					"headerEntries": [
+						"蘭娜瑟爾移動至多等於其{@variantrule Fly Speed|XPHB|飛行速度}的距離，且不會引發{@action Opportunity Attack|XPHB|借機攻擊}；施展{@spell Fear|XPHB|恐懼術}，無需法術成分並使用魅力作為施法屬性（法術豁免{@dc 21}）；並發動三次暮光血箭攻擊。"
+					],
+					"daily": {
+						"1": [
+							"{@spell Fear|XPHB|恐懼術}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"hidden": [
+						"daily"
+					],
+					"ENG_name": "Incite Terror (1/Day, Usable Only While Bloodied)"
+				},
+				{
+					"name": "哈達之慾（1/日）",
+					"type": "spellcasting",
+					"headerEntries": [
+						"蘭娜瑟爾施展{@spell Hunger of Hadar|XPHB|哈達之慾}（五環版本），無需法術成分或{@status Concentration|XPHB|專注}，並使用魅力作為施法屬性（法術豁免{@dc 21}）。蘭娜瑟爾陷入{@condition Incapacitated|XPHB|無力}狀態時，該法術終止。"
+					],
+					"daily": {
+						"1": [
+							"{@spell Hunger of Hadar|XPHB|哈達之慾}（五環版本）"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "bonus",
+					"hidden": [
+						"daily"
+					],
+					"ENG_name": "Hunger of Hadar (1/Day)"
+				},
+				{
+					"name": "支配獵物",
+					"type": "spellcasting",
+					"headerEntries": [
+						"蘭娜瑟爾施展{@spell Dominate Monster|XPHB|支配怪物}，無需法術成分並使用魅力作為施法屬性（法術豁免{@dc 21}）。直至其下個回合開始，蘭娜瑟爾都無法再執行此動作。"
+					],
+					"legendary": {
+						"1": [
+							"{@spell Dominate Monster|XPHB|支配怪物}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "legendary",
+					"hidden": [
+						"legendary"
+					],
+					"ENG_name": "Dominate Prey"
+				}
+			],
+			"trait": [
+				{
+					"name": "傳奇抗性（4/日）",
+					"entries": [
+						"蘭娜瑟爾豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (4/Day)"
+				},
+				{
+					"name": "幽影遁行",
+					"entries": [
+						"若蘭娜瑟爾在其休眠地之外{@variantrule Hit Points|XPHB|生命值}降至0，其傳送回其休眠地，除非其身處流水或陽光下。若其無法傳送，則其被摧毀。一旦進入其休眠地，其陷入{@condition Paralyzed|XPHB|麻痺}狀態1小時，此後其恢復1{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Shadow Escape"
+				},
+				{
+					"name": "哀傷之霧",
+					"entries": [
+						"在蘭娜瑟爾每個回合結束時，源自其的20尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物受到9（{@damage 2d8}）心靈傷害，除非蘭娜瑟爾處於{@condition Incapacitated|XPHB|無力}狀態。"
+					],
+					"ENG_name": "Shroud of Sorrow"
+				},
+				{
+					"name": "日照弱點",
+					"entries": [
+						"若蘭娜瑟爾在陽光下開始其回合，其受到20光耀傷害。身處陽光下時，其攻擊檢定和屬性檢定具有{@variantrule Disadvantage|XPHB|劣勢}。"
+					],
+					"ENG_name": "Sunlight Weakness"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"蘭娜瑟爾使用嗜血啃咬或暮光血箭發動共計兩次攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "嗜血啃咬",
+					"entries": [
+						"{@atkr m} 命中{@hit 13}，觸及10尺。{@h}15（{@damage 2d8 + 6}）揮砍傷害外加9（{@damage 2d8}）暗蝕傷害。目標的{@variantrule Hit Points|XPHB|生命值}上限減少等於其所受暗蝕傷害的數值，且蘭娜瑟爾恢復等同該數值的{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Bloodthirsty Bite"
+				},
+				{
+					"name": "暮光血箭",
+					"entries": [
+						"{@atkr r} 命中{@hit 13}，射程120尺。{@h}22（{@damage 4d10 + 6}）心靈傷害，且目標陷入{@condition Frightened|XPHB|恐懼}狀態，直至蘭娜瑟爾的下個回合結束。"
+					],
+					"ENG_name": "Twilight Bloodbolt"
+				}
+			],
+			"bonus": [
+				{
+					"name": "鮮血映象（1/日）",
+					"entries": [
+						"蘭娜瑟爾詛咒其20尺內可見的一名生物。每當蘭娜瑟爾以攻擊檢定命中另一名生物並造成傷害時，被詛咒的生物受到相同的傷害。該詛咒在蘭娜瑟爾{@variantrule Hit Points|XPHB|生命值}降至0時終止。"
+					],
+					"ENG_name": "Blood Mirror (1/Day)"
+				},
+				{
+					"name": "黑暗墮落者的契約（1/日）",
+					"entries": [
+						"蘭娜瑟爾詛咒其120尺內可見的三名生物。閃亮的暗蝕能量光束將這三名生物連線起來。每名被詛咒生物的回合開始時，其受到21（{@damage 6d6}）暗蝕傷害。當每名被詛咒生物都與其他兩名被詛咒生物相距5尺以內時，或當蘭娜瑟爾{@variantrule Hit Points|XPHB|生命值}降至0時，該詛咒終止。"
+					],
+					"ENG_name": "Pact of the Darkfallen (1/Day)"
+				}
+			],
+			"legendary": [
+				{
+					"name": "暗影襲",
+					"entries": [
+						"蘭娜瑟爾移動至多等於其{@variantrule Speed|XPHB|速度}一半的距離，並發動一次嗜血啃咬或暮光血箭攻擊。"
+					],
+					"ENG_name": "Umbral Strike"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"N",
+				"S",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"A",
+				"C"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"HPR",
+				"MA",
+				"RA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"conditionInflictSpell": [
+				"blinded",
+				"charmed",
+				"frightened"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Blood-Queen Lana'thel"
+		},
+		{
+			"name": "死亡使者薩魯法爾",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ICC",
+			"page": 54,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"death knight"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				20
+			],
+			"hp": {
+				"average": 266,
+				"formula": "28d8 + 140"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 23,
+			"dex": 11,
+			"con": 20,
+			"int": 12,
+			"wis": 16,
+			"cha": 22,
+			"save": {
+				"dex": "+7",
+				"wis": "+10"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 13,
+			"immune": [
+				"cold",
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"被遺忘者語",
+				"獸人語"
+			],
+			"cr": "21",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"薩魯法爾施展以下一道法術，無需材料成分並使用魅力作為施法屬性（法術豁免{@dc 21}）："
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB|偵測魔法}",
+						"{@spell Phantom Steed|XPHB|魅影駒}"
+					],
+					"daily": {
+						"2": [
+							"{@spell Dispel Magic|XPHB|解除魔法}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "傳奇抗性（4/日）",
+					"entries": [
+						"薩魯法爾豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (4/Day)"
+				},
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"薩魯法爾對抗法術和其他魔法效應時進行的豁免檢定具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Magic Resistance"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"薩魯法爾發動三次血符文之刃攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "血符文之刃",
+					"entries": [
+						"{@atkr m} 命中{@hit 13}，觸及5尺。{@h}13（{@damage 2d6 + 6}）揮砍傷害外加4（{@damage 1d8}）暗蝕傷害。在其回合內薩魯法爾首次以此攻擊命中一名生物時，該生物額外受到22（{@damage 5d8}）暗蝕傷害，且薩魯法爾恢復12（{@dice 5d4}）{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Bloodrune Blade"
+				},
+				{
+					"name": "沸騰之血{@recharge 5}",
+					"entries": [
+						"{@actSave con} {@dc 21}，薩魯法爾120尺內可見的單一生物。{@actSaveFail} 65（{@damage 10d12}）暗蝕傷害，且目標獲得1級{@condition Exhaustion|XPHB|力竭}。{@actSaveSuccess} 僅半傷。"
+					],
+					"ENG_name": "Boiling Blood {@recharge 5}"
+				}
+			],
+			"bonus": [
+				{
+					"name": "陣亡勇士的印記（1/日；僅在其浴血時可用）",
+					"entries": [
+						"{@actSave wis} {@dc 21}，薩魯法爾120尺內可見的單一生物。{@actSaveFail} 目標被詛咒24小時，或直至薩魯法爾死亡。被詛咒期間，每當薩魯法爾以攻擊檢定命中一名生物，目標就受到13（{@damage 2d12}）暗蝕傷害。若目標在被詛咒期間{@variantrule Hit Points|XPHB|生命值}降至0，薩魯法爾恢復13（{@dice 2d12}）{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Mark of the Fallen Champion (1/Day; Usable Only While Bloodied)"
+				}
+			],
+			"reaction": [
+				{
+					"name": "格擋",
+					"entries": [
+						"{@actTrigger} 薩魯法爾在持握一把武器時被一次近戰攻擊檢定命中。{@actResponse} 薩魯法爾針對該次攻擊的AC增加6，可能令該次攻擊改為失手。"
+					],
+					"ENG_name": "Parry"
+				}
+			],
+			"legendary": [
+				{
+					"name": "鮮血新星",
+					"entries": [
+						"{@actSave con} {@dc 21}，薩魯法爾120尺內可見的單一生物。{@actSaveFail} 26（{@damage 4d12}）暗蝕傷害，且源自目標的30尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物受到相同的傷害。{@actSaveSuccess} 僅半傷。{@actSaveSuccessOrFail} 薩魯法爾直至其下個回合開始都無法再執行此動作。"
+					],
+					"ENG_name": "Blood Nova"
+				},
+				{
+					"name": "狂亂打擊（僅在其浴血時可用）",
+					"entries": [
+						"薩魯法爾移動至多等於其{@variantrule Speed|XPHB|速度}的距離，並發動兩次血符文之刃攻擊。"
+					],
+					"ENG_name": "Frenzied Strike (Usable Only While Bloodied)"
+				},
+				{
+					"name": "猛衝",
+					"entries": [
+						"薩魯法爾移動至多等於其{@variantrule Speed|XPHB|速度}一半的距離，並發動一次血符文之刃攻擊。"
+					],
+					"ENG_name": "Lunge"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Parry"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"N",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"CUR",
+				"MA"
+			],
+			"conditionInflict": [
+				"exhaustion"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Deathbringer Saurfang"
+		},
+		{
+			"name": "亡語高階祭司",
+			"source": "ICC",
+			"page": 55,
+			"size": [
+				"H"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"cleric",
+					"nerubian"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				17
+			],
+			"hp": {
+				"average": 180,
+				"formula": "19d12 + 57"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 30
+			},
+			"str": 12,
+			"dex": 20,
+			"con": 16,
+			"int": 12,
+			"wis": 22,
+			"cha": 10,
+			"save": {
+				"wis": "+10",
+				"cha": "+4"
+			},
+			"skill": {
+				"perception": "+10",
+				"religion": "+9"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 20,
+			"immune": [
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"被遺忘者語",
+				"蛛魔語",
+				"獸人語"
+			],
+			"cr": "10",
+			"trait": [
+				{
+					"name": "黑影光環",
+					"entries": [
+						"祭司在不處於{@condition Incapacitated|XPHB|無力}狀態時被一圈暗影光環包圍。在祭司每個回合結束時，源自祭司的15尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物受到11（{@damage 2d10}）心靈傷害。該{@variantrule Emanation [Area of Effect]|XPHB|光環}為{@variantrule Dim Light|XPHB|微光光照}。"
+					],
+					"ENG_name": "Aura of Darkness"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"祭司發動兩次暗影衝擊攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "暗影衝擊",
+					"entries": [
+						"{@atkr m,r} 命中{@hit 10}，觸及10尺或射程120尺。{@h}17（{@damage 2d10 + 6}）心靈傷害。"
+					],
+					"ENG_name": "Shadow Blast"
+				},
+				{
+					"name": "黑暗清算{@recharge 5}",
+					"entries": [
+						"{@atkr r} {@hit 10}，射程120尺。{@h}33（{@damage 6d10}）暗蝕傷害，且目標被詛咒。在祭司的下個回合開始時，被詛咒的目標迸發出暗影能量，對源自幷包含被詛咒目標的10尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物造成11（{@damage 2d10}）心靈傷害，隨後該詛咒終止。"
+					],
+					"ENG_name": "Dark Reckoning {@recharge 5}"
+				}
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"N",
+				"Y"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RA",
+				"RCH"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Deathspeaker High Priest"
+		},
+		{
+			"name": "爛腸",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ICC",
+			"page": 56,
+			"size": [
+				"H"
+			],
+			"type": "construct",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 207,
+				"formula": "18d12 + 90"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 21,
+			"dex": 13,
+			"con": 20,
+			"int": 8,
+			"wis": 12,
+			"cha": 10,
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 11,
+			"immune": [
+				"lightning",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"被遺忘者語",
+				"獸人語"
+			],
+			"cr": "17",
+			"trait": [
+				{
+					"name": "凋零毒氣",
+					"entries": [
+						"爛腸使房間充滿有毒的腐氣。{@actSave con} {@dc 19}，在房間內開始其回合的每名生物。{@actSaveFail} 21（{@damage 6d6}）毒素傷害。"
+					],
+					"ENG_name": "Gaseous Blight"
+				},
+				{
+					"name": "傳奇抗性（4/日）",
+					"entries": [
+						"爛腸豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (4/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"爛腸使用爪擊或毒腫發動共計兩次攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atkr m} 命中{@hit 11}，觸及10尺。{@h}38（{@damage 6d10 + 5}）揮砍傷害外加14（{@damage 4d6}）暗蝕傷害。"
+					],
+					"ENG_name": "Claw"
+				},
+				{
+					"name": "毒腫",
+					"entries": [
+						"{@atkr r} {@hit 11}，射程120尺。{@h}39（{@damage 6d12}）強酸傷害，且目標獲得1級{@condition Exhaustion|XPHB|力竭}。若目標死於{@condition Exhaustion|XPHB|力竭}，其爆炸併產生以下效應：{@actSave dex} {@dc 19}，源自該死亡生物的10尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物。{@actSaveFail} 33（{@damage 6d10}）強酸傷害。{@actSaveSuccess} 半傷。",
+						"爛腸死亡時，因毒腫而獲得的{@condition Exhaustion|XPHB|力竭}等級消失。"
+					],
+					"ENG_name": "Gastric Bloat"
+				},
+				{
+					"name": "邪惡毒氣{@recharge 5}",
+					"entries": [
+						"{@actSave con} {@dc 19}，以爛腸120尺內可見的一點為中心的20尺半徑{@variantrule Sphere [Area of Effect]|XPHB|球狀}區域內的每名生物。{@actSaveFail} 35（{@damage 10d6}）毒素傷害，且目標陷入{@condition Poisoned|XPHB|中毒}狀態，直至其下個回合結束。處於{@condition Poisoned|XPHB|中毒}狀態期間，目標因不受控制地嘔吐而陷入{@condition Stunned|XPHB|震懾}狀態。{@actSaveSuccess} 半傷，且目標陷入{@condition Poisoned|XPHB|中毒}狀態，直至其下個回合結束。"
+					],
+					"ENG_name": "Vile Gas {@recharge 5}"
+				}
+			],
+			"bonus": [
+				{
+					"name": "凋零呼吸",
+					"entries": [
+						"爛腸吸入有毒的腐氣，強化自身並削弱其凋零毒氣的威力。其恢復19（{@dice 3d12}）{@variantrule Hit Points|XPHB|生命值}，且直至其下個回合結束，其攻擊檢定和豁免檢定具有{@variantrule Advantage|XPHB|優勢}。其凋零毒氣特性造成的傷害減少11（{@dice 3d6}）。"
+					],
+					"ENG_name": "Inhale Blight"
+				},
+				{
+					"name": "刺鼻毒氣（需兩次使用凋零呼吸）",
+					"entries": [
+						"若爛腸已兩次使用凋零呼吸，其猛烈地釋放凋零毒氣，產生以下效應並使其凋零毒氣恢復全部威力。{@actSave con} {@dc 19}，源自爛腸的40尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物。{@actSaveFail} 35（{@damage 10d6}）毒素傷害。{@actSaveSuccess} 半傷。"
+					],
+					"ENG_name": "Pungent Blight (Requires 2 Uses of Inhale Blight)"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"A",
+				"I",
+				"N",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"exhaustion",
+				"poisoned",
+				"stunned"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Festergut"
+		},
+		{
+			"name": "冰霜巨龍",
+			"source": "ICC",
+			"page": 57,
+			"size": [
+				"H"
+			],
+			"type": "undead",
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				20
+			],
+			"hp": {
+				"average": 162,
+				"formula": "13d12 + 78"
+			},
+			"speed": {
+				"walk": 40,
+				"burrow": 30,
+				"fly": 80
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 25,
+			"dex": 10,
+			"con": 23,
+			"int": 19,
+			"wis": 15,
+			"cha": 21,
+			"save": {
+				"dex": "+6",
+				"wis": "+8"
+			},
+			"skill": {
+				"perception": "+14",
+				"stealth": "+6"
+			},
+			"senses": [
+				"Blindsight 60 ft.",
+				"Darkvision 120 ft."
+			],
+			"passive": 24,
+			"immune": [
+				"cold",
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"龍語",
+				"被遺忘者語",
+				"獸人語"
+			],
+			"cr": "17",
+			"trait": [
+				{
+					"name": "傳奇抗性（3/日）",
+					"entries": [
+						"冰霜巨龍豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				},
+				{
+					"name": "生機抑止",
+					"entries": [
+						"冰霜巨龍60尺內的生物無法恢復{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Life Suppression"
+				},
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"冰霜巨龍對抗法術和其他魔法效應時進行的豁免檢定具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Magic Resistance"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"冰霜巨龍使用撕裂或寒冰衝擊發動共計三次攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "撕裂",
+					"entries": [
+						"{@atkr m} 命中{@hit 13}，觸及10尺。{@h}18（{@damage 2d10 + 7}）揮砍傷害外加4（{@damage 1d8}）寒冷傷害。"
+					],
+					"ENG_name": "Rend"
+				},
+				{
+					"name": "寒冰衝擊",
+					"entries": [
+						"{@atkr r} 命中{@hit 11}，射程60尺。{@h}21（{@damage 6d6}）寒冷傷害，且直至冰霜巨龍的下個回合結束，目標的{@variantrule Speed|XPHB|速度}減少10尺。"
+					],
+					"ENG_name": "Icy Blast"
+				},
+				{
+					"name": "冰霜吐息{@recharge 5}",
+					"entries": [
+						"{@actSave con} {@dc 20}，60尺{@variantrule Cone [Area of Effect]|XPHB|錐狀}區域內的每名生物。{@actSaveFail} 39（{@damage 6d12}）寒冷傷害，且直至目標的下個回合結束，目標的{@variantrule Speed|XPHB|速度}減半；目標無法執行{@variantrule Reaction|XPHB|反應}；且目標在其回合中僅可以執行一個動作或一個{@variantrule Bonus Action|XPHB|附贈動作}，但不能同時執行二者。{@actSaveSuccess} 僅半傷。"
+					],
+					"ENG_name": "Frost Breath {@recharge 5}"
+				}
+			],
+			"legendary": [
+				{
+					"name": "猛撲",
+					"entries": [
+						"冰霜巨龍移動至多等於其{@variantrule Speed|XPHB|速度}一半的距離，並發動一次撕裂或寒冰衝擊攻擊。"
+					],
+					"ENG_name": "Pounce"
+				},
+				{
+					"name": "恐懼咆哮",
+					"entries": [
+						"{@actSave wis} {@dc 19}，源自冰霜巨龍的30尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物。{@actSaveFail} 11（{@damage 2d10}）心靈傷害，且目標陷入{@condition Frightened|XPHB|恐懼}狀態，直至其下個回合結束。{@actSaveSuccessOrFail} 冰霜巨龍直至其下個回合開始都無法再執行此動作。"
+					],
+					"ENG_name": "Terrifying Roar"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR"
+			],
+			"damageTags": [
+				"C",
+				"S",
+				"Y"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Frost Wyrm"
+		},
+		{
+			"name": "亡語者女士",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ICC",
+			"page": 58,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"lich",
+					"wizard"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				20
+			],
+			"hp": {
+				"average": 150,
+				"formula": "20d10 + 40"
+			},
+			"speed": {
+				"walk": 5,
+				"fly": 40
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 11,
+			"dex": 16,
+			"con": 14,
+			"int": 23,
+			"wis": 14,
+			"cha": 22,
+			"save": {
+				"con": "+9",
+				"int": "+13",
+				"wis": "+9"
+			},
+			"skill": {
+				"arcana": "+20",
+				"history": "+13",
+				"insight": "+9",
+				"perception": "+16",
+				"religion": "+20"
+			},
+			"senses": [
+				"Truesight 120 ft."
+			],
+			"passive": 26,
+			"resist": [
+				"cold",
+				"lightning"
+			],
+			"immune": [
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"被遺忘者語",
+				"獸人語"
+			],
+			"cr": "21",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"亡語者施展以下一道法術，使用智力作為施法屬性（法術豁免{@dc 21}）："
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB|偵測魔法}",
+						"{@spell Detect Thoughts|XPHB|偵測思想}",
+						"{@spell Dispel Magic|XPHB|解除魔法}",
+						"{@spell Invisibility|XPHB|隱形}",
+						"{@spell Mage Hand|XPHB|法師之手}",
+						"{@spell Prestidigitation|XPHB|魔法伎倆}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Scrying|XPHB|探知術}"
+						],
+						"2e": [
+							"{@spell Animate Dead|XPHB|活化死屍}",
+							"{@spell Dimension Door|XPHB|任意門}",
+							"{@spell Plane Shift|XPHB|位面轉移}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				},
+				{
+					"name": "統御心靈{@recharge 5}",
+					"type": "spellcasting",
+					"headerEntries": [
+						"亡語者施展{@spell Dominate Monster|XPHB|支配怪物}，使用與施法動作相同的施法屬性。"
+					],
+					"recharge": {
+						"5": [
+							"{@spell Dominate Monster|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "bonus",
+					"hidden": [
+						"recharge"
+					],
+					"ENG_name": "Dominate Mind {@recharge 5}"
+				},
+				{
+					"name": "護身魔法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"亡語者施展{@spell Counterspell|XPHB|法術反制}或{@spell Shield|XPHB|護盾術}以響應該法術的觸發條件，使用與施法動作相同的施法屬性。"
+					],
+					"will": [
+						"{@spell Counterspell|XPHB|法術反制}",
+						"{@spell Shield|XPHB|護盾術}"
+					],
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"will"
+					],
+					"ENG_name": "Protective Magic"
+				}
+			],
+			"trait": [
+				{
+					"name": "傳奇抗性（4/日）",
+					"entries": [
+						"亡語者豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (4/Day)"
+				},
+				{
+					"name": "法力護盾",
+					"entries": [
+						"亡語者被一面具有150{@variantrule Hit Points|XPHB|生命值}的魔法力場護盾包圍。每當其將受到傷害時，該護盾改為承受該傷害（在其{@variantrule Resistance|XPHB|抗性}和{@variantrule Immunity|XPHB|免疫}生效之後）。若傷害將護盾降至0生命值，亡語者受到剩餘的所有傷害。護盾受到的{@variantrule Damage|XPHB|傷害}不影響亡語者的{@status Concentration|XPHB|專注}。每當亡語者完成一次{@variantrule Hit Points|XPHB|生命值}或{@variantrule Short Rest|XPHB|短休}，其便將護盾恢復至其{@variantrule Long Rest|XPHB|長休}上限。"
+					],
+					"ENG_name": "Mana Shield"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"若其法力護盾生效，亡語者發動三次暗影箭攻擊。否則，其使用麻痺之觸或寒冰箭發動共計三次攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "麻痺之觸",
+					"entries": [
+						"{@atkr m} 命中{@hit 13}，觸及10尺。{@h}16（{@damage 3d6 + 6}）寒冷傷害，且目標陷入{@condition Paralyzed|XPHB|麻痺}狀態，直至亡語者的下個回合開始。"
+					],
+					"ENG_name": "Paralyzing Touch"
+				},
+				{
+					"name": "暗影箭",
+					"entries": [
+						"{@atkr m,r} 命中{@hit 13}，觸及10尺或射程120尺。{@h}25（{@damage 3d12 + 6}）心靈傷害。"
+					],
+					"ENG_name": "Shadow Bolt"
+				},
+				{
+					"name": "寒冰箭",
+					"entries": [
+						"{@atkr r} 命中{@hit 13}，射程120尺。{@h}19（{@damage 2d12 + 6}）寒冷傷害，且目標陷入{@condition Restrained|XPHB|束縛}狀態，直至亡語者的下個回合開始。"
+					],
+					"ENG_name": "Frostbolt"
+				}
+			],
+			"legendary": [
+				{
+					"name": "枯萎凋零",
+					"entries": [
+						"{@actSave wis} {@dc 21}，以亡語者120尺內可見的一點為中心的20尺半徑{@variantrule Sphere [Area of Effect]|XPHB|球狀}區域內的每名生物。{@actSaveFail} 7（{@damage 2d6}）暗蝕傷害，且目標被詛咒，直至亡語者的下個回合結束。被詛咒的生物每次受到來自亡語者法術或攻擊檢定的傷害時，額外受到{@damage 1d6}暗蝕傷害。{@actSaveSuccess} 僅半傷。{@actSaveSuccessOrFail} 亡語者直至其下個回合開始都無法再執行此動作。"
+					],
+					"ENG_name": "Death and Decay"
+				},
+				{
+					"name": "蝕命傳送（需無法力護盾）",
+					"entries": [
+						"亡語者傳送至多60尺至一處其可見的未佔據空間，且其離開的空間10尺內的每名生物受到11（{@damage 2d10}）暗蝕傷害。"
+					],
+					"ENG_name": "Deathly Teleport (Requires No Mana Shield)"
+				},
+				{
+					"name": "暗影打擊",
+					"entries": [
+						"亡語者發動一次暗影箭攻擊。"
+					],
+					"ENG_name": "Shadow Strike"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"C",
+				"N",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"paralyzed",
+				"restrained"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"invisible"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Lady Deathwhisper"
+		},
+		{
+			"name": "瑪洛加爾領主",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ICC",
+			"page": 59,
+			"size": [
+				"L"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				21
+			],
+			"hp": {
+				"average": 345,
+				"formula": "30d10 + 180"
+			},
+			"speed": {
+				"walk": 5,
+				"fly": 40
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 24,
+			"dex": 21,
+			"con": 23,
+			"int": 14,
+			"wis": 15,
+			"cha": 16,
+			"save": {
+				"wis": "+9",
+				"cha": "+10"
+			},
+			"skill": {
+				"perception": "+16"
+			},
+			"senses": [
+				"Truesight 60 ft."
+			],
+			"passive": 26,
+			"resist": [
+				"piercing"
+			],
+			"immune": [
+				"cold",
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned",
+				"stunned",
+				"unconscious"
+			],
+			"languages": [
+				"通用語",
+				"被遺忘者語",
+				"獸人語"
+			],
+			"cr": "21",
+			"trait": [
+				{
+					"name": "白骨風暴",
+					"entries": [
+						"在瑪洛加爾每個回合結束時，源自瑪洛加爾的10尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物受到10（{@damage 3d6}）揮砍傷害。"
+					],
+					"ENG_name": "Bone Storm"
+				},
+				{
+					"name": "傳奇抗性（4/日）",
+					"entries": [
+						"瑪洛加爾豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (4/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"瑪洛加爾發動一次冰封王座之斧攻擊和兩次軍刀猛刺攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "冰封王座之斧",
+					"entries": [
+						"{@atkr m} 命中{@hit 14}，觸及10尺。{@h}13（{@damage 1d12 + 7}）揮砍傷害外加6（{@damage 1d12}）寒冷傷害，且目標陷入{@condition Prone|XPHB|伏地}狀態。"
+					],
+					"ENG_name": "Axe of the Frozen Throne"
+				},
+				{
+					"name": "軍刀猛刺",
+					"entries": [
+						"{@atkr m} 命中{@hit 14}，觸及20尺。{@h}18（{@damage 2d10 + 7}）揮砍傷害。"
+					],
+					"ENG_name": "Bone Slice"
+				},
+				{
+					"name": "天災領主之刺{@recharge 5}",
+					"entries": [
+						"{@actSave dex} {@dc 21}，源自瑪洛加爾的60尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物。{@actSaveFail} 14（{@damage 4d6}）穿刺傷害，且目標因被困在一根骨刺中而陷入{@condition Restrained|XPHB|束縛}狀態。{@actSaveSuccess} 僅半傷。",
+						"被{@condition Restrained|XPHB|束縛}的生物可以透過摧毀骨刺來獲釋，骨刺是一個大型物件，具有AC 17、HP 25，且{@variantrule Immunity|XPHB|免疫}寒冷、暗蝕、毒素和心靈傷害。"
+					],
+					"ENG_name": "Bone Spike Graveyard {@recharge 5}"
+				}
+			],
+			"legendary": [
+				{
+					"name": "冷焰",
+					"entries": [
+						"{@actSave dex} {@dc 21}，300尺長、10尺寬的{@variantrule Line [Area of Effect]|XPHB|線狀}區域內的每名生物。{@actSaveFail} 16（{@damage 3d10}）寒冷傷害。{@actSaveSuccess} 半傷。{@actSaveSuccessOrFail} 瑪洛加爾直至其下個回合開始都無法再執行此動作。"
+					],
+					"ENG_name": "Coldflame"
+				},
+				{
+					"name": "打擊",
+					"entries": [
+						"瑪洛加爾發動一次冰封王座之斧攻擊。"
+					],
+					"ENG_name": "Strike"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"C",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"prone",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Lord Marrowgar"
+		},
+		{
+			"name": "天災犬",
+			"source": "ICC",
+			"page": 60,
+			"size": [
+				"H"
+			],
+			"type": "construct",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 189,
+				"formula": "18d12 + 72"
+			},
+			"speed": {
+				"walk": 50
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 22,
+			"dex": 14,
+			"con": 19,
+			"int": 3,
+			"wis": 12,
+			"cha": 10,
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 11,
+			"immune": [
+				"lightning",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"cr": "14",
+			"trait": [
+				{
+					"name": "叢集戰術",
+					"entries": [
+						"若天災犬的至少一名盟友位於該生物5尺內且該盟友未處於{@condition Incapacitated|XPHB|無力}狀態，天災犬針對該生物的攻擊檢定具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Pack Tactics"
+				},
+				{
+					"name": "天災惡臭",
+					"entries": [
+						"{@actSave con} {@dc 17}，在源自天災犬的10尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內開始其回合的每名生物。{@actSaveFail} 19（{@damage 3d12}）毒素傷害，且目標陷入{@condition Poisoned|XPHB|中毒}狀態，直至其下個回合開始。"
+					],
+					"ENG_name": "Plague Stench"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"天災犬發動兩次撕裂攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "撕裂",
+					"entries": [
+						"{@atkr m} 命中{@hit 11}，觸及10尺。{@h}20（{@damage 4d6 + 6}）揮砍傷害外加14（{@damage 4d6}）暗蝕傷害。"
+					],
+					"ENG_name": "Rend"
+				},
+				{
+					"name": "毀滅（1/日）",
+					"entries": [
+						"{@actSave con} {@dc 17}，源自天災犬的30尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物。{@actSaveFail} 61（{@damage 7d8 + 30}）暗蝕傷害。{@actSaveSuccess} 半傷。",
+						"被此動作殺死的一名類人生物在天災犬的下個回合開始時作為{@creature Zombie|XMM|喪屍}復生，該喪屍是天災犬及其盟友的盟友。"
+					],
+					"ENG_name": "Decimate (1/Day)"
+				}
+			],
+			"bonus": [
+				{
+					"name": "陰森嚎叫{@recharge 5}",
+					"entries": [
+						"{@actSave wis} {@dc 17}，源自天災犬的60尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物。{@actSaveFail} 14（{@damage 4d6}）心靈傷害，且目標陷入{@condition Frightened|XPHB|恐懼}狀態。目標在其每個回合結束時重複豁免，成功則終止其身上的該效應。1分鐘後，其豁免自動成功。處於{@condition Frightened|XPHB|恐懼}狀態期間，目標在其每個回合中僅可以執行以下事項之一：移動、執行一個動作，或執行一個{@variantrule Bonus Action|XPHB|附贈動作}。{@actSaveSuccess} 僅半傷。"
+					],
+					"ENG_name": "Eerie Howl {@recharge 5}"
+				}
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"I",
+				"N",
+				"S",
+				"Y"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"frightened",
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Plague-Dog"
+		},
+		{
+			"name": "天災工廠軟泥怪",
+			"source": "ICC",
+			"page": 61,
+			"size": [
+				"M"
+			],
+			"type": "ooze",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				7
+			],
+			"hp": {
+				"average": 67,
+				"formula": "9d8 + 27"
+			},
+			"speed": {
+				"walk": 20,
+				"climb": 20
+			},
+			"str": 16,
+			"dex": 5,
+			"con": 16,
+			"int": 1,
+			"wis": 6,
+			"cha": 1,
+			"senses": [
+				"Blindsight 60 ft."
+			],
+			"passive": 8,
+			"immune": [
+				"acid",
+				"cold",
+				"lightning"
+			],
+			"conditionImmune": [
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"grappled",
+				"prone",
+				"restrained"
+			],
+			"cr": "4",
+			"trait": [
+				{
+					"name": "無定形",
+					"entries": [
+						"該泥怪可以穿過窄至1寸的空間而無需為此消耗額外移動力。"
+					],
+					"ENG_name": "Amorphous"
+				},
+				{
+					"name": "腐蝕形態",
+					"entries": [
+						"以近戰攻擊檢定命中軟泥怪的生物受到4（{@damage 1d8}）強酸傷害。若軟泥怪已使用其融合動作，則每有一團額外的融合軟泥怪，該傷害增加4（{@damage 1d8}）。非魔法彈藥在命中軟泥怪並造成任何傷害後立即被摧毀。任何非魔法武器在對軟泥怪造成傷害並與其接觸後，其攻擊檢定立即承受-1的累計減值。若減值達到-5，該武器被摧毀。對該武器施展{@spell Mending|XPHB|修復術}可以移除此減值。",
+						"軟泥怪可以在1分鐘內蝕穿2尺非魔法木材或金屬。"
+					],
+					"ENG_name": "Corrosive Form"
+				},
+				{
+					"name": "蛛行術",
+					"entries": [
+						"軟泥怪可以在難以攀爬的表面上攀爬，包括沿著天花板移動，且無需為此進行屬性檢定。"
+					],
+					"ENG_name": "Spider Climb"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"軟泥怪發動一次黏性偽足攻擊，且其體型每比中型大一級，便可額外發動一次黏性偽足攻擊（至多額外三次攻擊）。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "黏性偽足",
+					"entries": [
+						"{@atkr m} 命中{@hit 5}，觸及5尺。{@h}17（{@damage 4d6 + 3}）強酸傷害，且直至目標的下個回合結束，目標的{@variantrule Speed|XPHB|速度}減少10尺。目標所穿的非魔法護甲為其提供的AC承受-1減值。若該減值使護甲的AC降至10，該護甲被摧毀。對該護甲施展{@spell Mending|XPHB|修復術}可以移除此減值。"
+					],
+					"ENG_name": "Sticky Pseudopod"
+				},
+				{
+					"name": "融合",
+					"entries": [
+						"軟泥怪與其5尺內的另一團天災工廠軟泥怪融合。融合後的軟泥怪體型增大一級（從中型到大型、大型到巨型，或巨型到超巨型[上限]），其在另一團軟泥怪的{@variantrule Initiative|XPHB|先攻}順位行動，且其擁有兩團軟泥怪的{@variantrule Hit Points|XPHB|生命值}總和。"
+					],
+					"ENG_name": "Merge"
+				}
+			],
+			"traitTags": [
+				"Amorphous",
+				"Spider Climb"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"A"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Plagueworks Ooze"
+		},
+		{
+			"name": "凱雷塞斯王子",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ICC",
+			"page": 53,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"elf",
+					"vampire"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 475,
+				"formula": "50d8 + 250"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40,
+				"fly": {
+					"number": 40,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 22,
+			"dex": 18,
+			"con": 20,
+			"int": 19,
+			"wis": 16,
+			"cha": 23,
+			"save": {
+				"str": "+12",
+				"dex": "+10",
+				"wis": "+9",
+				"cha": "+12"
+			},
+			"skill": {
+				"arcana": "+10",
+				"perception": "+15",
+				"stealth": "+10"
+			},
+			"senses": [
+				"Blindsight 120 ft."
+			],
+			"passive": 25,
+			"immune": [
+				"cold",
+				"necrotic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion"
+			],
+			"languages": [
+				"通用語",
+				"被遺忘者語",
+				"獸人語",
+				"薩拉斯語"
+			],
+			"cr": "18",
+			"spellcasting": [
+				{
+					"name": "哈達之慾{@recharge 5}",
+					"type": "spellcasting",
+					"headerEntries": [
+						"凱雷塞斯施展{@spell Hunger of Hadar|XPHB|哈達之慾}（五環版本），無需法術成分並使用魅力作為施法屬性（法術豁免{@dc 20}）。"
+					],
+					"recharge": {
+						"5": [
+							"{@spell Hunger of Hadar|XPHB} (level 5 version)"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"hidden": [
+						"recharge"
+					],
+					"ENG_name": "Hunger of Hadar {@recharge 5}"
+				},
+				{
+					"name": "誘騙",
+					"type": "spellcasting",
+					"headerEntries": [
+						"該吸血鬼施展{@spell Hold Person|XPHB|定身類人}，無需法術成分並使用魅力作為施法屬性（法術豁免{@dc 20}）。直至其下個回合開始，該吸血鬼都無法再執行此動作。"
+					],
+					"legendary": {
+						"1": [
+							"{@spell Hold Person|XPHB|定身類人}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "legendary",
+					"hidden": [
+						"legendary"
+					],
+					"ENG_name": "Beguile"
+				}
+			],
+			"trait": [
+				{
+					"name": "鮮血喚醒",
+					"entries": [
+						"任意時刻，三名吸血鬼中必有一名處於鮮血喚醒的影響下（初始為瓦拉納王子）。處於鮮血喚醒影響下期間，該吸血鬼對所有傷害具有{@variantrule Vulnerability|XPHB|易傷}，且每輪獲得一次額外的傳奇動作使用次數。在瓦拉納每個回合結束時，鮮血喚醒轉移至另一名吸血鬼。擲{@dice 1d6}：擲出1-2時，其轉移至凱雷塞斯王子；擲出3-4時，其轉移至塔達拉姆王子；擲出5-6時，其轉移至瓦拉納王子。若結果指向當前處於鮮血喚醒影響下的吸血鬼，則鮮血喚醒本回合不轉移。"
+					],
+					"ENG_name": "Invocation of Blood"
+				},
+				{
+					"name": "傳奇抗性（3/日）",
+					"entries": [
+						"吸血鬼豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				},
+				{
+					"name": "日照弱點",
+					"entries": [
+						"若吸血鬼在陽光下開始其回合，其受到 20 光耀傷害。若其身處陽光下，其進行的攻擊檢定和屬性檢定具有{@variantrule Disadvantage|XPHB|劣勢}。"
+					],
+					"ENG_name": "Sunlight Weakness"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"凱雷塞斯使用墓穴打擊或影槍發動共計兩次攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "葬送打擊",
+					"entries": [
+						"{@atkr m} 命中{@hit 12}，觸及5尺。{@h}10（{@damage 1d8 + 6}）揮砍傷害外加18（{@damage 4d8}）暗蝕傷害。"
+					],
+					"ENG_name": "Grave Strike"
+				},
+				{
+					"name": "影槍",
+					"entries": [
+						"{@atkr r} 命中{@hit 12}，射程120尺。{@h}22（{@damage 4d10 + 6}）心靈傷害。"
+					],
+					"ENG_name": "Shadow Lance"
+				}
+			],
+			"bonus": [
+				{
+					"name": "猩紅徵收",
+					"entries": [
+						"{@actSave con} {@dc 20}，該吸血鬼30尺內可見的單一生物，且該生物不是構造體或亡靈。{@actSaveFail} 14（{@damage 4d6}）暗蝕傷害。目標的{@variantrule Hit Points|XPHB|生命值}上限減少等於其所受傷害的數值，且該吸血鬼恢復等同該數值的{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Sanguine Drain"
+				}
+			],
+			"legendaryHeader": [
+				"傳奇動作使用次數：3（鮮血喚醒期間為4）。在另一生物的回合結束後，該吸血鬼可以消耗一次使用次數來執行以下動作之一。該吸血鬼在其每個回合開始時恢復所有已消耗的使用次數。"
+			],
+			"legendary": [
+				{
+					"name": "暗影襲",
+					"entries": [
+						"該吸血鬼移動至多等於其{@variantrule Speed|XPHB|速度}一半的距離，並發動一次墓穴打擊或影槍攻擊。"
+					],
+					"ENG_name": "Umbral Strike"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"N",
+				"S",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"A",
+				"C"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"HPR",
+				"MA",
+				"MLW",
+				"RA"
+			],
+			"conditionInflictSpell": [
+				"blinded",
+				"paralyzed"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Prince Keleseth"
+		},
+		{
+			"name": "塔達拉姆王子",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ICC",
+			"page": 53,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"elf",
+					"vampire"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 475,
+				"formula": "50d8 + 250"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40,
+				"fly": {
+					"number": 40,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 22,
+			"dex": 18,
+			"con": 20,
+			"int": 19,
+			"wis": 16,
+			"cha": 23,
+			"save": {
+				"str": "+12",
+				"dex": "+10",
+				"wis": "+9",
+				"cha": "+12"
+			},
+			"skill": {
+				"arcana": "+10",
+				"perception": "+15",
+				"stealth": "+10"
+			},
+			"senses": [
+				"Blindsight 120 ft."
+			],
+			"passive": 25,
+			"immune": [
+				"cold",
+				"necrotic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion"
+			],
+			"languages": [
+				"通用語",
+				"被遺忘者語",
+				"獸人語",
+				"薩拉斯語"
+			],
+			"cr": "18",
+			"spellcasting": [
+				{
+					"name": "誘騙",
+					"type": "spellcasting",
+					"headerEntries": [
+						"該吸血鬼施展{@spell Hold Person|XPHB|定身類人}，無需法術成分並使用魅力作為施法屬性（法術豁免{@dc 20}）。直至其下個回合開始，該吸血鬼都無法再執行此動作。"
+					],
+					"legendary": {
+						"1": [
+							"{@spell Hold Person|XPHB|定身類人}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "legendary",
+					"hidden": [
+						"legendary"
+					],
+					"ENG_name": "Beguile"
+				}
+			],
+			"trait": [
+				{
+					"name": "鮮血喚醒",
+					"entries": [
+						"任意時刻，三名吸血鬼中必有一名處於鮮血喚醒的影響下（初始為瓦拉納王子）。處於鮮血喚醒影響下期間，該吸血鬼對所有傷害具有{@variantrule Vulnerability|XPHB|易傷}，且每輪獲得一次額外的傳奇動作使用次數。在瓦拉納每個回合結束時，鮮血喚醒轉移至另一名吸血鬼。擲{@dice 1d6}：擲出1-2時，其轉移至凱雷塞斯王子；擲出3-4時，其轉移至塔達拉姆王子；擲出5-6時，其轉移至瓦拉納王子。若結果指向當前處於鮮血喚醒影響下的吸血鬼，則鮮血喚醒本回合不轉移。"
+					],
+					"ENG_name": "Invocation of Blood"
+				},
+				{
+					"name": "傳奇抗性（3/日）",
+					"entries": [
+						"吸血鬼豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				},
+				{
+					"name": "日照弱點",
+					"entries": [
+						"若吸血鬼在陽光下開始其回合，其受到 20 光耀傷害。若其身處陽光下，其進行的攻擊檢定和屬性檢定具有{@variantrule Disadvantage|XPHB|劣勢}。"
+					],
+					"ENG_name": "Sunlight Weakness"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"塔達拉姆使用墓穴打擊或幻化烈焰發動共計兩次攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "葬送打擊",
+					"entries": [
+						"{@atkr m} 命中{@hit 12}，觸及5尺。{@h}10（{@damage 1d8 + 6}）揮砍傷害外加18（{@damage 4d8}）暗蝕傷害。"
+					],
+					"ENG_name": "Grave Strike"
+				},
+				{
+					"name": "咒喚熾焰",
+					"entries": [
+						"{@atkr r} 命中{@hit 12}，射程120尺。{@h}22（{@damage 3d10 + 6}）火焰傷害，且源自目標的10尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物受到5（{@damage 1d10}）火焰傷害。"
+					],
+					"ENG_name": "Conjure Flame"
+				},
+				{
+					"name": "閃耀火花{@recharge 5}",
+					"entries": [
+						"{@actSave dex} {@dc 20}，30尺{@variantrule Cone [Area of Effect]|XPHB|錐狀}區域內的每名生物。{@actSaveFail} 31（{@damage 7d8}）火焰傷害，且直至塔達拉姆的下個回合結束，目標的{@variantrule Speed|XPHB|速度}減少10尺。{@actSaveSuccess} 僅半傷。"
+					],
+					"ENG_name": "Glittering Sparks {@recharge 5}"
+				}
+			],
+			"bonus": [
+				{
+					"name": "猩紅徵收",
+					"entries": [
+						"{@actSave con} {@dc 20}，該吸血鬼30尺內可見的單一生物，且該生物不是構造體或亡靈。{@actSaveFail} 14（{@damage 4d6}）暗蝕傷害。目標的{@variantrule Hit Points|XPHB|生命值}上限減少等於其所受傷害的數值，且該吸血鬼恢復等同該數值的{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Sanguine Drain"
+				}
+			],
+			"legendaryHeader": [
+				"傳奇動作使用次數：3（鮮血喚醒期間為4）。在另一生物的回合結束後，該吸血鬼可以消耗一次使用次數來執行以下動作之一。該吸血鬼在其每個回合開始時恢復所有已消耗的使用次數。"
+			],
+			"legendary": [
+				{
+					"name": "暗影襲",
+					"entries": [
+						"該吸血鬼移動至多等於其{@variantrule Speed|XPHB|速度}一半的距離，並發動一次墓穴打擊或幻化烈焰攻擊。"
+					],
+					"ENG_name": "Umbral Strike"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"F",
+				"N",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"HPR",
+				"MA",
+				"RA"
+			],
+			"conditionInflictSpell": [
+				"paralyzed"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Prince Taldaram"
+		},
+		{
+			"name": "瓦拉納王子",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ICC",
+			"page": 53,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"elf",
+					"vampire"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 475,
+				"formula": "50d8 + 250"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40,
+				"fly": {
+					"number": 40,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 22,
+			"dex": 18,
+			"con": 20,
+			"int": 19,
+			"wis": 16,
+			"cha": 23,
+			"save": {
+				"str": "+12",
+				"dex": "+10",
+				"wis": "+9",
+				"cha": "+12"
+			},
+			"skill": {
+				"arcana": "+10",
+				"perception": "+15",
+				"stealth": "+10"
+			},
+			"senses": [
+				"Blindsight 120 ft."
+			],
+			"passive": 25,
+			"immune": [
+				"cold",
+				"necrotic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion"
+			],
+			"languages": [
+				"通用語",
+				"被遺忘者語",
+				"獸人語",
+				"薩拉斯語"
+			],
+			"cr": "18",
+			"spellcasting": [
+				{
+					"name": "誘騙",
+					"type": "spellcasting",
+					"headerEntries": [
+						"該吸血鬼施展{@spell Hold Person|XPHB|定身類人}，無需法術成分並使用魅力作為施法屬性（法術豁免{@dc 20}）。直至其下個回合開始，該吸血鬼都無法再執行此動作。"
+					],
+					"legendary": {
+						"1": [
+							"{@spell Hold Person|XPHB|定身類人}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "legendary",
+					"hidden": [
+						"legendary"
+					],
+					"ENG_name": "Beguile"
+				}
+			],
+			"trait": [
+				{
+					"name": "鮮血喚醒",
+					"entries": [
+						"任意時刻，三名吸血鬼中必有一名處於鮮血喚醒的影響下（初始為瓦拉納王子）。處於鮮血喚醒影響下期間，該吸血鬼對所有傷害具有{@variantrule Vulnerability|XPHB|易傷}，且每輪獲得一次額外的傳奇動作使用次數。在瓦拉納每個回合結束時，鮮血喚醒轉移至另一名吸血鬼。擲{@dice 1d6}：擲出1-2時，其轉移至凱雷塞斯王子；擲出3-4時，其轉移至塔達拉姆王子；擲出5-6時，其轉移至瓦拉納王子。若結果指向當前處於鮮血喚醒影響下的吸血鬼，則鮮血喚醒本回合不轉移。"
+					],
+					"ENG_name": "Invocation of Blood"
+				},
+				{
+					"name": "傳奇抗性（3/日）",
+					"entries": [
+						"吸血鬼豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (3/Day)"
+				},
+				{
+					"name": "日照弱點",
+					"entries": [
+						"若吸血鬼在陽光下開始其回合，其受到 20 光耀傷害。若其身處陽光下，其進行的攻擊檢定和屬性檢定具有{@variantrule Disadvantage|XPHB|劣勢}。"
+					],
+					"ENG_name": "Sunlight Weakness"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"瓦拉納使用墓穴打擊或震盪渦流發動共計兩次攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "葬送打擊",
+					"entries": [
+						"{@atkr m} 命中{@hit 12}，觸及5尺。{@h}10（{@damage 1d8 + 6}）揮砍傷害外加18（{@damage 4d8}）暗蝕傷害。"
+					],
+					"ENG_name": "Grave Strike"
+				},
+				{
+					"name": "震盪渦流",
+					"entries": [
+						"{@atkr r} 命中{@hit 12}，射程120尺。{@h}22（{@damage 3d10 + 6}）閃電傷害，且目標被瓦拉納直線推離5尺並陷入{@condition Prone|XPHB|伏地}狀態。"
+					],
+					"ENG_name": "Shock Vortex"
+				},
+				{
+					"name": "動力炸彈{@recharge 5}",
+					"entries": [
+						"瓦拉納創造一枚動力炸彈——一個AC 13且{@variantrule Immunity|XPHB|免疫}所有傷害的小型物件——置於其120尺內可見的一處未佔據空間中，離地20尺。每輪在瓦拉納的回合開始時，炸彈向地面漂移10尺。若其被一次攻擊檢定命中，其上升5尺。若其抵達地面，其爆炸併產生以下效應。{@actSave dex} {@dc 20}，以炸彈為中心的60尺半徑{@variantrule Sphere [Area of Effect]|XPHB|球狀}區域內瓦拉納選定的每名生物。{@actSaveFail} 42（{@damage 12d6}）力場傷害，且目標被炸彈直線推離10尺並陷入{@condition Prone|XPHB|伏地}狀態。{@actSaveSuccess} 僅半傷。",
+						"當三名吸血鬼全部{@variantrule Hit Points|XPHB|生命值}降至0時，該炸彈消失。"
+					],
+					"ENG_name": "Kinetic Bomb {@recharge 5}"
+				}
+			],
+			"bonus": [
+				{
+					"name": "猩紅徵收",
+					"entries": [
+						"{@actSave con} {@dc 20}，該吸血鬼30尺內可見的單一生物，且該生物不是構造體或亡靈。{@actSaveFail} 14（{@damage 4d6}）暗蝕傷害。目標的{@variantrule Hit Points|XPHB|生命值}上限減少等於其所受傷害的數值，且該吸血鬼恢復等同該數值的{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Sanguine Drain"
+				}
+			],
+			"legendaryHeader": [
+				"傳奇動作使用次數：3（鮮血喚醒期間為4）。在另一生物的回合結束後，該吸血鬼可以消耗一次使用次數來執行以下動作之一。該吸血鬼在其每個回合開始時恢復所有已消耗的使用次數。"
+			],
+			"legendary": [
+				{
+					"name": "暗影襲",
+					"entries": [
+						"該吸血鬼移動至多等於其{@variantrule Speed|XPHB|速度}一半的距離，並發動一次墓穴打擊或震盪渦流攻擊。"
+					],
+					"ENG_name": "Umbral Strike"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"L",
+				"N",
+				"O",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"HPR",
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"conditionInflictSpell": [
+				"paralyzed"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Prince Valanar"
+		},
+		{
+			"name": "普崔塞德教授（階段一）",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ICC",
+			"page": 62,
+			"size": [
+				"L"
+			],
+			"type": "undead",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				17
+			],
+			"hp": {
+				"average": 299,
+				"formula": "26d10 + 156"
+			},
+			"speed": {
+				"walk": 20
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 22,
+			"dex": 16,
+			"con": 23,
+			"int": 22,
+			"wis": 21,
+			"cha": 14,
+			"save": {
+				"dex": "+9",
+				"int": "+12",
+				"wis": "+11"
+			},
+			"skill": {
+				"arcana": "+18",
+				"perception": "+11"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 21,
+			"immune": [
+				"acid",
+				"cold",
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"被遺忘者語",
+				"獸人語"
+			],
+			"cr": "20",
+			"trait": [
+				{
+					"name": "傳奇抗性（4/日）",
+					"entries": [
+						"普崔塞德豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (4/Day)"
+				},
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"普崔塞德對抗法術和其他魔法效應時進行的豁免檢定具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Magic Resistance"
+				},
+				{
+					"name": "不穩定突變（1/日）",
+					"entries": [
+						"當普崔塞德被降至0{@variantrule Hit Points|XPHB|生命值}時，其當前{@variantrule Hit Points|XPHB|生命值}總數重置為299{@variantrule Hit Points|XPHB|生命值}，且其恢復傳奇抗性的所有已消耗使用次數。此外，其背後長出兩條額外的手臂，失去以下動作的使用權，並獲得\"{@creature Professor Putricide, Phase 2|ICC|動作——階段二}\"中動作的使用權。在不穩定突變觸發後擊敗普崔塞德教授，授予角色額外25,000 XP（總計50,000 XP）。"
+					],
+					"ENG_name": "Unstable Mutation (1/Day)"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"普崔塞德教授發動兩次猛砸攻擊，並在可用時使用生成不穩定的軟泥怪或生成毒氣之雲。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "猛砸",
+					"entries": [
+						"{@atkr m} 命中{@hit 12}，觸及5尺。{@h}19（{@damage 2d12 + 6}）揮砍傷害。"
+					],
+					"ENG_name": "Thrash"
+				},
+				{
+					"name": "生成不穩定的軟泥怪（在毒氣之雲被摧毀時恢復）",
+					"entries": [
+						"普崔塞德創造一團不穩定的軟泥怪——一個AC 9、HP 90，且對強酸、寒冷和火焰傷害具有{@variantrule Resistance|XPHB|抗性}的小型物件——置於其15尺內可見的一處未佔據空間中。該軟泥怪選定其60尺內的一名隨機敵人；該目標被詛咒，直至軟泥怪被摧毀。被詛咒生物的{@variantrule Speed|XPHB|速度}變為0。在普崔塞德的回合結束時，被詛咒的生物受到35（{@damage 10d6}）強酸傷害，且軟泥怪向其直線移動10尺。當軟泥怪進入被詛咒生物5尺內的空間時，其釋放一陣酸液噴濺，產生以下效應。{@actSave dex} {@dc 20}，源自軟泥怪的20尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物。{@actSaveFail} 78（{@damage 12d12}）強酸傷害，且目標被軟泥怪直線推離10尺。{@actSaveSuccess} 僅半傷。{@actSaveSuccessOrFail} 軟泥怪詛咒其60尺內的一名新的隨機敵人並重復此過程，直至其被摧毀。"
+					],
+					"ENG_name": "Spawn Volatile Ooze (Recharges When a Gas Cloud Is Destroyed)"
+				},
+				{
+					"name": "生成毒氣之雲（在不穩定的軟泥怪被摧毀時恢復）",
+					"entries": [
+						"普崔塞德創造一團毒氣之雲——一個AC 9、HP 45，且對所有傷害具有{@variantrule Resistance|XPHB|抗性}的小型物件——置於其15尺內的一處未佔據空間中。該毒氣之雲選定其60尺內的一名隨機敵人；該目標被詛咒，直至毒氣之雲被摧毀。在普崔塞德的回合結束時，被詛咒的生物受到56（{@damage 16d6}）毒素傷害，且毒氣之雲向其直線移動10尺。從第二輪起，此毒素傷害每輪減少7（{@dice 2d6}），至低為7（{@damage 2d6}）。當毒氣之雲進入被詛咒生物5尺內的空間時，其釋放一陣毒液噴濺，產生以下效應。{@actSave dex} {@dc 20}，源自毒氣之雲的120尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物。{@actSaveFail} 被詛咒生物本輪每受到一骰{@damage d6}的傷害，目標便受到10毒素傷害。{@actSaveSuccess} 半傷。{@actSaveSuccessOrFail} 毒氣之雲詛咒其60尺內的一名新的隨機敵人並重復此過程，直至其被摧毀。"
+					],
+					"ENG_name": "Spawn Gas Cloud (Recharges When a Volatile Ooze Is Destroyed)"
+				}
+			],
+			"bonus": [
+				{
+					"name": "蹦跳熱情",
+					"entries": [
+						"普崔塞德移動至多等於其{@variantrule Speed|XPHB|速度}的距離，且不會引發{@action Opportunity Attack|XPHB|借機攻擊}。"
+					],
+					"ENG_name": "Bounding Enthusiasm"
+				},
+				{
+					"name": "畸變軟泥",
+					"entries": [
+						"普崔塞德將一瓶畸變軟泥擲向其60尺內可見的地面一點，瓶子在那裡破碎並在地面鋪展成一個5尺半徑的圓形。在區域內開始其回合或在一回合內首次進入該區域的生物須承受以下效應。{@actSave con} {@dc 20}。{@actSaveFail} 44（{@damage 8d10}）毒素傷害。{@actSaveSuccess} 僅半傷。一名生物每回合僅進行一次此豁免。",
+						"該泥潭持續10分鐘，且在普崔塞德的回合開始時，該泥潭擴張，其半徑增加5尺（至多30尺）。"
+					],
+					"ENG_name": "Mutated Slime"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"A",
+				"I",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"CUR",
+				"MA"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Professor Putricide, Phase 1"
+		},
+		{
+			"name": "普崔塞德教授（階段二）",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ICC",
+			"page": 62,
+			"_copy": {
+				"name": "Professor Putricide, Phase 1",
+				"source": "ICC",
+				"_mod": {
+					"trait": {
+						"mode": "removeArr",
+						"names": "Unstable Mutation (1/Day)"
+					},
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Multiattack",
+							"items": {
+								"name": "多重攻擊",
+								"entries": [
+									"普崔塞德教授發動四次猛砸攻擊。"
+								],
+								"ENG_name": "Multiattack"
+							}
+						},
+						{
+							"mode": "removeArr",
+							"names": [
+								"Spawn Volatile Ooze (Recharges When a Gas Cloud Is Destroyed)",
+								"Spawn Gas Cloud (Recharges When a Volatile Ooze Is Destroyed)"
+							]
+						},
+						{
+							"mode": "appendArr",
+							"items": {
+								"name": "鍊金轟炸{@recharge 4}",
+								"entries": [
+									"普崔塞德教授擲出以下一種鍊金物質：",
+									{
+										"type": "list",
+										"style": "list-hang-notitle",
+										"items": [
+											{
+												"type": "item",
+												"name": "窒息毒氣彈",
+												"entries": [
+													"普崔塞德擲出三個瓶子，分別在其60尺內可見的不同地點爆炸。{@actSave con} {@dc 20}，以該地點為中心的10尺半徑{@variantrule Sphere [Area of Effect]|XPHB|球狀}區域內的每名生物。{@actSaveFail} 21（{@damage 6d6}）毒素傷害，且目標陷入{@condition Poisoned|XPHB|中毒}狀態，直至普崔塞德的下個回合結束。{@actSaveSuccess} 僅半傷。"
+												],
+												"ENG_name": "Choking Gas Bombs"
+											},
+											{
+												"type": "item",
+												"name": "可延展黏液",
+												"entries": [
+													"普崔塞德擲出黏彈的軟泥。{@atkr r} 命中{@hit 12}，射程60尺。{@h}19（{@damage 3d8 + 6}）強酸傷害，且目標在其下個回合僅可以執行一個動作或一個{@variantrule Bonus Action|XPHB|附贈動作}，但不能同時執行二者。{@hom} 該軟泥彈跳至前一個目標60尺內的另一目標，重複此攻擊直至其命中或失手三次。"
+												],
+												"ENG_name": "Malleable Goo"
+											}
+										]
+									}
+								],
+								"ENG_name": "Alchemical Assault {@recharge 4}"
+							}
+						}
+					]
+				}
+			},
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Professor Putricide, Phase 2"
+		},
+		{
+			"name": "毒膿恐魔",
+			"source": "ICC",
+			"page": 64,
+			"size": [
+				"H"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				9
+			],
+			"hp": {
+				"average": 152,
+				"formula": "16d10 + 64"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 19,
+			"dex": 8,
+			"con": 19,
+			"int": 3,
+			"wis": 8,
+			"cha": 5,
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 9,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"理解被遺忘者語和巨人語，但不會說"
+			],
+			"cr": "7",
+			"trait": [
+				{
+					"name": "凋零炸彈",
+					"entries": [
+						"該恐魔在死亡時爆炸。{@actSave con} {@dc 15}，源自該恐魔的15尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物。{@actSaveFail} 28（{@damage 8d6}）火焰傷害。{@actSaveSuccess} 半傷。"
+					],
+					"ENG_name": "Blight Bomb"
+				},
+				{
+					"name": "瘟疫膿皰",
+					"entries": [
+						"以近戰攻擊檢定命中該恐魔的生物受到7（{@damage 2d6}）毒素傷害。"
+					],
+					"ENG_name": "Pestilent Pustules"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"該恐魔發動兩次猛擊攻擊並使用噴吐瘟疫。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "猛擊",
+					"entries": [
+						"{@atkr m} 命中{@hit 7}，觸及10尺。{@h}13（{@damage 2d8 + 4}）鈍擊傷害。"
+					],
+					"ENG_name": "Slam"
+				},
+				{
+					"name": "噴吐瘟疫",
+					"entries": [
+						"{@actSave dex} {@dc 15}，該恐魔30尺內可見的單一生物。{@actSaveFail} 10（{@damage 3d6}）毒素傷害，且目標陷入{@condition Poisoned|XPHB|中毒}狀態，直至其下個回合結束。"
+					],
+					"ENG_name": "Spit Plague"
+				}
+			],
+			"traitTags": [
+				"Death Burst"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"CS",
+				"GI"
+			],
+			"damageTags": [
+				"B",
+				"F",
+				"I"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Pustulating Horror"
+		},
+		{
+			"name": "腐面",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ICC",
+			"page": 64,
+			"size": [
+				"H"
+			],
+			"type": "construct",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 250,
+				"formula": "20d12 + 120"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 23,
+			"dex": 13,
+			"con": 22,
+			"int": 8,
+			"wis": 12,
+			"cha": 10,
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 11,
+			"immune": [
+				"acid",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"被遺忘者語",
+				"獸人語"
+			],
+			"cr": "17",
+			"trait": [
+				{
+					"name": "傳奇抗性（4/日）",
+					"entries": [
+						"腐面豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (4/Day)"
+				},
+				{
+					"name": "軟泥洪流",
+					"entries": [
+						"酸性軟泥從腐面房間中的大桶裡滴落，在地面形成一灘不斷擴大的泥潭。在每場戰鬥中腐面的首個回合開始時，該泥潭的區域是一個以房間某面牆上一點為中心的10尺半徑圓形。在腐面每個回合開始時，該區域的半徑擴大5尺。在一回合內首次進入該區域或在該區域內開始其回合的生物受到10（{@damage 3d6}）強酸傷害，且直至其下個回合開始，其{@variantrule Speed|XPHB|速度}減少10尺。"
+					],
+					"ENG_name": "Ooze Flood"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"腐面發動兩次爪擊攻擊並使用軟泥噴射。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atkr m} 命中{@hit 12}，觸及10尺。{@h}39（{@damage 6d10 + 6}）揮砍傷害外加14（{@damage 4d6}）強酸傷害。"
+					],
+					"ENG_name": "Claw"
+				},
+				{
+					"name": "軟泥噴射",
+					"entries": [
+						"{@actSave dex} {@dc 20}，60尺{@variantrule Cone [Area of Effect]|XPHB|錐狀}區域內的每名生物。{@actSaveFail} 26（{@damage 4d12}）強酸傷害。該生物在其每個回合開始時再次受到該傷害，直至軟泥被刮除（需要一個動作）。{@actSaveSuccess} 僅半傷。"
+					],
+					"ENG_name": "Slime Spray"
+				}
+			],
+			"bonus": [
+				{
+					"name": "畸變感染{@recharge 5}",
+					"entries": [
+						"{@actSave con} {@dc 20}，腐面60尺內可見的單一生物。{@actSaveFail} 目標陷入{@condition Poisoned|XPHB|中毒}狀態。處於{@condition Poisoned|XPHB|中毒}狀態期間，目標無法恢復{@variantrule Hit Points|XPHB|生命值}，且在其每個回合開始時受到21（{@damage 6d6}）強酸傷害，並在其每個回合結束時重複豁免，成功則終止其身上的該效應。1分鐘後，其豁免自動成功。",
+						"當目標身上的{@condition Poisoned|XPHB|中毒}狀態終止時，在該生物5尺內的一處未佔據空間中生成一團{@creature Plagueworks Ooze|ICC|天災工廠軟泥怪}。該軟泥怪在腐面之後立即以相同的{@variantrule Initiative|XPHB|先攻}順位行動。該軟泥怪戰鬥直至被摧毀。"
+					],
+					"ENG_name": "Mutated Infection {@recharge 5}"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"A",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Rotface"
+		},
+		{
+			"name": "王座僕從",
+			"source": "ICC",
+			"page": 65,
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"lich",
+					"wizard"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				17
+			],
+			"hp": {
+				"average": 195,
+				"formula": "30d10 + 30"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 10,
+			"dex": 14,
+			"con": 12,
+			"int": 20,
+			"wis": 15,
+			"cha": 16,
+			"save": {
+				"wis": "+6"
+			},
+			"skill": {
+				"arcana": "+13",
+				"perception": "+6"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 16,
+			"resist": [
+				"cold"
+			],
+			"immune": [
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"被遺忘者語",
+				"獸人語"
+			],
+			"cr": "12",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"王座僕從施展以下一道法術，使用智力作為施法屬性（法術豁免{@dc 17}）："
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB|偵測魔法}",
+						"{@spell Detect Thoughts|XPHB|偵測思想}",
+						"{@spell Light|XPHB|光亮術}",
+						"{@spell Mage Hand|XPHB|法師之手}",
+						"{@spell Prestidigitation|XPHB|魔法伎倆}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Cone of Cold|XPHB|寒冰錐}（九環版本）",
+							"{@spell Fly|XPHB|飛行術}",
+							"{@spell Scrying|XPHB|探知術}",
+							"{@spell Teleport|XPHB|傳送術}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				},
+				{
+					"name": "迷蹤步 (3/日)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"王座僕從施展{@spell Misty Step|XPHB|迷蹤步}，使用與施法動作相同的施法屬性。"
+					],
+					"daily": {
+						"3": [
+							"{@spell Misty Step|XPHB|迷蹤步}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "bonus",
+					"hidden": [
+						"daily"
+					],
+					"ENG_name": "Misty Step (3/Day)"
+				},
+				{
+					"name": "護身魔法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"王座僕從施展{@spell Counterspell|XPHB|法術反制}或{@spell Shield|XPHB|護盾術}以響應該法術的觸發條件，使用與施法動作相同的施法屬性。"
+					],
+					"will": [
+						"{@spell Counterspell|XPHB|法術反制}",
+						"{@spell Shield|XPHB|護盾術}"
+					],
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"will"
+					],
+					"ENG_name": "Protective Magic"
+				}
+			],
+			"trait": [
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"王座僕從對抗法術和其他魔法效應時進行的豁免檢定具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Magic Resistance"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"王座僕從發動三次寒冰迸發攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "寒冰迸發",
+					"entries": [
+						"{@atkr m,r} 命中{@hit 9}，觸及5尺或射程120尺。{@h}27（{@damage 4d10 + 5}）寒冷傷害。"
+					],
+					"ENG_name": "Icy Burst"
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"C"
+			],
+			"damageTagsSpell": [
+				"C",
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Servant of the Throne"
+		},
+		{
+			"name": "辛達苟薩",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ICC",
+			"page": 66,
+			"size": [
+				"G"
+			],
+			"type": "undead",
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				20
+			],
+			"hp": {
+				"average": 367,
+				"formula": "21d20 + 147"
+			},
+			"speed": {
+				"walk": 40,
+				"burrow": 30,
+				"fly": 80
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 25,
+			"dex": 10,
+			"con": 24,
+			"int": 20,
+			"wis": 15,
+			"cha": 21,
+			"save": {
+				"dex": "+7"
+			},
+			"skill": {
+				"perception": "+16",
+				"stealth": "+7"
+			},
+			"senses": [
+				"Blindsight 60 ft.",
+				"Darkvision 120 ft."
+			],
+			"passive": 26,
+			"immune": [
+				"cold",
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"龍語",
+				"被遺忘者語",
+				"獸人語"
+			],
+			"cr": "23",
+			"spellcasting": [
+				{
+					"name": "狂咒（2/日）",
+					"type": "spellcasting",
+					"headerEntries": [
+						"辛達苟薩施展{@spell Counterspell|XPHB|法術反制}以響應該法術的觸發條件，使用魅力作為施法屬性（豁免{@dc 20}）。若目標對抗該法術的豁免失敗，其受到13（{@damage 2d12}）心靈傷害。"
+					],
+					"daily": {
+						"2": [
+							"{@spell Counterspell|XPHB|法術反制}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "reaction",
+					"hidden": [
+						"daily"
+					],
+					"ENG_name": "Unchained Magic (2/Day)"
+				}
+			],
+			"trait": [
+				{
+					"name": "傳奇抗性（4/日）",
+					"entries": [
+						"辛達苟薩豁免失敗時，可以將其改為豁免成功。"
+					],
+					"ENG_name": "Legendary Resistance (4/Day)"
+				},
+				{
+					"name": "生機抑止",
+					"entries": [
+						"辛達苟薩60尺內的生物無法恢復{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Life Suppression"
+				},
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"辛達苟薩對抗法術和其他魔法效應時進行的豁免檢定具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Magic Resistance"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"辛達苟薩使用撕裂或冰冷之握髮動共計三次攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "撕裂",
+					"entries": [
+						"{@atkr m} 命中{@hit 14}，觸及10尺。{@h}18（{@damage 2d10 + 7}）揮砍傷害外加4（{@damage 1d8}）寒冷傷害。"
+					],
+					"ENG_name": "Rend"
+				},
+				{
+					"name": "冰結之握",
+					"entries": [
+						"{@atkr r} 命中{@hit 12}，射程60尺。{@h}21（{@damage 6d6}）寒冷傷害，且目標被辛達苟薩直線拉近至多40尺。"
+					],
+					"ENG_name": "Icy Grip"
+				},
+				{
+					"name": "冰霜吐息{@recharge 5}",
+					"entries": [
+						"{@actSave con} {@dc 22}，60尺{@variantrule Cone [Area of Effect]|XPHB|錐狀}區域內的每名生物。{@actSaveFail} 52（{@damage 8d12}）寒冷傷害，且目標陷入{@condition Restrained|XPHB|束縛}狀態，直至辛達苟薩的下個回合結束。{@actSaveSuccess} 僅半傷。"
+					],
+					"ENG_name": "Frost Breath {@recharge 5}"
+				},
+				{
+					"name": "寒冰墳墓（1/日，僅在其浴血時可用）",
+					"entries": [
+						"{@actSave con} {@dc 22}，辛達苟薩60尺內可見的兩名生物。{@actSaveFail} 27（{@damage 6d8}）寒冷傷害，且目標被封入冰墓。{@actSaveSuccess} 僅半傷。",
+						"被封入冰墓的生物正在窒息，陷入{@condition Restrained|XPHB|束縛}和{@condition Stunned|XPHB|震懾}狀態，對墓外的攻擊和其他效應而言處於{@variantrule Cover|XPHB|掩護}，且在其每個回合開始時受到24（{@damage 7d6}）寒冷傷害。冰墓是一個大型物件，具有AC 13、HP 27，且{@variantrule Immunity|XPHB|免疫}寒冷、毒素和心靈傷害。打破冰墓將終止被封入冰墓的生物身上的該效應。"
+					],
+					"ENG_name": "Ice Tombs (1/Day, Usable Only While Bloodied)"
+				}
+			],
+			"bonus": [
+				{
+					"name": "嚴寒",
+					"entries": [
+						"{@actSave con} {@dc 22}，20尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物。{@actSaveFail} 19（{@damage 3d12}）寒冷傷害。"
+					],
+					"ENG_name": "Blistering Cold"
+				}
+			],
+			"legendary": [
+				{
+					"name": "猛撲",
+					"entries": [
+						"辛達苟薩移動至多等於其{@variantrule Speed|XPHB|速度}一半的距離，並發動一次撕裂或冰冷之握攻擊。"
+					],
+					"ENG_name": "Pounce"
+				},
+				{
+					"name": "恐懼咆哮",
+					"entries": [
+						"{@actSave wis} {@dc 20}，源自辛達苟薩的30尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物。{@actSaveFail} 11（{@damage 2d10}）心靈傷害，且目標陷入{@condition Frightened|XPHB|恐懼}狀態，直至其下個回合結束。{@actSaveSuccessOrFail} 辛達苟薩直至其下個回合開始都無法再執行此動作。"
+					],
+					"ENG_name": "Terrifying Roar"
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR"
+			],
+			"damageTags": [
+				"C",
+				"S",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"frightened",
+				"restrained",
+				"stunned"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"constitution"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Sindragosa"
+		},
+		{
+			"name": "女武神席瓦娜",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ICC",
+			"page": 67,
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"angel"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				19
+			],
+			"hp": {
+				"average": 262,
+				"formula": "21d10 + 147"
+			},
+			"speed": {
+				"walk": 40,
+				"fly": {
+					"number": 120,
+					"condition": "(懸浮)"
+				},
+				"canHover": true
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 24,
+			"dex": 20,
+			"con": 24,
+			"int": 19,
+			"wis": 22,
+			"cha": 25,
+			"save": {
+				"str": "+12",
+				"con": "+12",
+				"wis": "+11",
+				"cha": "+12"
+			},
+			"skill": {
+				"perception": "+11"
+			},
+			"senses": [
+				"Truesight 120 ft."
+			],
+			"passive": 21,
+			"resist": [
+				"radiant"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened"
+			],
+			"languages": [
+				"全部; 心靈感應 120 尺"
+			],
+			"cr": "16",
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"女武神席瓦娜施展以下一道法術，無需材料成分並使用魅力作為施法屬性："
+					],
+					"will": [
+						"{@spell Detect Evil and Good|XPHB|偵測善惡}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Commune|XPHB|通神術}",
+							"{@spell Create Undead|XPHB|喚起死靈}（可在一天中的任何時刻使用）"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"女武神席瓦娜對抗法術和其他魔法效應時進行的豁免檢定具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Magic Resistance"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"女武神席瓦娜發動三次骨矛攻擊，或使用兩次神聖湧動。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "骨矛",
+					"entries": [
+						"{@atkr m,r} 命中{@hit 12}，觸及10尺或射程60/120尺。{@h}14（{@damage 2d6 + 7}）穿刺傷害外加18（{@damage 4d8}）寒冷傷害。"
+					],
+					"ENG_name": "Bone Spear"
+				},
+				{
+					"name": "神聖湧動",
+					"entries": [
+						"{@actSave dex} {@dc 20}，以女武神席瓦娜120尺內可見的一點為中心的20尺半徑{@variantrule Sphere [Area of Effect]|XPHB|球狀}區域內的每名敵人。{@actSaveFail} 24（{@damage 7d6}）暗蝕傷害。{@actSaveSuccess} 半傷。"
+					],
+					"ENG_name": "Divine Surge"
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"TP",
+				"XX"
+			],
+			"damageTags": [
+				"C",
+				"N",
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"MLW",
+				"RA",
+				"RCH",
+				"THW"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Sister Svalna"
+		},
+		{
+			"name": "被詛咒者",
+			"source": "ICC",
+			"page": 68,
+			"size": [
+				"L"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 170,
+				"formula": "20d10 + 60"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 21,
+			"dex": 16,
+			"con": 17,
+			"int": 13,
+			"wis": 15,
+			"cha": 9,
+			"save": {
+				"dex": "+7",
+				"con": "+7",
+				"wis": "+6"
+			},
+			"skill": {
+				"perception": "+6",
+				"stealth": "+7"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 16,
+			"resist": [
+				"cold"
+			],
+			"immune": [
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned"
+			],
+			"languages": [
+				"理解被遺忘者語，但不會說"
+			],
+			"cr": "12",
+			"trait": [
+				{
+					"name": "血腥狂怒",
+					"entries": [
+						"被詛咒者對{@variantrule Advantage|XPHB|優勢}未滿的生物進行攻擊檢定時具有{@variantrule Hit Points|XPHB|生命值}。"
+					],
+					"ENG_name": "Blood Frenzy"
+				},
+				{
+					"name": "碎骨爆裂",
+					"entries": [
+						"被詛咒者在死亡時爆炸。{@actSave con} {@dc 15}，源自被詛咒者的15尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內的每名生物。{@actSaveFail} 32（{@damage 5d12}）暗蝕傷害。{@actSaveSuccess} 半傷。"
+					],
+					"ENG_name": "Shattered Bones"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"被詛咒者發動兩次鐮爪攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "鐮爪",
+					"entries": [
+						"{@atkr m} 命中{@hit 9}，觸及15尺。{@h}21（{@damage 3d10 + 5}）揮砍傷害外加9（{@damage 2d8}）暗蝕傷害。"
+					],
+					"ENG_name": "Scything Claw"
+				}
+			],
+			"reaction": [
+				{
+					"name": "死亡觸及",
+					"entries": [
+						"{@actTrigger} 一名生物進入被詛咒者15尺內的空間。{@actResponse} 被詛咒者對觸發生物發動一次鐮爪攻擊。"
+					],
+					"ENG_name": "Deadly Reach"
+				}
+			],
+			"traitTags": [
+				"Death Burst"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"CS"
+			],
+			"damageTags": [
+				"N",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "The Damned"
+		},
+		{
+			"name": "提里奧·弗丁",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ICC",
+			"page": 68,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human",
+					"paladin"
+				]
+			},
+			"alignment": [
+				"L",
+				"G"
+			],
+			"ac": [
+				18
+			],
+			"hp": {
+				"average": 202,
+				"formula": "27d10 + 81"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 20,
+			"dex": 16,
+			"con": 16,
+			"int": 15,
+			"wis": 16,
+			"cha": 18,
+			"save": {
+				"str": "+10",
+				"con": "+8",
+				"wis": "+8",
+				"cha": "+9"
+			},
+			"skill": {
+				"athletics": "+10",
+				"perception": "+8",
+				"persuasion": "+9",
+				"religion": "+7"
+			},
+			"passive": 18,
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"通用語",
+				"矮人語",
+				"獸人語"
+			],
+			"cr": "15",
+			"gear": [
+				"ashbringer|wow",
+				"plate armor|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "施法",
+					"type": "spellcasting",
+					"headerEntries": [
+						"提裡奧施展以下一道法術，使用魅力作為施法屬性（法術豁免{@dc 17}）："
+					],
+					"daily": {
+						"1e": [
+							"{@spell Daylight|XPHB|晝明術}",
+							"{@spell Dispel Evil and Good|XPHB|驅逐善惡}",
+							"{@spell Greater Restoration|XPHB|高等復原術}",
+							"{@spell Phantom Steed|XPHB|魅影駒}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"ENG_name": "Spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "勇毅靈光",
+					"entries": [
+						"身處源自提裡奧的30尺{@variantrule Emanation [Area of Effect]|XPHB|光環}區域內期間，提裡奧選定的生物對{@condition Charmed|XPHB|魅惑}和{@condition Frightened|XPHB|恐懼}狀態具有{@variantrule Immunity|XPHB|免疫}。"
+					],
+					"ENG_name": "Aura of Bravery"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"提裡奧發動三次灰燼使者攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "灰燼使者",
+					"entries": [
+						"{@atkr m} 命中{@hit 13}，觸及5尺。{@h}15（{@damage 2d6 + 8}）揮砍傷害外加27（{@damage 5d10}）火焰傷害。若目標為亡靈，其額外受到11（{@damage 2d10}）火焰傷害。"
+					],
+					"ENG_name": "Ashbringer"
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"F",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MA"
+			],
+			"savingThrowForcedSpell": [
+				"charisma"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Tirion Fordring"
+		},
+		{
+			"name": "瓦格里傳令官",
+			"source": "ICC",
+			"page": 69,
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"angel"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				18
+			],
+			"hp": {
+				"average": 168,
+				"formula": "16d10 + 80"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 60
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 23,
+			"dex": 18,
+			"con": 20,
+			"int": 19,
+			"wis": 20,
+			"cha": 23,
+			"save": {
+				"int": "+9",
+				"wis": "+10",
+				"cha": "+11"
+			},
+			"skill": {
+				"insight": "+10",
+				"perception": "+15",
+				"religion": "+9"
+			},
+			"senses": [
+				"Truesight 120 ft."
+			],
+			"passive": 25,
+			"immune": [
+				"cold",
+				"necrotic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened"
+			],
+			"languages": [
+				"所有"
+			],
+			"cr": "14",
+			"trait": [
+				{
+					"name": "飛掠",
+					"entries": [
+						"瓦格里飛行離開敵人的觸及範圍時不會引發{@action Opportunity Attack|XPHB|借機攻擊}。"
+					],
+					"ENG_name": "Flyby"
+				},
+				{
+					"name": "魔法抗性",
+					"entries": [
+						"瓦格里對抗法術和其他魔法效應時進行的豁免檢定具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Magic Resistance"
+				}
+			],
+			"action": [
+				{
+					"name": "多重攻擊",
+					"entries": [
+						"瓦格里發動兩次收割者之矛攻擊。"
+					],
+					"ENG_name": "Multiattack"
+				},
+				{
+					"name": "收割者之矛",
+					"entries": [
+						"{@atkr m,r} 命中{@hit 11}，觸及10尺或射程40/120尺。{@h}13（{@damage 2d6 + 6}）穿刺傷害外加27（{@damage 6d8}）暗蝕傷害。"
+					],
+					"ENG_name": "Reaper's Spear"
+				}
+			],
+			"bonus": [
+				{
+					"name": "被切割的精魄{@recharge 4}",
+					"entries": [
+						"{@actSave cha} {@dc 19}，瓦格里120尺內可見的單一生物。{@actSaveFail} 18（{@damage 4d8}）心靈傷害，且瓦格里在目標30尺內其可見的一處未佔據空間中創造一個該目標的活化幽影迴響。{@actSaveSuccess} 僅半傷。",
+						"該幽影迴響具有與目標相同的體型、{@variantrule Armor Class|XPHB|護甲等級}和豁免加值，且其{@variantrule Hit Points|XPHB|生命值}等於此動作對目標造成的心靈傷害數值。在迴響或瓦格里被摧毀之前，瓦格里的每個回合開始時，迴響都會對目標發動一次心靈攻擊，目標將其感知為另一個自己，正用目標自身的武器或法術對付它。目標受到18（{@damage 4d8}）心靈傷害。"
+					],
+					"ENG_name": "Severed Essence {@recharge 4}"
+				}
+			],
+			"traitTags": [
+				"Flyby",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"XX"
+			],
+			"damageTags": [
+				"N",
+				"P",
+				"Y"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"RCH",
+				"THW"
+			],
+			"savingThrowForced": [
+				"charisma"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Val'kyr Herald"
+		},
+		{
+			"name": "復仇的惡鬼",
+			"source": "ICC",
+			"page": 70,
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 66,
+				"formula": "12d8 + 12"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40
+			},
+			"str": 18,
+			"dex": 19,
+			"con": 13,
+			"int": 11,
+			"wis": 10,
+			"cha": 8,
+			"save": {
+				"dex": "+6"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"necrotic"
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"通用語",
+				"被遺忘者語",
+				"獸人語"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "豁免閃避",
+					"entries": [
+						"當惡鬼受到一個允許其進行豁免檢定來只承受一半傷害的效應影響時，其豁免成功時改為不受傷害，豁免失敗時只承受一半傷害。其處於{@condition Incapacitated|XPHB|無力}狀態時無法使用此特性。"
+					],
+					"ENG_name": "Avoidance"
+				},
+				{
+					"name": "叢集戰術",
+					"entries": [
+						"若惡鬼的至少一名盟友位於該生物5尺內且該盟友未處於{@condition Incapacitated|XPHB|無力}狀態，惡鬼針對該生物的攻擊檢定具有{@variantrule Advantage|XPHB|優勢}。"
+					],
+					"ENG_name": "Pack Tactics"
+				}
+			],
+			"action": [
+				{
+					"name": "爪擊",
+					"entries": [
+						"{@atkr m} 命中{@hit 6}，觸及5尺。{@h}11（{@damage 2d6 + 4}）揮砍傷害。若惡鬼在此攻擊前立即使用了跳躍，其額外造成14（{@damage 4d6}）揮砍傷害，且目標陷入{@condition Prone|XPHB|伏地}狀態。"
+					],
+					"ENG_name": "Claw"
+				}
+			],
+			"bonus": [
+				{
+					"name": "跳躍{@recharge 4}",
+					"entries": [
+						"惡鬼消耗10尺移動力跳躍至多30尺。"
+					],
+					"ENG_name": "Leap {@recharge 4}"
+				}
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"S"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"ENG_name": "Vengeful Geist"
+		}
+	]
+}

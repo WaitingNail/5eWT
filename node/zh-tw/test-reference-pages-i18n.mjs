@@ -62,8 +62,8 @@ const assertNestedNamesBilingual = ({canonical, localized, context}) => {
 test("all four reference pages load complete bilingual entity names", async () => {
 	const expected = {
 		"charcreationoptions.json": {charoption: 44},
-		"rewards.json": {reward: 278},
-		"languages.json": {language: 201, languageScript: 6},
+		"rewards.json": {reward: 315},
+		"languages.json": {language: 234, languageScript: 6},
 		"deities.json": {deity: 563},
 	};
 

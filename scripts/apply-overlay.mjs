@@ -5,9 +5,10 @@ import {fileURLToPath} from "node:url";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const upstreamRoot = path.join(projectRoot, "vendor", "5etools-src");
-const runtimePatch = path.join(projectRoot, "patches", "0026-zh-tw-v2.39.1-runtime.patch");
-const imagePatch = path.join(projectRoot, "patches", "0027-zh-tw-v2.39.1-image-sources.patch");
-const catalogPatch = path.join(projectRoot, "patches", "0028-zh-tw-book-catalog.patch");
+const runtimePatches = fs.readdirSync(path.join(projectRoot, "patches"))
+	.filter(file => /^0029-zh-tw-v2\.41\.0-runtime-\d+\.patch$/.test(file))
+	.sort();
+if (!runtimePatches.length) throw new Error("Missing v2.41.0 runtime patches.");
 const copyRoots = [
   "requirements-zh-tw.txt",
   "data/zh-TW",
@@ -47,15 +48,7 @@ const runGitApply = (patchPath, args) => execFileSync("git", ["apply", ...args, 
 
 
 if (!fs.readFileSync(path.join(upstreamRoot, "js/utils.js"), "utf8").includes("// 5eWT zh-TW runtime v2.39.1")) {
-	runGitApply(runtimePatch, []);
-}
-
-if (spawnSync("git", ["apply", "--reverse", "--check", imagePatch], {cwd: upstreamRoot}).status !== 0) {
-	runGitApply(imagePatch, []);
-}
-
-if (spawnSync("git", ["apply", "--reverse", "--check", catalogPatch], {cwd: upstreamRoot}).status !== 0) {
-	runGitApply(catalogPatch, []);
+	for (const file of runtimePatches) runGitApply(path.join(projectRoot, "patches", file), []);
 }
 
 execFileSync(process.execPath, [path.join(upstreamRoot, "node/zh-tw/build-adventure-compatibility.mjs")], {cwd: upstreamRoot, stdio: "inherit"});

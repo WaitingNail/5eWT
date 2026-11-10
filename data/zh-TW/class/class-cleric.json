@@ -3039,6 +3039,87 @@
 			"hasFluffImages": true,
 			"ENG_name": "Arcana Domain",
 			"ENG_shortName": "Arcana"
+		},
+		{
+			"name": "戒律領域",
+			"shortName": "紀律",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"ability": "wis",
+					"prepared": {
+						"3": [
+							"arcane vigor|xphb",
+							"guiding bolt|xphb",
+							"magic weapon|xphb",
+							"shield of faith|xphb"
+						],
+						"5": [
+							"prayer of mending|wow",
+							"protection from energy|xphb"
+						],
+						"7": [
+							"guardian of faith|xphb",
+							"stoneskin|xphb"
+						],
+						"9": [
+							"circle of power|xphb",
+							"destructive wave|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Discipline Domain|Cleric|XPHB|Discipline|WoW|3",
+				"Luminous Barrier|Cleric|XPHB|Discipline|WoW|6",
+				"Ultimate Penitence|Cleric|XPHB|Discipline|WoW|17"
+			],
+			"hasFluffImages": true,
+			"ENG_name": "Discipline Domain",
+			"ENG_shortName": "Discipline"
+		},
+		{
+			"name": "暗影領域",
+			"shortName": "暗影",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"ability": "wis",
+					"prepared": {
+						"3": [
+							"crown of madness|xphb",
+							"dissonant whispers|xphb",
+							"mind spike|xphb",
+							"shadow word: pain|wow"
+						],
+						"5": [
+							"summon undead|xphb",
+							"vampiric touch|xphb"
+						],
+						"7": [
+							"evard's black tentacles|xphb",
+							"psychic horror|wow"
+						],
+						"9": [
+							"dominate person|xphb",
+							"void eruption|wow"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Shadow Domain|Cleric|XPHB|Shadow|WoW|3",
+				"Dispersion|Cleric|XPHB|Shadow|WoW|6",
+				"Vampiric Embrace|Cleric|XPHB|Shadow|WoW|17"
+			],
+			"ENG_name": "Shadow Domain",
+			"ENG_shortName": "Shadow"
 		}
 	],
 	"classFeature": [
@@ -9159,6 +9240,298 @@
 				"你獲得對鈍擊、穿刺、揮砍傷害的{@variantrule Resistance|XPHB|抗性}。"
 			],
 			"ENG_name": "Avatar of Battle"
+		},
+		{
+			"name": "救贖",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"當你施展的 1 環及以上法術為一個或多個生物恢復{@variantrule Hit Points|XPHB|生命值}時，這些生物各獲得一份祝福，持續到你的下個回合結束。每當你使用法術位施展對一個生物造成傷害的法術時，每個受祝福的生物額外回覆等同於你施展該傷害法術所用法術位環階的{@variantrule Hit Points|XPHB|生命值}。"
+			],
+			"ENG_name": "Atonement"
+		},
+		{
+			"name": "戒律領域",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i 討伐敵人的同時治癒盟友}",
+				"戒律領域專注於聖光與其暗影映象——虛空——之間的平衡。擁抱此領域的牧師同時駕馭兩種力量，濟友傷敵，常以單一法術兼而為之。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Discipline Spells|Cleric|XPHB|Discipline|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Holy Bolt|Cleric|XPHB|Discipline|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Atonement|Cleric|XPHB|Discipline|WoW|3"
+				}
+			],
+			"ENG_name": "Discipline Domain"
+		},
+		{
+			"name": "戒律法術",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"你與此領域的聯結確保你始終準備好特定法術。當你達到戒律領域法術表中列出的牧師等級後，你始終準備好表中列出的法術。",
+				{
+					"type": "table",
+					"caption": "戒律領域法術",
+					"colLabels": [
+						"牧師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Arcane Vigor|XPHB|復甦秘法}, {@spell Guiding Bolt|XPHB|光導箭}, {@spell Magic Weapon|XPHB|魔化武器}, {@spell Shield of Faith|XPHB|虔誠護盾}"
+						],
+						[
+							"5",
+							"{@spell Prayer of Mending|WoW|癒合禱言}, {@spell Protection from Energy|XPHB|防護能量}"
+						],
+						[
+							"7",
+							"{@spell Guardian of Faith|XPHB|信仰守衛}, {@spell Stoneskin|XPHB|石膚術}"
+						],
+						[
+							"9",
+							"{@spell Circle of Power|XPHB|原力法陣}, {@spell Destructive Wave|XPHB|湮滅波}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Discipline Spells"
+		},
+		{
+			"name": "神聖之矢",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你亮出聖徽並消耗一次{@classFeature Channel Divinity|Cleric|XPHB|2|XPHB|引導神力}，進行一次遠端法術攻擊，向 60 尺內一個生物擲出神聖能量之矢。命中時，目標受{@damage 2d10}加你的感知調整值點光耀傷害，且你可以選擇 60 尺內一個可見生物，令其回覆{@dice 1d10}加你的感知調整值點{@variantrule Hit Points|XPHB|生命值}。"
+			],
+			"ENG_name": "Holy Bolt"
+		},
+		{
+			"name": "輝光屏障",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 6,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以消耗一次{@classFeature Channel Divinity|Cleric|XPHB|2|XPHB|引導神力}，為每個被你的{@subclassFeature Atonement|Cleric|XPHB|Discipline|WoW|3|WoW|救贖}祝福的生物附上發光的魔法守護。每個受影響的生物獲得等同於你牧師等級加感知調整值的{@variantrule Temporary Hit Points|XPHB|臨時生命值}。只要生物擁有由此特性獲得的{@variantrule Temporary Hit Points|XPHB|臨時生命值}，它便對所有傷害具有{@variantrule Resistance|XPHB|抗性}。"
+			],
+			"ENG_name": "Luminous Barrier"
+		},
+		{
+			"name": "終極苦修",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Discipline",
+			"subclassSource": "WoW",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"你的{@subclassFeature Holy Bolt|Cleric|XPHB|Discipline|WoW|3|WoW|神聖之矢}變得更加強大，詳情如下。",
+				{
+					"type": "entries",
+					"name": "升騰之步",
+					"entries": [
+						"當你使用{@subclassFeature Holy Bolt|Cleric|XPHB|Discipline|WoW|3|WoW|神聖之矢}時，你可以在進行攻擊檢定前傳送到 30 尺內一處可見的未被佔據空間。"
+					],
+					"ENG_name": "Ascending Step"
+				},
+				{
+					"type": "entries",
+					"name": "升騰齊射",
+					"entries": [
+						"當你使用{@subclassFeature Holy Bolt|Cleric|XPHB|Discipline|WoW|3|WoW|神聖之矢}時，你可以作為該{@variantrule Bonus Action|XPHB|附贈動作}的一部分消耗一個法術位，擲出等同於所耗法術位環階數量的額外能量矢。你可以讓能量矢命中一個或多個生物。每道能量矢分別進行攻擊檢定。"
+					],
+					"ENG_name": "Ascending Volley"
+				}
+			],
+			"ENG_name": "Ultimate Penitence"
+		},
+		{
+			"name": "噬靈瘟疫",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"當你 30 尺內一個可見生物豁免檢定失敗時，你可以使該生物受{@damage 1d10}點黯蝕傷害。若如此做，你回覆等同於所造成黯蝕傷害的{@variantrule Hit Points|XPHB|生命值}。",
+				"你可以使用該特性的次數等同於你的感知調整值（最少 1 次）。你在完成一次{@variantrule Long Rest|XPHB|長休}時重獲所有已消耗的使用次數。"
+			],
+			"ENG_name": "Devouring Plague"
+		},
+		{
+			"name": "暗影領域",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"{@i 汲取虛空的削弱之力}",
+				"暗影領域執掌暗影與虛空之力——聖光賦生之力陰森的映象。擁抱這些力量的牧師能令敵人的血肉枯萎、心智衰弱。",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Shadow Spells|Cleric|XPHB|Shadow|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Shadowform|Cleric|XPHB|Shadow|WoW|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Devouring Plague|Cleric|XPHB|Shadow|WoW|3"
+				}
+			],
+			"ENG_name": "Shadow Domain"
+		},
+		{
+			"name": "幽影法術",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 3,
+			"entries": [
+				"你與此領域的聯結確保你始終準備好特定法術。當你達到暗影領域法術表中列出的牧師等級後，你始終準備好表中列出的法術。",
+				{
+					"type": "table",
+					"caption": "暗影領域法術",
+					"colLabels": [
+						"牧師等級",
+						"法術"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Crown of Madness|XPHB|瘋狂冠冕}, {@spell Dissonant Whispers|XPHB|不諧低語}, {@spell Mind Spike|XPHB|心靈尖刺}, {@spell Shadow Word: Pain|WoW|暗言術：痛}"
+						],
+						[
+							"5",
+							"{@spell Summon Undead|XPHB|亡靈召喚術}, {@spell Vampiric Touch|XPHB|吸血鬼之觸}"
+						],
+						[
+							"7",
+							"{@spell Evard's Black Tentacles|XPHB|艾伐黑觸手}, {@spell Psychic Horror|WoW|心靈驚駭}"
+						],
+						[
+							"9",
+							"{@spell Dominate Person|XPHB|支配類人}, {@spell Void Eruption|WoW|虛空爆發}"
+						]
+					]
+				}
+			],
+			"ENG_name": "Shadow Spells"
+		},
+		{
+			"name": "暗影形態",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"以一個{@variantrule Bonus Action|XPHB|附贈動作}，你可以消耗一次{@classFeature Channel Divinity|Cleric|XPHB|2|XPHB|引導神力}，進入暗影形態，獲得以下收益：",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "幽影隱匿",
+							"entry": "當你處於微光光照或黑暗區域時，你可以以一個{@variantrule Bonus Action|XPHB|附贈動作}採取躲藏動作。",
+							"ENG_name": "Shadow Stealth"
+						},
+						{
+							"type": "item",
+							"name": "虛空強化",
+							"entry": "當你使用法術位施展造成心靈或黯蝕傷害的法術時，你可以為該法術的一次傷害擲骰加上{@dice 1d6}。",
+							"ENG_name": "Void Empowerment"
+						}
+					]
+				},
+				"該形態持續 1 分鐘，但如果你解除它（無需動作）、你受{@condition Incapacitated|XPHB|失能}狀態，或你以法術造成光耀傷害，則提前結束。"
+			],
+			"ENG_name": "Shadowform"
+		},
+		{
+			"name": "消散",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"當你被攻擊檢定命中時，你可以以一個{@variantrule Reaction|XPHB|反應}消散為暗影能量。直到你的下個回合結束，你對所有傷害（包括觸發攻擊的傷害）具有{@variantrule Resistance|XPHB|抗性}；你不能採取任何動作、{@variantrule Bonus Action|XPHB|附贈動作}或{@variantrule Reaction|XPHB|反應}；且你擁有 40 尺{@variantrule Fly Speed|XPHB|飛行速度}。效應結束時，你可以消耗至多總數一半的{@variantrule Hit Point Dice|XPHB|生命值骰}，如同完成了一次{@variantrule Hit Points|XPHB|短休}般回覆{@variantrule Short Rest|XPHB|生命值}。",
+				"此特性一經使用，直至完成{@variantrule Short Rest|XPHB|短}或{@variantrule Long Rest|XPHB|長休}你都無法再次使用。"
+			],
+			"ENG_name": "Dispersion"
+		},
+		{
+			"name": "吸血鬼的擁抱",
+			"source": "WoW",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "WoW",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"當你的暗影形態生效期間，每當你擲{@dice 1d6}為法術增加額外傷害時，你 30 尺內一個由你選擇的生物回覆等同於擲骰數值的{@variantrule Hit Points|XPHB|生命值}。"
+			],
+			"ENG_name": "Vampiric Embrace"
 		}
 	]
 }

@@ -1,0 +1,3123 @@
+diff --git a/js/statgen/statgen-ui-comp-asi.js b/js/statgen/statgen-ui-comp-asi.js
+index d0439a5..bf809db 100644
+--- a/js/statgen/statgen-ui-comp-asi.js
++++ b/js/statgen/statgen-ui-comp-asi.js
+@@ -29,13 +29,13 @@ export class StatGenUiCompAsi extends BaseComponent {
+ 				if (!this._metasAsi[namespace][ix_]) {
+ 					this._parent.state[propMode] = this._parent.state[propMode] || (namespace === "ability" ? "asi" : "feat");
+ 
+-					const btnAsi = namespace !== "ability" ? null : veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-w-50p">ASI</button>`
++					const btnAsi = namespace !== "ability" ? null : veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-w-50p">屬性值提升（ASI）</button>`
+ 						.vee.onn("click", () => {
+ 							this._parent.state[propMode] = "asi";
+ 							this._doPulseThrottled();
+ 						});
+ 
+-					const btnFeat = namespace !== "ability" ? veT`<div class="ve-w-100p ve-text-center">Feat</div>` : veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-w-50p">Feat</button>`
++					const btnFeat = namespace !== "ability" ? veT`<div class="ve-w-100p ve-text-center">專長</div>` : veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-w-50p">專長</button>`
+ 						.vee.onn("click", () => {
+ 							this._parent.state[propMode] = "feat";
+ 							this._doPulseThrottled();
+@@ -102,7 +102,7 @@ export class StatGenUiCompAsi extends BaseComponent {
+ 							hkSelected();
+ 
+ 							return veT`<div class="ve-flex-col ve-h-100 ve-mr-2">
+-								<div class="ve-statgen-asi__cell ve-text-center ve-pb-1" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>
++								<div class="ve-statgen-asi__cell ve-text-center ve-pb-1" title="${I18nZhTwUtilities.t(Parser.attAbvToFull(it))}">${it.toUpperCase()}</div>
+ 								<div class="ve-flex-vh-center ve-statgen-asi__cell ve-relative">
+ 									<div class="ve-absolute ve-no-events ve-statgen-asi__disp-plus">+</div>
+ 									${ipt}
+@@ -197,7 +197,7 @@ export class StatGenUiCompAsi extends BaseComponent {
+ 				fnsCleanupEnt.push(unhookIxGroup);
+ 				veT`<div class="ve-flex-col ve-mb-2">
+ 					<div class="ve-flex-v-center ve-mb-2">
+-						<div class="ve-mr-2">Feat Set:</div>
++						<div class="ve-mr-2">專長組合：</div>
+ 						${selGroup.vee.addClass("ve-max-w-200p")}
+ 					</div>
+ 				</div>`.vee.appendTo(wrpRows);
+@@ -230,7 +230,7 @@ export class StatGenUiCompAsi extends BaseComponent {
+ 					hkIxFeat();
+ 
+ 					const row = veT`<div class="ve-flex-v-end ve-py-3 ve-px-1 ve-statgen-asi__row">
+-						<div class="ve-btn-group"><div class="ve-w-100p ve-text-center">Feat</div></div>
++						<div class="ve-btn-group"><div class="ve-w-100p ve-text-center">專長</div></div>
+ 						<div class="ve-vr-4"></div>
+ 						${stgFeat}
+ 					</div>`.vee.appendTo(wrpRowsInner);
+@@ -244,7 +244,7 @@ export class StatGenUiCompAsi extends BaseComponent {
+ 					hkIxFeat();
+ 
+ 					const row = veT`<div class="ve-flex-v-end ve-py-3 ve-px-1 ve-statgen-asi__row">
+-						<div class="ve-btn-group"><div class="ve-w-100p ve-text-center">Feat</div></div>
++						<div class="ve-btn-group"><div class="ve-w-100p ve-text-center">專長</div></div>
+ 						<div class="ve-vr-4"></div>
+ 						${stgFeat}
+ 					</div>`.vee.appendTo(wrpRowsInner);
+@@ -263,7 +263,7 @@ export class StatGenUiCompAsi extends BaseComponent {
+ 					hkIxFeat();
+ 
+ 					const row = veT`<div class="ve-flex-v-end ve-py-3 ve-px-1 ve-statgen-asi__row">
+-						<div class="ve-btn-group"><div class="ve-w-100p ve-text-center">${Parser.featCategoryToFull(featSet.anyFromCategory.category)} Feat</div></div>
++						<div class="ve-btn-group"><div class="ve-w-100p ve-text-center">${Parser.featCategoryToFull(featSet.anyFromCategory.category)} 專長</div></div>
+ 						<div class="ve-vr-4"></div>
+ 						${stgFeat}
+ 					</div>`.vee.appendTo(wrpRowsInner);
+@@ -296,7 +296,7 @@ export class StatGenUiCompAsi extends BaseComponent {
+ 		if (featStatic && propIxFeat) throw new Error(`Cannot combine static feat and feat property!`);
+ 		if (featStatic == null && propIxFeat == null) throw new Error(`Either a static feat or a feat property must be specified!`);
+ 
+-		const btnChooseFeat = featStatic ? null : veT`<button class="ve-btn ve-btn-xxs ve-btn-default ve-mr-2" title="Choose a Feat"><span class="glyphicon glyphicon-search"></span></button>`
++		const btnChooseFeat = featStatic ? null : veT`<button class="ve-btn ve-btn-xxs ve-btn-default ve-mr-2" title="選擇專長"><span class="glyphicon glyphicon-search"></span></button>`
+ 			.vee.onn("click", async () => {
+ 				const selecteds = await this._parent.modalFilterFeats.pGetUserSelection({
+ 					filterExpression: filterExpression ?? "category=", // TODO(Future) hack; revise as required
+@@ -350,7 +350,7 @@ export class StatGenUiCompAsi extends BaseComponent {
+ 			dispFeat
+ 				.vee.toggleClass("ve-italic", !feat)
+ 				.vee.toggleClass("ve-muted", !feat);
+-			dispFeat.vee.html(feat ? Renderer.get().render(`{@feat ${VetoolsConfig.get("styleSwitcher", "style") === SITE_STYLE__CLASSIC ? feat.name.toLowerCase() : feat.name}|${feat.source}}`) : `(Choose a feat)`);
++			dispFeat.vee.html(feat ? Renderer.get().render(`{@feat ${VetoolsConfig.get("styleSwitcher", "style") === SITE_STYLE__CLASSIC ? feat.name.toLowerCase() : feat.name}|${feat.source}}`) : `（選擇專長）`);
+ 
+ 			this._parent.state[propIxFeatAbility] = 0;
+ 
+@@ -392,8 +392,8 @@ export class StatGenUiCompAsi extends BaseComponent {
+ 					}
+ 
+ 					// region Static/no choices
+-					const ptsNoChoose = Parser.ABIL_ABVS.filter(ab => abilitySet[ab]).map(ab => `${Parser.attAbvToFull(ab)} ${UiUtil.intToBonus(abilitySet[ab], {isPretty: true})}`);
+-					stgFeatNoChoice.vee.empty().vee.toggle(ptsNoChoose.length).vee.html(`<div><span class="ve-mr-2">\u2014</span>${ptsNoChoose.join(", ")}</div>`);
++					const ptsNoChoose = Parser.ABIL_ABVS.filter(ab => abilitySet[ab]).map(ab => `${I18nZhTwUtilities.t(Parser.attAbvToFull(ab))} ${UiUtil.intToBonus(abilitySet[ab], {isPretty: true})}`);
++					stgFeatNoChoice.vee.empty().vee.toggle(ptsNoChoose.length).vee.html(`<div><span class="ve-mr-2">—</span>${ptsNoChoose.join(", ")}</div>`);
+ 					// endregion
+ 
+ 					// region Choices
+@@ -410,26 +410,26 @@ export class StatGenUiCompAsi extends BaseComponent {
+ 							propFeatAbilityChooseFrom,
+ 							{
+ 								values: abilitySet.choose.from,
+-								fnDisplay: v => `${Parser.attAbvToFull(v)} ${UiUtil.intToBonus(amount, {isPretty: true})}`,
++								fnDisplay: v => `${I18nZhTwUtilities.t(Parser.attAbvToFull(v))} ${UiUtil.intToBonus(amount, {isPretty: true})}`,
+ 								count,
+ 							},
+ 						);
+ 						fnsCleanupFeatAbility.push(({isRetainState = false} = {}) => cleanupAsiPicker({isRetainState}));
+ 
+-						stgFeatChooseAsiFrom.vee.appends(`<div><span class="ve-mr-2">\u2014</span>choose ${count > 1 ? `${count} ` : ""}${UiUtil.intToBonus(amount, {isPretty: true})}</div>`);
++						stgFeatChooseAsiFrom.vee.appends(`<div><span class="ve-mr-2">—</span>choose ${count > 1 ? `${count} ` : ""}${UiUtil.intToBonus(amount, {isPretty: true})}</div>`);
+ 
+ 						rowMetas.forEach(meta => {
+ 							meta.cb.vee.onn("change", () => this._doPulseThrottled());
+ 
+ 							veT`<label class="ve-flex-col ve-no-select">
+-								<div class="ve-flex-vh-center ve-statgen-asi__cell-feat" title="${Parser.attAbvToFull(meta.value)}">${meta.value.toUpperCase()}</div>
++								<div class="ve-flex-vh-center ve-statgen-asi__cell-feat" title="${I18nZhTwUtilities.t(Parser.attAbvToFull(meta.value))}">${meta.value.toUpperCase()}</div>
+ 								<div class="ve-flex-vh-center ve-statgen-asi__cell-feat">${meta.cb}</div>
+ 							</label>`.vee.appendTo(stgFeatChooseAsiFrom);
+ 						});
+ 					} else if (abilitySet.choose && abilitySet.choose.weighted) {
+ 						// TODO(Future) unsupported, for now
+ 						stgFeatChooseAsiFrom.vee.empty().vee.hide();
+-						stgFeatChooseAsiWeighted.vee.show().vee.html(`<i class="ve-muted">The selected ability score format is currently unsupported. Please check back later!</i>`);
++						stgFeatChooseAsiWeighted.vee.show().vee.html(`<i class="ve-muted">目前尚不支援所選的屬性值格式，請稍後再試。</i>`);
+ 					} else {
+ 						stgFeatChooseAsiFrom.vee.empty().vee.hide();
+ 						stgFeatChooseAsiWeighted.vee.empty().vee.hide();
+@@ -478,7 +478,7 @@ export class StatGenUiCompAsi extends BaseComponent {
+ 		const getStgEntity = ({title, wrpRows, propEntity, propIxEntity}) => {
+ 			const stg = veT`<div class="ve-flex-col">
+ 				<hr class="ve-hr-3 ve-hr--dotted">
+-				<h4 class="ve-my-2 ve-bold">${title} Feats</h4>
++				<h4 class="ve-my-2 ve-bold">${title} 專長</h4>
+ 				${wrpRows}
+ 			</div>`;
+ 
+@@ -492,16 +492,16 @@ export class StatGenUiCompAsi extends BaseComponent {
+ 			return stg;
+ 		};
+ 
+-		const stgRace = getStgEntity({title: "Species", wrpRows: wrpRowsRace, propEntity: "race", propIxEntity: "common_ixRace"});
++		const stgRace = getStgEntity({title: "種族", wrpRows: wrpRowsRace, propEntity: "race", propIxEntity: "common_ixRace"});
+ 
+-		const stgBackground = getStgEntity({title: "Background", wrpRows: wrpRowsBackground, propEntity: "background", propIxEntity: "common_ixBackground"});
++		const stgBackground = getStgEntity({title: "背景", wrpRows: wrpRowsBackground, propEntity: "background", propIxEntity: "common_ixBackground"});
+ 
+ 		const {ipt: iptCountFeatsCustom, wrp: wrpCountFeatsCustom} = ComponentUiUtil.getIptInt(this._parent, "common_cntFeatsCustom", 0, {min: 0, max: MAX_CUSTOM_FEATS, asMeta: true, decorationLeft: "spacer", decorationRight: "ticker"});
+ 		iptCountFeatsCustom.vee.removeClass("ve-text-right").vee.addClass("ve-text-center");
+ 		wrpCountFeatsCustom.vee.addClass("ve-w-100p");
+ 
+ 		veT(wrpAsi)`
+-			<h4 class="ve-my-2 ve-bold">Ability Score Increases</h4>
++			<h4 class="ve-my-2 ve-bold">屬性值提升</h4>
+ 			${this._render_getStageCntAsi()}
+ 			${wrpRowsAsi}
+ 
+@@ -510,9 +510,9 @@ export class StatGenUiCompAsi extends BaseComponent {
+ 			${stgBackground}
+ 
+ 			<hr class="ve-hr-3 ve-hr--dotted">
+-			<h4 class="ve-my-2 ve-bold">Additional Feats</h4>
++			<h4 class="ve-my-2 ve-bold">額外專長</h4>
+ 			<label class="ve-w-100 ve-flex-v-center ve-mb-2">
+-				<div class="ve-mr-2 ve-no-shrink">Number of additional feats:</div>${wrpCountFeatsCustom}
++				<div class="ve-mr-2 ve-no-shrink">額外專長數量：</div>${wrpCountFeatsCustom}
+ 			</label>
+ 			${wrpRowsCustom}
+ 		`;
+@@ -523,10 +523,10 @@ export class StatGenUiCompAsi extends BaseComponent {
+ 			const {ipt: iptCountAsi, wrp: wrpCountAsi} = ComponentUiUtil.getIptInt(this._parent, "common_cntAsi", 0, {min: 0, max: 20, asMeta: true, decorationLeft: "spacer", decorationRight: "ticker"});
+ 			iptCountAsi.vee.removeClass("ve-text-right").vee.addClass("ve-text-center");
+ 			wrpCountAsi.vee.addClass("ve-w-100p");
+-			return veT`<label class="ve-w-100 ve-flex-v-center ve-mb-2"><div class="ve-mr-2 ve-no-shrink">Number of Ability Score Increases to apply:</div>${wrpCountAsi}</label>`;
++			return veT`<label class="ve-w-100 ve-flex-v-center ve-mb-2"><div class="ve-mr-2 ve-no-shrink">要套用的屬性值提升次數：</div>${wrpCountAsi}</label>`;
+ 		}
+ 
+-		const out = veT`<div class="ve-w-100 ve-flex-v-center ve-mb-2 ve-italic ve-muted">No ability score increases available.</div>`;
++		const out = veT`<div class="ve-w-100 ve-flex-v-center ve-mb-2 ve-italic ve-muted">沒有可用的屬性值提升。</div>`;
+ 		const hkCntAsis = () => out.vee.toggle(this._parent.state.common_cntAsi === 0);
+ 		this._parent.addHookBase("common_cntAsi", hkCntAsis);
+ 		hkCntAsis();
+diff --git a/js/statgen/statgen-ui-comp-levelone-background.js b/js/statgen/statgen-ui-comp-levelone-background.js
+index aa9ac3d..4dfb162 100644
+--- a/js/statgen/statgen-ui-comp-levelone-background.js
++++ b/js/statgen/statgen-ui-comp-levelone-background.js
+@@ -1,8 +1,8 @@
+ import {StatGenUiRenderLevelOneEntityBase} from "./statgen-ui-comp-levelone-entitybase.js";
+ 
+ export class StatGenUiRenderLevelOneBackground extends StatGenUiRenderLevelOneEntityBase {
+-	_title = "Background";
+-	_titleShort = "Backg.";
++	_title = "背景";
++	_titleShort = "背景";
+ 	_propIxEntity = "common_ixBackground";
+ 	_propIxAbilityScoreSet = "common_ixAbilityScoreSetBackground";
+ 	_propData = "_backgrounds";
+diff --git a/js/statgen/statgen-ui-comp-levelone-entitybase.js b/js/statgen/statgen-ui-comp-levelone-entitybase.js
+index 726e017..32d3224 100644
+--- a/js/statgen/statgen-ui-comp-levelone-entitybase.js
++++ b/js/statgen/statgen-ui-comp-levelone-entitybase.js
+@@ -20,7 +20,7 @@ export class StatGenUiRenderLevelOneEntityBase {
+ 	render () {
+ 		const wrp = veT`<div class="ve-flex"></div>`;
+ 		const wrpOuter = veT`<div class="ve-flex-col">
+-			<div class="ve-my-1 ve-statgen-pb__header ve-statgen-pb__header--group ve-mr-3 ve-text-center ve-italic ve-small ve-help-subtle" title="Ability Score Changes from ${this._title}">${this._titleShort}</div>
++			<div class="ve-my-1 ve-statgen-pb__header ve-statgen-pb__header--group ve-mr-3 ve-text-center ve-italic ve-small ve-help-subtle" title="屬性值調整來源：${this._title}">${this._titleShort}</div>
+ 
+ 			${wrp}
+ 		</div>`;
+@@ -49,8 +49,8 @@ export class StatGenUiRenderLevelOneEntityBase {
+ 				isAllowNull: true,
+ 				fnDisplay: ix => {
+ 					const r = this._parent[this._propData][ix];
+-					if (!r) return "(Unknown)";
+-					return `${r.name} ${r.source !== Parser.SRC_PHB ? `[${Parser.sourceJsonToAbv(r.source)}]` : ""}`;
++					if (!r) return "（不明）";
++					return `${I18nZhTwUtilities.name(r)} ${r.source !== Parser.SRC_PHB ? `[${Parser.sourceJsonToAbv(r.source)}]` : ""}`;
+ 				},
+ 				asMeta: true,
+ 			},
+@@ -69,7 +69,7 @@ export class StatGenUiRenderLevelOneEntityBase {
+ 		this._parent[this._propModalFilter].pageFilter.filterBox.on(FILTER_BOX_EVNT_VALCHANGE, () => doApplyFilterToSelEntity());
+ 		doApplyFilterToSelEntity();
+ 
+-		const btnFilterForEntity = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-br-0 ve-pr-2" title="Filter for ${this._title}"><span class="glyphicon glyphicon-filter"></span> Filter</button>`
++		const btnFilterForEntity = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-br-0 ve-pr-2" title="篩選：${this._title}"><span class="glyphicon glyphicon-filter"></span> 篩選</button>`
+ 			.vee.onn("click", async () => {
+ 				const selected = await this._parent[this._propModalFilter].pGetUserSelection();
+ 				if (selected == null || !selected.length) return;
+@@ -84,7 +84,7 @@ export class StatGenUiRenderLevelOneEntityBase {
+ 			this._parent,
+ 			this._propIsPreview,
+ 			{
+-				html: `<button class="ve-btn ve-btn-xs ve-btn-default" title="Toggle ${this._title} Preview"><span class="glyphicon glyphicon-eye-open"></span></button>`,
++				html: `<button class="ve-btn ve-btn-xs ve-btn-default" title="切換${this._title}預覽"><span class="glyphicon glyphicon-eye-open"></span></button>`,
+ 			},
+ 		);
+ 		const hkBtnPreviewEntity = () => btnPreview.vee.toggle(this._parent._state[this._propIxEntity] != null && ~this._parent._state[this._propIxEntity]);
+@@ -100,14 +100,14 @@ export class StatGenUiRenderLevelOneEntityBase {
+ 				asMeta: true,
+ 				fnDisplay: ixAbSet => {
+ 					const lst = this._pb_getAbilityList();
+-					if (!lst?.[ixAbSet]) return "(Unknown)";
++					if (!lst?.[ixAbSet]) return "（不明）";
+ 					return Renderer.getAbilityData([lst[ixAbSet]]).asText;
+ 				},
+ 			},
+ 		);
+ 
+ 		const stgAbilityScoreSet = veT`<div class="ve-flex-v-center ve-mb-2">
+-			<div class="ve-mr-2 ve-no-wrap">Ability Score Increase</div>
++			<div class="ve-mr-2 ve-no-wrap">屬性值提升</div>
+ 			<div>${selAbilitySet}</div>
+ 		</div>`;
+ 
+@@ -145,7 +145,7 @@ export class StatGenUiRenderLevelOneEntityBase {
+ 		const {hrPreview} = this._getHrPreviewMeta();
+ 
+ 		const stgSel = veT`<div class="ve-flex-col ve-mt-3">
+-			<div class="ve-mb-1">Select a ${this._title}</div>
++			<div class="ve-mb-1">選擇一項${this._title}</div>
+ 			<div class="ve-flex-v-center ve-mb-2">
+ 				<div class="ve-flex-v-center ve-btn-group ve-w-100 ve-mr-2">${btnFilterForEntity}${selEntity}</div>
+ 				<div>${btnPreview}</div>
+@@ -183,7 +183,7 @@ export class StatGenUiRenderLevelOneEntityBase {
+ 			});
+ 
+ 			ptBase = veT`<div class="ve-flex-col ve-mr-3">
+-				<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center">Static</div>
++				<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center">固定</div>
+ 				${wrpsEntity}
+ 			</div>`;
+ 		}
+diff --git a/js/statgen/statgen-ui-comp-levelone-race.js b/js/statgen/statgen-ui-comp-levelone-race.js
+index 32ba616..e4c5abb 100644
+--- a/js/statgen/statgen-ui-comp-levelone-race.js
++++ b/js/statgen/statgen-ui-comp-levelone-race.js
+@@ -1,8 +1,8 @@
+ import {StatGenUiRenderLevelOneEntityBase} from "./statgen-ui-comp-levelone-entitybase.js";
+ 
+ export class StatGenUiRenderLevelOneRace extends StatGenUiRenderLevelOneEntityBase {
+-	_title = "Species";
+-	_titleShort = "Species";
++	_title = "種族";
++	_titleShort = "種族";
+ 	_propIxEntity = "common_ixRace";
+ 	_propIxAbilityScoreSet = "common_ixAbilityScoreSetRace";
+ 	_propData = "_races";
+@@ -60,7 +60,7 @@ export class StatGenUiRenderLevelOneRace extends StatGenUiRenderLevelOneEntityBa
+ 			this._parent,
+ 			"common_isShowTashasRules",
+ 			{
+-				html: `<button class="ve-btn ve-btn-xxs ve-btn-default ve-small ve-p-0 ve-statgen-shared__btn-toggle-tashas-rules ve-flex-vh-center" title="Toggle &quot;Customizing Your Origin&quot; Section"><span class="glyphicon glyphicon-eye-open"></span></button>`,
++				html: `<button class="ve-btn ve-btn-xxs ve-btn-default ve-small ve-p-0 ve-statgen-shared__btn-toggle-tashas-rules ve-flex-vh-center" title="展開／收合「自訂出身」段落"><span class="glyphicon glyphicon-eye-open"></span></button>`,
+ 			},
+ 		);
+ 
+@@ -71,16 +71,16 @@ export class StatGenUiRenderLevelOneRace extends StatGenUiRenderLevelOneEntityBa
+ 			</label>
+ 
+ 			<div class="ve-flex">
+-				<div class="ve-small ve-muted ve-italic ve-mr-1">${Renderer.get().render(`An {@variantrule Customizing Your Origin|TCE|optional rule}`)}</div>
++				<div class="ve-small ve-muted ve-italic ve-mr-1">${Renderer.get().render(`一項{@variantrule Customizing Your Origin|TCE|可選規則}`)}</div>
+ 				${btnToggleTashasPin}
+-				<div class="ve-small ve-muted ve-italic ve-ml-1">${Renderer.get().render(`from Tasha's Cauldron of Everything, page 8.`)}</div>
++				<div class="ve-small ve-muted ve-italic ve-ml-1">${Renderer.get().render(`出自《塔莎的萬事大釜》第 8 頁。`)}</div>
+ 			</div>
+ 		</div>`;
+ 		this._parent._addHookBase("common_isAllowTashasRules", () => {
+ 			stgTashasControls.vee.toggle(this._parent._state.common_isAllowTashasRules);
+ 		})();
+ 
+-		const dispTashas = veT`<div class="ve-flex-col"><div class="ve-italic ve-muted">Loading...</div></div>`;
++		const dispTashas = veT`<div class="ve-flex-col"><div class="ve-italic ve-muted">載入中……</div></div>`;
+ 		DataLoader.pCacheAndGet(UrlUtil.PG_VARIANTRULES, Parser.SRC_TCE, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_VARIANTRULES]({name: "Customizing Your Origin", source: Parser.SRC_TCE}))
+ 			.then(rule => {
+ 				veT(dispTashas.vee.empty())`${Renderer.hover.getHoverContent_stats(UrlUtil.PG_VARIANTRULES, rule)}<hr class="ve-hr-3">`;
+diff --git a/js/statgen/statgen-ui-comp-pbrules.js b/js/statgen/statgen-ui-comp-pbrules.js
+index 8a48a5e..1d7325b 100644
+--- a/js/statgen/statgen-ui-comp-pbrules.js
++++ b/js/statgen/statgen-ui-comp-pbrules.js
+@@ -24,7 +24,7 @@ export class StatGenUiRenderableCollectionPbRules extends RenderableCollectionGe
+ 		parentComp._addHookBase("pb_isCustom", hkIsCustom);
+ 		hkIsCustom();
+ 
+-		const btnDelete = veT`<button class="ve-btn ve-btn-xxs ve-btn-danger" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`
++		const btnDelete = veT`<button class="ve-btn ve-btn-xxs ve-btn-danger" title="刪除"><span class="glyphicon glyphicon-trash"></span></button>`
+ 			.vee.onn("click", () => {
+ 				if (parentComp.state.pb_rules.length === 1) return; // Never delete the final item
+ 				parentComp.state.pb_rules = parentComp.state.pb_rules.filter(it => it !== entity);
+diff --git a/js/statgen/statgen-ui.js b/js/statgen/statgen-ui.js
+index ceb2cb3..e68032f 100644
+--- a/js/statgen/statgen-ui.js
++++ b/js/statgen/statgen-ui.js
+@@ -259,15 +259,15 @@ export class StatGenUi extends BaseComponent {
+ 
+ 		const iptTabMetas = this._isLevelUp
+ 			? [
+-				new TabUiUtil.TabMeta({name: "Existing", icon: this._isFvttMode ? `fas fa-fw fa-user` : `far fa-fw fa-user`, hasBorder: true}),
++				new TabUiUtil.TabMeta({name: "既有數值", icon: this._isFvttMode ? `fas fa-fw fa-user` : `far fa-fw fa-user`, hasBorder: true}),
+ 				...this._tabMetasAdditional || [],
+ 			]
+ 			: [
+-				this._isFvttMode ? new TabUiUtil.TabMeta({name: "Select...", icon: this._isFvttMode ? `fas fa-fw fa-square` : `far fa-fw fa-square`, hasBorder: true, isNoPadding: this._isFvttMode}) : null,
+-				new TabUiUtil.TabMeta({name: "Roll", icon: this._isFvttMode ? `fas fa-fw fa-dice` : `far fa-fw fa-dice`, hasBorder: true, isNoPadding: this._isFvttMode}),
+-				new TabUiUtil.TabMeta({name: "Standard Array", icon: this._isFvttMode ? `fas fa-fw fa-signal` : `far fa-fw fa-signal-bars`, hasBorder: true, isNoPadding: this._isFvttMode}),
+-				new TabUiUtil.TabMeta({name: "Point Buy", icon: this._isFvttMode ? `fas fa-fw fa-chart-bar` : `far fa-fw fa-chart-bar`, hasBorder: true, isNoPadding: this._isFvttMode}),
+-				new TabUiUtil.TabMeta({name: "Manual", icon: this._isFvttMode ? `fas fa-fw fa-screwdriver-wrench` : `far fa-fw fa-screwdriver-wrench`, hasBorder: true, isNoPadding: this._isFvttMode}),
++				this._isFvttMode ? new TabUiUtil.TabMeta({name: "請選擇……", icon: this._isFvttMode ? `fas fa-fw fa-square` : `far fa-fw fa-square`, hasBorder: true, isNoPadding: this._isFvttMode}) : null,
++				new TabUiUtil.TabMeta({name: "擲骰", icon: this._isFvttMode ? `fas fa-fw fa-dice` : `far fa-fw fa-dice`, hasBorder: true, isNoPadding: this._isFvttMode}),
++				new TabUiUtil.TabMeta({name: "標準陣列", icon: this._isFvttMode ? `fas fa-fw fa-signal` : `far fa-fw fa-signal-bars`, hasBorder: true, isNoPadding: this._isFvttMode}),
++				new TabUiUtil.TabMeta({name: "點數購買", icon: this._isFvttMode ? `fas fa-fw fa-chart-bar` : `far fa-fw fa-chart-bar`, hasBorder: true, isNoPadding: this._isFvttMode}),
++				new TabUiUtil.TabMeta({name: "手動輸入", icon: this._isFvttMode ? `fas fa-fw fa-screwdriver-wrench` : `far fa-fw fa-screwdriver-wrench`, hasBorder: true, isNoPadding: this._isFvttMode}),
+ 				...this._tabMetasAdditional || [],
+ 			].filter(Boolean);
+ 
+@@ -286,7 +286,7 @@ export class StatGenUi extends BaseComponent {
+ 				)
+ 					.vee.addClass("ve-max-w-200p");
+ 				veT`<div class="ve-flex-v-center ve-statgen-shared__wrp-header">
+-					<div class="ve-mr-2"><b>Mode</b></div>
++					<div class="ve-mr-2"><b>模式</b></div>
+ 					${selMode}
+ 				</div>`
+ 					.vee.appendTo(parent);
+@@ -326,7 +326,7 @@ export class StatGenUi extends BaseComponent {
+ 			.vee.onn("change", () => this._rollIptFormula.vee.removeClass("form-control--error"));
+ 
+ 		const lockRoll = new VeLock();
+-		const btnRoll = veT`<button class="ve-btn ve-btn-primary ve-bold">Roll</button>`
++		const btnRoll = veT`<button class="ve-btn ve-btn-primary ve-bold">擲骰</button>`
+ 			.vee.onn("click", async () => {
+ 				try {
+ 					await lockRoll.pLock();
+@@ -336,7 +336,7 @@ export class StatGenUi extends BaseComponent {
+ 				}
+ 			});
+ 
+-		const btnRandom = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mt-2">Randomly Assign</button>`
++		const btnRandom = veT`<button class="ve-btn ve-btn-xs ve-btn-default ve-mt-2">隨機分配</button>`
+ 			.vee.hide()
+ 			.vee.onn("click", () => {
+ 				const abs = [...Parser.ABIL_ABVS].shuffle();
+@@ -347,7 +347,7 @@ export class StatGenUi extends BaseComponent {
+ 			});
+ 
+ 		const wrpRolled = veT`<div class="ve-flex-v-center ve-mr-auto ve-statgen-rolled__wrp-results ve-py-1"></div>`;
+-		const wrpTotal = veT`<div class="ve-muted ve-small ve-italic ve-text-right ve-pr-1 ve-help-subtle" title="The sum total of the above rolls."></div>`;
++		const wrpTotal = veT`<div class="ve-muted ve-small ve-italic ve-text-right ve-pr-1 ve-help-subtle" title="上方所有擲骰結果的總和。"></div>`;
+ 		const wrpRolledOuter = veT`<div class="ve-flex-col">
+ 			<div class="ve-flex-v-center ve-mb-1"><div class="ve-mr-2">=</div>${wrpRolled}</div>
+ 			${wrpTotal}
+@@ -361,7 +361,7 @@ export class StatGenUi extends BaseComponent {
+ 				const cntPrevRolls = this._state.rolled_rolls.slice(0, i).filter(r => r.total === it.total).length;
+ 				return `<div class="ve-px-3 ve-py-1 ve-help-subtle ve-flex-vh-center" title="${it.text}"><div class="ve-muted">[</div><div class="ve-flex-vh-center ve-statgen-rolled__disp-result">${it.total}${cntPrevRolls ? Parser.numberToSubscript(cntPrevRolls) : ""}</div><div class="ve-muted">]</div></div>`;
+ 			}));
+-			wrpTotal.vee.txt(`Total: ${this._state.rolled_rolls.map(roll => roll.total).sum()}`);
++			wrpTotal.vee.txt(`合計： ${this._state.rolled_rolls.map(roll => roll.total).sum()}`);
+ 		};
+ 		this._addHookBase("rolled_rolls", hkRolled);
+ 		hkRolled();
+@@ -369,9 +369,9 @@ export class StatGenUi extends BaseComponent {
+ 		return veT`<div class="ve-flex-col ve-mb-3 ve-mr-auto">
+ 			<div class="ve-flex ve-mb-2">
+ 				<div class="ve-flex-col ve-flex-h-center ve-mr-3">
+-					<label class="ve-flex-v-center"><div class="ve-mr-2 ve-no-shrink ve-w-100p">Formula:</div>${this._rollIptFormula}</label>
++					<label class="ve-flex-v-center"><div class="ve-mr-2 ve-no-shrink ve-w-100p">骰式：</div>${this._rollIptFormula}</label>
+ 
+-					${this._isCharacterMode ? null : veT`<label class="ve-flex-v-center ve-mt-2"><div class="ve-mr-2 ve-no-shrink ve-w-100p">Number of rolls:</div>${iptRollCount}</label>`}
++					${this._isCharacterMode ? null : veT`<label class="ve-flex-v-center ve-mt-2"><div class="ve-mr-2 ve-no-shrink ve-w-100p">擲骰次數：</div>${iptRollCount}</label>`}
+ 				</div>
+ 				${btnRoll}
+ 			</div>
+@@ -383,7 +383,7 @@ export class StatGenUi extends BaseComponent {
+ 	}
+ 
+ 	_render_getStgArrayHeader () {
+-		const btnRandom = veT`<button class="ve-btn ve-btn-xs ve-btn-default">Randomly Assign</button>`
++		const btnRandom = veT`<button class="ve-btn ve-btn-xs ve-btn-default">隨機分配</button>`
+ 			.vee.onn("click", () => {
+ 				const abs = [...Parser.ABIL_ABVS].shuffle();
+ 				abs.forEach((ab, i) => {
+@@ -393,7 +393,7 @@ export class StatGenUi extends BaseComponent {
+ 			});
+ 
+ 		return veT`<div class="ve-flex-col ve-mb-3 ve-mr-auto">
+-			<div class="ve-mb-2">Assign these numbers to your abilities as desired:</div>
++			<div class="ve-mb-2">請依需要將下列數值分配到各項屬性：</div>
+ 			<div class="ve-bold ve-mb-2">${StatGenUi._STANDARD_ARRAY.join(", ")}</div>
+ 			<div class="ve-flex">${btnRandom}</div>
+ 		</div>`;
+@@ -401,7 +401,7 @@ export class StatGenUi extends BaseComponent {
+ 
+ 	_render_getStgManualHeader () {
+ 		return veT`<div class="ve-flex-col ve-mb-3 ve-mr-auto">
+-			<div>Enter your desired ability scores in the &quot;Base&quot; column below.</div>
++			<div>請在下方「基礎」欄位輸入所需的屬性值。</div>
+ 		</div>`;
+ 	}
+ 
+@@ -460,10 +460,10 @@ export class StatGenUi extends BaseComponent {
+ 		this._addHookAll("state", hkPoints);
+ 		hkPoints();
+ 
+-		const btnReset = veT`<button class="ve-btn ve-btn-default">Reset</button>`
++		const btnReset = veT`<button class="ve-btn ve-btn-default">重設</button>`
+ 			.vee.onn("click", () => this._doReset());
+ 
+-		const btnRandom = veT`<button class="ve-btn ve-btn-default">Random</button>`
++		const btnRandom = veT`<button class="ve-btn ve-btn-default">隨機</button>`
+ 			.vee.onn("click", () => {
+ 				this._doReset();
+ 
+@@ -502,12 +502,12 @@ export class StatGenUi extends BaseComponent {
+ 				<div class="ve-statgen-pb__cell ve-mr-4 ve-mobile-sm__hidden"></div>
+ 
+ 				<label class="ve-flex-col ve-mr-2">
+-					<div class="ve-mb-1 ve-text-center">Budget</div>
++					<div class="ve-mb-1 ve-text-center">可用點數</div>
+ 					${iptBudget}
+ 				</label>
+ 
+ 				<label class="ve-flex-col ve-mr-2">
+-					<div class="ve-mb-1 ve-text-center">Remain</div>
++					<div class="ve-mb-1 ve-text-center">剩餘點數</div>
+ 					${iptRemaining}
+ 				</label>
+ 			</div>
+@@ -527,7 +527,7 @@ export class StatGenUi extends BaseComponent {
+ 	}
+ 
+ 	_render_getStgPbCustom () {
+-		const btnAddLower = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Add Lower Score</button>`
++		const btnAddLower = veT`<button class="ve-btn ve-btn-default ve-btn-xs">新增更低數值</button>`
+ 			.vee.onn("click", () => {
+ 				const prevSecondLowest = this._state.pb_rules[1];
+ 				const prevLowest = this._state.pb_rules[0];
+@@ -538,7 +538,7 @@ export class StatGenUi extends BaseComponent {
+ 				this._state.pb_rules = [this._getDefaultState_pb_rule(score, cost), ...this._state.pb_rules];
+ 			});
+ 
+-		const btnAddHigher = veT`<button class="ve-btn ve-btn-default ve-btn-xs">Add Higher Score</button>`
++		const btnAddHigher = veT`<button class="ve-btn ve-btn-default ve-btn-xs">新增更高數值</button>`
+ 			.vee.onn("click", () => {
+ 				const prevSecondHighest = this._state.pb_rules.at(-2);
+ 				const prevHighest = this._state.pb_rules.at(-1);
+@@ -549,23 +549,23 @@ export class StatGenUi extends BaseComponent {
+ 				this._state.pb_rules = [...this._state.pb_rules, this._getDefaultState_pb_rule(score, cost)];
+ 			});
+ 
+-		const btnResetRules = veT`<button class="ve-btn ve-btn-danger ve-btn-xs ve-mr-2">Reset</button>`
++		const btnResetRules = veT`<button class="ve-btn ve-btn-danger ve-btn-xs ve-mr-2">重設</button>`
+ 			.vee.onn("click", () => {
+ 				this._state.pb_rules = this._getDefaultStatePointBuyCosts().pb_rules;
+ 			});
+ 
+ 		const menuCustom = ContextUtil.getMenu([
+ 			new ContextUtil.Action(
+-				"Export as Code",
++				"匯出代碼",
+ 				async () => {
+ 					await MiscUtil.pCopyTextToClipboard(this._serialize_pb_rules());
+ 					JqueryUtil.showCopiedEffect(btnContext);
+ 				},
+ 			),
+ 			new ContextUtil.Action(
+-				"Import from Code",
++				"匯入代碼",
+ 				async () => {
+-					const raw = await InputUiUtil.pGetUserString({title: "Enter Code", isCode: true});
++					const raw = await InputUiUtil.pGetUserString({title: "輸入代碼", isCode: true});
+ 					if (raw == null) return;
+ 					const parsed = this._deserialize_pb_rules(raw);
+ 					if (parsed == null) return;
+@@ -579,12 +579,12 @@ export class StatGenUi extends BaseComponent {
+ 							pb_isCustom: true,
+ 						},
+ 					);
+-					JqueryUtil.doToast("Imported!");
++					JqueryUtil.doToast("已匯入！");
+ 				},
+ 			),
+ 		]);
+ 
+-		const btnContext = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Menu"><span class="glyphicon glyphicon-option-vertical"></span></button>`
++		const btnContext = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="選單"><span class="glyphicon glyphicon-option-vertical"></span></button>`
+ 			.vee.onn("click", evt => ContextUtil.pOpenMenu(evt, menuCustom));
+ 
+ 		const stgCustomCostControls = veT`<div class="ve-flex-col ve-mb-auto ve-ml-2 ve-mobile-sm__ml-0 ve-mobile-sm__mt-3">
+@@ -629,15 +629,15 @@ export class StatGenUi extends BaseComponent {
+ 		hkIsCustomReset();
+ 
+ 		return veT`<div class="ve-flex-col">
+-			<h4>Ability Score Point Cost</h4>
++			<h4>屬性值的點數成本</h4>
+ 
+ 			<div class="ve-flex-col">
+ 				<div class="ve-flex ve-mobile-sm__flex-col">
+ 					<div class="ve-flex-col ve-mr-3 ve-mobile-sm__mr-0">
+ 						<div class="ve-flex-v-center ve-mb-1">
+-							<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-bold">Score</div>
+-							<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-bold">Modifier</div>
+-							<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-bold">Point Cost</div>
++							<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-bold">數值</div>
++							<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-bold">調整值</div>
++							<div class="ve-statgen-pb__col-cost ve-flex-vh-center ve-bold">點數成本</div>
+ 							<div class="ve-statgen-pb__col-cost-delete"></div>
+ 						</div>
+ 
+@@ -665,14 +665,14 @@ export class StatGenUi extends BaseComponent {
+ 		return JSON.stringify(out);
+ 	}
+ 
+-	static _DESERIALIZE_MSG_INVALID = "Code was not valid!";
++	static _DESERIALIZE_MSG_INVALID = "代碼無效！";
+ 
+ 	_deserialize_pb_rules (raw) {
+ 		let json;
+ 		try {
+ 			json = JSON.parse(raw);
+ 		} catch (e) {
+-			JqueryUtil.doToast({type: "danger", content: `Failed to decode JSON! ${e.message}`});
++			JqueryUtil.doToast({type: "danger", content: `無法解析 JSON！${e.message}`});
+ 			return null;
+ 		}
+ 
+@@ -755,7 +755,7 @@ export class StatGenUi extends BaseComponent {
+ 		this._addHookActiveTab(hkElesMode);
+ 		// endregion
+ 
+-		const btnResetRolledOrArrayOrManual = veT`<button class="ve-btn ve-btn-default ve-btn-xxs ve-relative ve-statgen-shared__btn-reset" title="Reset"><span class="glyphicon glyphicon-refresh"></span></button>`
++		const btnResetRolledOrArrayOrManual = veT`<button class="ve-btn ve-btn-default ve-btn-xxs ve-relative ve-statgen-shared__btn-reset" title="重設"><span class="glyphicon glyphicon-refresh"></span></button>`
+ 			.vee.onn("click", () => this._doReset());
+ 		const hkRolledOrArray = () => btnResetRolledOrArrayOrManual.vee.toggle(this.ixActiveTab === this._IX_TAB_ROLLED || this.ixActiveTab === this._IX_TAB_ARRAY || this.ixActiveTab === this._IX_TAB_MANUAL);
+ 		this._addHookActiveTab(hkRolledOrArray);
+@@ -906,7 +906,7 @@ export class StatGenUi extends BaseComponent {
+ 		const wrpAsi = this._render_getWrpAsi();
+ 
+ 		stgNone = veT`<div class="ve-flex-col ve-w-100 ve-h-100">
+-			<div class="ve-flex-v-center"><i>Please select a mode.</i></div>
++			<div class="ve-flex-v-center"><i>請選擇模式。</i></div>
+ 		</div>`;
+ 
+ 		stgMain = veT`<div class="ve-flex-col ve-w-100 ve-h-100">
+@@ -923,12 +923,12 @@ export class StatGenUi extends BaseComponent {
+ 							<div class="ve-my-1 ve-statgen-pb__header"></div>
+ 							<div class="ve-my-1 ve-statgen-pb__header ve-flex-h-right">${btnResetRolledOrArrayOrManual}</div>
+ 
+-							${Parser.ABIL_ABVS.map(it => `<div class="ve-my-1 ve-bold ve-statgen-pb__cell ve-flex-v-center ve-flex-h-right" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>`)}
++							${Parser.ABIL_ABVS.map(it => `<div class="ve-my-1 ve-bold ve-statgen-pb__cell ve-flex-v-center ve-flex-h-right" title="${I18nZhTwUtilities.t(Parser.attAbvToFull(it))}">${it.toUpperCase()}</div>`)}
+ 						</div>
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+ 							<div class="ve-my-1 ve-statgen-pb__header"></div>
+-							<div class="ve-my-1 ve-bold ve-statgen-pb__header ve-flex-vh-center">Base</div>
++							<div class="ve-my-1 ve-bold ve-statgen-pb__header ve-flex-vh-center">基礎</div>
+ 							${wrpsBase}
+ 						</div>
+ 
+@@ -937,19 +937,19 @@ export class StatGenUi extends BaseComponent {
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+ 							<div class="ve-my-1 ve-statgen-pb__header"></div>
+-							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center ve-help ve-muted" title="Input any additional/custom bonuses here">User</div>
++							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center ve-help ve-muted" title="在此輸入額外或自訂加值">自訂</div>
+ 							${wrpsUser}
+ 						</div>
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+ 							<div class="ve-my-1 ve-statgen-pb__header"></div>
+-							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center">Total</div>
++							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center">合計</div>
+ 							${metasTotalAndMod.map(it => it.wrpIptTotal)}
+ 						</div>
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+ 							<div class="ve-my-1 ve-statgen-pb__header"></div>
+-							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center" title="Modifier">Mod.</div>
++							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center" title="調整值">調整值</div>
+ 							${metasTotalAndMod.map(it => it.wrpIptMod)}
+ 						</div>
+ 					</div>
+@@ -1011,26 +1011,26 @@ export class StatGenUi extends BaseComponent {
+ 						<div class="ve-flex-col ve-mr-3">
+ 							<div class="ve-my-1 ve-statgen-pb__header"></div>
+ 
+-							${Parser.ABIL_ABVS.map(it => `<div class="ve-my-1 ve-bold ve-statgen-pb__cell ve-flex-v-center ve-flex-h-right" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>`)}
++							${Parser.ABIL_ABVS.map(it => `<div class="ve-my-1 ve-bold ve-statgen-pb__cell ve-flex-v-center ve-flex-h-right" title="${I18nZhTwUtilities.t(Parser.attAbvToFull(it))}">${it.toUpperCase()}</div>`)}
+ 						</div>
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+-							<div class="ve-my-1 ve-bold ve-statgen-pb__header ve-flex-vh-center" title="Current">Curr.</div>
++							<div class="ve-my-1 ve-bold ve-statgen-pb__header ve-flex-vh-center" title="目前">目前</div>
+ 							${wrpsExisting}
+ 						</div>
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+-							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center ve-help ve-muted" title="Input any additional/custom bonuses here">User</div>
++							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center ve-help ve-muted" title="在此輸入額外或自訂加值">自訂</div>
+ 							${wrpsUser}
+ 						</div>
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+-							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center">Total</div>
++							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center">合計</div>
+ 							${metasTotalAndMod.map(it => it.wrpIptTotal)}
+ 						</div>
+ 
+ 						<div class="ve-flex-col ve-mr-3">
+-							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center" title="Modifier">Mod.</div>
++							<div class="ve-my-1 ve-statgen-pb__header ve-flex-vh-center" title="調整值">調整值</div>
+ 							${metasTotalAndMod.map(it => it.wrpIptMod)}
+ 						</div>
+ 					</div>
+@@ -1087,7 +1087,7 @@ export class StatGenUi extends BaseComponent {
+ 				iptTotal
+ 					.vee.val(totalScore)
+ 					.vee.toggleClass("form-control--error", isOverLimit)
+-					.vee.tooltip(isOverLimit ? `In general, you can't increase an ability score above 20.` : "");
++					.vee.tooltip(isOverLimit ? `一般情況下，屬性值不能提高至超過 20。` : "");
+ 				iptMod.vee.val(Parser.getAbilityModifier(totalScore));
+ 
+ 				this._state[exportedStateProp] = totalScore;
+diff --git a/js/statgen/statgen-util-additionalfeats.js b/js/statgen/statgen-util-additionalfeats.js
+index 4a42400..e93bc58 100644
+--- a/js/statgen/statgen-util-additionalfeats.js
++++ b/js/statgen/statgen-util-additionalfeats.js
+@@ -30,12 +30,12 @@ export class StatGenUtilAdditionalFeats {
+ 					const out = [];
+ 
+ 					if (featSet.any) {
+-						out.push(`Choose any${featSet.any > 1 ? ` ${Parser.numberToText(featSet.any)}` : ""}`);
++						out.push(`任選${featSet.any > 1 ? ` ${Parser.numberToText(featSet.any)}` : ""}`);
+ 					}
+ 
+ 					if (featSet.anyFromCategory) {
+ 						const cnt = featSet.anyFromCategory.count || 1;
+-						out.push(`Choose any ${Parser.featCategoryToFull(featSet.anyFromCategory.category)}${cnt > 1 ? ` ${Parser.numberToText(featSet.any)}` : ""}`);
++						out.push(`任選 ${Parser.featCategoryToFull(featSet.anyFromCategory.category)}${cnt > 1 ? ` ${Parser.numberToText(featSet.any)}` : ""}`);
+ 					}
+ 
+ 					this.getUidsStatic(featSet)
+diff --git a/js/styleswitch.js b/js/styleswitch.js
+index 008a9cc..62377e1 100644
+--- a/js/styleswitch.js
++++ b/js/styleswitch.js
+@@ -64,7 +64,7 @@ export class StyleSwitcher {
+ 			tag: "select",
+ 			clazz: "ve-form-control ve-input-xs",
+ 			children: Object.entries(this._STYLE_THEME_TO_DISPLAY_NAME)
+-				.map(([id, name]) => veT`<option value="${id}">${name}</option>`),
++				.map(([id, name]) => veT`<option value="${id}">${globalThis.I18nZhTwSite?.tEnglish(name) ?? name}</option>`),
+ 			change: () => {
+ 				styleSwitcher._setActiveStyleTheme(selStyle.vee.val());
+ 			},
+@@ -81,7 +81,7 @@ export class StyleSwitcher {
+ 			tag: "select",
+ 			clazz: "ve-form-control ve-input-xs",
+ 			children: Object.entries(this._STYLE_ROLLBOX_TO_DISPLAY_NAME)
+-				.map(([id, name]) => veT`<option value="${id}">${name}</option>`),
++				.map(([id, name]) => veT`<option value="${id}">${globalThis.I18nZhTwSite?.tEnglish(name) ?? name}</option>`),
+ 			change: () => {
+ 				styleSwitcher._setActiveStyleRollbox(selStyle.vee.val());
+ 			},
+diff --git a/js/tablepage.js b/js/tablepage.js
+index cb597a0..194e5ec 100644
+--- a/js/tablepage.js
++++ b/js/tablepage.js
+@@ -47,7 +47,7 @@ class _GroupHeaderManager {
+ 
+ 		this._btnHeader = veT`<div class="ve-lst__item-group-header ve-mt-3 ve-split-v-center ve-py-1 ve-no-select ve-clickable" title="SHIFT to Toggle All">
+ 			<div class="ve-split-v-center ve-w-100 ve-min-w-0 ve-mr-2">
+-				<div class="ve-bold">${ent.name}</div>
++				<div class="ve-bold">${I18nZhTwUtilities.name(ent)}</div>
+ 				<div class="${Parser.sourceJsonToSourceClassname(ent.source)}" title="${Parser.sourceJsonToFull(ent.source).qq()}">${Parser.sourceJsonToAbv(ent.source).qq()}</div>
+ 			</div>
+ 			${this._dispShowHide}
+diff --git a/js/tables.js b/js/tables.js
+index db63d72..78a39b3 100644
+--- a/js/tables.js
++++ b/js/tables.js
+@@ -21,10 +21,10 @@ class TablesSublistManager extends SublistManager {
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
+-		const cellsText = [it.name];
++		const cellsText = [I18nZhTwUtilities.name(it)];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+-			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner" title="${it.name}">
++			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner" title="${I18nZhTwUtilities.name(it)}">
+ 				${this.constructor._getRowCellsHtml({values: cellsText})}
+ 			</a>
+ 		</div>`
+@@ -34,7 +34,7 @@ class TablesSublistManager extends SublistManager {
+ 		const listItem = new ListItem({
+ 			id: hash,
+ 			ele,
+-			name: it.name,
++			name: I18nZhTwUtilities.name(it),
+ 			values: {
+ 				...ListItem.getCommonValues(it),
+ 				sortName: PageFilterTables.getSortName(it.name),
+@@ -130,7 +130,7 @@ class TablesPage extends ListPage {
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-col-0-5 ve-px-0 ve-flex-vh-center ve-lst__btn-toggle-expand ve-self-flex-stretch ve-no-select">[+]</span>
+-			<span class="ve-bold ve-col-9-5 ve-px-1">${it.name}</span>
++			<span class="ve-bold ve-col-9-5 ve-px-1">${I18nZhTwUtilities.name(it)}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
+ 		</a>
+ 		<div class="ve-flex ve-hidden ve-relative ve-accordion__wrp-preview">
+@@ -141,7 +141,7 @@ class TablesPage extends ListPage {
+ 		const listItem = new ListItem({
+ 			id: tbI,
+ 			ele: eleLi,
+-			name: it.name,
++			name: I18nZhTwUtilities.name(it),
+ 			values: {
+ 				source,
+ 				...ListItem.getCommonValues(it),
+diff --git a/js/trapshazards.js b/js/trapshazards.js
+index bc3d0b0..93ef1c9 100644
+--- a/js/trapshazards.js
++++ b/js/trapshazards.js
+@@ -18,7 +18,7 @@ class TrapsHazardsSublistManager extends SublistManager {
+ 
+ 	pGetSublistItem (it, hash) {
+ 		const trapType = Parser.trapHazTypeToFull(it.trapHazType);
+-		const cellsText = [trapType, it.name];
++		const cellsText = [trapType, I18nZhTwUtilities.name(it)];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+ 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+@@ -31,7 +31,7 @@ class TrapsHazardsSublistManager extends SublistManager {
+ 		const listItem = new ListItem({
+ 			id: hash,
+ 			ele,
+-			name: it.name,
++			name: I18nZhTwUtilities.name(it),
+ 			values: {
+ 				...ListItem.getCommonValues(it),
+ 				trapType,
+@@ -82,14 +82,14 @@ class TrapsHazardsPage extends ListPage {
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-col-3 ve-pl-0 ve-pr-1 ve-text-center">${trapType}</span>
+-			<span class="ve-bold ve-col-7 ve-px-1">${it.name}</span>
++			<span class="ve-bold ve-col-7 ve-px-1">${I18nZhTwUtilities.name(it)}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
+ 		</a>`;
+ 
+ 		const listItem = new ListItem({
+ 			id: thI,
+ 			ele: eleLi,
+-			name: it.name,
++			name: I18nZhTwUtilities.name(it),
+ 			values: {
+ 				source,
+ 				...ListItem.getCommonValues(it),
+diff --git a/js/utils-brew/utils-brew-ui-get.js b/js/utils-brew/utils-brew-ui-get.js
+index f56b4a4..99014d3 100644
+--- a/js/utils-brew/utils-brew-ui-get.js
++++ b/js/utils-brew/utils-brew-ui-get.js
+@@ -1,6 +1,14 @@
+ import {EVNT_VALCHANGE} from "../filter/filter-constants.js";
+ 
+ export class GetBrewUi {
++	static _t (text) { return globalThis.I18nZhTwSite?.tEnglish(text) ?? text; }
++	static _tk (key, fallback, data) {
++		if (globalThis.I18nZhTwSite) return globalThis.I18nZhTwSite.t(key, fallback, data);
++		return fallback.replace(/\{([A-Za-z][A-Za-z0-9_.-]*)\}/g, (full, name) => data != null && Object.hasOwn(data, name) ? data[name] : full);
++	}
++	_t (text) { return this.constructor._t(text); }
++	_tk (key, fallback, data) { return this.constructor._tk(key, fallback, data); }
++
+ 	static _RenderState = class {
+ 		constructor () {
+ 			this.pageFilter = null;
+@@ -138,7 +146,7 @@ export class GetBrewUi {
+ 									new Set(),
+ 								);
+ 
+-							const dispToggleExpand = veT`<span class="ve-mr-2" title="SHIFT-Click to Toggle All">[+]</span>`;
++							const dispToggleExpand = veT`<span class="ve-mr-2" title="${this._t("SHIFT-Click to Toggle All")}">[+]</span>`;
+ 
+ 							const dispHeader = veT`<div class="ve-w-100 ve-py-1 ve-bb-1p-trans ve-flex-v-center">
+ 								${dispToggleExpand}
+@@ -328,15 +336,15 @@ export class GetBrewUi {
+ 
+ 		rdState.pageFilter = new this.constructor._PageFilterGetBrew({brewUtil: this._brewUtil});
+ 
+-		const btnAddSelected = veT`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm ve-col-0-5 ve-text-center" disabled title="Add Selected"><span class="glyphicon glyphicon-save"></button>`;
++		const btnAddSelected = veT`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm ve-col-0-5 ve-text-center" disabled title="${this._t("Add Selected")}"><span class="glyphicon glyphicon-save"></button>`;
+ 
+-		const wrpRows = veT`<div class="list ve-smooth-scroll ve-max-h-unset"><div class="ve-lst__row ve-flex-col"><div class="ve-lst__wrp-cells ve-lst__row-border ve-lst__row-inner ve-flex ve-w-100"><i>Loading...</i></div></div></div>`;
++		const wrpRows = veT`<div class="list ve-smooth-scroll ve-max-h-unset"><div class="ve-lst__row ve-flex-col"><div class="ve-lst__wrp-cells ve-lst__row-border ve-lst__row-inner ve-flex ve-w-100"><i>${this._t("Loading...")}</i></div></div></div>`;
+ 
+-		const btnFilter = veT`<button class="ve-btn ve-btn-default ve-btn-sm">Filter</button>`;
++		const btnFilter = veT`<button class="ve-btn ve-btn-default ve-btn-sm">${this._t("Filter")}</button>`;
+ 
+-		const btnToggleSummaryHidden = veT`<button class="ve-btn ve-btn-default" title="Toggle Filter Summary Display"><span class="glyphicon glyphicon-resize-small"></span></button>`;
++		const btnToggleSummaryHidden = veT`<button class="ve-btn ve-btn-default" title="${this._t("Toggle Filter Summary Display")}"><span class="glyphicon glyphicon-resize-small"></span></button>`;
+ 
+-		const iptSearch = veT`<input type="search" class="search manbrew__search ve-form-control ve-w-100 ve-lst__search ve-lst__search--no-border-h" placeholder="Find ${this._brewUtil.DISPLAY_NAME}...">`
++		const iptSearch = veT`<input type="search" class="search manbrew__search ve-form-control ve-w-100 ve-lst__search ve-lst__search--no-border-h" placeholder="${this._tk("brew.findType", "Find {type}...", {type: this._t(this._brewUtil.DISPLAY_NAME)})}">`
+ 			.vee.onn("keydown", evt => this._pHandleKeydown_iptSearch(evt, rdState));
+ 		const dispCntVisible = veT`<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>`;
+ 
+@@ -347,23 +355,23 @@ export class GetBrewUi {
+ 
+ 		rdState.btnTogglePreviewAll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-col-0-5">${ListUiPreviewButtonHandlerBase.HTML_GLYPHICON_EXPAND}</button>`;
+ 
+-		const btnReset = veT`<button class="ve-btn ve-btn-default ve-btn-sm">Reset</button>`;
++		const btnReset = veT`<button class="ve-btn ve-btn-default ve-btn-sm">${this._t("Reset")}</button>`;
+ 
+ 		const wrpMiniPills = veT`<div class="ve-fltr__mini-view ve-btn-group"></div>`;
+ 
+ 		const btnSortAddedPublished = this._brewUtil.IS_PREFER_DATE_ADDED
+-			? `<button class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="added">Added</button>`
+-			: `<button class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="published">Published</button>`;
++			? `<button class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="added">${this._t("Added")}</button>`
++			: `<button class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="published">${this._t("Published")}</button>`;
+ 
+ 		const wrpSort = veT`<div class="filtertools manbrew__filtertools ve-btn-group ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+ 			<label class="ve-col-0-5 ve-pr-0 ve-btn ve-btn-default ve-btn-xs ve-flex-vh-center">${rdState.cbAll}</label>
+ 			${rdState.btnTogglePreviewAll}
+-			<button class="ve-col-3-8 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-			<button class="ve-col-3-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="author">Author</button>
+-			<button class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">Category</button>
+-			<button class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="modified">Modified</button>
++			<button class="ve-col-3-8 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">${this._t("Name")}</button>
++			<button class="ve-col-3-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="author">${this._t("Author")}</button>
++			<button class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">${this._t("Category")}</button>
++			<button class="ve-col-1-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="modified">${this._t("Modified")}</button>
+ 			${btnSortAddedPublished}
+-			<button class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="loaded" title="Loaded"><span class="glyphicon glyphicon-saved"></span></button>
++			<button class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="loaded" title="已載入"><span class="glyphicon glyphicon-saved"></span></button>
+ 		</div>`;
+ 
+ 		veT(wrp)`
+diff --git a/js/utils-brew/utils-brew-ui-manage-editable-contents.js b/js/utils-brew/utils-brew-ui-manage-editable-contents.js
+index e4d23f4..bc38e53 100644
+--- a/js/utils-brew/utils-brew-ui-manage-editable-contents.js
++++ b/js/utils-brew/utils-brew-ui-manage-editable-contents.js
+@@ -2,6 +2,9 @@ import {SOURCE_UNKNOWN_ABBREVIATION, SOURCE_UNKNOWN_FULL} from "./utils-brew-con
+ import {EVNT_VALCHANGE} from "../filter/filter-constants.js";
+ 
+ export class ManageEditableBrewContentsUi extends BaseComponent {
++	static _t (text) { return globalThis.I18nZhTwSite?.tEnglish(text) ?? text; }
++	_t (text) { return this.constructor._t(text); }
++
+ 	static _RenderState = class {
+ 		constructor () {
+ 			this.tabMetaEntities = null;
+@@ -106,7 +109,7 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
+ 	/* -------------------------------------------- */
+ 
+ 	_getBtnDeleteSelected ({rdState}) {
+-		return veT`<button class="ve-btn ve-btn-danger ve-btn-xs">Delete Selected</button>`
++		return veT`<button class="ve-btn ve-btn-danger ve-btn-xs">${this._t("Delete Selected")}</button>`
+ 			.vee.onn("click", () => this._handleClick_pButtonDeleteSelected({rdState}));
+ 	}
+ 
+@@ -204,23 +207,23 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
+ 	}
+ 
+ 	_pRender_tabEntities ({tabMeta, rdState}) {
+-		const btnFilter = veT`<button class="ve-btn ve-btn-default">Filter</button>`;
++		const btnFilter = veT`<button class="ve-btn ve-btn-default">${this._t("Filter")}</button>`;
+ 
+-		const btnToggleSummaryHidden = veT`<button class="ve-btn ve-btn-default" title="Toggle Filter Summary Display"><span class="glyphicon glyphicon-resize-small"></span></button>`;
++		const btnToggleSummaryHidden = veT`<button class="ve-btn ve-btn-default" title="${this._t("Toggle Filter Summary Display")}"><span class="glyphicon glyphicon-resize-small"></span></button>`;
+ 
+-		const btnReset = veT`<button class="ve-btn ve-btn-default">Reset</button>`;
++		const btnReset = veT`<button class="ve-btn ve-btn-default">${this._t("Reset")}</button>`;
+ 
+ 		const wrpMiniPills = veT`<div class="ve-fltr__mini-view ve-btn-group"></div>`;
+ 
+ 		const cbAll = this._isReadOnly ? null : veT`<input type="checkbox">`;
+ 		const wrpRows = veT`<div class="list ve-flex-col ve-w-100 ve-max-h-unset"></div>`;
+-		const iptSearch = veT`<input type="search" class="search manbrew__search ve-form-control ve-w-100 ve-lst__search ve-lst__search--no-border-h" placeholder="Search entries...">`;
++		const iptSearch = veT`<input type="search" class="search manbrew__search ve-form-control ve-w-100 ve-lst__search ve-lst__search--no-border-h" placeholder="${this._t("Search entries...")}">`;
+ 		const disp = veT`<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>`;
+ 		const wrpBtnsSort = veT`<div class="filtertools manbrew__filtertools ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+ 			${this._isReadOnly ? "" : veT`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-1 ve-pr-0 ve-flex-vh-center">${cbAll}</label>`}
+-			<button class="${this._isReadOnly ? `ve-col-6` : `ve-col-5`} sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-			<button class="ve-col-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="source">Source</button>
+-			<button class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">Category</button>
++			<button class="${this._isReadOnly ? `ve-col-6` : `ve-col-5`} sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">${this._t("Name")}</button>
++			<button class="ve-col-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="source">${this._t("Source")}</button>
++			<button class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">${this._t("Category")}</button>
+ 		</div>`;
+ 
+ 		veT(tabMeta.wrpTab)`
+@@ -338,8 +341,8 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
+ 
+ 		if (!infoTuples.length) {
+ 			veT(tabMeta.wrpTab)`
+-				<h4>Metadata</h4>
+-				<p><i>No metadata found.</i></p>
++				<h4>${this._t("Metadata")}</h4>
++				<p><i>${this._t("No metadata found.")}</i></p>
+ 			`;
+ 			return;
+ 		}
+@@ -348,7 +351,7 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
+ 			.map(([prop, info]) => this._pRender_getMetaRowMeta({prop, info}));
+ 
+ 		veT(tabMeta.wrpTab)`
+-			<div class="ve-pt-2"><i>Warning: deleting metadata may invalidate or otherwise corrupt homebrew which depends on it. Use with caution.</i></div>
++			<div class="ve-pt-2"><i>${this._t("Warning: deleting metadata may invalidate or otherwise corrupt homebrew which depends on it. Use with caution.")}</i></div>
+ 			<hr class="ve-hr-3">
+ 			${metasSections.map(({wrp}) => wrp)}
+ 		`;
+@@ -362,7 +365,7 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
+ 			.map(k => {
+ 				const btnDelete = this._isReadOnly
+ 					? null
+-					: veT`<button class="ve-btn ve-btn-danger ve-btn-xs" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`
++					: veT`<button class="ve-btn ve-btn-danger ve-btn-xs" title="${this._t("Delete")}"><span class="glyphicon glyphicon-trash"></span></button>`
+ 						.vee.onn("click", () => {
+ 							this._isDirty = true;
+ 							MiscUtil.deleteObjectPath(this._brew.body._meta, prop, k);
+@@ -397,11 +400,11 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
+ 	_pRender_tabSources ({tabMeta, rdState}) {
+ 		const cbAll = this._isReadOnly ? null : veT`<input type="checkbox">`;
+ 		const wrpRows = veT`<div class="list ve-flex-col ve-w-100 ve-max-h-unset"></div>`;
+-		const iptSearch = veT`<input type="search" class="search manbrew__search ve-form-control ve-w-100 ve-mt-1" placeholder="Search source...">`;
++		const iptSearch = veT`<input type="search" class="search manbrew__search ve-form-control ve-w-100 ve-mt-1" placeholder="${this._t("Search source...")}">`;
+ 		const wrpBtnsSort = veT`<div class="filtertools manbrew__filtertools ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+ 			${this._isReadOnly ? "" : veT`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-1 ve-pr-0 ve-flex-vh-center">${cbAll}</label>`}
+-			<button class="${this._isReadOnly ? `ve-col-6` : `ve-col-5`} sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-			<button class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="abbreviation">Abbreviation</button>
++			<button class="${this._isReadOnly ? `ve-col-6` : `ve-col-5`} sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">${this._t("Name")}</button>
++			<button class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="abbreviation">${this._t("Abbreviation")}</button>
+ 			<button class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="json">JSON</button>
+ 		</div>`;
+ 
+diff --git a/js/utils-brew/utils-brew-ui-manage.js b/js/utils-brew/utils-brew-ui-manage.js
+index e8f109e..35e1963 100644
+--- a/js/utils-brew/utils-brew-ui-manage.js
++++ b/js/utils-brew/utils-brew-ui-manage.js
+@@ -5,6 +5,18 @@ import {ManageEditableBrewContentsUi} from "./utils-brew-ui-manage-editable-cont
+ import {ManageExternalUtils} from "../manageexternal/manageexternal-utils.js";
+ 
+ export class ManageBrewUi {
++	static _t (text, data) {
++		return globalThis.I18nZhTwSite?.tEnglish(text, data) ?? text;
++	}
++
++	static _tk (key, fallback, data) {
++		if (globalThis.I18nZhTwSite) return globalThis.I18nZhTwSite.t(key, fallback, data);
++		return fallback.replace(/\{([A-Za-z][A-Za-z0-9_.-]*)\}/g, (full, name) => data != null && Object.hasOwn(data, name) ? data[name] : full);
++	}
++
++	_t (text, data) { return this.constructor._t(text, data); }
++	_tk (key, fallback, data) { return this.constructor._tk(key, fallback, data); }
++
+ 	static _RenderState = class {
+ 		constructor () {
+ 			this.stgBrewList = null;
+@@ -175,7 +187,7 @@ export class ManageBrewUi {
+ 		const {eleModalInner} = UiUtil.getShowModal({
+ 			isHeight100: true,
+ 			isWidth100: true,
+-			title: `Manage ${brewUtil.DISPLAY_NAME.toTitleCase()}`,
++			title: this._tk("brew.manageTitle", "Manage {type}", {type: this._t(brewUtil.DISPLAY_NAME.toTitleCase())}),
+ 			isUncappedHeight: true,
+ 			eleTitleSplit: veT`<div class="ve-flex-v-center ve-btn-group">
+ 				${ui._getBtnPullAll(rdState)}
+@@ -193,7 +205,7 @@ export class ManageBrewUi {
+ 	_getBtnDeleteAll (rdState) {
+ 		const brewUtilOther = this._brewUtil === PrereleaseUtil ? BrewUtil2 : PrereleaseUtil;
+ 
+-		return veT`<button class="ve-btn ve-btn-danger" title="SHIFT to also delete all ${brewUtilOther.DISPLAY_NAME.toTitleCase()}">Delete All</button>`
++		return veT`<button class="ve-btn ve-btn-danger" title="${this._tk("brew.shiftDeleteAllOther", "SHIFT to also delete all {type}", {type: this._t(brewUtilOther.DISPLAY_NAME.toTitleCase())})}">${this._t("Delete All")}</button>`
+ 			.vee.addClass(this._isModal ? "ve-btn-xs" : "ve-btn-sm")
+ 			.vee.onn("click", async evt => {
+ 				if (!evt.shiftKey) {
+@@ -219,21 +231,21 @@ export class ManageBrewUi {
+ 	}
+ 
+ 	_getBtnPullAll (rdState) {
+-		const btn = veT`<button class="ve-btn ve-btn-default ve-w-80p">Update All</button>`
++		const btn = veT`<button class="ve-btn ve-btn-default ve-w-80p">${this._t("Update All")}</button>`
+ 			.vee.addClass(this._isModal ? "ve-btn-xs" : "ve-btn-sm")
+ 			.vee.onn("click", async () => {
+ 				const cachedHtml = btn.vee.html();
+ 
+ 				try {
+-					btn.vee.txt(`Updating...`).vee.prop("disabled", true);
++					btn.vee.txt(this._t(`Updating...`)).vee.prop("disabled", true);
+ 					await this._pDoPullAll({rdState, isReload: true});
+ 				} catch (e) {
+-					btn.vee.txt(`Failed!`);
++					btn.vee.txt(this._t(`Failed!`));
+ 					setTimeout(() => btn.vee.html(cachedHtml).vee.prop("disabled", false), VeCt.DUR_INLINE_NOTIFY);
+ 					throw e;
+ 				}
+ 
+-				btn.vee.txt(`Done!`);
++			btn.vee.txt(this._t(`Done!`));
+ 				setTimeout(() => btn.vee.html(cachedHtml).vee.prop("disabled", false), VeCt.DUR_INLINE_NOTIFY);
+ 			});
+ 		return btn;
+@@ -313,25 +325,25 @@ export class ManageBrewUi {
+ 
+ 		await this._pRender_pBrewList(rdState);
+ 
+-		const btnGet = veT`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm">Get ${this._brewUtil.DISPLAY_NAME.toTitleCase()}</button>`
++		const btnGet = veT`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm">${this._tk("brew.getType", "Get {type}", {type: this._t(this._brewUtil.DISPLAY_NAME.toTitleCase())})}</button>`
+ 			.vee.onn("click", () => this._pHandleClick_btnGetBrew(rdState));
+ 
+-		const btnCustomUrl = veT`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm ve-px-2" title="Set Custom Repository URL"><span class="glyphicon glyphicon-cog"></span></button>`
++		const btnCustomUrl = veT`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm ve-px-2" title="${this._t("Set Custom Repository URL")}"><span class="glyphicon glyphicon-cog"></span></button>`
+ 			.vee.onn("click", () => this._pHandleClick_btnSetCustomRepo());
+ 
+-		const btnLoadPartnered = veT`<button class="ve-btn ve-btn-default ve-btn-sm">Load All Partnered</button>`
++		const btnLoadPartnered = veT`<button class="ve-btn ve-btn-default ve-btn-sm">${this._t("Load All Partnered")}</button>`
+ 			.vee.onn("click", () => this._pHandleClick_btnLoadPartnered(rdState));
+ 
+-		const btnLoadFromFile = veT`<button class="ve-btn ve-btn-default ve-btn-sm">Load from File</button>`
++		const btnLoadFromFile = veT`<button class="ve-btn ve-btn-default ve-btn-sm">${this._t("Load from File")}</button>`
+ 			.vee.onn("click", () => this._pHandleClick_btnLoadFromFile(rdState));
+ 
+-		const btnLoadFromUrl = veT`<button class="ve-btn ve-btn-default ve-btn-sm">Load from URL</button>`
++		const btnLoadFromUrl = veT`<button class="ve-btn ve-btn-default ve-btn-sm">${this._t("Load from URL")}</button>`
+ 			.vee.onn("click", () => this._pHandleClick_btnLoadFromUrl(rdState));
+ 
+ 		const btnPullAll = this._isModal ? null : this._getBtnPullAll(rdState);
+ 		const btnDeleteAll = this._isModal ? null : this._getBtnDeleteAll(rdState);
+ 
+-		const btnSaveToUrl = veT`<button class="ve-btn ve-btn-default ve-btn-sm" title="Note that this does not include &quot;Editable&quot; or &quot;Local&quot; content.">Export List as URL</button>`
++		const btnSaveToUrl = veT`<button class="ve-btn ve-btn-default ve-btn-sm" title="${this._t("Note that this does not include Editable or Local content.")}">${this._t("Export List as URL")}</button>`
+ 			.vee.onn("click", async evt => {
+ 				await this.constructor.pOnClickBtnExportListAsUrl({ele: evt.currentTarget});
+ 			});
+@@ -360,7 +372,7 @@ export class ManageBrewUi {
+ 				</div>
+ 			</div>
+ 			<div class="ve-flex-v-center">
+-				<a href="${this._brewUtil.URL_REPO_DEFAULT}" class="ve-flex-v-center" target="_blank" rel="noopener noreferrer"><button class="ve-btn ve-btn-default ve-btn-sm ve-mr-2">Browse Source Repository</button></a>
++				<a href="${this._brewUtil.URL_REPO_DEFAULT}" class="ve-flex-v-center" target="_blank" rel="noopener noreferrer"><button class="ve-btn ve-btn-default ve-btn-sm ve-mr-2">${this._t("Browse Source Repository")}</button></a>
+ 
+ 				<div class="ve-flex-v-center ve-btn-group ve-mr-2">
+ 					${btnSaveToUrl}
+@@ -484,9 +496,9 @@ export class ManageBrewUi {
+ 		rdState.rowMetas.splice(0, rdState.rowMetas.length)
+ 			.forEach(({menu}) => ContextUtil.deleteMenu(menu));
+ 
+-		const btnMass = veT`<button class="ve-btn ve-btn-default ve-bbl-0 ve-self-flex-stretch">Mass...</button>`
++		const btnMass = veT`<button class="ve-btn ve-btn-default ve-bbl-0 ve-self-flex-stretch">${this._t("Mass...")}</button>`
+ 			.vee.onn("click", evt => this._pHandleClick_btnListMass({evt, rdState}));
+-		const iptSearch = veT`<input type="search" class="search manbrew__search ve-form-control ve-bbr-0" placeholder="Search ${this._brewUtil.DISPLAY_NAME}...">`;
++		const iptSearch = veT`<input type="search" class="search manbrew__search ve-form-control ve-bbr-0" placeholder="${this._tk("brew.searchType", "Search {type}...", {type: this._t(this._brewUtil.DISPLAY_NAME)})}">`;
+ 		const cbAll = veT`<input type="checkbox">`;
+ 		const wrpList = veT`<div class="list-display-only ve-max-h-unset ve-smooth-scroll ve-overflow-y-auto ve-h-100 ve-min-h-0 brew-list brew-list--target manbrew__list ve-relative ve-flex-col ve-w-100 ve-mb-3"></div>`;
+ 
+@@ -500,10 +512,10 @@ export class ManageBrewUi {
+ 
+ 		const wrpBtnsSort = veT`<div class="filtertools manbrew__filtertools ve-btn-group ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+ 			<label class="ve-col-0-5 ve-pr-0 ve-btn ve-btn-default ve-btn-xs ve-flex-vh-center">${cbAll}</label>
+-			<button class="ve-col-1 ve-btn ve-btn-default ve-btn-xs" disabled>Type</button>
+-			<button class="ve-col-3 ve-btn ve-btn-default ve-btn-xs" data-sort="source">Source</button>
+-			<button class="ve-col-3 ve-btn ve-btn-default ve-btn-xs" data-sort="authors">Authors</button>
+-			<button class="ve-col-3 ve-btn ve-btn-default ve-btn-xs" disabled>Origin</button>
++			<button class="ve-col-1 ve-btn ve-btn-default ve-btn-xs" disabled>${this._t("Type")}</button>
++			<button class="ve-col-3 ve-btn ve-btn-default ve-btn-xs" data-sort="source">${this._t("Source")}</button>
++			<button class="ve-col-3 ve-btn ve-btn-default ve-btn-xs" data-sort="authors">${this._t("Authors")}</button>
++			<button class="ve-col-3 ve-btn ve-btn-default ve-btn-xs" disabled>${this._t("Origin")}</button>
+ 			<button class="ve-col-1-5 ve-btn ve-btn-default ve-btn-xs ve-grow" disabled>&nbsp;</button>
+ 		</div>`;
+ 
+diff --git a/js/utils-config/util-config-settings-group.js b/js/utils-config/util-config-settings-group.js
+index 925681b..6ace140 100644
+--- a/js/utils-config/util-config-settings-group.js
++++ b/js/utils-config/util-config-settings-group.js
+@@ -18,9 +18,10 @@ export class ConfigSettingsGroup {
+ 
+ 	render (rdState, {isLast = false} = {}) {
+ 		const wrpRows = veT`<div></div>`;
++		const nameDisplay = globalThis.I18nZhTwSite?.tEnglish(this._name) ?? this._name;
+ 
+ 		veT`<div class="ve-w-100">
+-			<h4>${this._name}</h4>
++			<h4>${nameDisplay}</h4>
+ 			${wrpRows}
+ 			${isLast ? null : `<hr class="ve-hr-3 ve-mb-1">`}
+ 		</div>`
+diff --git a/js/utils-config/utils-config-setting-base.js b/js/utils-config/utils-config-setting-base.js
+index 5b3d089..ef0c4d3 100644
+--- a/js/utils-config/utils-config-setting-base.js
++++ b/js/utils-config/utils-config-setting-base.js
+@@ -35,8 +35,9 @@ class _ConfigSettingBase {
+ 
+ 	render (rdState, wrpRows) {
+ 		const tag = this._isRowLabel ? "label" : "div";
++		const helpDisplay = globalThis.I18nZhTwSite?.tEnglish(this._help) ?? this._help;
+ 
+-		veT`<${tag} class="ve-py-1 ve-w-100 ve-split-v-center" title="${this._help.qq()}">
++		veT`<${tag} class="ve-py-1 ve-w-100 ve-split-v-center" title="${helpDisplay.qq()}">
+ 			${this._renderLabel(rdState)}
+ 			${this._renderUi(rdState)}
+ 		</${tag}>`
+@@ -44,8 +45,10 @@ class _ConfigSettingBase {
+ 	}
+ 
+ 	_renderLabel (rdState) {
+-		const ptReload = this._isReloadRequired ? `<span class="ve-ml-2 text-danger ve-small" title="Requires Refresh">‡</span>` : "";
+-		return `<div class="ve-w-66 ve-no-shrink ve-mr-2 ve-flex-v-center">${this._name}${ptReload}</div>`;
++		const nameDisplay = globalThis.I18nZhTwSite?.tEnglish(this._name) ?? this._name;
++		const titleRefresh = globalThis.I18nZhTwSite?.tEnglish("Requires Refresh") ?? "Requires Refresh";
++		const ptReload = this._isReloadRequired ? `<span class="ve-ml-2 text-danger ve-small" title="${titleRefresh}">‡</span>` : "";
++		return `<div class="ve-w-66 ve-no-shrink ve-mr-2 ve-flex-v-center">${nameDisplay}${ptReload}</div>`;
+ 	}
+ 
+ 	/**
+diff --git a/js/utils-config/utils-config-ui.js b/js/utils-config/utils-config-ui.js
+index 793a6b5..e86bb43 100644
+--- a/js/utils-config/utils-config-ui.js
++++ b/js/utils-config/utils-config-ui.js
+@@ -68,7 +68,7 @@ export class ConfigUi {
+ 
+ 		ui.render(eleModalInner);
+ 
+-		const btnClose = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-ml-auto">Close</button>`
++		const btnClose = veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-ml-auto">${globalThis.I18nZhTwSite?.tEnglish("Close") ?? "Close"}</button>`
+ 			.vee.onn("click", () => doClose());
+ 
+ 		veT`<div class="ve-py-1 ve-w-100 ve-flex-v-center">
+diff --git a/js/utils-dataloader.js b/js/utils-dataloader.js
+index a823b26..f760bde 100644
+--- a/js/utils-dataloader.js
++++ b/js/utils-dataloader.js
+@@ -1,3 +1,3 @@
+-import {DataLoader} from "./utils-dataloader/utils-dataloader-dataloader.js";
++import {DataLoader} from "./utils-dataloader/utils-dataloader-dataloader.js?v=zh-tw-33";
+ 
+ globalThis.DataLoader = DataLoader;
+diff --git a/js/utils-dataloader/utils-dataloader-dataloader.js b/js/utils-dataloader/utils-dataloader-dataloader.js
+index 638a328..d492cfd 100644
+--- a/js/utils-dataloader/utils-dataloader-dataloader.js
++++ b/js/utils-dataloader/utils-dataloader-dataloader.js
+@@ -3,6 +3,7 @@ import {DataLoaderInternalUtil} from "./utils-dataloader-internal-util.js";
+ import {DataLoaderDependency} from "./utils-dataloader-dependency.js";
+ import {DataLoaderDereferencerFacade} from "./utils-dataloader-dereferencing.js";
+ import {DataLoaderCache} from "./utils-dataloader-cache.js";
++import {I18nZhTwRules} from "../zh-tw/rules-i18n.js?v=zh-tw-33";
+ 
+ // region Data type loading
+ 
+@@ -143,7 +144,10 @@ class DataTypeLoaderSingleSource extends DataTypeLoader {
+ 	_getSiteIdent ({pageClean, sourceClean}) { return this._filename; }
+ 
+ 	async _pGetSiteData ({pageClean, sourceClean}) {
+-		return DataUtil.loadJSON(`${Renderer.get().baseUrl}data/${this._filename}`);
++		let data = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/${this._filename}`);
++		data = await I18nZhTwRules.pApplyToData(data, {filenames: [this._filename]});
++		if (!globalThis.I18nZhTwContent?.pApplyDataFile) return data;
++		return globalThis.I18nZhTwContent.pApplyDataFile({file: this._filename, data});
+ 	}
+ }
+ 
+@@ -236,6 +240,13 @@ class DataTypeLoaderConditionDisease extends DataTypeLoaderSingleSource {
+ 	static PAGE = UrlUtil.PG_CONDITIONS_DISEASES;
+ 
+ 	_filename = "conditionsdiseases.json";
++
++	async _pGetStoredPrereleaseBrewData (opts) {
++		return I18nZhTwRules.pApplyToData(
++			await super._pGetStoredPrereleaseBrewData(opts),
++			{filenames: [this._filename]},
++		);
++	}
+ }
+ 
+ class DataTypeLoaderSkill extends DataTypeLoaderSingleSource {
+@@ -473,6 +484,13 @@ class DataTypeLoaderVariantrule extends DataTypeLoaderPredefined {
+ 	static PAGE = UrlUtil.PG_VARIANTRULES;
+ 
+ 	_loader = "variantrule";
++
++	async _pGetSiteData ({pageClean, sourceClean}) {
++		const data = await super._pGetSiteData({pageClean, sourceClean});
++		return I18nZhTwRules.pApplyToData(data, {
++			filenames: ["variantrules.json", "generated/gendata-variantrules.json"],
++		});
++	}
+ }
+ 
+ class DataTypeLoaderTable extends DataTypeLoaderPredefined {
+diff --git a/js/utils-list.js b/js/utils-list.js
+index 1d3cd6a..ba9c95c 100644
+--- a/js/utils-list.js
++++ b/js/utils-list.js
+@@ -428,7 +428,7 @@ class SaveManager extends BaseComponent {
+ 		const isWarnUnsaved = this._isWarnUnsavedChanges(exportedSublist);
+ 		if (
+ 			isWarnUnsaved
+-			&& !await InputUiUtil.pGetUserBoolean({title: "Discard Unsaved Changes", htmlDescription: `You have unsaved changes.<br>Are you sure you want to create a new list, discarding these changes?`, textYes: "Yes", textNo: "Cancel"})
++			&& !await InputUiUtil.pGetUserBoolean({title: "Discard Unsaved Changes", htmlDescription: UiUtil.getTranslatedText("You have unsaved changes.<br>Are you sure you want to create a new list, discarding these changes?"), textYes: "Yes", textNo: "Cancel"})
+ 		) return false;
+ 
+ 		if (
+@@ -436,7 +436,7 @@ class SaveManager extends BaseComponent {
+ 			!isWarnUnsaved
+ 			&& this._isWarnNeverSaved(exportedSublist)
+ 			// endregion
+-			&& !await InputUiUtil.pGetUserBoolean({title: "Discard Unsaved List", htmlDescription: `Your current list has not been saved.<br>Are you sure you want to create a new list, discarding this one?`, textYes: "Yes", textNo: "Cancel"})
++			&& !await InputUiUtil.pGetUserBoolean({title: "Discard Unsaved List", htmlDescription: UiUtil.getTranslatedText("Your current list has not been saved.<br>Are you sure you want to create a new list, discarding this one?"), textYes: "Yes", textNo: "Cancel"})
+ 		) return false;
+ 
+ 		this._doNew();
+@@ -501,7 +501,7 @@ class SaveManager extends BaseComponent {
+ 				<div class="ve-ml-1 ve-help" title="Turning this on will make a copy of the list as it currently exists, allowing the original to be modified or deleted without affecting the copy. Leaving this off will instead keep a reference to the list, so any change to the list will be reflected in applications which make use of it.">Make Copy</div>
+ 			</label>`;
+ 
+-		const btnExportAll = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Save All Lists to File">Export All</button>`
++		const btnExportAll = veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="${UiUtil.getTranslatedText("Save All Lists to File")}">${UiUtil.getTranslatedText("Export All")}</button>`
+ 			.vee.onn("click", () => {
+ 				DataUtil.userDownload(
+ 					ListUtil.getDownloadNameSaves({page: this._page}),
+@@ -514,7 +514,7 @@ class SaveManager extends BaseComponent {
+ 
+ 		const btnImportAll = this._isReadOnlyUi
+ 			? null
+-			: veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="Load Lists from File">Import All</button>`
++			: veT`<button class="ve-btn ve-btn-default ve-btn-xs" title="${UiUtil.getTranslatedText("Load Lists from File")}">${UiUtil.getTranslatedText("Import All")}</button>`
+ 				.vee.onn("click", async () => {
+ 					const {jsons, errors} = await InputUiUtil.pGetUserUploadJson({
+ 						expectedFileTypes: [ListUtil.getDownloadFiletypeSaves({page: this._page})],
+@@ -558,7 +558,7 @@ class SaveManager extends BaseComponent {
+ 
+ 		const wrpRows = veT`<div class="ve-flex-col"></div>`;
+ 
+-		const dispNoSaves = veT`<div class="ve-flex-col"><i class="ve-muted ve-text-center">No saves found.</i></div>`;
++		const dispNoSaves = veT`<div class="ve-flex-col"><i class="ve-muted ve-text-center">${UiUtil.getTranslatedText("No saves found.")}</i></div>`;
+ 
+ 		const btnExpandCollapseAll = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-px-1 ve-flex-vh-center ve-h-100 ve-no-shrink"></button>`
+ 			.vee.onn("click", () => {
+@@ -572,7 +572,7 @@ class SaveManager extends BaseComponent {
+ 
+ 		let isDescending = false;
+ 		const btnSortName = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-w-100">
+-			<span>Name</span>
++			<span>${UiUtil.getTranslatedText("Name")}</span>
+ 			${dispCaret}
+ 		</button>`
+ 			.vee.onn("click", evt => {
+@@ -665,7 +665,7 @@ class SaveManager extends BaseComponent {
+ 		const isWarnUnsaved = this._isWarnUnsavedChanges(exportedSublist);
+ 		if (
+ 			isWarnUnsaved
+-			&& !await InputUiUtil.pGetUserBoolean({title: "Discard Unsaved Changes", htmlDescription: `You have unsaved changes.<br>Are you sure you want to create a new list, discarding these changes?`, textYes: "Yes", textNo: "Cancel"})
++			&& !await InputUiUtil.pGetUserBoolean({title: "Discard Unsaved Changes", htmlDescription: UiUtil.getTranslatedText("You have unsaved changes.<br>Are you sure you want to create a new list, discarding these changes?"), textYes: "Yes", textNo: "Cancel"})
+ 		) return false;
+ 
+ 		// (If the list has never been saved, just let the user dupe it)
+@@ -741,7 +741,7 @@ class SaveManager extends BaseComponent {
+ 	}
+ 
+ 	getBtnDownloadSave_ ({save, title = "Download", cbOnSave = null}) {
+-		return veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="${title.qq()}"><span class="glyphicon glyphicon-download"></span></button>`
++		return veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="${UiUtil.getTranslatedText(title).qq()}"><span class="glyphicon glyphicon-download"></span></button>`
+ 			.vee.onn("click", async evt => {
+ 				evt.stopPropagation();
+ 
+@@ -851,7 +851,7 @@ SaveManager._RenderableCollectionSaves_Load = class extends RenderableCollection
+ 			wrpPreview.vee.toggle(!!comp._state.manager_loader_isExpanded);
+ 			btnExpand
+ 				.vee.txt(comp._state.manager_loader_isExpanded ? `[\u2212]` : `[+]`)
+-				.vee.tooltip(comp._state.manager_loader_isExpanded ? "Collapse Preview" : "Expand Preview");
++				.vee.tooltip(UiUtil.getTranslatedText(comp._state.manager_loader_isExpanded ? "Collapse Preview" : "Expand Preview"));
+ 
+ 			if (!comp._state.manager_loader_isExpanded) return;
+ 
+@@ -870,13 +870,13 @@ SaveManager._RenderableCollectionSaves_Load = class extends RenderableCollection
+ 
+ 					wrpPreviewInner
+ 						.vee.empty()
+-						.vee.html(lis ? `<ul class="ve-my-0" onclick="event.stopPropagation()">${lis}</ul>` : Renderer.get().render(`{@note This list is empty.}`));
++						.vee.html(lis ? `<ul class="ve-my-0" onclick="event.stopPropagation()">${lis}</ul>` : Renderer.get().render(`{@note ${UiUtil.getTranslatedText("This list is empty.")}}`));
+ 				});
+ 		};
+ 		comp._addHookBase("manager_loader_isExpanded", hkIsExpanded);
+ 		hkIsExpanded();
+ 
+-		const btnLoad = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-primary" title="Load"><span class="glyphicon glyphicon-ok"></span></button>`
++		const btnLoad = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-primary" title="${UiUtil.getTranslatedText("Load")}"><span class="glyphicon glyphicon-ok"></span></button>`
+ 			.vee.onn("click", evt => {
+ 				evt.stopPropagation();
+ 				this._comp._state.activeId = save.id;
+@@ -889,7 +889,7 @@ SaveManager._RenderableCollectionSaves_Load = class extends RenderableCollection
+ 
+ 		const btnDelete = this._isReadOnlyUi
+ 			? null
+-			: veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-danger" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`
++			: veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-danger" title="${UiUtil.getTranslatedText("Delete")}"><span class="glyphicon glyphicon-trash"></span></button>`
+ 				.vee.onn("click", evt => {
+ 					evt.stopPropagation();
+ 					this._comp._state.saves = this._comp._state.saves.filter(it => it.id !== save.id);
+@@ -961,28 +961,28 @@ SaveManager._RenderableCollectionSaves_Summary = class extends RenderableCollect
+ 			this._comp._triggerCollectionUpdate("saves");
+ 		});
+ 
+-		const iptName = ComponentUiUtil.getIptStr(comp, "name", {placeholder: "(Unnamed List)"});
++		const iptName = ComponentUiUtil.getIptStr(comp, "name", {placeholder: UiUtil.getTranslatedText("(Unnamed List)")});
+ 
+-		const dispCount = veT`<div class="ve-absolute ve-right-0 ve-z-index-1 ve-no-events ve-flex-vh-center ve-muted ve-pr-2 ve-small" title="Number of Pinned List Items"></div>`;
++		const dispCount = veT`<div class="ve-absolute ve-right-0 ve-z-index-1 ve-no-events ve-flex-vh-center ve-muted ve-pr-2 ve-small" title="${UiUtil.getTranslatedText("Number of Pinned List Items")}"></div>`;
+ 
+-		const btnNew = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="New Pinned List"><span class="glyphicon glyphicon-file"></span></button>`
++		const btnNew = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="${UiUtil.getTranslatedText("New Pinned List")}"><span class="glyphicon glyphicon-file"></span></button>`
+ 			.vee.onn("click", evt => this._cbOnNew(evt));
+ 
+-		const btnDuplicate = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="Duplicate Pinned List"><span class="glyphicon glyphicon-duplicate"></span></button>`
++		const btnDuplicate = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="${UiUtil.getTranslatedText("Duplicate Pinned List")}"><span class="glyphicon glyphicon-duplicate"></span></button>`
+ 			.vee.onn("click", evt => this._cbOnDuplicate(evt));
+ 
+-		const btnSave = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="Save Pinned List"><span class="glyphicon glyphicon-floppy-disk"></span></button>`
++		const btnSave = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="${UiUtil.getTranslatedText("Save Pinned List")}"><span class="glyphicon glyphicon-floppy-disk"></span></button>`
+ 			.vee.onn("click", evt => this._cbOnSave(evt));
+ 
+-		const btnLoad = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="Load Pinned List"><span class="glyphicon glyphicon-folder-open"></span></button>`
++		const btnLoad = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="${UiUtil.getTranslatedText("Load Pinned List")}"><span class="glyphicon glyphicon-folder-open"></span></button>`
+ 			.vee.onn("click", evt => this._cbOnLoad(evt));
+ 
+ 		const btnDownload = this._comp.getBtnDownloadSave_({save, title: "Download Pinned List", cbOnSave: this._cbOnSave});
+ 
+-		const btnUpload = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="Upload Pinned List"><span class="glyphicon glyphicon-upload"></span></button>`
++		const btnUpload = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="${UiUtil.getTranslatedText("Upload Pinned List")}"><span class="glyphicon glyphicon-upload"></span></button>`
+ 			.vee.onn("click", evt => this._cbOnUpload(evt));
+ 
+-		const btnReset = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="Reload Pinned List"><span class="glyphicon glyphicon-refresh"></span></button>`
++		const btnReset = veT`<button class="ve-btn ve-btn-5et ve-btn-xs ve-btn-default" title="${UiUtil.getTranslatedText("Reload Pinned List")}"><span class="glyphicon glyphicon-refresh"></span></button>`
+ 			.vee.onn("click", evt => this._cbOnReset(evt, ListUtil.getWithoutManagerState(comp.toObject("*"))));
+ 
+ 		const hkBtnReset = () => btnReset.vee.prop("disabled", !comp._state.manager_isSaved);
+@@ -993,7 +993,7 @@ SaveManager._RenderableCollectionSaves_Summary = class extends RenderableCollect
+ 		const wrpRow = veT`<div class="ve-flex-col ve-my-2 ve-w-100">
+ 			<div class="ve-flex-v-center">
+ 				<div class="ve-flex-v-center ve-mr-1 ve-w-100 ve-min-w-0 ve-relative">
+-					<div class="ve-mr-2 ve-muted">List:</div>
++					<div class="ve-mr-2 ve-muted">${UiUtil.getTranslatedText("List:")}</div>
+ 					${iptName}
+ 					${dispCount}
+ 				</div>
+diff --git a/js/utils-tableview.js b/js/utils-tableview.js
+index 51cba53..477b89e 100644
+--- a/js/utils-tableview.js
++++ b/js/utils-tableview.js
+@@ -24,7 +24,7 @@ class UtilsTableview {
+ 			Object.keys(colTransforms).mergeMap(k => ({[k]: true})),
+ 		);
+ 
+-		const cbAll = veT`<input type="checkbox" title="Select All" checked>`
++		const cbAll = veT`<input type="checkbox" title="${UiUtil.getTranslatedText("Select All")}" checked>`
+ 			.vee.onn("click", () => {
+ 				const val = cbAll.vee.prop("indeterminate") ? false : cbAll.vee.prop("checked");
+ 
+@@ -40,7 +40,7 @@ class UtilsTableview {
+ 
+ 				const wrp = veT`<label class="ve-px-2 ve-py-1 ve-no-wrap ve-flex-inline-v-center">
+ 					${cb}
+-					<span>${meta.name}</span>
++					<span>${UiUtil.getTranslatedText(meta.name)}</span>
+ 				</label>`;
+ 
+ 				return {wrp, name: meta.name};
+@@ -59,11 +59,11 @@ class UtilsTableview {
+ 				});
+ 			});
+ 
+-		const btnCsv = veT`<button class="ve-btn ve-btn-primary">Download CSV</button>`.vee.onn("click", () => {
++		const btnCsv = veT`<button class="ve-btn ve-btn-primary">${UiUtil.getTranslatedText("Download CSV")}</button>`.vee.onn("click", () => {
+ 			DataUtil.userDownloadText(`${title}.csv`, this._getAsCsv({colTransforms, rdState}));
+ 		});
+ 
+-		const btnCopy = veT`<button class="ve-btn ve-btn-primary">Copy CSV to Clipboard</button>`.vee.onn("click", async () => {
++		const btnCopy = veT`<button class="ve-btn ve-btn-primary">${UiUtil.getTranslatedText("Copy CSV to Clipboard")}</button>`.vee.onn("click", async () => {
+ 			await MiscUtil.pCopyTextToClipboard(this._getAsCsv({colTransforms, rdState}));
+ 			JqueryUtil.showCopiedEffect(btnCopy);
+ 		});
+@@ -117,7 +117,7 @@ class UtilsTableview {
+ 
+ 		let stack = `<table class="ve-w-100 table-striped ve-stats ve-stats--book ve-stats--book-large ve-min-w-100 ve-w-initial">
+ 			<thead>
+-				<tr>${Object.values(colTransforms).map((c, i) => `<th data-col="${i}" class="ve-text-left ve-px-2" colspan="${c.flex || 1}">${c.name}</th>`).join("")}</tr>
++				<tr>${Object.values(colTransforms).map((c, i) => `<th data-col="${i}" class="ve-text-left ve-px-2" colspan="${c.flex || 1}">${UiUtil.getTranslatedText(c.name)}</th>`).join("")}</tr>
+ 			</thead>
+ 			<tbody>`;
+ 
+diff --git a/js/utils-ui.js b/js/utils-ui.js
+index 62f7475..e5211c9 100644
+--- a/js/utils-ui.js
++++ b/js/utils-ui.js
+@@ -249,6 +249,11 @@ class ProxyBase extends MixinProxyBase(class {}) {}
+ globalThis.ProxyBase = ProxyBase;
+ 
+ class UiUtil {
++	static getTranslatedText (text, data) {
++		if (text == null || typeof text !== "string") return text;
++		return globalThis.I18nZhTwSite?.tEnglish(text, data) ?? text;
++	}
++
+ 	static SEARCH_RESULTS_CAP = 75;
+ 	static TYPE_TIMEOUT_MS = 100; // auto-search after 100ms
+ 	static TYPE_TIMEOUT_LAZY_MS = 1500;
+@@ -422,6 +427,7 @@ class UiUtil {
+ 	 */
+ 	static getShowModal (opts) {
+ 		opts = opts || {};
++		const titleDisplay = UiUtil.getTranslatedText(opts.title);
+ 
+ 		const doc = (opts.window || window).document;
+ 
+@@ -503,16 +509,16 @@ class UiUtil {
+ 			tag: "div",
+ 			clazz: `ve-ui-modal__inner ve-flex-col ${modalWindowClasses.join(" ")}`,
+ 			children: [
+-				!opts.isEmpty && opts.title
++				!opts.isEmpty && titleDisplay
+ 					? veE({
+ 						tag: "div",
+ 						clazz: `ve-split-v-center ve-no-shrink ${opts.isHeaderBorder ? `ve-ui-modal__header--border` : ""} ${opts.isFullscreenModal ? `ve-ui-modal__header--fullscreen ve-mb-1` : ""}`,
+ 						children: [
+-							opts.title
++							titleDisplay
+ 								? veE({
+ 									tag: `h${opts.headerType || 4}`,
+ 									clazz: `ve-my-2`,
+-									html: opts.title.qq(),
++									html: titleDisplay.qq(),
+ 								})
+ 								: null,
+ 
+@@ -628,6 +634,8 @@ class UiUtil {
+ 	 */
+ 	static getAddModalRowHeader (eleModalInner, headerText, opts) {
+ 		opts = opts || {};
++		headerText = UiUtil.getTranslatedText(headerText);
++		if (opts.helpText) opts.helpText = UiUtil.getTranslatedText(opts.helpText);
+ 		const row = UiUtil.getAddModalRow(eleModalInner, "h5").vee.addClass("ve-bold");
+ 		if (opts.eleRhs) veT`<div class="ve-split ve-flex-v-center ve-w-100 ve-pr-1"><span>${headerText}</span>${opts.eleRhs}</div>`.vee.appendTo(row);
+ 		else row.vee.txt(headerText);
+@@ -636,6 +644,8 @@ class UiUtil {
+ 	}
+ 
+ 	static getAddModalRowCb (eleModalInner, labelText, objectWithProp, propName, helpText) {
++		labelText = UiUtil.getTranslatedText(labelText);
++		helpText = UiUtil.getTranslatedText(helpText);
+ 		const row = UiUtil.getAddModalRow(eleModalInner, "label").vee.addClass(`ve-ui-modal__row--cb`);
+ 		if (helpText) row.vee.tooltip(helpText);
+ 		row.vee.appends(`<span>${labelText}</span>`);
+@@ -658,6 +668,8 @@ class UiUtil {
+ 	 * @return {HTMLElementExtended}
+ 	 */
+ 	static getAddModalRowCb2 ({wrp, comp, prop, text, title = null }) {
++		text = UiUtil.getTranslatedText(text);
++		title = UiUtil.getTranslatedText(title);
+ 		const cb = ComponentUiUtil.getCbBool(comp, prop);
+ 
+ 		const row = veT`<label class="ve-split-v-center ve-py-1 veapp__ele-hoverable">
+@@ -682,11 +694,16 @@ class UiUtil {
+ 	 */
+ 	static getAddModalRowSel (eleModalInner, labelText, objectWithProp, propName, values, opts) {
+ 		opts = opts || {};
++		labelText = UiUtil.getTranslatedText(labelText);
++		if (opts.helpText) opts.helpText = UiUtil.getTranslatedText(opts.helpText);
+ 		const row = UiUtil.getAddModalRow(eleModalInner, "label").vee.addClass(`ve-ui-modal__row--sel`);
+ 		if (opts.helpText) row.vee.tooltip(opts.helpText);
+ 		row.vee.appends(`<span>${labelText}</span>`);
+ 		const sel = veT`<select class="ve-form-control ve-input-xs ve-w-30">`.vee.appendTo(row);
+-		values.forEach((val, i) => veT`<option value="${i}"></option>`.vee.txt(opts.fnDisplay ? opts.fnDisplay(val) : val).vee.appendTo(sel));
++		values.forEach((val, i) => {
++			const displayText = opts.fnDisplay ? opts.fnDisplay(val) : val;
++			veT`<option value="${i}"></option>`.vee.txt(UiUtil.getTranslatedText(displayText)).vee.appendTo(sel);
++		});
+ 		// N.B. this doesn't support null values
+ 		const ix = values.indexOf(objectWithProp[propName]);
+ 		sel.vee.val(`${~ix ? ix : 0}`)
+@@ -1096,21 +1113,21 @@ class ListUiUtil {
+ 				reCommand: /^(?<command>name|stats|info|text)/,
+ 
+ 				name: {
+-					help: `\`name:"query"\` (/query/ for regex; \`name:! ...\` to invert) to search by name.`,
++					help: `以 \`name:"query"\` 搜尋名稱；\`/query/\` 使用正規表示式，\`name:! ...\` 反向篩選。`,
+ 					fn: (listItem, searchTerm) => {
+ 						if (listItem.data._textCacheName == null) listItem.data._textCacheName = listItem.name.toLowerCase().trim();
+ 						return this._listSyntax_isTextMatch(listItem.data._textCacheName, searchTerm);
+ 					},
+ 				},
+ 				stats: {
+-					help: `\`stats:"query"\` (/query/ for regex; \`stats:! ...\` to invert) to search within stat blocks.`,
++					help: `以 \`stats:"query"\` 搜尋資料卡；\`/query/\` 使用正規表示式，\`stats:! ...\` 反向篩選。`,
+ 					fn: (listItem, searchTerm) => {
+ 						if (listItem.data._textCacheStats == null) listItem.data._textCacheStats = this._getSearchCacheStats(this._dataList[listItem.getId()]);
+ 						return this._listSyntax_isTextMatch(listItem.data._textCacheStats, searchTerm);
+ 					},
+ 				},
+ 				info: {
+-					help: `\`info:"query" (/query/ for regex; \`info:! ...\` to invert) to search within info.`,
++					help: `以 \`info:"query"\` 搜尋背景資料；\`/query/\` 使用正規表示式，\`info:! ...\` 反向篩選。`,
+ 					fn: async (listItem, searchTerm) => {
+ 						if (listItem.data._textCacheFluff == null) listItem.data._textCacheFluff = await this._pGetSearchCacheFluff(this._dataList[listItem.getId()]);
+ 						return this._listSyntax_isTextMatch(listItem.data._textCacheFluff, searchTerm);
+@@ -1118,7 +1135,7 @@ class ListUiUtil {
+ 					isAsync: true,
+ 				},
+ 				text: {
+-					help: `\`text:"query" (/query/ for regex; \`text:! ...\` to invert) to search within stat blocks plus info.`,
++					help: `以 \`text:"query"\` 同時搜尋資料卡與背景資料；\`/query/\` 使用正規表示式，\`text:! ...\` 反向篩選。`,
+ 					fn: async (listItem, searchTerm) => {
+ 						if (listItem.data._textCacheAll == null) {
+ 							const {textCacheStats, textCacheFluff, textCacheAll} = await this._pGetSearchCacheAll(this._dataList[listItem.getId()], {textCacheStats: listItem.data._textCacheStats, textCacheFluff: listItem.data._textCacheFluff});
+@@ -1500,7 +1517,7 @@ class TabUiUtilBase {
+ 					if (it.type) return; // For specially typed tabs (e.g. buttons), do nothing
+ 
+ 					const isActive = it.ix === this[_propProxy][propActive];
+-					if (isActive && dispTabTitle) dispTabTitle.vee.txt(isSingleTab ? "" : it.name);
++					if (isActive && dispTabTitle) dispTabTitle.vee.txt(isSingleTab ? "" : UiUtil.getTranslatedText(it.name));
+ 					if (it.btnTab) it.btnTab.vee.toggleClass("ve-active", isActive);
+ 					it.wrpTab.vee.toggle(isActive);
+ 				});
+@@ -1643,7 +1660,9 @@ class TabUiUtil extends TabUiUtilBase {
+ 		super.decorate(obj, {isInitMeta});
+ 
+ 		obj.__getBtnTab = function ({tabMeta, _propProxy, propActive, ixTab, isStacked = false}) {
+-			return veT`<button class="ve-btn ve-btn-default ve-ui-tab__btn-tab-head ${isStacked ? `ve-ui-tab__btn-tab-head--stacked` : ""} ve-pt-2p ve-px-4p ve-pb-0 ${tabMeta.isHeadHidden ? "ve-hidden" : ""}" ${tabMeta.title ? `title="${tabMeta.title.qq()}"` : ""}>${tabMeta.name.qq()}</button>`
++			const titleDisplay = UiUtil.getTranslatedText(tabMeta.title);
++			const nameDisplay = UiUtil.getTranslatedText(tabMeta.name);
++			return veT`<button class="ve-btn ve-btn-default ve-ui-tab__btn-tab-head ${isStacked ? `ve-ui-tab__btn-tab-head--stacked` : ""} ve-pt-2p ve-px-4p ve-pb-0 ${tabMeta.isHeadHidden ? "ve-hidden" : ""}" ${titleDisplay ? `title="${titleDisplay.qq()}"` : ""}>${nameDisplay.qq()}</button>`
+ 				.vee.onn("click", () => obj[_propProxy][propActive] = ixTab);
+ 		};
+ 
+@@ -1661,7 +1680,8 @@ class TabUiUtil extends TabUiUtilBase {
+ 		obj.__renderTypedTabMeta_buttons = function ({tabMeta, ixTab, isStacked = false}) {
+ 			const btns = tabMeta.buttons
+ 				.map((meta, j) => {
+-					const btn = veT`<button class="ve-btn ve-ui-tab__btn-tab-head ${isStacked ? `ve-ui-tab__btn-tab-head--stacked` : ""} ve-pt-2p ve-px-4p ve-pb-0 ve-bbr-0 ve-bbl-0 ${UiUtil.getBtnClassName(meta.type)}" ${meta.title ? `title="${meta.title.qq()}"` : ""}>${meta.html}</button>`
++					const titleDisplay = UiUtil.getTranslatedText(meta.title);
++					const btn = veT`<button class="ve-btn ve-ui-tab__btn-tab-head ${isStacked ? `ve-ui-tab__btn-tab-head--stacked` : ""} ve-pt-2p ve-px-4p ve-pb-0 ve-bbr-0 ve-bbl-0 ${UiUtil.getBtnClassName(meta.type)}" ${titleDisplay ? `title="${titleDisplay.qq()}"` : ""}>${UiUtil.getTranslatedText(meta.html)}</button>`
+ 						.vee.onn("click", evt => {
+ 							meta.pFnClick({
+ 								evt,
+@@ -1703,7 +1723,9 @@ class TabUiUtilSide extends TabUiUtilBase {
+ 		super.decorate(obj, {isInitMeta});
+ 
+ 		obj.__getBtnTab = function ({isSingleTab, tabMeta, _propProxy, propActive, ixTab}) {
+-			return isSingleTab ? null : veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-ui-tab-side__btn-tab ve-mb-2 ve-br-0 ve-btr-0 ve-bbr-0 ve-text-left ve-flex-v-center" title="${tabMeta.title ? tabMeta.title.qq() : tabMeta.name.qq()}"><div class="${tabMeta.icon} ve-ui-tab-side__icon-tab ve-mr-2 ve-mobile-lg__mr-0 ve-text-center"></div><div class="ve-mobile-lg__hidden">${tabMeta.name.qq()}</div></button>`
++			const titleDisplay = UiUtil.getTranslatedText(tabMeta.title || tabMeta.name);
++			const nameDisplay = UiUtil.getTranslatedText(tabMeta.name);
++			return isSingleTab ? null : veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-ui-tab-side__btn-tab ve-mb-2 ve-br-0 ve-btr-0 ve-bbr-0 ve-text-left ve-flex-v-center" title="${titleDisplay.qq()}"><div class="${tabMeta.icon} ve-ui-tab-side__icon-tab ve-mr-2 ve-mobile-lg__mr-0 ve-text-center"></div><div class="ve-mobile-lg__hidden">${nameDisplay.qq()}</div></button>`
+ 				.vee.onn("click", () => this[_propProxy][propActive] = ixTab);
+ 		};
+ 
+@@ -1730,7 +1752,8 @@ class TabUiUtilSide extends TabUiUtilBase {
+ 
+ 		obj.__renderTypedTabMeta_buttons = function ({tabMeta, ixTab}) {
+ 			const btns = tabMeta.buttons.map((meta, j) => {
+-				const btn = veT`<button class="ve-btn ${UiUtil.getBtnClassName(meta.type)} ve-btn-sm" ${meta.title ? `title="${meta.title.qq()}"` : ""}>${meta.html}</button>`
++				const titleDisplay = UiUtil.getTranslatedText(meta.title);
++				const btn = veT`<button class="ve-btn ${UiUtil.getBtnClassName(meta.type)} ve-btn-sm" ${titleDisplay ? `title="${titleDisplay.qq()}"` : ""}>${UiUtil.getTranslatedText(meta.html)}</button>`
+ 					.vee.onn("click", evt => {
+ 						meta.pFnClick({
+ 							evt,
+@@ -1886,7 +1909,7 @@ SearchUiUtil.NO_HOVER_CATEGORIES = new Set([
+ // based on DM screen's AddMenuSearchTab
+ class SearchWidget {
+ 	static getSearchNoResults () {
+-		return `<div class="ve-ui-search__message"><i>No results.</i></div>`;
++		return `<div class="ve-ui-search__message"><i>${UiUtil.getTranslatedText("No results.")}</i></div>`;
+ 	}
+ 
+ 	static getSearchLoading () {
+@@ -1894,7 +1917,7 @@ class SearchWidget {
+ 	}
+ 
+ 	static getSearchEnter () {
+-		return `<div class="ve-ui-search__message"><i>Enter a search.</i></div>`;
++		return `<div class="ve-ui-search__message"><i>${UiUtil.getTranslatedText("Enter a search.")}</i></div>`;
+ 	}
+ 
+ 	/**
+@@ -2086,11 +2109,11 @@ class SearchWidget {
+ 	}
+ 
+ 	static __getAllTitle () {
+-		return "All Categories";
++		return UiUtil.getTranslatedText("All Categories");
+ 	}
+ 
+ 	static __getCatOptionText (it) {
+-		return it;
++		return UiUtil.getTranslatedText(it);
+ 	}
+ 
+ 	getWrpSearch () {
+@@ -2185,7 +2208,7 @@ class SearchWidget {
+ 
+ 			if (resultCount > UiUtil.SEARCH_RESULTS_CAP) {
+ 				const diff = resultCount - UiUtil.SEARCH_RESULTS_CAP;
+-				this._wrpResults.vee.appends(`<div class="ve-ui-search__row ve-ui-search__row--readonly">...${diff} more result${diff === 1 ? " was" : "s were"} hidden. Refine your search!</div>`);
++				this._wrpResults.vee.appends(`<div class="ve-ui-search__row ve-ui-search__row--readonly">${globalThis.I18nZhTwSite?.t("search.resultsHidden", "...{count} more results were hidden. Refine your search!", {count: diff}) ?? `...${diff} more results were hidden. Refine your search!`}</div>`);
+ 			}
+ 		} else {
+ 			if (!searchTerm.trim()) this.__showMsgInputRequired();
+@@ -2196,7 +2219,7 @@ class SearchWidget {
+ 	_render () {
+ 		if (this._rendered) return;
+ 
+-		this._iptSearch = veT`<input class="ve-ui-search__ipt-search search ve-form-control" placeholder="Search...">`
++		this._iptSearch = veT`<input class="ve-ui-search__ipt-search search ve-form-control" autocomplete="off" placeholder="${UiUtil.getTranslatedText("Search...")}">`
+ 			.vee.disableSpellcheck();
+ 		this._wrpResults = veT`<div class="ve-ui-search__wrp-results"></div>`;
+ 
+@@ -2692,7 +2715,7 @@ class SearchWidget {
+ 
+ 	static _showLoadingModal () {
+ 		const {eleModalInner, doClose} = UiUtil.getShowModal({isPermanent: true});
+-		veT`<div class="ve-flex-vh-center ve-w-100 ve-h-100"><span class="ve-dnd-font ve-italic ve-muted">Loading...</span></div>`.vee.appendTo(eleModalInner);
++		veT`<div class="ve-flex-vh-center ve-w-100 ve-h-100"><span class="ve-dnd-font ve-italic ve-muted">${UiUtil.getTranslatedText("Loading...")}</span></div>`.vee.appendTo(eleModalInner);
+ 		return doClose;
+ 	}
+ 	// endregion
+@@ -2707,7 +2730,7 @@ class InputUiUtil {
+ 	}
+ 
+ 	static _getBtnOk ({comp = null, opts, doClose}) {
+-		return veT`<button class="ve-btn ve-btn-primary ve-mr-2">${opts.buttonText || "OK"}</button>`
++		return veT`<button class="ve-btn ve-btn-primary ve-mr-2">${UiUtil.getTranslatedText(opts.buttonText || "OK")}</button>`
+ 			.vee.onn("click", evt => {
+ 				evt.stopPropagation();
+ 				if (comp && !comp._state.isValid) return JqueryUtil.doToast({content: `Please enter valid input!`, type: "warning"});
+@@ -2716,7 +2739,7 @@ class InputUiUtil {
+ 	}
+ 
+ 	static _getBtnCancel ({comp = null, opts, doClose}) {
+-		return veT`<button class="ve-btn ve-btn-default">Cancel</button>`
++		return veT`<button class="ve-btn ve-btn-default">${UiUtil.getTranslatedText("Cancel")}</button>`
+ 			.vee.onn("click", evt => {
+ 				evt.stopPropagation();
+ 				doClose(false);
+@@ -2724,7 +2747,7 @@ class InputUiUtil {
+ 	}
+ 
+ 	static _getBtnSkip ({comp = null, opts, doClose}) {
+-		return !opts.isSkippable ? null : veT`<button class="ve-btn ve-btn-default ve-ml-3">Skip</button>`
++		return !opts.isSkippable ? null : veT`<button class="ve-btn ve-btn-default ve-ml-3">${UiUtil.getTranslatedText("Skip")}</button>`
+ 			.vee.onn("click", evt => {
+ 				evt.stopPropagation();
+ 				doClose(VeCt.SYM_UI_SKIP);
+@@ -2744,7 +2767,7 @@ class InputUiUtil {
+ 				value,
+ 			},
+ 		) {
+-			this._text = text;
++			this._text = UiUtil.getTranslatedText(text);
+ 			this._clazzIcon = clazzIcon;
+ 			this._isPrimary = isPrimary;
+ 			this._isSmall = isSmall;
+@@ -2797,7 +2820,7 @@ class InputUiUtil {
+ 		}
+ 
+ 		const {eleModalInner, doClose, pGetResolved, doAutoResize: doAutoResizeModal} = await InputUiUtil._pGetShowModal({
+-			title: title || "Choose",
++			title: UiUtil.getTranslatedText(title || "Choose"),
+ 			isMinHeight0: true,
+ 		});
+ 
+@@ -2805,7 +2828,7 @@ class InputUiUtil {
+ 
+ 		const btnSkip = !isSkippable
+ 			? null
+-			: veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-ml-3"><span class="glyphicon glyphicon-forward"></span><span>${textSkip || "Skip"}</span></button>`
++			: veT`<button class="ve-btn ve-btn-default ve-btn-sm ve-ml-3"><span class="glyphicon glyphicon-forward"></span><span>${UiUtil.getTranslatedText(textSkip || "Skip")}</span></button>`
+ 				.vee.onn("click", evt => {
+ 					evt.stopPropagation();
+ 					doClose(VeCt.SYM_UI_SKIP);
+@@ -2882,7 +2905,7 @@ class InputUiUtil {
+ 
+ 		buttons.push(
+ 			new this.GenericButtonInfo({
+-				text: textYes || "OK",
++				text: UiUtil.getTranslatedText(textYes || "OK"),
+ 				clazzIcon: "glyphicon glyphicon-ok",
+ 				isPrimary: true,
+ 				value: true,
+@@ -2893,7 +2916,7 @@ class InputUiUtil {
+ 		if (!isAlert) {
+ 			buttons.push(
+ 				new this.GenericButtonInfo({
+-					text: textNo || "Cancel",
++					text: UiUtil.getTranslatedText(textNo || "Cancel"),
+ 					clazzIcon: "glyphicon glyphicon-remove",
+ 					isSmall: true,
+ 					value: false,
+@@ -3012,7 +3035,7 @@ class InputUiUtil {
+ 	static async pGetUserEnum (opts) {
+ 		opts = opts || {};
+ 
+-		const selEnum = veT`<select class="ve-form-control ve-mb-2"><option value="-1" disabled>${opts.placeholder || "Select..."}</option></select>`
++		const selEnum = veT`<select class="ve-form-control ve-mb-2"><option value="-1" disabled>${UiUtil.getTranslatedText(opts.placeholder || "Select...")}</option></select>`
+ 			.vee.onn("keydown", async evt => {
+ 				evt.stopPropagation();
+ 				if (evt.key === "Enter") {
+@@ -3021,9 +3044,15 @@ class InputUiUtil {
+ 				}
+ 			});
+ 
+-		if (opts.isAllowNull) veT`<option value="-1"></option>`.vee.txt(opts.fnDisplay ? opts.fnDisplay(null, -1) : "(None)").vee.appendTo(selEnum);
++		if (opts.isAllowNull) {
++			const displayTextNone = opts.fnDisplay ? opts.fnDisplay(null, -1) : "(None)";
++			veT`<option value="-1"></option>`.vee.txt(UiUtil.getTranslatedText(displayTextNone)).vee.appendTo(selEnum);
++		}
+ 
+-		opts.values.forEach((v, i) => veT`<option value="${i}"></option>`.vee.txt(opts.fnDisplay ? opts.fnDisplay(v, i) : v).vee.appendTo(selEnum));
++		opts.values.forEach((v, i) => {
++			const displayText = opts.fnDisplay ? opts.fnDisplay(v, i) : v;
++			veT`<option value="${i}"></option>`.vee.txt(UiUtil.getTranslatedText(displayText)).vee.appendTo(selEnum);
++		});
+ 		if (opts.default != null) {
+ 			if (opts.isResolveItem) {
+ 				const ix = opts.values.indexOf(opts.default);
+@@ -5065,7 +5094,7 @@ class ComponentUiUtil {
+ 			},
+ 		});
+ 
+-		if (opts.placeholder) ipt.vee.attr("placeholder", opts.placeholder);
++		if (opts.placeholder) ipt.vee.attr("placeholder", UiUtil.getTranslatedText(opts.placeholder));
+ 
+ 		if (opts.autocomplete && opts.autocomplete.length) ipt.vee.typeahead(opts.autocomplete);
+ 		const hook = () => {
+@@ -5117,7 +5146,7 @@ class ComponentUiUtil {
+ 				return veT`<div class="ve-ui-ideco__wrp ${classNameSide} ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>`;
+ 			}
+ 			case "clear": {
+-				return veT`<div class="ve-ui-ideco__wrp ${classNameSide} ve-flex-vh-center ve-clickable" title="Clear"><span class="glyphicon glyphicon-remove"></span></div>`
++				return veT`<div class="ve-ui-ideco__wrp ${classNameSide} ve-flex-vh-center ve-clickable" title="${UiUtil.getTranslatedText("Clear")}"><span class="glyphicon glyphicon-remove"></span></div>`
+ 					.vee.onn("click", () => {
+ 						ipt
+ 							.vee.val("")
+@@ -5842,11 +5871,12 @@ class ComponentUiUtil {
+ 
+ 			let htmlOptions = "";
+ 
+-			if (isAllowNull) htmlOptions += `<option value="-1">${`${displayNullAs || "\u2014"}`.qq()}</option>`;
++			if (isAllowNull) htmlOptions += `<option value="-1">${`${UiUtil.getTranslatedText(displayNullAs || "\u2014")}`.qq()}</option>`;
+ 
+ 			values_
+ 				.forEach((it, i) => {
+-					htmlOptions += `<option value="${i}">${`${fnDisplay ? fnDisplay(it) : it}`.qq()}</option>`;
++					const displayText = fnDisplay ? fnDisplay(it) : it;
++					htmlOptions += `<option value="${i}">${`${UiUtil.getTranslatedText(displayText)}`.qq()}</option>`;
+ 				});
+ 
+ 			sel.vee.html(htmlOptions);
+@@ -6389,13 +6419,13 @@ class ComponentUiUtil {
+ 
+ 			if (group.name) {
+ 				const wrpName = veT`<div class="ve-split-v-center ve-py-1">
+-					<div class="ve-flex-v-center"><span class="ve-mr-2">‒</span><span>${group.name}</span></div>
++					<div class="ve-flex-v-center"><span class="ve-mr-2">‒</span><span>${UiUtil.getTranslatedText(group.name)}</span></div>
+ 					${opts.valueGroupSplitControlsLookup?.[group.name]}
+ 				</div>`;
+ 				eles.push(wrpName);
+ 			}
+ 
+-			if (group.text) eles.push(veT`<div class="ve-flex-v-center ve-py-1"><div class="ve-ml-1 ve-mr-3"></div><i>${group.text}</i></div>`);
++			if (group.text) eles.push(veT`<div class="ve-flex-v-center ve-py-1"><div class="ve-ml-1 ve-mr-3"></div><i>${UiUtil.getTranslatedText(group.text)}</i></div>`);
+ 
+ 			group.values.forEach(value => {
+ 				const ixValueFrozen = ixValue;
+@@ -6412,7 +6442,7 @@ class ComponentUiUtil {
+ 
+ 				let hk;
+ 				const cb = isRequired
+-					? veT`<input type="checkbox" disabled checked title="This option is required.">`
++					? veT`<input type="checkbox" disabled checked title="${UiUtil.getTranslatedText("This option is required.")}">`
+ 					: ComponentUiUtil.getCbBool(comp, propIsActive);
+ 
+ 				if (isRequired) comp._state[propIsActive] = true;
+@@ -6460,7 +6490,8 @@ class ComponentUiUtil {
+ 					hk();
+ 				}
+ 
+-				const displayValue = opts.fnDisplay ? opts.fnDisplay(value, ixValueFrozen) : value;
++				const displayValueCanonical = opts.fnDisplay ? opts.fnDisplay(value, ixValueFrozen) : value;
++				const displayValue = UiUtil.getTranslatedText(displayValueCanonical);
+ 
+ 				rowMetas.push({
+ 					cb: cb,
+diff --git a/js/utils.js b/js/utils.js
+index 80c10d0..35f2911 100644
+--- a/js/utils.js
++++ b/js/utils.js
+@@ -1,3 +1,4 @@
++// 5eWT zh-TW runtime v2.39.1
+ "use strict";
+ 
+ // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
+@@ -19,7 +20,7 @@ globalThis.HASH_SUB_NONE = "null";
+ 
+ globalThis.VeCt = class {
+ 	static STR_NONE = "None";
+-	static STR_SEE_CONSOLE = "See the console (CTRL+SHIFT+J) for details.";
++	static STR_SEE_CONSOLE = "詳情請查看主控台（CTRL+SHIFT+J）。";
+ 
+ 	static HASH_SCALED = "scaled";
+ 	static HASH_SCALED_SPELL_SUMMON = "scaledspellsummon";
+@@ -567,18 +568,18 @@ globalThis.CleanUtil = class {
+ // SOURCES =============================================================================================================
+ globalThis.SourceUtil = class {
+ 	static ADV_BOOK_GROUPS = [
+-		{group: "core", displayName: "Core"},
+-		{group: "supplement", displayName: "Supplements"},
+-		{group: "setting", displayName: "Settings"},
+-		{group: "setting-alt", displayName: "Additional Settings"},
+-		{group: "supplement-alt", displayName: "Extras"},
+-		{group: "organized-play", displayName: "Organized Play"},
+-		{group: "prerelease", displayName: "Prerelease"},
+-		{group: "homebrew", displayName: "Homebrew"},
+-		{group: "screen", displayName: "Screens"},
+-		{group: "recipe", displayName: "Recipes"},
+-		{group: "homecraft", displayName: "Home Crafts"},
+-		{group: "other", displayName: "Miscellaneous"},
++		{group: "core", displayName: "核心規則"},
++		{group: "supplement", displayName: "擴充內容"},
++		{group: "setting", displayName: "世界設定"},
++		{group: "setting-alt", displayName: "補充設定"},
++		{group: "supplement-alt", displayName: "額外內容"},
++		{group: "organized-play", displayName: "官方組織遊戲"},
++		{group: "prerelease", displayName: "預發佈內容"},
++		{group: "homebrew", displayName: "自製內容"},
++		{group: "screen", displayName: "地下城主屏風"},
++		{group: "recipe", displayName: "食譜"},
++		{group: "homecraft", displayName: "居家工藝"},
++		{group: "other", displayName: "其他"},
+ 	];
+ 
+ 	static _subclassReprintLookup = {};
+@@ -982,6 +983,7 @@ globalThis.JqueryUtil = class {
+ 	];
+ 
+ 	static showCopiedEffect (ele, {text = "Copied!", isBubble = false} = {}) {
++		text = globalThis.I18nZhTwSite?.tEnglish(text) ?? text;
+ 		const {top, left, width} = ele.getBoundingClientRect();
+ 
+ 		const seed = Math.random();
+@@ -1034,6 +1036,7 @@ globalThis.JqueryUtil = class {
+ 				type: "info",
+ 			};
+ 		}
++		if (typeof options.content === "string") options.content = globalThis.I18nZhTwSite?.tEnglish(options.content) ?? options.content;
+ 		options.type = options.type || "info";
+ 
+ 		options.isAutoHide = options.isAutoHide ?? true;
+@@ -1055,7 +1058,7 @@ globalThis.JqueryUtil = class {
+ 						veE({
+ 							tag: "button",
+ 							clazz: "ve-btn toast__btn-close",
+-							title: "Close (CTRL to Close All)",
++							title: globalThis.I18nZhTwSite?.tEnglish("Close (CTRL to Close All)") ?? "Close (CTRL to Close All)",
+ 							children: [
+ 								veE({
+ 									tag: "span",
+@@ -3031,6 +3034,11 @@ globalThis.ContextUtil = class {
+ 	static _isInit = false;
+ 	static _menus = [];
+ 
++	static _t (text, data) {
++		if (text == null || typeof text !== "string") return text;
++		return globalThis.I18nZhTwSite?.tEnglish(text, data) ?? text;
++	}
++
+ 	static _init () {
+ 		if (ContextUtil._isInit) return;
+ 		ContextUtil._isInit = true;
+@@ -3317,7 +3325,7 @@ globalThis.ContextUtil = class {
+ 				if (menu.resolveResult_) menu.resolveResult_(result);
+ 			};
+ 
+-			const btnAction = veT`<div class="ve-w-100 ve-min-w-0 ve-ui-ctx__btn ve-py-1 ve-pl-5 ${this.fnActionAlt ? "" : "ve-pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${this.text}</div>`
++			const btnAction = veT`<div class="ve-w-100 ve-min-w-0 ve-ui-ctx__btn ve-py-1 ve-pl-5 ${this.fnActionAlt ? "" : "ve-pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${ContextUtil._t(this.text)}</div>`
+ 				.vee.onn("click", evt => pOnClick(evt))
+ 				.vee.onn("mousedown", evt => {
+ 					evt.preventDefault();
+@@ -3326,7 +3334,7 @@ globalThis.ContextUtil = class {
+ 					if (evt.key !== "Enter") return;
+ 					await pOnClick(evt);
+ 				});
+-			if (this.title) btnAction.vee.tooltip(this.title);
++			if (this.title) btnAction.vee.tooltip(ContextUtil._t(this.title));
+ 
+ 			return btnAction;
+ 		};
+@@ -3334,7 +3342,7 @@ globalThis.ContextUtil = class {
+ 		_render_btnActionAlt ({menu}) {
+ 			if (!this.fnActionAlt) return null;
+ 
+-			const btnActionAlt = veT`<div class="ve-ui-ctx__btn ve-ml-1 ve-bl-1 ve-py-1 ve-px-4" ${this.isDisabled ? "disabled" : ""}>${this.textAlt ?? `<span class="glyphicon glyphicon-cog"></span>`}</div>`
++			const btnActionAlt = veT`<div class="ve-ui-ctx__btn ve-ml-1 ve-bl-1 ve-py-1 ve-px-4" ${this.isDisabled ? "disabled" : ""}>${this.textAlt == null ? `<span class="glyphicon glyphicon-cog"></span>` : ContextUtil._t(this.textAlt)}</div>`
+ 				.vee.onn("click", async evt => {
+ 					if (this.isDisabled) return;
+ 
+@@ -3349,7 +3357,7 @@ globalThis.ContextUtil = class {
+ 				.vee.onn("mousedown", evt => {
+ 					evt.preventDefault();
+ 				});
+-			if (this.titleAlt) btnActionAlt.vee.tooltip(this.titleAlt);
++			if (this.titleAlt) btnActionAlt.vee.tooltip(ContextUtil._t(this.titleAlt));
+ 
+ 			return btnActionAlt;
+ 		}
+@@ -3366,8 +3374,8 @@ globalThis.ContextUtil = class {
+ 		}
+ 
+ 		_render_btnAction () {
+-			this._btnAction = veT`<a href="${this.fnHref()}" class="ve-w-100 ve-min-w-0 ve-ui-ctx__btn ve-py-1 ve-pl-5 ${this.fnActionAlt ? "" : "ve-pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${this.text}</a>`;
+-			if (this.title) this._btnAction.vee.tooltip(this.title);
++			this._btnAction = veT`<a href="${this.fnHref()}" class="ve-w-100 ve-min-w-0 ve-ui-ctx__btn ve-py-1 ve-pl-5 ${this.fnActionAlt ? "" : "ve-pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${ContextUtil._t(this.text)}</a>`;
++			if (this.title) this._btnAction.vee.tooltip(ContextUtil._t(this.title));
+ 
+ 			return this._btnAction;
+ 		}
+@@ -3418,7 +3426,7 @@ globalThis.ContextUtil = class {
+ 						return veE({
+ 							tag: "option",
+ 							value: i,
+-							txt: this._fnGetDisplayValue ? this._fnGetDisplayValue(val) : val,
++							txt: ContextUtil._t(this._fnGetDisplayValue ? this._fnGetDisplayValue(val) : val),
+ 						});
+ 					}),
+ 				click: async evt => {
+@@ -3463,7 +3471,7 @@ globalThis.ContextUtil = class {
+ 			menu.addSubMenu(menuSub);
+ 
+ 			const eleRow = veT`<div class="ve-ui-ctx__btn ve-py-1 ve-px-5 ve-split-v-center">
+-				<div>${this._name}</div>
++				<div>${ContextUtil._t(this._name)}</div>
+ 				<div class="ve-pl-4"><span class="ve-caret ve-caret--right"></span></div>
+ 			</div>`
+ 				.vee.onn("click", async evt => {
+@@ -3958,7 +3966,7 @@ globalThis.UrlUtil = class {
+ 	};
+ 
+ 	static getStateKeySubclass (sc) {
+-		return UrlUtil.encodeArrayForHash(["sub", sc.shortName || sc.name, sc.source]);
++		return UrlUtil.encodeArrayForHash(["sub", sc.ENG_shortName || sc.ENG_name || sc.shortName || sc.name, sc.source]);
+ 	}
+ 
+ 	static unpackStateKeySubclass (str) {
+@@ -4017,7 +4025,7 @@ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY] = UrlUtil.URL_TO_HASH_GENERIC;
+ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_SPELLS] = UrlUtil.URL_TO_HASH_GENERIC;
+ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BACKGROUNDS] = UrlUtil.URL_TO_HASH_GENERIC;
+ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS] = it => UrlUtil.encodeArrayForHash(it.name, SourceUtil.getEntitySource(it));
+-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES] = UrlUtil.URL_TO_HASH_GENERIC;
++UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES] = it => UrlUtil.encodeArrayForHash(it.ENG_name || it.name, SourceUtil.getEntitySource(it));
+ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES] = UrlUtil.URL_TO_HASH_GENERIC;
+ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_FEATS] = UrlUtil.URL_TO_HASH_GENERIC;
+ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_OPT_FEATURES] = UrlUtil.URL_TO_HASH_GENERIC;
+@@ -4103,8 +4111,8 @@ UrlUtil.URL_TO_HASH_BUILDER["subclass"] = it => {
+ 		`${UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES]({name: it.className, source: it.classSource})}${HASH_PART_SEP}${UrlUtil.getClassesPageStatePart({subclass: it})}`,
+ 	);
+ };
+-UrlUtil.URL_TO_HASH_BUILDER["classFeature"] = (it) => UrlUtil.encodeArrayForHash(it.name, it.className, it.classSource, it.level, it.source);
+-UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"] = (it) => UrlUtil.encodeArrayForHash(it.name, it.className, it.classSource, it.subclassShortName, it.subclassSource, it.level, it.source);
++UrlUtil.URL_TO_HASH_BUILDER["classFeature"] = (it) => UrlUtil.encodeArrayForHash(it.ENG_name || it.name, it.className, it.classSource, it.level, it.source);
++UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"] = (it) => UrlUtil.encodeArrayForHash(it.ENG_name || it.name, it.className, it.classSource, it.subclassShortName, it.subclassSource, it.level, it.source);
+ UrlUtil.URL_TO_HASH_BUILDER["card"] = (it) => UrlUtil.encodeArrayForHash(it.name, it.set, it.source);
+ UrlUtil.URL_TO_HASH_BUILDER["legendaryGroup"] = UrlUtil.URL_TO_HASH_GENERIC;
+ UrlUtil.URL_TO_HASH_BUILDER["itemEntry"] = UrlUtil.URL_TO_HASH_GENERIC;
+@@ -4333,7 +4341,7 @@ if (!IS_DEPLOYED && !globalThis.IS_VTT && typeof window !== "undefined") {
+ 		if (EventUtil.noModifierKeys(e) && typeof d20 === "undefined") {
+ 			if (e.key === "#") {
+ 				const spl = window.location.href.split("/");
+-				window.prompt("Copy to clipboard: Ctrl+C, Enter", `https://5e.tools/${spl[spl.length - 1]}`);
++				window.prompt(globalThis.I18nZhTwSite?.tEnglish("Copy to clipboard: Ctrl+C, Enter") ?? "Copy to clipboard: Ctrl+C, Enter", `https://5e.tools/${spl[spl.length - 1]}`);
+ 			}
+ 		}
+ 	});
+@@ -4689,8 +4697,27 @@ class _DataUtilPropConfigSingleSource extends _DataUtilPropConfig {
+ 	static getDataUrl () { return `${Renderer.get().baseUrl}data/${this._FILENAME}`; }
+ 
+ 	static async loadJSON () { return this.loadRawJSON(); }
+-	static async loadRawJSON () { return DataUtil.loadJSON(this.getDataUrl()); }
+-	static async loadUnmergedJSON () { return DataUtil.loadRawJSON(this.getDataUrl()); }
++
++	static async _pLoadAndLocalize ({isUnmerged = false} = {}) {
++		if (
++			!isUnmerged
++			&& ["backgrounds.json", "races.json"].includes(this._FILENAME)
++			&& globalThis.I18nZhTwContent?.pApplyDataFile
++		) {
++			const data = MiscUtil.copyFast(await DataUtil.loadRawJSON(this.getDataUrl()));
++			const localized = await globalThis.I18nZhTwContent.pApplyDataFile({file: this._FILENAME, data});
++			await DataUtil.pDoMetaMerge(CryptUtil.uid(), localized, {isSkipMetaMergeCache: true});
++			return localized;
++		}
++
++		const fnLoad = isUnmerged ? DataUtil.loadRawJSON.bind(DataUtil) : DataUtil.loadJSON.bind(DataUtil);
++		const data = await fnLoad(this.getDataUrl());
++		if (!globalThis.I18nZhTwContent?.pApplyDataFile) return data;
++		return globalThis.I18nZhTwContent.pApplyDataFile({file: this._FILENAME, data});
++	}
++
++	static async loadRawJSON () { return this._pLoadAndLocalize(); }
++	static async loadUnmergedJSON () { return this._pLoadAndLocalize({isUnmerged: true}); }
+ }
+ 
+ class _DataUtilPropConfigMultiSource extends _DataUtilPropConfig {
+@@ -4735,11 +4762,36 @@ class _DataUtilPropConfigMultiSource extends _DataUtilPropConfig {
+ 
+ 	static async _pLoadSourceEntities ({indexKey = null, isUnmerged = false, file}) {
+ 		await this._pInitPreData();
++		const url = `${Renderer.get().baseUrl}data/${this._DIR}/${file}`;
++
++		// Monster `_copy` records inherit most of their visible text from other
++		// stat blocks. Apply the zh-TW sidecar to each raw source before resolving
++		// those copies, so inherited traits/actions are assembled in Chinese too.
++		if (!isUnmerged && ["monster", "monsterFluff"].includes(this._PROP) && globalThis.I18nZhTwContent?.pApplyEntities) {
++			const [jsonRaw] = await Promise.all([
++				DataUtil.loadRawJSON(url),
++				globalThis.I18nZhTwContent.pPreloadEntityFile?.({prop: this._PROP, file}),
++			]);
++			const json = Object.fromEntries(
++				Object.entries(jsonRaw)
++					.map(([key, value]) => [key, key === this._PROP ? value : MiscUtil.copyFast(value)]),
++			);
++			let data = (jsonRaw[this._PROP] || []).filter(MultiSourceUtil.isEntityIndexKeyMatch.bind(this, indexKey, this._PROP));
++			data = await globalThis.I18nZhTwContent.pApplyEntities({prop: this._PROP, file, entities: data});
++			json[this._PROP] = data;
++			await DataUtil.pDoMetaMerge(CryptUtil.uid(), json, {isSkipMetaMergeCache: true});
++			data = (json[this._PROP] || []).filter(MultiSourceUtil.isEntityIndexKeyMatch.bind(this, indexKey, this._PROP));
++			if (!this._IS_MUT_ENTITIES) return data;
++			return data.map(ent => this._mutEntity(ent));
++		}
+ 
+ 		const fnLoad = isUnmerged ? DataUtil.loadRawJSON.bind(DataUtil) : DataUtil.loadJSON.bind(DataUtil);
+ 
+-		let data = await fnLoad(`${Renderer.get().baseUrl}data/${this._DIR}/${file}`);
++		let data = await fnLoad(url);
+ 		data = (data[this._PROP] || []).filter(MultiSourceUtil.isEntityIndexKeyMatch.bind(this, indexKey, this._PROP));
++		if (globalThis.I18nZhTwContent?.pApplyEntities) {
++			data = await globalThis.I18nZhTwContent.pApplyEntities({prop: this._PROP, file, entities: data});
++		}
+ 
+ 		if (!this._IS_MUT_ENTITIES) return data;
+ 
+@@ -5076,7 +5128,8 @@ globalThis.DataUtil = class {
+ 	}
+ 
+ 	static async loadJSON (url) {
+-		return DataUtil._loadJson(url, {isDoDataMerge: true});
++		const data = await DataUtil._loadJson(url, {isDoDataMerge: true});
++		return globalThis.I18nZhTwUtilities?.pApplyDataFile({url, data}) ?? data;
+ 	}
+ 
+ 	static async loadRawJSON (url, {isBustCache} = {}) {
+@@ -5615,6 +5668,17 @@ globalThis.DataUtil = class {
+ 				if (!(obj[prop] instanceof Array)) obj[prop] = [obj[prop]];
+ 			}
+ 
++			static _getSpellUid (spell) {
++				if (typeof spell !== "string") return spell;
++				const match = /^\{@spell ([^|}]+)(?:\|([^|}]*))?(?:\|[^}]*)?}/.exec(spell);
++				if (!match) return spell;
++				return `${match[1].toLowerCase()}|${(match[2] || "PHB").toLowerCase()}`;
++			}
++
++			static _isSpellMatch (spell, target) {
++				return this._getSpellUid(spell) === this._getSpellUid(target);
++			}
++
+ 			static _getRegexFromReplaceModInfo ({replace, flags}) {
+ 				return new RegExp(replace, `g${flags || ""}`);
+ 			}
+@@ -5708,11 +5772,19 @@ globalThis.DataUtil = class {
+ 				let ixOld;
+ 				if (modInfo.replace.regex) {
+ 					const re = new RegExp(modInfo.replace.regex, modInfo.replace.flags || "");
+-					ixOld = valExisting.findIndex(it => it.name ? re.test(it.name) : typeof it === "string" ? re.test(it) : false);
++					const isMatch = str => {
++						re.lastIndex = 0;
++						return re.test(str);
++					};
++					ixOld = valExisting.findIndex(it => {
++						if (typeof it === "string") return isMatch(it);
++						if (it.name && isMatch(it.name)) return true;
++						return it.ENG_name ? isMatch(it.ENG_name) : false;
++					});
+ 				} else if (modInfo.replace.index != null) {
+ 					ixOld = modInfo.replace.index;
+ 				} else {
+-					ixOld = valExisting.findIndex(it => it.name ? it.name === modInfo.replace : it === modInfo.replace);
++					ixOld = valExisting.findIndex(it => it.name ? it.name === modInfo.replace || it.ENG_name === modInfo.replace : it === modInfo.replace);
+ 				}
+ 
+ 				if (~ixOld) {
+@@ -5739,7 +5811,7 @@ globalThis.DataUtil = class {
+ 				if (modInfo.names) {
+ 					this._doEnsureArray({obj: modInfo, prop: "names"});
+ 					modInfo.names.forEach(nameToRemove => {
+-						const ixOld = valExisting.findIndex(it => it.name === nameToRemove);
++						const ixOld = valExisting.findIndex(it => it.name === nameToRemove || it.ENG_name === nameToRemove);
+ 						if (~ixOld) valExisting.splice(ixOld, 1);
+ 						else {
+ 							if (!modInfo.force) throw new Error(`${msgPtFailed} Could not find "${propPath.join(".")}" item with name "${nameToRemove}" to remove`);
+@@ -5766,7 +5838,7 @@ globalThis.DataUtil = class {
+ 
+ 				modInfo.renames
+ 					.forEach(rename => {
+-						const ent = valExisting.find(ent => ent?.name === rename.rename);
++						const ent = valExisting.find(ent => ent?.name === rename.rename || ent?.ENG_name === rename.rename);
+ 						if (!ent) {
+ 							if (isThrow) throw new Error(`${msgPtFailed} Could not find "${propPath.join(".")}" item with name "${rename.rename}" to rename`);
+ 							return;
+@@ -5895,7 +5967,7 @@ globalThis.DataUtil = class {
+ 
+ 				// TODO could accept a "position" parameter should spells need to be added to other spellcasting traits
+ 				const spellcasting = modInfo.name
+-					? copyTo.spellcasting.find(ent => ent.name === modInfo.name)
++					? copyTo.spellcasting.find(ent => ent.name === modInfo.name || ent.ENG_name === modInfo.name)
+ 					: copyTo.spellcasting[0];
+ 
+ 				if (modInfo.name && !spellcasting) throw new Error(`${msgPtFailed} Creature did not have spellcasting trait named "${modInfo.name}"!`);
+@@ -5950,7 +6022,7 @@ globalThis.DataUtil = class {
+ 				const handleReplace = (curSpells, replaceMeta, k) => {
+ 					this._doEnsureArray({obj: replaceMeta, prop: "with"});
+ 
+-					const ix = curSpells[k].indexOf(replaceMeta.replace);
++					const ix = curSpells[k].findIndex(spell => this._isSpellMatch(spell, replaceMeta.replace));
+ 					if (~ix) {
+ 						curSpells[k].splice(ix, 1, ...replaceMeta.with);
+ 						curSpells[k].sort(SortUtil.ascSortLower);
+@@ -5993,13 +6065,13 @@ globalThis.DataUtil = class {
+ 					Object.keys(modInfo.spells).forEach(k => {
+ 						if (!spells[k]?.spells) return;
+ 
+-						spells[k].spells = spells[k].spells.filter(it => !modInfo.spells[k].includes(it));
++						spells[k].spells = spells[k].spells.filter(it => !modInfo.spells[k].some(spell => this._isSpellMatch(it, spell)));
+ 					});
+ 				}
+ 
+ 				["constant", "will", "ritual"].forEach(prop => {
+ 					if (!modInfo[prop]) return;
+-					spellcasting[prop].filter(it => !modInfo[prop].includes(it));
++					spellcasting[prop] = spellcasting[prop].filter(it => !modInfo[prop].some(spell => this._isSpellMatch(it, spell)));
+ 				});
+ 
+ 				["recharge", "legendary", "charges", "rest", "restLong", "daily", "weekly", "monthly", "yearly"].forEach(prop => {
+@@ -6011,7 +6083,7 @@ globalThis.DataUtil = class {
+ 
+ 							spellcasting[prop] ||= {};
+ 
+-							spellcasting[prop][k] = spellcasting[prop][k].filter(it => !spells.includes(it));
++							spellcasting[prop][k] = spellcasting[prop][k].filter(it => !spells.some(spell => this._isSpellMatch(it, spell)));
+ 						});
+ 				});
+ 			}
+@@ -7014,12 +7086,20 @@ globalThis.DataUtil = class {
+ 				const urlItemsBase = `${Renderer.get().baseUrl}data/items-base.json`;
+ 				const urlVariants = `${Renderer.get().baseUrl}data/magicvariants.json`;
+ 
+-				const [dataItems, dataItemsBase, dataVariants] = await Promise.all([
++				let [dataItems, dataItemsBase, dataVariants] = await Promise.all([
+ 					DataUtil.loadJSON(urlItems),
+ 					DataUtil.loadJSON(urlItemsBase),
+ 					DataUtil.loadJSON(urlVariants),
+ 				]);
+ 
++				if (globalThis.I18nZhTwContent?.pApplyDataFile) {
++					[dataItems, dataItemsBase, dataVariants] = await Promise.all([
++						globalThis.I18nZhTwContent.pApplyDataFile({file: "items.json", data: dataItems}),
++						globalThis.I18nZhTwContent.pApplyDataFile({file: "items-base.json", data: dataItemsBase}),
++						globalThis.I18nZhTwContent.pApplyDataFile({file: "magicvariants.json", data: dataVariants}),
++					]);
++				}
++
+ 				DataUtil.item._loadedRawJson = {
+ 					item: MiscUtil.copyFast(dataItems.item),
+ 					itemGroup: MiscUtil.copyFast(dataItems.itemGroup),
+@@ -9079,6 +9159,13 @@ Map.prototype.getOrSet || Object.defineProperty(Map.prototype, "getOrSet", {
+ class BookModeViewBase {
+ 	static _BOOK_VIEW_COLUMNS_K = "bookViewColumns";
+ 
++	_getLocalizedText ({key = null, english, params = null}) {
++		const i18n = globalThis.I18nZhTwSite;
++		if (i18n) return key ? i18n.t(key, english, params) : i18n.tEnglish(english, params);
++		if (!params) return english;
++		return english.replace(/\{([A-Za-z][A-Za-z0-9_.-]*)\}/g, (full, name) => Object.hasOwn(params, name) ? params[name] : full);
++	}
++
+ 	_hashKey;
+ 	_stateKey;
+ 	_pageTitle;
+@@ -9119,7 +9206,7 @@ class BookModeViewBase {
+ 	}
+ 
+ 	_getBtnWindowClose () {
+-		return veT`<button class="ve-btn ve-btn-xs ve-btn-danger ve-b-0 ve-bc-0 ve-h-20p" title="Close"><span class="glyphicon glyphicon-remove"></span></button>`
++		return veT`<button class="ve-btn ve-btn-xs ve-btn-danger ve-b-0 ve-bc-0 ve-h-20p" title="${this._getLocalizedText({english: "Close"})}"><span class="glyphicon glyphicon-remove"></span></button>`
+ 			.vee.onn("click", () => this.setStateClosed());
+ 	}
+ 
+@@ -9147,19 +9234,19 @@ class BookModeViewBase {
+ 		};
+ 
+ 		const selColumns = veT`<select class="ve-form-control ve-input-xs">
+-			<option value="2">Two (book style)</option>
+-			<option value="1">One</option>
+-			<option value="3">Three</option>
+-			<option value="4">Four</option>
+-			<option value="5">Five</option>
+-			<option value="6">Six</option>
++			<option value="2">${this._getLocalizedText({english: "Two (book style)"})}</option>
++			<option value="1">一欄</option>
++			<option value="3">三欄</option>
++			<option value="4">四欄</option>
++			<option value="5">五欄</option>
++			<option value="6">六欄</option>
+ 		</select>`
+ 			.vee.onn("change", () => onChangeSelColumns());
+ 		selColumns.vee.val(`${lastColumns}`);
+ 		onChangeSelColumns();
+ 
+ 		const wrpPrint = veT`<div class="ve-w-100 ve-flex">
+-			<label class="ve-flex-vh-center"><span class="ve-mr-2 ve-no-wrap ve-help-subtle" title="Applied when printing the page.">Print Columns:</span>${selColumns}</label>
++			<label class="ve-flex-vh-center"><span class="ve-mr-2 ve-no-wrap ve-help-subtle" title="${this._getLocalizedText({english: "Applied when printing the page."})}">${this._getLocalizedText({english: "Print columns:"})}</span>${selColumns}</label>
+ 		</div>`.vee.appendTo(wrp);
+ 
+ 		return {wrp, wrpPrint};
+@@ -9170,7 +9257,7 @@ class BookModeViewBase {
+ 	_getEleNoneVisible () { return null; }
+ 
+ 	_getBtnNoneVisibleClose () {
+-		return veT`<button class="ve-btn ve-btn-default">Close</button>`
++		return veT`<button class="ve-btn ve-btn-default">${this._getLocalizedText({english: "Close"})}</button>`
+ 			.vee.onn("click", () => this.setStateClosed());
+ 	}
+ 
+@@ -9191,7 +9278,7 @@ class BookModeViewBase {
+ 		if (this._isActive) return;
+ 		this._isActive = true;
+ 
+-		document.title = `${this._pageTitle} - 5etools`;
++		document.title = `${this._getLocalizedText({english: this._pageTitle})} - 5etools`;
+ 		document.body.style.overflow = "hidden";
+ 		document.body.classList.add("bkmv-active");
+ 
+@@ -9752,7 +9839,7 @@ if (!globalThis.IS_VTT && typeof window !== "undefined") {
+ 					const tgt = wrp.vee.closest(".cancer__anchor")?.vee.find(".cancer__disp-cancer");
+ 					if (tgt) {
+ 						anyFound = true;
+-						tgt.vee.css({display: "flex"}).vee.txt("Advertisements");
++						tgt.vee.css({display: "flex"}).vee.txt(UiUtil.getTranslatedText("Advertisements"));
+ 						clearInterval(iv);
+ 					}
+ 				}, 250);
+diff --git a/js/variantrules.js b/js/variantrules.js
+index 14053ff..2563ac4 100644
+--- a/js/variantrules.js
++++ b/js/variantrules.js
+@@ -1,3 +1,5 @@
++import {I18nZhTwRules} from "./zh-tw/rules-i18n.js";
++
+ "use strict";
+ 
+ class VariantRulesSublistManager extends SublistManager {
+@@ -17,7 +19,9 @@ class VariantRulesSublistManager extends SublistManager {
+ 	}
+ 
+ 	pGetSublistItem (it, hash) {
+-		const cellsText = [it.name, it.ruleType ? Parser.ruleTypeToFull(it.ruleType) : "\u2014"];
++		const displayName = I18nZhTwRules.getBilingualName(it);
++		const ruleTypeDisplay = it.ruleType ? I18nZhTwRules.getRuleTypeDisplay(it.ruleType) : "\u2014";
++		const cellsText = [displayName, ruleTypeDisplay];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+ 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+@@ -30,9 +34,12 @@ class VariantRulesSublistManager extends SublistManager {
+ 		const listItem = new ListItem({
+ 			id: hash,
+ 			ele,
+-			name: it.name,
++			name: displayName,
+ 			values: {
+ 				...ListItem.getCommonValues(it),
++				englishName: I18nZhTwRules.getCanonicalName(it),
++				ruleTypeDisplay,
++				ruleTypeEnglish: it.ruleType ? Parser.ruleTypeToFull(it.ruleType) : "",
+ 				ruleType: it.ruleType || "",
+ 			},
+ 			data: {
+@@ -50,7 +57,10 @@ class VariantRulesPage extends ListPage {
+ 	constructor () {
+ 		const pageFilter = new PageFilterVariantRules();
+ 		super({
+-			dataSource: DataUtil.variantrule.loadJSON.bind(DataUtil.variantrule),
++			dataSource: async () => I18nZhTwRules.pApplyToData(
++				await DataUtil.variantrule.loadJSON(),
++				{filenames: ["variantrules.json", "generated/gendata-variantrules.json"]},
++			),
+ 
+ 			pageFilter,
+ 
+@@ -71,26 +81,35 @@ class VariantRulesPage extends ListPage {
+ 		for (const e1 of rule.entries) {
+ 			Renderer.getNames(searchStack, e1);
+ 		}
++		const canonicalRule = I18nZhTwRules.getCanonicalEntity(rule);
++		for (const e1 of canonicalRule.entries || []) {
++			Renderer.getNames(searchStack, e1);
++		}
+ 
+ 		const eleLi = document.createElement("div");
+ 		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
+ 
+ 		const source = Parser.sourceJsonToAbv(rule.source);
+ 		const hash = UrlUtil.autoEncodeHash(rule);
++		const displayName = I18nZhTwRules.getBilingualName(rule);
++		const ruleTypeDisplay = rule.ruleType ? I18nZhTwRules.getRuleTypeDisplay(rule.ruleType) : "\u2014";
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+-			<span class="ve-bold ve-col-7 ve-pl-0 ve-pr-1">${rule.name}</span>
+-			<span class="ve-col-3 ve-px-1 ve-text-center">${rule.ruleType ? Parser.ruleTypeToFull(rule.ruleType) : "\u2014"}</span>
++			<span class="ve-bold ve-col-7 ve-pl-0 ve-pr-1">${displayName}</span>
++			<span class="ve-col-3 ve-px-1 ve-text-center">${ruleTypeDisplay}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(rule.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(rule.source)}">${source}</span>
+ 		</a>`;
+ 
+ 		const listItem = new ListItem({
+ 			id: rlI,
+ 			ele: eleLi,
+-			name: rule.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				...ListItem.getCommonValues(rule),
++				englishName: I18nZhTwRules.getCanonicalName(rule),
++				ruleTypeDisplay,
++				ruleTypeEnglish: rule.ruleType ? Parser.ruleTypeToFull(rule.ruleType) : "",
+ 				search: searchStack.join(","),
+ 				ruleType: rule.ruleType || "",
+ 			},
+diff --git a/js/vehicles.js b/js/vehicles.js
+index acaf613..35cd074 100644
+--- a/js/vehicles.js
++++ b/js/vehicles.js
+@@ -4,12 +4,12 @@ class VehiclesSublistManager extends SublistManager {
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Type",
++				name: "類型",
+ 				css: "ve-col-8 ve-pl-0 ve-pr-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-4 ve-pl-1 ve-pr-0",
+ 				colStyle: "",
+ 			}),
+@@ -18,9 +18,10 @@ class VehiclesSublistManager extends SublistManager {
+ 
+ 	pGetSublistItem (it, hash) {
+ 		const displayType = it.vehicleType
+-			? [Parser.vehicleTypeToFull(it.vehicleType)]
+-			: (it.upgradeType || []).map(t => Parser.vehicleUpgradeTypeToFull(t));
+-		const cellsText = [displayType.join(", ").qq(), it.name];
++			? [I18nZhTwContent.getVehicleType(it.vehicleType, {isBilingual: true})]
++			: (it.upgradeType || []).map(t => I18nZhTwContent.getVehicleUpgradeType(t, {isBilingual: true}));
++		const displayName = I18nZhTwContent.getBilingualName(it);
++		const cellsText = [displayType.join("、").qq(), displayName];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+ 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+@@ -33,7 +34,7 @@ class VehiclesSublistManager extends SublistManager {
+ 		const listItem = new ListItem({
+ 			id: hash,
+ 			ele,
+-			name: it.name,
++			name: displayName,
+ 			values: {
+ 				...ListItem.getCommonValues(it),
+ 				vehicleType: it.vehicleType,
+@@ -57,7 +58,7 @@ class VehiclesPage extends ListPage {
+ 		const pFnGetFluff = Renderer.vehicle.pGetFluff.bind(Renderer.vehicle);
+ 
+ 		super({
+-			dataSource: "data/vehicles.json",
++			dataSource: DataUtil.vehicle.loadJSON.bind(DataUtil.vehicle),
+ 
+ 			pFnGetFluff,
+ 
+@@ -66,9 +67,9 @@ class VehiclesPage extends ListPage {
+ 			dataProps: ["vehicle", "vehicleUpgrade"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "vehicle",
+-				namePlural: "vehicles",
+-				pageTitle: "Vehicles Book View",
++				nameSingular: "載具",
++				namePlural: "載具",
++				pageTitle: "載具書籍檢視",
+ 			},
+ 
+ 			listSyntax: new ListSyntaxVehicles({fnGetDataList: () => this._dataList, pFnGetFluff}),
+@@ -89,19 +90,20 @@ class VehiclesPage extends ListPage {
+ 		const source = Parser.sourceJsonToAbv(it.source);
+ 		const hash = UrlUtil.autoEncodeHash(it);
+ 		const displayType = it.vehicleType
+-			? [Parser.vehicleTypeToFull(it.vehicleType)]
+-			: (it.upgradeType || []).map(t => Parser.vehicleUpgradeTypeToFull(t));
++			? [I18nZhTwContent.getVehicleType(it.vehicleType, {isBilingual: true})]
++			: (it.upgradeType || []).map(t => I18nZhTwContent.getVehicleUpgradeType(t, {isBilingual: true}));
++		const displayName = I18nZhTwContent.getBilingualName(it);
+ 
+ 		eleLi.innerHTML = `<a href="#${UrlUtil.autoEncodeHash(it)}" class="ve-lst__row-border ve-lst__row-inner">
+-			<span class="ve-col-6 ve-pl-0 ve-pr-1 ve-text-center">${displayType.join(", ").qq()}</span>
+-			<span class="ve-bold ve-col-4 ve-px-1">${it.name}</span>
++			<span class="ve-col-6 ve-pl-0 ve-pr-1 ve-text-center">${displayType.join("、").qq()}</span>
++			<span class="ve-bold ve-col-4 ve-px-1">${displayName}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
+ 		</a>`;
+ 
+ 		const listItem = new ListItem({
+ 			id: vhI,
+ 			ele: eleLi,
+-			name: it.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				...ListItem.getCommonValues(it),
+diff --git a/langdemo.html b/langdemo.html
+index c2a7060..e0c2b02 100644
+--- a/langdemo.html
++++ b/langdemo.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>RoLang Demo - 5etools</title>
++	<title>RoLang 示範 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -48,10 +48,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -70,8 +74,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">RoLang Demo</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Edit the input and context, and hit Run</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">RoLang 示範</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">編輯輸入與上下文，再按下執行</p>
+ 			</div>
+ 		</header>
+ 
+@@ -82,32 +86,32 @@
+ 
+ 	<div class="view-col-wrapper ve-flex-col ve-px-4">
+ 		<div class="ve-flex-v-center ve-mb-3">
+-			<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" id="btn__run">Run</button>
+-			<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" id="btn__validate">Validate</button>
+-			<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" id="btn__resolve_dynamics">Resolve Dynamics</button>
+-			<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" id="btn__validate_dynamics">Validate Dynamics</button>
+-			<select class="ve-form-control ve-input-xs rlng__sel-sample" id="sel__sample"><option disabled value="-1">Select sample</option></select>
++			<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" id="btn__run">執行</button>
++			<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" id="btn__validate">驗證</button>
++			<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" id="btn__resolve_dynamics">解析動態內容</button>
++			<button class="ve-btn ve-btn-xs ve-btn-default ve-mr-2" id="btn__validate_dynamics">驗證動態內容</button>
++			<select class="ve-form-control ve-input-xs rlng__sel-sample" id="sel__sample"><option disabled value="-1">選擇範例</option></select>
+ 		</div>
+ 
+ 		<div class="ve-flex ve-w-100 ve-h-100">
+ 			<div class="ve-flex-col ve-w-33">
+-				<div class="ve-mb-2 ve-small-caps">Input</div>
++				<div class="ve-mb-2 ve-small-caps">輸入</div>
+ 				<div class="ve-flex-col ve-h-100 ve-w-100 ve-flex-1"><textarea id="ipt" class="ve-w-100 ve-h-100 ve-form-control ve-mb-2 ve-code ve-resize-none"></textarea></div>
+ 
+-				<div class="ve-mb-2 ve-small-caps">Context</div>
++				<div class="ve-mb-2 ve-small-caps">上下文</div>
+ 				<div class="ve-flex-col ve-h-100 ve-w-100 ve-flex-1" id="wrp_context"></div>
+ 			</div>
+ 
+ 			<div class="ve-flex-col ve-w-33 ve-px-2">
+-				<div class="ve-mb-2 ve-small-caps">Lexed</div>
++				<div class="ve-mb-2 ve-small-caps">詞法分析結果</div>
+ 				<div class="ve-flex-col ve-h-100 ve-w-100 ve-flex-1"><pre class="ve-w-100 ve-h-100 ve-m-0 ve-mb-2" id="out_lexed"></pre></div>
+ 
+-				<div class="ve-mb-2 ve-small-caps">Parsed</div>
++				<div class="ve-mb-2 ve-small-caps">解析結果</div>
+ 				<div class="ve-flex-col ve-h-100 ve-w-100 ve-flex-1"><pre class="ve-w-100 ve-h-100 ve-m-0" id="out_parsed"></pre></div>
+ 			</div>
+ 
+ 			<div class="ve-flex-col ve-w-33 ve-h-100 ve-px-2">
+-				<div class="ve-mb-2 ve-small-caps">Result</div>
++				<div class="ve-mb-2 ve-small-caps">結果</div>
+ 				<div class="ve-w-100 ve-h-100 ve-flex-vh-center rlng__output" id="out_result"></div>
+ 			</div>
+ 		</div>
+@@ -119,17 +123,17 @@
+ 
+ <script type="text/javascript" defer src="lib/ace.js"></script>
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="text/javascript" defer src="js/render-card.js"></script>
+diff --git a/languages.html b/languages.html
+index 618d27f..94d052c 100644
+--- a/languages.html
++++ b/languages.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Languages - 5etools</title>
++	<title>語言 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -48,10 +48,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -70,8 +74,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Languages</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">語言</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">從左側按名稱搜尋，點選名稱後於右側顯示。</p>
+ 			</div>
+ 		</header>
+ 
+@@ -89,14 +93,14 @@
+ 						<div id="lst__search-glass" class="ve-lst__wrp-search-glass ve-no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+ 						<div class="ve-lst__wrp-search-visible ve-no-events ve-flex-vh-center"></div>
+ 					</div>
+-					<button type="button" class="ve-btn ve-btn-default" id="reset">Reset</button>
++					<button type="button" class="ve-btn ve-btn-default" id="reset">重設</button>
+ 				</div>
+ 
+ 				<div id="filtertools" class="ve-input-group ve-input-group--bottom ve-flex ve-no-shrink">
+-					<button type="button" class="ve-col-6 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-					<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">Type</button>
+-					<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="script">Script</button>
+-					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
++					<button type="button" class="ve-col-6 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++					<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">類型</button>
++					<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="script">文字</button>
++					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">來源</button>
+ 				</div>
+ 
+ 				<div id="list" class="list list--stats"></div>
+@@ -107,9 +111,9 @@
+ 			<div id="contentwrapper" class="view-col">
+ 				<div id="sublistcontainer" class="sublist sublist--resizable ve-print__hidden">
+ 					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
+-						<button type="button" class="ve-col-8 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+-						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">Type</button>
+-						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="script">Script</button>
++						<button type="button" class="ve-col-8 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">名稱</button>
++						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type">類型</button>
++						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="script">文字</button>
+ 					</div>
+ 
+ 					<div id="sublist" class="list"></div>
+@@ -122,17 +126,17 @@
+ 				<div id="wrp-pagecontent" class="ve-relative wrp-stats-table">
+ 					<table id="pagecontent" class="ve-w-100 ve-stats">
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+-						<tr><td colspan="6" class="initial-message initial-message--med">Select an entry from the list to view it here</td></tr>
++						<tr><td colspan="6" class="initial-message initial-message--med">從清單選取項目，即可在此檢視</td></tr>
+ 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+ 					</table>
+ 				</div>
+ 
+ 				<div class="ve-flex-vh-center ve-mt-2 ve-print__hidden">
+-					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">Printer View</button>
++					<button type="button" class="ve-btn ve-btn-default ve-btn-xs ve-mr-2" id="btn-book">列印檢視</button>
+ 					<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+-						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">管理內容</button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary ve-w-24p" name="manage-prerelease" title="管理預發佈內容"><span class="glyphicon glyphicon-wrench"></span></button>
++						<button type="button" class="ve-btn ve-btn-xs ve-btn-info ve-w-24p" name="manage-brew" title="管理自製內容"><span class="glyphicon glyphicon-glass"></span></button>
+ 					</div>
+ 				</div>
+ 			</div>
+@@ -144,18 +148,18 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/utils-list.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="text/javascript" defer src="js/render-languages.js"></script>
+diff --git a/lifegen.html b/lifegen.html
+index 9e05c6d..16d2e2c 100644
+--- a/lifegen.html
++++ b/lifegen.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>This Is Your Life - 5etools</title>
++	<title>你的生平 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -48,10 +48,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -66,8 +70,8 @@
+ <div class="ve-flex-col" data-cancer-id="cancer-header">
+ 	<header class="ve-mobile-sm__hidden page__header">
+ 		<div class="container ve-flex-v-baseline">
+-			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">This Is Your Life</h1>
+-			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Select options, and hit generate.</p>
++			<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">你的生平</h1>
++			<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">選擇選項，再按下產生。</p>
+ 		</div>
+ 	</header>
+ 
+@@ -82,68 +86,68 @@
+ <main class="container" data-cancer-id="cancer-wrapper">
+ 	<div class="ve-flex ve-print__hidden">
+ 		<div class="form-group ve-col-2-4 ve-mr-2">
+-			<label for="race">Species</label>
+-			<select class="ve-form-control form-inline" id="race" disabled><option>Loading...</option></select>
++			<label for="race">種族</label>
++			<select class="ve-form-control form-inline" id="race" disabled><option>載入中……</option></select>
+ 		</div>
+ 
+ 		<div class="form-group ve-col-2-4 ve-mr-2">
+-			<label for="cha">Charisma Modifier</label>
+-			<select class="ve-form-control form-inline" id="cha" disabled><option>Loading...</option></select>
++			<label for="cha">魅力調整值</label>
++			<select class="ve-form-control form-inline" id="cha" disabled><option>載入中……</option></select>
+ 		</div>
+ 
+ 		<div class="form-group ve-col-2-4 ve-mr-2">
+-			<label for="race">Background</label>
+-			<select class="ve-form-control form-inline" id="background" disabled><option>Loading...</option></select>
++			<label for="background">背景</label>
++			<select class="ve-form-control form-inline" id="background" disabled><option>載入中……</option></select>
+ 		</div>
+ 
+ 		<div class="form-group ve-col-2-4 ve-mr-2">
+-			<label for="race">Class</label>
+-			<select class="ve-form-control form-inline" id="class" disabled><option>Loading...</option></select>
++			<label for="class">職業</label>
++			<select class="ve-form-control form-inline" id="class" disabled><option>載入中……</option></select>
+ 		</div>
+ 
+ 		<div class="form-group ve-col-2-4">
+-			<label for="age"><i>Age</i></label>
+-			<select class="ve-form-control form-inline" id="age" disabled><option>Loading...</option></select>
++			<label for="age"><i>年齡</i></label>
++			<select class="ve-form-control form-inline" id="age" disabled><option>載入中……</option></select>
+ 		</div>
+ 	</div>
+ 	<div class="ve-flex ve-print__hidden">
+ 		<div class="form-group ve-col-12">
+-			<button class="ve-btn ve-btn-default" id="btn-generate">Generate</button>
++			<button class="ve-btn ve-btn-default" id="btn-generate">產生</button>
+ 		</div>
+ 	</div>
+ 
+ 	<div class="ve-flex-col ve-print__hidden ve-py-0">
+-		<p>Based on the tables and rules in <a href="#" id="xge_link">Xanathar's Guide to Everything</a>, pages 61-73.</p>
+-		<p><i>NOTE: Text displayed in italics is generated for the sake of ease and speed of use, and does not correspond to a table in the original generator. Ignore it as you see fit.</i></p>
++		<p>依據下列書籍的表格與規則： <a href="#" id="xge_link">珊娜薩的萬事指南（Xanathar's Guide to Everything）</a>，第 61–73 頁。</p>
++		<p><i>注意：斜體文字是為了方便、快速使用而額外產生的內容，並不對應原書產生器的表格。你可以視需要忽略它。</i></p>
+ 	</div>
+ 
+ 	<hr class="life__output ve-hidden">
+ 	<div class="ve-flex-col life__output ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p ve-my-3 ve-py-1 ve-px-3 ve-hidden">
+-		<div class="wrp-sect-head"><h4>Parents</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-parents">Reroll</button></div>
++		<div class="wrp-sect-head"><h4>雙親（Parents）</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-parents">重擲</button></div>
+ 		<p id="parents"></p>
+ 	</div>
+ 	<div class="ve-flex-col life__output ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p ve-my-3 ve-py-1 ve-px-3 ve-hidden">
+-		<div class="wrp-sect-head"><h4>Birthplace</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-birthplace">Reroll</button></div>
++		<div class="wrp-sect-head"><h4>出生地（Birthplace）</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-birthplace">重擲</button></div>
+ 		<p id="birthplace"></p>
+ 	</div>
+ 	<div class="ve-flex-col life__output ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p ve-my-3 ve-py-1 ve-px-3 ve-hidden">
+-		<div class="wrp-sect-head"><h4>Siblings</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-siblings">Reroll</button></div>
++		<div class="wrp-sect-head"><h4>兄弟姊妹（Siblings）</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-siblings">重擲</button></div>
+ 		<p id="siblings"></p>
+ 	</div>
+ 	<div class="ve-flex-col life__output ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p ve-my-3 ve-py-1 ve-px-3 ve-hidden">
+-		<div class="wrp-sect-head"><h4>Family and Friends</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-family">Reroll</button></div>
++		<div class="wrp-sect-head"><h4>家庭與朋友（Family and Friends）</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-family">重擲</button></div>
+ 		<p id="family"></p>
+ 	</div>
+ 	<div class="ve-flex-col life__output ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p ve-my-3 ve-py-1 ve-px-3 ve-hidden">
+-		<div class="wrp-sect-head"><h4>Personal Decisions</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-personal">Reroll</button></div>
++		<div class="wrp-sect-head"><h4>個人抉擇（Personal Decisions）</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-personal">重擲</button></div>
+ 		<p id="personal"></p>
+ 	</div>
+ 	<div class="ve-flex-col life__output ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p ve-my-3 ve-py-1 ve-px-3 ve-hidden">
+-		<div class="wrp-sect-head"><h4>Class Training</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-class">Reroll</button></div>
++		<div class="wrp-sect-head"><h4>職業訓練（Class Training）</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-class">重擲</button></div>
+ 		<p id="clss"></p>
+ 	</div>
+ 	<div class="ve-flex-col life__output ve-bg-solid ve-shadow-big ve-b-1p ve-bc-5p ve-my-3 ve-py-1 ve-px-3 ve-hidden">
+-		<div class="wrp-sect-head"><h4>Life Events</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-events">Reroll</button></div>
++		<div class="wrp-sect-head"><h4>人生事件（Life Events）</h4><button class="ve-btn ve-btn-xs ve-btn-default ve-print__hidden" id="btn-reroll-events">重擲</button></div>
+ 		<p id="events"></p>
+ 	</div>
+ 	<div class="ve-h-50h"></div>
+@@ -153,21 +157,21 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+ <script type="text/javascript" defer src="js/hist.js"></script>
+-<script type="module" src="js/lifegen.js"></script>
++<script type="module" src="js/lifegen.js?v=zh-tw-33"></script>
+ <script type="module" defer src="js/list2.js"></script>
+ <script type="text/javascript" defer src="lib/elasticlunr.js"></script>
+ 
+diff --git a/lootgen.html b/lootgen.html
+index 614b43a..e8728b3 100644
+--- a/lootgen.html
++++ b/lootgen.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Loot Generator - 5etools</title>
++	<title>戰利品產生器 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -48,10 +48,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -70,8 +74,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Loot Generator</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Configure the generator, then Roll Loot!</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">戰利品產生器</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">設定產生器，然後擲出戰利品！</p>
+ 			</div>
+ 		</header>
+ 
+@@ -81,7 +85,7 @@
+ 	</div>
+ 
+ 	<div class="container view-col-group--cancer ve-h-100 mh-0" data-cancer-id="cancer-wrapper">
+-		<div class="ve-py-2 ve-flex-vh-center initial-message initial-message--large ve-h-100" id="wrp-loading">Loading...</div>
++		<div class="ve-py-2 ve-flex-vh-center initial-message initial-message--large ve-h-100" id="wrp-loading">載入中……</div>
+ 
+ 		<div class="view-col-wrapper view-col-wrapper--cancer ve-hidden" id="wrp-content">
+ 			<div class="view-col ve-flex-4 ve-mb-0" id="lootgen-lhs"></div>
+@@ -97,20 +101,20 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/filter-common.js"></script>
+ <script type="text/javascript" defer src="js/filter-items.js"></script>
+ <script type="text/javascript" defer src="js/filter-spells.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+ <script type="text/javascript" defer src="js/hist.js"></script>
+diff --git a/makebrew.html b/makebrew.html
+index 01bcc0e..aca2b05 100644
+--- a/makebrew.html
++++ b/makebrew.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>Homebrew Builder - 5etools</title>
++	<title>自製內容建構器 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -48,10 +48,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -70,8 +74,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">Homebrew Builder</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Input values on left, view the results on the right.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">自製內容建構器</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">在左側輸入數值，並在右側檢視結果。</p>
+ 			</div>
+ 		</header>
+ 
+@@ -81,7 +85,7 @@
+ 	</div>
+ 
+ 	<div id="page_loading" class="container view-col-wrapper">
+-		<div class="ve-h-100 ve-w-100 ve-flex-vh-center"><span class="initial-message initial-message--large">Loading...</span></div>
++		<div class="ve-h-100 ve-w-100 ve-flex-vh-center"><span class="initial-message initial-message--large">載入中……</span></div>
+ 	</div>
+ 
+ 	<div id="page_source" class="container view-col-wrapper ve-hidden"></div>
+@@ -107,18 +111,18 @@
+ <!--5ETOOLS_AD_ADHESION-->
+ 
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+ <script type="text/javascript" defer src="js/filter-spells.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-markdown.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>
+diff --git a/makecards.html b/makecards.html
+index dda1423..262eb18 100644
+--- a/makecards.html
++++ b/makecards.html
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-Hant-TW">
+ 
+ <head>
+ 	<!--5ETOOLS_CMP-->
+@@ -11,7 +11,7 @@
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 	<meta name="mobile-web-app-capable" content="yes">
+ 
+-	<title>RPG Cards JSON Builder - 5etools</title>
++	<title>RPG 卡片 JSON 建構器 - 5etools</title>
+ 
+ 	<link rel="stylesheet" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="css/main.css">
+@@ -48,10 +48,14 @@
+ 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+ 
+ 	<!-- OpenSearch -->
+-	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
++	<link rel="search" href="open-search.xml" title="搜尋 5etools" type="application/opensearchdescription+xml">
+ 
+-	<script type="text/javascript" src="sw-injector.js"></script>
+ 
++		<script type="text/javascript" src="js/zh-tw/site-i18n-data.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/site-i18n.js"></script>
++	<script type="text/javascript" src="js/zh-tw/content-i18n.js?v=zh-tw-33"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-ui-data.js?v=zh-tw-27"></script>
++	<script type="text/javascript" src="js/zh-tw/utility-pages-i18n.js?v=zh-tw-27"></script>
+ 	<script blocking="render" type="module" src="js/styleswitch.js"></script>
+ 	<script type="text/javascript" src="js/navigation.js"></script>
+ 	<script type="module" src="js/browsercheck.js"></script>
+@@ -70,8 +74,8 @@
+ 	<div class="ve-flex-col" data-cancer-id="cancer-header">
+ 		<header class="ve-mobile-sm__hidden page__header">
+ 			<div class="container ve-flex-v-baseline">
+-				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">RPG Cards JSON Builder</h1>
+-				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">Build and export card JSON data.</p>
++				<h1 class="page__title ve-no-wrap ve-my-0" id="page__title">RPG 卡片 JSON 建構器</h1>
++				<p class="page__subtitle ve-no-wrap ve-my-0" id="page__subtitle">建立並匯出卡片 JSON 資料。</p>
+ 			</div>
+ 		</header>
+ 
+@@ -85,7 +89,7 @@
+ 			<p>This tool can be used to create data compatible with the <a href="https://rpg-cards.vercel.app" rel="noopener noreferrer">RPG Cards</a> app.</p>
+ 			<p>Icons are taken from the open-source <i>RPG Cards</i> code, which is in turn sources icons from <a href="https://game-icons.net/" rel="noopener noreferrer">Game-icons.net</a>. Most of the icons available there should be available here.</p>
+ 			<hr class="ve-hr-0">
+-			<h4>Configuration</h4>
++			<h4>設定</h4>
+ 			<div id="wrp_config"></div>
+ 		</div>
+ 
+@@ -98,13 +102,13 @@
+ 
+ <script type="text/javascript" defer src="https://rpg-cards.vercel.app/js/icons.js"></script>
+ <script type="text/javascript" defer src="js/parser.js"></script>
+-<script type="text/javascript" defer src="js/utils.js"></script>
+-<script type="text/javascript" defer src="js/utils-ui.js"></script>
++<script type="text/javascript" defer src="js/utils.js?v=zh-tw-33"></script>
++<script type="text/javascript" defer src="js/utils-ui.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="lib/localforage.js"></script>
+ <script type="module" defer src="js/omnidexer.js"></script>
+ <script type="module" src="js/omnisearch.js"></script>
+ <script type="module" src="js/filter.js"></script>
+-<script type="module" src="js/utils-dataloader.js"></script>
++<script type="module" src="js/utils-dataloader.js?v=zh-tw-33"></script>
+ <script type="module" src="js/utils-font.js"></script>
+ <script type="module" src="js/utils-brew.js"></script>
+ <script type="module" src="js/utils-config.js"></script>
+@@ -116,7 +120,7 @@
+ <script type="text/javascript" defer src="js/filter-backgrounds.js"></script>
+ <script type="text/javascript" defer src="js/filter-feats.js"></script>
+ <script type="text/javascript" defer src="js/filter-optionalfeatures.js"></script>
+-<script type="text/javascript" defer src="js/render.js"></script>
++<script type="text/javascript" defer src="js/render.js?v=zh-tw-33"></script>
+ <script type="text/javascript" defer src="js/render-dice.js"></script>
+ <script type="text/javascript" defer src="js/render-card.js"></script>
+ <script type="module" src="js/shim-esmodules.js"></script>

@@ -43,7 +43,7 @@ test("the public data loader localizes every requested utility data file",async(
 	}
 	assert.equal((await DataUtil.object.loadJSON()).object.length,37);
 	const tables=await DataUtil.table.loadJSON();
-	assert.equal(tables.table.length,2390);
+	assert.equal(tables.table.length,2457);
 	assert.equal(tables.tableGroup.length,22);
 	const decks=await DataUtil.deck.loadRawJSON();
 	assert.equal(decks.deck.length,35);

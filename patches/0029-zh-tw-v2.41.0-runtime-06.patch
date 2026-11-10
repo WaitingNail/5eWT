@@ -1,0 +1,3310 @@
+diff --git a/js/render.js b/js/render.js
+index 704e5b0..824c14f 100644
+--- a/js/render.js
++++ b/js/render.js
+@@ -114,6 +114,10 @@ globalThis.Renderer = class {
+ 	setBaseMediaUrl (mediaDir, url) { this.baseMediaUrls[mediaDir] = url; return this; }
+ 
+ 	getMediaUrl (mediaDir, path) {
++		// These sources include assets added after the WaitingNail image snapshot.
++		if (mediaDir === "img" && /^(?:items\/(?:X?DMG)\/|book\/PL\/|adventure\/SoS\/|bestiary\/(?:tokens\/)?PL\/|covers\/(?:PL|SoS)\.)/u.test(path)) {
++			return `https://raw.githubusercontent.com/5etools-mirror-3/5etools-img/f6bfad316f02b25f698eca461512bbbbfe8e6321/${path}`;
++		}
+ 		if (Renderer.get().baseMediaUrls[mediaDir]) return `${Renderer.get().baseMediaUrls[mediaDir]}${path}`;
+ 		return `${Renderer.get().baseUrl}${mediaDir}/${path}`;
+ 	}
+@@ -630,7 +634,7 @@ globalThis.Renderer = class {
+ 				textStack[0] += `<button class="ve-btn ve-btn-xs ve-btn-default ve-rd__image-btn-viewer" onclick="RenderMap.pShowViewer(event, this)" data-rd-packed-map="${this._renderImage_getMapRegionData(entry)}" ${ptAdventureBookMeta} title="Open Dynamic Viewer (SHIFT to Open in New Window)"><span class="glyphicon glyphicon-picture"></span> ${Renderer.stripTags(entry.title) || "Dynamic Viewer"}</button>`;
+ 			}
+ 
+-			if (entry.credit) textStack[0] += `<div class="ve-rd__image-credit ve-muted"><span class="glyphicon glyphicon-pencil" title="Art Credit"></span> ${this.render(entry.credit)}</div>`;
++			if (entry.credit) textStack[0] += `<div class="ve-rd__image-credit ve-muted"><span class="glyphicon glyphicon-pencil" title="繪者署名"></span> ${this.render(entry.credit)}</div>`;
+ 
+ 			textStack[0] += `</div>`;
+ 		}
+@@ -1463,20 +1467,20 @@ globalThis.Renderer = class {
+ 
+ 		if (this._SPELLCASTING_PROPS.some(prop => entry[prop])) {
+ 			const tempList = {type: "list", style: "list-hang-notitle", items: [], data: {isSpellList: true}};
+-			if (entry.constant && !hidden.has("constant")) tempList.items.push({type: "itemSpell", name: `Constant:`, entry: this._renderSpellcasting_getRenderableList(entry.constant).join(", ")});
+-			if (entry.will && !hidden.has("will")) tempList.items.push({type: "itemSpell", name: `At will:`, entry: this._renderSpellcasting_getRenderableList(entry.will).join(", ")});
++			if (entry.constant && !hidden.has("constant")) tempList.items.push({type: "itemSpell", name: `常駐：`, entry: this._renderSpellcasting_getRenderableList(entry.constant).join("、")});
++			if (entry.will && !hidden.has("will")) tempList.items.push({type: "itemSpell", name: `隨意：`, entry: this._renderSpellcasting_getRenderableList(entry.will).join("、")});
+ 
+ 			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "recharge", fnGetDurationText: num => `{@recharge ${num}|m}`, isSkipPrefix: true});
+-			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "legendary", fnGetDurationText: num => ` legendary action${num === 1 ? "" : "s"}`});
+-			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "charges", fnGetDurationText: num => ` charge${num === 1 ? "" : "s"}`});
+-			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "rest", durationText: "/rest"});
+-			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "restLong", durationText: "/long rest"});
+-			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "daily", durationText: "/day"});
+-			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "weekly", durationText: "/week"});
+-			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "monthly", durationText: "/month"});
+-			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "yearly", durationText: "/year"});
+-
+-			if (entry.ritual && !hidden.has("ritual")) tempList.items.push({type: "itemSpell", name: `Rituals:`, entry: this._renderSpellcasting_getRenderableList(entry.ritual).join(", ")});
++			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "legendary", fnGetDurationText: () => `次傳奇動作`});
++			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "charges", fnGetDurationText: () => `發充能`});
++			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "rest", durationText: "次／休息"});
++			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "restLong", durationText: "次／長休"});
++			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "daily", durationText: "次／日"});
++			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "weekly", durationText: "次／週"});
++			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "monthly", durationText: "次／月"});
++			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "yearly", durationText: "次／年"});
++
++			if (entry.ritual && !hidden.has("ritual")) tempList.items.push({type: "itemSpell", name: `儀式：`, entry: this._renderSpellcasting_getRenderableList(entry.ritual).join("、")});
+ 			tempList.items = tempList.items.filter(it => it.entry !== "");
+ 			if (tempList.items.length) toRender[0].entries.push(tempList);
+ 		}
+@@ -1491,13 +1495,13 @@ globalThis.Renderer = class {
+ 			for (const lvl of lvls) {
+ 				const spells = entry.spells[lvl];
+ 				if (spells) {
+-					let levelCantrip = `${Parser.spLevelToFull(lvl)}${(lvl === 0 ? "s" : " level")}`;
+-					let slotsAtWill = ` (at will)`;
++					let levelCantrip = globalThis.I18nZhTwContent?.getSpellLevel(lvl, {isIncludeWord: true}) || `${Parser.spLevelToFull(lvl)}${(lvl === 0 ? "s" : " level")}`;
++					let slotsAtWill = `（隨意）`;
+ 					const slots = spells.slots;
+-					if (slots >= 0) slotsAtWill = slots > 0 ? ` (${slots} slot${slots > 1 ? "s" : ""})` : ``;
++					if (slots >= 0) slotsAtWill = slots > 0 ? `（${slots}個法術位）` : ``;
+ 					if (spells.lower && spells.lower !== lvl) {
+-						levelCantrip = `${Parser.spLevelToFull(spells.lower)}-${levelCantrip}`;
+-						if (slots >= 0) slotsAtWill = slots > 0 ? ` (${slots} ${Parser.spLevelToFull(lvl)}-level slot${slots > 1 ? "s" : ""})` : ``;
++						levelCantrip = `${globalThis.I18nZhTwContent?.getSpellLevel(spells.lower) || Parser.spLevelToFull(spells.lower)}–${levelCantrip}`;
++						if (slots >= 0) slotsAtWill = slots > 0 ? `（${slots}個${globalThis.I18nZhTwContent?.getSpellLevel(lvl) || Parser.spLevelToFull(lvl)}法術位）` : ``;
+ 					}
+ 					tempList.items.push({type: "itemSpell", name: `${levelCantrip}${slotsAtWill}:`, entry: this._renderSpellcasting_getRenderableList(spells.spells).join(", ") || "\u2014"});
+ 				}
+@@ -1526,7 +1530,7 @@ globalThis.Renderer = class {
+ 					const isHideEach = !per && per.length === 1;
+ 					tempList.items.push({
+ 						type: "itemSpell",
+-						name: `${isSkipPrefix ? "" : lvl}${fnGetDurationText ? fnGetDurationText(lvl) : durationText}${isHideEach ? "" : ` each`}:`,
++						name: `${isSkipPrefix ? "" : lvl}${fnGetDurationText ? fnGetDurationText(lvl) : durationText}${isHideEach ? "" : `（各自）`}：`,
+ 						entry: this._renderSpellcasting_getRenderableList(per).join(", "),
+ 					});
+ 					return;
+@@ -1534,7 +1538,7 @@ globalThis.Renderer = class {
+ 
+ 				tempList.items.push({
+ 					type: "itemSpell",
+-					name: `${isSkipPrefix ? "" : k}${fnGetDurationText ? fnGetDurationText(lvl) : durationText}:`,
++					name: `${isSkipPrefix ? "" : k}${fnGetDurationText ? fnGetDurationText(lvl) : durationText}：`,
+ 					entry: this._renderSpellcasting_getRenderableList(per).join(", "),
+ 				});
+ 			});
+@@ -1667,6 +1671,7 @@ globalThis.Renderer = class {
+ 	}
+ 
+ 	_renderActions (entry, textStack, meta, options) {
++		if (entry._displayName) entry = {...entry, name: entry._displayName};
+ 		const dataString = this._renderEntriesSubtypes_getDataString(entry);
+ 
+ 		this._handleTrackEntryTitle(entry);
+@@ -1692,10 +1697,10 @@ globalThis.Renderer = class {
+ 
+ 	_renderAttack (entry, textStack, meta, options) {
+ 		this._renderPrefix(entry, textStack, meta, options);
+-		textStack[0] += `<i>${Parser.attackTypeToFull(entry.attackType)}:</i> `;
++		textStack[0] += `<i>${({MW: "近戰武器攻擊（Melee Weapon Attack）", RW: "遠程武器攻擊（Ranged Weapon Attack）"})[entry.attackType] || Parser.attackTypeToFull(entry.attackType)}：</i> `;
+ 		const len = entry.attackEntries.length;
+ 		for (let i = 0; i < len; ++i) this._recursiveRender(entry.attackEntries[i], textStack, meta);
+-		textStack[0] += ` <i>Hit:</i> `;
++		textStack[0] += ` <i>${globalThis.I18nZhTwContent ? "命中：" : "Hit:"}</i> `;
+ 		const len2 = entry.hitEntries.length;
+ 		for (let i = 0; i < len2; ++i) this._recursiveRender(entry.hitEntries[i], textStack, meta);
+ 		this._renderSuffix(entry, textStack, meta, options);
+@@ -1708,11 +1713,12 @@ globalThis.Renderer = class {
+ 	}
+ 
+ 	_renderItemSubtypes (entry, textStack, meta, options) {
++		const displayName = entry._displayName || entry.name;
+ 		this._renderPrefix(entry, textStack, meta, options);
+ 		this._handleTrackEntryTitle(entry);
+-		textStack[0] += `<p class="ve-rd__p-list-item" ${entry.name ? `data-roll-name-ancestor="${Renderer.stripTags(entry.name).qq()}"` : ""}>`;
+-		if (entry.name) {
+-			textStack[0] += `<span class="${entry.type === "itemSub" ? "ve-italic" : "ve-bold"} ve-rd__list-item-name" ${this._getRenderedTitleIndexAttribute()} ${this._getEnumeratedTitleRel(entry)}>${this.render(entry.name)}${this._renderItemSubtypes_isAddPeriod(entry) ? "." : ""}</span> `;
++		textStack[0] += `<p class="ve-rd__p-list-item" ${displayName ? `data-roll-name-ancestor="${Renderer.stripTags(displayName).qq()}"` : ""}>`;
++		if (displayName) {
++			textStack[0] += `<span class="${entry.type === "itemSub" ? "ve-italic" : "ve-bold"} ve-rd__list-item-name" ${this._getRenderedTitleIndexAttribute()} ${this._getEnumeratedTitleRel(entry)}>${this.render(displayName)}${this._renderItemSubtypes_isAddPeriod(entry) ? "." : ""}</span> `;
+ 		}
+ 		if (entry.entry) this._recursiveRender(entry.entry, textStack, meta);
+ 		else if (entry.entries) {
+@@ -1724,7 +1730,8 @@ globalThis.Renderer = class {
+ 	}
+ 
+ 	_renderItemSubtypes_isAddPeriod (entry) {
+-		return entry.name && entry.nameDot !== false && !Renderer._INLINE_HEADER_TERMINATORS.has(entry.name[entry.name.length - 1]);
++		const displayName = entry._displayName || entry.name;
++		return displayName && entry.nameDot !== false && !Renderer._INLINE_HEADER_TERMINATORS.has(displayName[displayName.length - 1]);
+ 	}
+ 
+ 	_renderItem (entry, textStack, meta, options) {
+@@ -2101,6 +2108,12 @@ globalThis.Renderer = class {
+ 		const fromPlugins = this._applyPlugins_useFirst("string_basic", {textStack, meta, options}, {input: str});
+ 		if (fromPlugins) return void (textStack[0] += fromPlugins);
+ 
++		const i18n = globalThis.I18nZhTwSite;
++		if (i18n) {
++			const [, prefix = "", text = str, suffix = ""] = /^(\s*)([\s\S]*?)(\s*)$/u.exec(str) || [];
++			if (i18n.hasEnglish(text)) str = `${prefix}${i18n.tEnglish(text)}${suffix}`;
++		}
++
+ 		textStack[0] += str;
+ 	}
+ 
+@@ -2222,9 +2235,9 @@ globalThis.Renderer = class {
+ 			case "@actSaveSuccessOrFail": textStack[0] += `<i>Failure or Success:</i>`; break;
+ 			case "@actTrigger": textStack[0] += `<i>Trigger:</i>`; break;
+ 			case "@actResponse": textStack[0] += `<i>Response${text.includes("d") ? "\u2014" : ":"}</i>`; break;
+-			case "@h": textStack[0] += `<i>Hit:</i> `; break;
+-			case "@m": textStack[0] += `<i>Miss:</i> `; break;
+-			case "@hom": textStack[0] += `<i>Hit or Miss:</i> `; break;
++			case "@h": textStack[0] += `<i>${globalThis.I18nZhTwContent ? "命中：" : "Hit:"}</i> `; break;
++			case "@m": textStack[0] += `<i>${globalThis.I18nZhTwContent ? "未命中：" : "Miss:"}</i> `; break;
++			case "@hom": textStack[0] += `<i>${globalThis.I18nZhTwContent ? "命中或未命中：" : "Hit or Miss:"}</i> `; break;
+ 			case "@color": {
+ 				const [toDisplay, color] = Renderer.splitTagByPipe(text);
+ 				const ptColor = this._renderString_renderTag_getBrewColorPart(color);
+@@ -2321,9 +2334,9 @@ globalThis.Renderer = class {
+ 				if (tag === "@recharge") {
+ 					const [, flagsRaw] = Renderer.splitTagByPipe(text);
+ 					const flags = flagsRaw ? flagsRaw.split("") : null;
+-					textStack[0] += `${flags && flags.includes("m") ? "" : "("}Recharge `;
++					textStack[0] += `${flags && flags.includes("m") ? "" : "（"}充能 `;
+ 					this._recursiveRender(fauxEntry, textStack, meta);
+-					textStack[0] += `${flags && flags.includes("m") ? "" : ")"}`;
++					textStack[0] += `${flags && flags.includes("m") ? "" : "）"}`;
+ 				} else {
+ 					this._recursiveRender(fauxEntry, textStack, meta);
+ 				}
+@@ -2829,9 +2842,10 @@ Renderer.applyAllProperties = function (entries, object = null) {
+ Renderer.applyAllProperties._WALKER = null;
+ 
+ Renderer.attackTagToFull = function (tagStr, {isRoll = false} = {}) {
++	const isZhTw = !!globalThis.I18nZhTwContent;
+ 	function renderTag (tags) {
+-		const ptType = tags.includes("m") ? "Melee " : tags.includes("r") ? "Ranged " : tags.includes("g") ? "Magical " : tags.includes("a") ? "Area " : "";
+-		const ptMethod = tags.includes("w") ? "Weapon " : tags.includes("s") ? "Spell " : tags.includes("p") ? "Power " : "";
++		const ptType = tags.includes("m") ? (isZhTw ? "近戰" : "Melee ") : tags.includes("r") ? (isZhTw ? "遠端" : "Ranged ") : tags.includes("g") ? (isZhTw ? "魔法" : "Magical ") : tags.includes("a") ? (isZhTw ? "範圍" : "Area ") : "";
++		const ptMethod = tags.includes("w") ? (isZhTw ? "武器" : "Weapon ") : tags.includes("s") ? (isZhTw ? "法術" : "Spell ") : tags.includes("p") ? (isZhTw ? "威能" : "Power ") : "";
+ 		return `${ptType}${ptMethod}`;
+ 	}
+ 
+@@ -2846,7 +2860,9 @@ Renderer.attackTagToFull = function (tagStr, {isRoll = false} = {}) {
+ 			});
+ 		}
+ 	}
+-	return `${tagGroups.map(it => renderTag(it)).join(" or ")}Attack${isRoll ? " Roll" : ""}:`;
++	return isZhTw
++		? `${tagGroups.map(it => renderTag(it)).join("或")}攻擊${isRoll ? "檢定" : ""}：`
++		: `${tagGroups.map(it => renderTag(it)).join(" or ")}Attack${isRoll ? " Roll" : ""}:`;
+ };
+ 
+ Renderer.splitFirstSpace = function (string) {
+@@ -3263,8 +3279,9 @@ Renderer.getAbilityData._doRenderOuter = function (abObj) {
+ };
+ 
+ Renderer._AbilityData = function ({asText, asTextShort, asCollection, areNegative, asSortableString} = {}) {
+-	this.asText = asText || "";
+-	this.asTextShort = asTextShort || "";
++	const i18n = globalThis.I18nZhTwContent;
++	this.asText = i18n?.localizeAbilityText(asText || "") || asText || "";
++	this.asTextShort = i18n?.localizeAbilityText(asTextShort || "") || asTextShort || "";
+ 	this.asCollection = asCollection || [];
+ 	this.areNegative = areNegative || [];
+ 	this.asSortableString = asSortableString || "000 0";
+@@ -3445,6 +3462,15 @@ Renderer.utils = class {
+ 		return it.sourceSub ? ` \u2014 ${it.sourceSub}` : "";
+ 	}
+ 
++	static getBilingualName (ent) {
++		const displayName = `${ent?._displayName || ent?.name || ""}`.trim();
++		const canonicalName = `${ent?._i18nCanonical?.name || ent?.ENG_name || ent?.name || ""}`.trim();
++		if (!displayName) return canonicalName;
++		if (!canonicalName || displayName.toLowerCase() === canonicalName.toLowerCase()) return displayName;
++		if (displayName.includes(`（${canonicalName}）`) || displayName.endsWith(` (${canonicalName})`)) return displayName;
++		return `${displayName}（${canonicalName}）`;
++	}
++
+ 	/**
+ 	 * @param ent Entity to render the name row for.
+ 	 * @param [opts] Options object.
+@@ -3462,7 +3488,7 @@ Renderer.utils = class {
+ 
+ 		if (opts.htmlControlRhs && typeof opts.htmlControlRhs !== "string") throw new Error(`Non-string passed as "htmlControlRhs"!`);
+ 
+-		const name = ent._displayName || ent.name;
++		const name = Renderer.utils.getBilingualName(ent);
+ 		const pageLinkPart = SourceUtil.getAdventureBookSourceHref(ent.source, ent.page);
+ 
+ 		let dataPart = `data-name="${name.qq()}"`;
+@@ -3535,6 +3561,7 @@ Renderer.utils = class {
+ 
+ 	static getSourceAndPageTrHtml (it) {
+ 		const html = Renderer.utils.getSourceAndPageHtml(it);
++		if (globalThis.I18nZhTwContent) return html ? `<b>來源：</b> ${html.replace(/, page (\d+)/gu, "，第 $1 頁")}` : "";
+ 		return html ? `<b>Source:</b> ${html}` : "";
+ 	}
+ 
+@@ -4123,7 +4150,7 @@ Renderer.utils = class {
+ 		if (!Renderer.utils._TITLE_SKIP_TYPES.has(fluffEntry.type)) return false;
+ 
+ 		const fluffEntrySkippableName = Renderer.utils._getFluffTabContent_getSkippableEntryName(fluffEntry.name);
+-		const entitySkippableName = Renderer.utils._getFluffTabContent_getSkippableEntryName(entity.name);
++		const entitySkippableName = Renderer.utils._getFluffTabContent_getSkippableEntryName(entity.ENG_name || entity.name);
+ 
+ 		return fluffEntrySkippableName.includes(entitySkippableName) || entitySkippableName.includes(fluffEntrySkippableName);
+ 	}
+@@ -4221,7 +4248,8 @@ Renderer.utils = class {
+ 		) {
+ 			const entry = this.getEntry(prerequisites, {isListMode, blocklistKeys, keyOptions, isSkipPrefix, styleHint});
+ 			if (!entry) return "";
+-			return Renderer.get().render(entry);
++			const rendered = Renderer.get().render(entry);
++			return globalThis.I18nZhTwContent?.localizeRulesText(rendered) || rendered;
+ 		}
+ 
+ 		/**
+@@ -4243,7 +4271,8 @@ Renderer.utils = class {
+ 				styleHint = null,
+ 			} = {},
+ 		) {
+-			return Renderer.stripTags(this.getEntry(prerequisites, {isListMode, blocklistKeys, keyOptions, isSkipPrefix, styleHint}));
++			const text = Renderer.stripTags(this.getEntry(prerequisites, {isListMode, blocklistKeys, keyOptions, isSkipPrefix, styleHint}));
++			return globalThis.I18nZhTwContent?.localizeRulesText(text) || text;
+ 		}
+ 
+ 		/**
+@@ -4557,14 +4586,17 @@ Renderer.utils = class {
+ 
+ 		static _getEntry_race ({v, isListMode, keyOptions, styleHint}) {
+ 			const parts = v.map((it, i) => {
++				const getRaceName = () => {
++					if (it.displayEntry) return it.displayEntry;
++					const canonicalName = (isListMode || i === 0 || styleHint !== "classic") ? it.name.toTitleCase() : it.name;
++					return it._displayName
++						? I18nZhTwContent.getBilingualValue(canonicalName, it._displayName)
++						: canonicalName;
++				};
+ 				if (isListMode) {
+-					return `${it.name.toTitleCase()}${it.subrace != null ? ` (${it.subrace})` : ""}`;
++					return `${getRaceName()}${it.subrace != null ? ` (${it.subrace})` : ""}`;
+ 				} else {
+-					const raceName = it.displayEntry
+-						? it.displayEntry
+-						: (i === 0 || styleHint !== "classic")
+-							? it.name.toTitleCase()
+-							: it.name;
++					const raceName = getRaceName();
+ 					return `${raceName}${it.subrace != null ? ` (${it.subrace})` : ""}`;
+ 				}
+ 			});
+@@ -4819,7 +4851,9 @@ Renderer.utils = class {
+ 
+ 	static getRepeatableEntry (ent) {
+ 		if (!ent.repeatable) return null;
+-		return `{@b Repeatable:} ${ent.repeatableNote || (ent.repeatable ? "Yes" : "No")}`;
++		return globalThis.I18nZhTwContent
++			? `{@b 可重複選擇：}${ent.repeatableNote || (ent.repeatable ? "是" : "否")}`
++			: `{@b Repeatable:} ${ent.repeatableNote || (ent.repeatable ? "Yes" : "No")}`;
+ 	}
+ 
+ 	static getRepeatableHtml (ent, {isListMode = false} = {}) {
+@@ -4832,8 +4866,8 @@ Renderer.utils = class {
+ 	static getRenderedSize (size) {
+ 		return [...(size ? [size].flat() : [])]
+ 			.sort(SortUtil.ascSortSize)
+-			.map(sz => Parser.sizeAbvToFull(sz))
+-			.joinConjunct(", ", " or ");
++			.map(sz => globalThis.I18nZhTwContent?.getSizeFull(sz) || Parser.sizeAbvToFull(sz))
++			.joinConjunct(", ", globalThis.I18nZhTwContent ? "或" : " or ");
+ 	}
+ 
+ 	static _FN_TAG_SENSES = null;
+@@ -5634,7 +5668,7 @@ Renderer.utils = class {
+ 				if (!promises.length) return;
+ 
+ 				// region Sadly we cannot cancel or delay the print event, so, show a blocking alert
+-				alert(`All content must be loaded prior to printing. Please cancel the print and wait a few moments for loading to complete!`);
++				alert(UiUtil.getTranslatedText("All content must be loaded prior to printing. Please cancel the print and wait a few moments for loading to complete!"));
+ 
+ 				Promise.all(promises)
+ 					.then(() => {
+@@ -5988,21 +6022,21 @@ Renderer.tag = class {
+ 		tagName = "h";
+ 		isStandalone = true;
+ 
+-		_getStripped (tag, text) { return "Hit: "; }
++		_getStripped (tag, text) { return globalThis.I18nZhTwContent ? "命中：" : "Hit: "; }
+ 	};
+ 
+ 	static TagMissText = class extends this._TagBaseAt {
+ 		tagName = "m";
+ 		isStandalone = true;
+ 
+-		_getStripped (tag, text) { return "Miss: "; }
++		_getStripped (tag, text) { return globalThis.I18nZhTwContent ? "未命中：" : "Miss: "; }
+ 	};
+ 
+ 	static TagHitOrMissText = class extends this._TagBaseAt {
+ 		tagName = "hom";
+ 		isStandalone = true;
+ 
+-		_getStripped (tag, text) { return "Hit or Miss: "; } // I guess they never miss
++		_getStripped (tag, text) { return globalThis.I18nZhTwContent ? "命中或未命中：" : "Hit or Miss: "; } // I guess they never miss
+ 	};
+ 
+ 	static TagAtk = class extends this._TagBaseAt {
+@@ -6066,8 +6100,8 @@ Renderer.tag = class {
+ 				}
+ 				case "@recharge": {
+ 					const asNum = Number(rollText || 6);
+-					if (isNaN(asNum)) return `(Recharge ?)`;
+-					return `(Recharge ${asNum}${asNum < 6 ? `\u20136` : ""})`;
++					if (isNaN(asNum)) return `（充能 ?）`;
++					return `（充能 ${asNum}${asNum < 6 ? `\u20136` : ""}）`;
+ 				}
+ 				case "@chance": {
+ 					return displayText || `${rollText} percent`;
+@@ -7026,7 +7060,7 @@ Renderer.events = class {
+ 			}),
+ 			htmlNameExpanded: Renderer.get().render({
+ 				...fauxEntryBase,
+-				entry: `<button class="ve-btn ve-btn-default ve-btn-xxs" title="Go to Page">
++				entry: `<button class="ve-btn ve-btn-default ve-btn-xxs" title="${globalThis.I18nZhTwSite?.tEnglish("Go to Page") ?? "Go to Page"}">
+ 					<span class="glyphicon glyphicon-modal-window"></span>
+ 				</button>`,
+ 			}),
+@@ -7311,12 +7345,14 @@ Renderer.feat = class {
+ 	static _mergeAbilityIncrease_getListItemItem (abilityObj) {
+ 		return {
+ 			type: "item",
+-			name: "Ability Score Increase.",
++			name: globalThis.I18nZhTwContent ? "屬性值提升。" : "Ability Score Increase.",
+ 			entry: Renderer.feat._mergeAbilityIncrease_getText(abilityObj),
+ 		};
+ 	}
+ 
+ 	static _mergeAbilityIncrease_getText (abilityObj) {
++		if (globalThis.I18nZhTwContent) return this._mergeAbilityIncrease_getTextZhTw(abilityObj);
++
+ 		const maxScore = abilityObj.max ?? 20;
+ 
+ 		if (!abilityObj.choose) {
+@@ -7349,6 +7385,32 @@ Renderer.feat = class {
+ 		return `Increase your ${abbChoicesText} by ${abilityObj.choose.amount ?? 1}, to a maximum of ${maxScore}.`;
+ 	}
+ 
++	static _mergeAbilityIncrease_getTextZhTw (abilityObj) {
++		const maxScore = abilityObj.max ?? 20;
++		const getAbility = abv => globalThis.I18nZhTwContent.getAbility(abv);
++		const getAdjustment = amount => amount >= 0 ? `增加${amount}` : `降低${Math.abs(amount)}`;
++
++		if (!abilityObj.choose) {
++			return Object.keys(abilityObj)
++				.filter(key => key !== "max")
++				.map(abv => `你的${getAbility(abv)}屬性值${getAdjustment(abilityObj[abv])}，最高不超過${maxScore}。`)
++				.join("");
++		}
++
++		if (abilityObj.choose.weighted) {
++			const weighted = abilityObj.choose.weighted;
++			const choices = weighted.weights
++				.map((amount, ix) => `${ix ? "另一項" : "一項"}屬性值${getAdjustment(amount)}`)
++				.join("，");
++			if (weighted.from.length === 6) return `選擇${choices}，每項屬性值最高不超過${maxScore}。`;
++			return `在${weighted.from.map(getAbility).join("、")}之中選擇${choices}，每項屬性值最高不超過${maxScore}。`;
++		}
++
++		const amount = abilityObj.choose.amount ?? 1;
++		if (abilityObj.choose.from.length === 6) return `你選擇的一項屬性值增加${amount}，最高不超過${maxScore}。`;
++		return `你的${abilityObj.choose.from.map(getAbility).join("或")}屬性值增加${amount}，最高不超過${maxScore}。`;
++	}
++
+ 	static initFullEntries (feat) {
+ 		if (!feat.ability || feat._fullEntries || !feat.ability.length) return;
+ 
+@@ -7396,7 +7458,11 @@ Renderer.feat = class {
+ 	}
+ 
+ 	static getJoinedCategoryPrerequisites (category, rdPrereqs) {
+-		const ptCategory = category ? `${Parser.featCategoryToFull(category)}${["FS:P", "FS:R"].includes(category) ? "" : ` Feat`}` : "";
++		const ptCategory = category
++			? globalThis.I18nZhTwContent
++				? `${globalThis.I18nZhTwContent.getFeatCategory(category)}${["FS:P", "FS:R"].includes(category) ? "" : "專長"}`
++				: `${Parser.featCategoryToFull(category)}${["FS:P", "FS:R"].includes(category) ? "" : ` Feat`}`
++			: "";
+ 
+ 		return ptCategory && rdPrereqs
+ 			? `${ptCategory} (${rdPrereqs})`
+@@ -7567,6 +7633,38 @@ class _RenderCompactClassesImplOne extends _RenderCompactClassesImplBase {
+ }
+ 
+ Renderer.class = class {
++	static _ZH_TW_ABILITY = {
++		str: "力量",
++		dex: "敏捷",
++		con: "體質",
++		int: "智力",
++		wis: "感知",
++		cha: "魅力",
++	};
++
++	static _ZH_TW_SKILL = {
++		"acrobatics": "特技",
++		"animal handling": "馴獸",
++		"arcana": "奧秘",
++		"athletics": "運動",
++		"deception": "欺瞞",
++		"history": "歷史",
++		"insight": "洞悉",
++		"intimidation": "威嚇",
++		"investigation": "調查",
++		"medicine": "醫藥",
++		"nature": "自然",
++		"perception": "察覺",
++		"performance": "表演",
++		"persuasion": "遊說",
++		"religion": "宗教",
++		"sleight of hand": "巧手",
++		"stealth": "隱匿",
++		"survival": "求生",
++	};
++
++	static getAbilityNameZhTw (abv) { return this._ZH_TW_ABILITY[abv] || Parser.attAbvToFull(abv); }
++
+ 	static _RENDER_CLASSIC = new _RenderCompactClassesImplClassic();
+ 	static _RENDER_ONE = new _RenderCompactClassesImplOne();
+ 
+@@ -7599,8 +7697,8 @@ Renderer.class = class {
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
+ 		return styleHint === "classic"
+-			? `{@dice ${clsHd.number}d${clsHd.faces}||Hit die}`
+-			: `{@dice ${clsHd.number}d${clsHd.faces}|${clsHd.number === 1 ? "" : clsHd.number}D${clsHd.faces}|Hit die}`;
++			? `{@dice ${clsHd.number}d${clsHd.faces}||生命骰}`
++			: `{@dice ${clsHd.number}d${clsHd.faces}|${clsHd.number === 1 ? "" : clsHd.number}D${clsHd.faces}|生命骰}`;
+ 	}
+ 
+ 	/**
+@@ -7613,8 +7711,8 @@ Renderer.class = class {
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
+ 		return styleHint === "classic"
+-			? `${clsHd.number * clsHd.faces} + your Constitution modifier`
+-			: `${clsHd.number * clsHd.faces} + Con. modifier`;
++			? `${clsHd.number * clsHd.faces}＋你的體質調整值`
++			: `${clsHd.number * clsHd.faces}＋體質調整值`;
+ 	}
+ 
+ 	/**
+@@ -7628,8 +7726,8 @@ Renderer.class = class {
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
+ 		return styleHint === "classic"
+-			? `${Renderer.get().render(Renderer.class.getHitDiceEntry(clsHd, {styleHint}))} (or ${((clsHd.number * clsHd.faces) / 2 + 1)}) + your Constitution modifier per ${className} level after 1st`
+-			: `${Renderer.get().render(Renderer.class.getHitDiceEntry(clsHd, {styleHint}))} + your Con. modifier, or, ${((clsHd.number * clsHd.faces) / 2 + 1)} + your Con. modifier`;
++			? `第1級之後每個${className}等級為 ${Renderer.get().render(Renderer.class.getHitDiceEntry(clsHd, {styleHint}))}（或 ${((clsHd.number * clsHd.faces) / 2 + 1)}）＋你的體質調整值`
++			: `${Renderer.get().render(Renderer.class.getHitDiceEntry(clsHd, {styleHint}))}＋你的體質調整值，或 ${((clsHd.number * clsHd.faces) / 2 + 1)}＋你的體質調整值`;
+ 	}
+ 
+ 	/* -------------------------------------------- */
+@@ -7645,14 +7743,13 @@ Renderer.class = class {
+ 			.segregate(it => ["light", "medium", "heavy"].includes(it));
+ 
+ 		const ptsArmor = profsArmor
+-			.map((a, i, arr) => Renderer.get().render(`{@filter ${styleHint === "classic" ? a : a.toTitleCase()}${styleHint === "classic" || i === arr.length - 1 ? " armor" : ""}|items|type=${a} armor}`));
++			.map(a => Renderer.get().render(`{@filter ${{light: "輕甲", medium: "中甲", heavy: "重甲"}[a] || a}|items|type=${a} armor}`));
+ 
+ 		const ptsOther = profsOther
+ 			.map(a => {
+ 				if (a.full) return Renderer.get().render(a.full);
+ 				if (a === "shield") {
+-					if (styleHint === "classic") Renderer.get().render(`{@item shield|PHB|shields}`);
+-					return Renderer.get().render(`{@item shield|XPHB|Shields}`);
++					return Renderer.get().render(`{@item shield|${styleHint === "classic" ? "PHB" : "XPHB"}|盾牌}`);
+ 				}
+ 				return Renderer.get().render(a);
+ 			});
+@@ -7662,15 +7759,15 @@ Renderer.class = class {
+ 				...ptsArmor,
+ 				...ptsOther,
+ 			]
+-				.join(", ");
++				.join("、");
+ 		}
+ 
+ 		return [
+-			ptsArmor.joinConjunct(", ", " and "),
++			ptsArmor.join("、"),
+ 			...ptsOther,
+ 		]
+ 			.filter(Boolean)
+-			.joinConjunct(", ", " and ");
++			.join("、");
+ 	}
+ 
+ 	/**
+@@ -7684,11 +7781,11 @@ Renderer.class = class {
+ 			.segregate(it => ["simple", "martial"].includes(it));
+ 
+ 		const ptsSimpleMartial = profsSimpleMartial
+-			.map((w, i, arr) => Renderer.get().render(`{@filter ${styleHint === "classic" ? w : w.toTitleCase()}${styleHint === "classic" || i === arr.length - 1 ? " weapons" : ""}|items|type=${w} weapon}`));
++			.map(w => Renderer.get().render(`{@filter ${w === "simple" ? "簡易武器" : "軍用武器"}|items|type=${w} weapon}`));
+ 
+ 		const ptsOther = profsOther
+ 			.map(w => {
+-				if (w.optional) return `<span class="ve-help ve-help--hover" title="Optional Proficiency">${Renderer.get().render(w.proficiency)}</span>`;
++				if (w.optional) return `<span class="ve-help ve-help--hover" title="選用熟練">${w.proficiency === "firearms" ? "火器" : Renderer.get().render(w.proficiency)}</span>`;
+ 				return Renderer.get().render(w);
+ 			});
+ 
+@@ -7697,7 +7794,7 @@ Renderer.class = class {
+ 			...ptsOther,
+ 		];
+ 
+-		return styleHint === "classic" ? pts.join(", ") : pts.joinConjunct(", ", " and ");
++		return pts.join("、");
+ 	}
+ 
+ 	/**
+@@ -7706,7 +7803,7 @@ Renderer.class = class {
+ 	 */
+ 	static getRenderedToolProfs (toolProfs, {styleHint = null} = {}) {
+ 		const pts = toolProfs.map(it => Renderer.get().render(it));
+-		return styleHint === "classic" ? pts.join(", ") : pts.joinConjunct(", ", " and ");
++		return pts.join("、");
+ 	}
+ 
+ 	/**
+@@ -7715,8 +7812,37 @@ Renderer.class = class {
+ 	 */
+ 	static getRenderedSkillProfs (skills, {styleHint = null} = {}) {
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
++		const ptSourceDefault = styleHint === "classic" ? Parser.SRC_PHB : Parser.SRC_XPHB;
++		const getRenderedSkill = uid => {
++			const unpacked = DataUtil.proxy.unpackUid("skill", uid, "skill");
++			const ptSource = uid.includes("|")
++				? unpacked.source
++				: unpacked.source.toLowerCase() === Parser.SRC_PHB.toLowerCase()
++					? ptSourceDefault
++					: unpacked.source;
++			const display = this._ZH_TW_SKILL[unpacked.name.toLowerCase()] || unpacked.name.toTitleCase();
++			return Renderer.get().render(`{@skill ${unpacked.name.toTitleCase()}|${ptSource}|${display}}`);
++		};
+ 
+-		return `${Parser.skillProficienciesToFull(skills, {styleHint}).uppercaseFirst()}.`;
++		return `${skills.map(skillProficiency => {
++			const skillProf = MiscUtil.copyFast(skillProficiency);
++			if (skillProf.any) {
++				skillProf.choose = {from: Object.keys(Parser.SKILL_TO_ATB_ABV), count: skillProf.any};
++				delete skillProf.any;
++			}
++			const keys = Object.keys(skillProf).sort(SortUtil.ascSortLower);
++			const ixChoose = keys.indexOf("choose");
++			if (~ixChoose) keys.splice(ixChoose, 1);
++			const base = keys.filter(key => skillProf[key]).map(getRenderedSkill).join("、");
++			let choice = "";
++			if (~ixChoose) {
++				const {from, count = 1} = skillProf.choose;
++				choice = from.length === 18
++					? `任選 ${count} 項技能`
++					: `從 ${from.map(getRenderedSkill).join("、")}中選擇 ${count} 項`;
++			}
++			return [base, choice].filter(Boolean).join("；以及");
++		}).join(" <i>或</i> ")}。`;
+ 	}
+ 
+ 	/* -------------------------------------------- */
+@@ -7728,12 +7854,12 @@ Renderer.class = class {
+ 			.map(abilObj => {
+ 				return Object.entries(abilObj)
+ 					.filter(([, v]) => v)
+-					.map(([k]) => Parser.attAbvToFull(k))
+-					.joinConjunct(", ", " and ");
++					.map(([k]) => this.getAbilityNameZhTw(k))
++					.join("、");
+ 			})
+-			.joinConjunct(", ", " or ");
++			.join("或");
+ 
+-		return `<div><b>Primary Ability:</b> <span>${pts}</span></div>`;
++		return `<div><b>主要屬性：</b> <span>${pts}</span></div>`;
+ 	}
+ 
+ 	static getHtmlPtHitPoints (cls, {renderer = null, styleHint = null}) {
+@@ -7742,15 +7868,15 @@ Renderer.class = class {
+ 		renderer ||= Renderer.get();
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
+-		return `<div><strong>Hit Point Die:</strong> ${renderer.render(Renderer.class.getHitDiceEntry(cls.hd, {styleHint}))} per ${cls.name} level</div>
+-		<div><strong>Hit Points at Level 1:</strong> ${Renderer.class.getHitPointsAtFirstLevel(cls.hd, {styleHint})}</div>
+-		<div><strong>Hit Points per additional ${cls.name} Level:</strong> ${Renderer.class.getHitPointsAtHigherLevels(cls.name, cls.hd, {styleHint})}</div>`;
++		return `<div><strong>生命骰：</strong> 每個${cls.name}等級 ${renderer.render(Renderer.class.getHitDiceEntry(cls.hd, {styleHint}))}</div>
++		<div><strong>第1級生命值：</strong> ${Renderer.class.getHitPointsAtFirstLevel(cls.hd, {styleHint})}</div>
++		<div><strong>之後每個${cls.name}等級的生命值：</strong> ${Renderer.class.getHitPointsAtHigherLevels(cls.name, cls.hd, {styleHint})}</div>`;
+ 	}
+ 
+ 	static getHtmlPtSavingThrows (cls) {
+ 		if (!cls.proficiency) return "";
+ 
+-		return `<div><b>Saving Throw Proficiencies:</b> <span>${cls.proficiency.map(p => Parser.attAbvToFull(p)).join(", ")}</span></div>`;
++		return `<div><b>豁免熟練：</b> <span>${cls.proficiency.map(p => this.getAbilityNameZhTw(p)).join("、")}</span></div>`;
+ 	}
+ 
+ 	static getHtmlPtSkills (cls, {styleHint = null}) {
+@@ -7758,7 +7884,7 @@ Renderer.class = class {
+ 
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
+-		return `<div><b>Skill Proficiencies:</b> <span>${Renderer.class.getRenderedSkillProfs(cls.startingProficiencies.skills, {styleHint})}</span></div>`;
++		return `<div><b>技能熟練：</b> <span>${Renderer.class.getRenderedSkillProfs(cls.startingProficiencies.skills, {styleHint})}</span></div>`;
+ 	}
+ 
+ 	static getHtmlPtWeaponProficiencies (cls, {styleHint = null}) {
+@@ -7766,7 +7892,7 @@ Renderer.class = class {
+ 
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
+-		return `<div><b>Weapon Proficiencies:</b> <span>${Renderer.class.getRenderedWeaponProfs(cls.startingProficiencies.weapons, {styleHint})}</span></div>`;
++		return `<div><b>武器熟練：</b> <span>${Renderer.class.getRenderedWeaponProfs(cls.startingProficiencies.weapons, {styleHint})}</span></div>`;
+ 	}
+ 
+ 	static getHtmlPtToolProficiencies (cls, {styleHint = null}) {
+@@ -7774,7 +7900,7 @@ Renderer.class = class {
+ 
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
+-		return `<div><b>Tool Proficiencies:</b> <span>${Renderer.class.getRenderedToolProfs(cls.startingProficiencies.tools, {styleHint})}</span></div>`;
++		return `<div><b>工具熟練：</b> <span>${Renderer.class.getRenderedToolProfs(cls.startingProficiencies.tools, {styleHint})}</span></div>`;
+ 	}
+ 
+ 	static getHtmlPtArmorProficiencies (cls, {styleHint = null}) {
+@@ -7782,7 +7908,7 @@ Renderer.class = class {
+ 
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
+-		return `<div><b>Armor Training:</b> <span>${Renderer.class.getRenderedArmorProfs(cls.startingProficiencies.armor, {styleHint})}</span></div>`;
++		return `<div><b>護甲訓練：</b> <span>${Renderer.class.getRenderedArmorProfs(cls.startingProficiencies.armor, {styleHint})}</span></div>`;
+ 	}
+ 
+ 	static getHtmlPtStartingEquipment (cls, {renderer = null, styleHint = null}) {
+@@ -7799,9 +7925,9 @@ Renderer.class = class {
+ 
+ 	static _getHtmlPtStartingEquipment_default ({equip, renderer}) {
+ 		return [
+-			equip.additionalFromBackground ? "<p>You start with the following items, plus anything provided by your background.</p>" : "",
++			equip.additionalFromBackground ? "<p>你帶著下列物品開始遊戲，此外還包括背景提供的物品。</p>" : "",
+ 			equip.default && equip.default.length ? `<ul class="ve-pl-4"><li>${equip.default.map(it => renderer.render(it)).join("</li><li>")}</ul>` : "",
+-			equip.goldAlternative != null ? `<p>Alternatively, you may start with ${renderer.render(equip.goldAlternative)} gp to buy your own equipment.</p>` : "",
++			equip.goldAlternative != null ? `<p>或者，你可以帶著 ${renderer.render(equip.goldAlternative)} 金幣開始遊戲，自行購買裝備。</p>` : "",
+ 		]
+ 			.filter(Boolean)
+ 			.join("");
+@@ -7820,7 +7946,7 @@ Renderer.class = class {
+ 		return renderer.render({
+ 			type: "entries",
+ 			entries: [
+-				`{@b Starting Equipment:} ${firstEntry}`,
++				`{@b 起始裝備：} ${firstEntry}`,
+ 				...otherEntries,
+ 			],
+ 		});
+@@ -7831,29 +7957,47 @@ Renderer.class = class {
+ 	static getDisplayNamedClassFeatureEntry (ent, {styleHint = null} = {}) {
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
+-		if (styleHint === "classic" || !ent.level || !ent.name) return ent;
+-		return {_displayName: `Level ${ent.level}: ${ent._displayName || ent.name}`, ...ent};
++		if (!ent.name) return ent;
++		const displayName = Renderer.utils.getBilingualName(ent);
++		if (styleHint === "classic" || !ent.level) return {...ent, _displayName: displayName};
++		return {...ent, _displayName: `等級 ${ent.level}：${displayName}`};
+ 	}
+ 
+ 	static getDisplayNamedSubclassFeatureEntry (ent, {styleHint = null, isEditionMismatch = false} = {}) {
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
++		const cpy = MiscUtil.copyFast(ent);
++		if (ent.name) cpy._displayName = Renderer.utils.getBilingualName(ent);
++		this._mutDisplayNamedSubclassFeatureEntryNames(cpy.entries);
++
+ 		// N.b.: enabled for "classic" style to support viewing "one" classes in "classic" view...
+-		if (/* styleHint === "classic" || */!ent.level || !ent.entries?.length) return ent;
++		if (/* styleHint === "classic" || */!ent.level || !ent.entries?.length) return cpy;
+ 		// ...unless edition mismatch, as this suggests (a) existing text, and (b), features which may have
+ 		//   their levels otherwise mis-labelled.
+-		if (isEditionMismatch) return ent;
++		if (isEditionMismatch) return cpy;
+ 
+-		const cpy = MiscUtil.copyFast(ent);
+ 		cpy.entries = cpy.entries
+ 			.map(ent => {
+ 				if (ent.type !== "entries" || !ent.name) return ent;
+ 				if (!ent.level) return ent;
+-				return {_displayName: `Level ${ent.level}: ${ent._displayName || ent.name}`, ...ent};
++				return {...ent, _displayName: `等級 ${ent.level}：${Renderer.utils.getBilingualName(ent)}`};
+ 			});
+ 		return cpy;
+ 	}
+ 
++	static _mutDisplayNamedSubclassFeatureEntryNames (value) {
++		if (Array.isArray(value)) {
++			value.forEach(it => this._mutDisplayNamedSubclassFeatureEntryNames(it));
++			return;
++		}
++		if (!value || typeof value !== "object") return;
++
++		if (value.name) value._displayName = Renderer.utils.getBilingualName(value);
++		Object.entries(value)
++			.filter(([key]) => !["name", "ENG_name", "_displayName"].includes(key))
++			.forEach(([, child]) => this._mutDisplayNamedSubclassFeatureEntryNames(child));
++	}
++
+ 	/* -------------------------------------------- */
+ 
+ 	static getWalkerFilterDereferencedFeatures () {
+@@ -8205,13 +8349,13 @@ class _RenderCompactSpellsImplBase extends _RenderCompactImplBase {
+ 		const fromClassList = Renderer.spell.getCombinedClasses(ent, "fromClassList");
+ 		if (fromClassList.length) {
+ 			const [current] = Parser.spClassesToCurrentAndLegacy(fromClassList);
+-			stack.push(`<div><span class="ve-bold">Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
++			stack.push(`<div><span class="ve-bold">職業：</span>${Parser.spMainClassesToFull(current)}</div>`);
+ 		}
+ 
+ 		const fromClassListVariant = Renderer.spell.getCombinedClasses(ent, "fromClassListVariant");
+ 		if (fromClassListVariant.length) {
+ 			const [current, legacy] = Parser.spVariantClassesToCurrentAndLegacy(fromClassListVariant);
+-			stack.push(`<div><span class="ve-bold" title="&quot;Optional&quot; spells may be added to a campaign by the DM. &quot;Variant&quot; spells are generally available, but may be made available to a class by the DM.">Optional/Variant Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
++			stack.push(`<div><span class="ve-bold" title="「選用」法術可由 DM 加入戰役；「變體」法術通常可用，但也可能須由 DM 開放給該職業。">選用／變體職業：</span>${Parser.spMainClassesToFull(current)}</div>`);
+ 		}
+ 
+ 		return stack.join("");
+@@ -8248,17 +8392,32 @@ Renderer.spell = class {
+ 
+ 	static getHtmlPtLevelSchoolRitual (spell, {styleHint = null} = {}) {
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+-		return `<i>${Parser.spLevelSchoolMetaToFull(spell.level, spell.school, spell.meta, spell.subschools, {styleHint})}</i>`;
++		const text = globalThis.I18nZhTwContent
++			? globalThis.I18nZhTwContent.getSpellLevelSchoolMeta(spell, {styleHint})
++			: Parser.spLevelSchoolMetaToFull(spell.level, spell.school, spell.meta, spell.subschools, {styleHint});
++		return `<i>${text}</i>`;
+ 	}
+ 
+ 	static getHtmlPtCastingTime (spell, {styleHint = null} = {}) {
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+-		return `<b>Casting Time:</b> ${Parser.spTimeListToFull(spell.time, spell.meta, {styleHint})}`;
++		if (!globalThis.I18nZhTwContent) return `<b>Casting Time:</b> ${Parser.spTimeListToFull(spell.time, spell.meta, {styleHint})}`;
++		return `<b>施法時間：</b>${globalThis.I18nZhTwContent.getSpellTimeList(spell.time, spell.meta, {styleHint})}`;
+ 	}
+ 
+-	static getHtmlPtRange (spell, {styleHint = null, isDisplaySelfArea = false} = {}) { return `<b>Range:</b> ${Parser.spRangeToFull(spell.range, {styleHint, isDisplaySelfArea})}`; }
+-	static getHtmlPtComponents (spell) { return `<b>Components:</b> ${Parser.spComponentsToFull(spell.components, spell.level)}`; }
+-	static getHtmlPtDuration (spell, {styleHint = null} = {}) { return `<b>Duration:</b> ${Parser.spDurationToFull(spell.duration, {styleHint})}`; }
++	static getHtmlPtRange (spell, {styleHint = null, isDisplaySelfArea = false} = {}) {
++		if (!globalThis.I18nZhTwContent) return `<b>Range:</b> ${Parser.spRangeToFull(spell.range, {styleHint, isDisplaySelfArea})}`;
++		return `<b>施法距離：</b>${globalThis.I18nZhTwContent.getSpellRange(spell.range, {styleHint, isDisplaySelfArea})}`;
++	}
++
++	static getHtmlPtComponents (spell) {
++		if (!globalThis.I18nZhTwContent) return `<b>Components:</b> ${Parser.spComponentsToFull(spell.components, spell.level)}`;
++		return `<b>成分：</b>${globalThis.I18nZhTwContent.getSpellComponents(spell.components, spell.level)}`;
++	}
++
++	static getHtmlPtDuration (spell, {styleHint = null} = {}) {
++		if (!globalThis.I18nZhTwContent) return `<b>Duration:</b> ${Parser.spDurationToFull(spell.duration, {styleHint})}`;
++		return `<b>持續時間：</b>${globalThis.I18nZhTwContent.getSpellDuration(spell.duration)}`;
++	}
+ 
+ 	/* -------------------------------------------- */
+ 
+@@ -8799,7 +8958,8 @@ Renderer.conditionDisease = class {
+ 	static getCompactRenderedString (ent) {
+ 		const renderer = Renderer.get();
+ 
+-		const ptType = ent.type ? `<tr><td colspan="6" class="ve-pb-2 ve-pt-0">${renderer.render(`{@i ${ent.type}}`)}</td></tr>` : "";
++		const displayType = ent._displayType || globalThis.I18nZhTwRules?.getDisplayType(ent.type) || ent.type;
++		const ptType = displayType ? `<tr><td colspan="6" class="ve-pb-2 ve-pt-0">${renderer.render(`{@i ${displayType}}`)}</td></tr>` : "";
+ 
+ 		return `${Renderer.utils.getExcludedTr({entity: ent, dataProp: ent.__prop || ent._type, page: UrlUtil.PG_CONDITIONS_DISEASES})}
+ 		${Renderer.utils.getNameTr(ent, {page: UrlUtil.PG_CONDITIONS_DISEASES})}
+@@ -8952,24 +9112,26 @@ Renderer.optionalfeature = class {
+ 
+ 	static getPreviouslyPrintedEntry (ent) {
+ 		if (!ent.previousVersion) return null;
+-		return `{@i An earlier version of this ${ent.featureType.map(t => Parser.optFeatureTypeToFull(t)).join("/")} is available in }${Parser.sourceJsonToFull(ent.previousVersion.source)} {@i as {@optfeature ${ent.previousVersion.name}|${ent.previousVersion.source}}.}`;
++		const types = ent.featureType.map(t => globalThis.I18nZhTwContent?.getOptionalFeatureType(t) || Parser.optFeatureTypeToFull(t)).join("/");
++		return `{@i 此${types}的較早版本收錄於}${Parser.sourceJsonToFull(ent.previousVersion.source)}{@i ，名稱為{@optfeature ${ent.previousVersion.name}|${ent.previousVersion.source}}。}`;
+ 	}
+ 
+ 	static getTypeEntry (ent) {
+-		return `{@note Type: ${Renderer.optionalfeature.getTypeText(ent)}}`;
++		return `{@note 類型：${Renderer.optionalfeature.getTypeText(ent)}}`;
+ 	}
+ 
+ 	static getCostEntry (ent) {
+ 		if (!ent.consumes?.name) return null;
+ 
+-		const ptPrefix = "Cost: ";
++		const ptPrefix = "消耗：";
+ 		const tksUnit = ent.consumes.name
+ 			.split(" ")
+ 			.map(it => it.trim())
+ 			.filter(Boolean);
+ 		const amtMax = ent.consumes.amountMax ?? ent.consumes.amount;
+ 		tksUnit.last(tksUnit.last()[amtMax != null && amtMax !== 1 ? "toPlural" : "toString"]());
+-		const ptUnit = ` ${tksUnit.join(" ")}`;
++		const canonicalUnit = tksUnit.join(" ");
++		const ptUnit = ` ${({"Arcane Shot": "奧術射擊次數", "Arcane Shots": "奧術射擊次數", "Sorcery Point": "術法點", "Sorcery Points": "術法點", "Superiority Die": "卓越骰", "Superiority Dice": "卓越骰"})[canonicalUnit] || canonicalUnit}`;
+ 
+ 		if (ent.consumes?.amountMin != null && ent.consumes?.amountMax != null) return `{@i ${ptPrefix}${ent.consumes.amountMin}\u2013${ent.consumes.amountMax}${ptUnit}}`;
+ 		return `{@i ${ptPrefix}${ent.consumes.amount ?? 1}${ptUnit}}`;
+@@ -8984,11 +9146,12 @@ Renderer.optionalfeature = class {
+ 	}
+ 
+ 	static getTypeText (ent) {
+-		const commonPrefix = ent.featureType.length > 1 ? MiscUtil.findCommonPrefix(ent.featureType.map(fs => Parser.optFeatureTypeToFull(fs)), {isRespectWordBoundaries: true}) : "";
++		const getDisplay = ft => globalThis.I18nZhTwContent?.getOptionalFeatureType(ft) || Parser.optFeatureTypeToFull(ft);
++		const commonPrefix = ent.featureType.length > 1 ? MiscUtil.findCommonPrefix(ent.featureType.map(getDisplay), {isRespectWordBoundaries: true}) : "";
+ 
+ 		return [
+ 			commonPrefix.trim() || null,
+-			ent.featureType.map(ft => Parser.optFeatureTypeToFull(ft).substring(commonPrefix.length)).join("/"),
++			ent.featureType.map(ft => getDisplay(ft).substring(commonPrefix.length)).join("/"),
+ 		]
+ 			.filter(Boolean).join(" ");
+ 	}
+@@ -9032,9 +9195,10 @@ Renderer.optionalfeature = class {
+ 
+ Renderer.reward = class {
+ 	static getRewardRenderableEntriesMeta (ent) {
++		const i18n = globalThis.I18nZhTwContent;
+ 		const ptSubtitle = [
+-			(ent.type || "").toTitleCase(),
+-			ent.rarity ? ent.rarity.toTitleCase() : "",
++			i18n ? i18n.getRewardType(ent.type, {isBilingual: true}) : (ent.type || "").toTitleCase(),
++			ent.rarity ? (i18n ? i18n.getItemRarity(ent.rarity) : ent.rarity.toTitleCase()) : "",
+ 		]
+ 			.filter(Boolean)
+ 			.join(", ");
+@@ -9073,11 +9237,12 @@ Renderer.race = class {
+ 	static getRaceRenderableEntriesMeta (ent, {styleHint = null} = {}) {
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
++		const i18n = globalThis.I18nZhTwContent;
+ 		const entsAttributes = [
+-			ent.abilityEntry || (ent.ability ? {type: "item", name: "Ability Scores:", entry: Renderer.getAbilityData(ent.ability).asText} : null),
++			ent.abilityEntry || (ent.ability ? {type: "item", name: i18n ? "屬性值：" : "Ability Scores:", entry: i18n?.localizeAbilityText(Renderer.getAbilityData(ent.ability).asText) || Renderer.getAbilityData(ent.ability).asText} : null),
+ 			ent.creatureTypesEntry || (this._getRaceRenderableEntriesMeta_creatureType({ent, styleHint})),
+-			ent.sizeEntry || (ent.size ? {type: "item", name: "Size:", entry: Renderer.utils.getRenderedSize(ent.size || [Parser.SZ_VARIES])} : null),
+-			ent.speedEntry || (ent.speed != null ? {type: "item", name: "Speed:", entry: Parser.getSpeedString(ent, {isLongForm: true})} : null),
++			ent.sizeEntry ? (i18n ? {...ent.sizeEntry, name: "體型：", entry: i18n.localizeRulesText(ent.sizeEntry.entry)} : ent.sizeEntry) : (ent.size ? {type: "item", name: i18n ? "體型：" : "Size:", entry: i18n ? (ent.size || [Parser.SZ_VARIES]).map(sz => i18n.getSizeFull(sz)).join("或") : Renderer.utils.getRenderedSize(ent.size || [Parser.SZ_VARIES])} : null),
++			ent.speedEntry || (ent.speed != null ? {type: "item", name: i18n ? "速度：" : "Speed:", entry: i18n?.localizeSpeedText(Parser.getSpeedString(ent, {isLongForm: true})) || Parser.getSpeedString(ent, {isLongForm: true})} : null),
+ 		]
+ 			.filter(Boolean);
+ 
+@@ -9093,12 +9258,13 @@ Renderer.race = class {
+ 
+ 	static _getRaceRenderableEntriesMeta_creatureType ({ent, styleHint}) {
+ 		const types = ent.creatureTypes || [Parser.TP_HUMANOID];
++		const i18n = globalThis.I18nZhTwContent;
+ 
+-		if (styleHint !== "classic") return {type: "item", name: "Creature Type:", entry: Parser.raceCreatureTypesToFull(types)};
++		if (styleHint !== "classic") return {type: "item", name: i18n ? "生物類型：" : "Creature Type:", entry: i18n?.localizeCreatureTypeText(Parser.raceCreatureTypesToFull(types)) || Parser.raceCreatureTypesToFull(types)};
+ 
+ 		const typesFilt = (ent.creatureTypes || []).filter(it => `${it}`.toLowerCase() !== Parser.TP_HUMANOID);
+ 		if (!typesFilt.length) return null;
+-		return {type: "item", name: "Creature Type:", entry: Parser.raceCreatureTypesToFull(typesFilt)};
++		return {type: "item", name: i18n ? "生物類型：" : "Creature Type:", entry: i18n?.localizeCreatureTypeText(Parser.raceCreatureTypesToFull(typesFilt)) || Parser.raceCreatureTypesToFull(typesFilt)};
+ 	}
+ 
+ 	/* -------------------------------------------- */
+@@ -9129,7 +9295,7 @@ Renderer.race = class {
+ 	/* -------------------------------------------- */
+ 
+ 	static getRenderedSize (race) {
+-		return (race.size || [Parser.SZ_VARIES]).map(sz => Parser.sizeAbvToFull(sz)).join("/");
++		return (race.size || [Parser.SZ_VARIES]).map(sz => globalThis.I18nZhTwContent?.getSizeFull(sz) || Parser.sizeAbvToFull(sz)).join("/");
+ 	}
+ 
+ 	static getHeightAndWeightPart (race, {isStatic = false} = {}) {
+@@ -9139,19 +9305,19 @@ Renderer.race = class {
+ 	}
+ 
+ 	static getHeightAndWeightEntries (race, {isStatic = false} = {}) {
+-		const colLabels = ["Base Height", "Base Weight", "Height Modifier", "Weight Modifier"];
++		const colLabels = ["基礎身高", "基礎體重", "身高調整值", "體重調整值"];
+ 		const colStyles = ["col-2-3 text-center", "col-2-3 text-center", "col-2-3 text-center", "col-2 text-center"];
+ 
+ 		const cellHeightMod = !isStatic
+ 			? `+<span data-race-heightmod="true">${race.heightAndWeight.heightMod}</span>`
+ 			: `+${race.heightAndWeight.heightMod}`;
+ 		const cellWeightMod = !isStatic
+-			? `× <span data-race-weightmod="true">${race.heightAndWeight.weightMod || "1"}</span> lb.`
+-			: `× ${race.heightAndWeight.weightMod || "1"} lb.`;
++			? `× <span data-race-weightmod="true">${race.heightAndWeight.weightMod || "1"}</span> 磅`
++			: `× ${race.heightAndWeight.weightMod || "1"} 磅`;
+ 
+ 		const row = [
+ 			Renderer.race.getRenderedHeight(race.heightAndWeight.baseHeight),
+-			`${race.heightAndWeight.baseWeight} lb.`,
++			`${race.heightAndWeight.baseWeight} 磅`,
+ 			cellHeightMod,
+ 			cellWeightMod,
+ 		];
+@@ -9165,17 +9331,17 @@ Renderer.race = class {
+ 					<div class="race__disp-result-height"></div>
+ 					<div class="ve-mr-2">; </div>
+ 					<div class="race__disp-result-weight ve-mr-1"></div>
+-					<div class="ve-small">lb.</div>
++					<div class="ve-small">磅</div>
+ 				</div>
+-				<button class="ve-btn ve-btn-default ve-btn-xs ve-my-1 race__btn-roll-height-weight">Roll</button>
++				<button class="ve-btn ve-btn-default ve-btn-xs ve-my-1 race__btn-roll-height-weight">擲骰</button>
+ 			</div>`);
+ 		}
+ 
+ 		return [
+-			"You may roll for your character's height and weight on the Random Height and Weight table. The roll in the Height Modifier column adds a number (in inches) to the character's base height. To get a weight, multiply the number you rolled for height by the roll in the Weight Modifier column and add the result (in pounds) to the base weight.",
++			"你可以使用「隨機身高與體重」表為角色的身高與體重擲骰。「身高調整值」欄的擲骰結果會以吋為單位加到角色的基礎身高。計算體重時，將身高擲骰結果乘以「體重調整值」欄的擲骰結果，再把所得磅數加到基礎體重。",
+ 			{
+ 				type: "table",
+-				caption: "Random Height and Weight",
++				caption: "隨機身高與體重",
+ 				colLabels,
+ 				colStyles,
+ 				rows: [row],
+@@ -9247,8 +9413,8 @@ Renderer.race = class {
+ 					race.entries ||= [];
+ 					race.entries.push({
+ 						type: "entries",
+-						name: "Languages",
+-						entries: ["You can speak, read, and write Common and one other language that you and your DM agree is appropriate for your character."],
++						name: "語言",
++						entries: ["你能說、讀、寫通用語，以及另一種由你和 DM 一致認為適合該角色的語言。"],
+ 					});
+ 
+ 					race.languageProficiencies ||= [{"common": true, "anyStandard": 1}];
+@@ -9275,6 +9441,7 @@ Renderer.race = class {
+ 				if (isAnyNoName) {
+ 					baseRace._rawName = baseRace.name;
+ 					baseRace.name = `${baseRace.name} (Base)`;
++					if (baseRace._displayName) baseRace._displayName = `${baseRace._displayName}（基礎）`;
+ 				}
+ 
+ 				const nameCounts = {};
+@@ -9286,7 +9453,9 @@ Renderer.race = class {
+ 					items: race.subraces.map(sr => {
+ 						const count = nameCounts[(sr.name || "_").toLowerCase()];
+ 						const idName = Renderer.race.getSubraceName(race.name, sr.name);
+-						return `{@race ${idName}|${sr.source}${count > 1 ? `|${idName} (<span title="${Parser.sourceJsonToFull(sr.source).escapeQuotes()}">${Parser.sourceJsonToAbv(sr.source)}</span>)` : ""}}`;
++						const displayName = Renderer.race.getSubraceName(race._displayName || race.name, sr._displayName || sr.name);
++						const displayNameWithSource = count > 1 ? `${displayName} (<span title="${Parser.sourceJsonToFull(sr.source).escapeQuotes()}">${Parser.sourceJsonToAbv(sr.source)}</span>)` : displayName;
++						return `{@race ${idName}|${sr.source}${displayName !== idName || count > 1 ? `|${displayNameWithSource}` : ""}}`;
+ 					}),
+ 				};
+ 
+@@ -9317,7 +9486,7 @@ Renderer.race = class {
+ 			{
+ 				type: "section",
+ 				entries: [
+-					"This race has multiple subraces, as listed below:",
++					globalThis.I18nZhTwContent ? "此種族有多個亞種，如下所列：" : "This race has multiple subraces, as listed below:",
+ 					lst,
+ 				],
+ 			},
+@@ -9331,7 +9500,7 @@ Renderer.race = class {
+ 								entries: [
+ 									{
+ 										type: "entries",
+-										name: "Traits",
++										name: globalThis.I18nZhTwContent ? "特質" : "Traits",
+ 										entries: [
+ 											...MiscUtil.copyFast(baseRace.entries),
+ 										],
+@@ -9363,6 +9532,7 @@ Renderer.race = class {
+ 	static _getMergedSubrace (race, cpySr) {
+ 		const cpy = MiscUtil.copyFast(race);
+ 		cpy._baseName = cpy.name;
++		cpy._baseDisplayName = cpy._displayName || cpy.name;
+ 		cpy._baseSource = cpy.source;
+ 		cpy._baseSrd = cpy.srd;
+ 		cpy._baseSrd52 = cpy.srd52;
+@@ -9380,10 +9550,14 @@ Renderer.race = class {
+ 		delete cpySr.__prop;
+ 
+ 		// merge names, abilities, entries, tags
++		const displayBaseName = cpy._displayName || cpy.name;
++		const displaySubraceName = cpySr._displayName || cpySr.name;
++		delete cpySr._displayName;
+ 		if (cpySr.name) {
+ 			cpy._subraceName = cpySr.name;
+ 
+ 			cpy.name = Renderer.race.getSubraceName(cpy.name, cpySr.name);
++			if (displaySubraceName) cpy._displayName = Renderer.race.getSubraceName(displayBaseName, displaySubraceName);
+ 			delete cpySr.name;
+ 		}
+ 		if (cpySr.ability) {
+@@ -9555,7 +9729,7 @@ Renderer.race = class {
+ 		const pRollHeight = async () => {
+ 			const mResultHeight = await Renderer.dice.pRoll2(race.heightAndWeight.heightMod, {
+ 				isUser: false,
+-				label: "Height Modifier",
++				label: "身高調整值",
+ 				name: race.name,
+ 			});
+ 			if (mResultHeight == null) return;
+@@ -9566,7 +9740,7 @@ Renderer.race = class {
+ 			const weightModRaw = race.heightAndWeight.weightMod || "1";
+ 			const mResultWeightMod = isNaN(weightModRaw) ? await Renderer.dice.pRoll2(weightModRaw, {
+ 				isUser: false,
+-				label: "Weight Modifier",
++				label: "體重調整值",
+ 				name: race.name,
+ 			}) : Number(weightModRaw);
+ 			if (mResultWeightMod == null) return;
+@@ -9618,41 +9792,46 @@ Renderer.raceFeature = class {
+ Renderer.deity = class {
+ 	static _BASE_PART_TRANSLATORS = {
+ 		"alignment": {
+-			name: "Alignment",
+-			displayFn: (it) => it.map(a => Parser.alignmentAbvToFull(a)).join(" ").toTitleCase(),
++			name: "陣營（Alignment）",
++			displayFn: (it) => I18nZhTwContent.getAlignment(it),
+ 		},
+ 		"pantheon": {
+-			name: "Pantheon",
++			name: "神系（Pantheon）",
++			displayFn: (it, ent) => I18nZhTwContent.getBilingualField(ent, "pantheon"),
+ 		},
+ 		"category": {
+-			name: "Category",
+-			displayFn: it => typeof it === "string" ? it : it.join(", "),
++			name: "類別（Category）",
++			displayFn: (it, ent) => I18nZhTwContent.getBilingualField(ent, "category"),
+ 		},
+ 		"domains": {
+-			name: "Domains",
+-			displayFn: (it) => it.join(", "),
++			name: "領域（Domains）",
++			displayFn: (it, ent) => I18nZhTwContent.getBilingualField(ent, "domains"),
+ 		},
+ 		"province": {
+-			name: "Province",
++			name: "權能（Province）",
++			displayFn: (it, ent) => I18nZhTwContent.getDisplayField(ent, "province"),
+ 		},
+ 		"dogma": {
+-			name: "Dogma",
++			name: "教義（Dogma）",
+ 		},
+ 		"altNames": {
+-			name: "Alternate Names",
+-			displayFn: (it) => it.join(", "),
++			name: "別名（Alternate Names）",
++			displayFn: (it, ent) => I18nZhTwContent.getBilingualField(ent, "altNames"),
+ 		},
+ 		"plane": {
+-			name: "Home Plane",
++			name: "居住位面（Home Plane）",
++			displayFn: (it, ent) => I18nZhTwContent.getBilingualField(ent, "plane"),
+ 		},
+ 		"worshipers": {
+-			name: "Typical Worshipers",
++			name: "典型崇拜者（Typical Worshipers）",
++			displayFn: (it, ent) => I18nZhTwContent.getDisplayField(ent, "worshipers"),
+ 		},
+ 		"symbol": {
+-			name: "Symbol",
++			name: "聖徽（Symbol）",
++			displayFn: (it, ent) => I18nZhTwContent.getDisplayField(ent, "symbol"),
+ 		},
+ 		"favoredWeapons": {
+-			name: "Favored Weapons",
++			name: "偏好武器（Favored Weapons）",
+ 		},
+ 	};
+ 
+@@ -9663,7 +9842,7 @@ Renderer.deity = class {
+ 					.map(([prop, {name, displayFn}]) => {
+ 						if (ent[prop] == null) return null;
+ 
+-						const displayVal = displayFn ? displayFn(ent[prop]) : ent[prop];
++						const displayVal = displayFn ? displayFn(ent[prop], ent) : ent[prop];
+ 						return {
+ 							name,
+ 							entry: `{@b ${name}:} ${displayVal}`,
+@@ -9686,7 +9865,7 @@ Renderer.deity = class {
+ 		const entriesMeta = Renderer.deity.getDeityRenderableEntriesMeta(ent);
+ 		return `
+ 			${Renderer.utils.getExcludedTr({entity: ent, dataProp: "deity", page: UrlUtil.PG_DEITIES})}
+-			${Renderer.utils.getNameTr(ent, {suffix: ent.title ? `, ${ent.title.toTitleCase()}` : "", page: UrlUtil.PG_DEITIES})}
++			${Renderer.utils.getNameTr(ent, {suffix: ent.title ? `，${I18nZhTwContent.getBilingualField(ent, "title")}` : "", page: UrlUtil.PG_DEITIES})}
+ 			<tr><td colspan="6">
+ 				${entriesMeta.entriesAttributes.map(entry => `<div class="ve-my-1p">${Renderer.get().render(entry)}</div>`).join("")}
+ 			</td>
+@@ -9715,41 +9894,42 @@ Renderer.object = class {
+ 	];
+ 
+ 	static getObjectRenderableEntriesMeta (ent) {
++		const i18n = globalThis.I18nZhTwContent;
+ 		return {
+-			entrySize: `{@i ${ent.objectType !== "GEN" ? `${Renderer.utils.getRenderedSize(ent.size)} ${ent.creatureType ? Parser.monTypeToFullObj(ent.creatureType).asText : "object"}` : `Variable size object`}}`,
++			entrySize: `{@i ${ent.objectType !== "GEN" ? `${Renderer.utils.getRenderedSize(ent.size)} ${ent.creatureType ? Parser.monTypeToFullObj(ent.creatureType).asText : "物件（Object）"}` : `尺寸可變物件（Variable Size Object）`}}`,
+ 
+ 			entryCreatureCapacity: ent.capCrew != null || ent.capPassenger != null
+-				? `{@b Creature Capacity:} ${Renderer.vehicle.getShipCreatureCapacity(ent)}`
++				? `{@b 生物容量（Creature Capacity）：} ${Renderer.vehicle.getShipCreatureCapacity(ent)}`
+ 				: null,
+ 			entryCargoCapacity: ent.capCargo != null
+-				? `{@b Cargo Capacity:} ${Renderer.vehicle.getShipCargoCapacity(ent)}`
++				? `{@b 載貨量（Cargo Capacity）：} ${Renderer.vehicle.getShipCargoCapacity(ent)}`
+ 				: null,
+ 			entryArmorClass: ent.ac != null
+-				? `{@b Armor Class:} ${ent.ac.special ?? ent.ac}`
++				? `{@b 護甲等級（Armor Class）：} ${ent._displayAc ?? ent.ac.special ?? ent.ac}`
+ 				: null,
+ 			entryHitPoints: ent.hp != null
+-				? `{@b Hit Points:} ${ent.hp.special ?? ent.hp}`
++				? `{@b 生命值（Hit Points）：} ${ent._displayHp ?? ent.hp.special ?? ent.hp}`
+ 				: null,
+ 			entrySpeed: ent.speed != null
+-				? `{@b Speed:} ${Parser.getSpeedString(ent)}`
++				? `{@b 速度（Speed）：} ${i18n?.getSpeedString(ent) || Parser.getSpeedString(ent)}`
+ 				: null,
+ 			entryAbilityScores: Parser.ABIL_ABVS.some(ab => ent[ab] != null)
+-				? `{@b Ability Scores:} ${Parser.ABIL_ABVS.filter(ab => ent[ab] != null).map(ab => `${ab.toUpperCase()}\u00A0${Renderer.utils.getAbilityRollerEntry(ent, ab)}`).join(", ")}`
++				? `{@b 屬性值（Ability Scores）：} ${Parser.ABIL_ABVS.filter(ab => ent[ab] != null).map(ab => `${ab.toUpperCase()}\u00A0${Renderer.utils.getAbilityRollerEntry(ent, ab)}`).join("、")}`
+ 				: null,
+ 			entryDamageImmunities: ent.immune != null
+-				? `{@b Damage Immunities:} ${Parser.getFullImmRes(ent.immune)}`
++				? `{@b 傷害免疫（Damage Immunities）：} ${(i18n?.getFullImmRes(ent, "immune") || Parser.getFullImmRes(ent.immune)).replaceAll("Varies (see below)", "不定（見下文）")}`
+ 				: null,
+ 			entryDamageResistances: ent.resist
+-				? `{@b Damage Resistances:} ${Parser.getFullImmRes(ent.resist)}`
++				? `{@b 傷害抗性（Damage Resistances）：} ${i18n?.getFullImmRes(ent, "resist") || Parser.getFullImmRes(ent.resist)}`
+ 				: null,
+ 			entryDamageVulnerabilities: ent.vulnerable
+-				? `{@b Damage Vulnerabilities:} ${Parser.getFullImmRes(ent.vulnerable)}`
++				? `{@b 傷害易傷（Damage Vulnerabilities）：} ${i18n?.getFullImmRes(ent, "vulnerable") || Parser.getFullImmRes(ent.vulnerable)}`
+ 				: null,
+ 			entryConditionImmunities: ent.conditionImmune
+-				? `{@b Condition Immunities:} ${Parser.getFullCondImm(ent.conditionImmune, {isEntry: true})}`
++				? `{@b 狀態免疫（Condition Immunities）：} ${i18n?.getFullConditionImmune(ent) || Parser.getFullCondImm(ent.conditionImmune, {isEntry: true})}`
+ 				: null,
+ 			entrySenses: ent.senses
+-				? `{@b Senses:} ${Renderer.utils.getSensesEntry(ent.senses)}`
++				? `{@b 感官（Senses）：} ${globalThis.I18nZhTwUtilities?.field(ent, "senses") || Renderer.utils.getSensesEntry(ent.senses)}`
+ 				: null,
+ 		};
+ 	}
+@@ -9816,25 +9996,25 @@ Renderer.trap = class {
+ 			const listItems = [
+ 				ent.trigger ? {
+ 					type: "item",
+-					name: "Trigger:",
++					name: "觸發條件（Trigger）：",
+ 					entries: ent.trigger,
+ 				} : null,
+ 				ent.duration ? {
+ 					type: "item",
+-					name: "Duration:",
++					name: "持續時間（Duration）：",
+ 					entries: [
+-						Renderer.generic.getRenderableDurationEntriesMeta(ent.duration, {styleHint}).entryDuration,
++						I18nZhTwContent.getSpellDuration(ent.duration),
+ 					],
+ 				} : null,
+ 				ent.hauntBonus ? {
+ 					type: "item",
+-					name: "Haunt Bonus:",
++					name: "靈異加值（Haunt Bonus）：",
+ 					entry: ent.hauntBonus,
+ 				} : null,
+ 				ent.hauntBonus && !isNaN(ent.hauntBonus) ? {
+ 					type: "item",
+-					name: "Detection:",
+-					entry: `passive Wisdom ({@skill Perception}) score equals or exceeds ${10 + Number(ent.hauntBonus)}`,
++					name: "偵測（Detection）：",
++					entry: `被動感知（{@skill Perception||察覺}）數值達到 ${10 + Number(ent.hauntBonus)} 或以上`,
+ 				} : null,
+ 			]
+ 				.filter(Boolean);
+@@ -9856,7 +10036,7 @@ Renderer.trap = class {
+ 				// region Shared between simple/complex
+ 				ent.trigger ? {
+ 					type: "entries",
+-					name: "Trigger",
++					name: "觸發條件（Trigger）",
+ 					entries: ent.trigger,
+ 				} : null,
+ 				// endregion
+@@ -9864,7 +10044,7 @@ Renderer.trap = class {
+ 				// region Simple traps
+ 				ent.effect ? {
+ 					type: "entries",
+-					name: "Effect",
++					name: "效果（Effect）",
+ 					entries: ent.effect,
+ 				} : null,
+ 				// endregion
+@@ -9872,22 +10052,22 @@ Renderer.trap = class {
+ 				// region Complex traps
+ 				ent.initiative ? {
+ 					type: "entries",
+-					name: "Initiative",
++					name: "先攻（Initiative）",
+ 					entries: Renderer.trap.getTrapInitiativeEntries(ent),
+ 				} : null,
+ 				ent.eActive ? {
+ 					type: "entries",
+-					name: "Active Elements",
++					name: "主動構件（Active Elements）",
+ 					entries: ent.eActive,
+ 				} : null,
+ 				ent.eDynamic ? {
+ 					type: "entries",
+-					name: "Dynamic Elements",
++					name: "變動構件（Dynamic Elements）",
+ 					entries: ent.eDynamic,
+ 				} : null,
+ 				ent.eConstant ? {
+ 					type: "entries",
+-					name: "Constant Elements",
++					name: "持續構件（Constant Elements）",
+ 					entries: ent.eConstant,
+ 				} : null,
+ 				// endregion
+@@ -9895,7 +10075,7 @@ Renderer.trap = class {
+ 				// region Shared between simple/complex
+ 				ent.countermeasures ? {
+ 					type: "entries",
+-					name: "Countermeasures",
++					name: "應對措施（Countermeasures）",
+ 					entries: ent.countermeasures,
+ 				} : null,
+ 				// endregion
+@@ -9904,7 +10084,7 @@ Renderer.trap = class {
+ 		};
+ 	}
+ 
+-	static getTrapInitiativeEntries (ent) { return [`The trap acts on ${Parser.trapInitToFull(ent.initiative)}${ent.initiativeNote ? ` (${ent.initiativeNote})` : ""}.`]; }
++	static getTrapInitiativeEntries (ent) { return [`陷阱在先攻計數 ${({1: "10", 2: "20", 3: "20 與 10"})[ent.initiative] || ent.initiative} 時啟動${ent.initiativeNote ? `（${ent.initiativeNote}）` : ""}。`]; }
+ 
+ 	static _getRenderedTrapPart (renderer, ent, {styleHint = null} = {}) {
+ 		const entriesMeta = Renderer.trap.getTrapRenderableEntriesMeta(ent, {styleHint});
+@@ -9959,7 +10139,7 @@ Renderer.traphazard = class {
+ 
+ 		return ent.rating
+ 			.map(rating => {
+-				const ptThreat = rating.threat ? rating.threat.toTitleCase() : "";
++				const ptThreat = rating._displayThreat || (rating.threat ? rating.threat.toTitleCase() : "");
+ 
+ 				const ptThreatType = [ptThreat, ptType]
+ 					.filter(Boolean)
+@@ -9975,17 +10155,17 @@ Renderer.traphazard = class {
+ 					.join(" ");
+ 			})
+ 			.filter(Boolean)
+-			.joinConjunct(", ", " or ");
++			.joinConjunct("、", "或");
+ 	}
+ 
+ 	static getRenderedTrapHazardRatingPart (rating, {styleHint} = {}) {
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
+-		if (rating.tier) return Parser.tierToFullLevel(rating.tier, {styleHint});
++		if (rating.tier) return `等級 ${Parser._TIER_TO_LEVEL_RANGE[rating.tier]?.join("–") || rating.tier}`;
+ 
+ 		if (rating.level?.min == null || rating.level?.max == null) return "";
+ 
+-		const ptLevelLabel = styleHint === "classic" ? "level" : "Levels";
++		const ptLevelLabel = "等級";
+ 		return `${ptLevelLabel} ${rating.level.min}${rating.level.min !== rating.level.max ? `\u2013${rating.level.max}` : ""}`;
+ 	}
+ 
+@@ -10030,7 +10210,7 @@ Renderer.cultboon = class {
+ 		if (ent.goal) {
+ 			fauxList.items.push({
+ 				type: "item",
+-				name: "Goals:",
++				name: "目標：",
+ 				entry: ent.goal.entry,
+ 			});
+ 		}
+@@ -10038,14 +10218,14 @@ Renderer.cultboon = class {
+ 		if (ent.cultists) {
+ 			fauxList.items.push({
+ 				type: "item",
+-				name: "Typical Cultists:",
++				name: "典型邪教徒：",
+ 				entry: ent.cultists.entry,
+ 			});
+ 		}
+ 		if (ent.signatureSpells) {
+ 			fauxList.items.push({
+ 				type: "item",
+-				name: "Signature Spells:",
++				name: "招牌法術：",
+ 				entry: ent.signatureSpells.entry,
+ 			});
+ 		}
+@@ -10069,7 +10249,7 @@ Renderer.cultboon = class {
+ 		if (ent.abilityEntry) {
+ 			benefits.items.push({
+ 				type: "item",
+-				name: "Ability Score Adjustment:",
++				name: "屬性值調整：",
+ 				entry: ent.abilityEntry,
+ 			});
+ 		}
+@@ -10077,7 +10257,7 @@ Renderer.cultboon = class {
+ 		if (ent.signatureSpells) {
+ 			benefits.items.push({
+ 				type: "item",
+-				name: "Signature Spells:",
++				name: "招牌法術：",
+ 				entry: ent.signatureSpells ? ent.signatureSpells.entry : "None",
+ 			});
+ 		}
+@@ -10338,7 +10518,7 @@ class _RenderCompactBestiaryImplBase {
+ 		return `<tr>
+ 			<td colspan="${this._style === "classic" ? "2" : "1"}">${mon.ac == null ? "\u2014" : Parser.acToFull(mon.ac)}</td>
+ 			${ptInitiative ? `<td colspan="1">${ptInitiative}</td>` : ""}
+-			<td colspan="2">${mon.hp == null ? "\u2014" : Renderer.monster.getRenderedHp(mon.hp)}</td>
++			<td colspan="2">${mon.hp == null ? "\u2014" : Renderer.monster.getRenderedHp(mon.hp.special != null ? {...mon.hp, special: mon._displayHp?.special ?? mon.hp.special} : mon.hp)}</td>
+ 			<td colspan="2">${Parser.getSpeedString(mon)}</td>
+ 			${ptCrSpellLevel}
+ 			${ptPb ? `<td colspan="1">${ptPb}</td>` : ""}
+@@ -12452,7 +12632,9 @@ Renderer.item = class {
+ 	static _sortProperties (a, b) {
+ 		const uidA = a.uid || a;
+ 		const uidB = b.uid || b;
+-		return SortUtil.ascSort(Renderer.item.getProperty(uidA, {isIgnoreMissing: true})?.name || "", Renderer.item.getProperty(uidB, {isIgnoreMissing: true})?.name || "");
++		const propA = Renderer.item.getProperty(uidA, {isIgnoreMissing: true});
++		const propB = Renderer.item.getProperty(uidB, {isIgnoreMissing: true});
++		return SortUtil.ascSort(propA?._displayName || propA?.name || "", propB?._displayName || propB?.name || "");
+ 	}
+ 
+ 	static _getPropertyText ({item, property, valsUsed, renderer}) {
+@@ -12461,7 +12643,11 @@ Renderer.item = class {
+ 
+ 		const ptNote = property.note ? ` (${property.note})` : "";
+ 
+-		if (!pFull.template) return `${pFull.name}${ptNote}`;
++		const displayName = Renderer.utils.getBilingualName(pFull);
++		const displayNameLower = pFull.ENG_name
++			? Renderer.utils.getBilingualName({...pFull, _displayName: (pFull._displayName || pFull.name).toLowerCase()})
++			: displayName.toLowerCase();
++		if (!pFull.template) return `${displayName}${ptNote}`;
+ 
+ 		const toRender = Renderer.utils.applyTemplate(
+ 			item,
+@@ -12472,8 +12658,8 @@ Renderer.item = class {
+ 					if (variablePath === "item.range") valsUsed.range = true;
+ 				},
+ 				mapCustom: {
+-					"prop_name": pFull.name.replace(/-/g, "\u2011"),
+-					"prop_name_lower": pFull.name.replace(/-/g, "\u2011").toLowerCase(),
++					"prop_name": displayName.replace(/-/g, "\u2011"),
++					"prop_name_lower": displayNameLower.replace(/-/g, "\u2011"),
+ 				},
+ 				mapCustomFns: {
+ 					"item.dmg1": () => Renderer.item._getTaggedDamage(item.dmg1, {renderer}),
+@@ -12511,8 +12697,8 @@ Renderer.item = class {
+ 		return renderedProperties.join(", ");
+ 	}
+ 
+-	static _getPropertiesText_unusedDmg2 ({item, renderer}) { return `alt. ${Renderer.item._renderDamage(item.dmg2, {renderer})}`; }
+-	static _getPropertiesText_unusedRange ({item, renderer}) { return `range ${item.range} ft.`; }
++	static _getPropertiesText_unusedDmg2 ({item, renderer}) { return `替代傷害 ${Renderer.item._renderDamage(item.dmg2, {renderer})}`; }
++	static _getPropertiesText_unusedRange ({item, renderer}) { return `射程 ${item.range} 尺`; }
+ 
+ 	static _getPropertiesText_noProperties ({item, renderer}) {
+ 		const parts = [];
+@@ -12552,7 +12738,7 @@ Renderer.item = class {
+ 			const isAddDex = item.dexterityMax !== undefined || ![Parser.ITM_TYP_ABV__HEAVY_ARMOR, Parser.ITM_TYP_ABV__SHIELD].includes(itemTypeAbv);
+ 
+ 			const prefix = itemTypeAbv === Parser.ITM_TYP_ABV__SHIELD ? "+" : "";
+-			const suffix = isAddDex ? ` + Dex${dexterityMax ? ` (max ${dexterityMax})` : ""}` : "";
++			const suffix = isAddDex ? ` + 敏捷${dexterityMax ? `（上限 ${dexterityMax}）` : ""}` : "";
+ 
+ 			damageParts.push(`AC ${prefix}${item.ac}${suffix}`);
+ 		}
+@@ -12563,7 +12749,7 @@ Renderer.item = class {
+ 			damageParts.push(
+ 				[
+ 					Renderer.item._renderDamage(item.dmg1, {renderer}),
+-					item.dmgType ? Parser.dmgTypeToFull(item.dmgType) : "",
++					item.dmgType ? (globalThis.I18nZhTwContent?.getDamageType(item.dmgType) || Parser.dmgTypeToFull(item.dmgType)) : "",
+ 				]
+ 					.filter(Boolean)
+ 					.join(" "),
+@@ -12571,23 +12757,23 @@ Renderer.item = class {
+ 		}
+ 
+ 		// mounts
+-		if (item.speed != null) damageParts.push(`Speed: ${item.speed}`);
+-		if (item.carryingCapacity) damageParts.push(`Carrying Capacity: ${item.carryingCapacity} lb.`);
++		if (item.speed != null) damageParts.push(`速度：${item.speed}`);
++		if (item.carryingCapacity) damageParts.push(`載重：${item.carryingCapacity} 磅`);
+ 
+ 		// vehicles
+ 		if (item.vehSpeed || item.capCargo || item.capPassenger || item.crew || item.crewMin || item.crewMax || item.vehAc || item.vehHp || item.vehDmgThresh || item.travelCost || item.shippingCost) {
+-			const vehPartUpper = item.vehSpeed ? `Speed: ${Parser.numberToVulgar(item.vehSpeed)} mph` : null;
++			const vehPartUpper = item.vehSpeed ? `速度：${Parser.numberToVulgar(item.vehSpeed)} 英里／時` : null;
+ 
+-			const vehPartMiddle = item.capCargo || item.capPassenger ? `Carrying Capacity: ${[item.capCargo ? `${Parser.numberToFractional(item.capCargo)} ton${item.capCargo === 0 || item.capCargo > 1 ? "s" : ""} cargo` : null, item.capPassenger ? `${item.capPassenger} passenger${item.capPassenger === 1 ? "" : "s"}` : null].filter(Boolean).join(", ")}` : null;
++			const vehPartMiddle = item.capCargo || item.capPassenger ? `載重：${[item.capCargo ? `${Parser.numberToFractional(item.capCargo)} 噸貨物` : null, item.capPassenger ? `${item.capPassenger} 名乘客` : null].filter(Boolean).join("、")}` : null;
+ 
+ 			const {travelCostFull, shippingCostFull} = Parser.itemVehicleCostsToFull(item);
+ 
+ 			// These may not be present in homebrew
+ 			const vehPartLower = [
+-				item.crew ? `Crew ${item.crew}` : null,
+-				item.crewMin && item.crewMax ? `Crew ${item.crewMin}-${item.crewMax}` : null,
++				item.crew ? `乘員 ${item.crew}` : null,
++				item.crewMin && item.crewMax ? `乘員 ${item.crewMin}–${item.crewMax}` : null,
+ 				item.vehAc ? `AC ${item.vehAc}` : null,
+-				item.vehHp ? `HP ${item.vehHp}${item.vehDmgThresh ? `, Damage Threshold ${item.vehDmgThresh}` : ""}` : null,
++				item.vehHp ? `HP ${item.vehHp}${item.vehDmgThresh ? `，傷害閾值 ${item.vehDmgThresh}` : ""}` : null,
+ 			].filter(Boolean).join(", ");
+ 
+ 			damageParts.push([
+@@ -12595,8 +12781,8 @@ Renderer.item = class {
+ 				vehPartMiddle,
+ 
+ 				// region ~~Dammit Mercer~~ Additional fields present in EGW
+-				travelCostFull ? `Personal Travel Cost: ${travelCostFull} per mile per passenger` : null,
+-				shippingCostFull ? `Shipping Cost: ${shippingCostFull} per 100 pounds per mile` : null,
++				travelCostFull ? `個人旅費：每名乘客每英里 ${travelCostFull}` : null,
++				shippingCostFull ? `運費：每 100 磅每英里 ${shippingCostFull}` : null,
+ 				// endregion
+ 
+ 				vehPartLower,
+@@ -12607,9 +12793,9 @@ Renderer.item = class {
+ 		if (item.barDimensions) {
+ 			damageParts.push(
+ 				[
+-					item.barDimensions.l ? `${Parser.getInchesToFull(item.barDimensions.l, {isShort: true})} long` : "",
+-					item.barDimensions.w ? `${Parser.getInchesToFull(item.barDimensions.w, {isShort: true})} wide` : "",
+-					item.barDimensions.h ? `${Parser.getInchesToFull(item.barDimensions.h, {isShort: true})} thick` : "",
++					item.barDimensions.l ? `長 ${Parser.getInchesToFull(item.barDimensions.l, {isShort: true})}` : "",
++					item.barDimensions.w ? `寬 ${Parser.getInchesToFull(item.barDimensions.w, {isShort: true})}` : "",
++					item.barDimensions.h ? `厚 ${Parser.getInchesToFull(item.barDimensions.h, {isShort: true})}` : "",
+ 				]
+ 					.filter(Boolean)
+ 					.join(" × "),
+@@ -12628,11 +12814,13 @@ Renderer.item = class {
+ 		if (!item.mastery) return "";
+ 
+ 		return [
+-			isSkipPrefix ? "" : "Mastery: ",
++			isSkipPrefix ? "" : "精通：",
+ 			item.mastery
+ 				.map(info => {
+-					if (!info.uid) return renderer.render(`{@itemMastery ${info}}`);
+-					return renderer.render(`{@itemMastery ${info.uid}} {@style (${info.note})|small}`);
++					const mastery = Renderer.item._getMastery(info.uid || info);
++					const rendered = renderer.render(`{@itemMastery ${mastery.name}|${mastery.source}|${Renderer.utils.getBilingualName(mastery)}}`);
++					if (!info.uid) return rendered;
++					return `${rendered} ${renderer.render(`{@style (${info.note})|small}`)}`;
+ 				})
+ 				.join(", "),
+ 		]
+@@ -12650,7 +12838,7 @@ Renderer.item = class {
+ 
+ 		const typeRarity = [
+ 			item._entryType === "other" ? "" : entryType,
+-			(item.rarity && Renderer.item.doRenderRarity(item.rarity) ? (item.rarity)[fnTransform]() : ""),
++			(item.rarity && Renderer.item.doRenderRarity(item.rarity) ? (globalThis.I18nZhTwContent?.getItemRarity(item.rarity) || (item.rarity)[fnTransform]()) : ""),
+ 		]
+ 			.filter(Boolean)
+ 			.join(", ");
+@@ -12662,7 +12850,7 @@ Renderer.item = class {
+ 			entryTypeRarity: [typeRarity, ptAttunement].filter(Boolean).join(" "),
+ 			entrySubtype,
+ 			entryTier: item.tier
+-				? `${item.tier} tier`[fnTransform]()
++				? `${globalThis.I18nZhTwContent?.getItemTier(item.tier) || item.tier}級`
+ 				: "",
+ 		};
+ 	}
+@@ -12693,31 +12881,29 @@ Renderer.item = class {
+ 		if (item[prop] === true) {
+ 			return {
+ 				attunementCategory: "Requires Attunement",
+-				attunement: "(requires attunement)"[styleHint === "classic" ? "toString" : "toTitleCase"](),
++				attunement: "（需要同調）",
+ 			};
+ 		}
+ 
+ 		if (item[prop] === "optional") {
+ 			return {
+ 				attunementCategory: "Attunement Optional",
+-				attunement: "(attunement optional)"[styleHint === "classic" ? "toString" : "toTitleCase"](),
++				attunement: "（可選擇同調）",
+ 			};
+ 		}
+ 
+ 		if (item[prop].toLowerCase().startsWith("by")) {
++			const displayValue = item[prop === "reqAttune" ? "_displayReqAttune" : "_displayReqAttuneAlt"] || item[prop];
+ 			return {
+ 				attunementCategory: "Requires Attunement By...",
+-				attunement: styleHint === "classic"
+-					? `(requires attunement ${Renderer.get().render(item[prop])})`
+-					: `(Requires Attunement ${Renderer.get().render(item[prop].toTitleCase())})`,
++				attunement: `（需要同調；${Renderer.get().render(displayValue)}）`,
+ 			};
+ 		}
+ 
++		const displayValue = item[prop === "reqAttune" ? "_displayReqAttune" : "_displayReqAttuneAlt"] || item[prop];
+ 		return {
+ 			attunementCategory: "Requires Attunement", // throw any weird ones in the "Yes" category (e.g. "outdoors at night")
+-			attunement: styleHint === "classic"
+-				? `(requires attunement ${Renderer.get().render(item[prop])})`
+-				: `(Requires Attunement ${Renderer.get().render(item[prop].toTitleCase())})`,
++			attunement: `（需要同調；${Renderer.get().render(displayValue)}）`,
+ 		};
+ 	}
+ 
+@@ -12733,43 +12919,48 @@ Renderer.item = class {
+ 
+ 		let showingBase = false;
+ 		if (item.wondrous) {
+-			ptsEntryType.push(`wondrous item${item.tattoo ? ` (tattoo)` : ""}`);
+-			textTypes.push("wondrous item");
++			ptsEntryType.push(`奇物${item.tattoo ? "（魔法刺青）" : ""}`);
++			textTypes.push("奇物");
+ 		}
+ 		if (item.tattoo) {
+-			textTypes.push("tattoo");
++			textTypes.push("魔法刺青");
+ 		}
+ 		if (item.staff) {
+-			ptsEntryType.push("staff");
+-			textTypes.push("staff");
++			ptsEntryType.push("法杖");
++			textTypes.push("法杖");
+ 		}
+ 		if (item.ammo) {
+-			ptsEntryType.push(`ammunition`);
+-			textTypes.push("ammunition");
++			ptsEntryType.push("彈藥");
++			textTypes.push("彈藥");
+ 		}
+ 		if (item.age) {
+ 			ptsEntrySubType.push(item.age);
+ 			textTypes.push(item.age);
+ 		}
+ 		if (item.weaponCategory) {
+-			ptsEntryType.push(`weapon${item.baseItem ? ` ({@item ${styleHint === "classic" ? item.baseItem : item.baseItem.toTitleCase()}})` : ""}`);
+-			ptsEntrySubType.push(`${item.weaponCategory} weapon`);
+-			textTypes.push(`${item.weaponCategory} weapon`);
++			const baseItemTag = item._baseDisplayName
++				? `${styleHint === "classic" ? item.baseItem : item.baseItem.toTitleCase()}|${item._baseDisplayName}`
++				: styleHint === "classic" ? item.baseItem : item.baseItem?.toTitleCase();
++			ptsEntryType.push(`武器${item.baseItem ? `（{@item ${baseItemTag}}）` : ""}`);
++			const weaponCategory = globalThis.I18nZhTwContent?.getItemWeaponCategory(item.weaponCategory) || `${item.weaponCategory} weapon`;
++			ptsEntrySubType.push(weaponCategory);
++			textTypes.push(weaponCategory);
+ 			showingBase = true;
+ 		}
+ 		if (item.staff && (itemTypeAbv !== Parser.ITM_TYP_ABV__MELEE_WEAPON && itemTypeAltAbv !== Parser.ITM_TYP_ABV__MELEE_WEAPON)) { // DMG p140: "Unless a staff's description says otherwise, a staff can be used as a quarterstaff."
+-			ptsEntrySubType.push("melee weapon");
+-			textTypes.push("melee weapon");
++			ptsEntrySubType.push("近戰武器");
++			textTypes.push("近戰武器");
+ 		}
+ 		if (item.type) Renderer.item._getHtmlAndTextTypes_type({type: item.type, typeAbv: itemTypeAbv, ptsEntryType, textTypes, ptsEntrySubType, showingBase, item});
+ 		if (item.typeAlt) Renderer.item._getHtmlAndTextTypes_type({type: item.typeAlt, typeAbv: itemTypeAltAbv, ptsEntryType, textTypes, ptsEntrySubType, showingBase, item});
+ 		if (item.firearm) {
+-			ptsEntrySubType.push("firearm");
+-			textTypes.push("firearm");
++			ptsEntrySubType.push("火器");
++			textTypes.push("火器");
+ 		}
+ 		if (item.poison) {
+-			ptsEntryType.push(`poison${item.poisonTypes ? ` (${item.poisonTypes.joinConjunct(", ", " or ")})` : ""}`);
+-			textTypes.push("poison");
++			const poisonTypes = item.poisonTypes?.map(it => globalThis.I18nZhTwContent?.getItemPoisonType(it) || it);
++			ptsEntryType.push(`毒藥${poisonTypes?.length ? `（${poisonTypes.join("、")}）` : ""}`);
++			textTypes.push("毒藥");
+ 		}
+ 		return {
+ 			textTypes: textTypes,
+@@ -12780,12 +12971,13 @@ Renderer.item = class {
+ 
+ 	static _getHtmlAndTextTypes_type ({type, typeAbv, ptsEntryType, textTypes, ptsEntrySubType, showingBase, item}) {
+ 		const fullType = Renderer.item.getItemTypeName(type);
++		const baseItemTag = item._baseDisplayName ? `${item.baseItem}|${item._baseDisplayName}` : item.baseItem;
+ 
+-		const isSub = (textTypes.some(it => it.includes("weapon")) && fullType.includes("weapon"))
+-			|| (textTypes.some(it => it.includes("armor")) && fullType.includes("armor"));
++		const isSub = (textTypes.some(it => /weapon|武器/u.test(it)) && /weapon|武器/u.test(fullType))
++			|| (textTypes.some(it => /armor|護甲/u.test(it)) && /armor|護甲/u.test(fullType));
+ 
+-		if (!showingBase && !!item.baseItem) (isSub ? ptsEntrySubType : ptsEntryType).push(`${fullType} ({@item ${item.baseItem}})`);
+-		else if (typeAbv === Parser.ITM_TYP_ABV__SHIELD) (isSub ? ptsEntrySubType : ptsEntryType).push(`armor ({@item shield|phb})`);
++		if (!showingBase && !!item.baseItem) (isSub ? ptsEntrySubType : ptsEntryType).push(`${fullType}（{@item ${baseItemTag}}）`);
++		else if (typeAbv === Parser.ITM_TYP_ABV__SHIELD) (isSub ? ptsEntrySubType : ptsEntryType).push("護甲（{@item shield|phb|盾牌}）");
+ 		else (isSub ? ptsEntrySubType : ptsEntryType).push(fullType);
+ 
+ 		textTypes.push(fullType);
+@@ -12809,11 +13001,11 @@ Renderer.item = class {
+ 		});
+ 
+ 		const handlersName = {
+-			string: (str) => Renderer.item._getRenderedEntries_handlerConvertNamesToItalics.bind(Renderer.item, item, item.name)(str),
++			string: (str) => Renderer.item._getRenderedEntries_handlerConvertNamesToItalics.bind(Renderer.item, item, item._displayName || item.name)(str),
+ 		};
+ 
+ 		const handlersVariantName = item._variantName == null ? null : {
+-			string: (str) => Renderer.item._getRenderedEntries_handlerConvertNamesToItalics.bind(Renderer.item, item, item._variantName)(str),
++			string: (str) => Renderer.item._getRenderedEntries_handlerConvertNamesToItalics.bind(Renderer.item, item, item._variantDisplayName || item._variantName)(str),
+ 		};
+ 
+ 		const renderStack = [];
+@@ -12834,7 +13026,7 @@ Renderer.item = class {
+ 		}
+ 
+ 		if (!isCompact && item.lootTables) {
+-			renderStack.push(`<div><span class="ve-bold">Found On: </span>${item.lootTables.sort(SortUtil.ascSortLower).map(tbl => renderer.render(`{@table ${tbl}}`)).join(", ")}</div>`);
++			renderStack.push(`<div><span class="ve-bold">出現於：</span>${item.lootTables.sort(SortUtil.ascSortLower).map(tbl => renderer.render(`{@table ${tbl}}`)).join("、")}</div>`);
+ 		}
+ 
+ 		return renderStack.join("").trim();
+@@ -12948,7 +13140,7 @@ Renderer.item = class {
+ 	/* -------------------------------------------- */
+ 
+ 	static getPropertyName (ent) {
+-		return ent.name || (ent.entries || ent.entriesTemplate)[0]?.name || "Unknown";
++		return ent._displayName || ent.name || (ent.entries || ent.entriesTemplate)[0]?.name || "Unknown";
+ 	}
+ 
+ 	static _propertyMap = {};
+@@ -12960,6 +13152,8 @@ Renderer.item = class {
+ 
+ 		const cpy = MiscUtil.copyFast(ent);
+ 		cpy.name = Renderer.item.getPropertyName(ent);
++		const canonicalName = ent.ENG_name || ent._i18nCanonical?.name || ent.entries?.[0]?.ENG_name || ent._i18nCanonical?.entries?.[0]?.name;
++		if (canonicalName && canonicalName !== cpy.name) cpy.ENG_name ||= canonicalName;
+ 
+ 		MiscUtil.set(this._propertyMap, sourceLookup, abvLookup, cpy);
+ 
+@@ -13116,7 +13310,8 @@ Renderer.item = class {
+ 	/* -------------------------------------------- */
+ 
+ 	static async _pGetSiteUnresolvedRefItems_pLoadItems () {
+-		const itemData = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/items.json`);
++		let itemData = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/items.json`);
++		if (globalThis.I18nZhTwContent?.pApplyDataFile) itemData = await globalThis.I18nZhTwContent.pApplyDataFile({file: "items.json", data: itemData});
+ 		const items = itemData.item;
+ 		itemData.itemGroup.forEach(it => it._isItemGroup = true);
+ 		return [...items, ...itemData.itemGroup];
+@@ -13124,7 +13319,8 @@ Renderer.item = class {
+ 
+ 	static async pGetSiteUnresolvedRefItems () {
+ 		const itemList = await Renderer.item._pGetSiteUnresolvedRefItems_pLoadItems();
+-		const baseItemsJson = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/items-base.json`);
++		let baseItemsJson = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/items-base.json`);
++		if (globalThis.I18nZhTwContent?.pApplyDataFile) baseItemsJson = await globalThis.I18nZhTwContent.pApplyDataFile({file: "items-base.json", data: baseItemsJson});
+ 		const baseItems = await Renderer.item._pGetAndProcBaseItems(baseItemsJson);
+ 		const {genericVariants, linkedLootTables} = await Renderer.item._pGetCacheSiteGenericVariants();
+ 		const specificVariants = Renderer.item._createSpecificVariants(baseItems, genericVariants, {linkedLootTables});
+@@ -13140,7 +13336,9 @@ Renderer.item = class {
+ 	static _pGettingSiteGenericVariants = null;
+ 	static async _pGetCacheSiteGenericVariants () {
+ 		Renderer.item._pGettingSiteGenericVariants = Renderer.item._pGettingSiteGenericVariants || (async () => {
+-			const [genericVariants, linkedLootTables] = Renderer.item._getAndProcGenericVariants(await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/magicvariants.json`));
++			let variantData = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/magicvariants.json`);
++			if (globalThis.I18nZhTwContent?.pApplyDataFile) variantData = await globalThis.I18nZhTwContent.pApplyDataFile({file: "magicvariants.json", data: variantData});
++			const [genericVariants, linkedLootTables] = Renderer.item._getAndProcGenericVariants(variantData);
+ 			return {genericVariants, linkedLootTables};
+ 		})();
+ 		return Renderer.item._pGettingSiteGenericVariants;
+@@ -13315,6 +13513,7 @@ Renderer.item = class {
+ 		delete specificVariant._fullEntries;
+ 
+ 		specificVariant._baseName = baseItem.name;
++		if (baseItem._displayName) specificVariant._baseDisplayName = baseItem._displayName;
+ 		specificVariant._baseSrd = baseItem.srd;
+ 		specificVariant._baseSrd52 = baseItem.srd52;
+ 		specificVariant._baseBasicRules = baseItem.basicRules;
+@@ -13322,6 +13521,7 @@ Renderer.item = class {
+ 		if (baseItem.source !== inherits.source) specificVariant._baseSource = baseItem.source;
+ 
+ 		specificVariant._variantName = genericVariant.name;
++		if (genericVariant._displayName) specificVariant._variantDisplayName = genericVariant._displayName;
+ 
+ 		// Magic items do not inherit the value of the non-magical item
+ 		specificVariant._baseValue = baseItem.value;
+@@ -13408,10 +13608,21 @@ Renderer.item = class {
+ 						}
+ 						break;
+ 					}
+-					default: specificVariant[inheritedProperty] = val;
+-				}
++				default: specificVariant[inheritedProperty] = val;
++			}
+ 			});
+ 
++		if (baseItem._displayName || genericVariant._i18nDisplayInherits) {
++			const displayInherits = genericVariant._i18nDisplayInherits || {};
++			let displayName = baseItem._displayName || baseItem.name;
++			if (displayInherits.nameRemove) displayName = displayName.replace(new RegExp(displayInherits.nameRemove.escapeRegexp(), "g"), "");
++			if (displayInherits.namePrefix) displayName = `${displayInherits.namePrefix}${displayName}`;
++			if (displayInherits.nameSuffix) displayName = `${displayName}${displayInherits.nameSuffix}`;
++			specificVariant._displayName = displayName;
++			if (displayInherits.reqAttune) specificVariant._displayReqAttune = displayInherits.reqAttune;
++			if (displayInherits.detail1) specificVariant._displayDetail1 = displayInherits.detail1;
++		}
++
+ 		Renderer.item._createSpecificVariants_mergeVulnerableResistImmune({specificVariant, inherits});
+ 
+ 		// Inherit fluff
+@@ -13544,7 +13755,8 @@ Renderer.item = class {
+ 		if (opts.baseItems) {
+ 			baseItems = opts.baseItems;
+ 		} else {
+-			const baseItemData = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/items-base.json`);
++			let baseItemData = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/items-base.json`);
++			if (globalThis.I18nZhTwContent?.pApplyDataFile) baseItemData = await globalThis.I18nZhTwContent.pApplyDataFile({file: "items-base.json", data: baseItemData});
+ 			Renderer.item._addBasePropertiesAndTypes(baseItemData);
+ 			baseItems = [...baseItemData.baseitem, ...(opts.additionalBaseItems || [])];
+ 		}
+@@ -13562,7 +13774,7 @@ Renderer.item = class {
+ 
+ 	static _getInjectableProps (baseItem, inherits) {
+ 		return {
+-			baseName: baseItem.name,
++			baseName: baseItem._displayName || baseItem.name,
+ 			dmgType: baseItem.dmgType ? Parser.dmgTypeToFull(baseItem.dmgType) : null,
+ 			bonusAc: inherits.bonusAc,
+ 			bonusWeapon: inherits.bonusWeapon,
+@@ -13608,6 +13820,8 @@ Renderer.item = class {
+ 		if (!genericVariant.entries && genericVariant.inherits.entries) {
+ 			genericVariant.entries = MiscUtil.copyFast(Renderer.applyAllProperties(genericVariant.inherits.entries, genericVariant.inherits));
+ 		}
++		if (genericVariant._i18nDisplayInherits?.reqAttune) genericVariant._displayReqAttune = genericVariant._i18nDisplayInherits.reqAttune;
++		if (genericVariant._i18nDisplayInherits?.detail1) genericVariant._displayDetail1 = genericVariant._i18nDisplayInherits.detail1;
+ 
+ 		// Add blanket-added properties, to enable filter
+ 		if (genericVariant.inherits.propertyAdd) genericVariant.property = [...(genericVariant.property || []), ...genericVariant.inherits.propertyAdd];
+@@ -13616,7 +13830,8 @@ Renderer.item = class {
+ 	}
+ 
+ 	static getItemTypeName (t) {
+-		return Renderer.item.getType(t)?.name?.toLowerCase() || t;
++		const itemType = Renderer.item.getType(t);
++		return itemType?._displayName || itemType?.name?.toLowerCase() || t;
+ 	}
+ 
+ 	static enhanceItem (item, {styleHint = null} = {}) {
+@@ -13653,13 +13868,13 @@ Renderer.item = class {
+ 			if (item.stealth) {
+ 				Renderer.item._initFullEntries(item);
+ 				const wrapped = styleHint === "classic"
+-					? "The wearer has disadvantage on Dexterity ({@skill Stealth}) checks."
+-					: "The wearer has {@variantrule Disadvantage|XPHB} on Dexterity ({@skill Stealth|XPHB}) checks.";
++					? "穿戴者進行敏捷（{@skill Stealth||隱匿}）檢定時具有劣勢。"
++					: "穿戴者進行敏捷（{@skill Stealth|XPHB|隱匿}）檢定時具有{@variantrule Disadvantage|XPHB|劣勢}。";
+ 				item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+ 			}
+ 			if (itemTypeAbv === Parser.ITM_TYP_ABV__HEAVY_ARMOR && item.strength) {
+ 				Renderer.item._initFullEntries(item);
+-				item._fullEntries.push({type: "wrapper", wrapped: `If the wearer has a Strength score lower than ${item.strength}, their speed is reduced by 10 feet.`, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
++				item._fullEntries.push({type: "wrapper", wrapped: `若穿戴者的力量值低於 ${item.strength}，其速度降低 10 尺。`, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+ 			}
+ 		}
+ 		if (itemTypeAbv === Parser.ITM_TYP_ABV__SPELLCASTING_FOCUS) {
+@@ -13667,44 +13882,44 @@ Renderer.item = class {
+ 				if (item.scfType === "arcane" && item.source !== Parser.SRC_ERLW) {
+ 					Renderer.item._initFullEntries(item);
+ 					const wrapped = styleHint === "classic"
+-						? "An arcane focus is a special item\u2014an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item\u2014designed to channel the power of arcane spells. A {@class sorcerer}, {@class warlock}, or {@class wizard} can use such an item as a spellcasting focus."
+-						: "An Arcane Focus takes a specific form and is bejeweled or carved to channel arcane magic. A {@class Sorcerer|XPHB}, {@class Warlock|XPHB}, or {@class Wizard|XPHB} can use such an item as a {@variantrule Spellcasting Focus|XPHB}.";
++						? "奧術法器是用來引導奧術魔力的特殊物品，例如寶珠、水晶、權杖、特製法杖、形似魔杖的木條或類似物品。{@class sorcerer||術士}、{@class warlock||魔契師}或{@class wizard||法師}可以使用這類物品作為施法法器。"
++						: "奧術法器具有特定外形，並鑲有寶石或刻紋以引導奧術魔力。{@class Sorcerer|XPHB|術士}、{@class Warlock|XPHB|魔契師}或{@class Wizard|XPHB|法師}可以使用這類物品作為{@variantrule Spellcasting Focus|XPHB|施法法器}。";
+ 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+ 				}
+ 				if (item.scfType === "druid") {
+ 					Renderer.item._initFullEntries(item);
+ 					const wrapped = styleHint === "classic"
+-						? "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A {@class druid} can use such an object as a spellcasting focus."
+-						: "A Druidic Focus takes a specific form and is carved, tied with ribbon, or painted to channel primal magic. A {@class Druid|XPHB} or {@class Ranger|XPHB} can use such an object as a {@variantrule Spellcasting Focus|XPHB}.";
++						? "德魯伊法器可以是一小枝槲寄生或冬青、以紫杉或其他特殊木材製成的魔杖或權杖、由活樹完整取材的法杖，或融入神聖動物羽毛、毛皮、骨頭與牙齒的圖騰物件。{@class druid||德魯伊}可以使用這類物品作為施法法器。"
++						: "德魯伊法器具有特定外形，並經雕刻、繫上緞帶或彩繪以引導原初魔力。{@class Druid|XPHB|德魯伊}或{@class Ranger|XPHB|遊俠}可以使用這類物品作為{@variantrule Spellcasting Focus|XPHB|施法法器}。";
+ 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+ 				}
+ 				if (item.scfType === "holy") {
+ 					Renderer.item._initFullEntries(item);
+ 					const wrapped = styleHint === "classic"
+-						? "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+-						: "A Holy Symbol takes a specific form and is bejeweled or painted to channel divine magic. A {@class Cleric|XPHB} or {@class Paladin|XPHB} can use a Holy Symbol as a {@variantrule Spellcasting Focus|XPHB}.";
++						? "聖徽代表一位神祇或一個神系。它可以是刻有神祇象徵的護符、仔細雕刻或鑲嵌在盾牌上的相同徽記，或裝著一小片神聖遺物的盒子。牧師或聖武士可以使用聖徽作為施法法器；施法者必須手持聖徽、明顯佩戴它，或將它裝在盾牌上。"
++						: "聖徽具有特定外形，並鑲有寶石或彩繪以引導神聖魔力。{@class Cleric|XPHB|牧師}或{@class Paladin|XPHB|聖武士}可以使用聖徽作為{@variantrule Spellcasting Focus|XPHB|施法法器}。";
+ 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+ 				}
+ 			} else {
+ 				if (item.scfType === "arcane") {
+ 					Renderer.item._initFullEntries(item);
+ 					const wrapped = styleHint === "classic"
+-						? "An arcane focus is a special item designed to channel the power of arcane spells. A {@class sorcerer}, {@class warlock}, or {@class wizard} can use such an item as a spellcasting focus."
+-						: "An Arcane Focus takes a specific form and is bejeweled or carved to channel arcane magic. A {@class Sorcerer|XPHB}, {@class Warlock|XPHB}, or {@class Wizard|XPHB} can use such an item as a {@variantrule Spellcasting Focus|XPHB}.";
++						? "奧術法器是用來引導奧術魔力的特殊物品。{@class sorcerer||術士}、{@class warlock||魔契師}或{@class wizard||法師}可以使用這類物品作為施法法器。"
++						: "奧術法器具有特定外形，並鑲有寶石或刻紋以引導奧術魔力。{@class Sorcerer|XPHB|術士}、{@class Warlock|XPHB|魔契師}或{@class Wizard|XPHB|法師}可以使用這類物品作為{@variantrule Spellcasting Focus|XPHB|施法法器}。";
+ 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+ 				}
+ 				if (item.scfType === "druid") {
+ 					Renderer.item._initFullEntries(item);
+ 					const wrapped = styleHint === "classic"
+-						? "A {@class druid} can use this object as a spellcasting focus."
+-						: "A Druidic Focus takes a specific form and is carved, tied with ribbon, or painted to channel primal magic. A {@class Druid|XPHB} or {@class Ranger|XPHB} can use such an object as a {@variantrule Spellcasting Focus|XPHB}.";
++						? "{@class druid||德魯伊}可以使用這件物品作為施法法器。"
++						: "德魯伊法器具有特定外形，並經雕刻、繫上緞帶或彩繪以引導原初魔力。{@class Druid|XPHB|德魯伊}或{@class Ranger|XPHB|遊俠}可以使用這類物品作為{@variantrule Spellcasting Focus|XPHB|施法法器}。";
+ 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+ 				}
+ 				if (item.scfType === "holy") {
+ 					Renderer.item._initFullEntries(item);
+ 					const wrapped = styleHint === "classic"
+-						? "A holy symbol is a representation of a god or pantheon. A {@class cleric} or {@class paladin} can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+-						: "A Holy Symbol takes a specific form and is bejeweled or painted to channel divine magic. A {@class Cleric|XPHB} or {@class Paladin|XPHB} can use a Holy Symbol as a {@variantrule Spellcasting Focus|XPHB}.";
++						? "聖徽代表一位神祇或一個神系。{@class cleric||牧師}或{@class paladin||聖武士}可以使用聖徽作為施法法器；施法者必須手持聖徽、明顯佩戴它，或將它裝在盾牌上。"
++						: "聖徽具有特定外形，並鑲有寶石或彩繪以引導神聖魔力。{@class Cleric|XPHB|牧師}或{@class Paladin|XPHB|聖武士}可以使用聖徽作為{@variantrule Spellcasting Focus|XPHB|施法法器}。";
+ 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+ 				}
+ 			}
+@@ -13722,7 +13937,7 @@ Renderer.item = class {
+ 					type: "wrapper",
+ 					wrapped: {
+ 						type: "entries",
+-						name: `Mastery: ${mastery.name}`,
++						name: `精通：${Renderer.utils.getBilingualName(mastery)}`,
+ 						source: mastery.source,
+ 						page: mastery.page,
+ 						entries: Renderer.item._enhanceItem_getItemPropertyTypeEntries({item, ent: mastery}),
+@@ -13737,7 +13952,7 @@ Renderer.item = class {
+ 		if (item.type === Parser.ITM_TYP__TOOL || item.type === Parser.ITM_TYP__ARTISAN_TOOL || item.type === Parser.ITM_TYP__INSTRUMENT || item.type === Parser.ITM_TYP__GAMING_SET) { // tools, artisan's tools, instruments, gaming sets
+ 			Renderer.item._initFullAdditionalEntries(item);
+ 			item._fullAdditionalEntries.push({type: "wrapper", wrapped: {type: "hr"}, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+-			item._fullAdditionalEntries.push({type: "wrapper", wrapped: `{@note See the {@variantrule Tool Proficiencies|XGE} entry for more information.}`, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
++			item._fullAdditionalEntries.push({type: "wrapper", wrapped: "{@note 更多資訊見{@variantrule Tool Proficiencies|XGE|工具熟練項}條目。}", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+ 		}
+ 
+ 		// Add additional sources for all instruments and gaming sets
+@@ -13773,12 +13988,16 @@ Renderer.item = class {
+ 		// handle item groups
+ 		if (item._isItemGroup && item.items?.length && !item.itemsHidden) {
+ 			Renderer.item._initFullEntries(item);
+-			item._fullEntries.push({type: "wrapper", wrapped: "Multiple variations of this item exist, as listed below:", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "magicvariant"}});
++			item._fullEntries.push({type: "wrapper", wrapped: "此物品有多種版本，如下所列：", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "magicvariant"}});
+ 			item._fullEntries.push({
+ 				type: "wrapper",
+ 				wrapped: {
+ 					type: "list",
+-					items: item.items.map(it => typeof it === "string" ? `{@item ${it}}` : `{@item ${it.name}|${it.source}}`),
++					items: item.items.map((it, ix) => {
++						const displayName = item._displayItems?.[ix];
++						if (typeof it === "string") return displayName ? `{@item ${it.includes("|") ? it : `${it}|`}|${displayName}}` : `{@item ${it}}`;
++						return `{@item ${it.name}|${it.source}${displayName ? `|${displayName}` : ""}}`;
++					}),
+ 				},
+ 				data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "magicvariant"},
+ 			});
+@@ -13794,13 +14013,13 @@ Renderer.item = class {
+ 				type: "wrapper",
+ 				wrapped: {
+ 					type: "entries",
+-					name: "Base items",
++					name: "基礎物品",
+ 					entries: [
+-						"This item variant can be applied to the following base items:",
++						"此物品變體可以套用到下列基礎物品：",
+ 						{
+ 							type: "list",
+ 							items: item.variants.map(({base, specificVariant}) => {
+-								return `{@item ${base.name}|${base.source}} ({@item ${specificVariant.name}|${specificVariant.source}})`;
++								return `{@item ${base.name}|${base.source}|${base._displayName || base.name}}（{@item ${specificVariant.name}|${specificVariant.source}|${specificVariant._displayName || specificVariant.name}}）`;
+ 							}),
+ 						},
+ 					],
+@@ -13812,22 +14031,39 @@ Renderer.item = class {
+ 	}
+ 
+ 	static _enhanceItem_getItemPropertyTypeEntries ({item, ent}) {
+-		if (!ent.entriesTemplate) return MiscUtil.copyFast(ent.entries);
+-		return MiscUtil
+-			.getWalker({
+-				keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST,
+-			})
+-			.walk(
+-				MiscUtil.copyFast(ent.entriesTemplate),
+-				{
+-					string: (str) => {
+-						return Renderer.utils.applyTemplate(
+-							item,
+-							str,
+-						);
++		const entries = !ent.entriesTemplate
++			? MiscUtil.copyFast(ent.entries)
++			: MiscUtil
++				.getWalker({
++					keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST,
++				})
++				.walk(
++					MiscUtil.copyFast(ent.entriesTemplate),
++					{
++						string: (str) => {
++							return Renderer.utils.applyTemplate(
++								item,
++								str,
++							);
++						},
+ 					},
+-				},
+-			);
++				);
++
++		Renderer.item._mutEntryBilingualNames(entries);
++		return entries;
++	}
++
++	static _mutEntryBilingualNames (value) {
++		if (Array.isArray(value)) {
++			value.forEach(it => Renderer.item._mutEntryBilingualNames(it));
++			return;
++		}
++		if (!value || typeof value !== "object") return;
++
++		if (value.name && value.ENG_name) value._displayName = Renderer.utils.getBilingualName(value);
++		Object.entries(value)
++			.filter(([key]) => !["name", "ENG_name", "_displayName"].includes(key))
++			.forEach(([, child]) => Renderer.item._mutEntryBilingualNames(child));
+ 	}
+ 
+ 	// See: XDMG, p217
+@@ -14048,11 +14284,17 @@ Renderer.psionic = class {
+ 	static enhanceMode (mode) {
+ 		if (mode._isEnhanced) return;
+ 
+-		mode.name = [mode.name, Renderer.psionic._enhanceMode_getModeTitleBracketPart({mode: mode})].filter(Boolean).join(" ");
++		mode._displayName = [
++			globalThis.I18nZhTwContent?.getBilingualName(mode) || mode.name,
++			globalThis.I18nZhTwContent?.getPsionicModeMeta(mode) || Renderer.psionic._enhanceMode_getModeTitleBracketPart({mode: mode}),
++		].filter(Boolean).join(" ");
+ 
+ 		if (mode.submodes) {
+ 			mode.submodes.forEach(sm => {
+-				sm.name = [sm.name, Renderer.psionic._enhanceMode_getModeTitleBracketPart({mode: sm})].filter(Boolean).join(" ");
++				sm._displayName = [
++					globalThis.I18nZhTwContent?.getBilingualName(sm) || sm.name,
++					globalThis.I18nZhTwContent?.getPsionicModeMeta(sm) || Renderer.psionic._enhanceMode_getModeTitleBracketPart({mode: sm}),
++				].filter(Boolean).join(" ");
+ 			});
+ 		}
+ 
+@@ -14088,7 +14330,7 @@ Renderer.psionic = class {
+ 		return {
+ 			entryTypeOrder: `{@i ${Renderer.psionic.getTypeOrderString(ent)}}`,
+ 			entryContent: ent.entries ? {entries: ent.entries, type: "entries"} : null,
+-			entryFocus: ent.focus ? `{@b {@i Psychic Focus.}} ${ent.focus}` : null,
++			entryFocus: ent.focus ? `{@b {@i ${globalThis.I18nZhTwContent ? "心靈集中（Psychic Focus）。" : "Psychic Focus."}}} ${ent.focus}` : null,
+ 			entriesModes: ent.modes
+ 				? ent.modes
+ 					.flatMap(mode => Renderer.psionic._getModeEntries(mode))
+@@ -14102,7 +14344,7 @@ Renderer.psionic = class {
+ 		return [
+ 			{
+ 				type: mode.type || "entries",
+-				name: mode.name,
++				name: mode._displayName || mode.name,
+ 				entries: mode.entries,
+ 			},
+ 			mode.submodes ? Renderer.psionic._getSubModesEntry(mode.submodes) : null,
+@@ -14117,7 +14359,7 @@ Renderer.psionic = class {
+ 			items: subModes
+ 				.map(sm => ({
+ 					type: "item",
+-					name: sm.name,
++					name: sm._displayName || sm.name,
+ 					entries: sm.entries,
+ 				})),
+ 		};
+@@ -14125,6 +14367,11 @@ Renderer.psionic = class {
+ 
+ 	static getTypeOrderString (psi) {
+ 		const typeMeta = Parser.psiTypeToMeta(psi.type);
++		if (globalThis.I18nZhTwContent) {
++			const type = globalThis.I18nZhTwContent.getPsionicType(psi.type, {isBilingual: true});
++			const order = globalThis.I18nZhTwContent.getPsionicOrder(psi.order, {isBilingual: true});
++			return typeMeta.hasOrder ? `${order} ${type}` : type;
++		}
+ 		// if "isAltDisplay" is true, render as e.g. "Greater Discipline (Awakened)" rather than "Awakened Greater Discipline"
+ 		return typeMeta.hasOrder
+ 			? typeMeta.isAltDisplay ? `${typeMeta.full} (${psi.order})` : `${psi.order} ${typeMeta.full}`
+@@ -14169,7 +14416,12 @@ Renderer.variantrule = class {
+ 	static getCompactRenderedString (rule) {
+ 		const cpy = MiscUtil.copyFast(rule);
+ 		delete cpy.name;
+-		if (cpy.entries && cpy.ruleType) cpy.entries.unshift(`{@i ${Parser.ruleTypeToFull(cpy.ruleType)} Rule}`);
++		if (cpy.entries && cpy.ruleType) {
++			const displayRuleType = globalThis.I18nZhTwRules?.getRuleTypeDisplay(cpy.ruleType);
++			cpy.entries.unshift(displayRuleType
++				? `{@i ${displayRuleType}規則}`
++				: `{@i ${Parser.ruleTypeToFull(cpy.ruleType)} Rule}`);
++		}
+ 		return `
+ 			${Renderer.utils.getExcludedTr({entity: rule, dataProp: "variantrule", page: UrlUtil.PG_VARIANTRULES})}
+ 			${Renderer.utils.getNameTr(rule, {page: UrlUtil.PG_VARIANTRULES})}
+@@ -14310,7 +14562,7 @@ Renderer.table = class {
+ 
+ Renderer.namez = class {
+ 	static getDisplayName (ent) {
+-		return Renderer.table.getConvertedNameTableName(ent, ent);
++		return I18nZhTwUtilities.tableName(ent);
+ 	}
+ 
+ 	static getRenderedString (ent) {
+@@ -14323,7 +14575,7 @@ Renderer.namez = class {
+ 			group: ent,
+ 			tableRaw: ent,
+ 			fnGetNameCaption: this.getDisplayName.bind(this),
+-			colLabel1: "Name",
++			colLabel1: "姓名",
+ 		});
+ 
+ 		return `
+@@ -14340,7 +14592,7 @@ Renderer.namez = class {
+ 
+ Renderer.encounter = class {
+ 	static getDisplayName (ent) {
+-		return Renderer.table.getConvertedEncounterTableName(ent, ent);
++		return I18nZhTwUtilities.tableName(ent);
+ 	}
+ 
+ 	static getRenderedString (ent) {
+@@ -14353,7 +14605,7 @@ Renderer.encounter = class {
+ 			group: ent,
+ 			tableRaw: ent,
+ 			fnGetNameCaption: this.getDisplayName.bind(this),
+-			colLabel1: "Encounter",
++			colLabel1: "遭遇",
+ 		});
+ 
+ 		return `
+@@ -14372,18 +14624,19 @@ Renderer.vehicle = class {
+ 	static CHILD_PROPS = ["movement", "weapon", "station", "other", "action", "trait", "reaction", "control", "actionStation"];
+ 
+ 	static getVehicleRenderableEntriesMeta (ent) {
++		const i18n = globalThis.I18nZhTwContent;
+ 		return {
+ 			entryDamageVulnerabilities: ent.vulnerable
+-				? `{@b Damage Vulnerabilities} ${Parser.getFullImmRes(ent.vulnerable)}`
++				? `{@b 傷害易傷（Damage Vulnerabilities）} ${i18n?.getFullImmRes(ent, "vulnerable") || Parser.getFullImmRes(ent.vulnerable)}`
+ 				: null,
+ 			entryDamageResistances: ent.resist
+-				? `{@b Damage Resistances} ${Parser.getFullImmRes(ent.resist)}`
++				? `{@b 傷害抗性（Damage Resistances）} ${i18n?.getFullImmRes(ent, "resist") || Parser.getFullImmRes(ent.resist)}`
+ 				: null,
+ 			entryDamageImmunities: ent.immune
+-				? `{@b Damage Immunities} ${Parser.getFullImmRes(ent.immune)}`
++				? `{@b 傷害免疫（Damage Immunities）} ${i18n?.getFullImmRes(ent, "immune") || Parser.getFullImmRes(ent.immune)}`
+ 				: null,
+ 			entryConditionImmunities: ent.conditionImmune
+-				? `{@b Condition Immunities} ${Parser.getFullCondImm(ent.conditionImmune, {isEntry: true})}`
++				? `{@b 狀態免疫（Condition Immunities）} ${i18n?.getFullConditionImmune(ent) || Parser.getFullCondImm(ent.conditionImmune, {isEntry: true})}`
+ 				: null,
+ 		};
+ 	}
+@@ -14424,32 +14677,32 @@ Renderer.vehicle = class {
+ 			const entriesOtherOthers = (ent.other || []).filter(it => it.name !== "Actions");
+ 
+ 			const ptDimensionsTerrain = [
+-				ent.terrain ? ent.terrain.joinConjunct(", ", " and ") : null,
+-				ent.dimensions ? ent.dimensions.join(" by ") : null,
++				ent.terrain ? ent.terrain.map(it => I18nZhTwContent.getVehicleTerrain(it, {isBilingual: true})).join("、") : null,
++				ent.dimensions ? ent.dimensions.join(" × ") : null,
+ 			]
+ 				.filter(Boolean)
+ 				.join("; ");
+ 
+ 			return {
+-				entrySizeDimensions: `{@i ${Parser.sizeAbvToFull(ent.size)} vehicle${ptDimensionsTerrain ? ` (${ptDimensionsTerrain})` : ""}}`,
++				entrySizeDimensions: `{@i ${I18nZhTwContent.getSizeFull(ent.size, {isBilingual: true})}載具（Vehicle）${ptDimensionsTerrain ? `（${ptDimensionsTerrain}）` : ""}}`,
+ 				entryCreatureCapacity: ent.capCrew != null || ent.capPassenger != null
+-					? `{@b Creature Capacity} ${Renderer.vehicle.getShipCreatureCapacity(ent)}`
++					? `{@b 生物容量（Creature Capacity）} ${Renderer.vehicle.getShipCreatureCapacity(ent)}`
+ 					: null,
+ 				entryCargoCapacity: ent.capCargo != null
+-					? `{@b Cargo Capacity} ${Renderer.vehicle.getShipCargoCapacity(ent)}`
++					? `{@b 載貨量（Cargo Capacity）} ${Renderer.vehicle.getShipCargoCapacity(ent)}`
+ 					: null,
+ 				entryTravelPace: ent.pace != null
+-					? `{@b Travel Pace} ${ent.pace} miles per hour (${ent.pace * 24} miles per day)`
++					? `{@b 旅行步調（Travel Pace）} 每小時 ${ent.pace} 哩（每日 ${ent.pace * 24} 哩）`
+ 					: null,
+ 				entryTravelPaceNote: ent.pace != null
+-					? `[{@b Speed} ${ent.pace * 10} ft.]`
++					? `[{@b 速度（Speed）} ${ent.pace * 10} 尺]`
+ 					: null,
+ 				entryTravelPaceNoteTitle: ent.pace != null
+ 					? VetoolsConfig.get("styleSwitcher", "style") === "classic"
+-						? `Based on "Special Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_DMG)} p242`
+-						: `Based on "Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_XDMG)} p39`
++						? `依據「特殊旅行步調（Special Travel Pace）」；${Parser.sourceJsonToAbv(Parser.SRC_DMG)} 第 242 頁`
++						: `依據「旅行步調（Travel Pace）」；${Parser.sourceJsonToAbv(Parser.SRC_XDMG)} 第 39 頁`
+ 					: null,
+-				entryInitiative: ent.initiative ? `{@b Initiative} {@initiative ${ent.initiative}}` : null,
++				entryInitiative: ent.initiative ? `{@b 先攻（Initiative）} {@initiative ${ent.initiative}}` : null,
+ 
+ 				entriesOtherActions: entriesOtherActions.length ? entriesOtherActions : null,
+ 				entriesOtherOthers: entriesOtherOthers.length ? entriesOtherOthers : null,
+@@ -14463,7 +14716,7 @@ Renderer.vehicle = class {
+ 				items: [
+ 					{
+ 						type: "item",
+-						name: `Locomotion (${loc.mode})`,
++						name: `推進方式（Locomotion）（${I18nZhTwContent.getVehicleTerrain(loc.mode, {isBilingual: true})}）`,
+ 						entries: loc.entries,
+ 					},
+ 				],
+@@ -14477,7 +14730,7 @@ Renderer.vehicle = class {
+ 				items: [
+ 					{
+ 						type: "item",
+-						name: `Speed (${spd.mode})`,
++						name: `速度（Speed）（${I18nZhTwContent.getVehicleTerrain(spd.mode, {isBilingual: true})}）`,
+ 						entries: spd.entries,
+ 					},
+ 				],
+@@ -14495,10 +14748,10 @@ Renderer.vehicle = class {
+ 		static getSectionHpEntriesMeta_ ({entry, isEach = false}) {
+ 			return {
+ 				entryArmorClass: entry.ac
+-					? `{@b Armor Class} ${entry.ac}`
++					? `{@b 護甲等級（Armor Class）} ${entry.ac}`
+ 					: null,
+ 				entryHitPoints: entry.hp
+-					? `{@b Hit Points} ${entry.hp}${isEach ? ` each` : ""}${entry.dt ? ` (damage threshold ${entry.dt})` : ""}${entry.hpNote ? `; ${entry.hpNote}` : ""}`
++					? `{@b 生命值（Hit Points）} ${entry.hp}${isEach ? `（每個）` : ""}${entry.dt ? `（傷害閾值（Damage Threshold）${entry.dt}）` : ""}${entry.hpNote ? `；${entry.hpNote}` : ""}`
+ 					: null,
+ 			};
+ 		}
+@@ -14521,7 +14774,7 @@ Renderer.vehicle = class {
+ 		static getControlSection_ (renderer, control) {
+ 			if (!control) return "";
+ 			return `
+-				<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">Control: ${control.name}</h3></td></tr>
++				<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">操控裝置（Control）：${I18nZhTwContent.getBilingualName(control)}</h3></td></tr>
+ 				<tr><td colspan="6" class="ve-stats__sect-row-inner">
+ 				${Renderer.vehicle.ship.getSectionHpPart_(renderer, control)}
+ 				<div class="ve-rd__b--1">${renderer.render({entries: control.entries})}</div>
+@@ -14543,7 +14796,7 @@ Renderer.vehicle = class {
+ 			if (!move) return "";
+ 
+ 			return `
+-				<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">${move.isControl ? `Control and ` : ""}Movement: ${move.name}</h3></td></tr>
++				<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">${move.isControl ? `操控與移動（Control and Movement）` : `移動（Movement）`}：${I18nZhTwContent.getBilingualName(move)}</h3></td></tr>
+ 				<tr><td colspan="6" class="ve-stats__sect-row-inner">
+ 				${Renderer.vehicle.ship.getSectionHpPart_(renderer, move)}
+ 				${(move.locomotion || []).map(entry => Renderer.vehicle.ship._getMovementSection_getLocomotionSection({renderer, entry})).join("")}
+@@ -14554,7 +14807,7 @@ Renderer.vehicle = class {
+ 
+ 		static getWeaponSection_ (renderer, weap) {
+ 			return `
+-				<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">Weapons: ${weap.name}${weap.count ? ` (${weap.count})` : ""}</h3></td></tr>
++				<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">武器（Weapons）：${I18nZhTwContent.getBilingualName(weap)}${weap.count ? `（${weap.count}）` : ""}</h3></td></tr>
+ 				<tr><td colspan="6" class="ve-stats__sect-row-inner">
+ 				${Renderer.vehicle.ship.getSectionHpPart_(renderer, weap, !!weap.count)}
+ 				${renderer.render({entries: weap.entries})}
+@@ -14564,7 +14817,7 @@ Renderer.vehicle = class {
+ 
+ 		static getOtherSection_ (renderer, oth) {
+ 			return `
+-				<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">${oth.name}</h3></td></tr>
++				<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">${I18nZhTwContent.getBilingualName(oth)}</h3></td></tr>
+ 				<tr><td colspan="6" class="ve-stats__sect-row-inner">
+ 				${Renderer.vehicle.ship.getSectionHpPart_(renderer, oth)}
+ 				${renderer.render({entries: oth.entries})}
+@@ -14598,7 +14851,7 @@ Renderer.vehicle = class {
+ 					if (!pace) return null;
+ 
+ 					const asNum = Parser.vulgarToNumber(pace);
+-					return `{@tip ${isMulti && mode !== "walk" ? `${mode} ` : ""}${pace} mph|${asNum * 24} miles per day}`;
++					return `{@tip ${isMulti && mode !== "walk" ? `${I18nZhTwContent.getVehicleTerrain(mode, {isBilingual: true})} ` : ""}每小時 ${pace} 哩|每日 ${asNum * 24} 哩}`;
+ 				})
+ 				.filter(Boolean)
+ 				.join(", ");
+@@ -14610,12 +14863,12 @@ Renderer.vehicle = class {
+ 				: "\u2014";
+ 
+ 			return {
+-				entryAc: `{@b Armor Class:} ${ptAc}`,
+-				entryCargo: `{@b Cargo:} ${ent.capCargo ? `${ent.capCargo} ton${ent.capCargo === 1 ? "" : "s"}` : "\u2014"}`,
+-				entryHitPoints: `{@b Hit Points:} ${ent.hull?.hp ?? "\u2014"}`,
+-				entryCrew: `{@b Crew:} ${ent.capCrew ?? "\u2014"}${ent.capCrewNote ? ` ${ent.capCrewNote}` : ""}`,
+-				entryDamageThreshold: `{@b Damage Threshold:} ${ent.hull?.dt ?? "\u2014"}`,
+-				entryCost: `{@b Cost:} ${ent.cost != null ? Parser.vehicleCostToFull(ent) : "\u2014"}`,
++				entryAc: `{@b 護甲等級（Armor Class）：} ${ptAc}`,
++				entryCargo: `{@b 載貨量（Cargo）：} ${ent.capCargo ? `${ent.capCargo} 噸` : "\u2014"}`,
++				entryHitPoints: `{@b 生命值（Hit Points）：} ${ent.hull?.hp ?? "\u2014"}`,
++				entryCrew: `{@b 船員（Crew）：} ${ent.capCrew ?? "\u2014"}${ent.capCrewNote ? ` ${ent.capCrewNote}` : ""}`,
++				entryDamageThreshold: `{@b 傷害閾值（Damage Threshold）：} ${ent.hull?.dt ?? "\u2014"}`,
++				entryCost: `{@b 費用（Cost）：} ${ent.cost != null ? Parser.vehicleCostToFull(ent) : "\u2014"}`,
+ 				entryPacePt: this._getRenderableEntriesMeta_getPtPace(ent),
+ 			};
+ 		}
+@@ -14632,10 +14885,10 @@ Renderer.vehicle = class {
+ 				: "\u2014";
+ 
+ 			return {
+-				entrySize: ptSize ? `{@i ${ptSize} Object}` : null,
+-				entryArmorClass: `{@b Armor Class:} ${entry.ac == null ? "\u2014" : entry.ac}`,
+-				entryHitPoints: `{@b Hit Points:} ${entry.hp == null ? "\u2014" : entry.hp}`,
+-				entryCost: `{@b Cost:} ${ptCosts}`,
++				entrySize: ptSize ? `{@i ${ptSize}物件（Object）}` : null,
++				entryArmorClass: `{@b 護甲等級（Armor Class）：} ${entry.ac == null ? "\u2014" : entry.ac}`,
++				entryHitPoints: `{@b 生命值（Hit Points）：} ${entry.hp == null ? "\u2014" : entry.hp}`,
++				entryCost: `{@b 費用（Cost）：} ${ptCosts}`,
+ 			};
+ 		}
+ 
+@@ -14672,7 +14925,7 @@ Renderer.vehicle = class {
+ 			} = Renderer.vehicle.spelljammerElementalAirship.getRenderableEntriesMeta(ent);
+ 
+ 			const ptSpeed = ent.speed != null
+-				? Parser.getSpeedString(ent, {isSkipZeroWalk: true})
++				? I18nZhTwContent.getSpeedString(ent, {isSkipZeroWalk: true})
+ 				: "";
+ 
+ 			const ptSpeedPace = [ptSpeed, ptSpeed ? `(${entryPacePt})` : entryPacePt].filter(Boolean).join(" ");
+@@ -14693,10 +14946,10 @@ Renderer.vehicle = class {
+ 						],
+ 						[
+ 							entryDamageThreshold,
+-							`{@b Keel/Beam:} ${(ent.dimensions || ["\u2014"]).join("/")}`,
++							`{@b 龍骨／船寬（Keel/Beam）：} ${(ent.dimensions || ["\u2014"]).join("／")}`,
+ 						],
+ 						[
+-							`{@b Speed:} ${ptSpeedPace}`,
++							`{@b 速度（Speed）：} ${ptSpeedPace}`,
+ 							entryCost,
+ 						],
+ 					],
+@@ -14716,7 +14969,7 @@ Renderer.vehicle = class {
+ 			const isMultiple = entry.count != null && entry.count > 1;
+ 
+ 			return {
+-				entryName: `${isMultiple ? `${entry.count} ` : ""}${entry.name}${entry.crew ? ` (Crew: ${entry.crew}${isMultiple ? " each" : ""})` : ""}`,
++				entryName: `${isMultiple ? `${entry.count} 座` : ""}${I18nZhTwContent.getBilingualName(entry)}${entry.crew ? `（船員（Crew）：${entry.crew}${isMultiple ? "，每座" : ""}）` : ""}`,
+ 			};
+ 		}
+ 
+@@ -14739,7 +14992,7 @@ Renderer.vehicle = class {
+ 			} = Renderer.vehicle.spelljammerElementalAirship.getRenderableEntriesMeta(ent);
+ 
+ 			const ptSpeed = ent.speed != null
+-				? Parser.getSpeedString(ent, {isSkipZeroWalk: true})
++				? I18nZhTwContent.getSpeedString(ent, {isSkipZeroWalk: true})
+ 				: "";
+ 
+ 			const ptPaceSpeed = [entryPacePt, ptSpeed ? `(${ptSpeed})` : null].filter(Boolean).join(" ");
+@@ -14756,14 +15009,14 @@ Renderer.vehicle = class {
+ 						],
+ 						[
+ 							entryHitPoints,
+-							`{@b Passengers:} ${ent.capPassenger ? ent.capPassenger : "\u2014"}`,
++							`{@b 乘客（Passengers）：} ${ent.capPassenger ? ent.capPassenger : "\u2014"}`,
+ 						],
+ 						[
+ 							entryDamageThreshold,
+ 							entryCargo,
+ 						],
+ 						[
+-							`{@b Speed:} ${ptPaceSpeed}`,
++							`{@b 速度（Speed）：} ${ptPaceSpeed}`,
+ 							entryCost,
+ 						],
+ 					],
+@@ -14783,7 +15036,7 @@ Renderer.vehicle = class {
+ 			const isMultiple = entry.count != null && entry.count > 1;
+ 
+ 			return {
+-				entryName: `${entry.name}${isMultiple ? ` (${entry.count})` : ""}`,
++				entryName: `${I18nZhTwContent.getBilingualName(entry)}${isMultiple ? `（${entry.count}）` : ""}`,
+ 			};
+ 		}
+ 
+@@ -14797,12 +15050,12 @@ Renderer.vehicle = class {
+ 		return Parser.ABIL_ABVS.some(it => veh[it] != null) ? `<tr><td colspan="6">
+ 			<table class="ve-w-100 ve-summary stripe-even-table">
+ 				<tr>
+-					<th class="ve-col-2 ve-text-center">STR</th>
+-					<th class="ve-col-2 ve-text-center">DEX</th>
+-					<th class="ve-col-2 ve-text-center">CON</th>
+-					<th class="ve-col-2 ve-text-center">INT</th>
+-					<th class="ve-col-2 ve-text-center">WIS</th>
+-					<th class="ve-col-2 ve-text-center">CHA</th>
++					<th class="ve-col-2 ve-text-center">力量（STR）</th>
++					<th class="ve-col-2 ve-text-center">敏捷（DEX）</th>
++					<th class="ve-col-2 ve-text-center">體質（CON）</th>
++					<th class="ve-col-2 ve-text-center">智力（INT）</th>
++					<th class="ve-col-2 ve-text-center">感知（WIS）</th>
++					<th class="ve-col-2 ve-text-center">魅力（CHA）</th>
+ 				</tr>
+ 				<tr>
+ 					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "str")}</td>
+@@ -14834,7 +15087,7 @@ Renderer.vehicle = class {
+ 	}
+ 
+ 	static _getTraitSection (renderer, veh) {
+-		return veh.trait ? `<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">Traits</h3></td></tr>
++		return veh.trait ? `<tr><td colspan="6"><h3 class="ve-stats__sect-header-inner">特性（Traits）</h3></td></tr>
+ 		<tr><td colspan="6" class="ve-pt-2 ve-pb-2">
+ 		${Renderer.monster.getOrderedTraits(veh, renderer).map(it => it.rendered || renderer.render(it, 2)).join("")}
+ 		</td></tr>` : "";
+@@ -14854,10 +15107,10 @@ Renderer.vehicle = class {
+ 			${Renderer.vehicle.ship.getCrewCargoPaceSection_(ent, {entriesMetaShip})}
+ 			${Renderer.vehicle._getAbilitySection(ent)}
+ 			${Renderer.vehicle._getResImmVulnSection(ent, {entriesMeta})}
+-			${ent.action ? Renderer.vehicle.ship.getSectionTitle_("Actions") : ""}
++			${ent.action ? Renderer.vehicle.ship.getSectionTitle_("動作（Actions）") : ""}
+ 			${ent.action ? `<tr><td colspan="6" class="ve-stats__sect-row-inner">${Renderer.vehicle.ship.getActionPart_(renderer, ent)}</td></tr>` : ""}
+ 			${(entriesMetaShip.entriesOtherActions || []).map(Renderer.vehicle.ship.getOtherSection_.bind(this, renderer)).join("")}
+-			${ent.hull ? `${Renderer.vehicle.ship.getSectionTitle_("Hull")}
++			${ent.hull ? `${Renderer.vehicle.ship.getSectionTitle_("船體（Hull）")}
+ 			<tr><td colspan="6" class="ve-stats__sect-row-inner">
+ 			${Renderer.vehicle.ship.getSectionHpPart_(renderer, ent.hull)}
+ 			</td></tr>` : ""}
+@@ -14871,13 +15124,13 @@ Renderer.vehicle = class {
+ 
+ 	static getShipCreatureCapacity (veh) {
+ 		return [
+-			veh.capCrew ? `${veh.capCrew} crew` : null,
+-			veh.capPassenger ? `${veh.capPassenger} passenger${veh.capPassenger === 1 ? "" : "s"}` : null,
+-		].filter(Boolean).join(", ");
++			veh.capCrew ? `${veh.capCrew} 名船員` : null,
++			veh.capPassenger ? `${veh.capPassenger} 名乘客` : null,
++		].filter(Boolean).join("、");
+ 	}
+ 
+ 	static getShipCargoCapacity (veh) {
+-		return typeof veh.capCargo === "string" ? veh.capCargo : `${veh.capCargo} ton${veh.capCargo === 1 ? "" : "s"}`;
++		return typeof veh.capCargo === "string" ? veh.capCargo : `${veh.capCargo} 噸`;
+ 	}
+ 
+ 	static _getRenderedString_spelljammer (veh, opts) {
+@@ -14920,25 +15173,25 @@ Renderer.vehicle = class {
+ 			const dexMod = Parser.getAbilityModNumber(ent.dex);
+ 
+ 			const ptDtMt = [
+-				ent.hp.dt != null ? `damage threshold ${ent.hp.dt}` : null,
+-				ent.hp.mt != null ? `mishap threshold ${ent.hp.mt}` : null,
++				ent.hp.dt != null ? `傷害閾值（Damage Threshold）${ent.hp.dt}` : null,
++				ent.hp.mt != null ? `事故閾值（Mishap Threshold）${ent.hp.mt}` : null,
+ 			]
+ 				.filter(Boolean)
+-				.join(", ");
++				.join("、");
+ 
+-			const ptAc = ent.ac ?? dexMod === 0 ? `19` : `${19 + dexMod} (19 while motionless)`;
++			const ptAc = ent.ac ?? dexMod === 0 ? `19` : `${19 + dexMod}（靜止時為 19）`;
+ 
+ 			return {
+-				entrySizeWeight: `{@i ${Parser.sizeAbvToFull(ent.size)} vehicle (${ent.weight.toLocaleStringVe()} lb.)}`,
+-				entryCreatureCapacity: `{@b Creature Capacity} ${Renderer.vehicle.getInfwarCreatureCapacity(ent)}`,
+-				entryCargoCapacity: `{@b Cargo Capacity} ${Parser.weightToFull(ent.capCargo)}`,
+-				entryArmorClass: `{@b Armor Class} ${ptAc}`,
+-				entryHitPoints: `{@b Hit Points} ${ent.hp.hp}${ptDtMt ? ` (${ptDtMt})` : ""}`,
+-				entrySpeed: `{@b Speed} ${ent.speed} ft.`,
+-				entrySpeedNote: `[{@b Travel Pace} ${Math.floor(ent.speed / 10)} miles per hour (${Math.floor(ent.speed * 24 / 10)} miles per day)]`,
++				entrySizeWeight: `{@i ${I18nZhTwContent.getSizeFull(ent.size, {isBilingual: true})}載具（Vehicle）（${ent.weight.toLocaleStringVe()} 磅）}`,
++				entryCreatureCapacity: `{@b 生物容量（Creature Capacity）} ${Renderer.vehicle.getInfwarCreatureCapacity(ent)}`,
++				entryCargoCapacity: `{@b 載貨量（Cargo Capacity）} ${I18nZhTwContent.getWeightFull(ent.capCargo)}`,
++				entryArmorClass: `{@b 護甲等級（Armor Class）} ${ptAc}`,
++				entryHitPoints: `{@b 生命值（Hit Points）} ${ent.hp.hp}${ptDtMt ? `（${ptDtMt}）` : ""}`,
++				entrySpeed: `{@b 速度（Speed）} ${ent.speed} 尺`,
++				entrySpeedNote: `[{@b 旅行步調（Travel Pace）} 每小時 ${Math.floor(ent.speed / 10)} 哩（每日 ${Math.floor(ent.speed * 24 / 10)} 哩）]`,
+ 				entrySpeedNoteTitle: VetoolsConfig.get("styleSwitcher", "style") === "classic"
+-					? `Based on "Special Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_DMG)} p242`
+-					: `Based on "Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_XDMG)} p39`,
++					? `依據「特殊旅行步調（Special Travel Pace）」；${Parser.sourceJsonToAbv(Parser.SRC_DMG)} 第 242 頁`
++					: `依據「旅行步調（Travel Pace）」；${Parser.sourceJsonToAbv(Parser.SRC_XDMG)} 第 39 頁`,
+ 			};
+ 		}
+ 	};
+@@ -14953,7 +15206,7 @@ Renderer.vehicle = class {
+ 		const ptActionStation = Renderer.monster.getCompactRenderedStringSection({
+ 			ent,
+ 			renderer,
+-			title: "Action Stations",
++			title: "動作站（Action Stations）",
+ 			key: "actionStation",
+ 			depth: 2,
+ 			styleHint: opts.styleHint,
+@@ -14961,7 +15214,7 @@ Renderer.vehicle = class {
+ 		const ptReaction = Renderer.monster.getCompactRenderedStringSection({
+ 			ent,
+ 			renderer,
+-			title: "Reactions",
++			title: "反應（Reactions）",
+ 			key: "reaction",
+ 			depth: 2,
+ 			styleHint: opts.styleHint,
+@@ -14984,7 +15237,7 @@ Renderer.vehicle = class {
+ 	}
+ 
+ 	static getInfwarCreatureCapacity (veh) {
+-		return `${veh.capCreature} Medium creatures`;
++		return `${veh.capCreature} 個中型（Medium）生物`;
+ 	}
+ 
+ 	static pGetFluff (veh) {
+@@ -15008,7 +15261,7 @@ Renderer.vehicleUpgrade = class {
+ 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+ 
+ 		const summary = [
+-			ent.upgradeType ? ent.upgradeType.map(t => Parser.vehicleUpgradeTypeToFull(t)) : null,
++			ent.upgradeType ? ent.upgradeType.map(t => I18nZhTwContent.getVehicleUpgradeType(t, {isBilingual: true})) : null,
+ 			ent.prerequisite ? Renderer.utils.prerequisite.getEntry(ent.prerequisite, {styleHint}) : null,
+ 		]
+ 			.filter(Boolean)
+@@ -15019,7 +15272,7 @@ Renderer.vehicleUpgrade = class {
+ 				? `{@i ${summary}}`
+ 				: null,
+ 			entryCost: ent.cost != null
+-				? `{@b Cost:} ${Parser.itemValueToFullMultiCurrency({value: ent.cost}, {styleHint})}`
++				? `{@b 費用（Cost）：} ${Parser.itemValueToFullMultiCurrency({value: ent.cost}, {styleHint})}`
+ 				: null,
+ 		};
+ 	}
+@@ -15052,21 +15305,25 @@ Renderer.action = class {
+ Renderer.language = class {
+ 	static getLanguageRenderableEntriesMeta (ent) {
+ 		const hasMeta = ent.typicalSpeakers || ent.script || ent.origin;
++		const i18n = globalThis.I18nZhTwContent;
+ 
+ 		const entriesContent = [];
+ 
+ 		if (ent.entries) entriesContent.push(...ent.entries);
+ 		if (ent.dialects) {
+-			entriesContent.push(`This language is a family which includes the following dialects: ${ent.dialects.sort(SortUtil.ascSortLower).join(", ")}. Creatures that speak different dialects of the same language can communicate with one another.`);
++			const dialects = i18n
++				? i18n.getBilingualValues(ent.dialects, ent._displayDialects)
++				: [...ent.dialects].sort(SortUtil.ascSortLower).join(", ");
++			entriesContent.push(`此語言是一個語族，包含以下方言：${dialects}。使用同一語言之不同方言的生物仍可彼此溝通。`);
+ 		}
+ 
+-		if (!entriesContent.length && !hasMeta) entriesContent.push("{@i No information available.}");
++		if (!entriesContent.length && !hasMeta) entriesContent.push("{@i 沒有可用資訊。}");
+ 
+ 		return {
+-			entryType: ent.type ? `{@i ${ent.type.toTitleCase()} language}` : null,
+-			entryTypicalSpeakers: ent.typicalSpeakers ? `{@b Typical Speakers:} ${ent.typicalSpeakers.join(", ")}` : null,
+-			entryOrigin: ent.origin ? `{@b Origin:} ${ent.origin}` : null,
+-			entryScript: ent.script ? `{@b Script:} ${ent.script}` : null,
++			entryType: ent.type ? `{@i ${i18n ? i18n.getLanguageTypeLabel(ent.type) : `${ent.type.toTitleCase()} language`}}` : null,
++			entryTypicalSpeakers: ent.typicalSpeakers ? `{@b 典型使用者（Typical Speakers）：} ${(ent._displayTypicalSpeakers || ent.typicalSpeakers).join("、")}` : null,
++			entryOrigin: ent.origin ? `{@b 起源（Origin）：} ${i18n ? i18n.getBilingualField(ent, "origin") : ent.origin}` : null,
++			entryScript: ent.script ? `{@b 文字（Script）：} ${i18n ? i18n.getBilingualField(ent, "script") : ent.script}` : null,
+ 			entriesContent: entriesContent.length ? entriesContent : null,
+ 		};
+ 	}
+@@ -15227,8 +15484,8 @@ Renderer.charoption = class {
+ 	}
+ 
+ 	static _OPTION_TYPE_ENTRIES = {
+-		"RF:B": `{@note You may replace the standard feature of your background with this feature.}`,
+-		"CS": `{@note See the {@adventure Character Secrets|IDRotF|0|character secrets} section for more information.}`,
++		"RF:B": `{@note 你可以用此特性取代背景的標準特性。}`,
++		"CS": `{@note 詳情請參閱「{@adventure Character Secrets|IDRotF|0|角色祕密}」章節。}`,
+ 	};
+ 
+ 	static getOptionTypePreText (ent) {
+@@ -15261,23 +15518,28 @@ Renderer.recipe = class {
+ 			.filter(prop => ent.time[prop])
+ 			.map((prop, i, arr) => {
+ 				const val = ent.time[prop];
++				const propDisplay = ({
++					total: "總計（Total）",
++					preparation: "準備（Preparation）",
++					cooking: "烹調（Cooking）",
++				})[prop] || I18nZhTwContent.getBilingualValue(prop.toTitleCase(), prop.toTitleCase());
+ 
+ 				const ptsTime = (
+ 					val.min != null && val.max != null
+ 						? [
+-							Parser.getMinutesToFull(val.min),
+-							Parser.getMinutesToFull(val.max),
++							I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(val.min)),
++							I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(val.max)),
+ 						]
+-						: [Parser.getMinutesToFull(val)]
++						: [I18nZhTwContent.localizeDurationText(Parser.getMinutesToFull(val))]
+ 				);
+ 
+ 				const suffix = MiscUtil.findCommonSuffix(ptsTime, {isRespectWordBoundaries: true});
+ 				const ptTime = ptsTime
+ 					.map(it => !suffix.length ? it : it.slice(0, -suffix.length))
+-					.join(" to ");
++					.join("至");
+ 
+ 				return {
+-					entryName: `{@b {@style ${prop.toTitleCase()} Time:|small-caps}}`,
++					entryName: `{@b {@style ${propDisplay}時間：|small-caps}}`,
+ 					entryContent: `${ptTime}${suffix}`,
+ 				};
+ 			});
+@@ -15286,10 +15548,10 @@ Renderer.recipe = class {
+ 	static getRecipeRenderableEntriesMeta (ent) {
+ 		return {
+ 			entryMakes: ent.makes
+-				? `{@b {@style Makes|small-caps}} ${ent._scaleFactor ? `${ent._scaleFactor}× ` : ""}${ent.makes}`
++				? `{@b {@style 成品量（Makes）|small-caps}} ${ent._scaleFactor ? `${ent._scaleFactor}× ` : ""}${ent.makes}`
+ 				: null,
+ 			entryServes: ent.serves
+-				? `{@b {@style Serves|small-caps}} ${ent.serves.min ?? ent.serves.exact}${ent.serves.min != null ? " to " : ""}${ent.serves.max ?? ""}${ent.serves.note ? ` ${ent.serves.note}` : ""}`
++				? `{@b {@style 份量（Serves）|small-caps}} ${ent.serves.min ?? ent.serves.exact}${ent.serves.min != null ? "至" : ""}${ent.serves.max ?? ""}${ent.serves.note ? ` ${ent.serves.note}` : ""}`
+ 				: null,
+ 			entryMetasTime: Renderer.recipe._getEntryMetasTime(ent),
+ 			entryIngredients: {entries: ent._fullIngredients},
+@@ -15326,9 +15588,9 @@ Renderer.recipe = class {
+ 
+ 				<div class="ve-rd-plaintext__wrp-sidebar ${ptMakes || ptServes ? "ve-mt-1" : ""}">${Renderer.get().render(entriesMeta.entryIngredients, 0)}</div>
+ 
+-				${entriesMeta.entryEquipment ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">Equipment</div><div>${Renderer.get().render(entriesMeta.entryEquipment)}</div></div>` : ""}
++				${entriesMeta.entryEquipment ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">器具（Equipment）</div><div>${Renderer.get().render(entriesMeta.entryEquipment)}</div></div>` : ""}
+ 
+-				${entriesMeta.entryCooksNotes ? `<div class="ve-w-100 ve-flex-col ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">Cook's Notes</div><div class="ve-italic">${Renderer.get().render(entriesMeta.entryCooksNotes)}</div></div>` : ""}
++				${entriesMeta.entryCooksNotes ? `<div class="ve-w-100 ve-flex-col ve-mt-4"><div class="ve-flex-vh-center ve-bold ve-mb-1 ve-small-caps">廚師註記（Cook's Notes）</div><div class="ve-italic">${Renderer.get().render(entriesMeta.entryCooksNotes)}</div></div>` : ""}
+ 			</div>
+ 
+ 			<div class="ve-pl-2 ve-flex-2 ve-rd-plaintext__wrp-primary ve-overflow-x-auto">
+@@ -15461,7 +15723,7 @@ Renderer.recipe = class {
+ 			if (cpyR.serves.exact) cpyR.serves.exact *= scaleFactor;
+ 		}
+ 
+-		cpyR._displayName = `${cpyR.name} (×${scaleFactor})`;
++		cpyR._displayName = `${I18nZhTwContent.getBilingualName(r)}（×${scaleFactor}）`;
+ 		cpyR._scaleFactor = scaleFactor;
+ 
+ 		return cpyR;
+@@ -15614,9 +15876,9 @@ Renderer.crochetPattern = class {
+ 			...(ent.size || [])
+ 				.flatMap(szInfo => {
+ 					return [
+-						szInfo.name ? `{@style ${szInfo.name}|small-caps}` : null,
+-						szInfo.width ? `{@b Width:} ${szInfo.width.entry}` : null,
+-						szInfo.height ? `{@b Height:} ${szInfo.height.entry}` : null,
++						szInfo.name ? `{@style ${I18nZhTwContent.getBilingualName(szInfo)}|small-caps}` : null,
++						szInfo.width ? `{@b 寬度（Width）：} ${szInfo.width.entry}` : null,
++						szInfo.height ? `{@b 高度（Height）：} ${szInfo.height.entry}` : null,
+ 					]
+ 						.filter(Boolean);
+ 				}),
+@@ -15627,9 +15889,9 @@ Renderer.crochetPattern = class {
+ 
+ 	static _getCrochetPatternRenderableEntriesMeta_getHookEntry ({hookSize}) {
+ 		const dispUs = Parser.crochetHookMmToUs(hookSize);
+-		const ptMm = `${hookSize} mm crochet hook`;
++		const ptMm = `${hookSize} 公釐鉤針（mm Crochet Hook）`;
+ 		if (!dispUs) return ptMm;
+-		return `US ${dispUs} / ${ptMm}`;
++		return `美規（US）${dispUs}／${ptMm}`;
+ 	}
+ 
+ 	static _getCrochetPatternRenderableEntriesMeta_entriesHooks ({ent}) {
+@@ -15640,7 +15902,7 @@ Renderer.crochetPattern = class {
+ 				}
+ 
+ 				return [
+-					`{@style ${hookInfo.name}|small-caps}`,
++					`{@style ${I18nZhTwContent.getBilingualName(hookInfo)}|small-caps}`,
+ 					...hookInfo.hooks
+ 						.map(hookSize => this._getCrochetPatternRenderableEntriesMeta_getHookEntry({hookSize})),
+ 				]
+@@ -15650,7 +15912,7 @@ Renderer.crochetPattern = class {
+ 
+ 	static getCrochetPatternRenderableEntriesMeta (ent) {
+ 		return {
+-			entrySkillLevel: Parser.crochetPatternSkilLevelToFull(ent.level),
++			entrySkillLevel: I18nZhTwContent.getHomecraftSkillLevel(ent.level, {isBilingual: true}),
+ 			entryDesignedBy: ent.designers ? ent.designers.joinConjunct(", ", " and ") : null,
+ 			entriesMeasurements: this._getCrochetPatternRenderableEntriesMeta_entriesMeasurements({ent}),
+ 			entriesHooks: this._getCrochetPatternRenderableEntriesMeta_entriesHooks({ent}),
+@@ -15667,29 +15929,29 @@ Renderer.crochetPattern = class {
+ 		${Renderer.utils.getNameTr(ent, {page: UrlUtil.PG_HOMECRAFTS})}
+ 
+ 		<tr><td colspan="6">
+-			<i>Skill Level: ${renderer.render(entrySkillLevel)}.${entryDesignedBy ? ` Designed by ${renderer.render(entryDesignedBy)}.` : ""}</i></td>
++			<i>難度（Skill Level）：${renderer.render(entrySkillLevel)}。${entryDesignedBy ? ` 設計者（Designed by）：${renderer.render(entryDesignedBy)}。` : ""}</i></td>
+ 		</td></tr>
+ 
+ 		<tr><td colspan="6">
+ 		<div class="ve-flex ve-w-100 ve-rd-plaintext__wrp-root">
+ 			<div class="ve-flex-1 ve-flex-col ve-br-1p ve-pr-2">
+-				${entriesMeasurements?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Finished Measurements</div><div>${entriesMeasurements.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}</div></div>` : ""}
++				${entriesMeasurements?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">完成尺寸（Finished Measurements）</div><div>${entriesMeasurements.map(ent => `<div class="ve-mt-1">${renderer.render(ent)}</div>`).join("")}</div></div>` : ""}
+ 
+-				${ent.yarn?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Yarn</div><div>${renderer.render({entries: ent.yarn})}</div></div>` : ""}
++				${ent.yarn?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">紗線（Yarn）</div><div>${renderer.render({entries: ent.yarn})}</div></div>` : ""}
+ 
+-				${entriesHooks?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Hooks</div><div>${renderer.render({entries: entriesHooks})}</div></div>` : ""}
++				${entriesHooks?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">鉤針（Hooks）</div><div>${renderer.render({entries: entriesHooks})}</div></div>` : ""}
+ 
+-				${ent.notions?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Notions</div><div>${renderer.render({entries: ent.notions})}</div></div>` : ""}
++				${ent.notions?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">配件（Notions）</div><div>${renderer.render({entries: ent.notions})}</div></div>` : ""}
+ 
+-				${ent.gauge?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Gauge</div><div>${renderer.render({entries: ent.gauge})}</div></div>` : ""}
++				${ent.gauge?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">針目密度（Gauge）</div><div>${renderer.render({entries: ent.gauge})}</div></div>` : ""}
+ 
+-				${ent.stitches?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Special Stitches</div><div>${renderer.render({entries: ent.stitches})}</div></div>` : ""}
++				${ent.stitches?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">特殊針法（Special Stitches）</div><div>${renderer.render({entries: ent.stitches})}</div></div>` : ""}
+ 
+-				${ent.abbreviations?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Special Abbreviations</div><div>${renderer.render({entries: ent.abbreviations})}</div></div>` : ""}
++				${ent.abbreviations?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">特殊縮寫（Special Abbreviations）</div><div>${renderer.render({entries: ent.abbreviations})}</div></div>` : ""}
+ 
+-				${ent.notes?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Notes</div><div>${renderer.render({entries: ent.notes})}</div></div>` : ""}
++				${ent.notes?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">註記（Notes）</div><div>${renderer.render({entries: ent.notes})}</div></div>` : ""}
+ 
+-				${ent.finishing?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">Finishing</div><div>${renderer.render({entries: ent.finishing})}</div></div>` : ""}
++				${ent.finishing?.length ? `<div class="ve-rd-plaintext__wrp-sidebar ve-mt-4"><div class="ve-bold ve-mb-1 ve-small-caps">收尾（Finishing）</div><div>${renderer.render({entries: ent.finishing})}</div></div>` : ""}
+ 			</div>
+ 
+ 			<div class="ve-pl-2 ve-flex-2 ve-rd-plaintext__wrp-primary ve-overflow-x-auto">
+@@ -15732,12 +15994,13 @@ Renderer.card = class {
+ 		const entries = [...ent.entries || []];
+ 		if (ent.suit && (ent.valueName || ent.value)) {
+ 			const suitAndValue = `${((ent.valueName || "") || Parser.numberToText(ent.value)).toTitleCase()} of ${ent.suit.toTitleCase()}`;
+-			if (suitAndValue.toLowerCase() !== ent.name.toLowerCase()) entries.unshift(`{@i ${suitAndValue}}`);
++			const displaySuitAndValue = `${ent._displaySuit || ent.suit}：${ent._displayValueName || ent.valueName || ent.value}`;
++			if (suitAndValue.toLowerCase() !== ent.name.toLowerCase()) entries.unshift(`{@i ${displaySuitAndValue}}`);
+ 		}
+ 
+ 		const ptCredits = [
+-			ent.face?.credit ? `art credit: ${ent.face?.credit}` : null,
+-			(backCredit || ent.back?.credit) ? `art credit (reverse): ${backCredit || ent.back?.credit}` : null,
++			ent.face?.credit ? `繪圖：${ent.face?.credit}` : null,
++			(backCredit || ent.back?.credit) ? `背面繪圖：${backCredit || ent.back?.credit}` : null,
+ 		]
+ 			.filter(Boolean)
+ 			.join(", ")
+@@ -15793,7 +16056,8 @@ Renderer.deck = class {
+ Renderer.facility = class {
+ 	static _getFacilityRenderableEntriesMeta_space ({ent}) {
+ 		if (!ent.space) return null;
+-		return ent.space.map(spc => Renderer.facility._getSpaceEntry(spc, {isIncludeCostTime: ent.facilityType === "basic"})).joinConjunct(", ", " or ");
++		const entries = ent.space.map(spc => Renderer.facility._getSpaceEntry(spc, {isIncludeCostTime: ent.facilityType === "basic"}));
++		return globalThis.I18nZhTwContent ? entries.join("或") : entries.joinConjunct(", ", " or ");
+ 	}
+ 
+ 	static _getFacilityRenderableEntriesMeta_hirelings ({ent}) {
+@@ -15801,16 +16065,19 @@ Renderer.facility = class {
+ 
+ 		const out = ent.hirelings
+ 			.map(hire => {
+-				const ptSpace = hire.space ? ` {@style (${hire.space.toTitleCase()})|muted}` : "";
++				const space = globalThis.I18nZhTwContent?.getFacilitySpace(hire.space) || hire.space?.toTitleCase();
++				const ptSpace = hire.space ? ` {@style (${space})|muted}` : "";
+ 
+-				if (hire.exact != null) return `${hire.exact}${ptSpace}`;
+-				if (hire.min != null && hire.max != null) return `${hire.min}\u2013${hire.max}${ptSpace}`;
+-				if (hire.min != null) return `${hire.min}+ (see below${ptSpace ? ";" : ""}${ptSpace})`;
++				if (hire.exact != null) return `${hire.exact}${globalThis.I18nZhTwContent ? "名" : ""}${ptSpace}`;
++				if (hire.min != null && hire.max != null) return `${hire.min}\u2013${hire.max}${globalThis.I18nZhTwContent ? "名" : ""}${ptSpace}`;
++				if (hire.min != null) return globalThis.I18nZhTwContent
++					? `${hire.min}名以上（詳見下文${ptSpace ? "；" : ""}${ptSpace}）`
++					: `${hire.min}+ (see below${ptSpace ? ";" : ""}${ptSpace})`;
+ 
+ 				return null;
+ 			})
+ 			.filter(Boolean)
+-			.joinConjunct(", ", " or ");
++			.join(globalThis.I18nZhTwContent ? "或" : ", ");
+ 
+ 		if (out) return out;
+ 		return null;
+@@ -15818,7 +16085,8 @@ Renderer.facility = class {
+ 
+ 	static _getFacilityRenderableEntriesMeta_orders ({ent}) {
+ 		if (!ent.orders) return null;
+-		return ent.orders.map(it => it.toTitleCase()).joinConjunct(", ", " or ");
++		const orders = ent.orders.map(it => globalThis.I18nZhTwContent?.getFacilityOrder(it) || it.toTitleCase());
++		return globalThis.I18nZhTwContent ? orders.join("或") : orders.joinConjunct(", ", " or ");
+ 	}
+ 
+ 	static getFacilityRenderableEntriesMeta (ent) {
+@@ -15827,24 +16095,24 @@ Renderer.facility = class {
+ 		if (ent.prerequisite) {
+ 			entsList.push({
+ 				type: "item",
+-				name: `Prerequisite:`,
+-				entry: Renderer.utils.prerequisite.getEntry(ent.prerequisite, {styleHint: "one", isSkipPrefix: true}),
++				name: globalThis.I18nZhTwContent ? "先決條件：" : "Prerequisite:",
++				entry: Renderer.utils.prerequisite.getHtml(ent.prerequisite, {styleHint: "one", isSkipPrefix: true}),
+ 			});
+ 		} else if (ent.facilityType !== "basic") {
+-			entsList.push({type: "item", name: `Prerequisite:`, entry: "None"});
++			entsList.push({type: "item", name: globalThis.I18nZhTwContent ? "先決條件：" : "Prerequisite:", entry: globalThis.I18nZhTwContent ? "無" : "None"});
+ 		}
+ 
+ 		const entrySpace = this._getFacilityRenderableEntriesMeta_space({ent});
+-		if (entrySpace) entsList.push({type: "item", name: `Space:`, entry: entrySpace});
++		if (entrySpace) entsList.push({type: "item", name: globalThis.I18nZhTwContent ? "空間：" : "Space:", entry: entrySpace});
+ 
+ 		const entryHirelings = this._getFacilityRenderableEntriesMeta_hirelings({ent});
+-		if (entryHirelings) entsList.push({type: "item", name: `Hirelings:`, entry: entryHirelings});
++		if (entryHirelings) entsList.push({type: "item", name: globalThis.I18nZhTwContent ? "僱工：" : "Hirelings:", entry: entryHirelings});
+ 
+ 		const entryOrders = this._getFacilityRenderableEntriesMeta_orders({ent});
+-		if (entryOrders) entsList.push({type: "item", name: `Order${ent.orders.length !== 1 ? "s" : ""}:`, entry: entryOrders});
++		if (entryOrders) entsList.push({type: "item", name: globalThis.I18nZhTwContent ? "指令：" : `Order${ent.orders.length !== 1 ? "s" : ""}:`, entry: entryOrders});
+ 
+ 		return {
+-			entryLevel: ent.level ? `{@i Level ${ent.level} Bastion Facility}` : null,
++			entryLevel: ent.level ? `{@i ${globalThis.I18nZhTwContent ? `${ent.level}級堡壘設施` : `Level ${ent.level} Bastion Facility`}}` : null,
+ 			entriesDescription: [
+ 				entsList.length
+ 					? {
+@@ -15880,14 +16148,14 @@ Renderer.facility = class {
+ 		const sq = Renderer.facility._SPACE_TO_SQUARES[spc];
+ 
+ 		const ptAdditional = [
+-			sq ? `{@tip ${sq} sq|${sq} squares}` : null,
++			sq ? (globalThis.I18nZhTwContent ? `{@tip ${sq}格|${sq}個方格}` : `{@tip ${sq} sq|${sq} squares}`) : null,
+ 			Renderer.facility._getSpaceEntry_getPriceTimeEntry({spc, isIncludeCostTime}),
+ 		]
+ 			.filter(Boolean)
+ 			.join("; ");
+ 		const ptSuffix = ptAdditional ? ` {@style [${ptAdditional}]|muted;small}` : "";
+ 
+-		return [spc.toTitleCase(), ptSuffix].filter(Boolean).join(" ");
++		return [globalThis.I18nZhTwContent?.getFacilitySpace(spc) || spc.toTitleCase(), ptSuffix].filter(Boolean).join(" ");
+ 	}
+ 
+ 	static _getSpaceEntry_getPriceTimeEntry ({spc, isIncludeCostTime}) {
+@@ -15897,8 +16165,8 @@ Renderer.facility = class {
+ 
+ 		const {cost, time} = costTimeInfo;
+ 
+-		const ptTxt = `${cost} GP, ${time} days`;
+-		const ptTipBasic = `${cost} GP and ${time} days to add`;
++		const ptTxt = globalThis.I18nZhTwContent ? `${cost} GP、${time}天` : `${cost} GP, ${time} days`;
++		const ptTipBasic = globalThis.I18nZhTwContent ? `新增需花費${cost} GP與${time}天` : `${cost} GP and ${time} days to add`;
+ 
+ 		const spcPrev = Renderer.facility._SPACE_PROGRESSION[Renderer.facility._SPACE_PROGRESSION.indexOf(spc) - 1];
+ 		const costTimeInfoPrev = Renderer.facility._SPACE_TO_COST_TIME_BASIC[spcPrev];
+@@ -15906,7 +16174,9 @@ Renderer.facility = class {
+ 
+ 		const {cost: costPrev, time: timePrev} = costTimeInfoPrev;
+ 
+-		return `{@tip ${ptTxt}|${ptTipBasic}, or, ${cost - costPrev} GP and ${time - timePrev} days to expand from a ${spcPrev.toTitleCase()} facility}`;
++		return globalThis.I18nZhTwContent
++			? `{@tip ${ptTxt}|${ptTipBasic}；或花費${cost - costPrev} GP與${time - timePrev}天，從${globalThis.I18nZhTwContent.getFacilitySpace(spcPrev)}設施擴建}`
++			: `{@tip ${ptTxt}|${ptTipBasic}, or, ${cost - costPrev} GP and ${time - timePrev} days to expand from a ${spcPrev.toTitleCase()} facility}`;
+ 	}
+ 
+ 	/* -------------------------------------------- */
+@@ -15955,11 +16225,12 @@ Renderer.bastion = class {
+ Renderer.skill = class {
+ 	static getSkillRenderableEntriesMeta (ent) {
+ 		return {
+-			entryAbility: ent.ability ? `{@i Ability: ${Parser.attAbvToFull(ent.ability)}}` : null,
++			entryAbility: ent.ability ? `{@i ${globalThis.I18nZhTwRules ? "能力：" : "Ability: "}${globalThis.I18nZhTwRules?.getAbilityDisplay(ent.ability) || Parser.attAbvToFull(ent.ability)}}` : null,
+ 		};
+ 	}
+ 
+ 	static getCompactRenderedString (ent) {
++		const htmlPage = Renderer.utils.getPageTr(ent);
+ 		const {entryAbility} = this.getSkillRenderableEntriesMeta(ent);
+ 
+ 		return `
+@@ -15968,7 +16239,7 @@ Renderer.skill = class {
+ 			${entryAbility ? `<p>${Renderer.get().render(entryAbility)}</p>` : ""}
+ 			${Renderer.get().setFirstSection(true).render({type: "entries", entries: ent.entries})}
+ 			</td></tr>
+-			${Renderer.utils.getPageTr(ent)}
++			${globalThis.I18nZhTwRules?.localizeSourceHtml(htmlPage) || htmlPage}
+ 		`;
+ 	}
+ };
+@@ -16480,6 +16751,10 @@ Renderer.redirect = class {
+ };
+ 
+ Renderer.hover = class {
++	static _t (text, data = null) {
++		return globalThis.I18nZhTwSite?.tEnglish(text, data) ?? text;
++	}
++
+ 	static LinkMeta = class {
+ 		constructor ({mode = "hover"}) {
+ 			this.mode = mode;
+@@ -17519,12 +17794,12 @@ Renderer.hover = class {
+ 		const brdEleTopRhs = veT`<div class="ve-flex ve-ml-auto ve-no-shrink"></div>`.vee.appendTo(brdrTop);
+ 
+ 		if (opts.pageUrl && !position.window._IS_POPOUT && !Renderer.get().isInternalLinksDisabled()) {
+-			const btnGotoPage = veT`<a class="ve-hwin__top-border-icon glyphicon glyphicon-modal-window" title="Go to Page" href="${opts.pageUrl}"></a>`
++			const btnGotoPage = veT`<a class="ve-hwin__top-border-icon glyphicon glyphicon-modal-window" title="${this._t("Go to Page")}" href="${opts.pageUrl}"></a>`
+ 				.vee.appendTo(brdEleTopRhs);
+ 		}
+ 
+ 		if (!position.window._IS_POPOUT && !opts.isPopout) {
+-			const btnPopout = veT`<span class="ve-hwin__top-border-icon glyphicon glyphicon-new-window hvr__popout" title="Open as Popup Window"></span>`
++			const btnPopout = veT`<span class="ve-hwin__top-border-icon glyphicon glyphicon-new-window hvr__popout" title="${this._t("Open as Popup Window")}"></span>`
+ 				.vee.onn("click", evt => {
+ 					evt.stopPropagation();
+ 					return Renderer.hover._getShowWindow_pDoPopout({eleHov, position, fnsCleanup, hoverId, opts, hoverWindow, eleContent}, {evt});
+@@ -17536,7 +17811,7 @@ Renderer.hover = class {
+ 			const btnPopout = veE({
+ 				tag: "span",
+ 				clazz: `ve-hwin__top-border-icon ve-hwin__top-border-icon--text`,
+-				title: "Show Source Data",
++				title: this._t("Show Source Data"),
+ 				txt: "{}",
+ 				click: evt => {
+ 					evt.stopPropagation();
+@@ -17546,7 +17821,7 @@ Renderer.hover = class {
+ 						Renderer.hover.getHoverContent_statsCode(opts.sourceData),
+ 						Renderer.hover.getWindowPositionFromEvent(evt),
+ 						{
+-							title: [opts.sourceData._displayName || opts.sourceData.name, "Source Data"].filter(Boolean).join(" \u2014 "),
++							title: [opts.sourceData._displayName || opts.sourceData.name, this._t("Source Data")].filter(Boolean).join(" \u2014 "),
+ 							isPermanent: true,
+ 							isBookContent: true,
+ 						},
+@@ -17556,7 +17831,7 @@ Renderer.hover = class {
+ 			brdEleTopRhs.vee.appends(btnPopout);
+ 		}
+ 
+-		const btnClose = veT`<span class="ve-hwin__top-border-icon glyphicon glyphicon-remove" title="Close (CTRL to Close All)"></span>`
++		const btnClose = veT`<span class="ve-hwin__top-border-icon glyphicon glyphicon-remove" title="${this._t("Close (CTRL to Close All)")}"></span>`
+ 			.vee.onn("click", (evt) => {
+ 				evt.stopPropagation();
+ 
+@@ -18204,7 +18479,7 @@ Renderer.hover = class {
+ 	static getHoverContent_statsCode (toRender, {isSkipClean = false, title = null} = {}) {
+ 		const cleanCopy = isSkipClean ? toRender : DataUtil.cleanJson(MiscUtil.copyFast(toRender));
+ 		return Renderer.hover.getHoverContent_miscCode(
+-			title || [cleanCopy.name, "Source Data"].filter(Boolean).join(" \u2014 "),
++			title || [cleanCopy._displayName || cleanCopy.name, this._t("Source Data")].filter(Boolean).join(" \u2014 "),
+ 			JSON.stringify(cleanCopy, null, "\t"),
+ 		);
+ 	}
+diff --git a/js/rewards.js b/js/rewards.js
+index ec69817..cb9b1a5 100644
+--- a/js/rewards.js
++++ b/js/rewards.js
+@@ -17,7 +17,8 @@ class RewardsSublistManager extends SublistManager {
+ 	}
+ 
+ 	pGetSublistItem (reward, hash) {
+-		const cellsText = [reward.type, reward.name];
++		const displayName = Renderer.utils.getBilingualName(reward);
++		const cellsText = [I18nZhTwContent.getRewardType(reward.type, {isBilingual: true}), displayName];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+ 			<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+@@ -30,7 +31,7 @@ class RewardsSublistManager extends SublistManager {
+ 		const listItem = new ListItem({
+ 			id: hash,
+ 			ele,
+-			name: reward.name,
++			name: displayName,
+ 			values: {
+ 				...ListItem.getCommonValues(reward),
+ 				type: reward.type,
+@@ -59,9 +60,9 @@ class RewardsPage extends ListPage {
+ 			dataProps: ["reward"],
+ 
+ 			bookViewOptions: {
+-				nameSingular: "reward",
+-				namePlural: "rewards",
+-				pageTitle: "Rewards Book View",
++				nameSingular: "獎勵",
++				namePlural: "獎勵",
++				pageTitle: "獎勵書本檢視",
+ 			},
+ 
+ 			isPreviewable: true,
+@@ -70,6 +71,8 @@ class RewardsPage extends ListPage {
+ 
+ 	getListItem (reward, rwI, isExcluded) {
+ 		this._pageFilter.mutateAndAddToFilters(reward, isExcluded);
++		const displayName = Renderer.utils.getBilingualName(reward);
++		const displayType = I18nZhTwContent.getRewardType(reward.type, {isBilingual: true});
+ 
+ 		const eleLi = document.createElement("div");
+ 		eleLi.className = `ve-lst__row ve-flex-col ${isExcluded ? "ve-lst__row--blocklisted" : ""}`;
+@@ -79,8 +82,8 @@ class RewardsPage extends ListPage {
+ 
+ 		eleLi.innerHTML = `<a href="#${hash}" class="ve-lst__row-border ve-lst__row-inner">
+ 			<span class="ve-col-0-3 ve-px-0 ve-flex-vh-center ve-lst__btn-toggle-expand ve-self-flex-stretch ve-no-select">[+]</span>
+-			<span class="ve-col-2 ve-text-center ve-px-1">${reward.type}</span>
+-			<span class="ve-bold ve-col-7-7 ve-px-1">${reward.name}</span>
++			<span class="ve-col-2 ve-text-center ve-px-1">${displayType}</span>
++			<span class="ve-bold ve-col-7-7 ve-px-1">${displayName}</span>
+ 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(reward.source)} ve-pl-1 ve-pr-0" title="${Parser.sourceJsonToFull(reward.source)}">${source}</span>
+ 		</a>
+ 		<div class="ve-flex ve-hidden ve-relative ve-accordion__wrp-preview">
+@@ -91,7 +94,7 @@ class RewardsPage extends ListPage {
+ 		const listItem = new ListItem({
+ 			id: rwI,
+ 			ele: eleLi,
+-			name: reward.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				...ListItem.getCommonValues(reward),
+diff --git a/js/search.js b/js/search.js
+index 25396e5..54a2bea 100644
+--- a/js/search.js
++++ b/js/search.js
+@@ -4,6 +4,8 @@ import {OmnisearchState} from "./omnisearch/omnisearch-state.js";
+ import {OmnisearchBacking} from "./omnisearch/omnisearch-backing.js";
+ import {OmnisearchUtilsUi} from "./omnisearch/omnisearch-utils-ui.js";
+ 
++const _tZhTwSearch = (text, data) => globalThis.I18nZhTwSite?.tEnglish(text, data) ?? text;
++
+ class SearchPage {
+ 	static _STORAGE_KEY_IS_EXPANDED = "isExpanded";
+ 
+@@ -45,7 +47,7 @@ class SearchPage {
+ 	/* -------------------------------------------- */
+ 
+ 	static _render_getBtnToggleFilter ({btnMeta}) {
+-		const btn = veT`<button class="ve-btn ve-btn-default" title="${btnMeta.title.qq()}">${btnMeta.text.qq()}</button>`
++		const btn = veT`<button class="ve-btn ve-btn-default" title="${_tZhTwSearch(btnMeta.title).qq()}">${_tZhTwSearch(btnMeta.text).qq()}</button>`
+ 			.vee.onn("click", () => OmnisearchState[btnMeta.fnDoToggleOmnisearch]());
+ 		const hkBrew = (val) => {
+ 			btn.vee.toggleClass("ve-active", OmnisearchState[btnMeta.propOmnisearch]);
+@@ -59,7 +61,7 @@ class SearchPage {
+ 	}
+ 
+ 	static _render () {
+-		const iptSearch = veT`<input class="ve-form-control pg-search__ipt" placeholder="Search everywhere..." title="Disclaimer: unlikely to search everywhere. Use with caution.">`
++		const iptSearch = veT`<input class="ve-form-control pg-search__ipt" placeholder="${_tZhTwSearch("Search everywhere...")}" title="${_tZhTwSearch("Disclaimer: unlikely to search everywhere. Use with caution.")}">`
+ 			.vee.onn("keydown", evt => {
+ 				if (evt.key !== "Enter") return;
+ 				btnSearch.vee.trigger("click");
+@@ -73,7 +75,7 @@ class SearchPage {
+ 				});
+ 			});
+ 
+-		const btnHelp = veT`<button class="ve-btn ve-btn-default ve-mr-2 ve-mobile-sm__hidden" title="Help"><span class="glyphicon glyphicon-info-sign"></span></button>`
++		const btnHelp = veT`<button class="ve-btn ve-btn-default ve-mr-2 ve-mobile-sm__hidden" title="${_tZhTwSearch("Help")}"><span class="glyphicon glyphicon-info-sign"></span></button>`
+ 			.vee.onn("click", () => OmnisearchUtilsUi.doShowHelp());
+ 
+ 		const btnCyclePartneredMode = veT`<button class="ve-btn ve-btn-default pg-search__btn-partnered-mode"></button>`;
+@@ -102,10 +104,10 @@ class SearchPage {
+ 				.forEach(meta => meta.setIsExpanded(mode));
+ 		};
+ 
+-		const btnCollapseAll = veT`<button class="ve-btn ve-btn-default" title="Collapse All Results"><span class="glyphicon glyphicon-minus"></span></button>`
++		const btnCollapseAll = veT`<button class="ve-btn ve-btn-default" title="${_tZhTwSearch("Collapse All Results")}"><span class="glyphicon glyphicon-minus"></span></button>`
+ 			.vee.onn("click", () => handleMassExpandCollapse(false));
+ 
+-		const btnExpandAll = veT`<button class="ve-btn ve-btn-default" title="Expand All Results"><span class="glyphicon glyphicon-plus"></span></button>`
++		const btnExpandAll = veT`<button class="ve-btn ve-btn-default" title="${_tZhTwSearch("Expand All Results")}"><span class="glyphicon glyphicon-plus"></span></button>`
+ 			.vee.onn("click", () => handleMassExpandCollapse(true));
+ 
+ 		SearchPage._wrpResults = veT`<div class="ve-flex-col ve-w-100">${this._getWrpResult_message("Loading...")}</div>`;
+@@ -116,7 +118,7 @@ class SearchPage {
+ 
+ 				<div class="ve-flex-v-center ve-mobile-sm__flex-col ve-mobile-lg__flex-ai-start ve-mobile-lg__w-100">
+ 					${btnHelp}
+-					<div class="ve-mr-2 ve-ml-1 ve-mobile-sm__ml-0 ve-mobile-sm__mb-2 ve-italic">Include</div>
++					<div class="ve-mr-2 ve-ml-1 ve-mobile-sm__ml-0 ve-mobile-sm__mb-2 ve-italic">${_tZhTwSearch("Include")}</div>
+ 					<div class="ve-flex-v-center ve-btn-group ve-mr-2 ve-mobile-sm__mb-2 ve-mobile-sm__mr-0">
+ 						${btnCyclePartneredMode}
+ 						${btnToggleBrew}
+@@ -256,7 +258,7 @@ class SearchPage {
+ 					handleIsExpanded();
+ 				};
+ 
+-				const btnTogglePreview = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-h-100" title="Toggle Preview"></button>`
++				const btnTogglePreview = veT`<button class="ve-btn ve-btn-default ve-btn-xs ve-h-100" title="${_tZhTwSearch("Toggle Preview")}"></button>`
+ 					.vee.onn("click", () => {
+ 						out.isExpanded = !out.isExpanded;
+ 						handleIsExpanded();
+@@ -363,7 +365,7 @@ class SearchPage {
+ 	}
+ 
+ 	static _getWrpResult_message (message) {
+-		return `<div class="ve-my-2 ve-py-2 ve-px-3 pg-search__wrp-result ve-flex-vh-center"><i>${message.qq()}</i></div>`;
++		return `<div class="ve-my-2 ve-py-2 ve-px-3 pg-search__wrp-result ve-flex-vh-center"><i>${_tZhTwSearch(message).qq()}</i></div>`;
+ 	}
+ }
+ 
+diff --git a/js/spells.js b/js/spells.js
+index bd7cd4c..a450e42 100644
+--- a/js/spells.js
++++ b/js/spells.js
+@@ -1,35 +1,37 @@
+ import {RenderSpells, RenderSpellsSettings} from "./render-spells.js";
+ 
++const {I18nZhTwContent} = globalThis;
++
+ class SpellsSublistManager extends SublistManager {
+ 	static _getRowTemplate () {
+ 		return [
+ 			new SublistCellTemplate({
+-				name: "Name",
++				name: "名稱",
+ 				css: "ve-bold ve-col-3-2 ve-pl-0 ve-pr-1",
+ 				colStyle: "",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Level",
++				name: "環階",
+ 				css: "ve-capitalize ve-col-1-5 ve-px-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Time",
++				name: "時間",
+ 				css: "ve-col-1-8 ve-px-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "School",
++				name: "學派",
+ 				css: "ve-capitalize ve-col-1-6 ve-px-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "C.",
++				name: "專",
+ 				css: "concentration--sublist ve-col-0-7 ve-px-1 ve-text-center",
+ 				colStyle: "text-center",
+ 			}),
+ 			new SublistCellTemplate({
+-				name: "Range",
++				name: "距離",
+ 				css: "range ve-col-3-2 ve-pl-1 ve-pr-0 ve-text-right",
+ 				colStyle: "text-right",
+ 			}),
+@@ -37,30 +39,31 @@ class SpellsSublistManager extends SublistManager {
+ 	}
+ 
+ 	pGetSublistItem (spell, hash) {
+-		const school = Parser.spSchoolAndSubschoolsAbvsShort(spell.school, spell.subschools);
++		const displayName = I18nZhTwContent.getBilingualName(spell);
++		const school = I18nZhTwContent.getSpellSchoolAndSubschools(spell.school, spell.subschools);
+ 		const time = PageFilterSpells.getTblTimeStr(spell.time[0]);
+ 		const concentration = spell._isConc ? "×" : "";
+-		const range = Parser.spRangeToFull(spell.range, {isDisplaySelfArea: true});
++		const range = I18nZhTwContent.getSpellRange(spell.range, {isDisplaySelfArea: true});
+ 
+ 		const cellsText = [
+-			spell.name,
++			displayName,
+ 			PageFilterSpells.getTblLevelStr(spell),
+ 			time,
+ 			new SublistCell({
+ 				text: school,
+-				title: Parser.spSchoolAndSubschoolsAbvsToFull(spell.school, spell.subschools),
++				title: I18nZhTwContent.getSpellSchoolAndSubschools(spell.school, spell.subschools),
+ 				css: Parser.spSchoolAbvToStyleClass(spell.school),
+ 				style: Parser.spSchoolAbvToStyle(spell.school),
+ 			}),
+ 			new SublistCell({
+ 				text: concentration,
+-				title: concentration ? "Concentration" : "",
++				title: concentration ? "專注" : "",
+ 			}),
+ 			range,
+ 		];
+ 
+ 		const ele = veT`<div class="ve-lst__row ve-lst__row--sublist ve-flex-col">
+-			<a href="#${UrlUtil.autoEncodeHash(spell)}" title="${spell.name}" class="ve-lst__row-border ve-lst__row-inner">
++			<a href="#${UrlUtil.autoEncodeHash(spell)}" title="${displayName}" class="ve-lst__row-border ve-lst__row-inner">
+ 				${this.constructor._getRowCellsHtml({values: cellsText})}
+ 			</a>
+ 		</div>`
+@@ -70,9 +73,10 @@ class SpellsSublistManager extends SublistManager {
+ 		const listItem = new ListItem({
+ 			id: hash,
+ 			ele,
+-			name: spell.name,
++			name: displayName,
+ 			values: {
+ 				...ListItem.getCommonValues(spell),
++				englishName: I18nZhTwContent.getCanonicalName(spell),
+ 				school,
+ 				level: spell.level,
+ 				time,
+@@ -105,9 +109,9 @@ class SpellPageBookView extends ListPageBookView {
+ 
+ 	constructor (opts) {
+ 		super({
+-			pageTitle: "Spells Book View",
+-			nameSingular: "spell",
+-			namePlural: "spells",
++			pageTitle: "法術書籍檢視",
++			nameSingular: "法術",
++			namePlural: "法術",
+ 			...opts,
+ 		});
+ 
+@@ -117,7 +121,7 @@ class SpellPageBookView extends ListPageBookView {
+ 
+ 	_getSorted (a, b) {
+ 		return (this._bookViewLastOrder === "0" ? SortUtil.ascSort(a.level, b.level) : 0)
+-			|| SortUtil.ascSortLower(a.name, b.name);
++			|| SortUtil.ascSortLower(I18nZhTwContent.getDisplayName(a), I18nZhTwContent.getDisplayName(b));
+ 	}
+ 
+ 	async _pGetWrpControls ({wrpContent}) {
+@@ -134,13 +138,13 @@ class SpellPageBookView extends ListPageBookView {
+ 		};
+ 
+ 		const selSortMode = veT`<select class="ve-form-control ve-input-xs">
+-			<option value="0">Spell Level</option>
+-			<option value="1">Alphabetical</option>
++			<option value="0">法術環階</option>
++			<option value="1">依名稱</option>
+ 		</select>`
+ 			.vee.onn("change", () => onChangeSortMode());
+ 
+ 		selSortMode.vee.val(`${this._bookViewLastOrder ?? 0}`);
+-		veT`<label class="ve-flex-vh-center ve-ml-3"><span class="ve-mr-2 ve-no-wrap">Sort Order:</span>${selSortMode}</label>`.vee.appendTo(wrpPrint);
++		veT`<label class="ve-flex-vh-center ve-ml-3"><span class="ve-mr-2 ve-no-wrap">排序：</span>${selSortMode}</label>`.vee.appendTo(wrpPrint);
+ 
+ 		return out;
+ 	}
+@@ -168,7 +172,7 @@ class SpellPageBookView extends ListPageBookView {
+ 					if (!atLvl.length) return null;
+ 
+ 					return [
+-						`<div class="bkmv__no-breaks"><div class="bkmv__spacer-name ve-flex-v-center ve-no-shrink ve-print__hidden ve-pl-2">${Parser.spLevelToFullLevelText(i)}</div>`,
++						`<div class="bkmv__no-breaks"><div class="bkmv__spacer-name ve-flex-v-center ve-no-shrink ve-print__hidden ve-pl-2">${I18nZhTwContent.getSpellLevel(i, {isIncludeWord: true})}</div>`,
+ 						...atLvl.map(({entity}) => this._getRenderedEnt(entity)),
+ 						`</div>`,
+ 					];
+@@ -210,6 +214,8 @@ class SpellsPage extends ListPageMultiSource {
+ 
+ 			listOptions: {
+ 				fnSort: PageFilterSpells.sortSpells,
++				sortByInitial: "level",
++				sortDirInitial: "asc",
+ 			},
+ 
+ 			dataProps: ["spell"],
+@@ -221,39 +227,39 @@ class SpellsPage extends ListPageMultiSource {
+ 			},
+ 
+ 			tableViewOptions: {
+-				title: "Spells",
++				title: "法術",
+ 				colTransforms: {
+ 					name: UtilsTableview.COL_TRANSFORM_NAME,
+ 					source: UtilsTableview.COL_TRANSFORM_SOURCE,
+ 					page: UtilsTableview.COL_TRANSFORM_PAGE,
+-					level: {name: "Level", transform: (it) => Parser.spLevelToFull(it)},
+-					time: {name: "Casting Time", transform: (it) => PageFilterSpells.getTblTimeStr(it[0])},
+-					duration: {name: "Duration", transform: (it) => Parser.spDurationToFull(it)},
++					level: {name: "環階", transform: (it) => I18nZhTwContent.getSpellLevel(it)},
++					time: {name: "施法時間", transform: (it) => PageFilterSpells.getTblTimeStr(it[0])},
++					duration: {name: "持續時間", transform: (it) => I18nZhTwContent.getSpellDuration(it)},
+ 					_school: {
+-						name: "School",
++						name: "學派",
+ 						transform: (sp) => {
+-							const ptMeta = Parser.spMetaToArr(sp.meta);
+-							return `<span class="${Parser.spSchoolAbvToStyleClass(sp.school)}" ${Parser.spSchoolAbvToStyle(sp.school)}>${Parser.spSchoolAndSubschoolsAbvsToFull(sp.school, sp.subschools)}</span>${ptMeta.length ? ` (${ptMeta.join(", ")})` : ""}`;
++							const ptMeta = Parser.spMetaToArr(sp.meta).map(it => ({ritual: "儀式", technomagic: "科技魔法"}[it] || it));
++							return `<span class="${Parser.spSchoolAbvToStyleClass(sp.school)}" ${Parser.spSchoolAbvToStyle(sp.school)}>${I18nZhTwContent.getSpellSchoolAndSubschools(sp.school, sp.subschools)}</span>${ptMeta.length ? `（${ptMeta.join("、")}）` : ""}`;
+ 						},
+ 					},
+-					range: {name: "Range", transform: (it) => Parser.spRangeToFull(it)},
+-					_components: {name: "Components", transform: (sp) => Parser.spComponentsToFull(sp.components, sp.level, {isPlainText: true})},
++					range: {name: "施法距離", transform: (it) => I18nZhTwContent.getSpellRange(it)},
++					_components: {name: "成分", transform: (sp) => I18nZhTwContent.getSpellComponents(sp.components, sp.level, {isPlainText: true})},
+ 					_classes: {
+-						name: "Classes",
++						name: "職業",
+ 						transform: (sp) => {
+ 							const [current] = Parser.spClassesToCurrentAndLegacy(Renderer.spell.getCombinedClasses(sp, "fromClassList"));
+ 							return Parser.spMainClassesToFull(current, {isIncludeSource: true});
+ 						},
+ 					},
+ 					_classesVariant: {
+-						name: "Optional/Variant Classes",
++						name: "選用／變體職業",
+ 						transform: (sp) => {
+ 							const [current] = Parser.spVariantClassesToCurrentAndLegacy(Renderer.spell.getCombinedClasses(sp, "fromClassListVariant"));
+ 							return Parser.spMainClassesToFull(current, {isIncludeSource: true});
+ 						},
+ 					},
+ 					_subclasses: {
+-						name: "Subclasses",
++						name: "子職業",
+ 						transform: (sp, additionalData) => {
+ 							const fromSubclass = Renderer.spell.getCombinedClasses(sp, "fromSubclass");
+ 							if (!fromSubclass.length) return "";
+@@ -261,8 +267,8 @@ class SpellsPage extends ListPageMultiSource {
+ 							return current;
+ 						},
+ 					},
+-					entries: {name: "Text", transform: (it) => Renderer.get().render({type: "entries", entries: it}, 1), flex: 3},
+-					entriesHigherLevel: {name: "At Higher Levels", transform: (it) => Renderer.get().render({type: "entries", entries: (it || [])}, 1), flex: 2},
++					entries: {name: "內文", transform: (it) => Renderer.get().render({type: "entries", entries: it}, 1), flex: 3},
++					entriesHigherLevel: {name: "升環施法", transform: (it) => Renderer.get().render({type: "entries", entries: (it || [])}, 1), flex: 2},
+ 				},
+ 			},
+ 
+@@ -309,15 +315,16 @@ class SpellsPage extends ListPageMultiSource {
+ 		this._seenHashes.add(hash);
+ 
+ 		const isExcluded = ExcludeUtil.isExcluded(hash, "spell", spell.source);
++		const displayName = I18nZhTwContent.getBilingualName(spell);
+ 
+ 		this._pageFilter.mutateAndAddToFilters(spell, isExcluded);
+ 
+ 		const source = Parser.sourceJsonToAbv(spell.source);
+ 		const time = PageFilterSpells.getTblTimeStr(spell.time[0]);
+-		const school = Parser.spSchoolAndSubschoolsAbvsShort(spell.school, spell.subschools);
++		const school = I18nZhTwContent.getSpellSchoolAndSubschools(spell.school, spell.subschools);
+ 		const schoolClassName = Parser.spSchoolAbvToStyleClass(spell.school);
+ 		const concentration = spell._isConc ? "×" : "";
+-		const range = Parser.spRangeToFull(spell.range, {isDisplaySelfArea: true});
++		const range = I18nZhTwContent.getSpellRange(spell.range, {isDisplaySelfArea: true});
+ 
+ 		const eleLi = veE({
+ 			tag: "div",
+@@ -325,7 +332,7 @@ class SpellsPage extends ListPageMultiSource {
+ 			click: (evt) => this._list.doSelect(listItem, evt),
+ 			contextmenu: (evt) => this._openContextMenu(evt, this._list, listItem),
+ 			html: `<a href="#${hash.qq()}" class="ve-lst__row-border ve-lst__row-inner">
+-				<span class="ve-bold ve-col-2-9 ve-pl-0 ve-pr-1">${spell.name.qq()}</span>
++				<span class="ve-bold ve-col-2-9 ve-pl-0 ve-pr-1">${displayName.qq()}</span>
+ 				<span class="ve-col-1-5 ve-px-1 ve-text-center">${PageFilterSpells.getTblLevelStr(spell).qq()}</span>
+ 				<span class="ve-col-1-7 ve-px-1 ve-text-center">${time.qq()}</span>
+ 				<span class="ve-col-1-2 ve-px-1 ${schoolClassName.qq()} ve-text-center" title="${Parser.spSchoolAndSubschoolsAbvsToFull(spell.school, spell.subschools).qq()}" ${Parser.spSchoolAbvToStyle(spell.school) || ""}>${school.qq()}</span>
+@@ -338,13 +345,14 @@ class SpellsPage extends ListPageMultiSource {
+ 		const listItem = new ListItem({
+ 			id: spI,
+ 			ele: eleLi,
+-			name: spell.name,
++			name: displayName,
+ 			values: {
+ 				source,
+ 				...ListItem.getCommonValues(spell),
++				englishName: I18nZhTwContent.getCanonicalName(spell),
+ 				level: spell.level,
+ 				time,
+-				school: Parser.spSchoolAbvToFull(spell.school),
++				school: I18nZhTwContent.getSpellSchool(spell.school),
+ 				concentration,
+ 				normalisedTime: spell._normalisedTime,
+ 				normalisedRange: spell._normalisedRange,
+@@ -359,7 +367,7 @@ class SpellsPage extends ListPageMultiSource {
+ 		return listItem;
+ 	}
+ 
+-	_tabTitleStats = "Spell";
++	_tabTitleStats = "法術";
+ 
+ 	_renderStats_doBuildStatsTab ({ent}) {
+ 		this._pgContent.vee.empty().vee.appends(RenderSpells.getRenderedSpell(ent, {subclassLookup: this._subclassLookup, settings: this._compSettings.getValues()}));

@@ -41,6 +41,17 @@ const variantData = await I18n.pApplyDataFile({
 	fnLoad: async () => readJson("data/zh-TW/items/magicvariants.json"),
 });
 
+const mergedItemSource = readJson("data/items.json");
+await DataUtil.pDoMetaMerge("test:warcraft-item-inheritance", mergedItemSource, {isSkipMetaMergeCache: true});
+const mergedItems = await I18n.pApplyDataFile({
+	file: "items.json",
+	data: mergedItemSource,
+	fnLoad: async () => readItemSidecar("items.json"),
+});
+const endlessCourage = mergedItems.item.find(it => it.name === "Ashen Band of Endless Courage" && it.source === "ICC");
+assert.match(JSON.stringify(endlessCourage.entries), /豁免/u);
+assert.doesNotMatch(JSON.stringify(endlessCourage.entries), /While wearing this ring/u);
+
 Renderer.item._addBasePropertiesAndTypes(baseData);
 
 const allPurposeTool = itemData.item.find(it => it.name === "+1 All-Purpose Tool" && it.source === "TCE");

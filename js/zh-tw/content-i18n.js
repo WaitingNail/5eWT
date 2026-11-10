@@ -1200,6 +1200,11 @@
 					out[displayKey] = this._copy(localized[key]);
 				}
 
+				for (const [index, gear] of (out.gear || []).entries()) {
+					const translated = localized.gear?.[index];
+					if (gear?.item && gear.item === translated?.item && typeof translated.displayName === "string") gear.displayName = translated.displayName;
+				}
+
 				if (canonical._copy && localized._copy) out._copy = this._copy(localized._copy);
 
 				if (out.legendary?.length && !out.legendaryHeader) {
@@ -1353,6 +1358,10 @@
 					if (!(key in canonical) || !(key in localized)) continue;
 					out[displayKey] = this._copy(localized[key]);
 				}
+			}
+
+			if (prop === "monsterFluff" && canonical._copy?._mod && localized._copy?._mod) {
+				out._copy = {...out._copy, _mod: this._copy(localized._copy._mod)};
 			}
 
 			if (prop.endsWith("Fluff") && canonical.images && localized.images) {
