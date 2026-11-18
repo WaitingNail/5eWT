@@ -800,8 +800,9 @@ diff --git a/js/utils-brew/utils-brew-ui-get.js b/js/utils-brew/utils-brew-ui-ge
 index f56b4a4..99014d3 100644
 --- a/js/utils-brew/utils-brew-ui-get.js
 +++ b/js/utils-brew/utils-brew-ui-get.js
-@@ -1,6 +1,14 @@
+@@ -1,7 +1,15 @@
  import {EVNT_VALCHANGE} from "../filter/filter-constants.js";
+ import {BrewSummaryUi} from "./utils-brew-ui-summary.js";
  
  export class GetBrewUi {
 +	static _t (text) { return globalThis.I18nZhTwSite?.tEnglish(text) ?? text; }
@@ -815,15 +816,6 @@ index f56b4a4..99014d3 100644
  	static _RenderState = class {
  		constructor () {
  			this.pageFilter = null;
-@@ -138,7 +146,7 @@ export class GetBrewUi {
- 									new Set(),
- 								);
- 
--							const dispToggleExpand = veT`<span class="ve-mr-2" title="SHIFT-Click to Toggle All">[+]</span>`;
-+							const dispToggleExpand = veT`<span class="ve-mr-2" title="${this._t("SHIFT-Click to Toggle All")}">[+]</span>`;
- 
- 							const dispHeader = veT`<div class="ve-w-100 ve-py-1 ve-bb-1p-trans ve-flex-v-center">
- 								${dispToggleExpand}
 @@ -328,15 +336,15 @@ export class GetBrewUi {
  
  		rdState.pageFilter = new this.constructor._PageFilterGetBrew({brewUtil: this._brewUtil});

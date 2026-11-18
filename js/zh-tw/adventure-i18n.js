@@ -43,7 +43,30 @@ export class I18nZhTwAdventure {
 
 	static async pGetView ({bookId, canonical, index, fnLoad = null}) {
 		bookId = `${bookId}`.toLowerCase();
-		if (!this._supportedBooks.has(bookId) || index?.id?.toLowerCase() !== bookId) return null;
+		if (index?.id?.toLowerCase() !== bookId) return null;
+		const documentId = (canonical.bookData?.[0] || canonical.adventureData?.[0] || canonical).id;
+		if (documentId && documentId.toLowerCase() !== bookId) return null;
+		if (bookId === "tce") {
+			const dataDocument = structuredClone(canonical.bookData?.[0] || canonical);
+			const spellTable = dataDocument.data?.[3]?.entries?.[4]?.entries?.[3];
+			if (spellTable?.type === "table" && spellTable.caption === "Spells") spellTable._displayCaption = "法術（Spells）";
+			return {dataDocument, index, adapter: null};
+		}
+		if (["idrotf", "lmop", "pabtso", "pota", "wdmm"].includes(bookId)) {
+			const {adventureErrata} = await import("./adventure-errata.js");
+			const dataDocument = structuredClone(canonical.adventureData?.[0] || canonical);
+			let translated = false;
+			for (const {path, english, text} of adventureErrata[bookId]) {
+				const parent = path.slice(0, -1).reduce((entry, key) => entry?.[key], dataDocument.data);
+				const key = path.at(-1);
+				if (parent?.[key] !== english) continue;
+				parent[key] = text;
+				translated = true;
+			}
+			return translated ? {dataDocument, index, adapter: null} : null;
+		}
+		if (!this._supportedBooks.has(bookId)) return null;
+		const current = canonical;
 		const localized = await this.pLoad({bookId, fnLoad});
 		if (!localized) return null;
 		if (!fnLoad && localized._meta?.upstreamTag === "v2.33.3") {
@@ -53,7 +76,25 @@ export class I18nZhTwAdventure {
 			canonical = await response.json();
 		}
 		try {
-			return this.createLocalizedView({canonical, localized, index});
+			const view = this.createLocalizedView({canonical, localized, index});
+			if (bookId === "wdh" && current !== canonical) {
+				const maps = new Map();
+				const visitImages = (node, fn) => {
+					if (!node || typeof node !== "object") return;
+					if (node.type === "image" && node.href?.path) fn(node);
+					else Object.values(node).forEach(child => visitImages(child, fn));
+				};
+				visitImages(current, image => maps.set(image.href.path, image));
+				visitImages(view.dataDocument, image => {
+					const source = maps.get(image.href.path);
+					if (!source) return;
+					for (const key of ["grid", "mapParent"]) {
+						if (source[key]) image[key] = structuredClone(source[key]);
+						else delete image[key];
+					}
+				});
+			}
+			return view;
 		} catch (error) {
 			console.warn(`[zh-TW ${bookId}] Translation does not match this source; using English.`, error);
 			return null;
@@ -63,7 +104,7 @@ export class I18nZhTwAdventure {
 	static createLocalizedView ({canonical, localized, index}) {
 		const localizedIndex = localized?.book || localized?.adventure;
 		const isCurrent = Object.hasOwn(this._currentBooks, index.id.toLowerCase());
-		const acceptedTags = isCurrent ? ["v2.39.1", "v2.41.0"] : ["v2.33.3", "v2.37.0"];
+		const acceptedTags = isCurrent ? ["v2.39.1", "v2.41.0", "v2.41.1"] : ["v2.33.3", "v2.37.0"];
 		canonical = (canonical.bookData || canonical.adventureData)?.find(it => it.id === index.id) || canonical;
 		if (!acceptedTags.includes(localized?._meta?.upstreamTag) || localizedIndex?.id !== index.id) {
 			throw new Error("Adventure translation identity/version mismatch");

@@ -48,7 +48,7 @@ const runGitApply = (patchPath, args) => execFileSync("git", ["apply", ...args, 
 
 
 if (!fs.readFileSync(path.join(upstreamRoot, "js/utils.js"), "utf8").includes("// 5eWT zh-TW runtime v2.39.1")) {
-	for (const file of runtimePatches) runGitApply(path.join(projectRoot, "patches", file), []);
+	for (const file of [...runtimePatches, "0030-zh-tw-v2.41.1-runtime.patch"]) runGitApply(path.join(projectRoot, "patches", file), []);
 }
 
 execFileSync(process.execPath, [path.join(upstreamRoot, "node/zh-tw/build-adventure-compatibility.mjs")], {cwd: upstreamRoot, stdio: "inherit"});

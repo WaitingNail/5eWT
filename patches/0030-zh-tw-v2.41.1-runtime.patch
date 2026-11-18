@@ -1,0 +1,161 @@
+diff --git a/js/listpage.js b/js/listpage.js
+--- a/js/listpage.js
++++ b/js/listpage.js
+@@ -1997,25 +1997,25 @@
+ 			),
+ 			null,
+ 			new ContextUtil.Action(
+-				"Copy as Image (SHIFT to Copy in Day Theme)",
++				"複製為圖片（按住 Shift 可使用淺色主題）",
+ 				evt => this._pHandleClick_exportAsImage({evt, isFast: true, isForceDayTheme: evt.shiftKey, eleCopyEffect: btnOptions}),
+ 			),
+ 			new ContextUtil.Action(
+-				"Export as Image",
++				"匯出為圖片",
+ 				evt => this._pHandleClick_exportAsImage({evt, eleCopyEffect: btnOptions}),
+ 			),
+ 			null,
+ 			new ContextUtil.Action(
+-				"Copy Source Data",
++				"複製來源資料（JSON）",
+ 				() => this._pHandleClick_doCopySourceData({eleCopyEffect: btnOptions}),
+ 			),
+ 			new ContextUtil.Action(
+-				"Download Source Data",
++				"下載來源資料（JSON）",
+ 				() => this._pHandleClick_doDownloadSourceData(),
+ 			),
+ 			null,
+ 			new ContextUtil.Action(
+-				"Copy as Markdown",
++				"複製為 Markdown",
+ 				() => this._pHandleClick_doCopyMarkdown({eleCopyEffect: btnOptions}),
+ 			),
+ 			new ContextUtil.Action(
+@@ -2377,7 +2377,7 @@
+ 				},
+ 			),
+ 			new ContextUtil.Action(
+-				"Copy as Markdown",
++				"複製為 Markdown",
+ 				async () => {
+ 					const fluffEntries = (await this._pFnGetFluff(ent))?.entries || [];
+ 					const rendererMd = RendererMarkdown.get().setFirstSection(true);
+diff --git a/js/renderdemo.js b/js/renderdemo.js
+--- a/js/renderdemo.js
++++ b/js/renderdemo.js
+@@ -171,8 +171,8 @@
+ 			wrpValidation
+ 				.vee.html(
+ 					[
+-						cntErrors ? `<span class="text-danger">${cntErrors} Error${cntErrors === 1 ? "" : "s"}</span>` : null,
+-						cntWarnings ? `<span class="text-warning">${cntWarnings} Warning${cntWarnings === 1 ? "" : "s"}</span>` : null,
++						cntErrors ? `<span class="text-danger">${cntErrors} 個錯誤</span>` : null,
++						cntWarnings ? `<span class="text-warning">${cntWarnings} 個警告</span>` : null,
+ 					]
+ 						.filter(Boolean)
+ 						.join("; "),
+diff --git a/js/utils-brew/utils-brew-ui-summary.js b/js/utils-brew/utils-brew-ui-summary.js
+--- a/js/utils-brew/utils-brew-ui-summary.js
++++ b/js/utils-brew/utils-brew-ui-summary.js
+@@ -36,7 +36,7 @@
+ 	}
+ 
+ 	static getRenderedBrewSummary ({brewSummary, isCollapsible = false}) {
+-		if (!Object.keys(brewSummary).length) return veT`<div class="ve-muted ve-italic ve-flex-vh-center">(No content.)</div>`;
++		if (!Object.keys(brewSummary).length) return veT`<div class="ve-muted ve-italic ve-flex-vh-center">（沒有內容）</div>`;
+ 
+ 		const propMetas = Object.entries(brewSummary)
+ 			.map(([prop, metas]) => [Parser.getPropDisplayName(prop), {prop, metas}])
+@@ -49,12 +49,12 @@
+ 						new Set(),
+ 					);
+ 
+-				const dispToggleExpand = isCollapsible ? veT`<span class="ve-mr-2" title="SHIFT-Click to Toggle All">[+]</span>` : null;
++				const dispToggleExpand = isCollapsible ? veT`<span class="ve-mr-2" title="按住 Shift 點擊即可全部展開或收合">[+]</span>` : null;
+ 
+ 				const dispHeader = veT`<div class="ve-w-100 ve-py-1 ve-bb-1p-trans ve-flex-v-center">
+ 					${dispToggleExpand}
+ 					<b class="ve-mr-1">${propName.qq()}</b>
+-					<span class="ve-muted" title="Note that duplicate/unwanted names are not displayed in the list below.">(${metas.length})</span>
++					<span class="ve-muted" title="下方清單已略過重複及不需顯示的名稱。">(${metas.length})</span>
+ 				</div>`;
+ 				if (isCollapsible) {
+ 					dispHeader
+@@ -75,7 +75,7 @@
+ 				const htmlLis = metasFilt
+ 					.map(meta => {
+ 						return `<div class="ve-w-100 ve-pr-1p ve-py-1p ve-flex ve-relative">
+-							<span class="ve-no-shrink">${meta.name.qq()}</span>${meta.page ? `<span class="ve-w-100 ve-min-w-0 ve-relative ve-top-n3p ve-mx-1 ve-bb-1p manbrew-get-preview__sep-page"></span><span class="ve-no-shrink ve-muted ve-small-caps" title="Page ${`${meta.page}`.qq()}">p${`${meta.page}`.qq()}</span>` : ""}
++							<span class="ve-no-shrink">${meta.name.qq()}</span>${meta.page ? `<span class="ve-w-100 ve-min-w-0 ve-relative ve-top-n3p ve-mx-1 ve-bb-1p manbrew-get-preview__sep-page"></span><span class="ve-no-shrink ve-muted ve-small-caps" title="第 ${`${meta.page}`.qq()} 頁">第 ${`${meta.page}`.qq()} 頁</span>` : ""}
+ 						</div>`;
+ 					})
+ 					.join("");
+diff --git a/renderdemo.html b/renderdemo.html
+--- a/renderdemo.html
++++ b/renderdemo.html
+@@ -96,11 +96,11 @@
+ 		<div class="ve-flex ve-h-100 ve-min-h-0 ve-mobile-md__flex-col ve-mobile-md__h-initial ve-mobile-md__min-h-initial ve-mobile-md__flex-col ve-print__h-initial">
+ 			<div class="view-col ve-print__hidden">
+ 				<div class="ve-mb-2 ve-split-v-center ve-w-100">
+-					<h4 class="ve-my-0 ve-italic">Input</h4>
++					<h4 class="ve-my-0 ve-italic">輸入</h4>
+ 
+ 					<div class="ve-flex-v-center">
+-						<div class="ve-mr-2 ve-no-select ve-clickable" id="wrp-validation" title="Jump to Next Error/Warning (ALT+E)"></div>
+-						<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-format" title="Format (CTRL+ALT+L)">Format</button>
++						<div class="ve-mr-2 ve-no-select ve-clickable" id="wrp-validation" title="跳至下一個錯誤或警告（Alt+E）"></div>
++						<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-format" title="格式化（Ctrl+Alt+L）">格式化</button>
+ 					</div>
+ 				</div>
+ 
+diff --git a/node/generate-pages/template/page/template-page-renderdemo.hbs b/node/generate-pages/template/page/template-page-renderdemo.hbs
+--- a/node/generate-pages/template/page/template-page-renderdemo.hbs
++++ b/node/generate-pages/template/page/template-page-renderdemo.hbs
+@@ -27,11 +27,11 @@
+ 		<div class="ve-flex ve-h-100 ve-min-h-0 ve-mobile-md__flex-col ve-mobile-md__h-initial ve-mobile-md__min-h-initial ve-mobile-md__flex-col ve-print__h-initial">
+ 			<div class="view-col ve-print__hidden">
+ 				<div class="ve-mb-2 ve-split-v-center ve-w-100">
+-					<h4 class="ve-my-0 ve-italic">Input</h4>
++					<h4 class="ve-my-0 ve-italic">輸入</h4>
+ 
+ 					<div class="ve-flex-v-center">
+-						<div class="ve-mr-2 ve-no-select ve-clickable" id="wrp-validation" title="Jump to Next Error/Warning (ALT+E)"></div>
+-						<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-format" title="Format (CTRL+ALT+L)">Format</button>
++						<div class="ve-mr-2 ve-no-select ve-clickable" id="wrp-validation" title="跳至下一個錯誤或警告（Alt+E）"></div>
++						<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-format" title="格式化（Ctrl+Alt+L）">格式化</button>
+ 					</div>
+ 				</div>
+ 
+diff --git a/js/filter-items.js b/js/filter-items.js
+--- a/js/filter-items.js
++++ b/js/filter-items.js
+@@ -72,6 +72,7 @@
+ 		this._rangeFilter = new MultiFilter({header: "Range", filters: [this._rangeFilterNormal, this._rangeFilterLong]});
+ 		this._miscFilter = new Filter({
+ 			header: "Miscellaneous",
++			displayFn: value => ({Food: "食物", Drink: "飲品"})[value] ?? globalThis.I18nZhTwSite?.tEnglish(value) ?? value,
+ 			items: [...PageFilterEquipment._MISC_FILTER_ITEMS, ...Object.values(Parser.ITEM_MISC_TAG_TO_FULL)],
+ 			isMiscFilter: true,
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+@@ -351,6 +352,7 @@
+ 		this._rechargeTypeFilter = new Filter({header: "Recharge Type", displayFn: Parser.itemRechargeToFull});
+ 		this._miscFilter = new Filter({
+ 			header: "Miscellaneous",
++			displayFn: value => ({Food: "食物", Drink: "飲品"})[value] ?? globalThis.I18nZhTwSite?.tEnglish(value) ?? value,
+ 			items: ["Ability Score Adjustment", "Charges", "Cursed", "Grants Language", "Grants Proficiency", "Magic", "Mundane", "Sentient", "Speed Adjustment", ...PageFilterEquipment._MISC_FILTER_ITEMS],
+ 			isMiscFilter: true,
+ 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+diff --git a/js/changelog.js b/js/changelog.js
+--- a/js/changelog.js
++++ b/js/changelog.js
+@@ -7,7 +7,8 @@
+ 
+ 	const changelog = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/changelog.json`);
+ 	const wrp = veEs(`#pagecontent`).vee.empty();
+-	UtilsChangelog.renderChangelog(changelog, wrp);
++	const localized = changelog.map(entry => entry.ver === "2.41.1" ? {...entry, txt: "- 清單頁的更多選項新增「複製為 Markdown」、「複製來源資料」和「下載來源資料」。\n- 物品頁的雜項篩選新增「食物」與「飲品」。\n- 渲染示範頁可初步驗證自製內容檔案，並列出檔案收錄的條目。\n- 修正錯字並補上內容連結標記。"} : entry);
++	UtilsChangelog.renderChangelog(localized, wrp);
+ 
+ 	window.dispatchEvent(new Event("toolsLoaded"));
+ });
